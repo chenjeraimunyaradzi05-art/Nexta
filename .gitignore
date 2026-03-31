@@ -73,3 +73,6 @@ apps/api/prisma/*.db*
 
 # Embedded / vendor folders
 source code/
+
+# Netlify build artifacts
+.netlify/
