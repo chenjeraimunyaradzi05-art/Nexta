@@ -1,0 +1,82 @@
+{
+  "name": "Nexta",
+  "short_name": "Nexta",
+  "description": "A guided platform for jobs, learning, mentors, business tools, money support, and long-term progress",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0f766e",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "32x32",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["business", "education", "productivity"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Explore Pathways",
+      "short_name": "Pathways",
+      "description": "See jobs, skills, mentors, and support in one place",
+      "url": "/#pathways",
+      "icons": [{ "src": "/favicon.svg", "sizes": "32x32" }]
+    },
+    {
+      "name": "Join Nexta",
+      "short_name": "Join",
+      "description": "Start your Nexta profile and guided pathway",
+      "url": "/signup",
+      "icons": [{ "src": "/favicon.svg", "sizes": "32x32" }]
+    },
+    {
+      "name": "Ask Nexta AI",
+      "short_name": "AI",
+      "description": "Get guided next steps and practical planning support",
+      "url": "/ai",
+      "icons": [{ "src": "/favicon.svg", "sizes": "32x32" }]
+    },
+    {
+      "name": "Partner with Nexta",
+      "short_name": "Partners",
+      "description": "Hire, partner, or run programs with Nexta",
+      "url": "/company/setup",
+      "icons": [{ "src": "/favicon.svg", "sizes": "32x32" }]
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "files",
+          "accept": ["application/pdf", ".doc", ".docx"]
+        }
+      ]
+    }
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+nexta",
+      "url": "/%s"
+    }
+  ],
+  "handle_links": "preferred",
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+  },
+  "edge_side_panel": {
+    "preferred_width": 480
+  }
+}
