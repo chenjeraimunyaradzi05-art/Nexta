@@ -6,7 +6,6 @@
 
 [build.environment]
   NODE_VERSION = "20"
-  NEXT_DISABLE_NETLIFY_EDGE = "true"
   # Set in Netlify UI: JWT_SECRET, DATABASE_URL, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET
   # Email: SENDGRID_API_KEY, SENDGRID_FROM or AWS SES keys
   # Rate limiting: RATE_LIMIT_SECRET, AI_RATE_LIMIT_PER_MINUTE
@@ -77,13 +76,8 @@
 # =============================================================================
 # Plugins
 # =============================================================================
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-  [plugins.inputs]
-    # Only process the web app, ignore mobile (Expo) and API
-    exclude_paths = ["apps/mobile", "apps/api"]
-
-# Note: NEXT_DISABLE_NETLIFY_EDGE=true prevents Edge Functions processing
+# Note: Modern Next.js (13.5+) uses OpenNext adapter automatically
+# Legacy @netlify/plugin-nextjs removed for Next.js 16 compatibility
 
 # =============================================================================
 # Headers for Security
