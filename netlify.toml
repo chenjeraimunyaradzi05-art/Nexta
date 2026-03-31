@@ -76,9 +76,7 @@
 # =============================================================================
 # Plugins
 # =============================================================================
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
+# Note: @netlify/plugin-nextjs removed - will be installed from Netlify plugins directory
 # Note: Using @netlify/plugin-nextjs v5 for Next.js 16.1.1 compatibility
 
 # =============================================================================
