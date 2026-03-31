@@ -76,13 +76,13 @@
 # =============================================================================
 # Plugins
 # =============================================================================
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-  [plugins.inputs]
-    exclude_paths = ["apps/mobile"]
-    disable_edge_functions = true
+# [[plugins]]
+#   package = "@netlify/plugin-nextjs"
+#   [plugins.inputs]
+#     exclude_paths = ["apps/mobile"]
+#     disable_edge_functions = true
 
-# Note: netlify-plugin-cache removed - Next.js plugin handles caching automatically
+# Note: Next.js plugin temporarily disabled to resolve Edge Functions conflict
 
 # =============================================================================
 # Headers for Security
