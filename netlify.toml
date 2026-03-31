@@ -78,6 +78,8 @@
 # =============================================================================
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+  [plugins.inputs]
+    exclude_paths = ["apps/mobile"]
 
 # Note: netlify-plugin-cache removed - Next.js plugin handles caching automatically
 
