@@ -102,6 +102,17 @@ const nextConfig = {
     root: path.resolve(__dirname, '../..'),
   },
 
+  // Fix monorepo module resolution: react/react-dom cannot be hoisted to the
+  // root node_modules because apps/mobile pins React 18 while apps/web uses
+  // React 19.  Prepend apps/web/node_modules so webpack finds them.
+  webpack: (config) => {
+    config.resolve.modules = [
+      path.resolve(__dirname, 'node_modules'),
+      ...(config.resolve.modules || ['node_modules']),
+    ];
+    return config;
+  },
+
   // Silence dev-time warning when accessing the dev server via 127.0.0.1/localhost.
   // This affects Playwright and local dev on Windows.
   allowedDevOrigins: ['127.0.0.1', 'localhost', 'http://127.0.0.1:3000', 'http://localhost:3000'],
