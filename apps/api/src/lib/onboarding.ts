@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * User Onboarding Flow
- * 
+ *
  * Features:
  * - Multi-step guided onboarding wizard
  * - Role-specific onboarding paths
@@ -68,7 +68,7 @@ export const JOBSEEKER_STEPS = [
   {
     id: 'welcome',
     order: 1,
-    title: 'Welcome to Ngurra Pathways',
+    title: 'Welcome to Nexta',
     subtitle: 'Your journey to meaningful employment starts here',
     type: 'info',
     content: {
@@ -104,8 +104,8 @@ export const JOBSEEKER_STEPS = [
     type: 'form',
     isOptional: true,
     fields: [
-      { 
-        name: 'indigenousIdentity', 
+      {
+        name: 'indigenousIdentity',
         label: 'Do you identify as Aboriginal and/or Torres Strait Islander?',
         type: 'select',
         options: [
@@ -279,11 +279,11 @@ export const EMPLOYER_STEPS = [
   {
     id: 'welcome',
     order: 1,
-    title: 'Welcome to Ngurra Pathways',
+    title: 'Welcome to Nexta',
     subtitle: 'Connect with talented First Nations candidates',
     type: 'info',
     content: {
-      message: "Thank you for joining Ngurra Pathways. We'll help you connect with skilled Aboriginal and Torres Strait Islander candidates who can bring unique perspectives and talents to your organisation.",
+      message: "Thank you for joining Nexta. We'll help you connect with skilled Aboriginal and Torres Strait Islander candidates who can bring unique perspectives and talents to your organisation.",
       benefits: [
         'Access a diverse talent pool',
         'Demonstrate your commitment to reconciliation',
@@ -628,7 +628,7 @@ export const TAFE_STEPS = [
     subtitle: 'Connect students with career opportunities',
     type: 'info',
     content: {
-      message: 'Partner with Ngurra Pathways to connect your Indigenous students with employers who value their skills and qualifications.',
+      message: 'Partner with Nexta to connect your Indigenous students with employers who value their skills and qualifications.',
       benefits: [
         'Showcase your courses to job seekers',
         'Track student employment outcomes',
@@ -696,7 +696,7 @@ export const TAFE_STEPS = [
     id: 'complete',
     order: 4,
     title: 'Welcome Partner!',
-    subtitle: "You're connected to Ngurra Pathways",
+    subtitle: "You're connected to Nexta",
     type: 'celebration',
     content: {
       nextSteps: [
@@ -719,7 +719,7 @@ export const COMMUNITY_STEPS = [
     subtitle: 'Connecting community with opportunity',
     type: 'info',
     content: {
-      message: 'Partner with Ngurra Pathways to support employment outcomes for your community members.',
+      message: 'Partner with Nexta to support employment outcomes for your community members.',
       benefits: [
         'Refer community members to opportunities',
         'Track employment outcomes',
@@ -1101,7 +1101,7 @@ async function applyStepData(userId, stepId, data, role) {
  */
 export async function getIncompleteOnboardings(options = {}) {
   const { daysInactive = 7, limit = 100 } = options;
-  
+
   const cutoffDate = new Date();
   cutoffDate.setDate(cutoffDate.getDate() - daysInactive);
 
@@ -1147,7 +1147,7 @@ export async function getIncompleteOnboardings(options = {}) {
 export default {
   // Configuration
   USER_ROLES,
-  
+
   // Flows
   JOBSEEKER_STEPS,
   EMPLOYER_STEPS,
@@ -1155,7 +1155,7 @@ export default {
   TAFE_STEPS,
   COMMUNITY_STEPS,
   getOnboardingFlow,
-  
+
   // Service functions
   startOnboarding,
   getOnboardingStatus,

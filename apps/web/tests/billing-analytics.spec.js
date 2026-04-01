@@ -7,18 +7,18 @@ test.describe('Billing Portal', () => {
     const apiBase = process.env.API_URL || 'http://127.0.0.1:3001';
     const webBase = process.env.E2E_BASE_URL || 'http://127.0.0.1:3000';
     let token = null;
-    
+
     test.beforeEach(async ({ request }) => {
         // Login as company user
-        const login = await request.post(`${apiBase}/auth/login`, { 
-            data: { email: 'company@example.com', password: 'password123' } 
+        const login = await request.post(`${apiBase}/auth/login`, {
+            data: { email: 'company@example.com', password: 'password123' }
         });
         expect(login.ok()).toBeTruthy();
         const loginJson = await login.json();
         token = loginJson.token;
         expect(token).toBeTruthy();
     });
-    
+
     test('displays current plan information', async ({ page }) => {
         // Mock subscription endpoint
         await page.route(`${apiBase}/subscriptions`, async (route) => {
@@ -36,15 +36,15 @@ test.describe('Billing Portal', () => {
                 }),
             });
         });
-        
+
         await page.goto(webBase);
-        await page.evaluate(([t]) => { 
-            localStorage.setItem('ngurra_token', t); 
-            document.cookie = `ngurra_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`; 
+        await page.evaluate(([t]) => {
+            localStorage.setItem('nexta_token', t);
+            document.cookie = `nexta_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`;
         }, [token]);
-        
+
         await page.goto(`${webBase}/company/billing`);
-        
+
         // Check for plan display
         await page.waitForSelector('text=Current Plan', { timeout: 10000 });
         await page.waitForSelector('text=Starter', { timeout: 5000 });
@@ -65,22 +65,22 @@ test.describe('Billing Portal', () => {
         });
 
         await page.goto(webBase);
-        await page.evaluate(([t]) => { 
-            localStorage.setItem('ngurra_token', t); 
-            document.cookie = `ngurra_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`; 
+        await page.evaluate(([t]) => {
+            localStorage.setItem('nexta_token', t);
+            document.cookie = `nexta_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`;
         }, [token]);
 
         await page.goto(`${webBase}/company/dashboard`);
 
         // Should show Analytics upgrade CTA
         await page.waitForSelector('text=Upgrade for analytics', { timeout: 10000 });
-        
+
         // Verify the CTA is visible and is a link to subscription page
         const ctaLink = page.locator('a:has-text("Upgrade for analytics")');
         await expect(ctaLink).toBeVisible();
         await expect(ctaLink).toHaveAttribute('href', '/company/subscription');
     });
-    
+
     test('shows tier comparison cards', async ({ page }) => {
         await page.route(`${apiBase}/subscriptions`, async (route) => {
             await route.fulfill({
@@ -89,21 +89,21 @@ test.describe('Billing Portal', () => {
                 body: JSON.stringify({ subscription: null, invoices: [] }),
             });
         });
-        
+
         await page.goto(webBase);
-        await page.evaluate(([t]) => { 
-            localStorage.setItem('ngurra_token', t); 
-            document.cookie = `ngurra_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`; 
+        await page.evaluate(([t]) => {
+            localStorage.setItem('nexta_token', t);
+            document.cookie = `nexta_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`;
         }, [token]);
-        
+
         await page.goto(`${webBase}/company/billing`);
-        
+
         // Check for tier cards
         await page.waitForSelector('text=Professional', { timeout: 10000 });
         await page.waitForSelector('text=Enterprise', { timeout: 5000 });
         await page.waitForSelector('text=Most Popular', { timeout: 5000 });
     });
-    
+
     test('displays invoice history when available', async ({ page }) => {
         // Mock all v2 endpoints that the billing page calls
         await page.route(`${apiBase}/subscriptions/v2/me`, async (route) => {
@@ -119,7 +119,7 @@ test.describe('Billing Portal', () => {
                 }),
             });
         });
-        
+
         await page.route(`${apiBase}/subscriptions/v2/tiers`, async (route) => {
             await route.fulfill({
                 status: 200,
@@ -127,7 +127,7 @@ test.describe('Billing Portal', () => {
                 body: JSON.stringify({ tiers: [] }),
             });
         });
-        
+
         await page.route(`${apiBase}/subscriptions/v2/invoices`, async (route) => {
             await route.fulfill({
                 status: 200,
@@ -135,7 +135,7 @@ test.describe('Billing Portal', () => {
                 body: JSON.stringify({ invoices: [] }),
             });
         });
-        
+
         // Provide invoices in the stripe-invoices endpoint (this is what the page prefers)
         await page.route(`${apiBase}/subscriptions/v2/stripe-invoices`, async (route) => {
             await route.fulfill({
@@ -166,15 +166,15 @@ test.describe('Billing Portal', () => {
                 }),
             });
         });
-        
+
         await page.goto(webBase);
-        await page.evaluate(([t]) => { 
-            localStorage.setItem('ngurra_token', t); 
-            document.cookie = `ngurra_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`; 
+        await page.evaluate(([t]) => {
+            localStorage.setItem('nexta_token', t);
+            document.cookie = `nexta_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`;
         }, [token]);
-        
+
         await page.goto(`${webBase}/company/billing`);
-        
+
         // Check for invoice table
         await page.waitForSelector('text=Invoice History', { timeout: 10000 });
         await page.waitForSelector('text=$249.00', { timeout: 5000 });
@@ -188,16 +188,16 @@ test.describe('Analytics Dashboard', () => {
     const apiBase = process.env.API_URL || 'http://127.0.0.1:3001';
     const webBase = process.env.E2E_BASE_URL || 'http://127.0.0.1:3000';
     let token = null;
-    
+
     test.beforeEach(async ({ request }) => {
-        const login = await request.post(`${apiBase}/auth/login`, { 
-            data: { email: 'company@example.com', password: 'password123' } 
+        const login = await request.post(`${apiBase}/auth/login`, {
+            data: { email: 'company@example.com', password: 'password123' }
         });
         expect(login.ok()).toBeTruthy();
         const loginJson = await login.json();
         token = loginJson.token;
     });
-    
+
     test('displays key metrics', async ({ page }) => {
         await page.route(`${apiBase}/analytics/employer/dashboard*`, async (route) => {
             await route.fulfill({
@@ -223,7 +223,7 @@ test.describe('Analytics Dashboard', () => {
             exportCalled = true;
             await route.fulfill({ status: 200, contentType: 'text/csv', body: 'createdAt,eventType\n2025-12-20,cta_click' });
         });
-        
+
         await page.route(`${apiBase}/analytics/employer/jobs`, async (route) => {
             await route.fulfill({
                 status: 200,
@@ -231,21 +231,21 @@ test.describe('Analytics Dashboard', () => {
                 body: JSON.stringify({ jobs: [] }),
             });
         });
-        
+
         await page.goto(webBase);
-        await page.evaluate(([t]) => { 
-            localStorage.setItem('ngurra_token', t); 
-            document.cookie = `ngurra_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`; 
+        await page.evaluate(([t]) => {
+            localStorage.setItem('nexta_token', t);
+            document.cookie = `nexta_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`;
         }, [token]);
-        
+
         await page.goto(`${webBase}/company/analytics`);
-        
+
         // Check for metrics
         await page.waitForSelector('text=Analytics Dashboard', { timeout: 10000 });
         await page.waitForSelector('text=1,250', { timeout: 5000 }); // Total views
         await page.waitForSelector('text=45', { timeout: 5000 }); // Applications
     });
-    
+
     test('shows Indigenous employment impact section', async ({ page }) => {
         await page.route(`${apiBase}/analytics/employer/dashboard*`, async (route) => {
             await route.fulfill({
@@ -262,7 +262,7 @@ test.describe('Analytics Dashboard', () => {
                 }),
             });
         });
-        
+
         await page.route(`${apiBase}/analytics/employer/jobs`, async (route) => {
             await route.fulfill({
                 status: 200,
@@ -270,21 +270,21 @@ test.describe('Analytics Dashboard', () => {
                 body: JSON.stringify({ jobs: [] }),
             });
         });
-        
+
         await page.goto(webBase);
-        await page.evaluate(([t]) => { 
-            localStorage.setItem('ngurra_token', t); 
-            document.cookie = `ngurra_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`; 
+        await page.evaluate(([t]) => {
+            localStorage.setItem('nexta_token', t);
+            document.cookie = `nexta_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`;
         }, [token]);
-        
+
         await page.goto(`${webBase}/company/analytics`);
-        
+
         // Check for Indigenous impact section
         await page.waitForSelector('text=Indigenous Employment Impact', { timeout: 10000 });
         await page.waitForSelector('text=Indigenous Candidates Hired', { timeout: 5000 });
         await page.waitForSelector('text=RAP Target Progress', { timeout: 5000 });
     });
-    
+
     test('displays job performance table', async ({ page }) => {
         await page.route(`${apiBase}/analytics/employer/dashboard*`, async (route) => {
             await route.fulfill({
@@ -293,7 +293,7 @@ test.describe('Analytics Dashboard', () => {
                 body: JSON.stringify({ totalViews: 100, totalApplications: 10 }),
             });
         });
-        
+
         await page.route(`${apiBase}/analytics/employer/jobs`, async (route) => {
             await route.fulfill({
                 status: 200,
@@ -306,15 +306,15 @@ test.describe('Analytics Dashboard', () => {
                 }),
             });
         });
-        
+
         await page.goto(webBase);
-        await page.evaluate(([t]) => { 
-            localStorage.setItem('ngurra_token', t); 
-            document.cookie = `ngurra_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`; 
+        await page.evaluate(([t]) => {
+            localStorage.setItem('nexta_token', t);
+            document.cookie = `nexta_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`;
         }, [token]);
-        
+
         await page.goto(`${webBase}/company/analytics`);
-        
+
         // Check for job table
         await page.waitForSelector('text=Job Performance', { timeout: 10000 });
         await page.waitForSelector('text=Construction Laborer', { timeout: 5000 });
@@ -329,16 +329,16 @@ test.describe('Community Forums', () => {
     const apiBase = process.env.API_URL || 'http://127.0.0.1:3001';
     const webBase = process.env.E2E_BASE_URL || 'http://127.0.0.1:3000';
     let token = null;
-    
+
     test.beforeEach(async ({ request }) => {
-        const login = await request.post(`${apiBase}/auth/login`, { 
-            data: { email: 'member@example.com', password: 'password123' } 
+        const login = await request.post(`${apiBase}/auth/login`, {
+            data: { email: 'member@example.com', password: 'password123' }
         });
         expect(login.ok()).toBeTruthy();
         const loginJson = await login.json();
         token = loginJson.token;
     });
-    
+
     test('displays forum categories', async ({ page }) => {
         await page.route(`${apiBase}/forums/categories`, async (route) => {
             await route.fulfill({
@@ -353,15 +353,15 @@ test.describe('Community Forums', () => {
                 }),
             });
         });
-        
+
         await page.goto(webBase);
-        await page.evaluate(([t]) => { 
-            localStorage.setItem('ngurra_token', t); 
-            document.cookie = `ngurra_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`; 
+        await page.evaluate(([t]) => {
+            localStorage.setItem('nexta_token', t);
+            document.cookie = `nexta_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`;
         }, [token]);
-        
+
         await page.goto(`${webBase}/community/forums`);
-        
+
         await page.waitForSelector('text=General Discussion', { timeout: 10000 });
         await page.waitForSelector('text=Job Seeking Tips', { timeout: 5000 });
         await page.waitForSelector('text=Mentorship', { timeout: 5000 });
@@ -375,16 +375,16 @@ test.describe('Skills Gap Analysis', () => {
     const apiBase = process.env.API_URL || 'http://127.0.0.1:3001';
     const webBase = process.env.E2E_BASE_URL || 'http://127.0.0.1:3000';
     let token = null;
-    
+
     test.beforeEach(async ({ request }) => {
-        const login = await request.post(`${apiBase}/auth/login`, { 
-            data: { email: 'member@example.com', password: 'password123' } 
+        const login = await request.post(`${apiBase}/auth/login`, {
+            data: { email: 'member@example.com', password: 'password123' }
         });
         expect(login.ok()).toBeTruthy();
         const loginJson = await login.json();
         token = loginJson.token;
     });
-    
+
     test('shows skills gap for job', async ({ page }) => {
         await page.route(`${apiBase}/skills/gap-analysis/*`, async (route) => {
             await route.fulfill({
@@ -403,15 +403,15 @@ test.describe('Skills Gap Analysis', () => {
                 }),
             });
         });
-        
+
         await page.goto(webBase);
-        await page.evaluate(([t]) => { 
-            localStorage.setItem('ngurra_token', t); 
-            document.cookie = `ngurra_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`; 
+        await page.evaluate(([t]) => {
+            localStorage.setItem('nexta_token', t);
+            document.cookie = `nexta_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`;
         }, [token]);
-        
+
         await page.goto(`${webBase}/jobs/test-job/skills-gap`);
-        
+
         // Check for skills gap analysis
         await page.waitForSelector('text=Communication', { timeout: 10000 });
         await page.waitForSelector('text=White Card', { timeout: 5000 });

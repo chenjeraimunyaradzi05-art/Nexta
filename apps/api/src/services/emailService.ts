@@ -1,6 +1,6 @@
 /**
  * Email Service
- * 
+ *
  * Handles:
  * - Transactional email sending
  * - Email templates with cultural sensitivity
@@ -55,7 +55,7 @@ export interface EmailTemplate {
 const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
   welcome: {
     name: 'welcome',
-    subject: 'Welcome to Ngurra Pathways! 🌿',
+    subject: 'Welcome to Nexta! 🌿',
     htmlTemplate: `
 <!DOCTYPE html>
 <html>
@@ -81,19 +81,19 @@ const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
 <body>
   <div class="container">
     <div class="header">
-      <h1>Welcome to Ngurra Pathways</h1>
+      <h1>Welcome to Nexta</h1>
       <p>Your journey to meaningful employment begins here</p>
     </div>
     <div class="content">
       <p>Hello {{firstName}},</p>
-      
+
       <div class="cultural-element">
-        "Ngurra" means home or country in many Aboriginal languages. 
+        "Nexta" means home or country in many Aboriginal languages.
         We're honoured to welcome you to our community.
       </div>
-      
-      <p>Thank you for joining Ngurra Pathways. We're committed to connecting talented Indigenous Australians with meaningful career opportunities and supportive mentors.</p>
-      
+
+      <p>Thank you for joining Nexta. We're committed to connecting talented Indigenous Australians with meaningful career opportunities and supportive mentors.</p>
+
       <div class="features">
         <h3>Here's what you can do:</h3>
         <div class="feature-item"><span class="emoji">💼</span> Explore job opportunities from Indigenous-friendly employers</div>
@@ -101,17 +101,17 @@ const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
         <div class="feature-item"><span class="emoji">📚</span> Access learning resources and career development tools</div>
         <div class="feature-item"><span class="emoji">🌟</span> Share your success story and inspire others</div>
       </div>
-      
+
       <p style="text-align: center;">
         <a href="{{appUrl}}/profile/complete" class="button">Complete Your Profile</a>
       </p>
-      
+
       <p>If you have any questions, our team is here to support you.</p>
-      
-      <p>Welcome to the family,<br>The Ngurra Pathways Team</p>
+
+      <p>Welcome to the family,<br>The Nexta Team</p>
     </div>
     <div class="footer">
-      <p>© {{year}} Ngurra Pathways. All rights reserved.</p>
+      <p>© {{year}} Nexta. All rights reserved.</p>
       <p>Proudly supporting Indigenous employment and community connection.</p>
       <p><a href="{{appUrl}}/unsubscribe?token={{unsubscribeToken}}">Unsubscribe</a> | <a href="{{appUrl}}/preferences">Email Preferences</a></p>
     </div>
@@ -147,31 +147,31 @@ const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
     </div>
     <div class="content">
       <p>Hi {{firstName}},</p>
-      
+
       <p>Great news! Your application has been successfully submitted.</p>
-      
+
       <div class="job-card">
         <h3 style="margin: 0 0 10px;">{{jobTitle}}</h3>
         <p style="margin: 5px 0;"><strong>Company:</strong> {{companyName}}</p>
         <p style="margin: 5px 0;"><strong>Location:</strong> {{location}}</p>
         <p style="margin: 5px 0;"><strong>Applied:</strong> {{appliedDate}}</p>
       </div>
-      
+
       <p><strong>What happens next?</strong></p>
       <ul>
         <li>The employer will review your application</li>
         <li>You'll receive an email if they'd like to proceed</li>
         <li>Track your application status in the app</li>
       </ul>
-      
+
       <p style="text-align: center;">
         <a href="{{appUrl}}/applications" class="button">Track Your Applications</a>
       </p>
-      
+
       <p>We'll keep you updated on any changes. Good luck! 🍀</p>
     </div>
     <div class="footer">
-      <p>© {{year}} Ngurra Pathways</p>
+      <p>© {{year}} Nexta</p>
     </div>
   </div>
 </body>
@@ -206,9 +206,9 @@ const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
     </div>
     <div class="content">
       <p>Hi {{firstName}},</p>
-      
+
       <p>We're excited to share that you've been matched with an amazing mentor who's ready to support your career journey!</p>
-      
+
       <div class="mentor-card">
         <img src="{{mentorAvatar}}" alt="{{mentorName}}" class="mentor-avatar" onerror="this.src='{{appUrl}}/default-avatar.png'">
         <h2 style="margin: 10px 0 5px;">{{mentorName}}</h2>
@@ -220,14 +220,14 @@ const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
           {{/each}}
         </div>
       </div>
-      
+
       <p><strong>Why this match?</strong></p>
       <p>{{matchReason}}</p>
-      
+
       <p style="text-align: center;">
         <a href="{{appUrl}}/mentorship/{{mentorshipId}}" class="button">Start Connecting</a>
       </p>
-      
+
       <p><strong>Tips for your first meeting:</strong></p>
       <ul>
         <li>Share your career goals and aspirations</li>
@@ -237,7 +237,7 @@ const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
       </ul>
     </div>
     <div class="footer">
-      <p>© {{year}} Ngurra Pathways - Connecting Indigenous talent with opportunity</p>
+      <p>© {{year}} Nexta - Connecting Indigenous talent with opportunity</p>
     </div>
   </div>
 </body>
@@ -269,25 +269,25 @@ const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
     </div>
     <div class="content">
       <p>Hi {{firstName}},</p>
-      
-      <p>We received a request to reset your password for your Ngurra Pathways account.</p>
-      
+
+      <p>We received a request to reset your password for your Nexta account.</p>
+
       <p style="text-align: center;">
         <a href="{{resetUrl}}" class="button">Reset Password</a>
       </p>
-      
+
       <p>Or copy and paste this link into your browser:</p>
       <p style="word-break: break-all; color: #666; font-size: 14px;">{{resetUrl}}</p>
-      
+
       <div class="warning">
         <strong>⏰ This link expires in 1 hour.</strong><br>
         If you didn't request this reset, please ignore this email or contact support if you're concerned.
       </div>
-      
-      <p>Stay secure,<br>The Ngurra Pathways Team</p>
+
+      <p>Stay secure,<br>The Nexta Team</p>
     </div>
     <div class="footer">
-      <p>© {{year}} Ngurra Pathways</p>
+      <p>© {{year}} Nexta</p>
       <p>This is an automated security email. Please don't reply directly.</p>
     </div>
   </div>
@@ -323,9 +323,9 @@ const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
     </div>
     <div class="content">
       <p>Hi {{firstName}},</p>
-      
+
       <p>Just a friendly reminder about your upcoming mentorship session!</p>
-      
+
       <div class="session-card">
         <h3 style="margin: 0 0 15px;">📅 Session Details</h3>
         <p><strong>With:</strong> {{partnerName}}</p>
@@ -336,12 +336,12 @@ const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
         <p><strong>Meeting Link:</strong> <a href="{{meetingLink}}">Join Video Call</a></p>
         {{/if}}
       </div>
-      
+
       <p style="text-align: center;">
         <a href="{{meetingLink}}" class="button">Join Session</a>
         <a href="{{appUrl}}/sessions/{{sessionId}}/reschedule" class="button button-secondary">Reschedule</a>
       </p>
-      
+
       <p><strong>Preparation tips:</strong></p>
       <ul>
         <li>Test your audio and video beforehand</li>
@@ -350,7 +350,7 @@ const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
       </ul>
     </div>
     <div class="footer">
-      <p>© {{year}} Ngurra Pathways</p>
+      <p>© {{year}} Nexta</p>
     </div>
   </div>
 </body>
@@ -359,7 +359,7 @@ const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
 
   weekly_digest: {
     name: 'weekly_digest',
-    subject: 'Your Weekly Ngurra Pathways Update 📬',
+    subject: 'Your Weekly Nexta Update 📬',
     htmlTemplate: `
 <!DOCTYPE html>
 <html>
@@ -389,9 +389,9 @@ const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
     </div>
     <div class="content">
       <p>Hi {{firstName}},</p>
-      
-      <p>Here's what's been happening in your Ngurra Pathways community this week:</p>
-      
+
+      <p>Here's what's been happening in your Nexta community this week:</p>
+
       <div style="text-align: center; margin: 25px 0;">
         <div class="stat-box">
           <div class="stat-number">{{newJobsCount}}</div>
@@ -406,7 +406,7 @@ const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
           <div class="stat-label">Profile Views</div>
         </div>
       </div>
-      
+
       {{#if recommendedJobs.length}}
       <div class="section">
         <h3>💼 Jobs For You</h3>
@@ -419,7 +419,7 @@ const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
         <p><a href="{{appUrl}}/jobs" class="button">View All Jobs</a></p>
       </div>
       {{/if}}
-      
+
       {{#if successStories.length}}
       <div class="section">
         <h3>🌟 Community Success Stories</h3>
@@ -431,7 +431,7 @@ const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
         <p><a href="{{appUrl}}/stories" class="button">Read More Stories</a></p>
       </div>
       {{/if}}
-      
+
       <div class="section">
         <h3>📌 Quick Actions</h3>
         <ul>
@@ -442,7 +442,7 @@ const EMAIL_TEMPLATES: Record<string, EmailTemplate> = {
       </div>
     </div>
     <div class="footer">
-      <p>© {{year}} Ngurra Pathways</p>
+      <p>© {{year}} Nexta</p>
       <p><a href="{{appUrl}}/unsubscribe?token={{unsubscribeToken}}">Unsubscribe from weekly digest</a></p>
     </div>
   </div>
@@ -457,8 +457,8 @@ class EmailService {
   private appUrl: string;
 
   private constructor() {
-    this.defaultFrom = process.env.EMAIL_FROM || 'Ngurra Pathways <noreply@ngurrapathways.com>';
-    this.appUrl = process.env.APP_URL || 'https://app.ngurrapathways.com';
+    this.defaultFrom = process.env.EMAIL_FROM || 'Nexta <noreply@nexta.com>';
+    this.appUrl = process.env.APP_URL || 'https://app.nexta.com';
   }
 
   static getInstance(): EmailService {

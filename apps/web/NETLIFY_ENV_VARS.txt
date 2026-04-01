@@ -10,9 +10,9 @@ NEXTAUTH_SECRET=IPLKJXhbbiUp9M7cUKUypEdV6N6qen1J8+Zxf1iroqg=
 # ⚠️ Generate your own for production: openssl rand -base64 32
 
 # Per-context (set in Netlify UI per deploy context):
-# Production: NEXTAUTH_URL=https://ngurrapathways.com.au
-# Staging: NEXTAUTH_URL=https://staging.ngurrapathways.com.au
-# Preview: NEXTAUTH_URL=https://deploy-preview-<id>--ngurrapathways.netlify.app
+# Production: NEXTAUTH_URL=https://nexta.com.au
+# Staging: NEXTAUTH_URL=https://staging.nexta.com.au
+# Preview: NEXTAUTH_URL=https://deploy-preview-<id>--nexta.netlify.app
 
 # -----------------------------------------------------------------------------
 # DATABASE (REQUIRED)
@@ -51,7 +51,7 @@ STRIPE_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxxxxxxxxxx
 # -----------------------------------------------------------------------------
 # Get from: https://cloudinary.com/console
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your-cloud-name
-NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=ngurra-uploads
+NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=nexta-uploads
 CLOUDINARY_API_KEY=xxxxxxxxxxxxxxxxxxxxx
 CLOUDINARY_API_SECRET=xxxxxxxxxxxxxxxxxxxxx
 
@@ -60,13 +60,13 @@ CLOUDINARY_API_SECRET=xxxxxxxxxxxxxxxxxxxxx
 # -----------------------------------------------------------------------------
 # Option 1: SendGrid
 SENDGRID_API_KEY=SG.xxxxxxxxxxxxxxxxxxxxx
-SENDGRID_FROM=noreply@ngurrapathways.com.au
+SENDGRID_FROM=noreply@nexta.com.au
 
 # Option 2: AWS SES
 # AWS_SES_REGION=ap-southeast-2
 # AWS_SES_ACCESS_KEY_ID=AKIAXXXXXXXXXXXXX
 # AWS_SES_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxx
-# AWS_SES_FROM=noreply@ngurrapathways.com.au
+# AWS_SES_FROM=noreply@nexta.com.au
 
 # -----------------------------------------------------------------------------
 # OAUTH PROVIDERS (Optional - for social login)

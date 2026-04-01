@@ -13,7 +13,7 @@ export default function SignInPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { setUser, setToken } = useAuthStore();
-  
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -37,7 +37,7 @@ export default function SignInPage() {
 
   const handleSubmit = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
-    
+
     // Validation
     if (!email.trim()) {
       setError('Please enter your email address');
@@ -81,7 +81,7 @@ export default function SignInPage() {
 
       // Redirect to dashboard
       setSuccess(true);
-      
+
       // Redirect to returnTo destination (from middleware) or default dashboard
       setTimeout(() => {
         router.push(returnTo);
@@ -104,7 +104,7 @@ export default function SignInPage() {
               Welcome Back
             </h1>
             <p className="text-gray-600 dark:text-gray-400">
-              Sign in to continue to Ngurra Pathways
+              Sign in to continue to Nexta
             </p>
           </div>
 

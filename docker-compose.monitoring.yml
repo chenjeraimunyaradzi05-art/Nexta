@@ -1,5 +1,5 @@
 # Docker Compose for Monitoring Stack
-# 
+#
 # Sets up Prometheus, Grafana, and exporters for platform monitoring.
 # Use: docker-compose -f docker-compose.monitoring.yml up -d
 
@@ -11,7 +11,7 @@ services:
   # ==========================================
   prometheus:
     image: prom/prometheus:v2.48.0
-    container_name: ngurra-prometheus
+    container_name: nexta-prometheus
     restart: unless-stopped
     volumes:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
@@ -34,7 +34,7 @@ services:
   # ==========================================
   alertmanager:
     image: prom/alertmanager:v0.26.0
-    container_name: ngurra-alertmanager
+    container_name: nexta-alertmanager
     restart: unless-stopped
     volumes:
       - ./monitoring/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
@@ -52,7 +52,7 @@ services:
   # ==========================================
   grafana:
     image: grafana/grafana:10.2.0
-    container_name: ngurra-grafana
+    container_name: nexta-grafana
     restart: unless-stopped
     volumes:
       - grafana_data:/var/lib/grafana
@@ -75,7 +75,7 @@ services:
   # ==========================================
   node-exporter:
     image: prom/node-exporter:v1.7.0
-    container_name: ngurra-node-exporter
+    container_name: nexta-node-exporter
     restart: unless-stopped
     volumes:
       - /proc:/host/proc:ro
@@ -95,7 +95,7 @@ services:
   # ==========================================
   postgres-exporter:
     image: prometheuscommunity/postgres-exporter:v0.15.0
-    container_name: ngurra-postgres-exporter
+    container_name: nexta-postgres-exporter
     restart: unless-stopped
     environment:
       DATA_SOURCE_NAME: ${DATABASE_URL}
@@ -108,7 +108,7 @@ services:
   # ==========================================
   redis-exporter:
     image: oliver006/redis_exporter:v1.55.0
-    container_name: ngurra-redis-exporter
+    container_name: nexta-redis-exporter
     restart: unless-stopped
     environment:
       REDIS_ADDR: ${REDIS_URL:-redis://redis:6379}
@@ -121,7 +121,7 @@ services:
   # ==========================================
   loki:
     image: grafana/loki:2.9.2
-    container_name: ngurra-loki
+    container_name: nexta-loki
     restart: unless-stopped
     volumes:
       - loki_data:/loki
@@ -136,7 +136,7 @@ services:
   # ==========================================
   promtail:
     image: grafana/promtail:2.9.2
-    container_name: ngurra-promtail
+    container_name: nexta-promtail
     restart: unless-stopped
     volumes:
       - /var/log:/var/log:ro

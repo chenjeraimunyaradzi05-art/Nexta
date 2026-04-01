@@ -1,8 +1,8 @@
 /**
  * Hook Exports
- * 
+ *
  * Central export point for all custom hooks.
- * Ngurra Pathways - Celestial Precious Stone Theme
+ * Nexta - Celestial Precious Stone Theme
  */
 
 // Auth Hooks
@@ -28,21 +28,21 @@ export { useForm, validationPatterns, validators } from './useForm';
 export { useModal, useConfirm, useAlert } from './useModal';
 
 // Intersection Observer Hooks
-export { 
-  useIntersectionObserver, 
-  useLazyLoad, 
-  useAnimateOnScroll, 
-  useScrollProgress 
+export {
+  useIntersectionObserver,
+  useLazyLoad,
+  useAnimateOnScroll,
+  useScrollProgress
 } from './useIntersectionObserver';
 
 // Clipboard Hooks
 export { useClipboard, useCopyToClipboard } from './useClipboard';
 
 // Online Status Hooks
-export { 
-  useOnlineStatus, 
-  useConnectionAwareFetch, 
-  useConnectionQuality 
+export {
+  useOnlineStatus,
+  useConnectionAwareFetch,
+  useConnectionQuality
 } from './useOnlineStatus';
 
 // Utility Hooks

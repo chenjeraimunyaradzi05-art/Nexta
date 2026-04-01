@@ -21,7 +21,7 @@ import useAuth from '../../hooks/useAuth';
 const STEPS = [
   {
     id: 'welcome',
-    title: 'Welcome to Ngurra Pathways',
+    title: 'Welcome to Nexta',
   },
   {
     id: 'interests',
@@ -138,10 +138,10 @@ export default function WelcomePage() {
   };
 
   return (
-    <div className="ngurra-page py-12 px-4 relative overflow-hidden">
+    <div className="nexta-page py-12 px-4 relative overflow-hidden">
       {/* Decorative halos */}
-      <div className="ngurra-halo-pink" />
-      <div className="ngurra-halo-purple" />
+      <div className="nexta-halo-pink" />
+      <div className="nexta-halo-purple" />
 
       <div className="max-w-2xl mx-auto relative">
         {/* Progress */}
@@ -186,14 +186,14 @@ export default function WelcomePage() {
           {/* Step 0: Welcome */}
           {currentStep === 0 && (
             <div className="text-center">
-              <div 
+              <div
                 className="mb-6 mx-auto w-20 h-20 rounded-2xl flex items-center justify-center"
                 style={{ background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)` }}
               >
                 <Sparkles className="w-10 h-10 text-white" />
               </div>
               <h1 className="text-3xl font-bold text-slate-800 mb-4">
-                Welcome to Ngurra Pathways{user?.firstName ? `, ${user.firstName}` : ''}!
+                Welcome to Nexta{user?.firstName ? `, ${user.firstName}` : ''}!
               </h1>
               <p className="text-lg text-slate-600 mb-8 max-w-md mx-auto">
                 We're excited to have you here. Let's take a moment to personalize your experience.
@@ -203,7 +203,7 @@ export default function WelcomePage() {
                   type="button"
                   onClick={nextStep}
                   className="inline-flex items-center gap-2 text-white font-medium rounded-lg px-6 py-3 transition-all hover:scale-[1.02]"
-                  style={{ 
+                  style={{
                     background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)`,
                     boxShadow: '0 4px 12px rgba(233, 30, 140, 0.3)'
                   }}
@@ -252,7 +252,7 @@ export default function WelcomePage() {
                         <div
                           className="p-2 rounded-lg"
                           style={
-                            isSelected 
+                            isSelected
                               ? { background: 'rgba(233, 30, 140, 0.15)' }
                               : { background: '#F1F5F9' }
                           }
@@ -288,7 +288,7 @@ export default function WelcomePage() {
                   onClick={nextStep}
                   disabled={selectedInterests.length === 0}
                   className="inline-flex items-center gap-2 text-white font-medium rounded-lg px-6 py-3 transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                  style={{ 
+                  style={{
                     background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)`,
                     boxShadow: '0 4px 12px rgba(233, 30, 140, 0.3)'
                   }}
@@ -304,7 +304,7 @@ export default function WelcomePage() {
           {currentStep === 2 && (
             <div>
               <div className="text-center mb-8">
-                <div 
+                <div
                   className="mb-4 mx-auto w-12 h-12 rounded-xl flex items-center justify-center"
                   style={{ background: 'rgba(139, 92, 246, 0.15)' }}
                 >
@@ -361,7 +361,7 @@ export default function WelcomePage() {
                   type="button"
                   onClick={nextStep}
                   className="inline-flex items-center gap-2 text-white font-medium rounded-lg px-6 py-3 transition-all hover:scale-[1.02]"
-                  style={{ 
+                  style={{
                     background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)`,
                     boxShadow: '0 4px 12px rgba(233, 30, 140, 0.3)'
                   }}
@@ -376,7 +376,7 @@ export default function WelcomePage() {
           {/* Step 3: Complete */}
           {currentStep === 3 && (
             <div className="text-center">
-              <div 
+              <div
                 className="mb-6 mx-auto w-20 h-20 rounded-full flex items-center justify-center"
                 style={{ background: 'rgba(34, 197, 94, 0.15)' }}
               >
@@ -386,7 +386,7 @@ export default function WelcomePage() {
                 You're all set!
               </h2>
               <p className="text-lg text-slate-600 mb-8 max-w-md mx-auto">
-                We've personalized your dashboard based on your interests and goals. 
+                We've personalized your dashboard based on your interests and goals.
                 You can update these anytime in your settings.
               </p>
 
@@ -439,7 +439,7 @@ export default function WelcomePage() {
                 onClick={completeOnboarding}
                 disabled={saving}
                 className="inline-flex items-center gap-2 text-white font-medium rounded-lg px-8 py-3 transition-all hover:scale-[1.02] disabled:opacity-50 disabled:transform-none"
-                style={{ 
+                style={{
                   background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)`,
                   boxShadow: '0 4px 12px rgba(233, 30, 140, 0.3)'
                 }}

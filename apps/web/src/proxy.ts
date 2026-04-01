@@ -127,8 +127,8 @@ export function proxy(request: NextRequest) {
     // Next.js App Router doesn't automatically inject nonces into its scripts
     `script-src 'self' 'unsafe-inline' ${isProduction ? '' : "'unsafe-eval'"} https://js.stripe.com https://meet.jit.si`.trim(),
     `style-src 'self' 'unsafe-inline'`, // Required for CSS-in-JS
-    `img-src 'self' data: blob: https://res.cloudinary.com https://images.unsplash.com https://logo.clearbit.com https://*.ngurrapathways.life https://*.netlify.app https://avatars.githubusercontent.com https://lh3.googleusercontent.com`,
-    `connect-src 'self' https://*.ngurrapathways.life https://*.gimbi.com.au https://*.netlify.app https://api.stripe.com wss://*.ngurrapathways.life wss://*.gimbi.com.au https://meet.jit.si${
+    `img-src 'self' data: blob: https://res.cloudinary.com https://images.unsplash.com https://logo.clearbit.com https://*.nexta.life https://*.netlify.app https://avatars.githubusercontent.com https://lh3.googleusercontent.com`,
+    `connect-src 'self' https://*.nexta.life https://*.gimbi.com.au https://*.netlify.app https://api.stripe.com wss://*.nexta.life wss://*.gimbi.com.au https://meet.jit.si${
       isProduction
         ? ''
         : ' http://localhost:3333 http://127.0.0.1:3333 ws://localhost:3333 ws://127.0.0.1:3333 ws://localhost:3000 ws://127.0.0.1:3000'

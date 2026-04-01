@@ -13,16 +13,16 @@ const SCALING_CONFIG = {
   // Worker configuration
   minWorkers: parseInt(process.env.MIN_WORKERS || '1'),
   maxWorkers: parseInt(process.env.MAX_WORKERS || os.cpus().length.toString()),
-  
+
   // Auto-scaling thresholds
   scaleUpCpuThreshold: 80,  // Scale up when CPU > 80%
   scaleDownCpuThreshold: 30, // Scale down when CPU < 30%
   scaleUpMemoryThreshold: 85, // Scale up when memory > 85%
   scaleDownMemoryThreshold: 40, // Scale down when memory < 40%
-  
+
   // Scaling cooldown
   cooldownMs: 60000,  // 1 minute between scaling operations
-  
+
   // Health check
   healthCheckIntervalMs: 30000, // 30 seconds
   maxUnhealthyWorkers: 2,
@@ -38,7 +38,7 @@ export const CONNECTION_POOL_CONFIG = {
     idleTimeoutMs: 30000,
     reapIntervalMs: 1000,
   },
-  
+
   // Redis connection pool
   redis: {
     minConnections: 2,
@@ -51,13 +51,13 @@ export const CONNECTION_POOL_CONFIG = {
 export const SESSION_CONFIG = {
   // Use Redis for session storage
   store: process.env.REDIS_URL ? 'redis' : 'memory',
-  
+
   // Session settings
-  secret: process.env.SESSION_SECRET || 'ngurra-secret-change-in-production',
-  name: 'ngurra.sid',
+  secret: process.env.SESSION_SECRET || 'nexta-secret-change-in-production',
+  name: 'nexta.sid',
   resave: false,
   saveUninitialized: false,
-  
+
   cookie: {
     secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
@@ -87,7 +87,7 @@ class WorkerManager {
   initialize(workerScript) {
     if (cluster.isPrimary) {
       logger.info('Primary process started', { pid: process.pid });
-      
+
       // Fork initial workers
       const numWorkers = Math.min(SCALING_CONFIG.maxWorkers, os.cpus().length);
       for (let i = 0; i < numWorkers; i++) {
@@ -96,13 +96,13 @@ class WorkerManager {
 
       // Handle worker events
       cluster.on('exit', (worker, code, signal) => {
-        logger.warn('Worker died', { 
-          pid: worker.process.pid, 
-          code, 
+        logger.warn('Worker died', {
+          pid: worker.process.pid,
+          code,
           signal,
         });
         this.workers.delete(worker.id);
-        
+
         // Respawn worker if unexpected exit
         if (code !== 0) {
           setTimeout(() => this.spawnWorker(), 1000);
@@ -115,13 +115,13 @@ class WorkerManager {
 
       // Start auto-scaling loop
       this.startAutoScaling();
-      
+
       // Start health monitoring
       this.startHealthMonitoring();
-      
+
       return true; // Is primary
     }
-    
+
     return false; // Is worker
   }
 
@@ -136,13 +136,13 @@ class WorkerManager {
       requests: 0,
       healthy: true,
     });
-    
-    logger.info('Worker spawned', { 
-      workerId: worker.id, 
+
+    logger.info('Worker spawned', {
+      workerId: worker.id,
       pid: worker.process.pid,
       totalWorkers: this.workers.size,
     });
-    
+
     return worker;
   }
 
@@ -154,10 +154,10 @@ class WorkerManager {
     if (!workerInfo) return;
 
     const { worker } = workerInfo;
-    
+
     // Send shutdown signal
     worker.send({ type: 'shutdown' });
-    
+
     // Wait for graceful shutdown
     await new Promise((resolve) => {
       const timeout = setTimeout(() => {
@@ -188,8 +188,8 @@ class WorkerManager {
         logger.info('Worker ready', { workerId: worker.id });
         break;
       case 'error':
-        logger.error('Worker error', { 
-          workerId: worker.id, 
+        logger.error('Worker error', {
+          workerId: worker.id,
           error: message.error,
         });
         break;
@@ -221,7 +221,7 @@ class WorkerManager {
    */
   async evaluateScaling() {
     const now = Date.now();
-    
+
     // Respect cooldown
     if (now - this.lastScaleTime < SCALING_CONFIG.cooldownMs) {
       return;
@@ -313,11 +313,11 @@ class WorkerManager {
         const elapedUsage = process.cpuUsage(startUsage);
         const elapedTime = process.hrtime(startTime);
         const elapedMs = elapedTime[0] * 1000 + elapedTime[1] / 1e6;
-        
-        const cpuPercent = 
-          (100 * (elapedUsage.user + elapedUsage.system)) / 
+
+        const cpuPercent =
+          (100 * (elapedUsage.user + elapedUsage.system)) /
           (elapedMs * 1000);
-        
+
         resolve(Math.min(100, cpuPercent));
       }, 100);
     });
@@ -376,7 +376,7 @@ class WorkerManager {
    */
   async replaceWorker(workerId) {
     logger.info('Replacing unhealthy worker', { workerId });
-    
+
     await this.shutdownWorker(workerId);
     this.spawnWorker();
   }
@@ -422,18 +422,18 @@ export function loadBalancerHealth() {
 export function stickySession(options = {}) {
   return (req, res, next) => {
     // Use user ID or session ID for sticky routing
-    const stickyCookie = req.cookies?.['ngurra.sticky'];
-    
+    const stickyCookie = req.cookies?.['nexta.sticky'];
+
     if (!stickyCookie && req.user?.id) {
       // Set sticky cookie based on user ID
       const workerIndex = req.user.id.charCodeAt(0) % (options.numWorkers || 4);
-      res.cookie('ngurra.sticky', workerIndex.toString(), {
+      res.cookie('nexta.sticky', workerIndex.toString(), {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         maxAge: 3600000, // 1 hour
       });
     }
-    
+
     next();
   };
 }

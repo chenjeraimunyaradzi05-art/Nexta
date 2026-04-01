@@ -1,8 +1,8 @@
 /**
  * Component Exports
- * 
+ *
  * Central export point for all reusable components.
- * Ngurra Pathways - Celestial Precious Stone Theme
+ * Nexta - Celestial Precious Stone Theme
  */
 
 // Feedback Components
@@ -18,50 +18,50 @@ export { Input, Textarea, Select, Checkbox } from './Form';
 export { Button, IconButton, ButtonGroup } from './Button';
 
 // UI Components - from ui/ subfolder
-export { 
+export {
   // Avatar
-  Avatar, 
+  Avatar,
   AvatarGroup,
   // Badge
-  Badge, 
-  VerifiedBadge, 
-  PremiumBadge, 
-  NewBadge, 
-  FeaturedBadge, 
-  RAPBadge, 
-  StatusBadge, 
+  Badge,
+  VerifiedBadge,
+  PremiumBadge,
+  NewBadge,
+  FeaturedBadge,
+  RAPBadge,
+  StatusBadge,
   CountBadge,
   // Card
-  Card, 
-  CardHeader, 
-  CardContent, 
-  CardFooter, 
-  FeatureCard, 
+  Card,
+  CardHeader,
+  CardContent,
+  CardFooter,
+  FeatureCard,
   StatsCard,
   // Progress
-  Progress, 
-  CircularProgress, 
+  Progress,
+  CircularProgress,
   StepProgress,
   // Alert
-  Alert, 
-  InlineAlert, 
+  Alert,
+  InlineAlert,
   BannerAlert,
   // Tabs
-  Tabs, 
-  TabPanels, 
-  TabPanel, 
+  Tabs,
+  TabPanels,
+  TabPanel,
   VerticalTabs,
   // Dropdown
-  Dropdown, 
-  DropdownItem, 
-  DropdownDivider, 
-  DropdownLabel, 
-  ActionMenu, 
+  Dropdown,
+  DropdownItem,
+  DropdownDivider,
+  DropdownLabel,
+  ActionMenu,
   SelectDropdown,
   // Input enhancements
-  SearchInput, 
-  FormGroup, 
-  FormLabel, 
+  SearchInput,
+  FormGroup,
+  FormLabel,
   PasswordInput,
   // Empty States
   EmptyState,
@@ -139,7 +139,7 @@ export type { JobData } from './JobCard';
 export { NotificationDropdown } from './NotificationDropdown';
 export type { Notification } from './NotificationDropdown';
 export { SearchBar, GlobalSearch } from './SearchBar';
-export { 
+export {
   LoadingStates,
   PageLoading,
   DashboardLoading,
@@ -153,11 +153,11 @@ export {
 } from './LoadingStates';
 
 // Theme Provider
-export { 
-  ThemeProvider, 
-  useTheme, 
-  ThemeToggle, 
-  ThemeSelector 
+export {
+  ThemeProvider,
+  useTheme,
+  ThemeToggle,
+  ThemeSelector
 } from './ThemeProvider';
 export type { ThemeMode, ResolvedTheme } from './ThemeProvider';
 

@@ -2,7 +2,7 @@
 
 /**
  * Job Store
- * 
+ *
  * Manages job listings, search, filters, and saved jobs.
  */
 
@@ -64,25 +64,25 @@ interface JobActions {
   loadJobs: (page?: number, append?: boolean) => Promise<void>;
   loadFeaturedJobs: () => Promise<void>;
   loadJobById: (id: string) => Promise<Job | null>;
-  
+
   // Filters
   setFilter: <K extends keyof JobFilters>(key: K, value: JobFilters[K]) => void;
   setFilters: (filters: Partial<JobFilters>) => void;
   resetFilters: () => void;
-  
+
   // Saved jobs
   saveJob: (jobId: string) => Promise<void>;
   unsaveJob: (jobId: string) => Promise<void>;
   loadSavedJobs: () => Promise<void>;
-  
+
   // Applications
   applyToJob: (jobId: string, application: any) => Promise<boolean>;
   loadAppliedJobs: () => Promise<void>;
-  
+
   // Search history
   addRecentSearch: (query: string) => void;
   clearRecentSearches: () => void;
-  
+
   // Additional convenience methods
   toggleSaveJob: (jobId: string) => void;
   addToSearchHistory: (query: string) => void;
@@ -122,7 +122,7 @@ export const useJobStore = create<JobStore>()(
         try {
           const { filters } = get();
           const params = new URLSearchParams();
-          
+
           if (filters.query) params.append('q', filters.query);
           if (filters.location) params.append('location', filters.location);
           if (filters.type.length) params.append('type', filters.type.join(','));
@@ -298,7 +298,7 @@ export const useJobStore = create<JobStore>()(
       },
     }),
     {
-      name: 'ngurra-jobs',
+      name: 'nexta-jobs',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         savedJobs: state.savedJobs,

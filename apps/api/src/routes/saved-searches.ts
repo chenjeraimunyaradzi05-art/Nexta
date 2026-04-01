@@ -93,7 +93,7 @@ router.post('/', auth.authenticate, validateRequest(createSavedSearchSchema), as
     });
 
     if (existingCount >= 10) {
-      return void res.status(400).json({ 
+      return void res.status(400).json({
         error: 'Maximum saved searches reached',
         message: 'You can have up to 10 saved searches. Please delete one to create a new one.',
       });
@@ -210,7 +210,7 @@ router.post('/:id/run', auth.authenticate, async (req: any, res: any) => {
     if (savedSearch.searchType === 'job') {
       // Build job search query
       const where: any = { isActive: true };
-      
+
       if (query.q) {
         where.OR = [
           { title: { contains: query.q } },
@@ -252,7 +252,7 @@ router.post('/:id/run', auth.authenticate, async (req: any, res: any) => {
         company: job.user?.companyProfile?.companyName || 'Company',
         location: job.location,
         employment: job.employment,
-        salary: job.salaryLow && job.salaryHigh 
+        salary: job.salaryLow && job.salaryHigh
           ? `$${job.salaryLow.toLocaleString()} - $${job.salaryHigh.toLocaleString()}`
           : null,
         postedAt: job.postedAt,
@@ -261,7 +261,7 @@ router.post('/:id/run', auth.authenticate, async (req: any, res: any) => {
     } else if (savedSearch.searchType === 'course') {
       // Course search
       const where = { isActive: true };
-      
+
       if (query.q) {
         where.OR = [
           { title: { contains: query.q } },
@@ -286,7 +286,7 @@ router.post('/:id/run', auth.authenticate, async (req: any, res: any) => {
     } else if (savedSearch.searchType === 'mentor') {
       // Mentor search
       const where = { active: true };
-      
+
       if (query.industry) {
         where.industry = { contains: query.industry };
       }
@@ -447,13 +447,13 @@ export async function processJobAlerts(frequency = 'daily') {
                 title: job.title,
                 company: job.user?.companyProfile?.companyName || 'Company',
                 location: job.location || 'Remote',
-                url: `https://ngurrapathways.com.au/jobs/${job.id}`,
+                url: `https://nexta.com.au/jobs/${job.id}`,
                 salary: job.salaryLow && job.salaryHigh
                   ? `$${job.salaryLow.toLocaleString()} - $${job.salaryHigh.toLocaleString()}`
                   : null,
               })),
-              searchUrl: `https://ngurrapathways.com.au/jobs?saved=${search.id}`,
-              unsubscribeUrl: `https://ngurrapathways.com.au/settings/notifications`,
+              searchUrl: `https://nexta.com.au/jobs?saved=${search.id}`,
+              unsubscribeUrl: `https://nexta.com.au/settings/notifications`,
             };
 
             // Queue to email system

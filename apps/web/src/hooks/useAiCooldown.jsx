@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState, useRef } from 'react';
-const STORAGE_PREFIX = 'ngurra_ai_cooldown';
+const STORAGE_PREFIX = 'nexta_ai_cooldown';
 function keyFor(endpoint, userId) {
     return `${STORAGE_PREFIX}:${endpoint}:${userId || 'anon'}`;
 }

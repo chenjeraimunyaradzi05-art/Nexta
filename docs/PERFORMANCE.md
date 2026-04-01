@@ -1,6 +1,6 @@
 # Performance Optimization Guide
 
-Guide for optimizing performance across the Ngurra Pathways platform.
+Guide for optimizing performance across the Nexta platform.
 
 ## Table of Contents
 
@@ -59,7 +59,7 @@ const JobCard = React.memo(function JobCard({ job }: { job: Job }) {
 
 // Use useMemo for expensive calculations
 const filteredJobs = useMemo(() => {
-  return jobs.filter(job => 
+  return jobs.filter(job =>
     job.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 }, [jobs, searchTerm]);
@@ -154,16 +154,16 @@ router.prefetch('/jobs');
 app.get('/api/export', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Transfer-Encoding', 'chunked');
-  
+
   const cursor = await prisma.job.findMany({
     cursor: true,
     take: 100,
   });
-  
+
   for await (const batch of cursor) {
     res.write(JSON.stringify(batch));
   }
-  
+
   res.end();
 });
 
@@ -225,11 +225,11 @@ CREATE INDEX CONCURRENTLY idx_applications_user_job ON applications(user_id, job
 CREATE INDEX CONCURRENTLY idx_users_email ON users(email);
 
 -- Full-text search index
-CREATE INDEX CONCURRENTLY idx_jobs_search ON jobs 
+CREATE INDEX CONCURRENTLY idx_jobs_search ON jobs
 USING GIN (to_tsvector('english', title || ' ' || description));
 
 -- Composite indexes for common queries
-CREATE INDEX CONCURRENTLY idx_jobs_location_type_status 
+CREATE INDEX CONCURRENTLY idx_jobs_location_type_status
 ON jobs(location_type, status, created_at DESC);
 ```
 
@@ -291,9 +291,9 @@ const jobs = await prisma.job.findMany({
 ```sql
 -- Analyze query performance
 EXPLAIN ANALYZE
-SELECT * FROM jobs 
-WHERE status = 'active' 
-ORDER BY created_at DESC 
+SELECT * FROM jobs
+WHERE status = 'active'
+ORDER BY created_at DESC
 LIMIT 20;
 
 -- Find slow queries
@@ -311,7 +311,7 @@ LIMIT 10;
 Browser Cache → CDN → Redis → Application → Database
      ↑           ↑       ↑
    Static     Dynamic   Hot Data
-   Assets     Content   
+   Assets     Content
 ```
 
 ### Redis Caching
@@ -359,7 +359,7 @@ res.setHeader('Cache-Control', 'private, no-cache');
 // next.config.js
 module.exports = {
   images: {
-    domains: ['cdn.ngurra-pathways.com'],
+    domains: ['cdn.nexta.com'],
     loader: 'cloudflare',
   },
   async headers() {
@@ -467,7 +467,7 @@ Sentry.init({
 // API response time tracking
 app.use((req, res, next) => {
   const start = process.hrtime.bigint();
-  
+
   res.on('finish', () => {
     const duration = Number(process.hrtime.bigint() - start) / 1e6;
     metrics.record('api.response_time', duration, {
@@ -476,7 +476,7 @@ app.use((req, res, next) => {
       status: res.statusCode,
     });
   });
-  
+
   next();
 });
 ```
@@ -521,8 +521,8 @@ describe('Performance', () => {
   uses: treosh/lighthouse-ci-action@v10
   with:
     urls: |
-      https://staging.ngurra-pathways.com/
-      https://staging.ngurra-pathways.com/jobs
+      https://staging.nexta.com/
+      https://staging.nexta.com/jobs
     budgetPath: ./lighthouse-budget.json
 ```
 

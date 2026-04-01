@@ -23,7 +23,7 @@ const STATIC_ASSETS = [
 // Install event - cache static assets
 self.addEventListener('install', (event) => {
   console.log('[SW] Installing service worker...');
-  
+
   event.waitUntil(
     caches.open(STATIC_CACHE)
       .then((cache) => {
@@ -37,7 +37,7 @@ self.addEventListener('install', (event) => {
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
   console.log('[SW] Activating service worker...');
-  
+
   event.waitUntil(
     caches.keys()
       .then((keys) => {
@@ -102,7 +102,7 @@ self.addEventListener('fetch', (event) => {
     caches.match(request)
       .then((cached) => {
         if (cached) return cached;
-        
+
         return fetch(request)
           .then((response) => {
             // Don't cache non-success responses
@@ -155,7 +155,7 @@ self.addEventListener('push', (event) => {
 // Notification click event
 self.addEventListener('notificationclick', (event) => {
   console.log('[SW] Notification clicked:', event.notification.tag);
-  
+
   event.notification.close();
 
   const urlToOpen = event.notification.data?.url || '/';
@@ -215,11 +215,11 @@ async function syncOfflineApplications() {
 // IndexedDB helpers for offline storage
 function openIndexedDB() {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open('ngurra-offline', 1);
-    
+    const request = indexedDB.open('nexta-offline', 1);
+
     request.onerror = () => reject(request.error);
     request.onsuccess = () => resolve(request.result);
-    
+
     request.onupgradeneeded = (event) => {
       const db = event.target.result;
       if (!db.objectStoreNames.contains('applications')) {
@@ -234,7 +234,7 @@ function getOfflineApplications(db) {
     const transaction = db.transaction(['applications'], 'readonly');
     const store = transaction.objectStore('applications');
     const request = store.getAll();
-    
+
     request.onerror = () => reject(request.error);
     request.onsuccess = () => resolve(request.result);
   });
@@ -245,7 +245,7 @@ function removeOfflineApplication(db, id) {
     const transaction = db.transaction(['applications'], 'readwrite');
     const store = transaction.objectStore('applications');
     const request = store.delete(id);
-    
+
     request.onerror = () => reject(request.error);
     request.onsuccess = () => resolve();
   });

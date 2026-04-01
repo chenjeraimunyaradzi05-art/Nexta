@@ -1,8 +1,8 @@
 openapi: 3.0.3
 info:
-  title: Ngurra Pathways API
+  title: Nexta API
   description: |
-    Enterprise API for Ngurra Pathways (Gimbi) - A culturally-grounded employment, 
+    Enterprise API for Nexta (Gimbi) - A culturally-grounded employment,
     education & mentorship platform for First Nations futures.
 
     ## Rate Limiting
@@ -18,18 +18,18 @@ info:
 
   version: 1.0.0
   contact:
-    name: Ngurra Pathways Support
-    email: support@ngurrapathways.com.au
+    name: Nexta Support
+    email: support@nexta.com.au
   license:
     name: Proprietary
-    url: https://ngurrapathways.com.au/terms
+    url: https://nexta.com.au/terms
 
 servers:
-  - url: https://api.ngurrapathways.com.au/v1
+  - url: https://api.nexta.com.au/v1
     description: Production server
-  - url: https://staging-api.ngurrapathways.com.au/v1
+  - url: https://staging-api.nexta.com.au/v1
     description: Staging server
-  - url: https://dev-api.ngurrapathways.com.au/v1
+  - url: https://dev-api.nexta.com.au/v1
     description: Development server
   - url: http://localhost:3333
     description: Local development
@@ -276,7 +276,7 @@ paths:
       summary: AI wellness coach
       operationId: postAiWellness
       description: |
-        Provides culturally-aware wellness tips, community resources, 
+        Provides culturally-aware wellness tips, community resources,
         elder support options, and course recommendations for various wellness areas.
       security:
         - bearerAuth: []

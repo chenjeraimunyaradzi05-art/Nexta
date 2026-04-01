@@ -1,6 +1,6 @@
 # Deployment Guide
 
-Complete deployment documentation for Ngurra Pathways platform across all environments.
+Complete deployment documentation for Nexta platform across all environments.
 
 ## Table of Contents
 
@@ -57,8 +57,8 @@ Feature Branch → PR → Review → Staging → Production
 | Environment | Purpose | URL |
 |-------------|---------|-----|
 | Local | Development | `localhost:3000` |
-| Staging | Testing/QA | `staging.ngurra-pathways.com` |
-| Production | Live users | `ngurra-pathways.com` |
+| Staging | Testing/QA | `staging.nexta.com` |
+| Production | Live users | `nexta.com` |
 
 ## Prerequisites
 
@@ -95,7 +95,7 @@ railway --version
 
 ```bash
 # Clone repository
-git clone https://github.com/ngurra-pathways/platform.git
+git clone https://github.com/nexta/platform.git
 cd platform
 
 # Install dependencies
@@ -200,8 +200,8 @@ Before deploying to production:
 5. **Verify Deployment**
    ```bash
    # Check health endpoints
-   curl https://api.ngurra-pathways.com/health
-   curl https://ngurra-pathways.com/api/health
+   curl https://api.nexta.com/health
+   curl https://nexta.com/api/health
    ```
 
 ### Release Workflow
@@ -220,12 +220,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Deploy to Production
         run: |
           vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
           railway up --service api -e production
-          
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
@@ -304,19 +304,19 @@ REDIS_URL=rediss://user:pass@host:6379
 JWT_SECRET=your-production-jwt-secret
 SESSION_SECRET=your-production-session-secret
 ENCRYPTION_KEY=your-32-byte-encryption-key
-ALLOWED_ORIGINS=https://ngurra-pathways.com
+ALLOWED_ORIGINS=https://nexta.com
 
 # AWS S3
 AWS_ACCESS_KEY_ID=...
 AWS_SECRET_ACCESS_KEY=...
-AWS_BUCKET_NAME=ngurra-uploads
+AWS_BUCKET_NAME=nexta-uploads
 AWS_REGION=ap-southeast-2
 
 # Email
 SMTP_HOST=smtp.sendgrid.net
 SMTP_USER=apikey
 SMTP_PASS=...
-EMAIL_FROM=noreply@ngurra-pathways.com
+EMAIL_FROM=noreply@nexta.com
 
 # Monitoring
 SENTRY_DSN=https://...@sentry.io/...
@@ -326,8 +326,8 @@ SENTRY_DSN=https://...@sentry.io/...
 
 ```env
 # apps/web/.env.production
-NEXT_PUBLIC_API_URL=https://api.ngurra-pathways.com
-NEXT_PUBLIC_WS_URL=wss://api.ngurra-pathways.com
+NEXT_PUBLIC_API_URL=https://api.nexta.com
+NEXT_PUBLIC_WS_URL=wss://api.nexta.com
 NEXT_PUBLIC_SENTRY_DSN=https://...@sentry.io/...
 NEXT_PUBLIC_ANALYTICS_ID=G-XXXXXXXX
 ```
@@ -358,7 +358,7 @@ docker-compose build
 docker-compose build api
 
 # Build for production
-docker build -t ngurra-api:latest -f apps/api/Dockerfile .
+docker build -t nexta-api:latest -f apps/api/Dockerfile .
 ```
 
 ### docker-compose.production.yml
@@ -368,7 +368,7 @@ version: '3.8'
 
 services:
   api:
-    image: ngurra-api:latest
+    image: nexta-api:latest
     restart: always
     ports:
       - "3001:3001"
@@ -383,7 +383,7 @@ services:
       retries: 3
 
   web:
-    image: ngurra-web:latest
+    image: nexta-web:latest
     restart: always
     ports:
       - "3000:3000"
@@ -458,15 +458,15 @@ railway logs
 ```bash
 # ECR - Push Docker image
 aws ecr get-login-password | docker login --username AWS --password-stdin $ECR_URI
-docker push $ECR_URI/ngurra-api:latest
+docker push $ECR_URI/nexta-api:latest
 
 # ECS - Update service
-aws ecs update-service --cluster ngurra --service api --force-new-deployment
+aws ecs update-service --cluster nexta --service api --force-new-deployment
 
 # CloudFormation
 aws cloudformation deploy \
   --template-file infrastructure/cloudformation.yml \
-  --stack-name ngurra-production
+  --stack-name nexta-production
 ```
 
 ## Monitoring
@@ -475,7 +475,7 @@ aws cloudformation deploy \
 
 ```bash
 # API health
-curl https://api.ngurra-pathways.com/health
+curl https://api.nexta.com/health
 
 # Expected response
 {
@@ -600,7 +600,7 @@ NODE_OPTIONS="--max-old-space-size=4096" pnpm build
 **SSL/TLS issues:**
 ```bash
 # Verify certificates
-openssl s_client -connect api.ngurra-pathways.com:443
+openssl s_client -connect api.nexta.com:443
 ```
 
 ### Debug Checklist

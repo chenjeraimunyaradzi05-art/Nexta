@@ -9,7 +9,7 @@ import OptimizedImage from '@/components/ui/OptimizedImage';
 
 /**
  * ReferralSystem - Complete referral program management
- * 
+ *
  * Features:
  * - Generate referral links
  * - Track referrals
@@ -121,7 +121,7 @@ const referralApi = {
     if (params.status) query.append('status', params.status);
     if (params.page) query.append('page', params.page.toString());
     if (params.limit) query.append('limit', params.limit.toString());
-    
+
     const res = await fetch(`/api/referrals/list?${query.toString()}`, { credentials: 'include' });
     if (!res.ok) throw new Error('Failed to fetch referrals');
     return res.json();
@@ -148,7 +148,7 @@ const generateShareLinks = (referralLink: string, message: string) => ({
   facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(referralLink)}`,
   linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(referralLink)}`,
   whatsapp: `https://wa.me/?text=${encodeURIComponent(`${message} ${referralLink}`)}`,
-  email: `mailto:?subject=${encodeURIComponent('Join Ngurra Pathways!')}&body=${encodeURIComponent(`${message}\n\n${referralLink}`)}`,
+  email: `mailto:?subject=${encodeURIComponent('Join Nexta!')}&body=${encodeURIComponent(`${message}\n\n${referralLink}`)}`,
 });
 
 // Status Badge Component
@@ -160,9 +160,9 @@ function StatusBadge({ status }: { status: string }) {
     available: { label: 'Available', className: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' },
     claimed: { label: 'Claimed', className: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' },
   };
-  
+
   const { label, className } = config[status as keyof typeof config] || config.pending;
-  
+
   return (
     <span className={`px-2 py-1 text-xs font-medium rounded-full ${className}`}>
       {label}
@@ -171,13 +171,13 @@ function StatusBadge({ status }: { status: string }) {
 }
 
 // Stats Card Component
-function StatsCard({ 
-  icon, 
-  label, 
-  value, 
+function StatsCard({
+  icon,
+  label,
+  value,
   subValue,
   color = 'blue',
-}: { 
+}: {
   icon: React.ReactNode;
   label: string;
   value: string | number;
@@ -209,12 +209,12 @@ function StatsCard({
 
 // Tier Progress Component
 function TierProgress({ completedReferrals }: { completedReferrals: number }) {
-  const currentTier = referralTiers.reduce((acc, tier) => 
+  const currentTier = referralTiers.reduce((acc, tier) =>
     completedReferrals >= tier.minReferrals ? tier : acc
   , referralTiers[0]);
-  
+
   const nextTier = referralTiers.find(t => t.minReferrals > completedReferrals);
-  const progress = nextTier 
+  const progress = nextTier
     ? ((completedReferrals - currentTier.minReferrals) / (nextTier.minReferrals - currentTier.minReferrals)) * 100
     : 100;
 
@@ -239,18 +239,18 @@ function TierProgress({ completedReferrals }: { completedReferrals: number }) {
           </div>
         )}
       </div>
-      
+
       {nextTier && (
         <div className="mb-4">
           <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-            <div 
+            <div
               className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all"
               style={{ width: `${progress}%` }}
             />
           </div>
         </div>
       )}
-      
+
       {/* Tier Perks */}
       <div className="space-y-2">
         {currentTier.perks.map((perk, index) => (
@@ -267,17 +267,17 @@ function TierProgress({ completedReferrals }: { completedReferrals: number }) {
 }
 
 // Share Modal Component
-function ShareModal({ 
-  isOpen, 
-  onClose, 
+function ShareModal({
+  isOpen,
+  onClose,
   referralLink,
-}: { 
+}: {
   isOpen: boolean;
   onClose: () => void;
   referralLink: string;
 }) {
   const { addToast } = useToast();
-  const shareMessage = "Join me on Ngurra Pathways - the platform connecting Indigenous Australians with career opportunities!";
+  const shareMessage = "Join me on Nexta - the platform connecting Indigenous Australians with career opportunities!";
   const shareLinks = generateShareLinks(referralLink, shareMessage);
 
   const copyToClipboard = async () => {
@@ -377,7 +377,7 @@ function ShareModal({
 export function ReferralSystem() {
   const { user } = useAuth();
   const { addToast } = useToast();
-  
+
   const [referralInfo, setReferralInfo] = useState<ReferralInfo | null>(null);
   const [referrals, setReferrals] = useState<Referral[]>([]);
   const [rewards, setRewards] = useState<Reward[]>([]);
@@ -395,7 +395,7 @@ export function ReferralSystem() {
         referralApi.getReferrals(),
         referralApi.getRewards(),
       ]);
-      
+
       setReferralInfo(info);
       setReferrals(referralsData.referrals);
       setRewards(rewardsData.rewards);
@@ -415,7 +415,7 @@ export function ReferralSystem() {
   const handleClaimReward = async (rewardId: string) => {
     try {
       await referralApi.claimReward(rewardId);
-      setRewards(prev => prev.map(r => 
+      setRewards(prev => prev.map(r =>
         r.id === rewardId ? { ...r, status: 'claimed', claimedAt: new Date().toISOString() } : r
       ));
       addToast('Reward claimed successfully!', 'success');
@@ -425,8 +425,8 @@ export function ReferralSystem() {
   };
 
   // Filter referrals
-  const filteredReferrals = referralFilter === 'all' 
-    ? referrals 
+  const filteredReferrals = referralFilter === 'all'
+    ? referrals
     : referrals.filter(r => r.status === referralFilter);
 
   if (isLoading) {
@@ -563,12 +563,12 @@ export function ReferralSystem() {
                   {/* Avatar */}
                   <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden">
                     {referral.referredUser.avatar ? (
-                      <OptimizedImage 
-                        src={toCloudinaryAutoUrl(referral.referredUser.avatar)} 
-                        alt={referral.referredUser.name || 'Referred user'} 
+                      <OptimizedImage
+                        src={toCloudinaryAutoUrl(referral.referredUser.avatar)}
+                        alt={referral.referredUser.name || 'Referred user'}
                         width={48}
                         height={48}
-                        className="w-full h-full object-cover" 
+                        className="w-full h-full object-cover"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-gray-400">
@@ -634,8 +634,8 @@ export function ReferralSystem() {
               >
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-2xl">
-                    {reward.type === 'credit' ? '💰' : 
-                     reward.type === 'discount' ? '🏷️' : 
+                    {reward.type === 'credit' ? '💰' :
+                     reward.type === 'discount' ? '🏷️' :
                      reward.type === 'premium' ? '⭐' : '🏆'}
                   </span>
                   <StatusBadge status={reward.status} />
@@ -643,13 +643,13 @@ export function ReferralSystem() {
                 <h3 className="font-semibold text-gray-900 dark:text-white">{reward.name}</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{reward.description}</p>
                 <p className="text-lg font-bold text-blue-600 dark:text-blue-400 mt-2">
-                  {reward.type === 'credit' ? `$${reward.value}` : 
-                   reward.type === 'discount' ? `${reward.value}% off` : 
+                  {reward.type === 'credit' ? `$${reward.value}` :
+                   reward.type === 'discount' ? `${reward.value}% off` :
                    reward.type === 'premium' ? `${reward.value} months` : 'Special'}
                 </p>
                 {reward.status === 'available' && (
-                  <Button 
-                    className="w-full mt-4" 
+                  <Button
+                    className="w-full mt-4"
                     onClick={() => handleClaimReward(reward.id)}
                   >
                     Claim Reward

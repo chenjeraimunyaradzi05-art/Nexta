@@ -46,7 +46,7 @@ jobs:
     if: ${{ github.event.inputs.skip_tests != 'true' }}
     runs-on: ubuntu-latest
     needs: [validate]
-    
+
     services:
       postgres:
         image: postgres:16
@@ -113,8 +113,8 @@ jobs:
           context: ./apps/api
           push: true
           tags: |
-            ${{ secrets.CONTAINER_REGISTRY }}/ngurra-api:${{ needs.validate.outputs.version }}
-            ${{ secrets.CONTAINER_REGISTRY }}/ngurra-api:latest
+            ${{ secrets.CONTAINER_REGISTRY }}/nexta-api:${{ needs.validate.outputs.version }}
+            ${{ secrets.CONTAINER_REGISTRY }}/nexta-api:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
@@ -126,8 +126,8 @@ jobs:
           context: ./apps/web
           push: true
           tags: |
-            ${{ secrets.CONTAINER_REGISTRY }}/ngurra-web:${{ needs.validate.outputs.version }}
-            ${{ secrets.CONTAINER_REGISTRY }}/ngurra-web:latest
+            ${{ secrets.CONTAINER_REGISTRY }}/nexta-web:${{ needs.validate.outputs.version }}
+            ${{ secrets.CONTAINER_REGISTRY }}/nexta-web:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
@@ -137,10 +137,10 @@ jobs:
     name: Deploy to Production
     runs-on: ubuntu-latest
     needs: [validate, build-images]
-    
+
     environment:
       name: production
-      url: https://ngurrapathways.com.au
+      url: https://nexta.com.au
 
     steps:
       - uses: actions/checkout@v4
@@ -175,5 +175,5 @@ jobs:
       - name: Notify Release
         run: |
           echo "🎉 Release v${{ needs.validate.outputs.version }} deployed to production!"
-          echo "Web: https://ngurrapathways.com.au"
-          echo "API: https://api.ngurrapathways.com.au"
+          echo "Web: https://nexta.com.au"
+          echo "API: https://api.nexta.com.au"

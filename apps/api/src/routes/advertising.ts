@@ -58,8 +58,8 @@ router.post('/', async (req, res) => {
         });
 
         // Send email notifications
-        const partnershipsEmail = process.env.PARTNERSHIPS_EMAIL || 'partnerships@ngurrapathways.com.au';
-        
+        const partnershipsEmail = process.env.PARTNERSHIPS_EMAIL || 'partnerships@nexta.com.au';
+
         // Send notification to partnerships team
         try {
             const notificationEmail = advertisingNotificationTemplate({
@@ -74,7 +74,7 @@ router.post('/', async (req, res) => {
                 selectedPlan,
                 message
             });
-            
+
             await sendMail({
                 to: partnershipsEmail,
                 subject: notificationEmail.subject,
@@ -85,7 +85,7 @@ router.post('/', async (req, res) => {
         } catch (emailErr) {
             console.error('Failed to send advertising notification:', emailErr);
         }
-        
+
         // Send confirmation email to inquirer
         try {
             const confirmationEmail = advertisingConfirmationTemplate({
@@ -95,7 +95,7 @@ router.post('/', async (req, res) => {
                 selectedPlan,
                 budget
             });
-            
+
             await sendMail({
                 to: email,
                 subject: confirmationEmail.subject,

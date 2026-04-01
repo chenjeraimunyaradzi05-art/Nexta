@@ -13,7 +13,7 @@ const MOCK_EVENTS = [
     type: 'In Person',
     category: 'Career',
     attendees: 245,
-    organizer: 'Ngurra Pathways',
+    organizer: 'Nexta',
     image: null,
     isFeatured: true
   },
@@ -41,7 +41,7 @@ const MOCK_EVENTS = [
     type: 'Virtual',
     category: 'Workshop',
     attendees: 56,
-    organizer: 'Ngurra Pathways',
+    organizer: 'Nexta',
     image: null,
     isFeatured: false
   },
@@ -109,7 +109,7 @@ export default async function EventsPage() {
         if (res.ok) {
             const data = await res.json();
             const rawEvents = data.events || data || [];
-            
+
             if (rawEvents.length > 0) {
                 // Normalize API response to expected format
                 initialEvents = rawEvents.map(event => ({
@@ -117,7 +117,7 @@ export default async function EventsPage() {
                     title: event.title || event.name,
                     description: event.description || '',
                     date: event.date || event.startDate,
-                    time: event.time || (event.startTime && event.endTime ? 
+                    time: event.time || (event.startTime && event.endTime ?
                         `${event.startTime} - ${event.endTime}` : ''),
                     location: event.location || event.venue || '',
                     type: event.type || (event.isVirtual ? 'Virtual' : 'In Person'),

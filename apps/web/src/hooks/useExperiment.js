@@ -6,14 +6,14 @@ import { getAccessToken } from '@/lib/tokenStore';
 
 /**
  * useExperiment Hook
- * 
+ *
  * Fetches the variant assignment for an A/B test experiment.
  * Uses consistent assignment based on user ID or anonymous session.
- * 
+ *
  * @param {string} experimentName - Name of the experiment
  * @param {object} options - Optional targeting options
  * @returns {object} { variant, isLoading, error, trackConversion }
- * 
+ *
  * @example
  * const { variant, isLoading } = useExperiment('new_onboarding_flow');
  * if (variant === 'treatment') {
@@ -42,12 +42,12 @@ export function useExperiment(experimentName, options = {}) {
       try {
         const apiBase = API_BASE;
         const token = getAccessToken();
-        
+
         // Get or create anonymous ID for non-logged-in users
-        let anonymousId = localStorage.getItem('ngurra_anon_id');
+        let anonymousId = localStorage.getItem('nexta_anon_id');
         if (!anonymousId) {
           anonymousId = `anon_${Math.random().toString(36).substring(2)}`;
-          localStorage.setItem('ngurra_anon_id', anonymousId);
+          localStorage.setItem('nexta_anon_id', anonymousId);
         }
 
         const headers = {
@@ -96,7 +96,7 @@ export function useExperiment(experimentName, options = {}) {
     try {
       const apiBase = API_BASE;
       const token = getAccessToken();
-      const anonymousId = localStorage.getItem('ngurra_anon_id');
+      const anonymousId = localStorage.getItem('nexta_anon_id');
 
       await fetch(`${apiBase}/experiments/convert`, {
         method: 'POST',
@@ -128,12 +128,12 @@ export function useExperiment(experimentName, options = {}) {
 
 /**
  * useFeatureFlag Hook
- * 
+ *
  * Simplified hook for feature flags (on/off experiments)
- * 
+ *
  * @param {string} flagName - Name of the feature flag
  * @returns {object} { isEnabled, isLoading }
- * 
+ *
  * @example
  * const { isEnabled } = useFeatureFlag('dark_mode');
  * if (isEnabled) {
@@ -142,7 +142,7 @@ export function useExperiment(experimentName, options = {}) {
  */
 export function useFeatureFlag(flagName) {
   const { variant, isLoading, error } = useExperiment(flagName);
-  
+
   return {
     isEnabled: variant === 'enabled' || variant === 'treatment',
     isLoading,

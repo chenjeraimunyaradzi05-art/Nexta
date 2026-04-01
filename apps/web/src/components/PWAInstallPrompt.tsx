@@ -2,7 +2,7 @@
 
 /**
  * PWA Install Prompt Component
- * 
+ *
  * Shows a banner prompting users to install the PWA.
  */
 
@@ -41,7 +41,7 @@ export default function PWAInstallPrompt() {
     const handleBeforeInstall = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
-      
+
       // Show prompt after a delay for better UX
       setTimeout(() => setShowPrompt(true), 3000);
     };
@@ -67,14 +67,14 @@ export default function PWAInstallPrompt() {
     try {
       await deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
-      
+
       if (outcome === 'accepted') {
         setIsInstalled(true);
       }
     } catch (err) {
       console.error('Install prompt error:', err);
     }
-    
+
     setShowPrompt(false);
     setDeferredPrompt(null);
   };
@@ -96,11 +96,11 @@ export default function PWAInstallPrompt() {
               <Smartphone className="w-6 h-6 text-purple-400" />
             </div>
           </div>
-          
+
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2">
               <div>
-                <h3 className="font-semibold text-white">Install Ngurra Pathways</h3>
+                <h3 className="font-semibold text-white">Install Nexta</h3>
                 <p className="text-sm text-slate-400 mt-1">
                   Add to your home screen for quick access and offline support
                 </p>
@@ -113,7 +113,7 @@ export default function PWAInstallPrompt() {
                 <X className="w-4 h-4" />
               </button>
             </div>
-            
+
             <div className="flex items-center gap-2 mt-3">
               <button
                 onClick={handleInstall}
@@ -154,7 +154,7 @@ export default function PWAInstallPrompt() {
 
 /**
  * iOS Install Instructions Component
- * 
+ *
  * Shows instructions for iOS users since Safari doesn't support beforeinstallprompt
  */
 export function IOSInstallInstructions() {
@@ -202,15 +202,15 @@ export function IOSInstallInstructions() {
             <X className="w-4 h-4" />
           </button>
         </div>
-        
+
         <p className="text-sm text-slate-400 mb-4">
-          Install Ngurra Pathways for the best experience:
+          Install Nexta for the best experience:
         </p>
-        
+
         <ol className="space-y-3 text-sm">
           <li className="flex items-center gap-3 text-slate-300">
             <span className="w-6 h-6 bg-slate-700 rounded-full flex items-center justify-center text-xs font-medium">1</span>
-            Tap the share button 
+            Tap the share button
             <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
             </svg>
@@ -224,7 +224,7 @@ export function IOSInstallInstructions() {
             Tap "Add" to confirm
           </li>
         </ol>
-        
+
         <button
           onClick={handleDismiss}
           className="w-full mt-4 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm"

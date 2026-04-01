@@ -1,6 +1,6 @@
 # Environment Setup Guide
 
-This document provides instructions for setting up the development, staging, and production environments for Ngurra Pathways.
+This document provides instructions for setting up the development, staging, and production environments for Nexta.
 
 ## Table of Contents
 
@@ -112,7 +112,7 @@ docker-compose -f docker-compose.dev.yml up --build
 npm run db:migrate
 
 # Access database directly
-docker-compose -f docker-compose.dev.yml exec postgres psql -U ngurra -d ngurra_dev
+docker-compose -f docker-compose.dev.yml exec postgres psql -U nexta -d nexta_dev
 
 # View container logs
 npm run db:logs
@@ -136,7 +136,7 @@ Staging deployment is automated via GitHub Actions:
 1. Push to `develop` branch
 2. Tests run automatically
 3. If tests pass, deployment proceeds
-4. Staging URL: https://staging.ngurra-pathways.com
+4. Staging URL: https://staging.nexta.com
 
 ### Manual Deployment
 
@@ -154,7 +154,7 @@ Staging uses different environment variables:
 
 - `DATABASE_URL`: Staging PostgreSQL instance
 - `REDIS_URL`: Staging Redis instance
-- `API_URL`: https://api.staging.ngurra-pathways.com
+- `API_URL`: https://api.staging.nexta.com
 
 ## Production Environment
 

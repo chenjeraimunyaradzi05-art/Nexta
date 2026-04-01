@@ -51,12 +51,12 @@ export const TIMEOUTS = {
 export const STORAGE_KEYS = {
   AUTH_TOKEN: 'auth_token',
   USER_DATA: 'user_data',
-  OFFLINE_QUEUE: '@ngurra_offline_queue',
-  SYNC_STATUS: '@ngurra_sync_status',
-  NAV_STATE: '@ngurra_nav_state',
-  ACCESSIBILITY_PREFS: '@ngurra_accessibility',
-  NOTIFICATION_PREFS: '@ngurra_notifications',
-  BIOMETRIC_ENABLED: '@ngurra_biometric',
+  OFFLINE_QUEUE: '@nexta_offline_queue',
+  SYNC_STATUS: '@nexta_sync_status',
+  NAV_STATE: '@nexta_nav_state',
+  ACCESSIBILITY_PREFS: '@nexta_accessibility',
+  NOTIFICATION_PREFS: '@nexta_notifications',
+  BIOMETRIC_ENABLED: '@nexta_biometric',
 };
 
 // Support contact info

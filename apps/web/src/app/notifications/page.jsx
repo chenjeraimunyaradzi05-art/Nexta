@@ -16,7 +16,7 @@ export default function NotificationsPage() {
   const [activeFilter, setActiveFilter] = useState('all');
   const [notifications, setNotifications] = useState([
     // Social Interactions
-    { id: 1, type: 'like', read: false, time: '2m ago', 
+    { id: 1, type: 'like', read: false, time: '2m ago',
       user: { name: 'Sarah M.', avatar: '👩🏽' },
       content: 'liked your post about career development',
       link: '/social-feed' },
@@ -135,11 +135,11 @@ export default function NotificationsPage() {
   };
 
   return (
-    <div className="ngurra-page pt-24 pb-20">
+    <div className="nexta-page pt-24 pb-20">
       {/* Decorative Halos */}
-      <div className="ngurra-halos">
-        <div className="ngurra-halo-pink" />
-        <div className="ngurra-halo-purple" />
+      <div className="nexta-halos">
+        <div className="nexta-halo-pink" />
+        <div className="nexta-halo-purple" />
       </div>
 
       <div className="container mx-auto px-4 max-w-2xl relative z-10">
@@ -147,7 +147,7 @@ export default function NotificationsPage() {
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
             <Link href="/social-feed" className="p-2 rounded-full hover:bg-white/60 transition-colors text-slate-600">
-              ← 
+              ←
             </Link>
             <div>
               <div className="flex items-center gap-2">
@@ -159,7 +159,7 @@ export default function NotificationsPage() {
               )}
             </div>
           </div>
-          
+
           {unreadCount > 0 && (
             <button
               onClick={markAllRead}
@@ -201,12 +201,12 @@ export default function NotificationsPage() {
             </div>
           ) : (
             filteredNotifications.map(notification => (
-              <Link 
+              <Link
                 key={notification.id}
                 href={notification.link}
                 onClick={() => markAsRead(notification.id)}
               >
-                <div 
+                <div
                   className={`bg-white border rounded-xl p-4 hover:border-pink-300 transition-colors cursor-pointer ${
                     !notification.read ? 'border-pink-200 bg-pink-50/50' : 'border-slate-200'
                   }`}
@@ -232,7 +232,7 @@ export default function NotificationsPage() {
                           {getNotificationIcon(notification.type)}
                         </div>
                       )}
-                      
+
                       {/* Type badge */}
                       {notification.user && (
                         <div className={`absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-white flex items-center justify-center text-sm border border-slate-200 ${getNotificationColor(notification.type)}`}>
@@ -240,7 +240,7 @@ export default function NotificationsPage() {
                         </div>
                       )}
                     </div>
-                    
+
                     {/* Content */}
                     <div className="flex-1 min-w-0">
                       <p className="text-slate-800">
@@ -265,24 +265,24 @@ export default function NotificationsPage() {
                       </p>
                       <p className="text-slate-400 text-sm mt-1">{notification.time}</p>
                     </div>
-                    
+
                     {/* Unread indicator */}
                     {!notification.read && (
                       <div className="w-2 h-2 rounded-full flex-shrink-0 mt-2" style={{ background: accentPink }} />
                     )}
                   </div>
-                  
+
                   {/* Action buttons for connection requests */}
                   {notification.type === 'connection_request' && !notification.read && (
                     <div className="flex gap-2 mt-3 ml-15">
-                      <button 
+                      <button
                         onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
                         className="px-4 py-1.5 rounded-full text-sm text-white font-medium hover:opacity-90 transition-opacity"
                         style={{ background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)` }}
                       >
                         Accept
                       </button>
-                      <button 
+                      <button
                         onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
                         className="px-4 py-1.5 rounded-full text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors"
                       >
@@ -290,18 +290,18 @@ export default function NotificationsPage() {
                       </button>
                     </div>
                   )}
-                  
+
                   {/* Action buttons for group invites */}
                   {notification.type === 'group_invite' && !notification.read && (
                     <div className="flex gap-2 mt-3 ml-15">
-                      <button 
+                      <button
                         onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
                         className="px-4 py-1.5 rounded-full text-sm text-white font-medium hover:opacity-90 transition-opacity"
                         style={{ background: `linear-gradient(135deg, ${accentPurple} 0%, ${accentPink} 100%)` }}
                       >
                         Join Group
                       </button>
-                      <button 
+                      <button
                         onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
                         className="px-4 py-1.5 rounded-full text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors"
                       >

@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" width="320" height="240" role="img" aria-labelledby="logoV1Title logoV1Desc">
-  <title id="logoV1Title">Ngurra Pathways logo variant — earth tones</title>
+  <title id="logoV1Title">Nexta logo variant — earth tones</title>
   <desc id="logoV1Desc">A horizontal variant with stylised meeting lines and a short wordmark
   suitable for header use</desc>
   <rect width="320" height="240" rx="14" fill="#fff" />
@@ -18,7 +18,7 @@
 
     <!-- short wordmark -->
     <g transform="translate(0,190)">
-      <text x="0" y="10" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto" font-weight="700" font-size="18" fill="#3b6a47">Ngurra Pathways</text>
+      <text x="0" y="10" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto" font-weight="700" font-size="18" fill="#3b6a47">Nexta</text>
     </g>
   </g>
 </svg>

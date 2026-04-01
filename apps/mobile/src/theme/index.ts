@@ -1,6 +1,6 @@
 /**
- * Ngurra Pathways Mobile Theme
- * 
+ * Nexta Mobile Theme
+ *
  * Consistent design tokens for the React Native mobile app.
  * Aligned with the dark theme from the web app.
  */
@@ -13,27 +13,27 @@ export const colors = {
   primary: '#FFA94D',           // Warm ochre/orange
   primaryLight: '#FFD166',      // Lighter ochre
   primaryDark: '#E88B2E',       // Darker ochre
-  
+
   // Secondary colors
   secondary: '#8B4513',         // Earth brown
   secondaryLight: '#CD853F',    // Peru/tan
-  
+
   // Accent colors
   accent: '#4ECDC4',            // Teal accent
   accentLight: '#7FE5DD',       // Light teal
-  
+
   // Background colors (dark theme)
   background: '#121212',        // Main dark background
   surface: '#1E1E1E',           // Card/surface background
   surfaceLight: '#2A2A2A',      // Elevated surface
   card: '#252525',              // Card background
-  
+
   // Text colors
   text: '#FFFFFF',              // Primary text
   textSecondary: '#B3B3B3',     // Secondary text
   textMuted: '#808080',         // Muted text
   textInverse: '#121212',       // Text on light backgrounds
-  
+
   // Status colors
   success: '#4CAF50',           // Green for success
   successLight: '#81C784',      // Light green
@@ -43,23 +43,23 @@ export const colors = {
   errorLight: '#EF9A9A',        // Light error
   info: '#2196F3',              // Blue for info
   infoLight: '#64B5F6',         // Light info
-  
+
   // Semantic colors
   purple: '#9C27B0',            // Purple for mentorship
   pink: '#E91E63',              // Pink accent
-  
+
   // Border colors
   border: '#333333',            // Default border
   borderLight: '#444444',       // Light border
-  
+
   // Overlay colors
   overlay: 'rgba(0, 0, 0, 0.5)', // Modal overlay
   overlayLight: 'rgba(0, 0, 0, 0.3)',
-  
+
   // Tab bar colors
   tabInactive: '#666666',       // Inactive tab icon
   tabActive: '#FFA94D',         // Active tab icon
-  
+
   // Status bar
   statusBar: '#0D0D0D',
 } as const;
@@ -74,7 +74,7 @@ export const spacing = {
   lg: 24,
   xl: 32,
   xxl: 48,
-  
+
   // Specific spacings
   screenPadding: 16,
   cardPadding: 16,
@@ -92,7 +92,7 @@ export const typography = {
     medium: 'System',
     bold: 'System',
   },
-  
+
   // Font sizes
   fontSize: {
     xs: 10,
@@ -105,14 +105,14 @@ export const typography = {
     xxxl: 32,
     display: 40,
   },
-  
+
   // Line heights
   lineHeight: {
     tight: 1.2,
     normal: 1.5,
     relaxed: 1.75,
   },
-  
+
   // Font weights (for System font)
   fontWeight: {
     regular: '400',
@@ -120,7 +120,7 @@ export const typography = {
     semibold: '600',
     bold: '700',
   },
-  
+
   // Pre-defined text styles
   styles: {
     h1: {
@@ -184,7 +184,7 @@ export const borderRadius = {
   lg: 16,
   xl: 24,
   full: 9999,
-  
+
   // Specific radii
   card: 12,
   button: 8,
@@ -204,7 +204,7 @@ export const shadows = {
     shadowRadius: 0,
     elevation: 0,
   },
-  
+
   sm: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
@@ -212,7 +212,7 @@ export const shadows = {
     shadowRadius: 1.0,
     elevation: 1,
   },
-  
+
   md: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -220,7 +220,7 @@ export const shadows = {
     shadowRadius: 2.62,
     elevation: 4,
   },
-  
+
   lg: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
@@ -228,7 +228,7 @@ export const shadows = {
     shadowRadius: 4.65,
     elevation: 8,
   },
-  
+
   xl: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 6 },
@@ -236,7 +236,7 @@ export const shadows = {
     shadowRadius: 7.49,
     elevation: 12,
   },
-  
+
   // Glow effect for primary elements
   glow: {
     shadowColor: colors.primary,

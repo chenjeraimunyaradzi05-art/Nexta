@@ -91,8 +91,8 @@ function TafeDashboardInner() {
     return (<div className="min-h-screen">
       {/* === HERO SECTION === */}
       <section className="relative overflow-hidden py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-pink-50/40 to-purple-50/40 dark:from-slate-900 dark:to-slate-800">
-        <div className="ngurra-halo-pink" />
-        <div className="ngurra-halo-purple" />
+        <div className="nexta-halo-pink" />
+        <div className="nexta-halo-purple" />
 
         <div className="relative max-w-4xl mx-auto">
           {/* Announcements */}
@@ -120,7 +120,7 @@ function TafeDashboardInner() {
       </section>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      
+
       {/* Stats cards */}
       {tafeStats?.stats && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
@@ -151,7 +151,7 @@ function TafeDashboardInner() {
       {tafeStats?.recentEnrolments?.length > 0 && (
         <div className="rounded-2xl border border-slate-200 bg-white p-6 mb-6 shadow-lg" style={{ boxShadow: '0 24px 60px rgba(15, 23, 42, 0.08)' }}>
           <h3 className="font-bold text-lg mb-3 text-slate-900 flex items-center gap-2">
-            <ClipboardList className="w-5 h-5 text-pink-500" /> 
+            <ClipboardList className="w-5 h-5 text-pink-500" />
             <span>Recent Enrolments</span>
           </h3>
           <div className="space-y-2">

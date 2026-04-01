@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * Ngurra Pathways - Final Integration Test Suite
- * 
+ * Nexta - Final Integration Test Suite
+ *
  * Step 100: Final integration tests to verify all systems are working together
  * Run before production deployment to ensure everything is connected.
- * 
+ *
  * Usage:
  *   node tools/final-integration-test.js [--production]
  */
@@ -14,11 +14,11 @@ const https = require('https');
 
 // Configuration
 const isProduction = process.argv.includes('--production');
-const API_BASE = isProduction 
-  ? 'https://api.ngurrapathways.life'
+const API_BASE = isProduction
+  ? 'https://api.nexta.life'
   : 'http://localhost:3333';
 const WEB_BASE = isProduction
-  ? 'https://ngurrapathways.life'
+  ? 'https://nexta.life'
   : 'http://localhost:3000';
 
 // Colors for terminal output
@@ -80,11 +80,11 @@ function request(url, options = {}) {
 
     req.on('error', reject);
     req.on('timeout', () => reject(new Error('Request timeout')));
-    
+
     if (options.body) {
       req.write(JSON.stringify(options.body));
     }
-    
+
     req.end();
   });
 }
@@ -97,7 +97,7 @@ const tests = {
   // API Health Tests
   async apiHealth() {
     info('Testing API Health...');
-    
+
     try {
       const res = await request(`${API_BASE}/health`);
       if (res.status === 200) {
@@ -123,15 +123,15 @@ const tests = {
   // Web Health Tests
   async webHealth() {
     info('Testing Web Application...');
-    
+
     try {
       const res = await request(WEB_BASE);
       if (res.status === 200) {
         pass('Web application responding');
         this.results.passed++;
-        
+
         // Check for critical elements
-        if (res.body.includes('Ngurra') || res.body.includes('ngurra')) {
+        if (res.body.includes('Nexta') || res.body.includes('nexta')) {
           pass('Web contains expected content');
           this.results.passed++;
         } else {
@@ -152,7 +152,7 @@ const tests = {
   // API Endpoints Tests
   async apiEndpoints() {
     info('Testing API Endpoints...');
-    
+
     const endpoints = [
       { path: '/jobs', name: 'Jobs list' },
       { path: '/mentor', name: 'Mentors list' },
@@ -180,7 +180,7 @@ const tests = {
   // Web Routes Tests
   async webRoutes() {
     info('Testing Web Routes...');
-    
+
     const routes = [
       { path: '/jobs', name: 'Jobs page' },
       { path: '/mentorship', name: 'Mentors page' },
@@ -211,10 +211,10 @@ const tests = {
   // Security Headers Tests
   async securityHeaders() {
     info('Testing Security Headers...');
-    
+
     try {
       const res = await request(WEB_BASE);
-      
+
       const requiredHeaders = [
         'x-content-type-options',
         'x-frame-options',
@@ -254,11 +254,11 @@ const tests = {
   // CORS Tests
   async corsTest() {
     info('Testing CORS Configuration...');
-    
+
     try {
       const res = await request(`${API_BASE}/health`, {
         headers: {
-          'Origin': 'https://ngurrapathways.life',
+          'Origin': 'https://nexta.life',
         },
       });
 
@@ -279,7 +279,7 @@ const tests = {
   // Response Time Tests
   async responseTimeTest() {
     info('Testing Response Times...');
-    
+
     const endpoints = [
       { url: `${API_BASE}/health`, name: 'API Health', maxMs: 200 },
       { url: WEB_BASE, name: 'Web Home', maxMs: 1000 },
@@ -310,7 +310,7 @@ const tests = {
 // Main runner
 async function runTests() {
   console.log('\n' + '='.repeat(60));
-  console.log(colors.cyan + '🚀 Ngurra Pathways Final Integration Tests' + colors.reset);
+  console.log(colors.cyan + '🚀 Nexta Final Integration Tests' + colors.reset);
   console.log('='.repeat(60));
   console.log(`Environment: ${isProduction ? 'PRODUCTION' : 'Development'}`);
   console.log(`API: ${API_BASE}`);

@@ -1,6 +1,6 @@
 /**
  * Job Alerts Scheduler Service
- * 
+ *
  * Processes job alerts on a schedule and sends email notifications.
  * Can be triggered by:
  * - Cron job (node-cron)
@@ -73,7 +73,7 @@ function generateJobAlertEmail(data: JobAlertEmail): string {
     <!-- Header -->
     <tr>
       <td style="padding: 24px; background: linear-gradient(135deg, #1a0f2e 0%, #2d1b69 100%); text-align: center;">
-        <img src="https://ngurrapathways.com.au/logo-light.png" alt="Ngurra Pathways" width="150" style="margin-bottom: 16px;">
+        <img src="https://nexta.com.au/logo-light.png" alt="Nexta" width="150" style="margin-bottom: 16px;">
         <h1 style="color: #ffd700; margin: 0; font-size: 24px;">
           🔔 ${data.matchCount} New Job${data.matchCount > 1 ? 's' : ''} Found!
         </h1>
@@ -82,7 +82,7 @@ function generateJobAlertEmail(data: JobAlertEmail): string {
         </p>
       </td>
     </tr>
-    
+
     <!-- Greeting -->
     <tr>
       <td style="padding: 24px 24px 16px;">
@@ -95,7 +95,7 @@ function generateJobAlertEmail(data: JobAlertEmail): string {
         </p>
       </td>
     </tr>
-    
+
     <!-- Job Listings -->
     <tr>
       <td style="padding: 0 24px;">
@@ -104,7 +104,7 @@ function generateJobAlertEmail(data: JobAlertEmail): string {
         </table>
       </td>
     </tr>
-    
+
     <!-- CTA Button -->
     <tr>
       <td style="padding: 24px; text-align: center;">
@@ -113,7 +113,7 @@ function generateJobAlertEmail(data: JobAlertEmail): string {
         </a>
       </td>
     </tr>
-    
+
     <!-- Footer -->
     <tr>
       <td style="padding: 24px; background: #f9fafb; border-top: 1px solid #e5e7eb;">
@@ -124,7 +124,7 @@ function generateJobAlertEmail(data: JobAlertEmail): string {
           <a href="${data.unsubscribeUrl}?disable=${data.searchName}" style="color: #6b7280;">unsubscribe</a>
         </p>
         <p style="color: #9ca3af; font-size: 12px; text-align: center; margin: 12px 0 0;">
-          © ${new Date().getFullYear()} Ngurra Pathways. All rights reserved.
+          © ${new Date().getFullYear()} Nexta. All rights reserved.
         </p>
       </td>
     </tr>
@@ -138,7 +138,7 @@ function generateJobAlertEmail(data: JobAlertEmail): string {
  * Generate plain text email for job alerts
  */
 function generateJobAlertText(data: JobAlertEmail): string {
-  const jobList = data.jobs.map(job => 
+  const jobList = data.jobs.map(job =>
     `📌 ${job.title}\n   ${job.company} • ${job.location}${job.salary ? ` • ${job.salary}` : ''}\n   Apply: ${job.url}\n`
   ).join('\n');
 
@@ -155,7 +155,7 @@ View all matches: ${data.searchUrl}
 
 ---
 Manage alerts: ${data.unsubscribeUrl}
-© ${new Date().getFullYear()} Ngurra Pathways
+© ${new Date().getFullYear()} Nexta
   `.trim();
 }
 
@@ -324,7 +324,7 @@ export class JobAlertScheduler {
       return; // User has disabled job alerts
     }
 
-    const baseUrl = process.env.FRONTEND_URL || 'https://ngurrapathways.com.au';
+    const baseUrl = process.env.FRONTEND_URL || 'https://nexta.com.au';
     const userName = user.name || user.memberProfile?.phone ? 'there' : user.email.split('@')[0];
 
     const emailData: JobAlertEmail = {

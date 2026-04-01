@@ -1,7 +1,7 @@
 {
-  "name": "@ngurra/types",
+  "name": "@nexta/types",
   "version": "1.0.0",
-  "description": "Shared TypeScript types for Ngurra Pathways Platform",
+  "description": "Shared TypeScript types for Nexta Platform",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {

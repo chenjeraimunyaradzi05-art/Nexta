@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * Employer Verification System
- * 
+ *
  * Features:
  * - Verification request workflow
  * - ABN (Australian Business Number) verification
@@ -123,7 +123,7 @@ const s3Client = new S3Client({
   } : undefined
 });
 
-const BUCKET_NAME = process.env.AWS_S3_BUCKET || 'ngurra-verifications';
+const BUCKET_NAME = process.env.AWS_S3_BUCKET || 'nexta-verifications';
 
 // ============================================================================
 // ABN VERIFICATION
@@ -155,7 +155,7 @@ export async function verifyABN(abn) {
   // Query Australian Business Register API
   try {
     const abrApiKey = process.env.ABR_API_KEY;
-    
+
     if (abrApiKey) {
       const response = await fetch(
         `https://abr.business.gov.au/abrxmlsearch/AbrXmlSearch.asmx/ABRSearchByABN?searchString=${cleanAbn}&includeHistoricalDetails=N&authenticationGuid=${abrApiKey}`
@@ -164,7 +164,7 @@ export async function verifyABN(abn) {
       if (response.ok) {
         const xml = await response.text();
         const businessInfo = parseAbrResponse(xml);
-        
+
         if (businessInfo) {
           return {
             valid: true,
@@ -448,7 +448,7 @@ async function checkDocumentCompleteness(requestId) {
   if (hasAllRequired && request.status === VERIFICATION_STATUS.PENDING) {
     await prisma.verificationRequest.update({
       where: { id: requestId },
-      data: { 
+      data: {
         status: VERIFICATION_STATUS.IN_REVIEW,
         reviewStartedAt: new Date()
       }
@@ -703,8 +703,8 @@ export function generateBadgeEmbed(companyId, verificationLevel) {
 
   return {
     html: `<a href="${verifyUrl}" target="_blank" rel="noopener" title="${badgeType.label}">
-      <img src="${process.env.APP_URL}/badges/employer/${verificationLevel}.svg" 
-           alt="${badgeType.label}" 
+      <img src="${process.env.APP_URL}/badges/employer/${verificationLevel}.svg"
+           alt="${badgeType.label}"
            style="height: 32px;" />
     </a>`,
     markdown: `[![${badgeType.label}](${process.env.APP_URL}/badges/employer/${verificationLevel}.svg)](${verifyUrl})`,
@@ -785,7 +785,7 @@ async function notifyCompanyRejected(request, reason) {
 
 function formatRequestResponse(request) {
   const typeInfo = VERIFICATION_TYPES[request.type?.toUpperCase()];
-  
+
   return {
     id: request.id,
     type: request.type,
@@ -812,25 +812,25 @@ function formatRequestResponse(request) {
 export default {
   // ABN verification
   verifyABN,
-  
+
   // Request workflow
   submitVerificationRequest,
   getVerificationStatus,
-  
+
   // Documents
   getDocumentUploadUrl,
   confirmDocumentUpload,
-  
+
   // Admin dashboard
   getVerificationRequests,
   getVerificationDashboardStats,
   reviewVerificationRequest,
-  
+
   // Badges
   getVerificationBadge,
   verifyCompanyBadge,
   generateBadgeEmbed,
-  
+
   // Config
   VERIFICATION_STATUS,
   VERIFICATION_TYPES,

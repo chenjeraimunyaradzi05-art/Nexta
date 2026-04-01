@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Advisory Council Management | Admin | Ngurra Pathways',
+  title: 'Advisory Council Management | Admin | Nexta',
   description: 'Manage the Community Advisory Council - members, proposals, voting, and meeting minutes.',
 };
 

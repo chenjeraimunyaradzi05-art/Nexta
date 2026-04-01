@@ -8,7 +8,7 @@ import OptimizedImage from '@/components/ui/OptimizedImage';
 
 /**
  * PortfolioBuilder - Create and manage professional portfolio
- * 
+ *
  * Features:
  * - Portfolio projects showcase
  * - Drag-and-drop reordering
@@ -615,7 +615,7 @@ function SettingsPanel({
             Custom URL
           </label>
           <div className="flex items-center gap-2">
-            <span className="text-gray-500">ngurra.com.au/portfolio/</span>
+            <span className="text-gray-500">nexta.com.au/portfolio/</span>
             <input
               type="text"
               value={formData.customUrl || ''}

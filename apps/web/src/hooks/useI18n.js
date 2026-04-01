@@ -1,6 +1,6 @@
 /**
  * Internationalization Hook for React
- * 
+ *
  * Provides localization utilities for React components.
  */
 'use client';
@@ -26,12 +26,12 @@ const translations = {
     'common.view': 'View',
     'common.search': 'Search',
     'common.noResults': 'No results found',
-    
+
     // Auth
     'auth.login': 'Log in',
     'auth.logout': 'Log out',
     'auth.register': 'Sign up',
-    
+
     // Navigation
     'nav.home': 'Home',
     'nav.jobs': 'Jobs',
@@ -41,23 +41,23 @@ const translations = {
     'nav.messages': 'Messages',
     'nav.profile': 'Profile',
     'nav.settings': 'Settings',
-    
+
     // Jobs
     'jobs.search': 'Search jobs',
     'jobs.apply': 'Apply now',
     'jobs.applied': 'Applied',
     'jobs.saved': 'Saved',
-    
+
     // Time
     'time.justNow': 'Just now',
     'time.minutesAgo': '{count} min ago',
     'time.hoursAgo': '{count}h ago',
     'time.daysAgo': '{count}d ago',
     'time.weeksAgo': '{count}w ago',
-    
+
     // Acknowledgment
     'acknowledgment.short': 'We acknowledge the Traditional Custodians of the land.',
-    'acknowledgment.full': 'Ngurra Pathways acknowledges the Traditional Custodians of the lands on which we work and live. We pay our respects to Elders past, present and emerging.',
+    'acknowledgment.full': 'Nexta acknowledges the Traditional Custodians of the lands on which we work and live. We pay our respects to Elders past, present and emerging.',
   },
 };
 
@@ -71,7 +71,7 @@ const I18nContext = createContext(null);
  */
 export function I18nProvider({ children, locale = DEFAULT_LOCALE }) {
   const value = useMemo(() => createI18nContext(locale), [locale]);
-  
+
   return (
     <I18nContext.Provider value={value}>
       {children}
@@ -84,27 +84,27 @@ export function I18nProvider({ children, locale = DEFAULT_LOCALE }) {
  */
 function createI18nContext(locale) {
   const localeTranslations = translations[locale] || translations[DEFAULT_LOCALE];
-  
+
   return {
     locale,
-    
+
     t: (key, params = {}) => {
       let text = localeTranslations[key] || key;
-      
+
       for (const [param, val] of Object.entries(params)) {
         text = text.replace(new RegExp(`\\{${param}\\}`, 'g'), String(val));
       }
-      
+
       return text;
     },
-    
+
     formatDate: (date, options = {}) => {
       return new Date(date).toLocaleDateString(locale, {
         timeZone: DEFAULT_TIMEZONE,
         ...options,
       });
     },
-    
+
     formatDateTime: (date, options = {}) => {
       return new Date(date).toLocaleString(locale, {
         timeZone: DEFAULT_TIMEZONE,
@@ -113,7 +113,7 @@ function createI18nContext(locale) {
         ...options,
       });
     },
-    
+
     formatTime: (date, options = {}) => {
       return new Date(date).toLocaleTimeString(locale, {
         timeZone: DEFAULT_TIMEZONE,
@@ -121,7 +121,7 @@ function createI18nContext(locale) {
         ...options,
       });
     },
-    
+
     formatRelativeTime: (date) => {
       const now = new Date();
       const d = new Date(date);
@@ -131,14 +131,14 @@ function createI18nContext(locale) {
       const hours = Math.floor(minutes / 60);
       const days = Math.floor(hours / 24);
       const weeks = Math.floor(days / 7);
-      
+
       if (seconds < 60) return localeTranslations['time.justNow'];
       if (minutes < 60) return localeTranslations['time.minutesAgo'].replace('{count}', minutes);
       if (hours < 24) return localeTranslations['time.hoursAgo'].replace('{count}', hours);
       if (days < 7) return localeTranslations['time.daysAgo'].replace('{count}', days);
       return localeTranslations['time.weeksAgo'].replace('{count}', weeks);
     },
-    
+
     formatCurrency: (amount, currency = 'AUD') => {
       return new Intl.NumberFormat(locale, {
         style: 'currency',
@@ -147,22 +147,22 @@ function createI18nContext(locale) {
         maximumFractionDigits: 2,
       }).format(amount);
     },
-    
+
     formatNumber: (number, options = {}) => {
       return new Intl.NumberFormat(locale, options).format(number);
     },
-    
+
     formatPhoneNumber: (phone) => {
       const digits = phone.replace(/\D/g, '');
-      
+
       if (digits.length === 10 && digits.startsWith('04')) {
         return `${digits.slice(0, 4)} ${digits.slice(4, 7)} ${digits.slice(7)}`;
       }
-      
+
       if (digits.length === 10 && digits.startsWith('0')) {
         return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)} ${digits.slice(6)}`;
       }
-      
+
       return phone;
     },
   };
@@ -173,11 +173,11 @@ function createI18nContext(locale) {
  */
 export function useI18n() {
   const context = useContext(I18nContext);
-  
+
   if (!context) {
     return createI18nContext(DEFAULT_LOCALE);
   }
-  
+
   return context;
 }
 

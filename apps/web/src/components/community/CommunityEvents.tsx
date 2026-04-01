@@ -9,7 +9,7 @@ import OptimizedImage from '@/components/ui/OptimizedImage';
 
 /**
  * CommunityEvents - Community events and gatherings
- * 
+ *
  * Features:
  * - Event discovery
  * - Event registration
@@ -37,7 +37,7 @@ interface CommunityEvent {
     id: string;
     name: string;
     avatar?: string;
-    type: 'organization' | 'user' | 'ngurra';
+    type: 'organization' | 'user' | 'nexta';
   };
   attendees: number;
   maxAttendees?: number;
@@ -62,7 +62,7 @@ const eventsApi = {
     const params = new URLSearchParams(filters);
     const response = await api(`/events?${params.toString()}`);
     if (!response.ok) return { events: [], total: 0 };
-    
+
     const data = response.data;
     const events = (data?.events || []).map((e: any) => ({
       id: String(e.id),
@@ -101,7 +101,7 @@ const eventsApi = {
   async getEvent(id: string): Promise<CommunityEvent> {
     const response = await api(`/events/${id}`);
     if (!response.ok || !response.data) throw new Error('Failed to load event');
-    
+
     const e = response.data;
     return {
       id: String(e.id),
@@ -153,7 +153,7 @@ const eventsApi = {
   async getMyEvents(): Promise<CommunityEvent[]> {
     const response = await api('/events/my-events');
     if (!response.ok) return [];
-    
+
     const data = response.data;
     const events = (data?.events || []).map((e: any) => ({
       id: String(e.id),
@@ -422,7 +422,7 @@ function EventDetailModal({
                 {startDate.toLocaleDateString('en-AU', { weekday: 'long', month: 'long', day: 'numeric' })}
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                {startDate.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' })} - 
+                {startDate.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' })} -
                 {endDate.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' })}
               </p>
             </div>

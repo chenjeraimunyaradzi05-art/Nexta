@@ -1,14 +1,14 @@
 /**
  * Unified API Types
- * 
+ *
  * This file exports types that should be used by both web and mobile clients.
- * Import from @ngurra/types for the full type definitions.
- * 
+ * Import from @nexta/types for the full type definitions.
+ *
  * This is a bridge file until the shared types package is fully integrated.
  */
 
 // Re-export common types for mobile compatibility
-export * from '@ngurra/types';
+export * from '@nexta/types';
 
 // Mobile-specific API configuration
 export interface MobileApiConfig {
@@ -74,8 +74,8 @@ export interface DeepLinkConfig {
 }
 
 export const DEEP_LINK_CONFIG: DeepLinkConfig = {
-  scheme: 'ngurra',
-  host: 'ngurrapathways.com.au',
+  scheme: 'nexta',
+  host: 'nexta.com.au',
   routes: [
     { pattern: '/jobs/:id', screen: 'JobDetail', params: ['id'] },
     { pattern: '/courses/:id', screen: 'CourseDetail', params: ['id'] },

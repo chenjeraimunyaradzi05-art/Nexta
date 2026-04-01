@@ -6,7 +6,7 @@ import { Button } from '../Button';
 
 /**
  * FeedbackSystem - Collect and manage user feedback
- * 
+ *
  * Features:
  * - Submit feedback with categories
  * - Feature requests with voting
@@ -482,7 +482,7 @@ function SubmitFeedbackModal({
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={5}
-              placeholder={type === 'bug' 
+              placeholder={type === 'bug'
                 ? 'Please describe what happened, what you expected, and steps to reproduce...'
                 : 'Please provide details about your feedback...'
               }
@@ -584,7 +584,7 @@ export function FeedbackSystem() {
   const handleVote = async (id: string) => {
     try {
       const result = await feedbackApi.voteFeedback(id);
-      const updateFeedback = (f: Feedback) => 
+      const updateFeedback = (f: Feedback) =>
         f.id === id ? { ...f, votes: result.votes, hasVoted: result.hasVoted } : f;
       setFeedback(feedback.map(updateFeedback));
       setMyFeedback(myFeedback.map(updateFeedback));
@@ -654,7 +654,7 @@ export function FeedbackSystem() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Feedback</h1>
-          <p className="text-gray-500 mt-1">Help us improve Ngurra Pathways</p>
+          <p className="text-gray-500 mt-1">Help us improve Nexta</p>
         </div>
         <Button onClick={() => setShowModal(true)}>
           <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">

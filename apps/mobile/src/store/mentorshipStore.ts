@@ -1,6 +1,6 @@
 /**
  * Mentorship Store - Zustand state management for mentorship features
- * 
+ *
  * Manages:
  * - Mentor discovery and search
  * - Mentorship sessions (booking, scheduling)
@@ -118,33 +118,33 @@ interface MentorshipState {
   mentors: MentorProfile[];
   featuredMentors: MentorProfile[];
   recommendedMentors: MentorProfile[];
-  
+
   // Sessions
   upcomingSessions: MentorSession[];
   pastSessions: MentorSession[];
-  
+
   // Circles
   myCircles: MentorCircle[];
   discoveryCircles: MentorCircle[];
-  
+
   // Current mentor detail
   selectedMentor: MentorProfile | null;
-  
+
   // Search state
   searchFilters: MentorSearchFilters;
-  
+
   // Pagination
   mentorsCursor: string | null;
   mentorsHasMore: boolean;
-  
+
   // Loading states
   isLoading: boolean;
   isRefreshing: boolean;
   isBooking: boolean;
-  
+
   // Error state
   error: string | null;
-  
+
   // Actions - Mentor Discovery
   searchMentors: (filters?: MentorSearchFilters, refresh?: boolean) => Promise<void>;
   fetchFeaturedMentors: () => Promise<void>;
@@ -152,7 +152,7 @@ interface MentorshipState {
   getMentorById: (mentorId: string) => Promise<MentorProfile | null>;
   setSearchFilters: (filters: Partial<MentorSearchFilters>) => void;
   clearFilters: () => void;
-  
+
   // Actions - Sessions
   fetchUpcomingSessions: () => Promise<void>;
   fetchPastSessions: () => Promise<void>;
@@ -167,16 +167,16 @@ interface MentorshipState {
   cancelSession: (sessionId: string, reason?: string) => Promise<void>;
   rescheduleSession: (sessionId: string, newDate: string) => Promise<void>;
   submitReview: (sessionId: string, rating: number, review?: string, tags?: string[]) => Promise<void>;
-  
+
   // Actions - Circles
   fetchMyCircles: () => Promise<void>;
   fetchDiscoveryCircles: () => Promise<void>;
   joinCircle: (circleId: string) => Promise<void>;
   leaveCircle: (circleId: string) => Promise<void>;
-  
+
   // Actions - Availability
   getMentorAvailability: (mentorId: string, date: string) => Promise<AvailabilitySlot[]>;
-  
+
   // Utility
   refresh: () => Promise<void>;
   clearError: () => void;
@@ -219,9 +219,9 @@ export const useMentorshipStore = create<MentorshipState>()(
       searchMentors: async (filters?: MentorSearchFilters, refresh = false) => {
         const state = get();
         if (state.isLoading && !refresh) return;
-        
+
         const effectiveFilters = filters || state.searchFilters;
-        
+
         set({
           isLoading: !refresh,
           isRefreshing: refresh,
@@ -231,7 +231,7 @@ export const useMentorshipStore = create<MentorshipState>()(
 
         try {
           const params = new URLSearchParams();
-          
+
           if (effectiveFilters.query) params.append('q', effectiveFilters.query);
           if (effectiveFilters.expertise?.length) {
             params.append('expertise', effectiveFilters.expertise.join(','));
@@ -248,12 +248,12 @@ export const useMentorshipStore = create<MentorshipState>()(
           if (effectiveFilters.languages?.length) {
             params.append('languages', effectiveFilters.languages.join(','));
           }
-          
+
           if (!refresh && state.mentorsCursor) params.append('cursor', state.mentorsCursor);
           params.append('limit', '20');
 
           const response = await api.get(`/mentors?${params.toString()}`);
-          
+
           const newMentors = response.data.mentors || response.data.data || [];
           const nextCursor = response.data.cursor || response.data.nextCursor;
           const hasMore = response.data.hasMore ?? (newMentors.length === 20);
@@ -339,15 +339,15 @@ export const useMentorshipStore = create<MentorshipState>()(
         try {
           const response = await api.post('/mentorship/sessions', data);
           const session = response.data.session || response.data;
-          
+
           set(prev => ({
             upcomingSessions: [...prev.upcomingSessions, session],
             isBooking: false,
           }));
-          
+
           return session;
         } catch (error: any) {
-          set({ 
+          set({
             error: error.message || 'Failed to book session',
             isBooking: false,
           });
@@ -358,7 +358,7 @@ export const useMentorshipStore = create<MentorshipState>()(
       cancelSession: async (sessionId: string, reason?: string) => {
         try {
           await api.post(`/mentorship/sessions/${sessionId}/cancel`, { reason });
-          
+
           set(prev => ({
             upcomingSessions: prev.upcomingSessions.map(s =>
               s.id === sessionId ? { ...s, status: 'CANCELLED' as const } : s
@@ -372,11 +372,11 @@ export const useMentorshipStore = create<MentorshipState>()(
 
       rescheduleSession: async (sessionId: string, newDate: string) => {
         try {
-          const response = await api.post(`/mentorship/sessions/${sessionId}/reschedule`, { 
-            scheduledAt: newDate 
+          const response = await api.post(`/mentorship/sessions/${sessionId}/reschedule`, {
+            scheduledAt: newDate
           });
           const updatedSession = response.data.session || response.data;
-          
+
           set(prev => ({
             upcomingSessions: prev.upcomingSessions.map(s =>
               s.id === sessionId ? updatedSession : s
@@ -390,12 +390,12 @@ export const useMentorshipStore = create<MentorshipState>()(
 
       submitReview: async (sessionId: string, rating: number, review?: string, tags?: string[]) => {
         try {
-          await api.post(`/mentorship/sessions/${sessionId}/review`, { 
-            rating, 
+          await api.post(`/mentorship/sessions/${sessionId}/review`, {
+            rating,
             review,
             tags,
           });
-          
+
           set(prev => ({
             pastSessions: prev.pastSessions.map(s =>
               s.id === sessionId ? { ...s, rating, review } : s
@@ -429,7 +429,7 @@ export const useMentorshipStore = create<MentorshipState>()(
       joinCircle: async (circleId: string) => {
         try {
           await api.post(`/mentorship/circles/${circleId}/join`);
-          
+
           set(prev => {
             const circle = prev.discoveryCircles.find(c => c.id === circleId);
             if (circle) {
@@ -451,7 +451,7 @@ export const useMentorshipStore = create<MentorshipState>()(
       leaveCircle: async (circleId: string) => {
         try {
           await api.post(`/mentorship/circles/${circleId}/leave`);
-          
+
           set(prev => ({
             myCircles: prev.myCircles.filter(c => c.id !== circleId),
             discoveryCircles: prev.discoveryCircles.map(c =>
@@ -493,7 +493,7 @@ export const useMentorshipStore = create<MentorshipState>()(
       },
     }),
     {
-      name: 'ngurra-mentorship-store',
+      name: 'nexta-mentorship-store',
       storage: createJSONStorage(() => AsyncStorage),
       partialize: (state) => ({
         searchFilters: state.searchFilters,

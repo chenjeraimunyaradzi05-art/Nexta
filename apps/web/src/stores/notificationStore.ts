@@ -2,7 +2,7 @@
 
 /**
  * Notification Store
- * 
+ *
  * Manages notifications, preferences, and real-time updates.
  */
 
@@ -76,8 +76,8 @@ export const useNotificationStore = create<NotificationStore>()(
 
           if (ok && data) {
             set((state) => ({
-              notifications: page === 1 
-                ? data.notifications 
+              notifications: page === 1
+                ? data.notifications
                 : [...state.notifications, ...data.notifications],
               unreadCount: data.unreadCount,
               hasMore: data.hasMore,
@@ -193,7 +193,7 @@ export const useNotificationStore = create<NotificationStore>()(
       },
     }),
     {
-      name: 'ngurra-notifications',
+      name: 'nexta-notifications',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         preferences: state.preferences,

@@ -32,7 +32,7 @@ export default function FoundersPage() {
             <div>
               <h1 className="text-3xl font-bold text-white">Founders & Vision</h1>
               <p className="text-slate-400">
-                Why Ngurra Pathways exists, who built it, and the impact it aims to create
+                Why Nexta exists, who built it, and the impact it aims to create
               </p>
             </div>
           </div>
@@ -70,7 +70,7 @@ export default function FoundersPage() {
           <h2 className="text-xl font-semibold text-white mb-3">What the platform is about</h2>
           <div className="space-y-3 text-slate-300">
             <p>
-              Ngurra Pathways is a culturally-grounded employment, education, and mentorship
+              Nexta is a culturally-grounded employment, education, and mentorship
               platform designed to connect people to real opportunities and support them through the
               full journey: discovery · preparation · placement · progression.
             </p>
@@ -224,7 +224,7 @@ export default function FoundersPage() {
               </p>
               <p>
                 By helping people move into training and employment (and stay supported once they
-                get there), Ngurra Pathways aims to contribute to long-term community strength and,
+                get there), Nexta aims to contribute to long-term community strength and,
                 potentially, lower rates of incarceration through prevention and opportunity.
               </p>
             </div>

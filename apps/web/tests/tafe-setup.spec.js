@@ -10,7 +10,7 @@ test('TAFE setup form and AiConcierge integration', async ({ page, request }) =>
     expect(token).toBeTruthy();
     // Set token in localStorage/cookies and open setup page
     await page.goto(webBase);
-    await page.evaluate(([t]) => { localStorage.setItem('ngurra_token', t); document.cookie = `ngurra_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`; }, [token]);
+    await page.evaluate(([t]) => { localStorage.setItem('nexta_token', t); document.cookie = `nexta_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`; }, [token]);
     await page.goto(`${webBase}/tafe/setup`);
     await page.waitForSelector('text=TAFE / Institution Profile Setup', { timeout: 15000 });
     // Fill form fields

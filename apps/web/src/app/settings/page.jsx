@@ -2,13 +2,13 @@
 
 import Link from 'next/link';
 import useAuth from '../../hooks/useAuth';
-import { 
-  Bell, 
-  User, 
-  Shield, 
-  CreditCard, 
-  Key, 
-  Globe, 
+import {
+  Bell,
+  User,
+  Shield,
+  CreditCard,
+  Key,
+  Globe,
   Moon,
   Smartphone,
   HelpCircle,
@@ -33,7 +33,7 @@ export default function SettingsPage() {
           icon: User,
           label: 'Profile Settings',
           description: 'Update your personal information and bio',
-          href: user?.userType === 'MEMBER' ? '/member/setup' : 
+          href: user?.userType === 'MEMBER' ? '/member/setup' :
                 user?.userType === 'MENTOR' ? '/mentor/setup' :
                 user?.userType === 'COMPANY' ? '/company/setup' : '/member/setup',
           color: 'blue',
@@ -146,11 +146,11 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="ngurra-page p-6">
+    <div className="nexta-page p-6">
       {/* Decorative Halos */}
-      <div className="ngurra-halos">
-        <div className="ngurra-halo-pink" />
-        <div className="ngurra-halo-purple" />
+      <div className="nexta-halos">
+        <div className="nexta-halo-pink" />
+        <div className="nexta-halo-purple" />
       </div>
 
       <div className="max-w-3xl mx-auto relative z-10">
@@ -212,9 +212,9 @@ export default function SettingsPage() {
 
         {/* Version Info */}
         <div className="mt-8 text-center text-sm text-slate-400">
-          <p>Ngurra Pathways v1.0.0</p>
+          <p>Nexta v1.0.0</p>
           <p className="mt-1">
-            © {new Date().getFullYear()} Ngurra Pathways. All rights reserved.
+            © {new Date().getFullYear()} Nexta. All rights reserved.
           </p>
         </div>
       </div>

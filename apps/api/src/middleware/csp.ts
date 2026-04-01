@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * Content Security Policy (CSP) Middleware
- * 
+ *
  * Provides additional security headers and CSP configuration.
  */
 
@@ -37,10 +37,10 @@ const defaultDirectives = {
   ],
   'connect-src': [
     "'self'",
-    "https://api.ngurrapathways.com.au",
-    "wss://api.ngurrapathways.com.au",
-    "https://api.ngurrapathways.life",
-    "wss://api.ngurrapathways.life",
+    "https://api.nexta.com.au",
+    "wss://api.nexta.com.au",
+    "https://api.nexta.life",
+    "wss://api.nexta.life",
     "https://*.sentry.io",
     "https://www.google-analytics.com",
     "https://api.stripe.com",
@@ -88,7 +88,7 @@ function cspMiddleware(options = {}) {
 
   // Merge with defaults
   const mergedDirectives = { ...defaultDirectives };
-  
+
   for (const [key, values] of Object.entries(directives)) {
     if (mergedDirectives[key]) {
       mergedDirectives[key] = [...new Set([...mergedDirectives[key], ...values])];
@@ -102,8 +102,8 @@ function cspMiddleware(options = {}) {
   }
 
   const cspHeader = buildCspHeader(mergedDirectives);
-  const headerName = reportOnly 
-    ? 'Content-Security-Policy-Report-Only' 
+  const headerName = reportOnly
+    ? 'Content-Security-Policy-Report-Only'
     : 'Content-Security-Policy';
 
   return (req, res, next) => {
@@ -139,7 +139,7 @@ function cspWithNonce(options = {}) {
 
     // Build directives with nonce
     const mergedDirectives = { ...defaultDirectives };
-    
+
     // Add nonce to script-src and style-src
     mergedDirectives['script-src'] = [
       ...mergedDirectives['script-src'].filter(s => s !== "'unsafe-inline'"),
@@ -159,8 +159,8 @@ function cspWithNonce(options = {}) {
     }
 
     const cspHeader = buildCspHeader(mergedDirectives);
-    const headerName = reportOnly 
-      ? 'Content-Security-Policy-Report-Only' 
+    const headerName = reportOnly
+      ? 'Content-Security-Policy-Report-Only'
       : 'Content-Security-Policy';
 
     res.setHeader(headerName, cspHeader);
@@ -175,16 +175,16 @@ function securityHeadersMiddleware() {
   return (req, res, next) => {
     // Prevent clickjacking
     res.setHeader('X-Frame-Options', 'DENY');
-    
+
     // Prevent MIME type sniffing
     res.setHeader('X-Content-Type-Options', 'nosniff');
-    
+
     // Enable XSS filter
     res.setHeader('X-XSS-Protection', '1; mode=block');
-    
+
     // Control referrer information
     res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-    
+
     // Permissions policy (previously Feature-Policy)
     res.setHeader('Permissions-Policy', [
       'camera=()',
@@ -192,7 +192,7 @@ function securityHeadersMiddleware() {
       'geolocation=(self)',
       'payment=(self)',
     ].join(', '));
-    
+
     // HSTS (enable in production with HTTPS)
     if (process.env.NODE_ENV === 'production') {
       res.setHeader(
@@ -200,7 +200,7 @@ function securityHeadersMiddleware() {
         'max-age=31536000; includeSubDomains; preload'
       );
     }
-    
+
     // Don't cache sensitive pages
     if (req.path.includes('/admin') || req.path.includes('/auth')) {
       res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
@@ -218,7 +218,7 @@ function securityHeadersMiddleware() {
 function corsHeaders(allowedOrigins = []) {
   return (req, res, next) => {
     const origin = req.headers.origin;
-    
+
     if (allowedOrigins.includes(origin) || allowedOrigins.includes('*')) {
       res.setHeader('Access-Control-Allow-Origin', origin);
       res.setHeader('Access-Control-Allow-Credentials', 'true');

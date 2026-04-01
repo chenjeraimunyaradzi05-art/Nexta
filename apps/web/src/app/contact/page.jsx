@@ -14,8 +14,8 @@ const CONTACT_METHODS = [
     icon: Mail,
     title: 'Email Support',
     description: 'Get help via email within 24-48 hours',
-    action: 'support@ngurrapathways.com.au',
-    href: 'mailto:support@ngurrapathways.com.au',
+    action: 'support@nexta.com.au',
+    href: 'mailto:support@nexta.com.au',
     linkText: 'Send Email',
   },
   {
@@ -105,11 +105,11 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="ngurra-page py-12 px-6">
+    <div className="nexta-page py-12 px-6">
       {/* Decorative Halos */}
-      <div className="ngurra-halos">
-        <div className="ngurra-halo-pink" />
-        <div className="ngurra-halo-purple" />
+      <div className="nexta-halos">
+        <div className="nexta-halo-pink" />
+        <div className="nexta-halo-purple" />
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
@@ -125,7 +125,7 @@ export default function ContactPage() {
             Contact Us
           </h1>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Have a question, feedback, or need assistance? We're here to help. 
+            Have a question, feedback, or need assistance? We're here to help.
             Choose your preferred contact method below.
           </p>
         </div>
@@ -274,7 +274,7 @@ export default function ContactPage() {
                   type="submit"
                   disabled={submitting}
                   className="w-full text-white font-medium rounded-lg py-3 transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                  style={{ 
+                  style={{
                     background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)`,
                     boxShadow: '0 4px 12px rgba(233, 30, 140, 0.3)'
                   }}
@@ -325,7 +325,7 @@ export default function ContactPage() {
                 </li>
                 <li>
                   <Link href="/about" className="text-pink-600 hover:text-pink-700 text-sm">
-                    ℹ️ About Ngurra Pathways
+                    ℹ️ About Nexta
                   </Link>
                 </li>
               </ul>
@@ -338,10 +338,10 @@ export default function ContactPage() {
                 If you have concerns about user safety, inappropriate content, or require immediate assistance:
               </p>
               <a
-                href="mailto:safety@ngurrapathways.com.au"
+                href="mailto:safety@nexta.com.au"
                 className="text-amber-700 hover:text-amber-800 font-medium text-sm"
               >
-                safety@ngurrapathways.com.au
+                safety@nexta.com.au
               </a>
             </div>
           </div>

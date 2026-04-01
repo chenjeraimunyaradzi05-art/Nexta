@@ -70,8 +70,8 @@ export default function TafeAnalyticsPage() {
         <div className="min-h-screen">
             {/* === HERO SECTION === */}
             <section className="relative overflow-hidden py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-pink-50/40 to-purple-50/40 dark:from-slate-900 dark:to-slate-800">
-                <div className="ngurra-halo-pink" />
-                <div className="ngurra-halo-purple" />
+                <div className="nexta-halo-pink" />
+                <div className="nexta-halo-purple" />
 
                 <div className="relative max-w-4xl mx-auto">
                     <nav className="mb-6 text-sm" aria-label="Breadcrumb">

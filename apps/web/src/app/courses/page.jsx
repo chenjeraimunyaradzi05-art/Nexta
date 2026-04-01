@@ -7,9 +7,9 @@ export const metadata = {
   description: 'Explore culturally-grounded training courses for First Nations people. TAFE courses, certifications, and professional development designed with Indigenous perspectives.',
   keywords: ['Indigenous courses', 'First Nations training', 'Aboriginal education', 'TAFE Indigenous', 'culturally safe learning'],
   openGraph: {
-    title: 'Indigenous Training & Courses | Ngurra Pathways',
+    title: 'Indigenous Training & Courses | Nexta',
     description: 'Explore culturally-grounded training courses for First Nations people.',
-    url: 'https://ngurrapathways.life/courses',
+    url: 'https://nexta.life/courses',
   },
   alternates: {
     canonical: '/courses',

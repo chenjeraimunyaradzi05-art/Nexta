@@ -573,14 +573,14 @@ router.post('/request', authenticate, validateRequest(z.object({ body: mentorshi
         if (mentorship.mentor.email) {
           await queueEmail({
             to: mentorship.mentor.email,
-            subject: 'New Mentorship Request - Ngurra Pathways',
+            subject: 'New Mentorship Request - Nexta',
             template: 'mentorship-request',
             templateData: {
               recipientName: mentorship.mentor.firstName,
               menteeName,
               message: message || 'No message provided',
               goals: goals?.join(', ') || 'Not specified',
-              mentorshipUrl: `${process.env.WEB_URL || 'https://ngurrapathways.com.au'}/mentorship/${mentorship.id}`
+              mentorshipUrl: `${process.env.WEB_URL || 'https://nexta.com.au'}/mentorship/${mentorship.id}`
             },
             userId: mentorship.mentor.id,
             type: 'MENTORSHIP_REQUEST'
@@ -734,14 +734,14 @@ router.patch('/:id', authenticate, validateRequest(z.object({ body: mentorshipUp
 
     // Send notification about status change to the other participant
     try {
-      const otherUserId = userId === updatedMentorship.mentorId 
-        ? updatedMentorship.menteeId 
+      const otherUserId = userId === updatedMentorship.mentorId
+        ? updatedMentorship.menteeId
         : updatedMentorship.mentorId;
-      
-      const otherUser = userId === updatedMentorship.mentorId 
-        ? updatedMentorship.mentee 
+
+      const otherUser = userId === updatedMentorship.mentorId
+        ? updatedMentorship.mentee
         : updatedMentorship.mentor;
-      
+
       const senderName = userId === updatedMentorship.mentorId
         ? `${updatedMentorship.mentor.firstName} ${updatedMentorship.mentor.lastName}`.trim()
         : `${updatedMentorship.mentee.firstName} ${updatedMentorship.mentee.lastName}`.trim();
@@ -851,16 +851,16 @@ router.post('/:id/sessions', authenticate, validateRequest(z.object({ body: ment
 
     // Send session notification and calendar invite
     try {
-      const otherUserId = userId === mentorship.mentorId 
-        ? mentorship.menteeId 
+      const otherUserId = userId === mentorship.mentorId
+        ? mentorship.menteeId
         : mentorship.mentorId;
-      
+
       const scheduler = await prisma.user.findUnique({
         where: { id: userId },
         select: { firstName: true, lastName: true }
       });
       const schedulerName = `${scheduler?.firstName || ''} ${scheduler?.lastName || ''}`.trim() || 'Your mentor/mentee';
-      
+
       const otherUser = await prisma.user.findUnique({
         where: { id: otherUserId },
         select: { id: true, email: true, firstName: true }
@@ -873,12 +873,12 @@ router.post('/:id/sessions', authenticate, validateRequest(z.object({ body: ment
           type: 'MENTORSHIP_SESSION',
           title: 'Mentorship Session Scheduled',
           body: `${schedulerName} scheduled a session: ${topic}`,
-          data: { 
-            mentorshipId: id, 
+          data: {
+            mentorshipId: id,
             sessionId: session.id,
             scheduledAt,
             duration,
-            meetingLink 
+            meetingLink
           },
           actionUrl: `/mentorship/${id}/sessions/${session.id}`,
           priority: 'HIGH'
@@ -906,7 +906,7 @@ router.post('/:id/sessions', authenticate, validateRequest(z.object({ body: ment
               duration: `${duration} minutes`,
               meetingLink: meetingLink || 'To be confirmed',
               notes: notes || '',
-              sessionUrl: `${process.env.WEB_URL || 'https://ngurrapathways.com.au'}/mentorship/${id}/sessions/${session.id}`
+              sessionUrl: `${process.env.WEB_URL || 'https://nexta.com.au'}/mentorship/${id}/sessions/${session.id}`
             },
             userId: otherUser.id,
             type: 'MENTORSHIP_SESSION'
@@ -1111,7 +1111,7 @@ router.get('/mentors/:id/slots', authenticate, async (req, res, next) => {
     const { id } = req.params;
 
     const slots = await prisma.mentorAvailabilitySlot.findMany({
-      where: { 
+      where: {
         mentorId: id,
         startTime: { gte: new Date() }
       },
@@ -1136,7 +1136,7 @@ router.get('/mentors/:id/availability', async (req, res, next) => {
     const { id } = req.params;
 
     const slots = await prisma.mentorAvailabilitySlot.findMany({
-      where: { 
+      where: {
         mentorId: id,
         startTime: { gte: new Date() }
       },

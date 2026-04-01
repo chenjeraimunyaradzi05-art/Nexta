@@ -1,8 +1,8 @@
 /**
  * Referral Program Service
- * 
+ *
  * Manages member referrals with tracking, rewards, and analytics.
- * 
+ *
  * Features:
  * - Unique referral codes per user
  * - Referral tracking and conversion
@@ -46,7 +46,7 @@ export interface Referral {
   createdAt: Date;
 }
 
-export type ReferralStatus = 
+export type ReferralStatus =
   | 'PENDING'       // User signed up but not verified
   | 'ACTIVE'        // User verified and active
   | 'HIRED'         // Referred user got a job
@@ -64,7 +64,7 @@ export interface ReferralReward {
   metadata?: Record<string, any>;
 }
 
-export type RewardType = 
+export type RewardType =
   | 'SIGNUP_BONUS'           // When referred user signs up
   | 'ACTIVATION_BONUS'       // When referred user completes profile
   | 'HIRED_BONUS'            // When referred user gets hired
@@ -195,7 +195,7 @@ class ReferralService {
 
     // Add random suffix
     const randomSuffix = crypto.randomBytes(3).toString('hex').toUpperCase();
-    
+
     const code = `${namePrefix}${randomSuffix}`;
 
     // Verify uniqueness
@@ -684,7 +684,7 @@ class ReferralService {
    * Get referral share URL
    */
   getShareUrl(code: string): string {
-    const baseUrl = process.env.WEB_URL || 'https://ngurra.app';
+    const baseUrl = process.env.WEB_URL || 'https://nexta.app';
     return `${baseUrl}/join?ref=${code}`;
   }
 
@@ -693,8 +693,8 @@ class ReferralService {
    */
   getShareMessages(code: string, userName: string): { platform: string; message: string }[] {
     const shareUrl = this.getShareUrl(code);
-    const shortMessage = `Join Ngurra Pathways - Australia's Indigenous professional network! Use my referral code: ${code}`;
-    const longMessage = `Hey! I'm inviting you to join Ngurra Pathways, Australia's leading platform connecting Indigenous professionals with meaningful career opportunities. Sign up with my referral code ${code} and we'll both earn rewards! ${shareUrl}`;
+    const shortMessage = `Join Nexta - Australia's Indigenous professional network! Use my referral code: ${code}`;
+    const longMessage = `Hey! I'm inviting you to join Nexta, Australia's leading platform connecting Indigenous professionals with meaningful career opportunities. Sign up with my referral code ${code} and we'll both earn rewards! ${shareUrl}`;
 
     return [
       {
@@ -707,11 +707,11 @@ class ReferralService {
       },
       {
         platform: 'linkedin',
-        message: `I'm proud to be part of Ngurra Pathways, connecting Indigenous Australians with career opportunities. Join us: ${shareUrl}`,
+        message: `I'm proud to be part of Nexta, connecting Indigenous Australians with career opportunities. Join us: ${shareUrl}`,
       },
       {
         platform: 'email',
-        message: `Subject: Join me on Ngurra Pathways!\n\n${longMessage}`,
+        message: `Subject: Join me on Nexta!\n\n${longMessage}`,
       },
       {
         platform: 'sms',

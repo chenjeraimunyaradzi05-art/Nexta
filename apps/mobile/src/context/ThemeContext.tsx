@@ -1,6 +1,6 @@
 /**
  * Theme Context
- * 
+ *
  * Provides theme switching (dark/light mode) for the mobile app.
  * Persists user preference and respects system settings.
  */
@@ -135,7 +135,7 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
-const THEME_STORAGE_KEY = 'ngurra_theme_mode';
+const THEME_STORAGE_KEY = 'nexta_theme_mode';
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const systemColorScheme = useColorScheme();
@@ -143,8 +143,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Determine if dark mode should be active
-  const isDark = mode === 'system' 
-    ? systemColorScheme === 'dark' 
+  const isDark = mode === 'system'
+    ? systemColorScheme === 'dark'
     : mode === 'dark';
 
   // Get the appropriate color palette

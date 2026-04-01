@@ -1,4 +1,4 @@
-# Netlify Launch Checklist for Ngurra Pathways
+# Netlify Launch Checklist for Nexta
 
 ## ✅ Build Verification
 
@@ -17,8 +17,8 @@
 
 ## ✅ Static Assets
 
-- [x] `ngurra-logo.png` - Brand logo present
-- [x] `ngurra-og-image.png` - OpenGraph image created
+- [x] `nexta-logo.png` - Brand logo present
+- [x] `nexta-og-image.png` - OpenGraph image created
 - [x] `favicon.ico` - Favicon placeholder (⚠️ replace with real .ico file)
 - [x] `manifest.json` - PWA icons configured
 - [x] `sw.js` - Service worker present
@@ -50,7 +50,7 @@
 
 ```
 NEXTAUTH_SECRET=<generate with: openssl rand -base64 32>
-NEXTAUTH_URL=https://ngurrapathways.com.au
+NEXTAUTH_URL=https://nexta.com.au
 ```
 
 ### API Configuration
@@ -95,7 +95,7 @@ MICROSOFT_CLIENT_SECRET=<from Azure AD>
 ```
 # SendGrid
 SENDGRID_API_KEY=<your-api-key>
-SENDGRID_FROM=noreply@ngurrapathways.com.au
+SENDGRID_FROM=noreply@nexta.com.au
 
 # OR AWS SES
 AWS_SES_REGION=ap-southeast-2
@@ -123,7 +123,7 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 
 ### Domain Configuration
 
-1. [ ] Add custom domain `ngurrapathways.com.au` in Netlify
+1. [ ] Add custom domain `nexta.com.au` in Netlify
 2. [ ] Configure DNS records (CNAME or A records)
 3. [ ] Enable HTTPS (automatic with Netlify)
 4. [ ] Verify SSL certificate is active
@@ -160,14 +160,14 @@ The current `favicon.ico` is a placeholder. Create a proper 16x16 and 32x32 .ico
 
 ```bash
 # Using ImageMagick
-convert ngurra-logo.png -resize 32x32 favicon-32.png
-convert ngurra-logo.png -resize 16x16 favicon-16.png
+convert nexta-logo.png -resize 32x32 favicon-32.png
+convert nexta-logo.png -resize 16x16 favicon-16.png
 convert favicon-16.png favicon-32.png favicon.ico
 ```
 
 ### 2. OG Image
 
-The `ngurra-og-image.png` is currently a copy of the logo. For better social sharing, create a proper 1200x630 OG image with:
+The `nexta-og-image.png` is currently a copy of the logo. For better social sharing, create a proper 1200x630 OG image with:
 
 - Brand logo
 - Tagline text
@@ -203,8 +203,8 @@ CSP nonce is generated in middleware. Verify it works correctly with:
 
 | Context    | Branch      | URL                           | API                      |
 | ---------- | ----------- | ----------------------------- | ------------------------ |
-| Production | main/master | ngurrapathways.com.au         | api.gimbi.com.au         |
-| Staging    | staging     | staging.ngurrapathways.com.au | api-staging.gimbi.com.au |
+| Production | main/master | nexta.com.au         | api.gimbi.com.au         |
+| Staging    | staging     | staging.nexta.com.au | api-staging.gimbi.com.au |
 | Preview    | PR branches | deploy-preview-\*.netlify.app | api-staging.gimbi.com.au |
 | Branch     | feature/\*  | branch-\*.netlify.app         | api-staging.gimbi.com.au |
 

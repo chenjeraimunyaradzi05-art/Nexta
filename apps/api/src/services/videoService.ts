@@ -1,6 +1,6 @@
 /**
  * Video Service
- * 
+ *
  * Handles:
  * - Video upload and validation
  * - Video transcoding (multiple qualities)
@@ -40,7 +40,7 @@ const CONFIG = {
   allowedFormats: ['mp4', 'mov', 'avi', 'mkv', 'webm'],
   thumbnailCount: 3,
   hlsSegmentDuration: 6, // seconds
-  cdnBaseUrl: process.env.CDN_BASE_URL || 'https://cdn.ngurra.com',
+  cdnBaseUrl: process.env.CDN_BASE_URL || 'https://cdn.nexta.com',
   storagePath: process.env.VIDEO_STORAGE_PATH || '/storage/videos',
 };
 
@@ -69,7 +69,7 @@ export interface VideoUpload {
   processedAt?: Date;
 }
 
-export type VideoStatus = 
+export type VideoStatus =
   | 'pending'
   | 'uploading'
   | 'processing'
@@ -331,9 +331,9 @@ class VideoService {
     // Generate HLS playlist
     await this.generateHLSPlaylist(videoId);
 
-    logger.info('Transcoding started', { 
-      videoId, 
-      qualities: qualitiesToTranscode.map(q => q.name) 
+    logger.info('Transcoding started', {
+      videoId,
+      qualities: qualitiesToTranscode.map(q => q.name)
     });
   }
 
@@ -481,7 +481,7 @@ ${CONFIG.cdnBaseUrl}/hls/${videoId}/360p.m3u8`;
       description,
       status: scheduledFor ? 'scheduled' : 'live',
       streamKey,
-      rtmpUrl: `rtmp://live.ngurra.com/stream/${streamKey}`,
+      rtmpUrl: `rtmp://live.nexta.com/stream/${streamKey}`,
       viewerCount: 0
     };
 
@@ -523,8 +523,8 @@ ${CONFIG.cdnBaseUrl}/hls/${videoId}/360p.m3u8`;
     stream.endedAt = new Date();
     stream.recordingUrl = `${CONFIG.cdnBaseUrl}/recordings/${streamId}/replay.mp4`;
 
-    logger.info('Live stream ended', { 
-      streamId, 
+    logger.info('Live stream ended', {
+      streamId,
       duration: stream.endedAt.getTime() - (stream.startedAt?.getTime() || 0)
     });
 

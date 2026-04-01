@@ -1,9 +1,9 @@
 /**
  * Cultural Calendar Service
- * 
- * Manages Indigenous cultural events and significant dates for the Ngurra Pathways platform.
+ *
+ * Manages Indigenous cultural events and significant dates for the Nexta platform.
  * Provides culturally-sensitive scheduling, event discovery, and community engagement.
- * 
+ *
  * Features:
  * - Cultural event management (NAIDOC, Sorry Day, Reconciliation Week, etc.)
  * - Community event creation and discovery
@@ -46,7 +46,7 @@ export interface CulturalEvent {
   updatedAt: Date;
 }
 
-export type CulturalEventType = 
+export type CulturalEventType =
   | 'NATIONAL_OBSERVANCE'   // NAIDOC, Reconciliation Week, etc.
   | 'COMMUNITY_EVENT'       // Local community gatherings
   | 'CULTURAL_WORKSHOP'     // Learning sessions
@@ -335,7 +335,7 @@ class CulturalCalendarService {
         type: date.type,
         category: date.category,
         startDate: new Date(year, date.startDate.month - 1, date.startDate.day),
-        endDate: date.endDate 
+        endDate: date.endDate
           ? new Date(year, date.endDate.month - 1, date.endDate.day, 23, 59, 59)
           : undefined,
         isAllDay: true,
@@ -343,7 +343,7 @@ class CulturalCalendarService {
         isOnline: false,
         organizer: {
           id: 'system',
-          name: 'Ngurra Pathways',
+          name: 'Nexta',
           type: 'ORGANIZATION' as const,
           isVerified: true,
         },
@@ -500,7 +500,7 @@ class CulturalCalendarService {
           where: { id: event.attendees[0].id },
           data: { status: 'REGISTERED' },
         });
-        
+
         // Send notification to promoted user
         try {
           await notificationService.send({
@@ -696,19 +696,19 @@ class CulturalCalendarService {
         isVerified: false,
       } : {
         id: 'system',
-        name: 'Ngurra Pathways',
+        name: 'Nexta',
         type: 'ORGANIZATION',
         isVerified: true,
       },
       coverImage: dbEvent.coverImage,
-      culturalContext: dbEvent.culturalContext 
-        ? JSON.parse(dbEvent.culturalContext) 
+      culturalContext: dbEvent.culturalContext
+        ? JSON.parse(dbEvent.culturalContext)
         : undefined,
       attendeeCount: dbEvent._count?.attendees || 0,
       maxAttendees: dbEvent.maxAttendees,
       isPublic: dbEvent.isPublic,
-      communityRestricted: dbEvent.communityRestricted 
-        ? JSON.parse(dbEvent.communityRestricted) 
+      communityRestricted: dbEvent.communityRestricted
+        ? JSON.parse(dbEvent.communityRestricted)
         : undefined,
       createdAt: dbEvent.createdAt,
       updatedAt: dbEvent.updatedAt,

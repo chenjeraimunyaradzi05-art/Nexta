@@ -1,11 +1,11 @@
 /**
  * Stripe Connect Integration for Mentor Payouts
- * 
+ *
  * Uses Stripe Connect Express for simple onboarding:
  * - Mentors create Express accounts
  * - Platform handles transfers after sessions
  * - Mentors can manage their account via Stripe dashboard
- * 
+ *
  * Flow:
  * 1. Mentor clicks "Set up payouts"
  * 2. Redirect to Stripe onboarding
@@ -51,28 +51,28 @@ export async function createConnectAccount(options) {
       mock: true,
     };
   }
-  
+
   const { email, mentorId, name } = options;
-  
+
   try {
     const account = await stripe.accounts.create({
       type: 'express',
       email,
       metadata: {
         mentorId,
-        platform: 'ngurra',
+        platform: 'nexta',
       },
       capabilities: {
         transfers: { requested: true },
       },
       business_type: 'individual',
       business_profile: {
-        name: name || 'Ngurra Mentor',
-        product_description: 'Mentorship services via Ngurra Pathways',
+        name: name || 'Nexta Mentor',
+        product_description: 'Mentorship services via Nexta',
         mcc: '8299', // Educational services
       },
     });
-    
+
     return {
       id: account.id,
       email: account.email,
@@ -98,7 +98,7 @@ export async function createOnboardingLink(accountId, returnUrl, refreshUrl) {
     console.log('[StripeConnect] Mock onboarding link for:', accountId);
     return `${returnUrl}?mock=true&account=${accountId}`;
   }
-  
+
   try {
     const accountLink = await stripe.accountLinks.create({
       account: accountId,
@@ -106,7 +106,7 @@ export async function createOnboardingLink(accountId, returnUrl, refreshUrl) {
       return_url: returnUrl,
       type: 'account_onboarding',
     });
-    
+
     return accountLink.url;
   } catch (error) {
     console.error('[StripeConnect] Onboarding link creation failed:', error);
@@ -124,7 +124,7 @@ export async function createDashboardLink(accountId) {
     console.log('[StripeConnect] Mock dashboard link for:', accountId);
     return `https://connect.stripe.com/express/mock/${accountId}`;
   }
-  
+
   try {
     const loginLink = await stripe.accounts.createLoginLink(accountId);
     return loginLink.url;
@@ -149,10 +149,10 @@ export async function getAccountStatus(accountId) {
       mock: true,
     };
   }
-  
+
   try {
     const account = await stripe.accounts.retrieve(accountId);
-    
+
     return {
       id: account.id,
       email: account.email,
@@ -179,7 +179,7 @@ export async function getAccountStatus(accountId) {
  */
 export async function transferToMentor(options) {
   const { accountId, amountCents, sessionId, description } = options;
-  
+
   if (!stripe) {
     console.log('[StripeConnect] Mock transfer:', options);
     return {
@@ -189,7 +189,7 @@ export async function transferToMentor(options) {
       mock: true,
     };
   }
-  
+
   try {
     const transfer = await stripe.transfers.create({
       amount: amountCents,
@@ -198,10 +198,10 @@ export async function transferToMentor(options) {
       description: description || `Mentorship session payment`,
       metadata: {
         sessionId,
-        platform: 'ngurra',
+        platform: 'nexta',
       },
     });
-    
+
     return {
       id: transfer.id,
       amount: transfer.amount,
@@ -223,7 +223,7 @@ export async function transferToMentor(options) {
 export function calculatePayout(sessionRateCents = DEFAULT_SESSION_RATE_CENTS) {
   const platformFee = Math.round((sessionRateCents * PLATFORM_FEE_PERCENT) / 100);
   const mentorPayout = sessionRateCents - platformFee;
-  
+
   return {
     sessionRate: sessionRateCents,
     platformFee,
@@ -243,16 +243,16 @@ export function calculatePayout(sessionRateCents = DEFAULT_SESSION_RATE_CENTS) {
  */
 export async function processSessionPayment(options) {
   const { sessionId, mentorAccountId, sessionRateCents } = options;
-  
+
   const payout = calculatePayout(sessionRateCents);
-  
+
   const transfer = await transferToMentor({
     accountId: mentorAccountId,
     amountCents: payout.mentorPayout,
     sessionId,
     description: `Mentorship session ${sessionId}`,
   });
-  
+
   return {
     ...transfer,
     breakdown: payout,
@@ -272,13 +272,13 @@ export async function getTransferHistory(accountId, limit = 10) {
       mock: true,
     };
   }
-  
+
   try {
     const transfers = await stripe.transfers.list({
       destination: accountId,
       limit,
     });
-    
+
     return {
       transfers: transfers.data.map(t => ({
         id: t.id,
@@ -309,12 +309,12 @@ export async function getMentorBalance(accountId) {
       mock: true,
     };
   }
-  
+
   try {
     const balance = await stripe.balance.retrieve({
       stripeAccount: accountId,
     });
-    
+
     return {
       available: balance.available,
       pending: balance.pending,

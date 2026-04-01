@@ -123,7 +123,7 @@ function toBool(value) {
 
 async function ensureExternalCompanyUser({ source }) {
   // Use a dedicated company user so jobs have a valid userId owner.
-  const email = `external-listings+${source}@ngurra.org.au`;
+  const email = `external-listings+${source}@nexta.org.au`;
 
   let passwordHash = null;
   const envPassword = process.env.EXTERNAL_COMPANY_PASSWORD;

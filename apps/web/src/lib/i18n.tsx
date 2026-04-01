@@ -2,7 +2,7 @@
 
 /**
  * i18n Provider and Hooks
- * 
+ *
  * Internationalization support for the web application.
  * Supports dynamic language switching and interpolation.
  */
@@ -34,7 +34,7 @@ const AVAILABLE_LOCALES = [
 ];
 
 const DEFAULT_LOCALE = 'en';
-const STORAGE_KEY = 'ngurra-locale';
+const STORAGE_KEY = 'nexta-locale';
 
 interface I18nProviderProps {
   children: ReactNode;
@@ -74,11 +74,11 @@ export function I18nProvider({ children, initialLocale }: I18nProviderProps) {
   useEffect(() => {
     const storedLocale = localStorage.getItem(STORAGE_KEY);
     const browserLocale = navigator.language;
-    
-    const detectedLocale = storedLocale || 
+
+    const detectedLocale = storedLocale ||
       AVAILABLE_LOCALES.find(l => browserLocale.startsWith(l.code))?.code ||
       DEFAULT_LOCALE;
-    
+
     setLocaleState(detectedLocale);
     loadTranslations(detectedLocale);
   }, [loadTranslations]);
@@ -88,7 +88,7 @@ export function I18nProvider({ children, initialLocale }: I18nProviderProps) {
     setLocaleState(newLocale);
     localStorage.setItem(STORAGE_KEY, newLocale);
     loadTranslations(newLocale);
-    
+
     // Update HTML lang attribute
     document.documentElement.lang = newLocale;
   }, [loadTranslations]);
@@ -153,7 +153,7 @@ export function I18nProvider({ children, initialLocale }: I18nProviderProps) {
 // Hook to use translations
 export function useTranslation() {
   const context = useContext(I18nContext);
-  
+
   if (context === undefined) {
     throw new Error('useTranslation must be used within an I18nProvider');
   }
@@ -184,7 +184,7 @@ export function useLocaleFormat() {
   const formatRelativeTime = useCallback((date: Date | string) => {
     const d = typeof date === 'string' ? new Date(date) : date;
     const diff = Date.now() - d.getTime();
-    
+
     const seconds = Math.floor(diff / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
@@ -237,9 +237,9 @@ interface TransProps {
 
 export function Trans({ i18nKey, components = {}, values = {} }: TransProps) {
   const { t } = useTranslation();
-  
+
   let translated = t(i18nKey, values);
-  
+
   // Replace component placeholders like {{link}}text{{/link}}
   Object.entries(components).forEach(([key, component]) => {
     const regex = new RegExp(`{{${key}}}(.+?){{/${key}}}`, 'g');

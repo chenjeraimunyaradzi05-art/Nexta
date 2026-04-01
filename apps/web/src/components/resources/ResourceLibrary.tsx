@@ -174,7 +174,7 @@ const demoResources: Resource[] = [
     thumbnailUrl: '',
     url: '#',
     downloadUrl: '#',
-    author: { name: 'Career Services Team', organization: 'Ngurra Pathways' },
+    author: { name: 'Career Services Team', organization: 'Nexta' },
     tags: ['career', 'planning', 'goals', 'first nations'],
     rating: 4.8,
     ratingCount: 156,
@@ -276,7 +276,7 @@ const demoResources: Resource[] = [
     category: 'health',
     thumbnailUrl: '',
     downloadUrl: '#',
-    author: { name: 'Wellbeing Team', organization: 'Ngurra Pathways' },
+    author: { name: 'Wellbeing Team', organization: 'Nexta' },
     tags: ['mental health', 'wellbeing', 'workplace'],
     rating: 4.8,
     ratingCount: 201,
@@ -801,7 +801,7 @@ export function ResourceLibrary() {
 
   if (isLoading) {
     return (
-      <div className="ngurra-page flex items-center justify-center">
+      <div className="nexta-page flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-pink-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <p className="text-slate-600 font-medium">Loading resources...</p>
@@ -811,7 +811,7 @@ export function ResourceLibrary() {
   }
 
   return (
-    <div className="ngurra-page">
+    <div className="nexta-page">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">

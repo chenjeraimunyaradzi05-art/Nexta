@@ -7,7 +7,7 @@ import { Button } from '../Button';
 
 /**
  * JobPostingEditor - Create and edit job postings
- * 
+ *
  * Features:
  * - Rich job posting form
  * - Template support
@@ -151,7 +151,7 @@ function ListEditor({
       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
         {label}
       </label>
-      
+
       {/* Items */}
       <div className="space-y-2 mb-3">
         {items.map((item, index) => (
@@ -293,7 +293,7 @@ function JobPreview({ job }: { job: JobPosting }) {
         </div>
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{job.title || 'Job Title'}</h1>
         <p className="text-gray-500">{job.department} • {job.location}</p>
-        
+
         {job.salary.showOnPosting && (
           <p className="text-lg font-semibold text-green-600 mt-2">
             {job.salary.currency} {job.salary.min.toLocaleString()} - {job.salary.max.toLocaleString()}
@@ -856,7 +856,7 @@ export function JobPostingEditor({
               <div className="space-y-6">
                 <div className="p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
                   <p className="text-amber-800 dark:text-amber-300">
-                    🌏 Ngurra Pathways supports Indigenous employment initiatives. 
+                    🌏 Nexta supports Indigenous employment initiatives.
                     Configure settings to attract and support Indigenous candidates.
                   </p>
                 </div>

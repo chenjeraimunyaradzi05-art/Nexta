@@ -3,10 +3,10 @@
 import { API_BASE } from '@/lib/apiBase';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { 
-  Users, 
-  Vote, 
-  FileText, 
+import {
+  Users,
+  Vote,
+  FileText,
   Calendar,
   CheckCircle2,
   Clock,
@@ -36,7 +36,7 @@ const MEMBER_ROLES = {
 
 function MemberCard({ member }) {
   const role = MEMBER_ROLES[member.role] || MEMBER_ROLES.MEMBER;
-  
+
   return (
     <div className="bg-slate-800/80 rounded-xl p-5 hover:bg-slate-700/80 transition-colors">
       <div className="flex items-start gap-4">
@@ -68,9 +68,9 @@ function MemberCard({ member }) {
 function ProposalCard({ proposal, onClick }) {
   const status = PROPOSAL_STATUS[proposal.status] || PROPOSAL_STATUS.PENDING;
   const StatusIcon = status.icon;
-  
+
   return (
-    <button 
+    <button
       onClick={() => onClick?.(proposal)}
       className="block w-full text-left bg-slate-800/80 rounded-xl p-5 hover:bg-slate-700/80 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500"
     >
@@ -88,7 +88,7 @@ function ProposalCard({ proposal, onClick }) {
           </div>
           <h3 className="text-lg font-semibold text-white mb-1">{proposal.title}</h3>
           <p className="text-sm text-slate-300 line-clamp-2">{proposal.summary}</p>
-          
+
           <div className="flex items-center gap-4 mt-3 text-xs text-slate-400">
             <span className="flex items-center gap-1">
               <Calendar className="w-3 h-3" />
@@ -204,7 +204,7 @@ export default function AdvisoryCouncilPage() {
             <div>
               <h1 className="text-3xl font-bold mb-2">Community Advisory Council</h1>
               <p className="text-lg text-slate-300 max-w-2xl">
-                Our First Nations Community Advisory Council ensures that Ngurra Pathways 
+                Our First Nations Community Advisory Council ensures that Nexta
                 remains culturally grounded, community-led, and accountable to the people we serve.
               </p>
             </div>
@@ -249,8 +249,8 @@ export default function AdvisoryCouncilPage() {
                 aria-selected={activeTab === tab.id}
                 aria-controls={`tabpanel-${tab.id}`}
                 className={`flex items-center gap-2 px-3 sm:px-4 py-3 border-b-2 transition-colors whitespace-nowrap text-sm sm:text-base ${
-                  activeTab === tab.id 
-                    ? 'border-amber-500 text-white' 
+                  activeTab === tab.id
+                    ? 'border-amber-500 text-white'
                     : 'border-transparent text-slate-400 hover:text-white'
                 }`}
               >
@@ -278,7 +278,7 @@ export default function AdvisoryCouncilPage() {
                 <div className="mb-6">
                   <h2 className="text-xl font-semibold mb-2">Current Council Members</h2>
                   <p className="text-slate-400">
-                    Our council comprises Elders, community leaders, and sector experts who guide 
+                    Our council comprises Elders, community leaders, and sector experts who guide
                     platform development and ensure cultural integrity.
                   </p>
                 </div>
@@ -302,7 +302,7 @@ export default function AdvisoryCouncilPage() {
                 <div className="mb-6">
                   <h2 className="text-xl font-semibold mb-2">Active Proposals</h2>
                   <p className="text-slate-400">
-                    Proposals are reviewed and voted on by council members. 
+                    Proposals are reviewed and voted on by council members.
                     Community input is welcomed through our forums.
                   </p>
                 </div>
@@ -326,7 +326,7 @@ export default function AdvisoryCouncilPage() {
                 <div className="mb-6">
                   <h2 className="text-xl font-semibold mb-2">Council Decisions</h2>
                   <p className="text-slate-400">
-                    Transparency in action — see the decisions our council has made 
+                    Transparency in action — see the decisions our council has made
                     and how they shape our platform.
                   </p>
                 </div>
@@ -374,7 +374,7 @@ export default function AdvisoryCouncilPage() {
                 <div className="mb-6">
                   <h2 className="text-xl font-semibold mb-2">Meeting Minutes</h2>
                   <p className="text-slate-400">
-                    Our council meets regularly to discuss platform direction, 
+                    Our council meets regularly to discuss platform direction,
                     community concerns, and cultural considerations.
                   </p>
                 </div>
@@ -418,11 +418,11 @@ export default function AdvisoryCouncilPage() {
 
       {/* Proposal Detail Modal */}
       {selectedProposal && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
           onClick={() => setSelectedProposal(null)}
         >
-          <div 
+          <div
             className="bg-slate-800 rounded-xl max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
@@ -442,7 +442,7 @@ export default function AdvisoryCouncilPage() {
                 </div>
                 <h2 className="text-xl font-bold">{selectedProposal.title}</h2>
               </div>
-              <button 
+              <button
                 onClick={() => setSelectedProposal(null)}
                 className="text-slate-400 hover:text-white p-1"
                 aria-label="Close modal"

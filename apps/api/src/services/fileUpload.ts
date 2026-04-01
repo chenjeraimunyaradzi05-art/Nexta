@@ -1,6 +1,6 @@
 /**
  * File Upload Service
- * 
+ *
  * Handles:
  * - File uploads (images, documents, videos)
  * - Cloud storage integration (S3/GCS compatible)
@@ -65,7 +65,7 @@ export interface PresignedUrlResponse {
 
 // Configuration
 const STORAGE_CONFIG = {
-  bucket: process.env.S3_BUCKET || 'ngurra-uploads',
+  bucket: process.env.S3_BUCKET || 'nexta-uploads',
   region: process.env.S3_REGION || 'ap-southeast-2',
   accessKeyId: process.env.S3_ACCESS_KEY || '',
   secretAccessKey: process.env.S3_SECRET_KEY || '',
@@ -301,7 +301,7 @@ class FileUploadService {
     }
 
     const fileId = path.basename(key, path.extname(key));
-    
+
     const uploadedFile: UploadedFile = {
       id: fileId,
       originalName: pending.filename,
@@ -315,7 +315,7 @@ class FileUploadService {
     };
 
     await this.storeFileReference(uploadedFile);
-    
+
     if (pending.size) {
       await this.updateStorageQuota(userId, pending.size);
     }
@@ -354,7 +354,7 @@ class FileUploadService {
     options: { folder?: string; limit?: number; offset?: number } = {}
   ): Promise<UploadedFile[]> {
     const { folder, limit = 50, offset = 0 } = options;
-    
+
     // In production, query database
     const fileIds = await redisCache.listRange(
       `user:${userId}:files`,
@@ -401,7 +401,7 @@ class FileUploadService {
     // Remove file reference
     await redisCache.delete(`file:${fileId}`);
     await redisCache.listRemove(`user:${userId}:files`, fileId);
-    
+
     // Delete checksum reference
     if (file.metadata.checksum) {
       await redisCache.delete(`file:checksum:${file.metadata.checksum}`);
@@ -500,7 +500,7 @@ class FileUploadService {
    */
   async getUserQuota(userId: string): Promise<{ used: number; limit: number }> {
     const used = (await redisCache.get<number>(`user:${userId}:storage`)) || 0;
-    const limit = (await redisCache.get<number>(`user:${userId}:storage:limit`)) || 
+    const limit = (await redisCache.get<number>(`user:${userId}:storage:limit`)) ||
       1024 * 1024 * 1024; // 1GB default
 
     return { used, limit };
@@ -534,9 +534,9 @@ class FileUploadService {
     // In production, upload to S3/GCS
     // For development, simulate upload
     const url = `${STORAGE_CONFIG.cdnUrl || this.getBaseUrl()}/${key}`;
-    
+
     logger.debug('File uploaded to storage', { key, size: buffer.length });
-    
+
     return { url };
   }
 
@@ -554,7 +554,7 @@ class FileUploadService {
   private async storeFileReference(file: UploadedFile): Promise<void> {
     await redisCache.set(`file:${file.id}`, file);
     await redisCache.listPush(`user:${file.uploadedBy}:files`, file.id);
-    
+
     if (file.metadata.checksum) {
       await redisCache.set(`file:checksum:${file.metadata.checksum}`, file);
     }
@@ -578,9 +578,9 @@ class FileUploadService {
     // In production, use sharp or similar for image processing
     const thumbnailKey = originalKey.replace(/\.[^.]+$/, '_thumb.jpg');
     const thumbnailUrl = `${STORAGE_CONFIG.cdnUrl || this.getBaseUrl()}/${thumbnailKey}`;
-    
+
     logger.debug('Thumbnail generated', { originalKey, thumbnailKey });
-    
+
     return thumbnailUrl;
   }
 

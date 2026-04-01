@@ -1,16 +1,16 @@
 // UI Components barrel export
-// Ngurra Pathways - Celestial Precious Stone Theme
+// Nexta - Celestial Precious Stone Theme
 
 // Skeleton components
 export { Skeleton } from './Skeleton';
 export { JobCardSkeleton } from './JobCardSkeleton';
-export { 
-  ProfileCardSkeleton, 
-  CourseCardSkeleton, 
+export {
+  ProfileCardSkeleton,
+  CourseCardSkeleton,
   TableRowSkeleton,
   TableSkeleton,
-  StatsCardSkeleton, 
-  MessageSkeleton, 
+  StatsCardSkeleton,
+  MessageSkeleton,
   ChatSkeleton,
   NotificationSkeleton,
   MentorCardSkeleton,
@@ -18,25 +18,25 @@ export {
   FormSkeleton,
   SidebarSkeleton,
   ArticleSkeleton,
-  SkeletonList 
+  SkeletonList
 } from './SkeletonVariants';
 
 // Empty state components
-export { 
-  default as EmptyState, 
-  NoSearchResults, 
-  NoJobs, 
-  NoApplications, 
-  NoMessages, 
-  NoNotifications, 
-  NoMentors, 
-  NoCourses, 
-  NoEvents, 
-  NoSavedItems, 
-  NoData, 
-  NoFavorites, 
-  NoGoals, 
-  ComingSoon 
+export {
+  default as EmptyState,
+  NoSearchResults,
+  NoJobs,
+  NoApplications,
+  NoMessages,
+  NoNotifications,
+  NoMentors,
+  NoCourses,
+  NoEvents,
+  NoSavedItems,
+  NoData,
+  NoFavorites,
+  NoGoals,
+  ComingSoon
 } from './EmptyState';
 
 // Toast notifications - use the parent Toast component

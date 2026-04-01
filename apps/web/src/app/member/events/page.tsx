@@ -1,6 +1,6 @@
 /**
  * Events & Cultural Gatherings Page
- * 
+ *
  * Discover career events, cultural gatherings, and networking opportunities.
  */
 
@@ -73,7 +73,7 @@ const mockEvents: Event[] = [
     },
     organizer: {
       id: 'org1',
-      name: 'Ngurra Pathways',
+      name: 'Nexta',
       verified: true,
     },
     capacity: 500,
@@ -385,7 +385,7 @@ function EventCard({ event, viewMode }: { event: Event; viewMode: 'grid' | 'list
             {typeConfig.icon}
           </div>
         )}
-        
+
         {/* Badges */}
         <div className="absolute top-3 left-3 flex gap-2">
           <span className={`px-2 py-1 rounded text-xs font-medium ${typeConfig.bg} ${typeConfig.text} backdrop-blur-sm`}>

@@ -3,7 +3,7 @@
 import api from '@/lib/apiClient';
 /**
  * Enterprise Integration Dashboard
- * 
+ *
  * Manage API keys, webhooks, SSO, and bulk imports
  */
 
@@ -13,19 +13,19 @@ export default function IntegrationsPage() {
   const [activeTab, setActiveTab] = useState('api-keys');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   // API Keys state
   const [apiKeys, setApiKeys] = useState([]);
   const [newKeyName, setNewKeyName] = useState('');
   const [newKeySecret, setNewKeySecret] = useState(null);
-  
+
   // Webhooks state
   const [webhooks, setWebhooks] = useState([]);
   const [webhookEvents, setWebhookEvents] = useState({});
-  
+
   // SSO state
   const [ssoConfig, setSsoConfig] = useState(null);
-  
+
   // Imports state
   const [imports, setImports] = useState([]);
 
@@ -36,7 +36,7 @@ export default function IntegrationsPage() {
   async function loadData(tab) {
     setLoading(true);
     setError(null);
-    
+
     try {
       switch (tab) {
         case 'api-keys': {
@@ -78,7 +78,7 @@ export default function IntegrationsPage() {
   async function createApiKey(e) {
     e.preventDefault();
     if (!newKeyName.trim()) return;
-    
+
     try {
       const res = await api('/api-keys', {
         method: 'POST',
@@ -97,12 +97,12 @@ export default function IntegrationsPage() {
 
   async function revokeApiKey(id) {
     if (!confirm('Are you sure you want to revoke this API key?')) return;
-    
+
     try {
       const res = await api(`/api-keys/${id}`, { method: 'DELETE' });
 
       if (!res.ok) throw new Error(res.data?.error || res.error || 'Failed to revoke API key');
-      
+
       loadData('api-keys');
     } catch (err) {
       setError(err.message);
@@ -114,7 +114,7 @@ export default function IntegrationsPage() {
       const res = await api(`/webhook-endpoints/${id}/test`, { method: 'POST' });
 
       if (!res.ok) throw new Error(res.data?.error || res.error || 'Failed to test webhook');
-      
+
       alert('Test webhook sent!');
     } catch (err) {
       setError(err.message);
@@ -139,7 +139,7 @@ export default function IntegrationsPage() {
               Manage API access, webhooks, and enterprise features
             </p>
           </div>
-          <Link 
+          <Link
             href="/dashboard/company"
             className="text-blue-600 hover:text-blue-800"
           >
@@ -188,7 +188,7 @@ export default function IntegrationsPage() {
                     <div className="mb-6">
                       <h2 className="text-xl font-semibold mb-2">API Keys</h2>
                       <p className="text-gray-600 text-sm">
-                        Create API keys for programmatic access to the Ngurra Pathways API.
+                        Create API keys for programmatic access to the Nexta API.
                       </p>
                     </div>
 
@@ -247,7 +247,7 @@ export default function IntegrationsPage() {
                         </p>
                       ) : (
                         apiKeys.map(key => (
-                          <div 
+                          <div
                             key={key.id}
                             className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
                           >
@@ -267,8 +267,8 @@ export default function IntegrationsPage() {
                             </div>
                             <div className="flex items-center gap-2">
                               <span className={`px-2 py-1 text-xs rounded ${
-                                key.isActive 
-                                  ? 'bg-green-100 text-green-800' 
+                                key.isActive
+                                  ? 'bg-green-100 text-green-800'
                                   : 'bg-red-100 text-red-800'
                               }`}>
                                 {key.isActive ? 'Active' : 'Revoked'}
@@ -313,7 +313,7 @@ export default function IntegrationsPage() {
                         </p>
                       ) : (
                         webhooks.map(webhook => (
-                          <div 
+                          <div
                             key={webhook.id}
                             className="p-4 bg-gray-50 rounded-lg"
                           >
@@ -325,7 +325,7 @@ export default function IntegrationsPage() {
                                 </p>
                                 <div className="flex flex-wrap gap-1 mt-2">
                                   {webhook.events.slice(0, 3).map(event => (
-                                    <span 
+                                    <span
                                       key={event}
                                       className="px-2 py-0.5 bg-blue-100 text-blue-800 text-xs rounded"
                                     >
@@ -341,8 +341,8 @@ export default function IntegrationsPage() {
                               </div>
                               <div className="flex items-center gap-2">
                                 <span className={`px-2 py-1 text-xs rounded ${
-                                  webhook.isActive 
-                                    ? 'bg-green-100 text-green-800' 
+                                  webhook.isActive
+                                    ? 'bg-green-100 text-green-800'
                                     : 'bg-gray-100 text-gray-800'
                                 }`}>
                                   {webhook.isActive ? 'Active' : 'Disabled'}
@@ -390,8 +390,8 @@ export default function IntegrationsPage() {
                             {ssoConfig.provider} Configuration
                           </h3>
                           <span className={`px-2 py-1 text-xs rounded ${
-                            ssoConfig.isActive 
-                              ? 'bg-green-100 text-green-800' 
+                            ssoConfig.isActive
+                              ? 'bg-green-100 text-green-800'
                               : 'bg-yellow-100 text-yellow-800'
                           }`}>
                             {ssoConfig.isActive ? 'Active' : 'Not Active'}
@@ -484,7 +484,7 @@ export default function IntegrationsPage() {
                         </p>
                       ) : (
                         imports.map(imp => (
-                          <div 
+                          <div
                             key={imp.id}
                             className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
                           >
@@ -502,7 +502,7 @@ export default function IntegrationsPage() {
                               </p>
                             </div>
                             <span className={`px-2 py-1 text-xs rounded ${
-                              imp.status === 'COMPLETED' 
+                              imp.status === 'COMPLETED'
                                 ? 'bg-green-100 text-green-800'
                                 : imp.status === 'FAILED'
                                 ? 'bg-red-100 text-red-800'

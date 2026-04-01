@@ -1,6 +1,6 @@
 # Phase 1: Foundation & Infrastructure - Setup Guide
 
-This document outlines the Phase 1 infrastructure enhancements completed for the Ngurra Pathways platform.
+This document outlines the Phase 1 infrastructure enhancements completed for the Nexta platform.
 
 ## Summary of Changes
 

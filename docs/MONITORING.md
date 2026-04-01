@@ -1,6 +1,6 @@
 # Monitoring Guide
 
-Comprehensive monitoring and observability guide for the Ngurra Pathways platform.
+Comprehensive monitoring and observability guide for the Nexta platform.
 
 ## Table of Contents
 
@@ -74,7 +74,7 @@ gauge('cache.hit.rate', hitRate);
 ```typescript
 // Collect Node.js metrics
 import { collectDefaultMetrics } from 'prom-client';
-collectDefaultMetrics({ prefix: 'ngurra_' });
+collectDefaultMetrics({ prefix: 'nexta_' });
 
 // Memory usage
 const memoryMetrics = () => ({
@@ -120,7 +120,7 @@ const logger = pino({
     level: (label) => ({ level: label }),
   },
   base: {
-    service: 'ngurra-api',
+    service: 'nexta-api',
     env: process.env.NODE_ENV,
   },
 });
@@ -185,22 +185,22 @@ logger.debug({
 # fluent-bit config
 [INPUT]
     Name              tail
-    Path              /var/log/ngurra/*.log
+    Path              /var/log/nexta/*.log
     Parser            json
-    Tag               ngurra.*
+    Tag               nexta.*
 
 [FILTER]
     Name              parser
-    Match             ngurra.*
+    Match             nexta.*
     Key_Name          message
     Parser            json
 
 [OUTPUT]
     Name              es
-    Match             ngurra.*
+    Match             nexta.*
     Host              elasticsearch
     Port              9200
-    Index             ngurra-logs
+    Index             nexta-logs
 ```
 
 ## Alerting
@@ -210,12 +210,12 @@ logger.debug({
 ```yaml
 # prometheus-alerts.yml
 groups:
-  - name: ngurra-alerts
+  - name: nexta-alerts
     rules:
       # High error rate
       - alert: HighErrorRate
         expr: |
-          sum(rate(http_requests_total{status=~"5.."}[5m])) 
+          sum(rate(http_requests_total{status=~"5.."}[5m]))
           / sum(rate(http_requests_total[5m])) > 0.05
         for: 5m
         labels:
@@ -227,7 +227,7 @@ groups:
       # Slow responses
       - alert: SlowResponses
         expr: |
-          histogram_quantile(0.95, 
+          histogram_quantile(0.95,
             rate(http_request_duration_seconds_bucket[5m])
           ) > 1
         for: 5m
@@ -239,12 +239,12 @@ groups:
 
       # Service down
       - alert: ServiceDown
-        expr: up{job="ngurra-api"} == 0
+        expr: up{job="nexta-api"} == 0
         for: 1m
         labels:
           severity: critical
         annotations:
-          summary: "Ngurra API is down"
+          summary: "Nexta API is down"
 
       # Database connection issues
       - alert: DatabaseConnectionsExhausted
@@ -258,7 +258,7 @@ groups:
       # High memory usage
       - alert: HighMemoryUsage
         expr: |
-          process_resident_memory_bytes 
+          process_resident_memory_bytes
           / node_memory_MemTotal_bytes > 0.85
         for: 5m
         labels:
@@ -289,7 +289,7 @@ const alertChannels = {
     { type: 'slack', webhook: process.env.SLACK_ALERTS_WEBHOOK },
   ],
   info: [
-    { type: 'email', recipients: ['ops@ngurra-pathways.com'] },
+    { type: 'email', recipients: ['ops@nexta.com'] },
   ],
 };
 ```
@@ -320,14 +320,14 @@ receivers:
   - name: 'pagerduty'
     pagerduty_configs:
       - service_key: '${PAGERDUTY_SERVICE_KEY}'
-  
+
   - name: 'slack-critical'
     slack_configs:
       - api_url: '${SLACK_WEBHOOK_CRITICAL}'
         channel: '#alerts-critical'
         title: '{{ .GroupLabels.alertname }}'
         text: '{{ .CommonAnnotations.description }}'
-  
+
   - name: 'slack-warnings'
     slack_configs:
       - api_url: '${SLACK_WEBHOOK_WARNINGS}'
@@ -340,7 +340,7 @@ receivers:
 
 ```json
 {
-  "title": "Ngurra API Dashboard",
+  "title": "Nexta API Dashboard",
   "panels": [
     {
       "title": "Request Rate",
@@ -426,7 +426,7 @@ app.get('/health', async (req, res) => {
     checkRedis(),
     checkExternalServices(),
   ]);
-  
+
   const status = {
     status: checks.every(c => c.status === 'fulfilled') ? 'healthy' : 'degraded',
     timestamp: new Date().toISOString(),
@@ -437,7 +437,7 @@ app.get('/health', async (req, res) => {
       external: checks[2].status === 'fulfilled' ? 'ok' : 'fail',
     },
   };
-  
+
   res.status(status.status === 'healthy' ? 200 : 503).json(status);
 });
 
@@ -480,13 +480,13 @@ async function checkExternalServices(): Promise<void> {
 
 ```bash
 # Check slow queries
-SELECT query, mean_time, calls 
-FROM pg_stat_statements 
-ORDER BY mean_time DESC 
+SELECT query, mean_time, calls
+FROM pg_stat_statements
+ORDER BY mean_time DESC
 LIMIT 10;
 
 # Check connection pool
-SELECT count(*) FROM pg_stat_activity 
+SELECT count(*) FROM pg_stat_activity
 WHERE state = 'active';
 
 # Check Redis latency
@@ -510,7 +510,7 @@ node --inspect app.js
 
 ```bash
 # Check connection limits
-SELECT max_connections FROM pg_settings 
+SELECT max_connections FROM pg_settings
 WHERE name = 'max_connections';
 
 # Check current connections
@@ -524,7 +524,7 @@ redis-cli info clients
 
 ```bash
 # Enable debug logging
-DEBUG=ngurra:* pnpm start
+DEBUG=nexta:* pnpm start
 
 # Enable Prisma query logging
 DEBUG=prisma:query pnpm start

@@ -12,7 +12,7 @@ const test_1 = require("@playwright/test");
     (0, test_1.expect)(token).toBeTruthy();
     // set token in localStorage and cookie then navigate
     await page.goto(webBase);
-    await page.evaluate(([t]) => { localStorage.setItem('ngurra_token', t); document.cookie = `ngurra_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`; }, [token]);
+    await page.evaluate(([t]) => { localStorage.setItem('nexta_token', t); document.cookie = `nexta_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`; }, [token]);
     await page.goto(`${webBase}/company/jobs`);
     // fetch job details so we can assert headers in the captured email
     const jobsResp = await request.get(`${apiBase}/company/jobs`, {
@@ -75,7 +75,7 @@ const test_1 = require("@playwright/test");
     (0, test_1.expect)(mToken).toBeTruthy();
     // new page context to simulate member
     await page.goto(webBase);
-    await page.evaluate(([t]) => { localStorage.setItem('ngurra_token', t); document.cookie = `ngurra_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`; }, [mToken]);
+    await page.evaluate(([t]) => { localStorage.setItem('nexta_token', t); document.cookie = `nexta_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`; }, [mToken]);
     await page.goto(`${webBase}/member/applications`);
     await page.waitForSelector('text=Your Applications');
     // open first application messages modal (button text is "Messages")

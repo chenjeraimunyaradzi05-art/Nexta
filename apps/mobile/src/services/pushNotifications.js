@@ -1,6 +1,6 @@
 /**
  * Push Notification Service for React Native
- * 
+ *
  * Handles registration, permission requests, and notification handling
  * using Expo Notifications API.
  */
@@ -11,7 +11,7 @@ import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const API_BASE = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3001';
-const PUSH_TOKEN_KEY = '@ngurra_push_token';
+const PUSH_TOKEN_KEY = '@nexta_push_token';
 
 // Configure notification behavior
 Notifications.setNotificationHandler({
@@ -72,7 +72,7 @@ export async function getExpoPushToken() {
 
   try {
     const projectId = Constants.expoConfig?.extra?.eas?.projectId;
-    
+
     const token = await Notifications.getExpoPushTokenAsync({
       projectId,
     });

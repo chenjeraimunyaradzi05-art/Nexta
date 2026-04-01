@@ -1,6 +1,6 @@
 /**
  * Jobs Store - Zustand state management for job listings
- * 
+ *
  * Manages:
  * - Job search and filtering
  * - Saved jobs
@@ -96,28 +96,28 @@ interface JobsState {
   jobs: JobListing[];
   featuredJobs: JobListing[];
   recommendedJobs: JobListing[];
-  
+
   // Saved & Applications
   savedJobs: SavedJob[];
   applications: JobApplication[];
-  
+
   // Search state
   searchFilters: JobSearchFilters;
   searchHistory: string[];
-  
+
   // Pagination
   cursor: string | null;
   hasMore: boolean;
-  
+
   // Loading states
   isLoading: boolean;
   isRefreshing: boolean;
   isApplying: boolean;
   isSaving: boolean;
-  
+
   // Error state
   error: string | null;
-  
+
   // Actions - Job Search
   searchJobs: (filters?: JobSearchFilters, refresh?: boolean) => Promise<void>;
   fetchFeaturedJobs: () => Promise<void>;
@@ -126,11 +126,11 @@ interface JobsState {
   clearFilters: () => void;
   addToSearchHistory: (query: string) => void;
   clearSearchHistory: () => void;
-  
+
   // Actions - Job Detail
   getJobById: (jobId: string) => JobListing | undefined;
   fetchJobDetail: (jobId: string) => Promise<JobListing | null>;
-  
+
   // Actions - Saved Jobs
   fetchSavedJobs: () => Promise<void>;
   saveJob: (jobId: string, notes?: string) => Promise<void>;
@@ -138,13 +138,13 @@ interface JobsState {
   isJobSaved: (jobId: string) => boolean;
   updateSavedJobNotes: (savedJobId: string, notes: string) => Promise<void>;
   setSavedJobReminder: (savedJobId: string, date: string) => Promise<void>;
-  
+
   // Actions - Applications
   fetchApplications: () => Promise<void>;
   applyToJob: (jobId: string, data: { resumeId?: string; coverLetter?: string }) => Promise<void>;
   withdrawApplication: (applicationId: string) => Promise<void>;
   getApplicationForJob: (jobId: string) => JobApplication | undefined;
-  
+
   // Actions - Utility
   refresh: () => Promise<void>;
   clearError: () => void;
@@ -188,9 +188,9 @@ export const useJobsStore = create<JobsState>()(
       searchJobs: async (filters?: JobSearchFilters, refresh = false) => {
         const state = get();
         if (state.isLoading && !refresh) return;
-        
+
         const effectiveFilters = filters || state.searchFilters;
-        
+
         set({
           isLoading: !refresh,
           isRefreshing: refresh,
@@ -200,7 +200,7 @@ export const useJobsStore = create<JobsState>()(
 
         try {
           const params = new URLSearchParams();
-          
+
           if (effectiveFilters.query) params.append('q', effectiveFilters.query);
           if (effectiveFilters.location) params.append('location', effectiveFilters.location);
           if (effectiveFilters.locationType?.length) {
@@ -223,12 +223,12 @@ export const useJobsStore = create<JobsState>()(
             params.append('postedWithin', effectiveFilters.postedWithin);
           }
           if (effectiveFilters.companyRap) params.append('companyRap', 'true');
-          
+
           if (!refresh && state.cursor) params.append('cursor', state.cursor);
           params.append('limit', '20');
 
           const response = await api.get(`/jobs?${params.toString()}`);
-          
+
           const newJobs = response.data.jobs || response.data.data || [];
           const nextCursor = response.data.cursor || response.data.nextCursor;
           const hasMore = response.data.hasMore ?? (newJobs.length === 20);
@@ -326,7 +326,7 @@ export const useJobsStore = create<JobsState>()(
         try {
           const response = await api.post('/jobs/save', { jobId, notes });
           const savedJob = response.data.savedJob || response.data;
-          
+
           set(prev => ({
             savedJobs: [...prev.savedJobs, savedJob],
             isSaving: false,
@@ -340,7 +340,7 @@ export const useJobsStore = create<JobsState>()(
         set({ isSaving: true });
         try {
           await api.delete(`/jobs/save/${jobId}`);
-          
+
           set(prev => ({
             savedJobs: prev.savedJobs.filter(sj => sj.jobId !== jobId),
             isSaving: false,
@@ -357,7 +357,7 @@ export const useJobsStore = create<JobsState>()(
       updateSavedJobNotes: async (savedJobId: string, notes: string) => {
         try {
           await api.patch(`/jobs/saved/${savedJobId}`, { notes });
-          
+
           set(prev => ({
             savedJobs: prev.savedJobs.map(sj =>
               sj.id === savedJobId ? { ...sj, notes } : sj
@@ -371,7 +371,7 @@ export const useJobsStore = create<JobsState>()(
       setSavedJobReminder: async (savedJobId: string, date: string) => {
         try {
           await api.patch(`/jobs/saved/${savedJobId}`, { reminderDate: date });
-          
+
           set(prev => ({
             savedJobs: prev.savedJobs.map(sj =>
               sj.id === savedJobId ? { ...sj, reminderDate: date } : sj
@@ -397,13 +397,13 @@ export const useJobsStore = create<JobsState>()(
         try {
           const response = await api.post(`/jobs/${jobId}/apply`, data);
           const application = response.data.application || response.data;
-          
+
           set(prev => ({
             applications: [...prev.applications, application],
             isApplying: false,
           }));
         } catch (error: any) {
-          set({ 
+          set({
             error: error.message || 'Failed to submit application',
             isApplying: false,
           });
@@ -414,10 +414,10 @@ export const useJobsStore = create<JobsState>()(
       withdrawApplication: async (applicationId: string) => {
         try {
           await api.post(`/applications/${applicationId}/withdraw`);
-          
+
           set(prev => ({
             applications: prev.applications.map(app =>
-              app.id === applicationId 
+              app.id === applicationId
                 ? { ...app, status: 'WITHDRAWN' as const }
                 : app
             ),
@@ -448,7 +448,7 @@ export const useJobsStore = create<JobsState>()(
       },
     }),
     {
-      name: 'ngurra-jobs-store',
+      name: 'nexta-jobs-store',
       storage: createJSONStorage(() => AsyncStorage),
       partialize: (state) => ({
         savedJobs: state.savedJobs,

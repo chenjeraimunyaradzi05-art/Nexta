@@ -2,7 +2,7 @@
 set -e
 
 echo "========================================"
-echo "  Ngurra Pathways API - Starting..."
+echo "  Nexta API - Starting..."
 echo "========================================"
 echo "NODE_ENV: ${NODE_ENV:-development}"
 echo "PORT: ${PORT:-not set}"

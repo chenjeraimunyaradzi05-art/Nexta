@@ -13,7 +13,7 @@ async function setAuth(page, context, webBase, jwt) {
   const url = new URL(webBase);
   await context.addCookies([
     {
-      name: 'ngurra_token',
+      name: 'nexta_token',
       value: jwt,
       domain: url.hostname,
       path: '/',
@@ -22,7 +22,7 @@ async function setAuth(page, context, webBase, jwt) {
 
   await page.goto(webBase);
   await page.evaluate((t) => {
-    localStorage.setItem('ngurra_token', t);
+    localStorage.setItem('nexta_token', t);
   }, jwt);
 }
 

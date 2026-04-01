@@ -42,7 +42,7 @@ const mockEvents = [
     attendees: 234,
     isFeatured: true,
     image: '/images/events/career-fair.jpg',
-    organizer: 'Ngurra Pathways',
+    organizer: 'Nexta',
   },
   {
     id: '2',
@@ -145,7 +145,7 @@ export default function EventsClient({ initialEvents, hasPrefetched }) {
             attendees: e.attendees || e.attendeeCount || 0,
             isFeatured: e.isFeatured || e.featured || false,
             image: e.image || e.imageUrl || null,
-            organizer: e.organizer || e.organizerName || 'Ngurra Pathways',
+            organizer: e.organizer || e.organizerName || 'Nexta',
           }));
           if (normalizedEvents.length > 0) {
             setEvents(normalizedEvents);
@@ -221,7 +221,7 @@ export default function EventsClient({ initialEvents, hasPrefetched }) {
 
   if (loading) {
     return (
-      <div className="ngurra-page flex items-center justify-center">
+      <div className="nexta-page flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4" style={{ color: accentPink }} />
           <p className="text-slate-600 font-medium">Loading events...</p>
@@ -231,7 +231,7 @@ export default function EventsClient({ initialEvents, hasPrefetched }) {
   }
 
   return (
-    <div className="ngurra-page">
+    <div className="nexta-page">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         {/* Background Elements */}
@@ -277,7 +277,7 @@ export default function EventsClient({ initialEvents, hasPrefetched }) {
                 Community Events
               </h1>
               <p className="text-lg text-slate-600 leading-relaxed">
-                Connect, learn, and grow with the Ngurra Pathways community. Join workshops,
+                Connect, learn, and grow with the Nexta community. Join workshops,
                 networking events, and cultural celebrations.
               </p>
             </div>

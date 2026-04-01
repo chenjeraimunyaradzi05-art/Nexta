@@ -1,7 +1,7 @@
 # Disaster Recovery Plan
 
-**Document Version:** 1.0  
-**Last Updated:** January 4, 2026  
+**Document Version:** 1.0
+**Last Updated:** January 4, 2026
 **Owner:** Platform Engineering Team
 
 ---
@@ -21,7 +21,7 @@
 
 ## Overview
 
-This document outlines the disaster recovery (DR) procedures for the Ngurra Pathways platform. It covers backup strategies, recovery procedures, and communication protocols for various disaster scenarios.
+This document outlines the disaster recovery (DR) procedures for the Nexta platform. It covers backup strategies, recovery procedures, and communication protocols for various disaster scenarios.
 
 ### Scope
 
@@ -150,15 +150,15 @@ This document outlines the disaster recovery (DR) procedures for the Ngurra Path
    ```bash
    # Check database status
    pg_isready -h $DB_HOST -p 5432
-   
+
    # Check AWS RDS status (if applicable)
-   aws rds describe-db-instances --db-instance-identifier ngurra-prod
+   aws rds describe-db-instances --db-instance-identifier nexta-prod
    ```
 
 2. **Enable Maintenance Mode**
    ```bash
    # Set maintenance mode via API
-   curl -X POST https://api.ngurrapathways.com.au/admin/maintenance \
+   curl -X POST https://api.nexta.com.au/admin/maintenance \
      -H "Authorization: Bearer $ADMIN_TOKEN" \
      -d '{"enabled": true, "message": "System maintenance in progress"}'
    ```
@@ -166,30 +166,30 @@ This document outlines the disaster recovery (DR) procedures for the Ngurra Path
 3. **Identify Latest Backup**
    ```bash
    # List available backups
-   aws s3 ls s3://ngurra-backups/database/full/ --recursive | tail -5
+   aws s3 ls s3://nexta-backups/database/full/ --recursive | tail -5
    ```
 
 4. **Restore Database**
    ```bash
    # Download backup
-   aws s3 cp s3://ngurra-backups/database/full/[LATEST_BACKUP] /tmp/restore.sql.gz
-   
+   aws s3 cp s3://nexta-backups/database/full/[LATEST_BACKUP] /tmp/restore.sql.gz
+
    # Decrypt if encrypted
    gpg --decrypt /tmp/restore.sql.gz.gpg > /tmp/restore.sql.gz
-   
+
    # Restore to new database
-   createdb ngurra_restore
-   pg_restore -d ngurra_restore /tmp/restore.sql.gz
-   
+   createdb nexta_restore
+   pg_restore -d nexta_restore /tmp/restore.sql.gz
+
    # Verify data
-   psql ngurra_restore -c "SELECT COUNT(*) FROM users;"
+   psql nexta_restore -c "SELECT COUNT(*) FROM users;"
    ```
 
 5. **Switch to Restored Database**
    ```bash
    # Update environment variables
    # Point DATABASE_URL to new database
-   
+
    # Restart API servers
    docker-compose restart api
    ```
@@ -197,10 +197,10 @@ This document outlines the disaster recovery (DR) procedures for the Ngurra Path
 6. **Verify and Disable Maintenance**
    ```bash
    # Run health checks
-   curl https://api.ngurrapathways.com.au/health
-   
+   curl https://api.nexta.com.au/health
+
    # Disable maintenance mode
-   curl -X POST https://api.ngurrapathways.com.au/admin/maintenance \
+   curl -X POST https://api.nexta.com.au/admin/maintenance \
      -H "Authorization: Bearer $ADMIN_TOKEN" \
      -d '{"enabled": false}'
    ```
@@ -231,8 +231,8 @@ This document outlines the disaster recovery (DR) procedures for the Ngurra Path
 2. **Initiate Failover**
    ```bash
    # Promote secondary database to primary
-   aws rds promote-read-replica --db-instance-identifier ngurra-prod-secondary
-   
+   aws rds promote-read-replica --db-instance-identifier nexta-prod-secondary
+
    # Update DNS to point to secondary region
    aws route53 change-resource-record-sets ...
    ```
@@ -260,7 +260,7 @@ This document outlines the disaster recovery (DR) procedures for the Ngurra Path
    ```bash
    # Revoke all active sessions
    redis-cli FLUSHDB
-   
+
    # Block suspicious IPs
    aws waf update-ip-set --add-addresses [IP_LIST]
    ```
@@ -269,9 +269,9 @@ This document outlines the disaster recovery (DR) procedures for the Ngurra Path
    ```bash
    # Snapshot affected servers
    aws ec2 create-snapshot --volume-id [VOL_ID]
-   
+
    # Export logs
-   aws logs get-log-events --log-group-name ngurra-api > /secure/incident_logs.json
+   aws logs get-log-events --log-group-name nexta-api > /secure/incident_logs.json
    ```
 
 3. **Notify Security Team**
@@ -345,14 +345,14 @@ This document outlines the disaster recovery (DR) procedures for the Ngurra Path
 
 ```
 Template for initial update:
-"We are currently experiencing issues with [SERVICE]. 
-Our team is investigating and we will provide updates every 30 minutes. 
+"We are currently experiencing issues with [SERVICE].
+Our team is investigating and we will provide updates every 30 minutes.
 We apologize for any inconvenience."
 
 Template for resolution:
-"The issue affecting [SERVICE] has been resolved. 
-All systems are now operating normally. 
-Total duration: [X hours]. 
+"The issue affecting [SERVICE] has been resolved.
+All systems are now operating normally.
+Total duration: [X hours].
 A post-incident report will be published within 48 hours."
 ```
 

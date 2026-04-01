@@ -2,7 +2,7 @@
 
 /**
  * Onboarding Wizard Component
- * 
+ *
  * Multi-step onboarding flow with role-specific paths
  */
 
@@ -87,11 +87,11 @@ function RoleSelector({ selectedRole, onSelect }) {
               <Check className="w-4 h-4 text-white" />
             </div>
           )}
-          
+
           <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${role.color} flex items-center justify-center mb-4`}>
             <role.icon className="w-6 h-6 text-white" />
           </div>
-          
+
           <h4 className="font-semibold text-white mb-1">{role.name}</h4>
           <p className="text-sm text-slate-400">{role.description}</p>
         </button>
@@ -106,10 +106,10 @@ function InfoStep({ step }) {
       <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center mx-auto mb-6">
         <PartyPopper className="w-10 h-10 text-white" />
       </div>
-      
+
       <h2 className="text-3xl font-bold text-white mb-4">{step.title}</h2>
       <p className="text-lg text-slate-300 mb-8">{step.content?.message}</p>
-      
+
       {step.content?.features && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left mb-8">
           {step.content.features.map((feature, idx) => (
@@ -120,7 +120,7 @@ function InfoStep({ step }) {
           ))}
         </div>
       )}
-      
+
       {step.content?.culturalNote && (
         <p className="text-sm text-slate-500 italic">{step.content.culturalNote}</p>
       )}
@@ -142,7 +142,7 @@ function FormStep({ step, formData, onChange }) {
             required={field.required}
           />
         );
-      
+
       case 'location':
         return (
           <div className="relative">
@@ -157,7 +157,7 @@ function FormStep({ step, formData, onChange }) {
             />
           </div>
         );
-      
+
       case 'boolean':
         return (
           <label className="flex items-center gap-3 cursor-pointer">
@@ -170,7 +170,7 @@ function FormStep({ step, formData, onChange }) {
             <span className="text-slate-300">{field.label}</span>
           </label>
         );
-      
+
       case 'select':
         return (
           <select
@@ -185,7 +185,7 @@ function FormStep({ step, formData, onChange }) {
             ))}
           </select>
         );
-      
+
       case 'multiselect':
         return (
           <div className="space-y-2">
@@ -209,7 +209,7 @@ function FormStep({ step, formData, onChange }) {
             ))}
           </div>
         );
-      
+
       case 'tags':
         return (
           <div>
@@ -263,7 +263,7 @@ function FormStep({ step, formData, onChange }) {
             )}
           </div>
         );
-      
+
       case 'number':
         return (
           <input
@@ -274,7 +274,7 @@ function FormStep({ step, formData, onChange }) {
             required={field.required}
           />
         );
-      
+
       default:
         return null;
     }
@@ -284,14 +284,14 @@ function FormStep({ step, formData, onChange }) {
     <div className="max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold text-white mb-2">{step.title}</h2>
       <p className="text-slate-400 mb-8">{step.subtitle}</p>
-      
+
       {step.privacyNote && (
         <div className="flex items-start gap-3 bg-blue-900/20 border border-blue-800/50 rounded-lg p-4 mb-6">
           <Shield className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
           <p className="text-sm text-blue-300">{step.privacyNote}</p>
         </div>
       )}
-      
+
       <div className="space-y-6">
         {step.fields?.map((field) => (
           <div key={field.name}>
@@ -314,7 +314,7 @@ function ChoiceStep({ step, formData, onChange }) {
     <div className="max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold text-white mb-2">{step.title}</h2>
       <p className="text-slate-400 mb-8">{step.subtitle}</p>
-      
+
       <div className="space-y-4">
         {step.options?.map((option) => (
           <button
@@ -347,10 +347,10 @@ function CelebrationStep({ step, onAction }) {
       <div className="w-24 h-24 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mx-auto mb-6 animate-bounce">
         <PartyPopper className="w-12 h-12 text-white" />
       </div>
-      
+
       <h2 className="text-3xl font-bold text-white mb-4">{step.title}</h2>
       <p className="text-lg text-slate-300 mb-8">{step.content?.message}</p>
-      
+
       {step.content?.nextSteps && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {step.content.nextSteps.map((action, idx) => (
@@ -384,10 +384,10 @@ export default function OnboardingWizard() {
   useEffect(() => {
     const fetchOnboarding = async () => {
       if (!isAuthenticated) return;
-      
+
       try {
         const { ok, data } = await api('/onboarding/status');
-        
+
         if (ok) {
           if (data.isComplete) {
             router.push('/dashboard');
@@ -413,14 +413,14 @@ export default function OnboardingWizard() {
   // Start onboarding with selected role
   const startOnboarding = async () => {
     if (!selectedRole) return;
-    
+
     setSubmitting(true);
     try {
       const { ok, data } = await api('/onboarding/start', {
         method: 'POST',
         body: { role: selectedRole },
       });
-      
+
       if (ok) {
         setSteps(data.steps || []);
         setCurrentStepIndex(0);
@@ -439,14 +439,14 @@ export default function OnboardingWizard() {
   const handleNext = async () => {
     const currentStep = steps[currentStepIndex];
     if (!currentStep) return;
-    
+
     setSubmitting(true);
     try {
       const { ok, data } = await api(`/onboarding/steps/${currentStep.id}/complete`, {
         method: 'POST',
         body: formData,
       });
-      
+
       if (ok) {
         if (data.isComplete) {
           router.push('/dashboard');
@@ -464,7 +464,7 @@ export default function OnboardingWizard() {
   const handleSkip = async () => {
     const currentStep = steps[currentStepIndex];
     if (!currentStep || currentStep.isRequired) return;
-    
+
     try {
       await api(`/onboarding/steps/${currentStep.id}/skip`, { method: 'POST' });
       setCurrentStepIndex(prev => prev + 1);
@@ -475,7 +475,7 @@ export default function OnboardingWizard() {
 
   const handleSkipAll = async () => {
     if (!confirm('Are you sure you want to skip onboarding? You can complete it later from your profile.')) return;
-    
+
     try {
       await api('/onboarding/skip', { method: 'POST' });
       router.push('/dashboard');
@@ -542,7 +542,7 @@ export default function OnboardingWizard() {
           {!selectedRole && steps.length === 0 && (
             <div>
               <div className="text-center mb-12">
-                <h1 className="text-4xl font-bold text-white mb-4">Welcome to Ngurra Pathways</h1>
+                <h1 className="text-4xl font-bold text-white mb-4">Welcome to Nexta</h1>
                 <p className="text-xl text-slate-400">How would you like to use the platform?</p>
               </div>
               <RoleSelector selectedRole={selectedRole} onSelect={setSelectedRole} />
@@ -594,7 +594,7 @@ export default function OnboardingWizard() {
               {currentStep.type === 'info' && (
                 <InfoStep step={currentStep} />
               )}
-              
+
               {currentStep.type === 'form' && (
                 <FormStep
                   step={currentStep}
@@ -602,7 +602,7 @@ export default function OnboardingWizard() {
                   onChange={handleFieldChange}
                 />
               )}
-              
+
               {currentStep.type === 'choice' && (
                 <ChoiceStep
                   step={currentStep}
@@ -610,7 +610,7 @@ export default function OnboardingWizard() {
                   onChange={handleFieldChange}
                 />
               )}
-              
+
               {currentStep.type === 'celebration' && (
                 <CelebrationStep
                   step={currentStep}
@@ -644,7 +644,7 @@ export default function OnboardingWizard() {
                   Skip
                 </button>
               )}
-              
+
               <button
                 onClick={handleNext}
                 disabled={submitting}

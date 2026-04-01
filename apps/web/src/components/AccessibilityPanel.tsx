@@ -2,7 +2,7 @@
 
 /**
  * Accessibility Settings Panel
- * 
+ *
  * User-configurable accessibility options including:
  * - Font size adjustments
  * - High contrast mode
@@ -60,7 +60,7 @@ const LINE_SPACING = {
   loose: { label: 'Loose', value: 2 },
 };
 
-const STORAGE_KEY = 'ngurra-a11y-settings';
+const STORAGE_KEY = 'nexta-a11y-settings';
 
 export function AccessibilityPanel({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const { showToast } = useUIStore();
@@ -152,7 +152,7 @@ export function AccessibilityPanel({ isOpen, onClose }: { isOpen: boolean; onClo
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-      <div 
+      <div
         className="bg-slate-800 rounded-xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-hidden"
         role="dialog"
         aria-labelledby="a11y-title"

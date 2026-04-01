@@ -16,14 +16,14 @@ export default function SuccessStories({ showSubmitForm = false }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [showForm, setShowForm] = useState(false);
-    
+
     // Fetch published stories
     const fetchStories = useCallback(async () => {
         try {
             const { ok, data } = await api('/stories?status=published&limit=12');
-            
+
             if (!ok) throw new Error('Failed to fetch stories');
-            
+
             setStories(data.stories || []);
         } catch (err) {
             setError(err.message);
@@ -31,11 +31,11 @@ export default function SuccessStories({ showSubmitForm = false }) {
             setLoading(false);
         }
     }, []);
-    
+
     useEffect(() => {
         fetchStories();
     }, [fetchStories]);
-    
+
     if (loading) {
         return (
             <div className="flex items-center justify-center p-8">
@@ -43,7 +43,7 @@ export default function SuccessStories({ showSubmitForm = false }) {
             </div>
         );
     }
-    
+
     return (
         <div className="space-y-8">
             {/* Header */}
@@ -63,24 +63,24 @@ export default function SuccessStories({ showSubmitForm = false }) {
                     </button>
                 )}
             </div>
-            
+
             {/* Error Alert */}
             {error && (
                 <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
                     {error}
                 </div>
             )}
-            
+
             {/* Submit Form */}
             {showForm && (
-                <StorySubmitForm 
+                <StorySubmitForm
                     onSuccess={() => {
                         setShowForm(false);
                         fetchStories();
                     }}
                 />
             )}
-            
+
             {/* Stories Grid */}
             {stories.length === 0 ? (
                 <div className="text-center py-12 bg-gray-50 rounded-xl">
@@ -133,7 +133,7 @@ function StoryCard({ story }) {
                 )}
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{story.title}</h3>
                 <p className="text-gray-600 text-sm line-clamp-3">{story.summary}</p>
-                
+
                 {/* Author info */}
                 <div className="mt-4 pt-4 border-t flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
@@ -150,7 +150,7 @@ function StoryCard({ story }) {
                         )}
                     </div>
                 </div>
-                
+
                 {/* Read more link */}
                 <a
                     href={`/stories/${story.id}`}
@@ -180,7 +180,7 @@ function StorySubmitForm({ onSuccess }) {
         location: '',
         consentToPublish: false,
     });
-    
+
     const categories = [
         'Career Success',
         'Education Achievement',
@@ -190,7 +190,7 @@ function StorySubmitForm({ onSuccess }) {
         'Training Completion',
         'Other',
     ];
-    
+
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setFormData(prev => ({
@@ -198,28 +198,28 @@ function StorySubmitForm({ onSuccess }) {
             [name]: type === 'checkbox' ? checked : value,
         }));
     };
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         if (!formData.consentToPublish) {
             setError('Please confirm consent to publish');
             return;
         }
-        
+
         setSubmitting(true);
         setError(null);
-        
+
         try {
             const { ok, error: apiError } = await api('/stories', {
                 method: 'POST',
                 body: formData,
             });
-            
+
             if (!ok) {
                 throw new Error(apiError || 'Failed to submit story');
             }
-            
+
             onSuccess?.();
         } catch (err) {
             setError(err.message);
@@ -227,20 +227,20 @@ function StorySubmitForm({ onSuccess }) {
             setSubmitting(false);
         }
     };
-    
+
     return (
         <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-sm border p-6 space-y-6">
             <h3 className="text-lg font-semibold text-gray-900">Share Your Success Story</h3>
             <p className="text-gray-600 text-sm">
                 Your story can inspire others in our community. Share your journey!
             </p>
-            
+
             {error && (
                 <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
                     {error}
                 </div>
             )}
-            
+
             <div className="grid md:grid-cols-2 gap-6">
                 <div className="md:col-span-2">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -256,7 +256,7 @@ function StorySubmitForm({ onSuccess }) {
                         placeholder="Give your story a title"
                     />
                 </div>
-                
+
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                         Category
@@ -273,7 +273,7 @@ function StorySubmitForm({ onSuccess }) {
                         ))}
                     </select>
                 </div>
-                
+
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                         Location
@@ -288,7 +288,7 @@ function StorySubmitForm({ onSuccess }) {
                     />
                 </div>
             </div>
-            
+
             <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                     Short Summary *
@@ -307,7 +307,7 @@ function StorySubmitForm({ onSuccess }) {
                     {formData.summary.length}/280 characters
                 </p>
             </div>
-            
+
             <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                     Your Full Story *
@@ -322,7 +322,7 @@ function StorySubmitForm({ onSuccess }) {
                     placeholder="Share your journey, challenges, and achievements..."
                 />
             </div>
-            
+
             <div className="flex items-start gap-3">
                 <input
                     type="checkbox"
@@ -333,12 +333,12 @@ function StorySubmitForm({ onSuccess }) {
                     className="mt-1"
                 />
                 <label htmlFor="consentToPublish" className="text-sm text-gray-600">
-                    I consent to having my story published on the Ngurra platform. I understand it will 
-                    be reviewed before publication and may be edited for clarity. I confirm all 
+                    I consent to having my story published on the Nexta platform. I understand it will
+                    be reviewed before publication and may be edited for clarity. I confirm all
                     information is accurate and I have the right to share this story.
                 </label>
             </div>
-            
+
             <div className="flex justify-end gap-3">
                 <button
                     type="submit"
@@ -357,7 +357,7 @@ function StorySubmitForm({ onSuccess }) {
  */
 export function FeaturedStory({ story }) {
     if (!story) return null;
-    
+
     return (
         <div className="bg-gradient-to-r from-ochre-50 to-ochre-100 rounded-2xl overflow-hidden">
             <div className="grid md:grid-cols-2 gap-8 p-8">

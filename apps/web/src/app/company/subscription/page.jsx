@@ -127,7 +127,7 @@ function SubscriptionContent() {
       </div>
 
       {message && (
-        <div 
+        <div
           data-testid="subscription-message"
           className={`mb-6 p-4 rounded-lg border flex items-start gap-3 ${
             message.includes('Successfully') || message.includes('upgraded')
@@ -160,8 +160,8 @@ function SubscriptionContent() {
           <div className="flex-1">
             <h3 className="font-semibold text-lg mb-1">Enterprise & RAP Compliance</h3>
             <p className="text-sm text-slate-400 mb-4">For large organizations, RAP compliance reporting, or custom integrations, contact us for a tailored solution.</p>
-            <a 
-              href="mailto:enterprise@ngurrapathways.com.au" 
+            <a
+              href="mailto:enterprise@nexta.com.au"
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors"
             >
               Contact enterprise sales

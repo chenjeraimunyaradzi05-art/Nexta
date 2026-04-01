@@ -1,6 +1,6 @@
 /**
  * Indigenous Language Service
- * 
+ *
  * Supports Aboriginal and Torres Strait Islander language preservation and learning.
  * This service provides:
  * - Language resources and learning materials
@@ -8,7 +8,7 @@
  * - Language teacher/mentor matching
  * - Community language programs
  * - Language revitalization initiatives tracking
- * 
+ *
  * Note: All language content should be developed in consultation with
  * Traditional Custodians and language authorities of each nation.
  */
@@ -36,7 +36,7 @@ export interface IndigenousLanguage {
   resources?: LanguageResource[];
 }
 
-export type LanguageStatus = 
+export type LanguageStatus =
   | 'STRONG' // Many fluent speakers, active transmission
   | 'HEALTHY' // Good number of speakers, some youth speakers
   | 'VULNERABLE' // Declining speakers, limited transmission
@@ -60,7 +60,7 @@ export interface LanguageResource {
   createdAt: Date;
 }
 
-export type ResourceType = 
+export type ResourceType =
   | 'DICTIONARY'
   | 'PHRASE_BOOK'
   | 'AUDIO_RECORDING'
@@ -331,9 +331,9 @@ const PLATFORM_PHRASES: PlatformPhrase[] = [
     english: 'Country / Land',
     translations: [
       { languageId: 'noongar', languageName: 'Noongar', text: 'Boodja', pronunciation: 'bood-ja' },
-      { languageId: 'dharug', languageName: 'Dharug', text: 'Ngurra', pronunciation: 'n-goo-rra' },
+      { languageId: 'dharug', languageName: 'Dharug', text: 'Nexta', pronunciation: 'n-goo-rra' },
       { languageId: 'wiradjuri', languageName: 'Wiradjuri', text: 'Ngurambang', pronunciation: 'n-goo-ram-bang' },
-      { languageId: 'gamilaraay', languageName: 'Gamilaraay', text: 'Ngurrambaa', pronunciation: 'n-goo-ram-bah' },
+      { languageId: 'gamilaraay', languageName: 'Gamilaraay', text: 'Nextambaa', pronunciation: 'n-goo-ram-bah' },
     ],
   },
   {
@@ -393,7 +393,7 @@ class IndigenousLanguageService {
 
       // In production, this would come from the database
       const languages = INDIGENOUS_LANGUAGES.sort((a, b) => a.name.localeCompare(b.name));
-      
+
       await redisCache.set(cacheKey, JSON.stringify(languages), this.cacheTTL);
       return languages;
     } catch (error: any) {
@@ -415,7 +415,7 @@ class IndigenousLanguageService {
    */
   async getLanguagesByRegion(state: string): Promise<IndigenousLanguage[]> {
     const languages = await this.getAllLanguages();
-    return languages.filter(l => 
+    return languages.filter(l =>
       l.state?.includes(state) || l.region.toLowerCase().includes(state.toLowerCase())
     );
   }
@@ -433,7 +433,7 @@ class IndigenousLanguageService {
    */
   async getEndangeredLanguages(): Promise<IndigenousLanguage[]> {
     const languages = await this.getAllLanguages();
-    return languages.filter(l => 
+    return languages.filter(l =>
       ['ENDANGERED', 'CRITICALLY_ENDANGERED', 'SLEEPING'].includes(l.status)
     );
   }
@@ -466,7 +466,7 @@ class IndigenousLanguageService {
    * Get phrases available in a specific language
    */
   async getPhrasesForLanguage(languageId: string): Promise<PlatformPhrase[]> {
-    return PLATFORM_PHRASES.filter(p => 
+    return PLATFORM_PHRASES.filter(p =>
       p.translations.some(t => t.languageId === languageId)
     ).map(p => ({
       ...p,
@@ -602,7 +602,7 @@ class IndigenousLanguageService {
       }
 
       if (options.region) {
-        result = result.filter(m => 
+        result = result.filter(m =>
           m.region.toLowerCase().includes(options.region!.toLowerCase())
         );
       }

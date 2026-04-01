@@ -5,10 +5,10 @@ import { Bell } from 'lucide-react';
 
 /**
  * NotificationBell Component
- * 
+ *
  * An animated notification bell icon with badge counter.
- * Part of the Ngurra Pathways Celestial Precious Stone theme.
- * 
+ * Part of the Nexta Celestial Precious Stone theme.
+ *
  * Features:
  * - Animated bell shake on new notifications
  * - Pulsing unread badge
@@ -99,10 +99,10 @@ export const NotificationBell = memo(function NotificationBell({
     if (animate && count > prevCountRef.current && count > 0) {
       setIsShaking(true);
       setIsPulsing(true);
-      
+
       const shakeTimer = setTimeout(() => setIsShaking(false), 500);
       const pulseTimer = setTimeout(() => setIsPulsing(false), 2000);
-      
+
       return () => {
         clearTimeout(shakeTimer);
         clearTimeout(pulseTimer);
@@ -113,19 +113,19 @@ export const NotificationBell = memo(function NotificationBell({
 
   const sizes = sizeClasses[size];
   const variants = variantClasses[variant];
-  
+
   const displayCount = count > maxCount ? `${maxCount}+` : count;
   const hasNotifications = count > 0;
 
-  const label = ariaLabel || (hasNotifications 
-    ? `Notifications (${count} unread)` 
+  const label = ariaLabel || (hasNotifications
+    ? `Notifications (${count} unread)`
     : 'Notifications');
 
   return (
     <button
       onClick={onClick}
       className={`
-        relative rounded-lg transition-all duration-200 focus:outline-none 
+        relative rounded-lg transition-all duration-200 focus:outline-none
         focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
         dark:focus:ring-offset-gray-900
         ${sizes.button}
@@ -138,19 +138,19 @@ export const NotificationBell = memo(function NotificationBell({
       aria-haspopup="true"
     >
       {/* Bell Icon */}
-      <Bell 
+      <Bell
         className={`
           ${sizes.icon}
           transition-transform duration-200
           ${isOpen ? 'scale-110' : ''}
         `}
       />
-      
+
       {/* Notification Badge */}
       {hasNotifications && (
         showDot ? (
           // Dot indicator
-          <span 
+          <span
             className={`
               absolute rounded-full
               ${sizes.dot}
@@ -160,7 +160,7 @@ export const NotificationBell = memo(function NotificationBell({
           />
         ) : (
           // Count badge
-          <span 
+          <span
             className={`
               absolute rounded-full font-bold
               flex items-center justify-center
@@ -177,8 +177,8 @@ export const NotificationBell = memo(function NotificationBell({
 
       {/* Cosmic glow effect */}
       {variant === 'cosmic' && hasNotifications && (
-        <span 
-          className="absolute inset-0 rounded-lg bg-[#FFD700]/10 blur-md -z-10 
+        <span
+          className="absolute inset-0 rounded-lg bg-[#FFD700]/10 blur-md -z-10
             animate-pulse-slow"
         />
       )}
@@ -295,7 +295,7 @@ export function NotificationDot({
 
 /**
  * Add these keyframes to your global CSS:
- * 
+ *
  * @keyframes wiggle {
  *   0%, 100% { transform: rotate(0deg); }
  *   15% { transform: rotate(-15deg); }
@@ -304,31 +304,31 @@ export function NotificationDot({
  *   60% { transform: rotate(5deg); }
  *   75% { transform: rotate(-5deg); }
  * }
- * 
+ *
  * @keyframes pulse-scale {
  *   0%, 100% { transform: scale(1); }
  *   50% { transform: scale(1.1); }
  * }
- * 
+ *
  * @keyframes ping-slow {
  *   75%, 100% {
  *     transform: scale(2);
  *     opacity: 0;
  *   }
  * }
- * 
+ *
  * .animate-wiggle {
  *   animation: wiggle 0.5s ease-in-out;
  * }
- * 
+ *
  * .animate-pulse-scale {
  *   animation: pulse-scale 1s ease-in-out infinite;
  * }
- * 
+ *
  * .animate-ping-slow {
  *   animation: ping-slow 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
  * }
- * 
+ *
  * .animate-pulse-slow {
  *   animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
  * }

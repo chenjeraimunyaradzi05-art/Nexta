@@ -40,7 +40,7 @@ interface SettingsState {
 export default function SettingsScreen({ navigation }: SettingsScreenProps) {
   const { user, biometricEnabled, toggleBiometric } = useSession();
   const { notificationsEnabled, toggleNotifications } = useNotifications();
-  
+
   const [settings, setSettings] = useState<SettingsState>({
     biometricEnabled: false,
     notificationsEnabled: true,
@@ -168,7 +168,7 @@ export default function SettingsScreen({ navigation }: SettingsScreenProps) {
               />
             </View>
           )}
-          
+
           <View style={[styles.row, styles.rowBorder]}>
             <View style={styles.rowIcon}>
               <Ionicons name="notifications-outline" size={22} color={colors.text} />
@@ -184,7 +184,7 @@ export default function SettingsScreen({ navigation }: SettingsScreenProps) {
             />
           </View>
 
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.row, styles.rowBorder]}
             onPress={() => navigation.navigate('AccessibilitySettings')}
           >
@@ -219,7 +219,7 @@ export default function SettingsScreen({ navigation }: SettingsScreenProps) {
             />
           </View>
 
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.row, styles.rowBorder]}
             onPress={handleExportData}
             disabled={isLoading}
@@ -244,9 +244,9 @@ export default function SettingsScreen({ navigation }: SettingsScreenProps) {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Support</Text>
         <View style={styles.card}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.row}
-            onPress={() => Linking.openURL('mailto:support@ngurra.com.au')}
+            onPress={() => Linking.openURL('mailto:support@nexta.com.au')}
           >
             <View style={styles.rowIcon}>
               <Ionicons name="mail-outline" size={22} color={colors.text} />
@@ -257,9 +257,9 @@ export default function SettingsScreen({ navigation }: SettingsScreenProps) {
             <Ionicons name="chevron-forward" size={20} color={colors.textTertiary} />
           </TouchableOpacity>
 
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.row, styles.rowBorder]}
-            onPress={() => Linking.openURL('https://ngurra.com.au/privacy')}
+            onPress={() => Linking.openURL('https://nexta.com.au/privacy')}
           >
             <View style={styles.rowIcon}>
               <Ionicons name="shield-checkmark-outline" size={22} color={colors.text} />

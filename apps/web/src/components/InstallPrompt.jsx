@@ -84,9 +84,9 @@ export default function InstallPrompt() {
               <Smartphone className="w-6 h-6 text-blue-400" />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-semibold mb-1">Install Ngurra Pathways</h3>
+              <h3 className="font-semibold mb-1">Install Nexta</h3>
               <p className="text-sm text-slate-400">
-                {isIOS 
+                {isIOS
                   ? 'Tap the share button and select "Add to Home Screen" for the best experience.'
                   : 'Install our app for quick access and offline features.'
                 }

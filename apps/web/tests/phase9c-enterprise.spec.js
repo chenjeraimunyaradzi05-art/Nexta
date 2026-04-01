@@ -9,7 +9,7 @@ test('Phase 9C: enterprise API docs are served', async ({ request }) => {
   expect(specRes.ok()).toBeTruthy();
   const spec = await specRes.json();
   expect(spec.openapi).toBeTruthy();
-  expect(String(spec.info?.title || '')).toContain('Ngurra');
+  expect(String(spec.info?.title || '')).toContain('Nexta');
 
   const docsRes = await request.get(`${apiBase}/api/docs/`);
   expect(docsRes.ok()).toBeTruthy();

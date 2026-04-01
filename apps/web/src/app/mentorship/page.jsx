@@ -7,9 +7,9 @@ export const metadata = {
   description: 'Connect with experienced First Nations mentors for career guidance. Our culturally-safe mentorship program supports Indigenous professionals at all career stages.',
   keywords: ['Indigenous mentorship', 'First Nations mentors', 'Aboriginal career guidance', 'Indigenous professional development'],
   openGraph: {
-    title: 'Indigenous Mentorship Program | Ngurra Pathways',
+    title: 'Indigenous Mentorship Program | Nexta',
     description: 'Connect with experienced First Nations mentors for career guidance.',
-    url: 'https://ngurrapathways.life/mentorship',
+    url: 'https://nexta.life/mentorship',
   },
   alternates: {
     canonical: '/mentorship',

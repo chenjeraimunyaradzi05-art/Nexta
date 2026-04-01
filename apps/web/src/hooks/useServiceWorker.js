@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 /**
  * Service Worker Registration Hook
- * 
+ *
  * Registers the PWA service worker and handles updates.
  */
 export function useServiceWorker() {
@@ -32,7 +32,7 @@ export function useServiceWorker() {
         // Check for updates
         reg.addEventListener('updatefound', () => {
           const newWorker = reg.installing;
-          
+
           if (newWorker) {
             newWorker.addEventListener('statechange', () => {
               if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
@@ -92,7 +92,7 @@ export function useServiceWorker() {
 
 /**
  * Offline Storage Hook
- * 
+ *
  * Provides IndexedDB storage for offline data.
  */
 export function useOfflineStorage(storeName) {
@@ -102,7 +102,7 @@ export function useOfflineStorage(storeName) {
     let database = null;
 
     const openDb = async () => {
-      const request = indexedDB.open('ngurra-offline', 1);
+      const request = indexedDB.open('nexta-offline', 1);
 
       request.onerror = () => {
         console.error('Failed to open IndexedDB');
@@ -115,22 +115,22 @@ export function useOfflineStorage(storeName) {
 
       request.onupgradeneeded = (event) => {
         const database = event.target.result;
-        
+
         // Create object stores
         if (!database.objectStoreNames.contains('pending-applications')) {
-          database.createObjectStore('pending-applications', { 
-            keyPath: 'id', 
-            autoIncrement: true 
+          database.createObjectStore('pending-applications', {
+            keyPath: 'id',
+            autoIncrement: true
           });
         }
-        
+
         if (!database.objectStoreNames.contains('pending-messages')) {
-          database.createObjectStore('pending-messages', { 
-            keyPath: 'id', 
-            autoIncrement: true 
+          database.createObjectStore('pending-messages', {
+            keyPath: 'id',
+            autoIncrement: true
           });
         }
-        
+
         if (!database.objectStoreNames.contains('cached-data')) {
           database.createObjectStore('cached-data', { keyPath: 'key' });
         }
@@ -213,7 +213,7 @@ export function useOfflineStorage(storeName) {
 
 /**
  * Background Sync Hook
- * 
+ *
  * Schedules background sync for offline actions.
  */
 export function useBackgroundSync() {
@@ -276,7 +276,7 @@ export function useBackgroundSync() {
 
 /**
  * Install Prompt Hook
- * 
+ *
  * Handles the PWA install prompt.
  */
 export function useInstallPrompt() {
@@ -319,12 +319,12 @@ export function useInstallPrompt() {
 
     installPrompt.prompt();
     const result = await installPrompt.userChoice;
-    
+
     if (result.outcome === 'accepted') {
       setInstallPrompt(null);
       return true;
     }
-    
+
     return false;
   };
 

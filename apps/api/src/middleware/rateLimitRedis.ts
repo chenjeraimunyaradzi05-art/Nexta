@@ -3,7 +3,7 @@
 
 /**
  * Redis-Backed Rate Limiter (Step 2)
- * 
+ *
  * Distributed rate limiting using Redis with sliding window algorithm.
  * Falls back to in-memory rate limiting when Redis is unavailable.
  */
@@ -85,7 +85,7 @@ async function initRateLimitRedis() {
       maxRetriesPerRequest: 3,
       retryDelayOnFailover: 100,
       enableReadyCheck: true,
-      keyPrefix: 'ngurra:',
+      keyPrefix: 'nexta:',
     });
 
     redis.on('error', (err) => {
@@ -127,16 +127,16 @@ async function checkRateLimitRedis(key, windowMs, max) {
   try {
     // Use Redis sorted set for sliding window
     const pipeline = redis.pipeline();
-    
+
     // Remove old entries outside the window
     pipeline.zremrangebyscore(key, 0, windowStart);
-    
+
     // Count current entries in window
     pipeline.zcard(key);
-    
+
     // Add current request
     pipeline.zadd(key, now, `${now}-${Math.random()}`);
-    
+
     // Set expiry on the key
     pipeline.pexpire(key, windowMs);
 
@@ -309,7 +309,7 @@ function rateLimitByKey(keyFn, type = 'api', overrides = {}) {
 async function getRateLimitStatus(identifier, type = 'api') {
   const config = RATE_LIMIT_CONFIGS[type];
   const key = `${config.keyPrefix}${identifier}`;
-  
+
   if (redis) {
     try {
       const now = Date.now();

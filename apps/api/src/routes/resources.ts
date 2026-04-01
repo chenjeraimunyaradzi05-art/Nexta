@@ -58,7 +58,7 @@ function mapResource(r: any, isBookmarked: boolean) {
     category: r.category,
     author: {
       id: r.authorId ?? 'system',
-      name: r.author ?? 'Ngurra Pathways',
+      name: r.author ?? 'Nexta',
       avatar: undefined,
     },
     thumbnail: r.thumbnailUrl ?? undefined,
@@ -334,7 +334,7 @@ router.get('/personalized/for-me', async (req, res, next) => {
       const prefs = profile?.foundationPreferences;
       if (prefs) {
         categories = [];
-        
+
         // Map preferences to resource categories
         if (prefs.businessFoundation || prefs.legalStartups || prefs.businessFormation) {
           categories.push('Business', 'Entrepreneurship', 'Startup');

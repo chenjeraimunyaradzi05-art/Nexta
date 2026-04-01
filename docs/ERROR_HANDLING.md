@@ -1,6 +1,6 @@
 # Error Handling Guide
 
-Comprehensive error handling patterns for the Ngurra Pathways platform.
+Comprehensive error handling patterns for the Nexta platform.
 
 ## Table of Contents
 
@@ -74,7 +74,7 @@ export class AuthorizationError extends AppError {
 
 export class NotFoundError extends AppError {
   constructor(resource: string, id?: string) {
-    const message = id 
+    const message = id
       ? `${resource} with id ${id} not found`
       : `${resource} not found`;
     super(message, 404, 'NOT_FOUND', true, { resource, id });
@@ -117,7 +117,7 @@ export function errorHandler(
 ): void {
   // Log error
   const logger = req.log || console;
-  
+
   if (err instanceof AppError) {
     // Operational error - expected
     if (err.statusCode >= 500) {
@@ -125,7 +125,7 @@ export function errorHandler(
     } else {
       logger.warn({ err, path: req.path }, 'Client error');
     }
-    
+
     res.status(err.statusCode).json({
       error: {
         code: err.code,
@@ -136,12 +136,12 @@ export function errorHandler(
   } else {
     // Unexpected error
     logger.error({ err, path: req.path }, 'Unhandled error');
-    
+
     // Don't expose internal errors in production
     const message = process.env.NODE_ENV === 'production'
       ? 'An unexpected error occurred'
       : err.message;
-    
+
     res.status(500).json({
       error: {
         code: 'INTERNAL_ERROR',
@@ -228,18 +228,18 @@ export function formatZodError(error: z.ZodError): ValidationError {
     message: err.message,
     code: err.code,
   }));
-  
+
   return new ValidationError('Validation failed', { validationErrors });
 }
 
 // Usage in route handler
 app.post('/api/jobs', asyncHandler(async (req, res) => {
   const result = createJobSchema.safeParse(req.body);
-  
+
   if (!result.success) {
     throw formatZodError(result.error);
   }
-  
+
   const job = await createJob(result.data);
   res.status(201).json(job);
 }));
@@ -328,7 +328,7 @@ export async function apiRequest<T>(
     if (error instanceof ApiError) {
       throw error;
     }
-    
+
     // Network error
     throw new ApiError(
       'Network error. Please check your connection.',
@@ -341,11 +341,11 @@ export async function apiRequest<T>(
 // Custom hook for API errors
 export function useApiError() {
   const [error, setError] = useState<ApiError | null>(null);
-  
+
   const handleError = useCallback((err: unknown) => {
     if (err instanceof ApiError) {
       setError(err);
-      
+
       // Auto-redirect for auth errors
       if (err.statusCode === 401) {
         router.push('/login');
@@ -354,9 +354,9 @@ export function useApiError() {
       setError(new ApiError('An unexpected error occurred', 500, 'UNKNOWN'));
     }
   }, []);
-  
+
   const clearError = useCallback(() => setError(null), []);
-  
+
   return { error, handleError, clearError };
 }
 ```
@@ -400,7 +400,7 @@ function RegistrationForm() {
           </span>
         )}
       </div>
-      
+
       <div>
         <input
           name="password"
@@ -416,7 +416,7 @@ function RegistrationForm() {
           </span>
         )}
       </div>
-      
+
       <button type="submit" disabled={isSubmitting}>
         {isSubmitting ? 'Registering...' : 'Register'}
       </button>
@@ -439,32 +439,32 @@ export function handlePrismaError(error: unknown): AppError {
         // Unique constraint violation
         const field = (error.meta?.target as string[])?.join(', ') || 'field';
         return new ConflictError(`A record with this ${field} already exists`);
-      
+
       case 'P2025':
         // Record not found
         return new NotFoundError('Record');
-      
+
       case 'P2003':
         // Foreign key constraint
         return new ValidationError('Referenced record does not exist');
-      
+
       case 'P2014':
         // Required relation violation
         return new ValidationError('Required related record is missing');
-      
+
       default:
         return new AppError(`Database error: ${error.code}`, 500, 'DB_ERROR');
     }
   }
-  
+
   if (error instanceof Prisma.PrismaClientValidationError) {
     return new ValidationError('Invalid data format');
   }
-  
+
   if (error instanceof Prisma.PrismaClientInitializationError) {
     return new AppError('Database connection failed', 503, 'DB_CONNECTION_ERROR');
   }
-  
+
   return new AppError('Database error', 500, 'DB_ERROR');
 }
 
@@ -487,15 +487,15 @@ export async function transferApplication(applicationId: string, newJobId: strin
       const application = await tx.application.findUniqueOrThrow({
         where: { id: applicationId },
       });
-      
+
       const newJob = await tx.job.findUniqueOrThrow({
         where: { id: newJobId },
       });
-      
+
       if (newJob.status !== 'active') {
         throw new ValidationError('Cannot transfer to inactive job');
       }
-      
+
       return tx.application.update({
         where: { id: applicationId },
         data: { jobId: newJobId },
@@ -542,13 +542,13 @@ const resumeData = await callExternalService('resume-parser', async () => {
     method: 'POST',
     body: resumeFile,
   });
-  
+
   if (!response.ok) {
     const error = new Error(`HTTP ${response.status}`);
     (error as any).status = response.status;
     throw error;
   }
-  
+
   return response.json();
 });
 ```
@@ -588,21 +588,21 @@ export async function withCircuitBreaker<T>(
 
   try {
     const result = await fn();
-    
+
     // Success - reset circuit
     circuit.failures = 0;
     circuit.state = 'closed';
     circuits.set(serviceName, circuit);
-    
+
     return result;
   } catch (error) {
     circuit.failures++;
     circuit.lastFailure = Date.now();
-    
+
     if (circuit.failures >= FAILURE_THRESHOLD) {
       circuit.state = 'open';
     }
-    
+
     circuits.set(serviceName, circuit);
     throw error;
   }

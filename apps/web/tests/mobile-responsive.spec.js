@@ -14,23 +14,23 @@ test.describe('Mobile Responsiveness', () => {
       await page.setViewportSize({ width: viewport.width, height: viewport.height });
       await safeGoto(page, '/');
       await waitForAppReady(page, ['header']);
-      
+
       // Header should be visible
       const header = page.getByRole('banner');
       await expect(header).toBeVisible({ timeout: 10000 });
-      
+
       // Logo should be visible
-      const logo = header.getByRole('img', { name: /ngurra/i });
+      const logo = header.getByRole('img', { name: /nexta/i });
       await expect(logo).toBeVisible();
-      
+
       // Mobile menu button should be visible (hamburger)
       const menuButton = page.locator('button').filter({ has: page.locator('svg') }).first();
       await expect(menuButton).toBeVisible();
-      
+
       // Desktop nav should be hidden
       const desktopNav = page.locator('.hidden.lg\\:block').first();
       await expect(desktopNav).not.toBeVisible();
-      
+
       // No horizontal overflow
       const body = page.locator('body');
       const bodyBox = await body.boundingBox();
@@ -42,7 +42,7 @@ test.describe('Mobile Responsiveness', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     await safeGoto(page, '/jobs');
     await waitForAppReady(page, ['header']);
-    
+
     // Page should load without horizontal scroll
     const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
     const clientWidth = await page.evaluate(() => document.documentElement.clientWidth);
@@ -53,11 +53,11 @@ test.describe('Mobile Responsiveness', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     await safeGoto(page, '/');
     await waitForAppReady(page, ['footer']);
-    
+
     // Footer should be visible
     const footer = page.getByRole('contentinfo');
     await expect(footer).toBeVisible({ timeout: 10000 });
-    
+
     // Footer links should be accessible
     const jobsLink = footer.getByRole('link', { name: /jobs/i });
     await expect(jobsLink).toBeVisible();
@@ -67,11 +67,11 @@ test.describe('Mobile Responsiveness', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     await safeGoto(page, '/');
     await waitForAppReady(page, ['header']);
-    
+
     // Check primary buttons meet minimum touch target size
     const buttons = page.locator('button, a[role="button"]');
     const count = await buttons.count();
-    
+
     for (let i = 0; i < Math.min(count, 5); i++) {
       const button = buttons.nth(i);
       if (await button.isVisible()) {

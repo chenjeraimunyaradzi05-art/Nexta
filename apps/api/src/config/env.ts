@@ -1,6 +1,6 @@
 /**
  * Environment Configuration
- * 
+ *
  * Centralized, typed environment configuration for the API.
  * Uses Zod for runtime validation and TypeScript for type safety.
  */
@@ -46,7 +46,7 @@ const envSchema = z.object({
   SENDGRID_API_KEY: z.string().optional(),
   SENDGRID_FROM_EMAIL: z.string().email().optional(),
   SENDGRID_WEBHOOK_SECRET: z.string().optional(),
-  EMAIL_FROM: z.string().email().default('noreply@ngurrapathways.com.au'),
+  EMAIL_FROM: z.string().email().default('noreply@nexta.com.au'),
 
   // SMS (optional)
   TWILIO_ACCOUNT_SID: z.string().optional(),
@@ -106,14 +106,14 @@ export function validateEnv(): EnvConfig | null {
 
   if (!result.success) {
     const isProd = process.env.NODE_ENV === 'production';
-    
+
     console.error('\n❌ Environment validation failed:\n');
-    
+
     const errors = result.error.flatten();
     Object.entries(errors.fieldErrors).forEach(([field, messages]) => {
       console.error(`  • ${field}: ${messages?.join(', ')}`);
     });
-    
+
     if (errors.formErrors.length > 0) {
       console.error('\n  Configuration errors:');
       errors.formErrors.forEach((msg) => {

@@ -1,6 +1,6 @@
 /**
  * Email Service
- * 
+ *
  * Email sending with template support, retries, and tracking.
  */
 
@@ -33,7 +33,7 @@ interface EmailResult {
 // Email templates
 const templates = {
   welcome: {
-    subject: 'Welcome to Ngurra Pathways',
+    subject: 'Welcome to Nexta',
     template: 'welcome',
   },
   passwordReset: {
@@ -83,7 +83,7 @@ export async function sendEmail(options: EmailOptions): Promise<EmailResult> {
   try {
     // In production, integrate with email provider (SendGrid, Postmark, etc.)
     const provider = process.env.EMAIL_PROVIDER || 'console';
-    
+
     switch (provider) {
       case 'sendgrid':
         return await sendViaSendGrid(options);
@@ -121,7 +121,7 @@ export async function sendEmailAsync(options: EmailOptions): Promise<string> {
   }, {
     priority: options.priority === 'high' ? 1 : options.priority === 'low' ? -1 : 0,
   });
-  
+
   return job.id!;
 }
 
@@ -135,7 +135,7 @@ export async function sendTemplateEmail(
   options?: Partial<EmailOptions>
 ): Promise<EmailResult> {
   const templateConfig = templates[template];
-  
+
   return sendEmail({
     to,
     subject: options?.subject || templateConfig.subject,

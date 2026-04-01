@@ -1,6 +1,6 @@
 # Pre-Launch Checklist
 
-**Target Launch Date:** Week of January 6, 2026  
+**Target Launch Date:** Week of January 6, 2026
 **Document Owner:** Platform Team
 
 ---
@@ -174,7 +174,7 @@ If critical issues are discovered after launch:
 
 1. **Enable maintenance mode**
    ```bash
-   curl -X POST https://api.ngurrapathways.com.au/admin/maintenance \
+   curl -X POST https://api.nexta.com.au/admin/maintenance \
      -H "Authorization: Bearer $ADMIN_TOKEN" \
      -d '{"enabled": true}'
    ```
@@ -183,7 +183,7 @@ If critical issues are discovered after launch:
    ```bash
    # Revert to previous Docker image
    docker-compose -f docker-compose.production.yml down
-   docker tag ngurra-api:previous ngurra-api:latest
+   docker tag nexta-api:previous nexta-api:latest
    docker-compose -f docker-compose.production.yml up -d
    ```
 

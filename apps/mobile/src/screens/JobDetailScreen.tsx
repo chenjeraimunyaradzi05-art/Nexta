@@ -68,7 +68,7 @@ export default function JobDetailScreen() {
 
   async function handleApply() {
     if (!job) return;
-    
+
     Alert.alert(
       'Apply for Job',
       `Apply for ${job.title}?`,
@@ -94,10 +94,10 @@ export default function JobDetailScreen() {
 
   async function handleShare() {
     if (!job) return;
-    
+
     try {
       await Share.share({
-        message: `Check out this job: ${job.title} at ${job.company?.name || 'a great company'}\n\nApply on Ngurra Pathways`,
+        message: `Check out this job: ${job.title} at ${job.company?.name || 'a great company'}\n\nApply on Nexta`,
         title: job.title,
       });
     } catch (error) {
@@ -172,8 +172,8 @@ export default function JobDetailScreen() {
 
         {/* Action Buttons */}
         <View style={styles.actions} accessibilityRole="toolbar">
-          <TouchableOpacity 
-            style={styles.actionButton} 
+          <TouchableOpacity
+            style={styles.actionButton}
             onPress={handleSave}
             accessibilityRole="button"
             accessibilityLabel="Save this job"
@@ -181,8 +181,8 @@ export default function JobDetailScreen() {
             <Ionicons name="bookmark-outline" size={22} color={colors.primary} />
             <Text style={styles.actionText}>Save</Text>
           </TouchableOpacity>
-          <TouchableOpacity 
-            style={styles.actionButton} 
+          <TouchableOpacity
+            style={styles.actionButton}
             onPress={handleShare}
             accessibilityRole="button"
             accessibilityLabel="Share this job"

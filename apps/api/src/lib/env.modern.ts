@@ -1,9 +1,9 @@
 /**
  * Environment Variable Validation (Modernized)
- * 
+ *
  * Validates all required environment variables on startup using Zod.
  * Fails fast with clear error messages if configuration is invalid.
- * 
+ *
  * This version uses ES6 imports and stricter production validation.
  */
 
@@ -56,7 +56,7 @@ const baseEnvSchema = z.object({
   SMTP_PORT: z.string().regex(/^\d+$/).transform(Number).optional(),
   SMTP_USER: z.string().optional(),
   SMTP_PASS: z.string().optional(),
-  EMAIL_FROM: z.string().email().default('noreply@ngurrapathways.com.au'),
+  EMAIL_FROM: z.string().email().default('noreply@nexta.com.au'),
 
   // AI Services (optional)
   OPENAI_API_KEY: z.string().startsWith('sk-').optional(),
@@ -87,7 +87,7 @@ const envSchema = baseEnvSchema.superRefine((data, ctx) => {
         path: ['JWT_SECRET'],
       });
     }
-    
+
     // Warn if DEV_JWT_SECRET is set in production
     if (data.DEV_JWT_SECRET) {
       console.warn('⚠️  DEV_JWT_SECRET is set in production - this will be ignored');
@@ -201,7 +201,7 @@ export function getEnvConfig(): AppConfig {
     return {
       nodeEnv: 'development',
       port: 3001,
-      databaseUrl: process.env.DATABASE_URL || 'postgresql://ngurra:dev_password_secure@localhost:5432/ngurra_dev',
+      databaseUrl: process.env.DATABASE_URL || 'postgresql://nexta:dev_password_secure@localhost:5432/nexta_dev',
       jwtSecret: process.env.JWT_SECRET || process.env.DEV_JWT_SECRET || 'dev-secret-key-for-local-development-only',
       jwtExpiresIn: '15m',
       jwtRefreshExpiresIn: '7d',
@@ -219,7 +219,7 @@ export function getEnvConfig(): AppConfig {
         webhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
       },
       email: {
-        from: process.env.EMAIL_FROM || 'noreply@ngurrapathways.com.au',
+        from: process.env.EMAIL_FROM || 'noreply@nexta.com.au',
         sendgridKey: process.env.SENDGRID_API_KEY,
         smtpHost: process.env.SMTP_HOST,
       },

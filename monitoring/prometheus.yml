@@ -1,5 +1,5 @@
-# Prometheus Configuration for Ngurra Pathways
-# 
+# Prometheus Configuration for Nexta
+#
 # This configuration file defines scrape targets and alerting rules
 # for monitoring the platform.
 
@@ -7,7 +7,7 @@ global:
   scrape_interval: 15s
   evaluation_interval: 15s
   external_labels:
-    monitor: 'ngurra-pathways'
+    monitor: 'nexta'
 
 # Alerting configuration
 alerting:
@@ -28,24 +28,24 @@ scrape_configs:
       - targets: ['localhost:9090']
 
   # API Server metrics
-  - job_name: 'ngurra-api'
+  - job_name: 'nexta-api'
     metrics_path: '/metrics'
     static_configs:
       - targets: ['api:3001']
     relabel_configs:
       - source_labels: [__address__]
         target_label: instance
-        replacement: 'ngurra-api'
+        replacement: 'nexta-api'
 
   # Web Server (Next.js) metrics
-  - job_name: 'ngurra-web'
+  - job_name: 'nexta-web'
     metrics_path: '/api/metrics'
     static_configs:
       - targets: ['web:3000']
     relabel_configs:
       - source_labels: [__address__]
         target_label: instance
-        replacement: 'ngurra-web'
+        replacement: 'nexta-web'
 
   # PostgreSQL metrics (using postgres_exporter)
   - job_name: 'postgresql'

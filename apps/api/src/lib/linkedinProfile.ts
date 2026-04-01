@@ -1,9 +1,9 @@
 /**
  * LinkedIn Profile Import Library
- * 
+ *
  * Fetches and parses LinkedIn profile data for import into user profiles.
  * Uses stored OAuth tokens to access LinkedIn API.
- * 
+ *
  * Note: LinkedIn API v2 has limited access. This implementation works with
  * available endpoints and gracefully degrades when data is unavailable.
  */
@@ -85,7 +85,7 @@ async function fetchWithAuth(url, accessToken) {
 }
 
 /**
- * Import LinkedIn profile data into user's Ngurra profile
+ * Import LinkedIn profile data into user's Nexta profile
  * @param {string} userId - User ID to import data for
  * @param {Object} importOptions - Which fields to import
  * @returns {Promise<Object>} Updated profile
@@ -207,38 +207,38 @@ async function parseResumeText(resumeText) {
     'driving', 'mc licence', 'hr licence', 'mr licence', 'heavy vehicle',
     'mining', 'rigging', 'dogging', 'excavator', 'bobcat', 'loader',
     'concreting', 'tiling', 'plastering', 'painting', 'roofing',
-    
+
     // Office/Admin
     'microsoft office', 'excel', 'word', 'powerpoint', 'data entry',
     'customer service', 'reception', 'administration', 'bookkeeping',
     'accounting', 'payroll', 'invoicing', 'scheduling', 'filing',
     'typing', 'correspondence', 'minute taking', 'record keeping',
-    
+
     // Healthcare/Community
     'aged care', 'disability support', 'community services', 'mental health',
     'first aid', 'cpr', 'working with children', 'ndis',
     'personal care', 'medication administration', 'patient care',
     'counselling', 'case management', 'support worker', 'youth work',
-    
+
     // Education/Training
     'tafe', 'certificate', 'diploma', 'apprentice', 'trainee',
     'rto', 'qualification', 'training', 'teaching', 'facilitating',
     'assessment', 'curriculum', 'education', 'learning support',
-    
+
     // IT/Technology
     'computer', 'software', 'hardware', 'networking', 'programming',
     'database', 'web development', 'coding', 'javascript', 'python',
     'html', 'css', 'it support', 'helpdesk', 'troubleshooting',
-    
+
     // Hospitality/Tourism
     'hospitality', 'tourism', 'food handling', 'rsa', 'rsg', 'barista',
     'cooking', 'chef', 'catering', 'housekeeping', 'front desk',
-    
+
     // Soft Skills
     'communication', 'teamwork', 'leadership', 'problem solving',
     'time management', 'organisation', 'mentoring', 'negotiation',
     'conflict resolution', 'public speaking', 'presentation skills',
-    
+
     // Cultural
     'cultural awareness', 'community engagement', 'elder consultation',
     'indigenous', 'aboriginal', 'torres strait', 'cultural safety',

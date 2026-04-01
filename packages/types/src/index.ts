@@ -1,7 +1,7 @@
 /**
- * @ngurra/types
- * 
- * Shared TypeScript types for Ngurra Pathways Platform.
+ * @nexta/types
+ *
+ * Shared TypeScript types for Nexta Platform.
  * This package ensures type consistency across API, Web, and Mobile apps.
  */
 

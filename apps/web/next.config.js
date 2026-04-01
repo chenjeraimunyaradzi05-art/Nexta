@@ -42,19 +42,19 @@ const cspDirectives = {
     'https://res.cloudinary.com',
     'https://images.unsplash.com',
     'https://logo.clearbit.com',
-    'https://*.ngurrapathways.life',
+    'https://*.nexta.life',
     'https://avatars.githubusercontent.com', // GitHub avatars
     'https://lh3.googleusercontent.com', // Google avatars
   ],
   'connect-src': [
     "'self'",
-    'https://*.ngurrapathways.life',
+    'https://*.nexta.life',
     'https://*.gimbi.com.au', // Backend API
     'https://*.netlify.app', // Deploy previews
     'https://*.up.railway.app', // Railway backend
     'wss://*.up.railway.app', // Railway WebSocket
     'https://api.stripe.com',
-    'wss://*.ngurrapathways.life', // WebSocket connections
+    'wss://*.nexta.life', // WebSocket connections
     'wss://*.gimbi.com.au', // WebSocket connections
     'https://meet.jit.si',
     ...(isProduction
@@ -118,7 +118,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**.ngurrapathways.life',
+        hostname: '**.nexta.life',
       },
       {
         protocol: 'https',

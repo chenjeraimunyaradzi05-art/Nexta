@@ -23,8 +23,8 @@ test.describe('Phase 8B - Training Pathways', () => {
     await page.goto(webBase);
     await page.evaluate(
       ([t]) => {
-        localStorage.setItem('ngurra_token', t);
-        document.cookie = `ngurra_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`;
+        localStorage.setItem('nexta_token', t);
+        document.cookie = `nexta_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`;
       },
       [memberToken]
     );
@@ -169,7 +169,7 @@ test.describe('Phase 8B - Training Pathways', () => {
               badge: {
                 name: 'Course Completion',
                 description: 'Completed a training course',
-                issuerName: 'Ngurra Pathways',
+                issuerName: 'Nexta',
               },
             },
           ],

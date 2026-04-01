@@ -86,7 +86,7 @@ const TIERS = [
       { text: 'SLA guarantee', included: true },
     ],
     cta: 'Contact Sales',
-    ctaHref: 'mailto:enterprise@ngurrapathways.com.au?subject=Enterprise%20Plan%20Inquiry',
+    ctaHref: 'mailto:enterprise@nexta.com.au?subject=Enterprise%20Plan%20Inquiry',
     popular: false,
   },
 ];
@@ -111,7 +111,7 @@ const RAP_TIER = {
     'Custom annual contracts available',
   ],
   cta: 'Contact Sales',
-  ctaHref: 'mailto:rap@ngurrapathways.com.au?subject=RAP%20Partnership%20Inquiry',
+  ctaHref: 'mailto:rap@nexta.com.au?subject=RAP%20Partnership%20Inquiry',
 };
 
 export default function PricingPage() {
@@ -155,11 +155,11 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="ngurra-page relative">
+    <div className="nexta-page relative">
       {/* Decorative halos */}
-      <div className="ngurra-halos">
-        <div className="ngurra-halo-pink" />
-        <div className="ngurra-halo-purple" />
+      <div className="nexta-halos">
+        <div className="nexta-halo-pink" />
+        <div className="nexta-halo-purple" />
       </div>
 
       {/* Hero Section */}
@@ -171,11 +171,11 @@ export default function PricingPage() {
           <Sparkles className="w-5 h-5" style={{ color: '#B76E79' }} />
         </div>
 
-        <h1 className="ngurra-h1 text-4xl sm:text-5xl mb-6">
+        <h1 className="nexta-h1 text-4xl sm:text-5xl mb-6">
           Simple, Transparent Pricing
         </h1>
-        <p className="text-xl max-w-2xl mx-auto mb-10 ngurra-text">
-          Connect with talented First Nations candidates and build a more inclusive workforce. 
+        <p className="text-xl max-w-2xl mx-auto mb-10 nexta-text">
+          Connect with talented First Nations candidates and build a more inclusive workforce.
           Choose the plan that fits your noble purpose. ✨
         </p>
 
@@ -187,14 +187,14 @@ export default function PricingPage() {
           <button
             onClick={() => setBillingPeriod(billingPeriod === 'monthly' ? 'yearly' : 'monthly')}
             className="relative w-16 h-8 rounded-full transition-all duration-300"
-            style={{ 
+            style={{
               background: 'linear-gradient(135deg, rgba(26, 15, 46, 0.8), rgba(45, 27, 105, 0.6))',
               border: '2px solid rgba(255, 215, 0, 0.4)'
             }}
           >
-            <div 
+            <div
               className="absolute top-1 w-5 h-5 rounded-full transition-all duration-300"
-              style={{ 
+              style={{
                 background: 'linear-gradient(135deg, #FFD700, #50C878)',
                 boxShadow: '0 0 15px rgba(255, 215, 0, 0.5)',
                 transform: billingPeriod === 'yearly' ? 'translateX(32px)' : 'translateX(4px)'
@@ -242,9 +242,9 @@ export default function PricingPage() {
               >
                 {tier.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span 
+                    <span
                       className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold"
-                      style={{ 
+                      style={{
                         background: 'linear-gradient(135deg, #FFD700, #50C878)',
                         color: '#1A0F2E',
                         boxShadow: '0 4px 15px rgba(255, 215, 0, 0.4)'
@@ -257,9 +257,9 @@ export default function PricingPage() {
                 )}
 
                 <div className="flex items-center gap-3 mb-5">
-                  <div 
+                  <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center"
-                    style={{ 
+                    style={{
                       background: `linear-gradient(135deg, ${tier.color}20, ${tier.color}10)`,
                       border: `1px solid ${tier.color}40`
                     }}
@@ -274,7 +274,7 @@ export default function PricingPage() {
                   <span className="text-sm ml-1" style={{ color: 'rgba(248, 246, 255, 0.6)' }}>{getPeriod(tier)}</span>
                 </div>
 
-                <p className="text-sm mb-6 ngurra-text">{tier.description}</p>
+                <p className="text-sm mb-6 nexta-text">{tier.description}</p>
 
                 <ul className="space-y-3 mb-6">
                   {tier.features.map((feature, idx) => (
@@ -330,9 +330,9 @@ export default function PricingPage() {
 
         {/* RAP Partnership Section */}
         <div className="max-w-4xl mx-auto mb-16">
-          <div 
+          <div
             className="rounded-2xl p-8 text-left"
-            style={{ 
+            style={{
               background: 'linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(196, 30, 58, 0.05), rgba(26, 15, 46, 0.9))',
               border: '2px solid rgba(255, 215, 0, 0.4)',
               boxShadow: '0 12px 40px rgba(26, 15, 46, 0.4), 0 0 40px rgba(255, 215, 0, 0.1), inset 0 0 60px rgba(255, 215, 0, 0.02)'
@@ -341,9 +341,9 @@ export default function PricingPage() {
             <div className="flex flex-col md:flex-row gap-8">
               <div className="flex-1">
                 <div className="flex items-center gap-4 mb-5">
-                  <div 
+                  <div
                     className="w-14 h-14 rounded-xl flex items-center justify-center"
-                    style={{ 
+                    style={{
                       background: 'linear-gradient(135deg, #FFD700, #B76E79)',
                       boxShadow: '0 0 25px rgba(255, 215, 0, 0.4)'
                     }}
@@ -355,11 +355,11 @@ export default function PricingPage() {
                     <p className="text-sm" style={{ color: '#B76E79' }}>Custom annual contracts from $5,000/month</p>
                   </div>
                 </div>
-                <p className="mb-6 ngurra-text">{RAP_TIER.description}</p>
+                <p className="mb-6 nexta-text">{RAP_TIER.description}</p>
                 <Link
                   href={RAP_TIER.ctaHref}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300"
-                  style={{ 
+                  style={{
                     background: 'linear-gradient(135deg, #FFD700, #B76E79)',
                     color: '#1A0F2E',
                     boxShadow: '0 4px 20px rgba(255, 215, 0, 0.35)'
@@ -399,23 +399,23 @@ export default function PricingPage() {
         <div className="max-w-3xl mx-auto text-left">
           <h2 className="text-2xl font-bold text-center mb-10 text-gradient-gold">Frequently Asked Questions</h2>
           <div className="space-y-4">
-            <FaqItem 
+            <FaqItem
               question="Can I change plans anytime?"
               answer="Yes! You can upgrade or downgrade your plan at any time. When upgrading, you'll be charged the prorated difference. When downgrading, your new rate applies at the next billing cycle."
             />
-            <FaqItem 
+            <FaqItem
               question="Is there a free trial?"
               answer="All paid plans come with a 14-day free trial. No credit card required to start. You'll only be charged if you decide to continue after the trial."
             />
-            <FaqItem 
+            <FaqItem
               question="What payment methods do you accept?"
               answer="We accept all major credit cards (Visa, Mastercard, American Express), direct debit, and bank transfer for Enterprise and RAP plans."
             />
-            <FaqItem 
+            <FaqItem
               question="What is the RAP Partnership?"
               answer="Our RAP Partnership tier is designed for organizations with a Reconciliation Action Plan. It includes comprehensive compliance reporting, Indigenous hiring metrics, and dedicated support to help you meet your RAP commitments."
             />
-            <FaqItem 
+            <FaqItem
               question="Do you offer discounts for non-profits?"
               answer="Yes! We offer special pricing for registered Indigenous community organizations, non-profits, and social enterprises. Contact us for details."
             />
@@ -423,9 +423,9 @@ export default function PricingPage() {
         </div>
 
         {/* CTA Footer */}
-        <div 
+        <div
           className="mt-16 p-10 rounded-2xl text-center"
-          style={{ 
+          style={{
             background: 'linear-gradient(135deg, rgba(196, 30, 58, 0.1), rgba(80, 200, 120, 0.08), rgba(26, 15, 46, 0.9))',
             border: '1px solid rgba(255, 215, 0, 0.3)',
             boxShadow: '0 12px 40px rgba(26, 15, 46, 0.4), inset 0 0 60px rgba(255, 215, 0, 0.02)'
@@ -439,7 +439,7 @@ export default function PricingPage() {
             <Link
               href="/company/setup"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold transition-all duration-300"
-              style={{ 
+              style={{
                 background: 'linear-gradient(135deg, #C41E3A, #E85B8A)',
                 color: 'white',
                 border: '2px solid #FFD700',
@@ -458,9 +458,9 @@ export default function PricingPage() {
               Get Started Free
             </Link>
             <Link
-              href="mailto:hello@ngurrapathways.com.au"
+              href="mailto:hello@nexta.com.au"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold transition-all duration-300"
-              style={{ 
+              style={{
                 background: 'transparent',
                 color: '#FFD700',
                 border: '2px solid rgba(255, 215, 0, 0.5)'
@@ -487,9 +487,9 @@ function FaqItem({ question, answer }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div 
+    <div
       className="rounded-xl overflow-hidden transition-all duration-300"
-      style={{ 
+      style={{
         background: 'linear-gradient(135deg, rgba(26, 15, 46, 0.7), rgba(45, 27, 105, 0.5))',
         border: '1px solid rgba(255, 215, 0, 0.2)'
       }}
@@ -505,8 +505,8 @@ function FaqItem({ question, answer }) {
         }}
       >
         <span className="font-medium" style={{ color: '#F8F6FF' }}>{question}</span>
-        <span 
-          className="transition-transform duration-300" 
+        <span
+          className="transition-transform duration-300"
           style={{ color: '#FFD700', transform: open ? 'rotate(180deg)' : 'rotate(0)' }}
         >
           ▼

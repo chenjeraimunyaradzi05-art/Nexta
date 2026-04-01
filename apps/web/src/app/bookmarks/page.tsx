@@ -5,13 +5,13 @@ import Link from 'next/link';
 import Image from '@/components/ui/OptimizedImage';
 import { isCloudinaryPublicId } from '@/lib/cloudinary';
 import { Space_Grotesk } from 'next/font/google';
-import { 
+import {
   Bookmark, ArrowLeft, Heart, MessageCircle, Share2,
   MoreHorizontal, Filter, Search, Briefcase, FileText, Calendar
 } from 'lucide-react';
 
-const spaceGrotesk = Space_Grotesk({ 
-  subsets: ['latin'], 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
   weight: ['400', '500', '700'],
   variable: '--font-space-grotesk'
 });
@@ -128,15 +128,15 @@ export default function BookmarksPage() {
   };
 
   return (
-    <div className={`${spaceGrotesk.className} ngurra-page relative overflow-hidden`}>
+    <div className={`${spaceGrotesk.className} nexta-page relative overflow-hidden`}>
       {/* Decorative halos */}
-      <div className="ngurra-halo-pink" />
-      <div className="ngurra-halo-purple" />
+      <div className="nexta-halo-pink" />
+      <div className="nexta-halo-purple" />
 
       <div className="relative max-w-4xl mx-auto px-4 py-6">
         {/* Header */}
         <div className="flex items-center gap-4 mb-6">
-          <Link 
+          <Link
             href="/"
             className="p-2 rounded-lg bg-white border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-pink-600 transition-colors"
           >
@@ -181,7 +181,7 @@ export default function BookmarksPage() {
               onClick={() => setActiveTab(tab.id as typeof activeTab)}
               className="px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2"
               style={
-                activeTab === tab.id 
+                activeTab === tab.id
                   ? { background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)`, color: 'white' }
                   : { background: 'white', border: '1px solid #E2E8F0', color: '#64748B' }
               }
@@ -208,10 +208,10 @@ export default function BookmarksPage() {
             <p className="text-slate-500 mb-6">
               {searchQuery ? 'No items match your search' : 'Start saving posts, jobs, and articles to access them later'}
             </p>
-            <Link 
+            <Link
               href="/social-feed"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-medium transition-all hover:scale-[1.02]"
-              style={{ 
+              style={{
                 background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)`,
                 boxShadow: '0 4px 12px rgba(233, 30, 140, 0.3)'
               }}
@@ -222,7 +222,7 @@ export default function BookmarksPage() {
         ) : (
           <div className="space-y-4">
             {filteredItems.map((item) => (
-              <article 
+              <article
                 key={item.id}
                 className="rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-pink-300 transition-colors"
                 style={{ boxShadow: '0 4px 20px rgba(15, 23, 42, 0.06)' }}
@@ -253,7 +253,7 @@ export default function BookmarksPage() {
                         />
                       </div>
                     )}
-                    
+
                     <div className="flex-1 min-w-0">
                       {/* Type Badge */}
                       <div className="flex items-center gap-2 mb-2">
@@ -263,22 +263,22 @@ export default function BookmarksPage() {
                         </span>
                         <span className="text-xs text-slate-400">Saved {item.savedAt}</span>
                       </div>
-                      
+
                       {/* Title */}
                       <h3 className="font-semibold text-slate-800 mb-1 line-clamp-1">{item.title}</h3>
-                      
+
                       {/* Description */}
                       <p className="text-sm text-slate-500 mb-2 line-clamp-2">{item.description}</p>
-                      
+
                       {/* Author */}
                       <div className="flex items-center gap-2 text-sm text-slate-400">
                         <span>by {item.author}</span>
                       </div>
                     </div>
-                    
+
                     {/* Actions */}
                     <div className="flex items-start gap-2 shrink-0">
-                      <button 
+                      <button
                         onClick={() => handleRemove(item.id)}
                         className="p-2 rounded-lg hover:bg-pink-50 transition-colors"
                         style={{ color: accentPink }}

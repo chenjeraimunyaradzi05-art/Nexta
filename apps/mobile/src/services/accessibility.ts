@@ -2,7 +2,7 @@ import { AccessibilityInfo, PixelRatio, Dimensions, Appearance, EmitterSubscript
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Storage keys
-const ACCESSIBILITY_PREFS_KEY = '@ngurra_accessibility_prefs';
+const ACCESSIBILITY_PREFS_KEY = '@nexta_accessibility_prefs';
 
 export interface AccessibilityPreferences {
   highContrastMode: boolean;
@@ -104,13 +104,13 @@ export function getAccessibilityPrefs(): AccessibilityPreferences {
  */
 export async function updateAccessibilityPrefs(prefs: Partial<AccessibilityPreferences>) {
   currentPrefs = { ...currentPrefs, ...prefs };
-  
+
   try {
     await AsyncStorage.setItem(ACCESSIBILITY_PREFS_KEY, JSON.stringify(currentPrefs));
   } catch (e) {
     console.warn('Failed to save accessibility prefs:', e);
   }
-  
+
   notifyListeners();
 }
 
@@ -120,7 +120,7 @@ export async function updateAccessibilityPrefs(prefs: Partial<AccessibilityPrefe
 export function addAccessibilityListener(listener: (prefs: AccessibilityPreferences) => void) {
   listeners.push(listener);
   listener(currentPrefs);
-  
+
   return () => {
     listeners = listeners.filter(l => l !== listener);
   };

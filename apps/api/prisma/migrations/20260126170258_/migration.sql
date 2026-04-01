@@ -3365,7 +3365,7 @@ CREATE TABLE "UserBadge" (
     "description" TEXT,
     "imageUrl" TEXT,
     "criteriaUrl" TEXT,
-    "issuerName" TEXT NOT NULL DEFAULT 'Ngurra Pathways',
+    "issuerName" TEXT NOT NULL DEFAULT 'Nexta',
     "issuerId" TEXT,
     "badgeJson" TEXT,
     "verificationUrl" TEXT,

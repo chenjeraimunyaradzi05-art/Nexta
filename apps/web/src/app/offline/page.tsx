@@ -2,7 +2,7 @@
 
 /**
  * Offline Page
- * 
+ *
  * Displayed when the user is offline and the requested page
  * is not available in cache.
  */
@@ -47,7 +47,7 @@ export default function OfflinePage() {
 
   const handleRetry = async () => {
     setIsRetrying(true);
-    
+
     try {
       const response = await fetch('/api/health', { method: 'HEAD' });
       if (response.ok) {
@@ -56,7 +56,7 @@ export default function OfflinePage() {
     } catch {
       // Still offline
     }
-    
+
     setTimeout(() => setIsRetrying(false), 1000);
   };
 
@@ -66,8 +66,8 @@ export default function OfflinePage() {
       <header className="bg-slate-800 border-b border-slate-700 px-4 py-4">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <OptimizedImage src="/logos/logo.svg" alt="Ngurra" width={32} height={32} className="h-8 w-8" />
-            <span className="text-xl font-bold text-white">Ngurra Pathways</span>
+            <OptimizedImage src="/logos/logo.svg" alt="Nexta" width={32} height={32} className="h-8 w-8" />
+            <span className="text-xl font-bold text-white">Nexta</span>
           </div>
           <div className="flex items-center gap-2 text-slate-400">
             <WifiOff className="w-5 h-5" />

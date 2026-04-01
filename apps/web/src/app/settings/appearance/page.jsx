@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { 
-  ArrowLeft, 
-  Moon, 
-  Sun, 
+import {
+  ArrowLeft,
+  Moon,
+  Sun,
   Monitor,
   Sparkles,
   Type,
@@ -44,7 +44,7 @@ export default function AppearanceSettingsPage() {
   function updateFontSize(newSize) {
     setFontSize(newSize);
     localStorage.setItem('fontSize', newSize);
-    
+
     const root = document.documentElement;
     switch (newSize) {
       case 'small':
@@ -66,7 +66,7 @@ export default function AppearanceSettingsPage() {
     const newValue = !reducedMotion;
     setReducedMotion(newValue);
     localStorage.setItem('reducedMotion', newValue.toString());
-    
+
     if (newValue) {
       document.documentElement.classList.add('reduce-motion');
     } else {
@@ -78,7 +78,7 @@ export default function AppearanceSettingsPage() {
     const newValue = !highContrast;
     setHighContrast(newValue);
     localStorage.setItem('highContrast', newValue.toString());
-    
+
     if (newValue) {
       document.documentElement.classList.add('high-contrast');
     } else {
@@ -91,8 +91,8 @@ export default function AppearanceSettingsPage() {
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
-          <Link 
-            href="/settings" 
+          <Link
+            href="/settings"
             className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
           >
             <ArrowLeft className="w-5 h-5 text-gray-500 dark:text-slate-400" />
@@ -102,7 +102,7 @@ export default function AppearanceSettingsPage() {
               <Moon className="w-6 h-6 text-gray-500 dark:text-slate-400" />
               Appearance
             </h1>
-            <p className="text-gray-500 dark:text-slate-400">Customize how Ngurra Pathways looks</p>
+            <p className="text-gray-500 dark:text-slate-400">Customize how Nexta looks</p>
           </div>
         </div>
 
@@ -112,7 +112,7 @@ export default function AppearanceSettingsPage() {
             <Palette className="w-5 h-5 text-purple-500 dark:text-purple-400" />
             Theme
           </h2>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             <ThemeOption
               icon={<Sun className="w-5 h-5" />}
@@ -147,7 +147,7 @@ export default function AppearanceSettingsPage() {
             <Type className="w-5 h-5 text-blue-500 dark:text-blue-400" />
             Text Size
           </h2>
-          
+
           <div className="space-y-3">
             {[
               { value: 'small', label: 'Small', preview: 'Aa' },
@@ -189,7 +189,7 @@ export default function AppearanceSettingsPage() {
             <Eye className="w-5 h-5 text-green-500 dark:text-green-400" />
             Accessibility
           </h2>
-          
+
           <div className="space-y-4">
             <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-slate-700/30 rounded-lg">
               <div>
@@ -231,7 +231,7 @@ export default function AppearanceSettingsPage() {
           </div>
 
           <p className="mt-4 text-sm text-gray-500 dark:text-slate-500">
-            Ngurra Pathways is designed to meet WCAG AA accessibility standards. 
+            Nexta is designed to meet WCAG AA accessibility standards.
             If you have specific accessibility needs, please{' '}
             <Link href="/help" className="text-blue-600 dark:text-blue-400 hover:underline">contact us</Link>.
           </p>

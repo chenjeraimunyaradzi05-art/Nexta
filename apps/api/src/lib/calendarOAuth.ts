@@ -2,7 +2,7 @@
 /**
  * Google Calendar OAuth Integration Library
  * Handles OAuth flow and calendar operations for mentor scheduling
- * 
+ *
  * Note: This requires googleapis package: npm install googleapis
  * And env vars: GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI
  */
@@ -37,7 +37,7 @@ function createOAuth2Client() {
     console.warn('Google Calendar: googleapis not installed');
     return null;
   }
-  
+
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
   const redirectUri = process.env.GOOGLE_REDIRECT_URI || 'http://localhost:3001/auth/google/callback';
@@ -159,7 +159,7 @@ async function getAvailableSlots(tokens, availabilityRules, startDate, endDate, 
 
       while (slotStart < dayEnd) {
         const slotEnd = new Date(slotStart.getTime() + slotDurationMinutes * 60000);
-        
+
         if (slotEnd > dayEnd) break;
 
         // Check if slot conflicts with busy times
@@ -200,7 +200,7 @@ async function createSessionEvent(tokens, session) {
 
   const event = {
     summary: `Mentorship Session with ${session.menteeName || 'Mentee'}`,
-    description: `Ngurra Pathways mentorship session\n\n${session.notes || ''}\n\nJoin: ${session.videoUrl || 'Link will be provided'}`,
+    description: `Nexta mentorship session\n\n${session.notes || ''}\n\nJoin: ${session.videoUrl || 'Link will be provided'}`,
     start: {
       dateTime: session.scheduledAt,
       timeZone: session.timezone || 'Australia/Sydney',

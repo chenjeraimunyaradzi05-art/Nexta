@@ -1,6 +1,6 @@
 /**
  * API Version Router
- * 
+ *
  * Provides versioned API endpoints (/v1/, /v2/, etc.)
  * Maintains backward compatibility while allowing API evolution.
  */
@@ -21,7 +21,7 @@ export function createVersionRouter(options: any = {}) {
   // Add version headers to all responses
   router.use((req, res, next) => {
     res.setHeader('X-API-Version', version);
-    
+
     if (deprecated) {
       res.setHeader('Deprecation', 'true');
       if (sunset) {
@@ -37,7 +37,7 @@ export function createVersionRouter(options: any = {}) {
     // Store version info on request for route handlers
     req.apiVersion = version;
     req.apiDeprecated = deprecated;
-    
+
     next();
   });
 
@@ -58,23 +58,23 @@ export function versionNegotiation(defaultVersion = 'v1') {
     // Priority: path > header > query > accept > default
     // Path version is handled by route mounting
     req.requestedVersion = headerVersion || queryVersion || acceptVersion || defaultVersion;
-    
+
     next();
   };
 }
 
 /**
  * Parse version from Accept header
- * e.g., application/vnd.ngurra+json; version=1
+ * e.g., application/vnd.nexta+json; version=1
  */
 function parseAcceptVersionHeader(accept) {
   if (!accept) return null;
-  
+
   const versionMatch = accept.match(/version=(\d+)/i);
   if (versionMatch) {
     return `v${versionMatch[1]}`;
   }
-  
+
   return null;
 }
 
@@ -87,7 +87,7 @@ export function deprecationResponse(oldEndpoint, newEndpoint, sunsetDate) {
     deprecated_endpoint: oldEndpoint,
     replacement_endpoint: newEndpoint,
     sunset_date: sunsetDate,
-    documentation: 'https://api.ngurrapathways.com.au/docs',
+    documentation: 'https://api.nexta.com.au/docs',
   };
 }
 
@@ -99,7 +99,7 @@ export function trackVersionUsage(analyticsClient) {
     const version = req.apiVersion || 'unknown';
     const endpoint = req.path;
     const method = req.method;
-    
+
     // Non-blocking analytics
     setImmediate(() => {
       try {
@@ -129,9 +129,9 @@ export function trackVersionUsage(analyticsClient) {
  * Ensures consistent response format across all versions
  */
 export function apiResponse(data, options: any = {}) {
-  const { 
-    meta = {}, 
-    links = {}, 
+  const {
+    meta = {},
+    links = {},
     included = [],
     warnings = [],
   } = options;
@@ -178,7 +178,7 @@ export function apiError(code, message, details = {}) {
  */
 export function paginationMeta(page, limit, total) {
   const totalPages = Math.ceil(total / limit);
-  
+
   return {
     pagination: {
       page,
