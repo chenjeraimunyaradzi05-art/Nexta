@@ -39,6 +39,11 @@
     Access-Control-Allow-Origin = "https://nexta.life"
 
 [[redirects]]
+  from = "/api/neon/*"
+  status = 200
+  # Let Next.js handle Neon-powered routes (no external redirect)
+
+[[redirects]]
   from = "/api/*"
   to = "https://nexta-api-production.up.railway.app/:splat"
   status = 200
@@ -46,7 +51,7 @@
 
 [[redirects]]
   from = "/health"
-  to = "/.netlify/functions/health"
+  to = "/api/neon/health"
   status = 200
 
 [[redirects]]

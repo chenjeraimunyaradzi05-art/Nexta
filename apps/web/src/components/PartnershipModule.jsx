@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { Handshake, Users, Sparkles, Megaphone } from 'lucide-react';
-import { API_BASE } from '@/lib/apiBase';
 
 function PartnerLogo({ name, logoUrl, size = 'sm' }) {
   const sizeClasses = size === 'sm' ? 'h-8 w-8 text-xs' : 'h-10 w-10 text-sm';
@@ -50,7 +49,7 @@ export default function PartnershipModule() {
     let active = true;
     async function loadPartners() {
       try {
-        const res = await fetch(`${API_BASE}/featured/partners`, { credentials: 'include' });
+        const res = await fetch(`/api/neon/featured/partners`, { credentials: 'include' });
         if (!res.ok) throw new Error('Failed to load partners');
         const data = await res.json();
         if (active) setPartners(data.partners || []);
