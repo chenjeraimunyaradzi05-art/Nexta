@@ -37,7 +37,7 @@ jobs:
           --health-retries 5
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: pnpm/action-setup@v2
         with:
@@ -71,7 +71,7 @@ jobs:
       url: https://staging.nexta.life
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: pnpm/action-setup@v2
         with:
@@ -153,7 +153,7 @@ jobs:
     if: success()
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Health Check - API
         run: |
