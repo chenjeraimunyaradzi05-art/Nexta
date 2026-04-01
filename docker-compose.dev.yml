@@ -8,18 +8,18 @@ services:
   # PostgreSQL Database with pgvector extension for AI/semantic search
   postgres:
     image: pgvector/pgvector:pg16
-    container_name: ngurra-postgres
+    container_name: nexta-postgres
     environment:
-      POSTGRES_USER: ngurra
+      POSTGRES_USER: nexta
       POSTGRES_PASSWORD: dev_password_secure
-      POSTGRES_DB: ngurra_dev
+      POSTGRES_DB: nexta_dev
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./apps/api/prisma/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ngurra -d ngurra_dev"]
+      test: ["CMD-SHELL", "pg_isready -U nexta -d nexta_dev"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -28,7 +28,7 @@ services:
   # Redis for caching, sessions, and job queues
   redis:
     image: redis:7-alpine
-    container_name: ngurra-redis
+    container_name: nexta-redis
     command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
     ports:
       - "6379:6379"
@@ -44,7 +44,7 @@ services:
   # Redis Commander - Web UI for Redis (development only)
   redis-commander:
     image: rediscommander/redis-commander:latest
-    container_name: ngurra-redis-ui
+    container_name: nexta-redis-ui
     environment:
       REDIS_HOSTS: local:redis:6379
     ports:
@@ -59,7 +59,7 @@ services:
   # Mailhog - Email testing (catches all outgoing emails)
   mailhog:
     image: mailhog/mailhog:latest
-    container_name: ngurra-mailhog
+    container_name: nexta-mailhog
     ports:
       - "1025:1025"  # SMTP server
       - "8025:8025"  # Web UI
@@ -70,10 +70,10 @@ services:
   # MinIO - S3-compatible storage for local file uploads
   minio:
     image: minio/minio:latest
-    container_name: ngurra-minio
+    container_name: nexta-minio
     command: server /data --console-address ":9001"
     environment:
-      MINIO_ROOT_USER: ngurra_dev
+      MINIO_ROOT_USER: nexta_dev
       MINIO_ROOT_PASSWORD: dev_password_secure
     ports:
       - "9000:9000"  # API
@@ -99,4 +99,4 @@ volumes:
 
 networks:
   default:
-    name: ngurra-network
+    name: nexta-network

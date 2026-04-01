@@ -1,9 +1,9 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://ngurrapathways.life',
+  siteUrl: process.env.SITE_URL || 'https://nexta.life',
   generateRobotsTxt: true,
   generateIndexSitemap: true,
-  
+
   // Exclude private pages from sitemap
   exclude: [
     '/dashboard/*',
@@ -15,13 +15,13 @@ module.exports = {
     '/messages/*',
     '/notifications/*',
   ],
-  
+
   // Transform function for custom handling
   transform: async (config, path) => {
     // Set priority based on page type
     let priority = 0.7;
     let changefreq = 'weekly';
-    
+
     if (path === '/') {
       priority = 1.0;
       changefreq = 'daily';
@@ -38,7 +38,7 @@ module.exports = {
       priority = 0.6;
       changefreq = 'monthly';
     }
-    
+
     return {
       loc: path,
       changefreq,
@@ -46,11 +46,11 @@ module.exports = {
       lastmod: new Date().toISOString(),
     };
   },
-  
+
   // Additional paths to include (dynamic routes)
   additionalPaths: async (config) => {
     const result = [];
-    
+
     // Add static pages
     const staticPages = [
       '/about',
@@ -67,7 +67,7 @@ module.exports = {
       '/events',
       '/success-stories',
     ];
-    
+
     for (const page of staticPages) {
       result.push({
         loc: page,
@@ -76,10 +76,10 @@ module.exports = {
         lastmod: new Date().toISOString(),
       });
     }
-    
+
     return result;
   },
-  
+
   robotsTxtOptions: {
     policies: [
       {
@@ -101,7 +101,7 @@ module.exports = {
     ],
     additionalSitemaps: [
       // Add additional sitemaps if needed
-      // 'https://ngurrapathways.com.au/jobs-sitemap.xml',
+      // 'https://nexta.com.au/jobs-sitemap.xml',
     ],
   },
 };

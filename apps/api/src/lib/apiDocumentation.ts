@@ -1,7 +1,7 @@
 /**
  * API Documentation Generator
- * 
- * OpenAPI 3.0 specification generator for the Ngurra Pathways API.
+ *
+ * OpenAPI 3.0 specification generator for the Nexta API.
  * Provides comprehensive API docs with examples and Indigenous context.
  */
 
@@ -22,18 +22,18 @@ try {
 const openApiSpec = {
   openapi: '3.0.0',
   info: {
-    title: 'Ngurra Pathways API',
+    title: 'Nexta API',
     version: '1.0.0',
     description: `
-# Ngurra Pathways API
+# Nexta API
 
-Ngurra Pathways is Australia's leading Indigenous professional network and employment platform.
+Nexta is Australia's leading Indigenous professional network and employment platform.
 This API powers our web and mobile applications, providing access to job listings, mentorship matching,
 community features, and culturally-informed career development tools.
 
 ## Cultural Context
 
-**Ngurra** (meaning "home" or "country" in many Aboriginal languages) represents our commitment to
+**Nexta** (meaning "home" or "country" in many Aboriginal languages) represents our commitment to
 creating a platform that honors Indigenous heritage while empowering career growth.
 
 ## Authentication
@@ -58,29 +58,29 @@ Australian privacy laws and Indigenous cultural protocols.
 
 ## Support
 
-For API support, contact: api-support@ngurrapathways.com.au
+For API support, contact: api-support@nexta.com.au
 `,
     contact: {
-      name: 'Ngurra Pathways API Support',
-      email: 'api-support@ngurrapathways.com.au',
-      url: 'https://ngurrapathways.com.au/support',
+      name: 'Nexta API Support',
+      email: 'api-support@nexta.com.au',
+      url: 'https://nexta.com.au/support',
     },
     license: {
       name: 'Proprietary',
-      url: 'https://ngurrapathways.com.au/api-terms',
+      url: 'https://nexta.com.au/api-terms',
     },
     'x-logo': {
-      url: 'https://ngurrapathways.com.au/logo.png',
-      altText: 'Ngurra Pathways',
+      url: 'https://nexta.com.au/logo.png',
+      altText: 'Nexta',
     },
   },
   servers: [
     {
-      url: 'https://api.ngurrapathways.com.au/v1',
+      url: 'https://api.nexta.com.au/v1',
       description: 'Production server',
     },
     {
-      url: 'https://staging-api.ngurrapathways.com.au/v1',
+      url: 'https://staging-api.nexta.com.au/v1',
       description: 'Staging server',
     },
     {
@@ -866,7 +866,7 @@ For API support, contact: api-support@ngurrapathways.com.au
       },
     },
 
-    // Companies endpoints  
+    // Companies endpoints
     '/companies': {
       get: {
         tags: ['Companies'],
@@ -915,7 +915,7 @@ For API support, contact: api-support@ngurrapathways.com.au
                 },
               },
               example: {
-                url: 'https://yourapp.com/webhooks/ngurra',
+                url: 'https://yourapp.com/webhooks/nexta',
                 events: ['job.application.new', 'mentorship.session.booked'],
               },
             },
@@ -961,7 +961,7 @@ export function initializeApiDocs(app: Express): void {
   if (!swaggerJsdoc || !swaggerUi) {
     console.warn('Swagger packages not available - skipping API documentation setup');
     app.get('/api-docs', (_req: Request, res: Response) => {
-      res.status(503).json({ 
+      res.status(503).json({
         error: 'API documentation not available',
         message: 'Install swagger-jsdoc and swagger-ui-express packages to enable docs'
       });
@@ -982,7 +982,7 @@ export function initializeApiDocs(app: Express): void {
         .swagger-ui .info { margin: 20px 0 }
         .swagger-ui .info .title { color: #2d6a4f }
       `,
-      customSiteTitle: 'Ngurra Pathways API Documentation',
+      customSiteTitle: 'Nexta API Documentation',
       customfavIcon: '/favicon.ico',
     })
   );
@@ -998,7 +998,7 @@ export function initializeApiDocs(app: Express): void {
  */
 export function getApiDocsRouter(): Router {
   const router = Router();
-  
+
   // Check if swagger packages are available
   if (!swaggerJsdoc || !swaggerUi) {
     router.get('/', (_req: Request, res: Response) => {

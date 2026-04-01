@@ -1,6 +1,6 @@
 /**
  * Offline Sync Service for React Native
- * 
+ *
  * Provides offline-first functionality:
  * - Queues mutations when offline
  * - Syncs when connection restored
@@ -14,11 +14,11 @@ import * as BackgroundFetch from 'expo-background-fetch';
 import * as TaskManager from 'expo-task-manager';
 
 // Storage keys
-const OFFLINE_QUEUE_KEY = '@ngurra_offline_queue';
-const SYNC_STATUS_KEY = '@ngurra_sync_status';
+const OFFLINE_QUEUE_KEY = '@nexta_offline_queue';
+const SYNC_STATUS_KEY = '@nexta_sync_status';
 
 // Background task name
-const BACKGROUND_SYNC_TASK = 'NGURRA_BACKGROUND_SYNC';
+const BACKGROUND_SYNC_TASK = 'NEXTA_BACKGROUND_SYNC';
 
 // Queue item types
 export const QueueItemType = {
@@ -104,20 +104,20 @@ export async function initializeOfflineSync() {
   NetInfo.addEventListener(state => {
     const wasOffline = !syncStatus.isOnline;
     syncStatus.isOnline = state.isConnected && state.isInternetReachable;
-    
+
     // Trigger sync if we just came online
     if (wasOffline && syncStatus.isOnline) {
       console.log('Network restored, syncing...');
       syncOfflineQueue();
     }
-    
+
     notifyListeners();
   });
 
   // Check initial network state
   const netState = await NetInfo.fetch();
   syncStatus.isOnline = netState.isConnected && netState.isInternetReachable;
-  
+
   // If online, sync any pending items
   if (syncStatus.isOnline) {
     syncOfflineQueue();
@@ -210,16 +210,16 @@ async function markItemFailed(itemId, error) {
 export async function retryFailedItems() {
   const queue = await getOfflineQueue();
   const failed = queue.filter(i => i.failed);
-  
+
   for (const item of failed) {
     item.failed = false;
     item.retryCount = (item.retryCount || 0) + 1;
     delete item.failedReason;
     delete item.failedAt;
   }
-  
+
   await saveOfflineQueue(queue);
-  
+
   if (syncStatus.isOnline) {
     syncOfflineQueue();
   }
@@ -314,7 +314,7 @@ export async function syncOfflineQueue() {
       console.log(`Synced: ${item.type} (${item.id})`);
     } catch (error) {
       console.error(`Failed to sync ${item.type}:`, error);
-      
+
       // Mark as failed after 3 retries
       if ((item.retryCount || 0) >= 3) {
         await markItemFailed(item.id, error);
@@ -334,7 +334,7 @@ export async function syncOfflineQueue() {
   // Update sync status
   syncStatus.isSyncing = false;
   syncStatus.lastSyncTime = new Date().toISOString();
-  
+
   // Persist last sync time
   await AsyncStorage.setItem(SYNC_STATUS_KEY, JSON.stringify({
     lastSyncTime: syncStatus.lastSyncTime,
@@ -343,7 +343,7 @@ export async function syncOfflineQueue() {
   notifyListeners();
 
   console.log(`Sync complete: ${results.synced} synced, ${results.failed} failed`);
-  
+
   return results;
 }
 
@@ -411,7 +411,7 @@ export async function unregisterBackgroundSync() {
 TaskManager.defineTask(BACKGROUND_SYNC_TASK, async () => {
   try {
     console.log('[BackgroundSync] Starting...');
-    
+
     // Check network status
     const netState = await NetInfo.fetch();
     if (!netState.isConnected) {
@@ -426,11 +426,11 @@ TaskManager.defineTask(BACKGROUND_SYNC_TASK, async () => {
     }
 
     const results = await syncOfflineQueue();
-    
+
     if (results.synced > 0) {
       return BackgroundFetch.BackgroundFetchResult.NewData;
     }
-    
+
     return BackgroundFetch.BackgroundFetchResult.NoData;
   } catch (err) {
     console.error('[BackgroundSync] Error:', err);

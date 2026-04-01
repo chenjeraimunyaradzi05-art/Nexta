@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { 
+import {
   Search,
   Briefcase,
   Users,
@@ -33,7 +33,7 @@ const FAQ_CATEGORIES = [
         a: 'Click "Register" in the top navigation and fill out the form. Choose your account type (Job Seeker, Mentor, Employer, or TAFE) based on how you want to use the platform.'
       },
       {
-        q: 'Is Ngurra Pathways free to use?',
+        q: 'Is Nexta free to use?',
         a: 'Yes! Job seekers and mentees can use all platform features for free. Employers have subscription options for advanced features like unlimited job posts and analytics.'
       },
       {
@@ -139,7 +139,7 @@ const CONTACT_OPTIONS = [
     icon: Mail,
     title: 'Email Support',
     description: 'Get help from our support team',
-    href: 'mailto:support@ngurrapathways.com.au',
+    href: 'mailto:support@nexta.com.au',
   },
   {
     icon: Phone,
@@ -164,11 +164,11 @@ export default function HelpPage() {
   })).filter(c => c.questions.length > 0 || !searchQuery);
 
   return (
-    <div className="ngurra-page">
+    <div className="nexta-page">
       {/* Decorative Halos */}
-      <div className="ngurra-halos">
-        <div className="ngurra-halo-pink" />
-        <div className="ngurra-halo-purple" />
+      <div className="nexta-halos">
+        <div className="nexta-halo-pink" />
+        <div className="nexta-halo-purple" />
       </div>
 
       {/* Hero */}
@@ -184,7 +184,7 @@ export default function HelpPage() {
           <p className="text-xl text-slate-600 mb-8">
             Find answers to common questions or get in touch with our support team
           </p>
-          
+
           {/* Search */}
           <div className="relative max-w-xl mx-auto">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -204,10 +204,10 @@ export default function HelpPage() {
         {/* FAQ Categories */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold mb-6 text-slate-800">Frequently Asked Questions</h2>
-          
+
           <div className="space-y-4">
             {filteredCategories.map((category) => (
-              <div 
+              <div
                 key={category.id}
                 className="bg-white border border-slate-200 rounded-xl overflow-hidden"
                 style={{ boxShadow: '0 4px 20px rgba(15, 23, 42, 0.06)' }}
@@ -237,7 +237,7 @@ export default function HelpPage() {
                 {expandedCategory === category.id && (
                   <div className="border-t border-slate-100">
                     {category.questions.map((item, idx) => (
-                      <div 
+                      <div
                         key={idx}
                         className="border-b border-slate-100 last:border-0"
                       >
@@ -269,7 +269,7 @@ export default function HelpPage() {
         {/* Contact Options */}
         <div>
           <h2 className="text-2xl font-bold mb-6 text-slate-800">Need More Help?</h2>
-          
+
           <div className="grid md:grid-cols-3 gap-4">
             {CONTACT_OPTIONS.map((option) => {
               const Icon = option.icon;

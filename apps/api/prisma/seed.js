@@ -12,7 +12,7 @@ const crypto_1 = require('crypto');
 const prisma = new client_1.PrismaClient();
 
 // ==========================================
-// NGURRA PATHWAYS - LAUNCH DATA SEED
+// NEXTA - LAUNCH DATA SEED
 // ==========================================
 // This seed file populates the database with realistic, production-ready data
 // for the platform launch. It includes diverse stakeholders, real-world job
@@ -99,7 +99,7 @@ const INDUSTRIES = [
 ];
 
 async function main() {
-  console.log('🌏 Seeding Ngurra Pathways Launch Data...');
+  console.log('🌏 Seeding Nexta Launch Data...');
   console.log('========================================\n');
 
   // SECURITY: Use environment variable or generate secure password
@@ -116,9 +116,9 @@ async function main() {
   console.log('Creating System Users...');
 
   const admin = await prisma.user.upsert({
-    where: { email: 'admin@ngurra.org.au' },
+    where: { email: 'admin@nexta.org.au' },
     update: { password },
-    create: { email: 'admin@ngurra.org.au', password, userType: 'ADMIN' },
+    create: { email: 'admin@nexta.org.au', password, userType: 'ADMIN' },
   });
 
   // ------------------------------------------------------------------
@@ -2584,7 +2584,7 @@ async function main() {
   }
 
   console.log('\n✅ Seed Complete! Database is ready for launch.');
-  console.log('   Admin: admin@ngurra.org.au');
+  console.log('   Admin: admin@nexta.org.au');
   console.log('   Company: careers+bhp@seed.local');
   console.log('   Member: jarrah@example.com');
   console.log('   Mentor: david.mentor@example.com');

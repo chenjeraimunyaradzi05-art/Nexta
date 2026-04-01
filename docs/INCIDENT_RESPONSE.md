@@ -1,6 +1,6 @@
 # Incident Response Runbook
 
-Emergency procedures and response protocols for Ngurra Pathways platform.
+Emergency procedures and response protocols for Nexta platform.
 
 ## Table of Contents
 
@@ -98,7 +98,7 @@ P0 → On-call Engineer → Team Lead → Engineering Manager → CTO
 
 ```bash
 # Check API health
-curl -v https://api.ngurra-pathways.com/health
+curl -v https://api.nexta.com/health
 
 # Check Railway status
 railway status
@@ -140,10 +140,10 @@ psql $DATABASE_URL -c "SELECT 1"
 psql $DATABASE_URL -c "SELECT count(*) FROM pg_stat_activity"
 
 # Check for long-running queries
-psql $DATABASE_URL -c "SELECT pid, now() - pg_stat_activity.query_start AS duration, query 
-FROM pg_stat_activity 
-WHERE state != 'idle' 
-ORDER BY duration DESC 
+psql $DATABASE_URL -c "SELECT pid, now() - pg_stat_activity.query_start AS duration, query
+FROM pg_stat_activity
+WHERE state != 'idle'
+ORDER BY duration DESC
 LIMIT 10"
 ```
 
@@ -206,7 +206,7 @@ railway restart
 railway logs | grep -i error | tail -50
 
 # Check Sentry for error details
-# https://sentry.io/organizations/ngurra/issues/
+# https://sentry.io/organizations/nexta/issues/
 
 # Check if specific endpoint is failing
 railway logs | grep "POST /api/applications" | tail -20
@@ -230,12 +230,12 @@ railway logs | grep "POST /api/applications" | tail -20
 
 ```bash
 # Check response times
-curl -w "@curl-format.txt" https://api.ngurra-pathways.com/health
+curl -w "@curl-format.txt" https://api.nexta.com/health
 
 # Check database query times
-psql $DATABASE_URL -c "SELECT query, calls, mean_time, total_time 
-FROM pg_stat_statements 
-ORDER BY mean_time DESC 
+psql $DATABASE_URL -c "SELECT query, calls, mean_time, total_time
+FROM pg_stat_statements
+ORDER BY mean_time DESC
 LIMIT 10"
 
 # Check Railway metrics
@@ -370,7 +370,7 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/firewall/rules
 Status: Investigating
 Start Time: [Time UTC]
 
-We are currently investigating reports of [issue description]. 
+We are currently investigating reports of [issue description].
 Some users may experience [symptoms].
 
 We will provide updates every 30 minutes.
@@ -406,7 +406,7 @@ Duration: [Duration]
 
 The incident has been resolved. [Brief explanation of fix].
 
-All services are now operating normally. 
+All services are now operating normally.
 We apologize for any inconvenience.
 
 A post-mortem will be conducted and shared within 48 hours.
@@ -423,7 +423,7 @@ A post-mortem will be conducted and shared within 48 hours.
 
 **Impact:** [Who/what is affected]
 
-**Current Status:** 
+**Current Status:**
 [Brief update on what's happening]
 
 **Next Update:** [Time]
@@ -496,12 +496,12 @@ Thread for updates ⬇️
 
 ## Useful Links
 
-- **Status Page**: https://status.ngurra-pathways.com
-- **Sentry**: https://sentry.io/ngurra-pathways
-- **Railway Dashboard**: https://railway.app/project/ngurra
-- **Vercel Dashboard**: https://vercel.com/ngurra
+- **Status Page**: https://status.nexta.com
+- **Sentry**: https://sentry.io/nexta
+- **Railway Dashboard**: https://railway.app/project/nexta
+- **Vercel Dashboard**: https://vercel.com/nexta
 - **CloudFlare**: https://dash.cloudflare.com
-- **PagerDuty**: https://ngurra.pagerduty.com
+- **PagerDuty**: https://nexta.pagerduty.com
 - **Runbook Repository**: `/docs/runbooks/`
 
 ## Emergency Contacts
@@ -510,7 +510,7 @@ For P0 incidents only:
 
 - **Engineering Lead**: [Via PagerDuty]
 - **CTO**: [Via PagerDuty escalation]
-- **Cloud Provider Support**: 
+- **Cloud Provider Support**:
   - Railway: support@railway.app
   - Vercel: support@vercel.com
   - Neon: support@neon.tech

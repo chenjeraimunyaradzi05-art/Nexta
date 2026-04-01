@@ -1,6 +1,6 @@
 /**
  * Internationalization (i18n) Utilities
- * 
+ *
  * Provides localization support for the platform with:
  * - Australian English as default
  * - Support for Aboriginal language acknowledgments
@@ -40,7 +40,7 @@ const translations = {
     'common.sort': 'Sort',
     'common.more': 'More',
     'common.less': 'Less',
-    
+
     // Auth
     'auth.login': 'Log in',
     'auth.logout': 'Log out',
@@ -50,7 +50,7 @@ const translations = {
     'auth.email': 'Email address',
     'auth.password': 'Password',
     'auth.confirmPassword': 'Confirm password',
-    
+
     // Navigation
     'nav.home': 'Home',
     'nav.jobs': 'Jobs',
@@ -60,7 +60,7 @@ const translations = {
     'nav.messages': 'Messages',
     'nav.profile': 'Profile',
     'nav.settings': 'Settings',
-    
+
     // Jobs
     'jobs.search': 'Search jobs',
     'jobs.apply': 'Apply now',
@@ -75,7 +75,7 @@ const translations = {
     'jobs.remote': 'Remote',
     'jobs.onsite': 'On-site',
     'jobs.hybrid': 'Hybrid',
-    
+
     // Profile
     'profile.skills': 'Skills',
     'profile.experience': 'Experience',
@@ -83,14 +83,14 @@ const translations = {
     'profile.resume': 'Resume',
     'profile.portfolio': 'Portfolio',
     'profile.updatePhoto': 'Update photo',
-    
+
     // Mentorship
     'mentor.findMentor': 'Find a mentor',
     'mentor.becomeMentor': 'Become a mentor',
     'mentor.bookSession': 'Book session',
     'mentor.cancelSession': 'Cancel session',
     'mentor.reschedule': 'Reschedule',
-    
+
     // Status messages
     'status.success': 'Success!',
     'status.error': 'Error',
@@ -98,25 +98,25 @@ const translations = {
     'status.approved': 'Approved',
     'status.rejected': 'Rejected',
     'status.inReview': 'In review',
-    
+
     // Accessibility
     'a11y.skipToContent': 'Skip to main content',
     'a11y.openMenu': 'Open menu',
     'a11y.closeMenu': 'Close menu',
     'a11y.loading': 'Content is loading',
     'a11y.newPage': 'Opens in a new tab',
-    
+
     // Indigenous acknowledgment
     'acknowledgment.short': 'We acknowledge the Traditional Custodians of the land.',
-    'acknowledgment.full': 'Ngurra Pathways acknowledges the Traditional Custodians of the lands on which we work and live. We pay our respects to Elders past, present and emerging.',
-    
+    'acknowledgment.full': 'Nexta acknowledges the Traditional Custodians of the lands on which we work and live. We pay our respects to Elders past, present and emerging.',
+
     // Time
     'time.justNow': 'Just now',
     'time.minutesAgo': '{count} {count, plural, one {minute} other {minutes}} ago',
     'time.hoursAgo': '{count} {count, plural, one {hour} other {hours}} ago',
     'time.daysAgo': '{count} {count, plural, one {day} other {days}} ago',
     'time.weeksAgo': '{count} {count, plural, one {week} other {weeks}} ago',
-    
+
     // Errors
     'error.network': 'Unable to connect. Please check your internet connection.',
     'error.notFound': 'The page you\'re looking for doesn\'t exist.',
@@ -132,18 +132,18 @@ const translations = {
 function t(key, params = {}, locale = DEFAULT_LOCALE) {
   const localeTranslations = translations[locale] || translations[DEFAULT_LOCALE];
   let text = localeTranslations[key] || key;
-  
+
   // Replace parameters
   for (const [param, value] of Object.entries(params)) {
     text = text.replace(new RegExp(`\\{${param}\\}`, 'g'), String(value));
-    
+
     // Handle pluralization
     const pluralRegex = new RegExp(`\\{${param}, plural, one \\{([^}]+)\\} other \\{([^}]+)\\}\\}`, 'g');
     text = text.replace(pluralRegex, (_, one, other) => {
       return value === 1 ? one : other;
     });
   }
-  
+
   return text;
 }
 
@@ -152,12 +152,12 @@ function t(key, params = {}, locale = DEFAULT_LOCALE) {
  */
 function formatDate(date, options = {}) {
   const d = new Date(date);
-  
+
   const defaultOptions = {
     timeZone: DEFAULT_TIMEZONE,
     ...options,
   };
-  
+
   return d.toLocaleDateString(DEFAULT_LOCALE, defaultOptions);
 }
 
@@ -166,14 +166,14 @@ function formatDate(date, options = {}) {
  */
 function formatDateTime(date, options = {}) {
   const d = new Date(date);
-  
+
   const defaultOptions = {
     timeZone: DEFAULT_TIMEZONE,
     dateStyle: 'medium',
     timeStyle: 'short',
     ...options,
   };
-  
+
   return d.toLocaleString(DEFAULT_LOCALE, defaultOptions as Intl.DateTimeFormatOptions);
 }
 
@@ -182,13 +182,13 @@ function formatDateTime(date, options = {}) {
  */
 function formatTime(date, options = {}) {
   const d = new Date(date);
-  
+
   const defaultOptions = {
     timeZone: DEFAULT_TIMEZONE,
     timeStyle: 'short',
     ...options,
   };
-  
+
   return d.toLocaleTimeString(DEFAULT_LOCALE, defaultOptions as Intl.DateTimeFormatOptions);
 }
 
@@ -204,7 +204,7 @@ function formatRelativeTime(date, locale = DEFAULT_LOCALE) {
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
   const weeks = Math.floor(days / 7);
-  
+
   if (seconds < 60) {
     return t('time.justNow', {}, locale);
   } else if (minutes < 60) {
@@ -243,22 +243,22 @@ function formatNumber(number, options = {}) {
 function formatPhoneNumber(phone) {
   // Remove non-digits
   const digits = phone.replace(/\D/g, '');
-  
+
   // Australian mobile: 0412 345 678
   if (digits.length === 10 && digits.startsWith('04')) {
     return `${digits.slice(0, 4)} ${digits.slice(4, 7)} ${digits.slice(7)}`;
   }
-  
+
   // Australian landline: (02) 1234 5678
   if (digits.length === 10 && digits.startsWith('0')) {
     return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)} ${digits.slice(6)}`;
   }
-  
+
   // International format: +61 412 345 678
   if (digits.length === 11 && digits.startsWith('61')) {
     return `+${digits.slice(0, 2)} ${digits.slice(2, 5)} ${digits.slice(5, 8)} ${digits.slice(8)}`;
   }
-  
+
   return phone;
 }
 

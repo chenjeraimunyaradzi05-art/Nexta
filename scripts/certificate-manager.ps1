@@ -20,7 +20,7 @@
 
 .EXAMPLE
     .\certificate-manager.ps1 -CheckOnly
-    .\certificate-manager.ps1 -Domain "api.ngurrapathways.com.au"
+    .\certificate-manager.ps1 -Domain "api.nexta.com.au"
 #>
 
 param(
@@ -34,10 +34,10 @@ $ErrorActionPreference = "Stop"
 # Configuration
 $config = @{
     Domains = @(
-        "ngurrapathways.com.au",
-        "www.ngurrapathways.com.au",
-        "api.ngurrapathways.com.au",
-        "app.ngurrapathways.com.au"
+        "nexta.com.au",
+        "www.nexta.com.au",
+        "api.nexta.com.au",
+        "app.nexta.com.au"
     )
     SlackWebhook = $env:SLACK_WEBHOOK
     EmailRecipients = $env:CERT_ALERT_EMAILS
@@ -51,7 +51,7 @@ function Write-Log {
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $logMessage = "[$timestamp] [$Level] $Message"
     Write-Host $logMessage
-    
+
     # Also write to log file
     $logPath = Join-Path $PSScriptRoot "logs/certificate-manager.log"
     if (-not (Test-Path (Split-Path $logPath -Parent))) {
@@ -63,16 +63,16 @@ function Write-Log {
 # Check single certificate expiration
 function Get-CertificateExpiry {
     param([string]$DomainName)
-    
+
     try {
         # Use OpenSSL to check remote certificate
-        $result = & openssl s_client -servername $DomainName -connect "${DomainName}:443" 2>$null | 
+        $result = & openssl s_client -servername $DomainName -connect "${DomainName}:443" 2>$null |
                   & openssl x509 -noout -enddate 2>$null
-        
+
         if ($result -match "notAfter=(.+)") {
             $expiryDate = [DateTime]::Parse($Matches[1])
             $daysUntilExpiry = ($expiryDate - (Get-Date)).Days
-            
+
             return @{
                 Domain = $DomainName
                 ExpiryDate = $expiryDate
@@ -94,7 +94,7 @@ function Get-CertificateExpiry {
             Error = $_.Exception.Message
         }
     }
-    
+
     return $null
 }
 
@@ -104,12 +104,12 @@ function Send-SlackNotification {
         [string]$Message,
         [string]$Color = "#FF0000"
     )
-    
+
     if (-not $config.SlackWebhook) {
         Write-Log "Slack webhook not configured, skipping notification" "WARN"
         return
     }
-    
+
     $payload = @{
         attachments = @(
             @{
@@ -121,7 +121,7 @@ function Send-SlackNotification {
             }
         )
     } | ConvertTo-Json -Depth 3
-    
+
     try {
         Invoke-RestMethod -Uri $config.SlackWebhook -Method Post -Body $payload -ContentType "application/json"
         Write-Log "Slack notification sent" "INFO"
@@ -134,15 +134,15 @@ function Send-SlackNotification {
 # Renew certificate using certbot
 function Invoke-CertificateRenewal {
     param([string]$DomainName)
-    
+
     Write-Log "Attempting to renew certificate for $DomainName" "INFO"
-    
+
     try {
         # Check if certbot is available
         $certbot = Get-Command certbot -ErrorAction SilentlyContinue
         if (-not $certbot) {
             Write-Log "certbot not found, using Docker" "INFO"
-            
+
             # Use certbot via Docker
             $result = & docker run --rm -v "/etc/letsencrypt:/etc/letsencrypt" `
                                         -v "/var/www/html:/var/www/html" `
@@ -153,7 +153,7 @@ function Invoke-CertificateRenewal {
         else {
             $result = & certbot renew --cert-name $DomainName --non-interactive 2>&1
         }
-        
+
         if ($LASTEXITCODE -eq 0) {
             Write-Log "Certificate renewed successfully for $DomainName" "INFO"
             return $true
@@ -172,7 +172,7 @@ function Invoke-CertificateRenewal {
 # Reload nginx after certificate renewal
 function Invoke-NginxReload {
     Write-Log "Reloading Nginx configuration" "INFO"
-    
+
     try {
         # Test config first
         & nginx -t 2>&1
@@ -180,7 +180,7 @@ function Invoke-NginxReload {
             Write-Log "Nginx configuration test failed" "ERROR"
             return $false
         }
-        
+
         # Reload
         & nginx -s reload 2>&1
         Write-Log "Nginx reloaded successfully" "INFO"
@@ -195,44 +195,44 @@ function Invoke-NginxReload {
 # Main execution
 function Main {
     Write-Log "Starting certificate check" "INFO"
-    
+
     $domainsToCheck = if ($Domain) { @($Domain) } else { $config.Domains }
     $results = @()
     $needsRenewal = @()
-    
+
     foreach ($d in $domainsToCheck) {
         Write-Log "Checking certificate for $d" "INFO"
         $certInfo = Get-CertificateExpiry -DomainName $d
-        
+
         if ($certInfo) {
             $results += $certInfo
-            
+
             if ($certInfo.DaysUntilExpiry -lt $AlertDays) {
                 $needsRenewal += $certInfo
-                
+
                 $color = switch ($certInfo.Status) {
                     "EXPIRED" { "#FF0000" }
                     "CRITICAL" { "#FF6600" }
                     "WARNING" { "#FFCC00" }
                     default { "#00FF00" }
                 }
-                
+
                 $message = "Certificate for $($certInfo.Domain) expires in $($certInfo.DaysUntilExpiry) days"
                 if ($certInfo.DaysUntilExpiry -lt 0) {
                     $message = "Certificate for $($certInfo.Domain) has EXPIRED!"
                 }
-                
+
                 Send-SlackNotification -Message $message -Color $color
             }
-            
+
             Write-Log "$d - Status: $($certInfo.Status), Expires: $($certInfo.ExpiryDate), Days: $($certInfo.DaysUntilExpiry)" "INFO"
         }
     }
-    
+
     # Renew certificates if needed and not check-only mode
     if (-not $CheckOnly -and $needsRenewal.Count -gt 0) {
         Write-Log "Found $($needsRenewal.Count) certificates needing renewal" "INFO"
-        
+
         $renewed = $false
         foreach ($cert in $needsRenewal) {
             if ($cert.DaysUntilExpiry -lt 30) {
@@ -246,16 +246,16 @@ function Main {
                 }
             }
         }
-        
+
         # Reload nginx if any certificates were renewed
         if ($renewed) {
             Invoke-NginxReload
         }
     }
-    
+
     # Summary
     Write-Log "Certificate check completed. Total: $($results.Count), Needs attention: $($needsRenewal.Count)" "INFO"
-    
+
     # Output results
     return $results
 }

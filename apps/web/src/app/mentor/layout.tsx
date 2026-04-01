@@ -3,13 +3,13 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { 
-  LayoutDashboard, 
-  Calendar, 
-  Users, 
-  DollarSign, 
-  Settings, 
-  LogOut, 
+import {
+  LayoutDashboard,
+  Calendar,
+  Users,
+  DollarSign,
+  Settings,
+  LogOut,
   Clock,
   Star,
   TrendingUp,
@@ -57,8 +57,8 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
             key={item.href}
             href={item.href}
             className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-              isActive 
-                ? 'bg-purple-600/20 text-purple-400 border-l-2 border-purple-500' 
+              isActive
+                ? 'bg-purple-600/20 text-purple-400 border-l-2 border-purple-500'
                 : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
             }`}
           >
@@ -80,7 +80,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
             <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
               <Star className="w-5 h-5 text-white" />
             </div>
-            <span>Ngurra <span className="text-slate-400 font-normal text-sm">Mentor</span></span>
+            <span>Nexta <span className="text-slate-400 font-normal text-sm">Mentor</span></span>
           </Link>
         </div>
 
@@ -149,18 +149,18 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
               <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
                 <Star className="w-5 h-5 text-white" />
               </div>
-              <span>Ngurra</span>
+              <span>Nexta</span>
             </Link>
-            
+
             <div className="flex items-center gap-2">
-              <Link 
-                href="/member/notifications" 
+              <Link
+                href="/member/notifications"
                 className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg"
               >
                 <Bell className="w-5 h-5" />
               </Link>
-              <Link 
-                href="/member/messages" 
+              <Link
+                href="/member/messages"
                 className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg"
               >
                 <MessageSquare className="w-5 h-5" />
@@ -191,8 +191,8 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
                   key={item.href}
                   href={item.href}
                   className={`flex flex-col items-center gap-1 p-2 rounded-lg min-w-[60px] ${
-                    isActive 
-                      ? 'text-purple-400' 
+                    isActive
+                      ? 'text-purple-400'
                       : 'text-slate-400'
                   }`}
                 >

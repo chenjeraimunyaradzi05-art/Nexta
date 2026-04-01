@@ -1,6 +1,6 @@
 /**
  * FeedScreen.tsx - Social Feed Screen
- * 
+ *
  * Features:
  * - Infinite scroll feed with personalized content
  * - Post creation with text, images, and video
@@ -108,7 +108,7 @@ const TRUST_BADGE_COLORS: Record<string, string> = {
 
 export default function FeedScreen({ navigation }: FeedScreenProps) {
   const { user } = useSession();
-  
+
   // State
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -117,23 +117,23 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
   const [error, setError] = useState<string | null>(null);
-  
+
   // Post creation modal state
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [newPostContent, setNewPostContent] = useState('');
   const [newPostMedia, setNewPostMedia] = useState<string[]>([]);
   const [isPosting, setIsPosting] = useState(false);
   const [postVisibility, setPostVisibility] = useState<'public' | 'connections'>('public');
-  
+
   // Reaction picker state
   const [activeReactionPicker, setActiveReactionPicker] = useState<string | null>(null);
   const reactionPickerAnim = useRef(new Animated.Value(0)).current;
-  
+
   // Load feed on mount
   useEffect(() => {
     loadFeed();
   }, []);
-  
+
   // Load feed data
   const loadFeed = async (refresh = false) => {
     try {
@@ -141,15 +141,15 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
         setIsRefreshing(true);
         setPage(1);
       }
-      
+
       const response = await feedApi.getFeed({ page: refresh ? 1 : page, limit: 20 });
-      
+
       if (refresh) {
         setPosts(response.posts || []);
       } else {
         setPosts(prev => [...prev, ...(response.posts || [])]);
       }
-      
+
       setHasMore(response.hasMore !== false);
       setError(null);
     } catch (err: any) {
@@ -161,12 +161,12 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
       setIsLoadingMore(false);
     }
   };
-  
+
   // Pull to refresh
   const onRefresh = useCallback(() => {
     loadFeed(true);
   }, []);
-  
+
   // Load more posts
   const loadMore = useCallback(() => {
     if (!isLoadingMore && hasMore && !isRefreshing) {
@@ -175,29 +175,29 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
       loadFeed();
     }
   }, [isLoadingMore, hasMore, isRefreshing]);
-  
+
   // Handle reaction
   const handleReaction = async (postId: string, reactionType: string) => {
     try {
       setActiveReactionPicker(null);
-      
+
       // Optimistic update
       setPosts(prev => prev.map(post => {
         if (post.id === postId) {
           const currentReaction = post.userReaction;
           const isSameReaction = currentReaction === reactionType;
-          
+
           return {
             ...post,
             userReaction: isSameReaction ? undefined : reactionType,
-            likeCount: isSameReaction 
-              ? post.likeCount - 1 
+            likeCount: isSameReaction
+              ? post.likeCount - 1
               : post.likeCount + (currentReaction ? 0 : 1),
           };
         }
         return post;
       }));
-      
+
       await feedApi.reactToPost(postId, reactionType);
     } catch (err) {
       console.error('Reaction error:', err);
@@ -205,18 +205,18 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
       loadFeed(true);
     }
   };
-  
+
   // Handle share
   const handleShare = async (post: Post) => {
     try {
       const result = await Share.share({
-        message: `Check out this post on Ngurra Pathways: ${post.content.substring(0, 100)}...`,
-        url: `https://ngurra.com/feed/${post.id}`,
+        message: `Check out this post on Nexta: ${post.content.substring(0, 100)}...`,
+        url: `https://nexta.com/feed/${post.id}`,
       });
-      
+
       if (result.action === Share.sharedAction) {
         await feedApi.sharePost(post.id);
-        setPosts(prev => prev.map(p => 
+        setPosts(prev => prev.map(p =>
           p.id === post.id ? { ...p, shareCount: p.shareCount + 1 } : p
         ));
       }
@@ -224,44 +224,44 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
       console.error('Share error:', err);
     }
   };
-  
+
   // Pick image for new post
   const pickImage = async () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    
+
     if (!permissionResult.granted) {
       Alert.alert('Permission Required', 'Please allow access to your photos');
       return;
     }
-    
+
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsMultipleSelection: true,
       quality: 0.8,
       selectionLimit: 4,
     });
-    
+
     if (!result.canceled && result.assets) {
       setNewPostMedia(prev => [...prev, ...result.assets.map(a => a.uri)].slice(0, 4));
     }
   };
-  
+
   // Create new post
   const createPost = async () => {
     if (!newPostContent.trim() && newPostMedia.length === 0) {
       Alert.alert('Empty Post', 'Please add some content or images');
       return;
     }
-    
+
     setIsPosting(true);
-    
+
     try {
       const newPost = await feedApi.createPost({
         content: newPostContent,
         mediaUrls: newPostMedia,
         visibility: postVisibility,
       });
-      
+
       setPosts(prev => [newPost, ...prev]);
       setShowCreateModal(false);
       setNewPostContent('');
@@ -273,7 +273,7 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
       setIsPosting(false);
     }
   };
-  
+
   // Show reaction picker with animation
   const showReactionPicker = (postId: string) => {
     setActiveReactionPicker(postId);
@@ -284,7 +284,7 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
       friction: 7,
     }).start();
   };
-  
+
   // Hide reaction picker
   const hideReactionPicker = () => {
     Animated.timing(reactionPickerAnim, {
@@ -293,42 +293,42 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
       useNativeDriver: true,
     }).start(() => setActiveReactionPicker(null));
   };
-  
+
   // Format time ago
   const formatTimeAgo = (dateString: string): string => {
     const date = new Date(dateString);
     const now = new Date();
     const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
-    
+
     if (seconds < 60) return 'Just now';
     if (seconds < 3600) return `${Math.floor(seconds / 60)}m`;
     if (seconds < 86400) return `${Math.floor(seconds / 3600)}h`;
     if (seconds < 604800) return `${Math.floor(seconds / 86400)}d`;
     return date.toLocaleDateString();
   };
-  
+
   // Render post card
   const renderPost = ({ item: post }: { item: Post }) => {
     const isReactionPickerVisible = activeReactionPicker === post.id;
-    
+
     return (
       <View style={styles.postCard}>
         {/* Sponsored/Pinned indicator */}
         {(post.isPinned || post.isSponsored) && (
           <View style={styles.postBadge}>
-            <Ionicons 
-              name={post.isPinned ? 'pin' : 'megaphone-outline'} 
-              size={12} 
-              color={colors.textSecondary} 
+            <Ionicons
+              name={post.isPinned ? 'pin' : 'megaphone-outline'}
+              size={12}
+              color={colors.textSecondary}
             />
             <Text style={styles.postBadgeText}>
               {post.isPinned ? 'Pinned' : 'Sponsored'}
             </Text>
           </View>
         )}
-        
+
         {/* Author header */}
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.postHeader}
           onPress={() => navigation.navigate('Profile', { userId: post.author.id })}
           accessibilityRole="button"
@@ -343,21 +343,21 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
               </Text>
             </View>
           )}
-          
+
           <View style={styles.authorInfo}>
             <View style={styles.authorNameRow}>
               <Text style={styles.authorName}>{post.author.name}</Text>
               {post.author.trustLevel !== 'basic' && (
-                <View 
+                <View
                   style={[
-                    styles.trustBadge, 
+                    styles.trustBadge,
                     { backgroundColor: TRUST_BADGE_COLORS[post.author.trustLevel] }
                   ]}
                 >
-                  <Ionicons 
-                    name={post.author.trustLevel === 'trusted' ? 'shield-checkmark' : 'checkmark-circle'} 
-                    size={10} 
-                    color="white" 
+                  <Ionicons
+                    name={post.author.trustLevel === 'trusted' ? 'shield-checkmark' : 'checkmark-circle'}
+                    size={10}
+                    color="white"
                   />
                 </View>
               )}
@@ -366,33 +366,33 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
               {post.author.title || 'Community Member'} • {formatTimeAgo(post.createdAt)}
             </Text>
           </View>
-          
-          <TouchableOpacity 
+
+          <TouchableOpacity
             style={styles.moreButton}
             onPress={() => {/* Show post options */}}
           >
             <Ionicons name="ellipsis-horizontal" size={20} color={colors.textSecondary} />
           </TouchableOpacity>
         </TouchableOpacity>
-        
+
         {/* Content */}
         <Text style={styles.postContent}>{post.content}</Text>
-        
+
         {/* Media */}
         {post.mediaUrls && post.mediaUrls.length > 0 && (
           <View style={styles.mediaContainer}>
             {post.mediaUrls.length === 1 ? (
-              <Image 
-                source={{ uri: post.mediaUrls[0] }} 
+              <Image
+                source={{ uri: post.mediaUrls[0] }}
                 style={styles.mediaSingle}
                 resizeMode="cover"
               />
             ) : (
               <View style={styles.mediaGrid}>
                 {post.mediaUrls.slice(0, 4).map((uri, index) => (
-                  <Image 
+                  <Image
                     key={index}
-                    source={{ uri }} 
+                    source={{ uri }}
                     style={[
                       styles.mediaGridItem,
                       post.mediaUrls!.length === 2 && styles.mediaGridItemHalf,
@@ -410,7 +410,7 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
             )}
           </View>
         )}
-        
+
         {/* Engagement stats */}
         {(post.likeCount > 0 || post.commentCount > 0 || post.shareCount > 0) && (
           <View style={styles.engagementStats}>
@@ -427,7 +427,7 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
             )}
           </View>
         )}
-        
+
         {/* Action buttons */}
         <View style={styles.postActions}>
           {/* Like button with long press for reaction picker */}
@@ -448,10 +448,10 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
               {post.userReaction ? REACTION_LABELS[post.userReaction] : 'Like'}
             </Text>
           </Pressable>
-          
+
           {/* Reaction picker popup */}
           {isReactionPickerVisible && (
-            <Animated.View 
+            <Animated.View
               style={[
                 styles.reactionPicker,
                 {
@@ -471,16 +471,16 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
               ))}
             </Animated.View>
           )}
-          
-          <TouchableOpacity 
+
+          <TouchableOpacity
             style={styles.actionButton}
             onPress={() => navigation.navigate('PostDetail', { postId: post.id })}
           >
             <Ionicons name="chatbubble-outline" size={20} color={colors.textSecondary} />
             <Text style={styles.actionText}>Comment</Text>
           </TouchableOpacity>
-          
-          <TouchableOpacity 
+
+          <TouchableOpacity
             style={styles.actionButton}
             onPress={() => handleShare(post)}
           >
@@ -491,10 +491,10 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
       </View>
     );
   };
-  
+
   // Render create post header
   const renderHeader = () => (
-    <TouchableOpacity 
+    <TouchableOpacity
       style={styles.createPostCard}
       onPress={() => setShowCreateModal(true)}
       accessibilityRole="button"
@@ -516,7 +516,7 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
       </View>
     </TouchableOpacity>
   );
-  
+
   // Render footer loader
   const renderFooter = () => {
     if (!isLoadingMore) return null;
@@ -526,7 +526,7 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
       </View>
     );
   };
-  
+
   // Loading state
   if (isLoading) {
     return (
@@ -536,7 +536,7 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
       </View>
     );
   }
-  
+
   // Error state
   if (error && posts.length === 0) {
     return (
@@ -549,7 +549,7 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
       </View>
     );
   }
-  
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -572,7 +572,7 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
         // Hide reaction picker on scroll
         onScrollBeginDrag={hideReactionPicker}
       />
-      
+
       {/* Floating Action Button */}
       <TouchableOpacity
         style={styles.fab}
@@ -582,7 +582,7 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
       >
         <Ionicons name="add" size={28} color="white" />
       </TouchableOpacity>
-      
+
       {/* Create Post Modal */}
       <Modal
         visible={showCreateModal}
@@ -590,25 +590,25 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
         presentationStyle="pageSheet"
         onRequestClose={() => setShowCreateModal(false)}
       >
-        <KeyboardAvoidingView 
+        <KeyboardAvoidingView
           style={styles.modalContainer}
           behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         >
           {/* Modal Header */}
           <View style={styles.modalHeader}>
-            <TouchableOpacity 
+            <TouchableOpacity
               onPress={() => setShowCreateModal(false)}
               style={styles.modalCloseButton}
             >
               <Text style={styles.modalCloseText}>Cancel</Text>
             </TouchableOpacity>
             <Text style={styles.modalTitle}>Create Post</Text>
-            <TouchableOpacity 
+            <TouchableOpacity
               onPress={createPost}
               disabled={isPosting || (!newPostContent.trim() && newPostMedia.length === 0)}
               style={[
                 styles.modalPostButton,
-                (isPosting || (!newPostContent.trim() && newPostMedia.length === 0)) && 
+                (isPosting || (!newPostContent.trim() && newPostMedia.length === 0)) &&
                 styles.modalPostButtonDisabled
               ]}
             >
@@ -619,7 +619,7 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
               )}
             </TouchableOpacity>
           </View>
-          
+
           {/* Visibility selector */}
           <View style={styles.visibilitySelector}>
             <TouchableOpacity
@@ -629,10 +629,10 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
               ]}
               onPress={() => setPostVisibility('public')}
             >
-              <Ionicons 
-                name="globe-outline" 
-                size={16} 
-                color={postVisibility === 'public' ? colors.primary : colors.textSecondary} 
+              <Ionicons
+                name="globe-outline"
+                size={16}
+                color={postVisibility === 'public' ? colors.primary : colors.textSecondary}
               />
               <Text style={[
                 styles.visibilityText,
@@ -646,10 +646,10 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
               ]}
               onPress={() => setPostVisibility('connections')}
             >
-              <Ionicons 
-                name="people-outline" 
-                size={16} 
-                color={postVisibility === 'connections' ? colors.primary : colors.textSecondary} 
+              <Ionicons
+                name="people-outline"
+                size={16}
+                color={postVisibility === 'connections' ? colors.primary : colors.textSecondary}
               />
               <Text style={[
                 styles.visibilityText,
@@ -657,7 +657,7 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
               ]}>Connections</Text>
             </TouchableOpacity>
           </View>
-          
+
           {/* Post content input */}
           <TextInput
             style={styles.postInput}
@@ -669,12 +669,12 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
             autoFocus
             maxLength={2000}
           />
-          
+
           {/* Character count */}
           <Text style={styles.charCount}>
             {newPostContent.length}/2000
           </Text>
-          
+
           {/* Media preview */}
           {newPostMedia.length > 0 && (
             <View style={styles.mediaPreviewContainer}>
@@ -691,18 +691,18 @@ export default function FeedScreen({ navigation }: FeedScreenProps) {
               ))}
             </View>
           )}
-          
+
           {/* Media actions */}
           <View style={styles.mediaActions}>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.mediaActionButton}
               onPress={pickImage}
               disabled={newPostMedia.length >= 4}
             >
-              <Ionicons 
-                name="image-outline" 
-                size={24} 
-                color={newPostMedia.length >= 4 ? colors.textSecondary : colors.primary} 
+              <Ionicons
+                name="image-outline"
+                size={24}
+                color={newPostMedia.length >= 4 ? colors.textSecondary : colors.primary}
               />
               <Text style={styles.mediaActionText}>Photo</Text>
             </TouchableOpacity>
@@ -764,7 +764,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '600',
   },
-  
+
   // Create post card
   createPostCard: {
     flexDirection: 'row',
@@ -790,7 +790,7 @@ const styles = StyleSheet.create({
     padding: spacing.xs,
     marginLeft: spacing.sm,
   },
-  
+
   // Post card
   postCard: {
     backgroundColor: colors.surface,
@@ -863,7 +863,7 @@ const styles = StyleSheet.create({
     ...typography.body,
     lineHeight: 22,
   },
-  
+
   // Media
   mediaContainer: {
     marginBottom: spacing.md,
@@ -905,7 +905,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
-  
+
   // Engagement stats
   engagementStats: {
     flexDirection: 'row',
@@ -919,7 +919,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginRight: spacing.md,
   },
-  
+
   // Actions
   postActions: {
     flexDirection: 'row',
@@ -943,7 +943,7 @@ const styles = StyleSheet.create({
   reactionEmoji: {
     fontSize: 18,
   },
-  
+
   // Reaction picker
   reactionPicker: {
     position: 'absolute',
@@ -961,13 +961,13 @@ const styles = StyleSheet.create({
   reactionOptionEmoji: {
     fontSize: 24,
   },
-  
+
   // Footer
   footerLoader: {
     padding: spacing.lg,
     alignItems: 'center',
   },
-  
+
   // FAB
   fab: {
     position: 'absolute',
@@ -981,7 +981,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     ...shadows.lg,
   },
-  
+
   // Modal
   modalContainer: {
     flex: 1,
@@ -1023,7 +1023,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '600',
   },
-  
+
   // Visibility selector
   visibilitySelector: {
     flexDirection: 'row',
@@ -1053,7 +1053,7 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontWeight: '500',
   },
-  
+
   // Post input
   postInput: {
     flex: 1,
@@ -1068,7 +1068,7 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     fontSize: 12,
   },
-  
+
   // Media preview
   mediaPreviewContainer: {
     flexDirection: 'row',
@@ -1089,7 +1089,7 @@ const styles = StyleSheet.create({
     top: -8,
     right: -8,
   },
-  
+
   // Media actions
   mediaActions: {
     flexDirection: 'row',

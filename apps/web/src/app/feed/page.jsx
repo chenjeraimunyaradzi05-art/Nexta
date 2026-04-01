@@ -278,10 +278,10 @@ export default function FeedPage() {
   ];
 
   return (
-    <div className="ngurra-page py-6 relative overflow-hidden">
+    <div className="nexta-page py-6 relative overflow-hidden">
       {/* Decorative halos */}
-      <div className="ngurra-halo-pink" />
-      <div className="ngurra-halo-purple" />
+      <div className="nexta-halo-pink" />
+      <div className="nexta-halo-purple" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Three Column Layout */}

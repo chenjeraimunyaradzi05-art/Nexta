@@ -1,6 +1,6 @@
 /**
  * StoriesScreen - Success Stories from the Indigenous Community
- * 
+ *
  * Features:
  * - Featured success stories with video/image content
  * - Category filtering (career, education, mentorship, community)
@@ -83,7 +83,7 @@ const MOCK_STORIES: Story[] = [
 
 My journey started when an elder in my community encouraged me to pursue education. "Our stories need to be told in every language," she said, "including the language of computers."
 
-Through Ngurra Pathways, I found a mentor who understood both worlds – the corporate landscape and the importance of cultural identity. Sarah, a Ngunnawal woman who had walked this path before me, showed me it was possible to succeed without compromising who I am.
+Through Nexta, I found a mentor who understood both worlds – the corporate landscape and the importance of cultural identity. Sarah, a Ngunnawal woman who had walked this path before me, showed me it was possible to succeed without compromising who I am.
 
 Today, I help other Indigenous youth find their path in tech. We don't have to choose between our culture and our careers. We can bring our unique perspectives to make technology more inclusive for everyone.
 
@@ -114,7 +114,7 @@ My advice to young Indigenous people: Your culture is your strength. Bring all o
 
 Education wasn't always accessible for my mob. My grandmother wasn't allowed to attend school past primary level. My mother had to travel hundreds of kilometers just to get a high school education.
 
-But things are changing. Through programs like Ngurra Pathways, more Indigenous students are finding support, scholarships, and most importantly, community.
+But things are changing. Through programs like Nexta, more Indigenous students are finding support, scholarships, and most importantly, community.
 
 I'm now a secondary school teacher in a remote community. Every day, I see young people who remind me of myself – full of potential, sometimes unsure of their path. I tell them what I wish someone had told me: "You belong here. Your dreams are valid. And your community is behind you."`,
     author: {
@@ -141,7 +141,7 @@ I'm now a secondary school teacher in a remote community. Every day, I see young
     summary: 'How mentorship helped me reconnect with my identity',
     content: `I grew up away from my Country, in the suburbs of Melbourne. I always knew I was Indigenous, but I felt disconnected from my culture. Imposter syndrome followed me everywhere.
 
-When I joined Ngurra Pathways, I was matched with Uncle David, a Gunditjmara elder who became my mentor. He didn't just help me with my career – he helped me understand who I am.
+When I joined Nexta, I was matched with Uncle David, a Gunditjmara elder who became my mentor. He didn't just help me with my career – he helped me understand who I am.
 
 "Culture isn't just about where you live," he told me. "It's about who you are, how you treat others, and how you carry yourself in the world."
 
@@ -200,7 +200,7 @@ const FeaturedStoryCard: React.FC<{
         onPressOut={handlePressOut}
       >
         <Image source={{ uri: story.coverImage }} style={styles.featuredImage} />
-        
+
         <LinearGradient
           colors={['transparent', 'rgba(0,0,0,0.8)']}
           style={styles.featuredGradient}
@@ -234,8 +234,8 @@ const FeaturedStoryCard: React.FC<{
 
           {/* Author */}
           <View style={styles.featuredAuthor}>
-            <Image 
-              source={{ uri: story.author.avatar }} 
+            <Image
+              source={{ uri: story.author.avatar }}
               style={styles.featuredAuthorAvatar}
             />
             <View style={styles.featuredAuthorInfo}>
@@ -253,18 +253,18 @@ const FeaturedStoryCard: React.FC<{
               <Text style={styles.featuredStatText}>{story.readTime} min read</Text>
             </View>
             <View style={styles.featuredActionButtons}>
-              <TouchableOpacity 
-                style={styles.actionButton} 
+              <TouchableOpacity
+                style={styles.actionButton}
                 onPress={(e) => { e.stopPropagation(); onSave(); }}
               >
-                <Ionicons 
-                  name={story.isSaved ? 'bookmark' : 'bookmark-outline'} 
-                  size={22} 
-                  color="white" 
+                <Ionicons
+                  name={story.isSaved ? 'bookmark' : 'bookmark-outline'}
+                  size={22}
+                  color="white"
                 />
               </TouchableOpacity>
-              <TouchableOpacity 
-                style={styles.actionButton} 
+              <TouchableOpacity
+                style={styles.actionButton}
                 onPress={(e) => { e.stopPropagation(); onShare(); }}
               >
                 <Ionicons name="share-outline" size={22} color="white" />
@@ -286,7 +286,7 @@ const StoryCard: React.FC<{
   return (
     <TouchableOpacity style={styles.storyCard} onPress={onPress} activeOpacity={0.8}>
       <Image source={{ uri: story.coverImage }} style={styles.storyImage} />
-      
+
       <View style={styles.storyContent}>
         <View style={[
           styles.storyCategory,
@@ -305,8 +305,8 @@ const StoryCard: React.FC<{
 
         <View style={styles.storyFooter}>
           <View style={styles.storyAuthor}>
-            <Image 
-              source={{ uri: story.author.avatar }} 
+            <Image
+              source={{ uri: story.author.avatar }}
               style={styles.storyAuthorAvatar}
             />
             <View>
@@ -315,10 +315,10 @@ const StoryCard: React.FC<{
             </View>
           </View>
           <TouchableOpacity onPress={onSave} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
-            <Ionicons 
-              name={story.isSaved ? 'bookmark' : 'bookmark-outline'} 
-              size={20} 
-              color={story.isSaved ? '#8B5CF6' : '#6B7280'} 
+            <Ionicons
+              name={story.isSaved ? 'bookmark' : 'bookmark-outline'}
+              size={20}
+              color={story.isSaved ? '#8B5CF6' : '#6B7280'}
             />
           </TouchableOpacity>
         </View>
@@ -347,7 +347,7 @@ const StoryDetailModal: React.FC<{
     >
       <SafeAreaView style={styles.modalContainer}>
         <StatusBar barStyle="light-content" />
-        
+
         {/* Header */}
         <View style={styles.modalHeader}>
           <TouchableOpacity onPress={onClose} style={styles.modalCloseButton}>
@@ -355,17 +355,17 @@ const StoryDetailModal: React.FC<{
           </TouchableOpacity>
           <View style={styles.modalHeaderActions}>
             <TouchableOpacity onPress={onLike} style={styles.modalAction}>
-              <Ionicons 
-                name={story.isLiked ? 'heart' : 'heart-outline'} 
-                size={24} 
-                color={story.isLiked ? '#EF4444' : '#6B7280'} 
+              <Ionicons
+                name={story.isLiked ? 'heart' : 'heart-outline'}
+                size={24}
+                color={story.isLiked ? '#EF4444' : '#6B7280'}
               />
             </TouchableOpacity>
             <TouchableOpacity onPress={onSave} style={styles.modalAction}>
-              <Ionicons 
-                name={story.isSaved ? 'bookmark' : 'bookmark-outline'} 
-                size={24} 
-                color={story.isSaved ? '#8B5CF6' : '#6B7280'} 
+              <Ionicons
+                name={story.isSaved ? 'bookmark' : 'bookmark-outline'}
+                size={24}
+                color={story.isSaved ? '#8B5CF6' : '#6B7280'}
               />
             </TouchableOpacity>
             <TouchableOpacity onPress={onShare} style={styles.modalAction}>
@@ -393,8 +393,8 @@ const StoryDetailModal: React.FC<{
 
           {/* Author Info */}
           <View style={styles.modalAuthorContainer}>
-            <Image 
-              source={{ uri: story.author.avatar }} 
+            <Image
+              source={{ uri: story.author.avatar }}
               style={styles.modalAuthorAvatar}
             />
             <View style={styles.modalAuthorInfo}>
@@ -474,16 +474,16 @@ export default function StoriesScreen() {
 
   const handleSave = useCallback((storyId: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    setStories(prev => prev.map(s => 
+    setStories(prev => prev.map(s =>
       s.id === storyId ? { ...s, isSaved: !s.isSaved } : s
     ));
   }, []);
 
   const handleLike = useCallback((storyId: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    setStories(prev => prev.map(s => 
-      s.id === storyId ? { 
-        ...s, 
+    setStories(prev => prev.map(s =>
+      s.id === storyId ? {
+        ...s,
         isLiked: !s.isLiked,
         likes: s.isLiked ? s.likes - 1 : s.likes + 1
       } : s
@@ -501,7 +501,7 @@ export default function StoriesScreen() {
   const handleShare = useCallback(async (story: Story) => {
     try {
       await Share.share({
-        message: `Check out this inspiring story: "${story.title}" by ${story.author.name} on Ngurra Pathways`,
+        message: `Check out this inspiring story: "${story.title}" by ${story.author.name} on Nexta`,
         title: story.title,
       });
       // Update share count
@@ -520,8 +520,8 @@ export default function StoriesScreen() {
 
   // Render category tabs
   const renderCategories = () => (
-    <ScrollView 
-      horizontal 
+    <ScrollView
+      horizontal
       showsHorizontalScrollIndicator={false}
       style={styles.categoriesContainer}
       contentContainerStyle={styles.categoriesContent}
@@ -551,10 +551,10 @@ export default function StoriesScreen() {
     <View style={styles.headerContent}>
       {/* Title Section */}
       <View style={styles.titleSection}>
-        <MaterialCommunityIcons 
-          name="fire" 
-          size={28} 
-          color="#F59E0B" 
+        <MaterialCommunityIcons
+          name="fire"
+          size={28}
+          color="#F59E0B"
         />
         <Text style={styles.headerTitle}>Success Stories</Text>
       </View>

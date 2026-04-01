@@ -26,7 +26,7 @@ async function checkTenantAccess(req, res, next) {
   try {
     const userId = req.user?.id;
     const tenantSlug = req.params.slug;
-    
+
     // Admin override
     const adminKey = req.headers['x-admin-key'];
     if (adminKey && adminKey === process.env.ADMIN_API_KEY) {
@@ -77,9 +77,9 @@ router.get('/config', async (req, res) => {
     } else if (host) {
       // Look up by domain
       tenant = await prisma.whiteLabelTenant.findFirst({
-        where: { 
+        where: {
           domain: host,
-          isActive: true 
+          isActive: true
         }
       });
     }
@@ -88,12 +88,12 @@ router.get('/config', async (req, res) => {
     if (!tenant) {
       return void res.json({
         isDefault: true,
-        name: 'Ngurra Pathways',
-        logoUrl: '/brand/ngurra-logo.svg',
+        name: 'Nexta',
+        logoUrl: '/brand/nexta-logo.svg',
         primaryColor: '#3B82F6',
         secondaryColor: '#1E293B',
         accentColor: '#10B981',
-        footerText: '© 2025 Ngurra Pathways. All rights reserved.'
+        footerText: '© 2025 Nexta. All rights reserved.'
       });
     }
 
@@ -101,7 +101,7 @@ router.get('/config', async (req, res) => {
       isDefault: false,
       slug: tenant.slug,
       name: tenant.name,
-      logoUrl: tenant.logoUrl || '/brand/ngurra-logo.svg',
+      logoUrl: tenant.logoUrl || '/brand/nexta-logo.svg',
       faviconUrl: tenant.faviconUrl,
       primaryColor: tenant.primaryColor,
       secondaryColor: tenant.secondaryColor,
@@ -381,7 +381,7 @@ router.delete('/tenants/:slug', async (req, res) => {
 router.post('/tenants/:slug/preview', authenticateJWT, checkTenantAccess, async (req, res) => {
   try {
     const { slug } = req.params;
-    
+
     // Generate a time-limited preview token
     const previewToken = Buffer.from(JSON.stringify({
       slug,

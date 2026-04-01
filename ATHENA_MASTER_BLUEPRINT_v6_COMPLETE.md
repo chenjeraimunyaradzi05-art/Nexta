@@ -6,7 +6,7 @@
 
 ## 🛡️ 1. Women-First Safety Framework
 
-This framework governs all interactions on the Ngurra Pathways platform, ensuring a culturally safe environment for First Nations women.
+This framework governs all interactions on the Nexta platform, ensuring a culturally safe environment for First Nations women.
 
 ### 1.1 Core Principles
 *   **Cultural Safety First:** All features prioritize the mental, emotional, and physical safety of First Nations women.

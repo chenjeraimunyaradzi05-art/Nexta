@@ -7,9 +7,9 @@ export const metadata = {
     description: 'Find Indigenous employment opportunities across Australia. Browse jobs from leading employers committed to First Nations careers, traineeships, and culturally safe workplaces.',
     keywords: ['Indigenous jobs', 'First Nations employment', 'Aboriginal careers', 'Indigenous traineeships', 'culturally safe workplace'],
     openGraph: {
-        title: 'Indigenous Jobs & Careers | Ngurra Pathways',
+        title: 'Indigenous Jobs & Careers | Nexta',
         description: 'Find Indigenous employment opportunities across Australia from leading employers.',
-        url: 'https://ngurrapathways.life/jobs',
+        url: 'https://nexta.life/jobs',
     },
     alternates: {
         canonical: '/jobs',

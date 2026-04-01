@@ -4,12 +4,12 @@ import React from 'react';
 
 /**
  * Skip Links Component
- * 
+ *
  * Accessibility component that provides keyboard-accessible skip links
  * for navigating to main content areas. Essential for screen reader users
  * and keyboard navigation.
- * 
- * Ngurra Pathways - Celestial Precious Stone Theme
+ *
+ * Nexta - Celestial Precious Stone Theme
  */
 
 interface SkipLinkItem {
@@ -41,8 +41,8 @@ export function SkipLinks({ links = defaultLinks, className = '' }: SkipLinksPro
         <a
           key={link.id}
           href={`#${link.id}`}
-          className="skip-link sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 
-            focus:z-[9999] focus:px-4 focus:py-2 focus:bg-gold focus:text-cosmic-darker 
+          className="skip-link sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0
+            focus:z-[9999] focus:px-4 focus:py-2 focus:bg-gold focus:text-cosmic-darker
             focus:font-semibold focus:rounded-br-lg focus:shadow-lg focus:outline-none
             focus:ring-2 focus:ring-gold focus:ring-offset-2
             dark:focus:bg-gold dark:focus:text-cosmic-darker
@@ -66,15 +66,15 @@ export function SkipLinks({ links = defaultLinks, className = '' }: SkipLinksPro
 
 /**
  * Main Content Wrapper
- * 
+ *
  * Use this component to wrap your main content area.
  * Provides proper focus management and landmark navigation.
  */
-export function MainContent({ 
-  children, 
+export function MainContent({
+  children,
   id = 'main-content',
   className = '',
-}: { 
+}: {
   children: React.ReactNode;
   id?: string;
   className?: string;
@@ -94,7 +94,7 @@ export function MainContent({
 
 /**
  * Navigation Landmark
- * 
+ *
  * Wraps navigation content with proper accessibility attributes.
  */
 export function NavigationLandmark({
@@ -123,7 +123,7 @@ export function NavigationLandmark({
 
 /**
  * Search Landmark
- * 
+ *
  * Wraps search content with proper accessibility attributes.
  */
 export function SearchLandmark({
@@ -150,7 +150,7 @@ export function SearchLandmark({
 
 /**
  * Content Section with ID
- * 
+ *
  * Creates a focusable section that skip links can target.
  */
 export function Section({

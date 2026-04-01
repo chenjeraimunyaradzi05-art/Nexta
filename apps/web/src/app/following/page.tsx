@@ -5,13 +5,13 @@ import Link from 'next/link';
 import Image from '@/components/ui/OptimizedImage';
 import { isCloudinaryPublicId } from '@/lib/cloudinary';
 import { Space_Grotesk } from 'next/font/google';
-import { 
-  Users, ArrowLeft, UserPlus, UserMinus, Search, 
+import {
+  Users, ArrowLeft, UserPlus, UserMinus, Search,
   Building2, Briefcase, MapPin, MoreHorizontal
 } from 'lucide-react';
 
-const spaceGrotesk = Space_Grotesk({ 
-  subsets: ['latin'], 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
   weight: ['400', '500', '700'],
   variable: '--font-space-grotesk'
 });
@@ -129,19 +129,19 @@ export default function FollowingPage() {
   }, []);
 
   const handleUnfollow = (id: string) => {
-    setFollowing(prev => prev.map(item => 
+    setFollowing(prev => prev.map(item =>
       item.id === id ? { ...item, isFollowing: false } : item
     ));
   };
 
   const handleFollow = (id: string) => {
-    setFollowing(prev => prev.map(item => 
+    setFollowing(prev => prev.map(item =>
       item.id === id ? { ...item, isFollowing: true } : item
     ));
   };
 
   const filteredFollowing = following.filter(item => {
-    const matchesTab = activeTab === 'all' || 
+    const matchesTab = activeTab === 'all' ||
       (activeTab === 'people' && item.type === 'person') ||
       (activeTab === 'organizations' && item.type === 'organization') ||
       (activeTab === 'topics' && item.type === 'topic');
@@ -169,15 +169,15 @@ export default function FollowingPage() {
   };
 
   return (
-    <div className={`${spaceGrotesk.className} ngurra-page relative overflow-hidden`}>
+    <div className={`${spaceGrotesk.className} nexta-page relative overflow-hidden`}>
       {/* Decorative halos */}
-      <div className="ngurra-halo-pink" />
-      <div className="ngurra-halo-purple" />
+      <div className="nexta-halo-pink" />
+      <div className="nexta-halo-purple" />
 
       <div className="relative max-w-4xl mx-auto px-4 py-6">
         {/* Header */}
         <div className="flex items-center gap-4 mb-6">
-          <Link 
+          <Link
             href="/"
             className="p-2 rounded-lg bg-white border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-pink-600 transition-colors"
           >
@@ -219,7 +219,7 @@ export default function FollowingPage() {
               onClick={() => setActiveTab(tab.id as typeof activeTab)}
               className="px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2"
               style={
-                activeTab === tab.id 
+                activeTab === tab.id
                   ? { background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)`, color: 'white' }
                   : { background: 'white', border: '1px solid #E2E8F0', color: '#64748B' }
               }
@@ -246,10 +246,10 @@ export default function FollowingPage() {
             <p className="text-slate-500 mb-6">
               {searchQuery ? 'Try a different search term' : 'You\'re not following anyone yet'}
             </p>
-            <Link 
+            <Link
               href="/connections/find"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-medium transition-all hover:scale-[1.02]"
-              style={{ 
+              style={{
                 background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)`,
                 boxShadow: '0 4px 12px rgba(233, 30, 140, 0.3)'
               }}
@@ -261,7 +261,7 @@ export default function FollowingPage() {
         ) : (
           <div className="space-y-4">
             {filteredFollowing.map((item) => (
-              <article 
+              <article
                 key={item.id}
                 className="rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-pink-300 transition-colors p-4"
                 style={{ boxShadow: '0 4px 20px rgba(15, 23, 42, 0.06)' }}
@@ -280,10 +280,10 @@ export default function FollowingPage() {
                       />
                     </div>
                   </Link>
-                  
+
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap mb-1">
-                      <Link 
+                      <Link
                         href={item.type === 'topic' ? `/search?q=${item.name}` : `/profile/${item.id}`}
                         className="font-semibold text-slate-800 hover:text-pink-600 transition-colors"
                       >
@@ -293,26 +293,26 @@ export default function FollowingPage() {
                         {item.type === 'person' ? 'Person' : item.type === 'organization' ? 'Organization' : 'Topic'}
                       </span>
                     </div>
-                    
+
                     {item.location && (
                       <div className="flex items-center gap-1 text-xs text-slate-400 mb-1">
                         <MapPin className="w-3 h-3" />
                         {item.location}
                       </div>
                     )}
-                    
+
                     <p className="text-sm text-slate-500 mb-2 line-clamp-2">{item.description}</p>
-                    
+
                     <div className="flex items-center gap-4 text-xs text-slate-400">
                       <span>{formatCount(item.followersCount)} followers</span>
                       <span>{formatCount(item.postsCount)} posts</span>
                     </div>
                   </div>
-                  
+
                   {/* Actions */}
                   <div className="flex items-center gap-2 shrink-0">
                     {item.isFollowing ? (
-                      <button 
+                      <button
                         onClick={() => handleUnfollow(item.id)}
                         className="px-4 py-2 rounded-lg border border-slate-200 text-slate-600 text-sm font-medium hover:bg-slate-50 transition-colors flex items-center gap-2"
                       >
@@ -320,7 +320,7 @@ export default function FollowingPage() {
                         <span className="hidden sm:inline">Unfollow</span>
                       </button>
                     ) : (
-                      <button 
+                      <button
                         onClick={() => handleFollow(item.id)}
                         className="px-4 py-2 rounded-lg text-white text-sm font-medium transition-all flex items-center gap-2"
                         style={{ background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)` }}
@@ -340,7 +340,7 @@ export default function FollowingPage() {
         )}
 
         {/* Suggestions */}
-        <div 
+        <div
           className="mt-8 rounded-xl bg-white border border-slate-200 p-6"
           style={{ boxShadow: '0 4px 20px rgba(15, 23, 42, 0.06)' }}
         >
@@ -357,7 +357,7 @@ export default function FollowingPage() {
             ].map((suggestion, i) => (
               <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-slate-50">
                 <div className="flex items-center gap-3">
-                  <div 
+                  <div
                     className="w-10 h-10 rounded-full flex items-center justify-center text-lg"
                     style={{ background: 'linear-gradient(135deg, rgba(233, 30, 140, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%)' }}
                   >
@@ -368,7 +368,7 @@ export default function FollowingPage() {
                     <div className="text-xs text-slate-400">{suggestion.type}</div>
                   </div>
                 </div>
-                <button 
+                <button
                   className="px-3 py-1.5 rounded-lg text-xs font-medium transition-colors"
                   style={{ background: 'rgba(233, 30, 140, 0.1)', color: accentPink }}
                 >

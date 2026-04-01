@@ -1,4 +1,4 @@
-# Visual QA Checklist - Ngurra Pathways / Gimbi
+# Visual QA Checklist - Nexta / Gimbi
 
 ## Design System Standards
 
@@ -6,8 +6,8 @@
 
 | Variant       | Use Case                        | Classes                                                                                                                   |
 | ------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `ngurra`      | Sidebar cards, content cards    | `backdrop-blur-md bg-white/80 border-slate-200 dark:bg-[#0f172a]/72 dark:border-slate-700/30 shadow-sm border rounded-xl` |
-| `ngurra-dark` | Dark backgrounds                | `backdrop-blur-md bg-slate-900/90 border-slate-700/50 shadow-sm border rounded-xl`                                        |
+| `nexta`      | Sidebar cards, content cards    | `backdrop-blur-md bg-white/80 border-slate-200 dark:bg-[#0f172a]/72 dark:border-slate-700/30 shadow-sm border rounded-xl` |
+| `nexta-dark` | Dark backgrounds                | `backdrop-blur-md bg-slate-900/90 border-slate-700/50 shadow-sm border rounded-xl`                                        |
 | `aura`        | CTA cards, gradient backgrounds | `backdrop-blur-sm border border-white/20 shadow-lg rounded-xl`                                                            |
 | `glass`       | Glass morphism effect           | `bg-white/10 backdrop-blur-md border border-white/20 rounded-xl`                                                          |
 | `cosmic`      | Deep space theme                | `bg-gradient-to-br from-[#1A0F2E]/90 to-[#2D1B69]/80 border border-[#FFD700]/20 backdrop-blur-sm rounded-xl`              |
@@ -82,7 +82,7 @@
 
 ### ✅ Component Consistency
 
-- [x] All sidebar cards use `Card variant="ngurra"`
+- [x] All sidebar cards use `Card variant="nexta"`
 - [x] All cards have `rounded-xl`
 - [x] Padding is `p-4` (md) for all content cards
 - [ ] Job cards match sidebar card styling
@@ -96,7 +96,7 @@
 | ------------------------------------------ | ---------------- | ------------------------ |
 | `apps/web/src/app/page.tsx`                | ✅ Refactored    | Uses Card component      |
 | `apps/web/src/components/FeaturedJobs.tsx` | ⚠️ Inline styles | Could use Card component |
-| `apps/web/src/components/ui/Card.tsx`      | ✅ Updated       | Added ngurra variants    |
+| `apps/web/src/components/ui/Card.tsx`      | ✅ Updated       | Added nexta variants    |
 | `apps/web/src/app/globals.css`             | ✅ Reviewed      | Theme variables present  |
 
 ---
@@ -116,7 +116,7 @@
 
 - Changed all `rounded-2xl` → `rounded-xl` for uniform border radius
 - Standardized padding to `p-4` across all cards
-- Created `ngurra` variant in Card component for homepage cards
+- Created `nexta` variant in Card component for homepage cards
 - Removed duplicate `cardBase` variable definitions in favor of shared component
 
 ### Hydration Fixes

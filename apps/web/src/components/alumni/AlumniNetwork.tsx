@@ -8,7 +8,7 @@ import OptimizedImage from '@/components/ui/OptimizedImage';
 
 /**
  * AlumniNetwork - Connect with platform alumni
- * 
+ *
  * Features:
  * - Browse alumni directory
  * - Filter by industry, location, graduation year
@@ -740,7 +740,7 @@ export function AlumniNetwork() {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Alumni Network</h1>
-        <p className="text-gray-500 mt-1">Connect with fellow Ngurra Pathways graduates</p>
+        <p className="text-gray-500 mt-1">Connect with fellow Nexta graduates</p>
       </div>
 
       {/* Stats */}

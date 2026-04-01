@@ -1,4 +1,4 @@
-# Nixpacks configuration for ngurra-api
+# Nixpacks configuration for nexta-api
 # Fallback if Dockerfile build fails
 
 [phases.setup]

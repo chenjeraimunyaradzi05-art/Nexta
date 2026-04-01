@@ -1,6 +1,6 @@
 # Testing Guide
 
-This document covers the testing strategy, tools, and practices for Ngurra Pathways.
+This document covers the testing strategy, tools, and practices for Nexta.
 
 ## Table of Contents
 
@@ -83,11 +83,11 @@ import { test, expect } from '@playwright/test';
 test.describe('Authentication', () => {
   test('user can login successfully', async ({ page }) => {
     await page.goto('/auth/login');
-    
+
     await page.fill('[name="email"]', 'user@example.com');
     await page.fill('[name="password"]', 'password123');
     await page.click('button[type="submit"]');
-    
+
     await expect(page).toHaveURL('/dashboard');
     await expect(page.locator('h1')).toContainText('Welcome');
   });
@@ -184,7 +184,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 test('homepage has no accessibility violations', async ({ page }) => {
   await page.goto('/');
-  
+
   const results = await new AxeBuilder({ page }).analyze();
   expect(results.violations).toEqual([]);
 });

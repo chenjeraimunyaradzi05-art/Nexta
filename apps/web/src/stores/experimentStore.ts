@@ -2,7 +2,7 @@
 
 /**
  * Experiment Store
- * 
+ *
  * A/B testing and feature experiments management.
  */
 
@@ -41,18 +41,18 @@ interface ExperimentState {
 interface ExperimentActions {
   // Get variant for an experiment
   getVariant: (experimentName: string) => Promise<string>;
-  
+
   // Track conversion
   trackConversion: (experimentName: string, eventName: string, metadata?: Record<string, unknown>) => Promise<void>;
-  
+
   // Check if user is in variant
   isInVariant: (experimentName: string, variant: string) => boolean;
-  
+
   // Admin functions
   loadExperiments: () => Promise<void>;
   createExperiment: (experiment: Partial<Experiment>) => Promise<boolean>;
   updateExperiment: (id: string, updates: Partial<Experiment>) => Promise<boolean>;
-  
+
   // Clear assignments (for testing)
   clearAssignments: () => void;
 }
@@ -70,7 +70,7 @@ export const useExperimentStore = create<ExperimentStore>()(
       // Get variant
       getVariant: async (experimentName) => {
         const { assignments } = get();
-        
+
         // Return cached assignment if exists
         if (assignments[experimentName]) {
           return assignments[experimentName].variant;
@@ -78,10 +78,10 @@ export const useExperimentStore = create<ExperimentStore>()(
 
         try {
           // Get anonymous ID for non-logged-in users
-          let anonymousId = localStorage.getItem('ngurra_anon_id');
+          let anonymousId = localStorage.getItem('nexta_anon_id');
           if (!anonymousId) {
             anonymousId = `anon_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-            localStorage.setItem('ngurra_anon_id', anonymousId);
+            localStorage.setItem('nexta_anon_id', anonymousId);
           }
 
           const { ok, data } = await api<{ variant: string }>('/experiments/variant', {
@@ -105,7 +105,7 @@ export const useExperimentStore = create<ExperimentStore>()(
 
             return data.variant;
           }
-          
+
           return 'control';
         } catch (err) {
           console.error('Failed to get experiment variant:', err);
@@ -116,8 +116,8 @@ export const useExperimentStore = create<ExperimentStore>()(
       // Track conversion
       trackConversion: async (experimentName, eventName, metadata) => {
         try {
-          const anonymousId = localStorage.getItem('ngurra_anon_id');
-          
+          const anonymousId = localStorage.getItem('nexta_anon_id');
+
           await api('/experiments/convert', {
             method: 'POST',
             body: { experimentName, eventName, anonymousId, metadata },
@@ -197,7 +197,7 @@ export const useExperimentStore = create<ExperimentStore>()(
       },
     }),
     {
-      name: 'ngurra-experiments',
+      name: 'nexta-experiments',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         assignments: state.assignments,
@@ -211,11 +211,11 @@ export const useExperimentStore = create<ExperimentStore>()(
  */
 export function useExperiment(experimentName: string) {
   const { getVariant, trackConversion, isInVariant, assignments } = useExperimentStore();
-  
+
   return {
     variant: assignments[experimentName]?.variant || null,
     getVariant: () => getVariant(experimentName),
-    trackConversion: (eventName: string, metadata?: Record<string, unknown>) => 
+    trackConversion: (eventName: string, metadata?: Record<string, unknown>) =>
       trackConversion(experimentName, eventName, metadata),
     isControl: () => isInVariant(experimentName, 'control'),
     isVariant: (variant: string) => isInVariant(experimentName, variant),

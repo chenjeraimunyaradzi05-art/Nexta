@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
  * BullMQ Worker Process
- * 
+ *
  * Standalone worker for processing background jobs.
  * Run with: node src/worker.js
- * 
+ *
  * In production, PM2 manages multiple worker instances:
- * pm2 start ecosystem.config.cjs --only ngurra-worker
+ * pm2 start ecosystem.config.cjs --only nexta-worker
  */
 
 require('dotenv').config();
@@ -24,10 +24,10 @@ let isShuttingDown = false;
  */
 async function processEmailJob(job) {
   const { type, to, subject, template, data } = job.data;
-  
-  logger.info('[Worker] Processing email job', { 
-    jobId: job.id, 
-    type, 
+
+  logger.info('[Worker] Processing email job', {
+    jobId: job.id,
+    type,
     to,
   });
 
@@ -51,11 +51,11 @@ async function processEmailJob(job) {
       default:
         logger.warn('[Worker] Unknown email type', { type });
     }
-    
+
     return { success: true, sentAt: new Date().toISOString() };
   } catch (error) {
-    logger.error('[Worker] Email job failed', { 
-      jobId: job.id, 
+    logger.error('[Worker] Email job failed', {
+      jobId: job.id,
       error: error.message,
     });
     throw error;
@@ -67,10 +67,10 @@ async function processEmailJob(job) {
  */
 async function processNotificationJob(job) {
   const { userId, type, title, body, data } = job.data;
-  
-  logger.info('[Worker] Processing notification job', { 
-    jobId: job.id, 
-    userId, 
+
+  logger.info('[Worker] Processing notification job', {
+    jobId: job.id,
+    userId,
     type,
   });
 
@@ -78,7 +78,7 @@ async function processNotificationJob(job) {
     // Get user's notification preferences and tokens
     const user = await prisma.user.findUnique({
       where: { id: userId },
-      include: { 
+      include: {
         notificationPreferences: true,
       },
     });
@@ -110,8 +110,8 @@ async function processNotificationJob(job) {
 
     return { success: true, notifiedAt: new Date().toISOString() };
   } catch (error) {
-    logger.error('[Worker] Notification job failed', { 
-      jobId: job.id, 
+    logger.error('[Worker] Notification job failed', {
+      jobId: job.id,
       error: error.message,
     });
     throw error;
@@ -123,16 +123,16 @@ async function processNotificationJob(job) {
  */
 async function processReportJob(job) {
   const { type, params, requestedBy } = job.data;
-  
-  logger.info('[Worker] Processing report job', { 
-    jobId: job.id, 
+
+  logger.info('[Worker] Processing report job', {
+    jobId: job.id,
     type,
     requestedBy,
   });
 
   try {
     let reportData;
-    
+
     switch (type) {
       case 'analytics':
         reportData = await generateAnalyticsReport(params);
@@ -175,8 +175,8 @@ async function processReportJob(job) {
 
     return { success: true, reportId: report.id };
   } catch (error) {
-    logger.error('[Worker] Report job failed', { 
-      jobId: job.id, 
+    logger.error('[Worker] Report job failed', {
+      jobId: job.id,
       error: error.message,
     });
     throw error;
@@ -188,15 +188,15 @@ async function processReportJob(job) {
  */
 async function processCleanupJob(job) {
   const { task } = job.data;
-  
-  logger.info('[Worker] Processing cleanup job', { 
-    jobId: job.id, 
+
+  logger.info('[Worker] Processing cleanup job', {
+    jobId: job.id,
     task,
   });
 
   try {
     let result;
-    
+
     switch (task) {
       case 'expired-sessions':
         result = await cleanupExpiredSessions();
@@ -222,8 +222,8 @@ async function processCleanupJob(job) {
 
     return { success: true, ...result };
   } catch (error) {
-    logger.error('[Worker] Cleanup job failed', { 
-      jobId: job.id, 
+    logger.error('[Worker] Cleanup job failed', {
+      jobId: job.id,
       error: error.message,
     });
     throw error;
@@ -236,7 +236,7 @@ async function processCleanupJob(job) {
 
 async function cleanupExpiredSessions() {
   const expiredDate = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000); // 7 days
-  
+
   const result = await prisma.userSession.deleteMany({
     where: {
       OR: [
@@ -252,7 +252,7 @@ async function cleanupExpiredSessions() {
 
 async function cleanupOldNotifications() {
   const oldDate = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000); // 30 days
-  
+
   const result = await prisma.notification.deleteMany({
     where: {
       createdAt: { lt: oldDate },
@@ -269,25 +269,25 @@ async function cleanupOrphanFiles() {
   try {
     const fs = await import('fs/promises');
     const path = await import('path');
-    
+
     const uploadDir = process.env.UPLOAD_DIR || './uploads';
     const orphanAge = 24 * 60 * 60 * 1000; // 24 hours
     const cutoffDate = new Date(Date.now() - orphanAge);
-    
+
     let deletedCount = 0;
     let totalSize = 0;
-    
+
     // Get all temp files older than 24 hours
     const tempDir = path.join(uploadDir, 'temp');
-    
+
     try {
       const files = await fs.readdir(tempDir);
-      
+
       for (const file of files) {
         const filePath = path.join(tempDir, file);
         try {
           const stats = await fs.stat(filePath);
-          
+
           if (stats.mtime < cutoffDate) {
             totalSize += stats.size;
             await fs.unlink(filePath);
@@ -302,17 +302,17 @@ async function cleanupOrphanFiles() {
       // Temp directory doesn't exist yet
       logger.debug('[Cleanup] Temp directory not found', { dir: tempDir });
     }
-    
+
     // Clean up video processing temp files
     const videoTempDir = path.join(uploadDir, 'video-processing');
     try {
       const videoFiles = await fs.readdir(videoTempDir);
-      
+
       for (const file of videoFiles) {
         const filePath = path.join(videoTempDir, file);
         try {
           const stats = await fs.stat(filePath);
-          
+
           // Delete video temp files older than 6 hours
           if (stats.mtime < new Date(Date.now() - 6 * 60 * 60 * 1000)) {
             totalSize += stats.size;
@@ -327,7 +327,7 @@ async function cleanupOrphanFiles() {
       // Video processing directory doesn't exist
       logger.debug('[Cleanup] Video processing directory not found', { dir: videoTempDir });
     }
-    
+
     // Clean up orphaned file records in database (files that were uploaded but never used)
     const orphanedRecords = await prisma.file.deleteMany({
       where: {
@@ -336,18 +336,18 @@ async function cleanupOrphanFiles() {
         attachedToType: null,
       },
     });
-    
-    logger.info('[Cleanup] Orphan files cleanup completed', { 
+
+    logger.info('[Cleanup] Orphan files cleanup completed', {
       deletedFiles: deletedCount,
       totalSizeBytes: totalSize,
       deletedRecords: orphanedRecords.count
     });
-    
-    return { 
-      deletedFiles: deletedCount, 
+
+    return {
+      deletedFiles: deletedCount,
       totalSizeBytes: totalSize,
       deletedRecords: orphanedRecords.count,
-      status: 'completed' 
+      status: 'completed'
     };
   } catch (err) {
     logger.error('[Cleanup] Orphan files cleanup failed', { error: err.message });
@@ -375,19 +375,19 @@ async function cleanupExpiredTokens() {
     },
   });
 
-  logger.info('[Cleanup] Expired tokens cleared', { 
+  logger.info('[Cleanup] Expired tokens cleared', {
     passwordResetTokens: passwordResetResult.count,
-    oauthTokens: oauthTokenResult.count 
+    oauthTokens: oauthTokenResult.count
   });
-  return { 
+  return {
     clearedPasswordResetTokens: passwordResetResult.count,
-    clearedOAuthTokens: oauthTokenResult.count 
+    clearedOAuthTokens: oauthTokenResult.count
   };
 }
 
 async function archiveOldAuditLogs() {
   const archiveDate = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000); // 90 days
-  
+
   // In production, you'd move these to cold storage
   const count = await prisma.auditLog.count({
     where: { createdAt: { lt: archiveDate } },
@@ -420,7 +420,7 @@ async function cleanupOldAiConversations() {
 
 async function generateAnalyticsReport(params) {
   const { startDate, endDate } = params;
-  
+
   const [users, jobs, applications] = await Promise.all([
     prisma.user.count({
       where: {
@@ -460,7 +460,7 @@ async function generateAnalyticsReport(params) {
 async function generateRAPReport(params) {
   // RAP (Reconciliation Action Plan) report generation
   const { companyId, startDate, endDate } = params;
-  
+
   try {
     // Get Indigenous employment statistics
     const indigenousEmployees = await prisma.user.count({
@@ -470,7 +470,7 @@ async function generateRAPReport(params) {
         createdAt: { gte: new Date(startDate), lte: new Date(endDate) },
       },
     });
-    
+
     // Get applications from Indigenous candidates
     const indigenousApplications = await prisma.application.count({
       where: {
@@ -479,7 +479,7 @@ async function generateRAPReport(params) {
         createdAt: { gte: new Date(startDate), lte: new Date(endDate) },
       },
     });
-    
+
     // Get successful hires
     const indigenousHires = await prisma.application.count({
       where: {
@@ -489,7 +489,7 @@ async function generateRAPReport(params) {
         createdAt: { gte: new Date(startDate), lte: new Date(endDate) },
       },
     });
-    
+
     // Get mentorship engagement
     const mentoringSessions = await prisma.mentorshipSession.count({
       where: {
@@ -500,7 +500,7 @@ async function generateRAPReport(params) {
         status: 'completed',
       },
     });
-    
+
     // Get cultural events participation
     const culturalEvents = await prisma.eventAttendee.count({
       where: {
@@ -508,7 +508,7 @@ async function generateRAPReport(params) {
         createdAt: { gte: new Date(startDate), lte: new Date(endDate) },
       },
     });
-    
+
     return {
       type: 'RAP',
       period: { startDate, endDate },
@@ -517,8 +517,8 @@ async function generateRAPReport(params) {
         indigenousEmployees,
         indigenousApplications,
         indigenousHires,
-        conversionRate: indigenousApplications > 0 
-          ? ((indigenousHires / indigenousApplications) * 100).toFixed(1) + '%' 
+        conversionRate: indigenousApplications > 0
+          ? ((indigenousHires / indigenousApplications) * 100).toFixed(1) + '%'
           : '0%',
         mentoringSessions,
         culturalEventsParticipation: culturalEvents,
@@ -535,7 +535,7 @@ async function generateRAPReport(params) {
 async function generateGovernmentReport(params) {
   // Government Closing the Gap report generation
   const { startDate, endDate, reportType = 'employment' } = params;
-  
+
   try {
     // Platform-wide Indigenous employment metrics
     const totalIndigenousUsers = await prisma.user.count({
@@ -543,14 +543,14 @@ async function generateGovernmentReport(params) {
         indigenousStatus: { in: ['ABORIGINAL', 'TORRES_STRAIT_ISLANDER', 'BOTH'] },
       },
     });
-    
+
     const newIndigenousRegistrations = await prisma.user.count({
       where: {
         indigenousStatus: { in: ['ABORIGINAL', 'TORRES_STRAIT_ISLANDER', 'BOTH'] },
         createdAt: { gte: new Date(startDate), lte: new Date(endDate) },
       },
     });
-    
+
     // Employment outcomes
     const successfulPlacements = await prisma.application.count({
       where: {
@@ -559,7 +559,7 @@ async function generateGovernmentReport(params) {
         updatedAt: { gte: new Date(startDate), lte: new Date(endDate) },
       },
     });
-    
+
     // Regional distribution
     const regionalBreakdown = await prisma.user.groupBy({
       by: ['state'],
@@ -569,7 +569,7 @@ async function generateGovernmentReport(params) {
       },
       _count: true,
     });
-    
+
     // RAP-certified employers
     const rapCertifiedEmployers = await prisma.company.count({
       where: {
@@ -585,7 +585,7 @@ async function generateGovernmentReport(params) {
         updatedAt: { gte: new Date(startDate), lte: new Date(endDate) },
       },
     });
-    
+
     return {
       type: 'Government',
       reportType,
@@ -610,7 +610,7 @@ async function generateGovernmentReport(params) {
 async function generateEmployerReport(params) {
   // Employer analytics report
   const { companyId, startDate, endDate } = params;
-  
+
   try {
     // Job posting metrics
     const jobMetrics = await prisma.job.aggregate({
@@ -620,14 +620,14 @@ async function generateEmployerReport(params) {
       },
       _count: true,
     });
-    
+
     const activeJobs = await prisma.job.count({
       where: {
         companyId,
         status: 'active',
       },
     });
-    
+
     // Application metrics
     const applications = await prisma.application.findMany({
       where: {
@@ -636,12 +636,12 @@ async function generateEmployerReport(params) {
       },
       select: { status: true },
     });
-    
+
     const applicationsByStatus = applications.reduce((acc, app) => {
       acc[app.status] = (acc[app.status] || 0) + 1;
       return acc;
     }, {});
-    
+
     // Time to hire
     const hiredApplications = await prisma.application.findMany({
       where: {
@@ -651,13 +651,13 @@ async function generateEmployerReport(params) {
       },
       select: { createdAt: true, updatedAt: true },
     });
-    
+
     const avgTimeToHire = hiredApplications.length > 0
       ? hiredApplications.reduce((sum, app) => {
           return sum + (app.updatedAt.getTime() - app.createdAt.getTime());
         }, 0) / hiredApplications.length / (1000 * 60 * 60 * 24) // Convert to days
       : 0;
-    
+
     // Indigenous candidate engagement
     const indigenousCandidates = await prisma.application.count({
       where: {
@@ -666,7 +666,7 @@ async function generateEmployerReport(params) {
         createdAt: { gte: new Date(startDate), lte: new Date(endDate) },
       },
     });
-    
+
     return {
       type: 'Employer',
       companyId,
@@ -678,7 +678,7 @@ async function generateEmployerReport(params) {
         applicationsByStatus,
         averageTimeToHireDays: Math.round(avgTimeToHire),
         indigenousCandidateApplications: indigenousCandidates,
-        indigenousCandidatePercentage: applications.length > 0 
+        indigenousCandidatePercentage: applications.length > 0
           ? ((indigenousCandidates / applications.length) * 100).toFixed(1) + '%'
           : '0%',
       },
@@ -697,7 +697,7 @@ async function generateEmployerReport(params) {
 
 async function startWorkers() {
   const redisUrl = process.env.REDIS_URL;
-  
+
   if (!redisUrl) {
     logger.error('[Worker] Redis URL not configured. Workers require Redis.');
     process.exit(1);
@@ -706,7 +706,7 @@ async function startWorkers() {
   try {
     const { Worker } = await import('bullmq');
     const IORedis = (await import('ioredis')).default;
-    
+
     const connection = new IORedis(redisUrl, {
       maxRetriesPerRequest: null,
       enableReadyCheck: false,
@@ -717,11 +717,11 @@ async function startWorkers() {
       connection,
       concurrency: 5,
     });
-    
+
     emailWorker.on('completed', (job) => {
       logger.info('[Worker] Email job completed', { jobId: job.id });
     });
-    
+
     emailWorker.on('failed', (job, err) => {
       logger.error('[Worker] Email job failed', { jobId: job?.id, error: err.message });
     });
@@ -731,11 +731,11 @@ async function startWorkers() {
       connection,
       concurrency: 10,
     });
-    
+
     notificationWorker.on('completed', (job) => {
       logger.info('[Worker] Notification job completed', { jobId: job.id });
     });
-    
+
     notificationWorker.on('failed', (job, err) => {
       logger.error('[Worker] Notification job failed', { jobId: job?.id, error: err.message });
     });
@@ -745,11 +745,11 @@ async function startWorkers() {
       connection,
       concurrency: 2,
     });
-    
+
     reportWorker.on('completed', (job) => {
       logger.info('[Worker] Report job completed', { jobId: job.id });
     });
-    
+
     reportWorker.on('failed', (job, err) => {
       logger.error('[Worker] Report job failed', { jobId: job?.id, error: err.message });
     });
@@ -759,11 +759,11 @@ async function startWorkers() {
       connection,
       concurrency: 1,
     });
-    
+
     cleanupWorker.on('completed', (job) => {
       logger.info('[Worker] Cleanup job completed', { jobId: job.id });
     });
-    
+
     cleanupWorker.on('failed', (job, err) => {
       logger.error('[Worker] Cleanup job failed', { jobId: job?.id, error: err.message });
     });
@@ -774,19 +774,19 @@ async function startWorkers() {
     const shutdown = async (signal) => {
       if (isShuttingDown) return;
       isShuttingDown = true;
-      
+
       logger.info(`[Worker] ${signal} received, shutting down gracefully...`);
-      
+
       await Promise.all([
         emailWorker.close(),
         notificationWorker.close(),
         reportWorker.close(),
         cleanupWorker.close(),
       ]);
-      
+
       await connection.quit();
       await prisma.$disconnect();
-      
+
       logger.info('[Worker] Shutdown complete');
       process.exit(0);
     };

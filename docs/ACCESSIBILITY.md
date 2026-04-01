@@ -1,6 +1,6 @@
 # Accessibility Guidelines
 
-This document outlines accessibility standards and best practices for Ngurra Pathways, ensuring the platform is usable by everyone.
+This document outlines accessibility standards and best practices for Nexta, ensuring the platform is usable by everyone.
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ This document outlines accessibility standards and best practices for Ngurra Pat
 
 ## Standards Compliance
 
-Ngurra Pathways follows these accessibility standards:
+Nexta follows these accessibility standards:
 
 - **WCAG 2.1 Level AA** - Primary compliance target
 - **Section 508** - US federal accessibility requirements
@@ -130,8 +130,8 @@ Ngurra Pathways follows these accessibility standards:
 <nav aria-label="Main navigation">
   <ul role="menubar">
     <li role="none">
-      <a 
-        href="/jobs" 
+      <a
+        href="/jobs"
         role="menuitem"
         aria-current={isCurrentPage ? 'page' : undefined}
       >
@@ -197,15 +197,15 @@ Ngurra Pathways follows these accessibility standards:
 <img src="decoration.svg" alt="" aria-hidden="true" />
 
 // ✅ Good - Informative image
-<img 
-  src="job-location-map.png" 
+<img
+  src="job-location-map.png"
   alt="Map showing office location at 123 Sydney Street"
 />
 
 // ✅ Good - Complex image with extended description
 <figure>
-  <img 
-    src="career-progression.svg" 
+  <img
+    src="career-progression.svg"
     alt="Career progression chart"
     aria-describedby="chart-description"
   />
@@ -299,8 +299,8 @@ pnpm test:e2e --grep "accessibility"
 ### Toast Notifications
 
 ```tsx
-<div 
-  role="alert" 
+<div
+  role="alert"
   aria-live="assertive"
   aria-atomic="true"
 >
@@ -325,8 +325,8 @@ pnpm test:e2e --grep "accessibility"
 <nav aria-label="Pagination">
   <ul>
     <li>
-      <a 
-        href="/jobs?page=1" 
+      <a
+        href="/jobs?page=1"
         aria-label="Go to page 1"
         aria-current={currentPage === 1 ? 'page' : undefined}
       >
@@ -365,8 +365,8 @@ pnpm test:e2e --grep "accessibility"
 Found an accessibility issue? Please report it:
 
 1. **GitHub Issues**: Tag with `accessibility` label
-2. **Email**: a11y@ngurra-pathways.com
-3. **Include**: 
+2. **Email**: a11y@nexta.com
+3. **Include**:
    - URL of the page
    - Browser and assistive technology used
    - Steps to reproduce

@@ -1,6 +1,6 @@
-# Ngurra Web (apps/web)
+# Nexta Web (apps/web)
 
-The Next.js frontend for the Ngurra Pathways / Gimbi platform - an Indigenous employment, training, and community platform.
+The Next.js frontend for the Nexta / Gimbi platform - an Indigenous employment, training, and community platform.
 
 ## Features
 

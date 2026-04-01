@@ -16,7 +16,7 @@ export default function RegisterScreen() {
   );
 }
         <Text style={styles.title}>Create Account</Text>
-        <Text style={styles.subtitle}>Join the Ngurra Pathways community</Text>
+        <Text style={styles.subtitle}>Join the Nexta community</Text>
 
         {/* User Type Selection */}
         <Text style={styles.sectionTitle} accessibilityRole="header">I am a...</Text>

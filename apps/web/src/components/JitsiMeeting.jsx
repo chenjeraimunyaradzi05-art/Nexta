@@ -6,7 +6,7 @@ import { Video, VideoOff, Mic, MicOff, PhoneOff, Users, Maximize2, Minimize2 } f
 /**
  * JitsiMeeting Component
  * Embeds a Jitsi Meet video call in the application
- * 
+ *
  * @param {string} roomName - The Jitsi room name
  * @param {string} displayName - User's display name
  * @param {string} domain - Jitsi domain (default: meet.jit.si)
@@ -20,7 +20,7 @@ export default function JitsiMeeting({
   onClose,
   configOverwrite = {},
   interfaceConfigOverwrite = {},
-  subject = 'Ngurra Mentorship Session',
+  subject = 'Nexta Mentorship Session',
   height = '100%',
   width = '100%',
 }) {

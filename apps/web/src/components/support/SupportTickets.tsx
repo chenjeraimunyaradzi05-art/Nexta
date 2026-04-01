@@ -6,7 +6,7 @@ import { Button } from '../Button';
 
 /**
  * SupportTickets - Customer support and help system
- * 
+ *
  * Features:
  * - Create support tickets
  * - Track ticket status
@@ -660,7 +660,7 @@ export function SupportTickets() {
     try {
       await supportApi.closeTicket(selectedTicket.id);
       setSelectedTicket({ ...selectedTicket, status: 'closed' });
-      setTickets(tickets.map(t => 
+      setTickets(tickets.map(t =>
         t.id === selectedTicket.id ? { ...t, status: 'closed' } : t
       ));
     } catch (error) {
@@ -673,7 +673,7 @@ export function SupportTickets() {
     try {
       await supportApi.reopenTicket(selectedTicket.id);
       setSelectedTicket({ ...selectedTicket, status: 'open' });
-      setTickets(tickets.map(t => 
+      setTickets(tickets.map(t =>
         t.id === selectedTicket.id ? { ...t, status: 'open' } : t
       ));
     } catch (error) {
@@ -710,7 +710,7 @@ export function SupportTickets() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Support Center</h1>
-          <p className="text-gray-500 mt-1">Get help with Ngurra Pathways</p>
+          <p className="text-gray-500 mt-1">Get help with Nexta</p>
         </div>
         <Button onClick={() => setShowCreateModal(true)}>
           <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">

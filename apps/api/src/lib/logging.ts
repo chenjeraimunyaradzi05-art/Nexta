@@ -1,6 +1,6 @@
 /**
  * Logging Utilities
- * 
+ *
  * Structured logging with multiple transports and log levels.
  * Provides consistent logging across the application.
  */
@@ -79,18 +79,18 @@ function redact(obj: unknown, redactPaths: string[] = []): unknown {
   if (obj === null || obj === undefined) {
     return obj;
   }
-  
+
   if (typeof obj === 'string') {
     return obj;
   }
-  
+
   if (Array.isArray(obj)) {
     return obj.map(item => redact(item, redactPaths));
   }
-  
+
   if (typeof obj === 'object') {
     const result: Record<string, unknown> = {};
-    
+
     for (const [key, value] of Object.entries(obj)) {
       if (SENSITIVE_PATTERN.test(key) || redactPaths.includes(key)) {
         result[key] = '[REDACTED]';
@@ -100,10 +100,10 @@ function redact(obj: unknown, redactPaths: string[] = []): unknown {
         result[key] = value;
       }
     }
-    
+
     return result;
   }
-  
+
   return obj;
 }
 
@@ -133,28 +133,28 @@ function prettyPrint(entry: LogEntry): string {
   };
   const reset = '\x1b[0m';
   const color = levelColors[entry.level];
-  
+
   let output = `${color}[${entry.level.toUpperCase().padEnd(5)}]${reset} ${timestamp} ${entry.message}`;
-  
+
   if (entry.requestId) {
     output += ` [${entry.requestId}]`;
   }
-  
+
   if (entry.duration !== undefined) {
     output += ` (${entry.duration}ms)`;
   }
-  
+
   if (entry.context && Object.keys(entry.context).length > 0) {
     output += `\n  ${JSON.stringify(entry.context, null, 2).replace(/\n/g, '\n  ')}`;
   }
-  
+
   if (entry.error) {
     output += `\n  ${color}Error: ${entry.error.name}: ${entry.error.message}${reset}`;
     if (entry.error.stack) {
       output += `\n  ${entry.error.stack.split('\n').slice(1).join('\n  ')}`;
     }
   }
-  
+
   return output;
 }
 
@@ -164,11 +164,11 @@ function prettyPrint(entry: LogEntry): string {
 export function createLogger(config: LoggerConfig) {
   const { service, environment, level, pretty = false, redactPaths = [], transports = [] } = config;
   const minLevel = LOG_LEVELS[level];
-  
+
   function shouldLog(entryLevel: LogLevel): boolean {
     return LOG_LEVELS[entryLevel] >= minLevel;
   }
-  
+
   function createEntry(
     level: LogLevel,
     message: string,
@@ -182,10 +182,10 @@ export function createLogger(config: LoggerConfig) {
       service,
       environment,
     };
-    
+
     if (context) {
       entry.context = redact(context, redactPaths) as Record<string, unknown>;
-      
+
       // Extract special fields
       if ('requestId' in context) {
         entry.requestId = context.requestId as string;
@@ -208,14 +208,14 @@ export function createLogger(config: LoggerConfig) {
         delete entry.context.duration;
       }
     }
-    
+
     if (error) {
       entry.error = formatError(error);
     }
-    
+
     return entry;
   }
-  
+
   function log(entry: LogEntry): void {
     // Console output
     if (pretty) {
@@ -223,7 +223,7 @@ export function createLogger(config: LoggerConfig) {
     } else {
       console.log(JSON.stringify(entry));
     }
-    
+
     // Send to transports
     for (const transport of transports) {
       const transportLevel = transport.level || level;
@@ -236,28 +236,28 @@ export function createLogger(config: LoggerConfig) {
       }
     }
   }
-  
+
   return {
     trace(message: string, context?: Record<string, unknown>) {
       if (!shouldLog('trace')) return;
       log(createEntry('trace', message, context));
     },
-    
+
     debug(message: string, context?: Record<string, unknown>) {
       if (!shouldLog('debug')) return;
       log(createEntry('debug', message, context));
     },
-    
+
     info(message: string, context?: Record<string, unknown>) {
       if (!shouldLog('info')) return;
       log(createEntry('info', message, context));
     },
-    
+
     warn(message: string, context?: Record<string, unknown>) {
       if (!shouldLog('warn')) return;
       log(createEntry('warn', message, context));
     },
-    
+
     error(message: string, error?: Error | Record<string, unknown>, context?: Record<string, unknown>) {
       if (!shouldLog('error')) return;
       if (error instanceof Error) {
@@ -266,7 +266,7 @@ export function createLogger(config: LoggerConfig) {
         log(createEntry('error', message, { ...error, ...context }));
       }
     },
-    
+
     fatal(message: string, error?: Error | Record<string, unknown>, context?: Record<string, unknown>) {
       if (!shouldLog('fatal')) return;
       if (error instanceof Error) {
@@ -275,7 +275,7 @@ export function createLogger(config: LoggerConfig) {
         log(createEntry('fatal', message, { ...error, ...context }));
       }
     },
-    
+
     /**
      * Create a child logger with additional context
      */
@@ -315,7 +315,7 @@ export function createLogger(config: LoggerConfig) {
         },
       };
     },
-    
+
     /**
      * Time an async operation
      */
@@ -341,7 +341,7 @@ export function createLogger(config: LoggerConfig) {
 export function createFileTransport(filepath: string): LogTransport {
   const fs = require('fs');
   const stream = fs.createWriteStream(filepath, { flags: 'a' });
-  
+
   return {
     name: 'file',
     log(entry: LogEntry) {
@@ -356,10 +356,10 @@ export function createFileTransport(filepath: string): LogTransport {
 export function createHttpTransport(url: string, headers?: Record<string, string>): LogTransport {
   const buffer: LogEntry[] = [];
   let flushTimeout: NodeJS.Timeout | null = null;
-  
+
   async function flush() {
     if (buffer.length === 0) return;
-    
+
     const entries = buffer.splice(0, buffer.length);
     try {
       await fetch(url, {
@@ -376,18 +376,18 @@ export function createHttpTransport(url: string, headers?: Record<string, string
       console.error('Failed to flush logs:', error);
     }
   }
-  
+
   return {
     name: 'http',
     log(entry: LogEntry) {
       buffer.push(entry);
-      
+
       // Flush immediately on error/fatal
       if (entry.level === 'error' || entry.level === 'fatal') {
         flush();
         return;
       }
-      
+
       // Otherwise batch and flush after delay
       if (!flushTimeout) {
         flushTimeout = setTimeout(() => {
@@ -403,7 +403,7 @@ export function createHttpTransport(url: string, headers?: Record<string, string
  * Create default application logger
  */
 export const logger = createLogger({
-  service: 'ngurra-api',
+  service: 'nexta-api',
   environment: process.env.NODE_ENV || 'development',
   level: (process.env.LOG_LEVEL as LogLevel) || 'info',
   pretty: process.env.NODE_ENV !== 'production',

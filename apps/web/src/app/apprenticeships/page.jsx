@@ -16,11 +16,11 @@ const accentPurple = '#8B5CF6';
 
 export default function ApprenticeshipsPage() {
   return (
-    <div className="ngurra-page py-8 px-4">
+    <div className="nexta-page py-8 px-4">
       {/* Decorative Halos */}
-      <div className="ngurra-halos">
-        <div className="ngurra-halo-pink" />
-        <div className="ngurra-halo-purple" />
+      <div className="nexta-halos">
+        <div className="nexta-halo-pink" />
+        <div className="nexta-halo-purple" />
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
@@ -38,7 +38,7 @@ export default function ApprenticeshipsPage() {
         {/* Hero Section */}
         <div className="bg-white border border-slate-200 rounded-2xl p-8 mb-8" style={{ boxShadow: '0 24px 60px rgba(15, 23, 42, 0.08)' }}>
           <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-            <div 
+            <div
               className="p-4 rounded-2xl"
               style={{ background: `linear-gradient(135deg, ${accentPink}20 0%, ${accentPurple}20 100%)` }}
             >
@@ -133,7 +133,7 @@ export default function ApprenticeshipsPage() {
         </Suspense>
 
         {/* CTA Section */}
-        <div 
+        <div
           className="mt-12 bg-white border border-slate-200 rounded-2xl p-8 text-center"
           style={{ boxShadow: '0 24px 60px rgba(15, 23, 42, 0.08)' }}
         >
@@ -145,22 +145,22 @@ export default function ApprenticeshipsPage() {
           </div>
           <h3 className="text-2xl font-bold text-slate-800 mb-3">Not sure which path is right for you?</h3>
           <p className="text-slate-600 mb-6 max-w-2xl mx-auto">
-            Speak with our career advisors or connect with a mentor who can help guide you towards 
+            Speak with our career advisors or connect with a mentor who can help guide you towards
             the right apprenticeship or traineeship for your goals.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link 
-              href="/mentors" 
+            <Link
+              href="/mentors"
               className="text-white px-6 py-3 rounded-xl font-medium transition-all hover:scale-105"
-              style={{ 
+              style={{
                 background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)`,
                 boxShadow: '0 4px 12px rgba(233, 30, 140, 0.3)'
               }}
             >
               Find a Mentor
             </Link>
-            <Link 
-              href="/ai-concierge" 
+            <Link
+              href="/ai-concierge"
               className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-6 py-3 rounded-xl font-medium transition-colors border border-slate-200"
             >
               Ask AI Concierge

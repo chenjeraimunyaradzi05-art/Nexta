@@ -1,10 +1,10 @@
-# Terms of Service - Ngurra Pathways (Gimbi)
+# Terms of Service - Nexta (Gimbi)
 
 *Last Updated: [Current Date]*
 
 ## 1. Agreement to Terms
 
-By accessing or using Ngurra Pathways ("the Platform", "Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of these terms, you may not access the Service.
+By accessing or using Nexta ("the Platform", "Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of these terms, you may not access the Service.
 
 ## 2. Definitions
 
@@ -157,7 +157,7 @@ Some features require payment:
 
 ### 9.1 Our Property
 
-The Platform, including software, design, logos, and trademarks, is owned by Ngurra Pathways and protected by intellectual property laws.
+The Platform, including software, design, logos, and trademarks, is owned by Nexta and protected by intellectual property laws.
 
 ### 9.2 Restrictions
 
@@ -205,7 +205,7 @@ To the maximum extent permitted by law:
 
 ## 14. Indemnification
 
-You agree to indemnify and hold harmless Ngurra Pathways from claims arising from:
+You agree to indemnify and hold harmless Nexta from claims arising from:
 
 - Your use of the Service
 - Your violation of these Terms
@@ -265,7 +265,7 @@ Upon termination:
 
 ### 18.1 Entire Agreement
 
-These Terms constitute the entire agreement between you and Ngurra Pathways.
+These Terms constitute the entire agreement between you and Nexta.
 
 ### 18.2 Severability
 
@@ -287,8 +287,8 @@ We are not liable for failures due to circumstances beyond our control.
 
 For questions about these Terms:
 
-- **Email**: legal@ngurrapathways.com.au
-- **Mail**: Legal Department, Ngurra Pathways, [Address]
+- **Email**: legal@nexta.com.au
+- **Mail**: Legal Department, Nexta, [Address]
 
 ---
 

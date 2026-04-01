@@ -60,8 +60,8 @@ async function handleCheckoutCompleted(session) {
       tier: tier || 'STARTER',
       stripeCustomerId: customerId,
       stripeSubscriptionId: subscriptionId,
-      currentPeriodStart: subscription?.current_period_start 
-        ? new Date(subscription.current_period_start * 1000) 
+      currentPeriodStart: subscription?.current_period_start
+        ? new Date(subscription.current_period_start * 1000)
         : new Date(),
       currentPeriodEnd: subscription?.current_period_end
         ? new Date(subscription.current_period_end * 1000)
@@ -71,8 +71,8 @@ async function handleCheckoutCompleted(session) {
       tier: tier || 'STARTER',
       stripeCustomerId: customerId,
       stripeSubscriptionId: subscriptionId,
-      currentPeriodStart: subscription?.current_period_start 
-        ? new Date(subscription.current_period_start * 1000) 
+      currentPeriodStart: subscription?.current_period_start
+        ? new Date(subscription.current_period_start * 1000)
         : undefined,
       currentPeriodEnd: subscription?.current_period_end
         ? new Date(subscription.current_period_end * 1000)
@@ -89,7 +89,7 @@ async function handleCheckoutCompleted(session) {
  */
 async function handleInvoicePaid(invoice) {
   const customerId = invoice.customer;
-  
+
   // Find user by Stripe customer ID
   const subscription = await prisma.companySubscription.findFirst({
     where: { stripeCustomerId: customerId },
@@ -137,7 +137,7 @@ async function handleInvoicePaid(invoice) {
  */
 async function handleInvoicePaymentFailed(invoice) {
   const customerId = invoice.customer;
-  
+
   const subscription = await prisma.companySubscription.findFirst({
     where: { stripeCustomerId: customerId },
   });
@@ -185,7 +185,7 @@ async function handleInvoicePaymentFailed(invoice) {
             <p>We were unable to process your subscription payment of <strong>${amountFormatted}</strong>.</p>
             <p>To avoid service interruption, please update your payment method:</p>
             <p style="margin: 24px 0;">
-              <a href="${invoice.hosted_invoice_url || 'https://ngurrapathways.life/company/billing'}" 
+              <a href="${invoice.hosted_invoice_url || 'https://nexta.life/company/billing'}"
                  style="background: #6B4C9A; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px;">
                 Update Payment Method
               </a>
@@ -195,11 +195,11 @@ async function handleInvoicePaymentFailed(invoice) {
             </p>
             <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;">
             <p style="color: #999; font-size: 12px;">
-              Ngurra Pathways - Supporting First Nations Futures
+              Nexta - Supporting First Nations Futures
             </p>
           </div>
         `,
-        text: `Payment Failed\n\nWe were unable to process your subscription payment of ${amountFormatted}.\n\nPlease update your payment method at: ${invoice.hosted_invoice_url || 'https://ngurrapathways.life/company/billing'}\n\nNgurra Pathways`
+        text: `Payment Failed\n\nWe were unable to process your subscription payment of ${amountFormatted}.\n\nPlease update your payment method at: ${invoice.hosted_invoice_url || 'https://nexta.life/company/billing'}\n\nNexta`
       });
       console.log(`Payment failed email sent to ${user.email}`);
     }
@@ -215,7 +215,7 @@ async function handleInvoicePaymentFailed(invoice) {
  */
 async function handleSubscriptionUpdated(subscription) {
   const customerId = subscription.customer;
-  
+
   const dbSubscription = await prisma.companySubscription.findFirst({
     where: { stripeCustomerId: customerId },
   });
@@ -247,7 +247,7 @@ async function handleSubscriptionUpdated(subscription) {
  */
 async function handleSubscriptionDeleted(subscription) {
   const customerId = subscription.customer;
-  
+
   const dbSubscription = await prisma.companySubscription.findFirst({
     where: { stripeCustomerId: customerId },
   });

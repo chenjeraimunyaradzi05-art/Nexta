@@ -1,6 +1,6 @@
 /**
  * Webhook Delivery System
- * 
+ *
  * Handles outbound webhook delivery with retry logic,
  * HMAC signing, and delivery tracking.
  */
@@ -27,22 +27,22 @@ const WEBHOOK_EVENTS = {
   'job.updated': 'A job was updated',
   'job.closed': 'A job was closed',
   'job.expired': 'A job expired',
-  
+
   // Application events
   'application.received': 'New application received',
   'application.reviewed': 'Application was reviewed',
   'application.shortlisted': 'Candidate was shortlisted',
   'application.rejected': 'Candidate was rejected',
   'application.hired': 'Candidate was hired',
-  
+
   // Candidate events
   'candidate.profile_updated': 'Candidate profile was updated',
   'candidate.document_uploaded': 'Candidate uploaded a document',
-  
+
   // Course events
   'course.enrolment': 'New course enrolment',
   'course.completion': 'Course completed',
-  
+
   // RAP events
   'rap.points_earned': 'RAP points were earned',
   'rap.milestone_reached': 'RAP milestone was reached',
@@ -51,7 +51,7 @@ const WEBHOOK_EVENTS = {
 
 /**
  * Trigger webhook delivery for an event
- * 
+ *
  * @param {string} companyId - Company to send webhook to
  * @param {string} eventType - Event type (e.g., 'application.received')
  * @param {object} payload - Event payload data
@@ -65,17 +65,17 @@ async function triggerWebhook(companyId, eventType, payload) {
         isActive: true
       }
     });
-    
+
     // Filter webhooks that subscribe to this event
     const matchingWebhooks = webhooks.filter(webhook => {
       const events = JSON.parse(webhook.events || '[]');
       return events.includes(eventType) || events.includes('*');
     });
-    
+
     if (matchingWebhooks.length === 0) {
       return { triggered: 0 };
     }
-    
+
     // Create delivery records
     const deliveries = await Promise.all(
       matchingWebhooks.map(webhook =>
@@ -89,14 +89,14 @@ async function triggerWebhook(companyId, eventType, payload) {
         })
       )
     );
-    
+
     // Process deliveries asynchronously
     deliveries.forEach(delivery => {
       processDelivery(delivery.id).catch(err => {
         logger.error('Webhook delivery failed', { deliveryId: delivery.id, error: err.message });
       });
     });
-    
+
     return { triggered: deliveries.length };
   } catch (err) {
     logger.error('Failed to trigger webhooks', { companyId, eventType, error: err.message });
@@ -112,14 +112,14 @@ async function processDelivery(deliveryId) {
     where: { id: deliveryId },
     include: { webhook: true }
   });
-  
+
   if (!delivery || delivery.status === 'DELIVERED') {
     return;
   }
-  
+
   const { webhook } = delivery;
   const payload = JSON.parse(delivery.payload);
-  
+
   // Add metadata to payload
   const fullPayload = {
     id: delivery.id,
@@ -127,10 +127,10 @@ async function processDelivery(deliveryId) {
     timestamp: new Date().toISOString(),
     data: payload
   };
-  
+
   // Sign the payload
   const signature = signPayload(fullPayload, webhook.secret);
-  
+
   try {
     const response = await fetch(webhook.url, {
       method: 'POST',
@@ -139,14 +139,14 @@ async function processDelivery(deliveryId) {
         'X-Webhook-Signature': signature,
         'X-Webhook-Event': delivery.eventType,
         'X-Webhook-Delivery': delivery.id,
-        'User-Agent': 'Ngurra-Pathways-Webhook/1.0'
+        'User-Agent': 'Nexta-Webhook/1.0'
       },
       body: JSON.stringify(fullPayload),
       signal: AbortSignal.timeout(30000) // 30s timeout
     });
-    
+
     const responseText = await response.text().catch(() => '');
-    
+
     if (response.ok) {
       // Success
       await prisma.webhookDelivery.update({
@@ -159,7 +159,7 @@ async function processDelivery(deliveryId) {
           deliveredAt: new Date()
         }
       });
-      
+
       logger.info('Webhook delivered', {
         deliveryId,
         webhookId: webhook.id,
@@ -196,7 +196,7 @@ async function scheduleRetry(deliveryId, attempts, maxRetries, retryDelay, failu
         response: failureInfo.response || failureInfo.error
       }
     });
-    
+
     logger.warn('Webhook delivery failed permanently', {
       deliveryId,
       attempts,
@@ -204,11 +204,11 @@ async function scheduleRetry(deliveryId, attempts, maxRetries, retryDelay, failu
     });
     return;
   }
-  
+
   // Exponential backoff: delay * 2^(attempt-1)
   const backoffDelay = retryDelay * Math.pow(2, attempts - 1);
   const nextRetryAt = new Date(Date.now() + backoffDelay * 1000);
-  
+
   await prisma.webhookDelivery.update({
     where: { id: deliveryId },
     data: {
@@ -219,7 +219,7 @@ async function scheduleRetry(deliveryId, attempts, maxRetries, retryDelay, failu
       response: failureInfo.response || failureInfo.error
     }
   });
-  
+
   logger.info('Webhook retry scheduled', {
     deliveryId,
     attempts,
@@ -233,7 +233,7 @@ async function scheduleRetry(deliveryId, attempts, maxRetries, retryDelay, failu
  */
 async function processPendingRetries() {
   const now = new Date();
-  
+
   const pendingDeliveries = await prisma.webhookDelivery.findMany({
     where: {
       status: 'PENDING',
@@ -241,15 +241,15 @@ async function processPendingRetries() {
     },
     take: 100 // Process in batches
   });
-  
+
   logger.info(`Processing ${pendingDeliveries.length} pending webhook retries`);
-  
+
   for (const delivery of pendingDeliveries) {
     await processDelivery(delivery.id).catch(err => {
       logger.error('Retry processing failed', { deliveryId: delivery.id, error: err.message });
     });
   }
-  
+
   return { processed: pendingDeliveries.length };
 }
 
@@ -259,14 +259,14 @@ async function processPendingRetries() {
 async function getDeliveryStats(companyId, days = 7) {
   const since = new Date();
   since.setDate(since.getDate() - days);
-  
+
   const webhooks = await prisma.webhook.findMany({
     where: { companyId },
     select: { id: true }
   });
-  
+
   const webhookIds = webhooks.map(w => w.id);
-  
+
   const [total, delivered, failed, pending] = await Promise.all([
     prisma.webhookDelivery.count({
       where: { webhookId: { in: webhookIds }, createdAt: { gte: since } }
@@ -281,7 +281,7 @@ async function getDeliveryStats(companyId, days = 7) {
       where: { webhookId: { in: webhookIds }, status: 'PENDING', createdAt: { gte: since } }
     })
   ]);
-  
+
   return {
     period: `${days} days`,
     total,
@@ -306,15 +306,15 @@ async function getDeliveryStats(companyId, days = 7) {
  */
 function verifyWebhookSignature(payload, signature, secret, options: any = {}) {
   const { algorithm = 'sha256', encoding = 'hex', timestampTolerance = 300 } = options;
-  
+
   if (!signature || !secret) {
     return { valid: false, error: 'Missing signature or secret' };
   }
-  
+
   // Handle different signature formats
   let signatureValue = signature;
   let timestamp: number | null = null;
-  
+
   // Parse Stripe-style signature: t=timestamp,v1=signature
   if (signature.includes('t=')) {
     const parts = signature.split(',').reduce((acc, part) => {
@@ -322,10 +322,10 @@ function verifyWebhookSignature(payload, signature, secret, options: any = {}) {
       acc[key] = value;
       return acc;
     }, {});
-    
+
     timestamp = parseInt(parts.t, 10);
     signatureValue = parts.v1;
-    
+
     // Verify timestamp is recent
     if (timestamp) {
       const now = Math.floor(Date.now() / 1000);
@@ -334,22 +334,22 @@ function verifyWebhookSignature(payload, signature, secret, options: any = {}) {
       }
     }
   }
-  
+
   // Compute expected signature
   const payloadString = typeof payload === 'string' ? payload : JSON.stringify(payload);
   const signedPayload = timestamp ? `${timestamp}.${payloadString}` : payloadString;
-  
+
   const expectedSignature = crypto
     .createHmac(algorithm, secret)
     .update(signedPayload)
     .digest(encoding);
-  
+
   // Constant-time comparison to prevent timing attacks
   const valid = crypto.timingSafeEqual(
     Buffer.from(signatureValue),
     Buffer.from(expectedSignature)
   );
-  
+
   return { valid, timestamp };
 }
 
@@ -362,24 +362,24 @@ async function testWebhook(webhookId) {
   const webhook = await prisma.webhook.findUnique({
     where: { id: webhookId }
   });
-  
+
   if (!webhook) {
     throw new Error('Webhook not found');
   }
-  
+
   const testPayload = {
     event: 'test.ping',
     timestamp: new Date().toISOString(),
     data: {
-      message: 'This is a test event from Ngurra Pathways',
+      message: 'This is a test event from Nexta',
       webhookId
     }
   };
-  
+
   const signature = signPayload(testPayload, webhook.secret);
-  
+
   const startTime = Date.now();
-  
+
   try {
     const response = await fetch(webhook.url, {
       method: 'POST',
@@ -388,15 +388,15 @@ async function testWebhook(webhookId) {
         'X-Webhook-Signature': signature,
         'X-Webhook-Event': 'test.ping',
         'X-Webhook-Test': 'true',
-        'User-Agent': 'Ngurra-Pathways-Webhook/1.0'
+        'User-Agent': 'Nexta-Webhook/1.0'
       },
       body: JSON.stringify(testPayload),
       signal: AbortSignal.timeout(10000) // 10s timeout for test
     });
-    
+
     const responseTime = Date.now() - startTime;
     const responseBody = await response.text().catch(() => '');
-    
+
     // Log test result
     await prisma.webhookDelivery.create({
       data: {
@@ -410,7 +410,7 @@ async function testWebhook(webhookId) {
         deliveredAt: response.ok ? new Date() : null
       }
     });
-    
+
     return {
       success: response.ok,
       statusCode: response.status,
@@ -420,7 +420,7 @@ async function testWebhook(webhookId) {
     };
   } catch (err) {
     const responseTime = Date.now() - startTime;
-    
+
     await prisma.webhookDelivery.create({
       data: {
         webhookId,
@@ -431,7 +431,7 @@ async function testWebhook(webhookId) {
         attempts: 1
       }
     });
-    
+
     return {
       success: false,
       error: err.message,
@@ -454,17 +454,17 @@ async function createWebhook(data) {
     retryCount = 3,
     retryDelay = 60 // seconds
   } = data;
-  
+
   // Validate URL
   try {
     new URL(url);
   } catch (e) {
     throw new Error('Invalid webhook URL');
   }
-  
+
   // Generate secret
   const secret = crypto.randomBytes(32).toString('hex');
-  
+
   const webhook = await prisma.webhook.create({
     data: {
       companyId,
@@ -478,7 +478,7 @@ async function createWebhook(data) {
       isActive: true
     }
   });
-  
+
   return {
     ...webhook,
     secret // Return secret once on creation
@@ -491,12 +491,12 @@ async function createWebhook(data) {
  */
 async function regenerateSecret(webhookId) {
   const newSecret = crypto.randomBytes(32).toString('hex');
-  
+
   await prisma.webhook.update({
     where: { id: webhookId },
     data: { secret: newSecret }
   });
-  
+
   return { secret: newSecret };
 }
 
@@ -511,7 +511,7 @@ async function getRecentDeliveries(webhookId, limit = 20) {
     orderBy: { createdAt: 'desc' },
     take: limit
   });
-  
+
   return deliveries.map(d => ({
     id: d.id,
     eventType: d.eventType,
@@ -533,11 +533,11 @@ async function replayDelivery(deliveryId) {
     where: { id: deliveryId },
     include: { webhook: true }
   });
-  
+
   if (!delivery) {
     throw new Error('Delivery not found');
   }
-  
+
   // Create a new delivery with the same payload
   const newDelivery = await prisma.webhookDelivery.create({
     data: {
@@ -547,15 +547,15 @@ async function replayDelivery(deliveryId) {
       status: 'PENDING'
     }
   });
-  
+
   // Process immediately
   await processDelivery(newDelivery.id);
-  
+
   // Get updated status
   const result = await prisma.webhookDelivery.findUnique({
     where: { id: newDelivery.id }
   });
-  
+
   return {
     originalId: deliveryId,
     replayId: newDelivery.id,
@@ -628,19 +628,19 @@ async function validateWebhookUrl(url) {
   } catch (e) {
     return { valid: false, error: 'Invalid URL format' };
   }
-  
+
   // Must be HTTPS in production
   if (process.env.NODE_ENV === 'production' && !url.startsWith('https://')) {
     return { valid: false, error: 'HTTPS required in production' };
   }
-  
+
   // Try HEAD request to check if reachable
   try {
     const response = await fetch(url, {
       method: 'HEAD',
       signal: AbortSignal.timeout(5000)
     });
-    
+
     return {
       valid: true,
       statusCode: response.status,

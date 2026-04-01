@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Ngurra Pathways",
+    "appName": "Nexta",
     "loading": "Loading...",
     "error": "Something went wrong",
     "retry": "Try Again",
@@ -52,7 +52,7 @@
     },
     "signUp": {
       "title": "Create your account",
-      "subtitle": "Join the Ngurra Pathways community",
+      "subtitle": "Join the Nexta community",
       "firstName": "First name",
       "lastName": "Last name",
       "email": "Email address",

@@ -1,6 +1,6 @@
 /**
  * Experiments API Routes
- * 
+ *
  * Public and admin endpoints for A/B testing:
  * - POST /experiments/variant - Get variant assignment
  * - POST /experiments/convert - Track conversion
@@ -38,13 +38,13 @@ router.post('/variant', async (req, res) => {
 
     // Get user ID from token if available, otherwise use anonymous ID
     let userId = anonymousId || 'anonymous';
-    
+
     // Try to extract user from token
     const authHeader = req.headers.authorization;
     if (authHeader && authHeader.startsWith('Bearer ')) {
       try {
         const token = authHeader.split(' ')[1];
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'ngurra-secret') as any;
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'nexta-secret') as any;
         userId = decoded.id || decoded.userId || userId;
       } catch {
         // Token invalid, use anonymous ID
@@ -53,7 +53,7 @@ router.post('/variant', async (req, res) => {
 
     const variant = await getVariant(experimentName, userId, { userType, location });
 
-    res.json({ 
+    res.json({
       experiment: experimentName,
       variant: variant || 'control',
       userId: userId.startsWith('anon_') ? undefined : userId
@@ -83,7 +83,7 @@ router.post('/convert', async (req, res) => {
       try {
         const jwt = require('jsonwebtoken');
         const token = authHeader.split(' ')[1];
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'ngurra-secret') as any;
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'nexta-secret') as any;
         userId = decoded.id || decoded.userId || userId;
       } catch {
         // Use anonymous
@@ -153,8 +153,8 @@ router.post('/admin', authenticateJWT, requireAdmin, async (req, res) => {
     const { name, description, variants, targetingRules, endDate } = req.body;
 
     if (!name || !variants || variants.length < 2) {
-      return void res.status(400).json({ 
-        error: 'name and at least 2 variants are required' 
+      return void res.status(400).json({
+        error: 'name and at least 2 variants are required'
       });
     }
 

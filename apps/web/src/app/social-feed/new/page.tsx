@@ -7,14 +7,14 @@ import Link from 'next/link';
 import Image from '@/components/ui/OptimizedImage';
 import { isCloudinaryPublicId } from '@/lib/cloudinary';
 import { Space_Grotesk } from 'next/font/google';
-import { 
-  ArrowLeft, Image as ImageIcon, Video, MapPin, Hash, 
+import {
+  ArrowLeft, Image as ImageIcon, Video, MapPin, Hash,
   AtSign, Smile, X, Sparkles, Globe, Users, Lock
 } from 'lucide-react';
 import { useAuth } from '../../../hooks/useAuth';
 
-const spaceGrotesk = Space_Grotesk({ 
-  subsets: ['latin'], 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
   weight: ['400', '500', '700'],
   variable: '--font-space-grotesk'
 });
@@ -64,7 +64,7 @@ export default function NewPostPage() {
 
   const handleSubmit = async () => {
     if (!content.trim() && !mediaFile) return;
-    
+
     setIsSubmitting(true);
     try {
       const res = await api('/social-feed/posts', {
@@ -98,7 +98,7 @@ export default function NewPostPage() {
   ];
 
   return (
-    <div className={`${spaceGrotesk.className} ngurra-page`}>
+    <div className={`${spaceGrotesk.className} nexta-page`}>
       {/* Dot pattern overlay */}
       {/* Error Toast */}
       {error && (
@@ -108,7 +108,7 @@ export default function NewPostPage() {
         </div>
       )}
 
-      <div 
+      <div
         className="fixed inset-0 opacity-[0.04] dark:opacity-10 pointer-events-none"
         style={{
           backgroundImage: `
@@ -124,7 +124,7 @@ export default function NewPostPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
-            <Link 
+            <Link
               href="/social-feed"
               className="p-2 rounded-lg bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white transition-colors"
             >

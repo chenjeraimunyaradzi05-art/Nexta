@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document describes the architecture of the Ngurra Pathways API, built with Express.js, Prisma ORM, and TypeScript.
+This document describes the architecture of the Nexta API, built with Express.js, Prisma ORM, and TypeScript.
 
 ## Directory Structure
 
@@ -189,10 +189,10 @@ await prisma.$transaction(async (tx) => {
 ### Error Classes
 
 ```typescript
-import { 
-  BadRequestError, 
-  NotFoundError, 
-  UnauthorizedError 
+import {
+  BadRequestError,
+  NotFoundError,
+  UnauthorizedError
 } from './lib/errors';
 
 // Throw structured errors
@@ -381,8 +381,8 @@ See [.env.example](../.env.example) for required variables.
 ### Docker
 
 ```bash
-docker build -t ngurra-api .
-docker run -p 3000:3000 ngurra-api
+docker build -t nexta-api .
+docker run -p 3000:3000 nexta-api
 ```
 
 ### Health Checks

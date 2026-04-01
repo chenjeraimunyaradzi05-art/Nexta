@@ -1,6 +1,6 @@
 /**
  * Payment Service
- * 
+ *
  * Handles:
  * - Stripe subscription management
  * - One-time payments
@@ -216,8 +216,8 @@ const stripe = {
   },
   checkout: {
     sessions: {
-      create: async (params: { 
-        customer?: string; 
+      create: async (params: {
+        customer?: string;
         line_items: Array<{ price: string; quantity: number }>;
         success_url: string;
         cancel_url: string;
@@ -364,8 +364,8 @@ class PaymentService {
       }
 
       // Get the appropriate price ID
-      const priceId = billingCycle === 'yearly' 
-        ? plan.stripePriceIdYearly 
+      const priceId = billingCycle === 'yearly'
+        ? plan.stripePriceIdYearly
         : plan.stripePriceIdMonthly;
 
       if (!priceId && tier !== 'FREE') {
@@ -620,7 +620,7 @@ class PaymentService {
     };
 
     const amount = pricing[level];
-    
+
     if (amount === 0) {
       // Bronze is free - just upgrade
       await prisma.companyProfile.updateMany({
@@ -969,13 +969,13 @@ class PaymentService {
           if (user.email) {
             await queueEmail({
               to: user.email,
-              subject: 'Action Required: Payment Failed - Ngurra Pathways',
+              subject: 'Action Required: Payment Failed - Nexta',
               template: 'payment-failed',
               templateData: {
                 recipientName: user.name || 'there',
                 amount: (invoice.amount_due as number) / 100,
                 invoiceUrl: invoice.hosted_invoice_url as string,
-                billingUrl: `${process.env.WEB_URL || 'https://ngurrapathways.com.au'}/settings/billing`
+                billingUrl: `${process.env.WEB_URL || 'https://nexta.com.au'}/settings/billing`
               },
               userId: user.id,
               type: 'SYSTEM_ANNOUNCEMENT',

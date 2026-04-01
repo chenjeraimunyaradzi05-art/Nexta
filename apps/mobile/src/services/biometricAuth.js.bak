@@ -1,6 +1,6 @@
 /**
  * Biometric Authentication Service for React Native
- * 
+ *
  * Supports TouchID, FaceID (iOS) and Fingerprint (Android)
  * using expo-local-authentication.
  */
@@ -53,7 +53,7 @@ export async function getAvailableBiometricTypes() {
  */
 export async function getBiometricTypeName() {
   const types = await getAvailableBiometricTypes();
-  
+
   if (types.includes(BiometricType.FACIAL_RECOGNITION)) {
     return Platform.OS === 'ios' ? 'Face ID' : 'Face Recognition';
   }
@@ -63,7 +63,7 @@ export async function getBiometricTypeName() {
   if (types.includes(BiometricType.IRIS)) {
     return 'Iris Scanner';
   }
-  
+
   return 'Biometrics';
 }
 
@@ -114,21 +114,21 @@ export async function authenticateWithBiometrics(
       return { success: false, error: 'User chose password fallback' };
     }
     if (result.error === 'lockout') {
-      return { 
-        success: false, 
-        error: 'Too many failed attempts. Please try again later.' 
+      return {
+        success: false,
+        error: 'Too many failed attempts. Please try again later.'
       };
     }
 
-    return { 
-      success: false, 
-      error: result.error || 'Authentication failed' 
+    return {
+      success: false,
+      error: result.error || 'Authentication failed'
     };
   } catch (error) {
     console.error('Biometric auth error:', error);
-    return { 
-      success: false, 
-      error: 'An error occurred during authentication' 
+    return {
+      success: false,
+      error: 'An error occurred during authentication'
     };
   }
 }
@@ -157,7 +157,7 @@ export async function enableBiometricLogin(authToken) {
     const authResult = await authenticateWithBiometrics(
       'Verify your identity to enable biometric login'
     );
-    
+
     if (!authResult.success) {
       Alert.alert('Error', authResult.error || 'Authentication failed');
       return false;
@@ -202,21 +202,21 @@ export async function biometricLogin() {
     // Check if enabled
     const isEnabled = await isBiometricLoginEnabled();
     if (!isEnabled) {
-      return { 
-        success: false, 
-        error: 'Biometric login is not enabled' 
+      return {
+        success: false,
+        error: 'Biometric login is not enabled'
       };
     }
 
     // Authenticate
     const authResult = await authenticateWithBiometrics(
-      'Sign in to Ngurra Pathways'
+      'Sign in to Nexta'
     );
 
     if (!authResult.success) {
-      return { 
-        success: false, 
-        error: authResult.error 
+      return {
+        success: false,
+        error: authResult.error
       };
     }
 
@@ -225,21 +225,21 @@ export async function biometricLogin() {
     if (!token) {
       // Token was removed, disable biometric login
       await disableBiometricLogin();
-      return { 
-        success: false, 
-        error: 'Session expired. Please log in with your password.' 
+      return {
+        success: false,
+        error: 'Session expired. Please log in with your password.'
       };
     }
 
-    return { 
-      success: true, 
-      token 
+    return {
+      success: true,
+      token
     };
   } catch (error) {
     console.error('Biometric login error:', error);
-    return { 
-      success: false, 
-      error: 'An error occurred during authentication' 
+    return {
+      success: false,
+      error: 'An error occurred during authentication'
     };
   }
 }

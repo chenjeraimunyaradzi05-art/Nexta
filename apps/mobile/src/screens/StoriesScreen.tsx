@@ -1,6 +1,6 @@
 /**
  * StoriesScreen.tsx - Success Stories Screen
- * 
+ *
  * Features:
  * - Browse and read success stories
  * - Filter by category
@@ -96,7 +96,7 @@ const CATEGORIES = [
 
 export default function StoriesScreen({ navigation }: StoriesScreenProps) {
   const { user } = useSession();
-  
+
   // State
   const [activeTab, setActiveTab] = useState<TabType>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -107,7 +107,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  
+
   // Detail modal state
   const [selectedStory, setSelectedStory] = useState<Story | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
@@ -115,20 +115,20 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
   const [newComment, setNewComment] = useState('');
   const [isLoadingDetail, setIsLoadingDetail] = useState(false);
   const [isLoadingComments, setIsLoadingComments] = useState(false);
-  
+
   // Load stories on mount
   useEffect(() => {
     loadStories();
     loadFeaturedStories();
   }, []);
-  
+
   // Reload when tab or category changes
   useEffect(() => {
     setPage(1);
     setStories([]);
     loadStories(true);
   }, [activeTab, selectedCategory]);
-  
+
   // Load stories
   const loadStories = async (refresh = false) => {
     if (refresh) {
@@ -137,35 +137,35 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
     } else if (page === 1) {
       setIsLoading(true);
     }
-    
+
     try {
       const params: any = {
         page: refresh ? 1 : page,
         limit: 10,
       };
-      
+
       if (selectedCategory && selectedCategory !== 'all') {
         params.category = selectedCategory;
       }
-      
+
       if (search) {
         params.search = search;
       }
-      
+
       if (activeTab === 'featured') {
         params.featured = true;
       } else if (activeTab === 'saved') {
         params.saved = true;
       }
-      
+
       const result = await storiesApi.getStories(params);
-      
+
       if (refresh || page === 1) {
         setStories(result.stories || []);
       } else {
         setStories(prev => [...prev, ...(result.stories || [])]);
       }
-      
+
       setHasMore(result.pagination?.hasNext || false);
     } catch (err) {
       console.error('Load stories error:', err);
@@ -174,7 +174,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
       setIsRefreshing(false);
     }
   };
-  
+
   // Load featured stories for carousel
   const loadFeaturedStories = async () => {
     try {
@@ -184,13 +184,13 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
       console.error('Load featured stories error:', err);
     }
   };
-  
+
   // Refresh handler
   const onRefresh = useCallback(() => {
     loadStories(true);
     loadFeaturedStories();
   }, [selectedCategory, activeTab, search]);
-  
+
   // Load more handler
   const loadMore = () => {
     if (!isLoading && hasMore) {
@@ -198,7 +198,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
       loadStories();
     }
   };
-  
+
   // Search handler with debounce
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -207,21 +207,21 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
         loadStories(true);
       }
     }, 300);
-    
+
     return () => clearTimeout(timer);
   }, [search]);
-  
+
   // Open story detail
   const openStoryDetail = async (story: Story) => {
     setSelectedStory(story);
     setShowDetailModal(true);
     setIsLoadingDetail(true);
-    
+
     try {
       // Load full story content
       const fullStory = await storiesApi.getStory(story.id);
       setSelectedStory(fullStory);
-      
+
       // Load comments
       loadComments(story.id);
     } catch (err) {
@@ -230,7 +230,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
       setIsLoadingDetail(false);
     }
   };
-  
+
   // Load comments
   const loadComments = async (storyId: string) => {
     setIsLoadingComments(true);
@@ -243,7 +243,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
       setIsLoadingComments(false);
     }
   };
-  
+
   // Like story
   const handleLikeStory = async (story: Story) => {
     try {
@@ -252,13 +252,13 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
       } else {
         await storiesApi.likeStory(story.id);
       }
-      
+
       // Update local state
-      const updateStory = (s: Story) => 
-        s.id === story.id 
+      const updateStory = (s: Story) =>
+        s.id === story.id
           ? { ...s, hasLiked: !s.hasLiked, likeCount: s.hasLiked ? s.likeCount - 1 : s.likeCount + 1 }
           : s;
-      
+
       setStories(prev => prev.map(updateStory));
       setFeaturedStories(prev => prev.map(updateStory));
       if (selectedStory?.id === story.id) {
@@ -268,7 +268,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
       console.error('Like story error:', err);
     }
   };
-  
+
   // Save story
   const handleSaveStory = async (story: Story) => {
     try {
@@ -277,13 +277,13 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
       } else {
         await storiesApi.saveStory(story.id);
       }
-      
+
       // Update local state
-      const updateStory = (s: Story) => 
-        s.id === story.id 
+      const updateStory = (s: Story) =>
+        s.id === story.id
           ? { ...s, hasSaved: !s.hasSaved }
           : s;
-      
+
       setStories(prev => prev.map(updateStory));
       if (selectedStory?.id === story.id) {
         setSelectedStory(updateStory(selectedStory) as Story);
@@ -292,43 +292,43 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
       console.error('Save story error:', err);
     }
   };
-  
+
   // Share story
   const handleShareStory = async (story: Story) => {
     try {
       await Share.share({
         message: `Check out this inspiring story: ${story.title}`,
-        url: `https://ngurra.com/stories/${story.slug}`,
+        url: `https://nexta.com/stories/${story.slug}`,
         title: story.title,
       });
     } catch (err) {
       console.error('Share story error:', err);
     }
   };
-  
+
   // Add comment
   const handleAddComment = async () => {
     if (!newComment.trim() || !selectedStory) return;
-    
+
     try {
       const comment = await storiesApi.addComment(selectedStory.id, newComment);
       setStoryComments(prev => [comment, ...prev]);
       setNewComment('');
-      
+
       // Update comment count
       setSelectedStory(prev => prev ? { ...prev, commentCount: prev.commentCount + 1 } : null);
     } catch (err) {
       console.error('Add comment error:', err);
     }
   };
-  
+
   // Format date
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const now = new Date();
     const diffTime = now.getTime() - date.getTime();
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    
+
     if (diffDays === 0) return 'Today';
     if (diffDays === 1) return 'Yesterday';
     if (diffDays < 7) return `${diffDays} days ago`;
@@ -336,7 +336,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
     if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
     return `${Math.floor(diffDays / 365)} years ago`;
   };
-  
+
   // Get trust level badge
   const getTrustBadge = (level: string) => {
     switch (level) {
@@ -350,7 +350,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
         return null;
     }
   };
-  
+
   // Render featured story card (for carousel)
   const renderFeaturedStory = ({ item }: { item: Story }) => (
     <TouchableOpacity
@@ -378,11 +378,11 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
       </View>
     </TouchableOpacity>
   );
-  
+
   // Render story card
   const renderStoryCard = ({ item }: { item: Story }) => {
     const trustBadge = getTrustBadge(item.author.trustLevel);
-    
+
     return (
       <TouchableOpacity
         style={styles.storyCard}
@@ -408,10 +408,10 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
               </View>
             )}
           </View>
-          
+
           <Text style={styles.storyTitle} numberOfLines={2}>{item.title}</Text>
           <Text style={styles.storySummary} numberOfLines={3}>{item.summary}</Text>
-          
+
           <View style={styles.storyAuthorRow}>
             <Image
               source={{ uri: item.author.avatar || 'https://via.placeholder.com/40' }}
@@ -421,10 +421,10 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
               <View style={styles.authorNameRow}>
                 <Text style={styles.storyAuthorName}>{item.author.name}</Text>
                 {trustBadge && (
-                  <Ionicons 
-                    name={trustBadge.icon as any} 
-                    size={14} 
-                    color={trustBadge.color} 
+                  <Ionicons
+                    name={trustBadge.icon as any}
+                    size={14}
+                    color={trustBadge.color}
                     style={styles.trustIcon}
                   />
                 )}
@@ -434,42 +434,42 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
               </Text>
             </View>
           </View>
-          
+
           <View style={styles.storyStats}>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.statItem}
               onPress={() => handleLikeStory(item)}
             >
-              <Ionicons 
-                name={item.hasLiked ? 'heart' : 'heart-outline'} 
-                size={18} 
-                color={item.hasLiked ? colors.error : colors.textSecondary} 
+              <Ionicons
+                name={item.hasLiked ? 'heart' : 'heart-outline'}
+                size={18}
+                color={item.hasLiked ? colors.error : colors.textSecondary}
               />
               <Text style={styles.statText}>{item.likeCount}</Text>
             </TouchableOpacity>
-            
+
             <View style={styles.statItem}>
               <Ionicons name="chatbubble-outline" size={18} color={colors.textSecondary} />
               <Text style={styles.statText}>{item.commentCount}</Text>
             </View>
-            
+
             <View style={styles.statItem}>
               <Ionicons name="eye-outline" size={18} color={colors.textSecondary} />
               <Text style={styles.statText}>{item.viewCount}</Text>
             </View>
-            
-            <TouchableOpacity 
+
+            <TouchableOpacity
               style={styles.statItem}
               onPress={() => handleSaveStory(item)}
             >
-              <Ionicons 
-                name={item.hasSaved ? 'bookmark' : 'bookmark-outline'} 
-                size={18} 
-                color={item.hasSaved ? colors.primary : colors.textSecondary} 
+              <Ionicons
+                name={item.hasSaved ? 'bookmark' : 'bookmark-outline'}
+                size={18}
+                color={item.hasSaved ? colors.primary : colors.textSecondary}
               />
             </TouchableOpacity>
-            
-            <TouchableOpacity 
+
+            <TouchableOpacity
               style={styles.statItem}
               onPress={() => handleShareStory(item)}
             >
@@ -480,7 +480,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
       </TouchableOpacity>
     );
   };
-  
+
   // Render category pill
   const renderCategory = ({ item }: { item: typeof CATEGORIES[0] }) => (
     <TouchableOpacity
@@ -490,10 +490,10 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
       ]}
       onPress={() => setSelectedCategory(item.key)}
     >
-      <Ionicons 
-        name={item.icon as any} 
-        size={14} 
-        color={selectedCategory === item.key ? colors.white : colors.textSecondary} 
+      <Ionicons
+        name={item.icon as any}
+        size={14}
+        color={selectedCategory === item.key ? colors.white : colors.textSecondary}
       />
       <Text style={[
         styles.categoryPillText,
@@ -503,7 +503,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
       </Text>
     </TouchableOpacity>
   );
-  
+
   // Render header
   const renderHeader = () => (
     <View>
@@ -523,7 +523,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
           </TouchableOpacity>
         )}
       </View>
-      
+
       {/* Tabs */}
       <View style={styles.tabsContainer}>
         {(['all', 'featured', 'saved'] as TabType[]).map(tab => (
@@ -538,7 +538,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
           </TouchableOpacity>
         ))}
       </View>
-      
+
       {/* Categories */}
       <FlatList
         horizontal
@@ -548,7 +548,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
         renderItem={renderCategory}
         contentContainerStyle={styles.categoriesContainer}
       />
-      
+
       {/* Featured carousel (only on 'all' tab) */}
       {activeTab === 'all' && featuredStories.length > 0 && (
         <View style={styles.featuredSection}>
@@ -565,14 +565,14 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
           />
         </View>
       )}
-      
+
       <Text style={styles.sectionTitle}>
-        {activeTab === 'featured' ? 'Featured Stories' : 
+        {activeTab === 'featured' ? 'Featured Stories' :
          activeTab === 'saved' ? 'Saved Stories' : 'All Stories'}
       </Text>
     </View>
   );
-  
+
   // Render empty state
   const renderEmpty = () => (
     <View style={styles.emptyContainer}>
@@ -581,13 +581,13 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
         {activeTab === 'saved' ? 'No saved stories' : 'No stories found'}
       </Text>
       <Text style={styles.emptySubtitle}>
-        {activeTab === 'saved' 
+        {activeTab === 'saved'
           ? 'Save stories to read them later'
           : 'Check back later for inspiring success stories'}
       </Text>
     </View>
   );
-  
+
   // Render footer (loading more)
   const renderFooter = () => {
     if (!hasMore) return null;
@@ -597,7 +597,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
       </View>
     );
   };
-  
+
   // Render comment item
   const renderComment = ({ item }: { item: StoryComment }) => (
     <View style={styles.commentItem}>
@@ -612,17 +612,17 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
         </View>
         <Text style={styles.commentText}>{item.content}</Text>
         <TouchableOpacity style={styles.commentLikeButton}>
-          <Ionicons 
-            name={item.hasLiked ? 'heart' : 'heart-outline'} 
-            size={14} 
-            color={item.hasLiked ? colors.error : colors.textSecondary} 
+          <Ionicons
+            name={item.hasLiked ? 'heart' : 'heart-outline'}
+            size={14}
+            color={item.hasLiked ? colors.error : colors.textSecondary}
           />
           <Text style={styles.commentLikeCount}>{item.likeCount}</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
-  
+
   // Story detail modal
   const renderDetailModal = () => (
     <Modal
@@ -642,7 +642,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
             <Ionicons name="share-outline" size={24} color={colors.text} />
           </TouchableOpacity>
         </View>
-        
+
         {isLoadingDetail ? (
           <View style={styles.loadingContainer}>
             <ActivityIndicator size="large" color={colors.primary} />
@@ -656,7 +656,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
                 style={styles.detailCoverImage}
               />
             )}
-            
+
             {/* Category & title */}
             <View style={styles.detailContent}>
               <View style={styles.detailCategory}>
@@ -664,9 +664,9 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
                   {CATEGORIES.find(c => c.key === selectedStory.category)?.label || selectedStory.category}
                 </Text>
               </View>
-              
+
               <Text style={styles.detailTitle}>{selectedStory.title}</Text>
-              
+
               {/* Author */}
               <View style={styles.detailAuthorRow}>
                 <Image
@@ -680,7 +680,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
                   </Text>
                 </View>
               </View>
-              
+
               {/* Stats */}
               <View style={styles.detailStats}>
                 <View style={styles.detailStatItem}>
@@ -698,47 +698,47 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
                   </Text>
                 </View>
               </View>
-              
+
               {/* Content */}
               <Text style={styles.detailBody}>{selectedStory.content}</Text>
-              
+
               {/* Actions */}
               <View style={styles.detailActions}>
-                <TouchableOpacity 
+                <TouchableOpacity
                   style={[styles.actionButton, selectedStory.hasLiked && styles.actionButtonActive]}
                   onPress={() => handleLikeStory(selectedStory)}
                 >
-                  <Ionicons 
-                    name={selectedStory.hasLiked ? 'heart' : 'heart-outline'} 
-                    size={20} 
-                    color={selectedStory.hasLiked ? colors.white : colors.primary} 
+                  <Ionicons
+                    name={selectedStory.hasLiked ? 'heart' : 'heart-outline'}
+                    size={20}
+                    color={selectedStory.hasLiked ? colors.white : colors.primary}
                   />
                   <Text style={[styles.actionButtonText, selectedStory.hasLiked && styles.actionButtonTextActive]}>
                     {selectedStory.hasLiked ? 'Liked' : 'Like'}
                   </Text>
                 </TouchableOpacity>
-                
-                <TouchableOpacity 
+
+                <TouchableOpacity
                   style={[styles.actionButton, selectedStory.hasSaved && styles.actionButtonActive]}
                   onPress={() => handleSaveStory(selectedStory)}
                 >
-                  <Ionicons 
-                    name={selectedStory.hasSaved ? 'bookmark' : 'bookmark-outline'} 
-                    size={20} 
-                    color={selectedStory.hasSaved ? colors.white : colors.primary} 
+                  <Ionicons
+                    name={selectedStory.hasSaved ? 'bookmark' : 'bookmark-outline'}
+                    size={20}
+                    color={selectedStory.hasSaved ? colors.white : colors.primary}
                   />
                   <Text style={[styles.actionButtonText, selectedStory.hasSaved && styles.actionButtonTextActive]}>
                     {selectedStory.hasSaved ? 'Saved' : 'Save'}
                   </Text>
                 </TouchableOpacity>
               </View>
-              
+
               {/* Comments section */}
               <View style={styles.commentsSection}>
                 <Text style={styles.commentsSectionTitle}>
                   Comments ({selectedStory.commentCount})
                 </Text>
-                
+
                 {/* Add comment */}
                 <View style={styles.addCommentContainer}>
                   <TextInput
@@ -749,19 +749,19 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
                     onChangeText={setNewComment}
                     multiline
                   />
-                  <TouchableOpacity 
+                  <TouchableOpacity
                     style={[styles.sendCommentButton, !newComment.trim() && styles.sendCommentButtonDisabled]}
                     onPress={handleAddComment}
                     disabled={!newComment.trim()}
                   >
-                    <Ionicons 
-                      name="send" 
-                      size={20} 
-                      color={newComment.trim() ? colors.white : colors.textSecondary} 
+                    <Ionicons
+                      name="send"
+                      size={20}
+                      color={newComment.trim() ? colors.white : colors.textSecondary}
                     />
                   </TouchableOpacity>
                 </View>
-                
+
                 {isLoadingComments ? (
                   <ActivityIndicator size="small" color={colors.primary} style={styles.commentsLoading} />
                 ) : (
@@ -784,7 +784,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
       </View>
     </Modal>
   );
-  
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -807,13 +807,13 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
       />
-      
+
       {isLoading && page === 1 && (
         <View style={styles.loadingOverlay}>
           <ActivityIndicator size="large" color={colors.primary} />
         </View>
       )}
-      
+
       {/* FAB to submit story */}
       <TouchableOpacity
         style={styles.fab}
@@ -821,7 +821,7 @@ export default function StoriesScreen({ navigation }: StoriesScreenProps) {
       >
         <Ionicons name="add" size={28} color={colors.white} />
       </TouchableOpacity>
-      
+
       {renderDetailModal()}
     </View>
   );
@@ -835,7 +835,7 @@ const styles = StyleSheet.create({
   listContent: {
     paddingBottom: 100,
   },
-  
+
   // Search
   searchContainer: {
     flexDirection: 'row',
@@ -853,7 +853,7 @@ const styles = StyleSheet.create({
     ...typography.body,
     color: colors.text,
   },
-  
+
   // Tabs
   tabsContainer: {
     flexDirection: 'row',
@@ -878,7 +878,7 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontWeight: '600',
   },
-  
+
   // Categories
   categoriesContainer: {
     paddingHorizontal: spacing.md,
@@ -907,7 +907,7 @@ const styles = StyleSheet.create({
   categoryPillTextActive: {
     color: colors.white,
   },
-  
+
   // Section title
   sectionTitle: {
     ...typography.h3,
@@ -916,7 +916,7 @@ const styles = StyleSheet.create({
     marginTop: spacing.md,
     marginBottom: spacing.sm,
   },
-  
+
   // Featured carousel
   featuredSection: {
     marginBottom: spacing.md,
@@ -978,7 +978,7 @@ const styles = StyleSheet.create({
     ...typography.caption,
     color: colors.white,
   },
-  
+
   // Story card
   storyCard: {
     backgroundColor: colors.surface,
@@ -1072,7 +1072,7 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     marginLeft: 4,
   },
-  
+
   // Empty state
   emptyContainer: {
     alignItems: 'center',
@@ -1090,7 +1090,7 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     textAlign: 'center',
   },
-  
+
   // Loading
   loadingOverlay: {
     position: 'absolute',
@@ -1111,7 +1111,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  
+
   // FAB
   fab: {
     position: 'absolute',
@@ -1125,7 +1125,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     ...shadows.medium,
   },
-  
+
   // Modal
   modalContainer: {
     flex: 1,
@@ -1146,7 +1146,7 @@ const styles = StyleSheet.create({
   modalContent: {
     flex: 1,
   },
-  
+
   // Detail view
   detailCoverImage: {
     width: '100%',
@@ -1221,7 +1221,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginBottom: spacing.lg,
   },
-  
+
   // Actions
   detailActions: {
     flexDirection: 'row',
@@ -1249,7 +1249,7 @@ const styles = StyleSheet.create({
   actionButtonTextActive: {
     color: colors.white,
   },
-  
+
   // Comments
   commentsSection: {
     borderTopWidth: 1,
@@ -1297,7 +1297,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingVertical: spacing.lg,
   },
-  
+
   // Comment item
   commentItem: {
     flexDirection: 'row',

@@ -16,7 +16,7 @@ const accentPurple = '#8B5CF6';
 export default function SearchClient() {
   const searchParams = useSearchParams();
   const initialQuery = searchParams.get('q') || '';
-  
+
   const [query, setQuery] = useState(initialQuery);
   const [activeTab, setActiveTab] = useState('all');
   const [isLoading, setIsLoading] = useState(false);
@@ -53,7 +53,7 @@ export default function SearchClient() {
       { id: 3, type: 'org', name: 'CareerTrackers', followers: 2560, verified: true }
     ],
     posts: [
-      { id: 1, type: 'post', author: 'Ngurra Pathways', content: 'New partnership with TAFE Queensland announced...', likes: 312 },
+      { id: 1, type: 'post', author: 'Nexta', content: 'New partnership with TAFE Queensland announced...', likes: 312 },
       { id: 2, type: 'post', author: 'BHP Careers', content: 'Applications open for 2026 apprenticeships...', likes: 478 }
     ]
   };
@@ -85,11 +85,11 @@ export default function SearchClient() {
   };
 
   return (
-    <div className="ngurra-page pt-24 pb-20">
+    <div className="nexta-page pt-24 pb-20">
       {/* Decorative Halos */}
-      <div className="ngurra-halos">
-        <div className="ngurra-halo-pink" />
-        <div className="ngurra-halo-purple" />
+      <div className="nexta-halos">
+        <div className="nexta-halo-pink" />
+        <div className="nexta-halo-purple" />
       </div>
 
       <div className="container mx-auto px-4 max-w-4xl relative z-10">
@@ -109,7 +109,7 @@ export default function SearchClient() {
             <button
               type="submit"
               className="absolute right-3 top-1/2 -translate-y-1/2 px-6 py-2 rounded-xl text-white font-medium transition-all hover:scale-105"
-              style={{ 
+              style={{
                 background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)`,
                 boxShadow: '0 4px 12px rgba(233, 30, 140, 0.3)'
               }}
@@ -154,7 +154,7 @@ export default function SearchClient() {
             </div>
             <h2 className="text-xl font-semibold text-slate-800 mb-2">Start your search</h2>
             <p className="text-slate-500">Find jobs, connect with people, or discover groups</p>
-            
+
             {/* Quick Links */}
             <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
               <Link href="/jobs" className="bg-white border border-slate-200 rounded-xl p-4 text-center hover:border-pink-300 transition-colors" style={{ boxShadow: '0 4px 20px rgba(15, 23, 42, 0.06)' }}>

@@ -4,7 +4,7 @@ import { prisma } from '../db';
 
 /**
  * Authentication Middleware
- * 
+ *
  * Provides JWT-based authentication for protected routes.
  * Validates tokens, extracts user info, and attaches to request.
  */
@@ -12,20 +12,20 @@ import { prisma } from '../db';
 // Get JWT secret with proper validation - NEVER use weak fallback in production
 function getJwtSecret(): string {
   const secret = process.env.JWT_SECRET || process.env.DEV_JWT_SECRET;
-  
+
   if (!secret) {
     if (process.env.NODE_ENV === 'production') {
       throw new Error('JWT_SECRET must be set in production environment');
     }
     // Only allow this in development with explicit warning
     console.warn('⚠️  WARNING: Using development JWT secret. Set JWT_SECRET in production!');
-    return 'ngurra-dev-secret-minimum-32-chars';
+    return 'nexta-dev-secret-minimum-32-chars';
   }
-  
+
   if (secret.length < 32 && process.env.NODE_ENV === 'production') {
     throw new Error('JWT_SECRET must be at least 32 characters in production');
   }
-  
+
   return secret;
 }
 
@@ -58,12 +58,12 @@ function extractToken(req: Request): string | null {
   if (authHeader?.startsWith('Bearer ')) {
     return authHeader.substring(7);
   }
-  
+
   // Fallback to cookie
   if (req.cookies?.token) {
     return req.cookies.token;
   }
-  
+
   return null;
 }
 
@@ -90,26 +90,26 @@ function verifyToken(token: string): JwtPayload | null {
  */
 export function authenticate(arg1?: any, arg2?: any, arg3?: any) {
   // Dual-mode: Handle both authenticate() (factory) and authenticate (middleware) usage
-  
+
   const middlewareHandler = async (req: Request, res: Response, next: NextFunction) => {
     const token = extractToken(req);
-    
+
     if (!token) {
       return void res.status(401).json({
         error: 'Unauthorized',
         message: 'Authentication required. Please provide a valid token.',
       });
     }
-    
+
     const payload = verifyToken(token);
-    
+
     if (!payload) {
       return void res.status(401).json({
         error: 'Unauthorized',
         message: 'Invalid or expired token. Please sign in again.',
       });
     }
-    
+
     const rawUserType = payload.userType || (payload as any).role;
     const normalizedUserType = normalizeUserType(rawUserType);
 
@@ -121,7 +121,7 @@ export function authenticate(arg1?: any, arg2?: any, arg3?: any) {
       userType: normalizedUserType,
       role: normalizedUserType, // Alias for compatibility
     };
-    
+
     // Optionally fetch full user from DB for additional data
     try {
       let user = await prisma.user.findUnique({
@@ -149,7 +149,7 @@ export function authenticate(arg1?: any, arg2?: any, arg3?: any) {
           });
         }
       }
-      
+
       if (user) {
         req.user.name = user.name || undefined;
         // Ensure userType is set from DB if available
@@ -160,7 +160,7 @@ export function authenticate(arg1?: any, arg2?: any, arg3?: any) {
       // Continue without full user data - token is still valid
       console.debug('Could not fetch user details:', error);
     }
-    
+
     next();
   };
 
@@ -179,7 +179,7 @@ export function authenticate(arg1?: any, arg2?: any, arg3?: any) {
 export function optionalAuth() {
   return async (req: Request, _res: Response, next: NextFunction) => {
     const token = extractToken(req);
-    
+
     if (token) {
       const payload = verifyToken(token);
       if (payload) {
@@ -194,7 +194,7 @@ export function optionalAuth() {
         };
       }
     }
-    
+
     next();
   };
 }
@@ -241,20 +241,20 @@ export function authorize(allowedRoles?: string[]) {
         message: 'Authentication required.',
       });
     }
-    
+
     if (!allowedRoles || allowedRoles.length === 0) {
       return next();
     }
-    
+
     const userRole = req.user.userType || req.user.role;
-    
+
     if (!userRole || !allowedRoles.includes(userRole)) {
       return void res.status(403).json({
         error: 'Forbidden',
         message: 'You do not have permission to access this resource.',
       });
     }
-    
+
     next();
   };
 }
@@ -269,18 +269,18 @@ export function selfOrAdmin(req: Request, res: Response, next: NextFunction) {
       message: 'Authentication required.',
     });
   }
-  
+
   const requestedUserId = req.params.userId || req.params.id;
   const isAdmin = req.user.userType === 'ADMIN' || req.user.role === 'ADMIN';
   const isSelf = req.user.id === requestedUserId;
-  
+
   if (!isAdmin && !isSelf) {
     return void res.status(403).json({
       error: 'Forbidden',
       message: 'You can only access your own resources.',
     });
   }
-  
+
   return next();
 }
 
@@ -294,14 +294,14 @@ export function refreshToken(req: Request, res: Response, next: NextFunction) {
       message: 'Authentication required to refresh token.',
     });
   }
-  
+
   // Generate new token
   const newToken = jwt.sign(
     { id: req.user.id, email: req.user.email, userType: req.user.userType },
     JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRES_IN || '7d' } as jwt.SignOptions
   );
-  
+
   res.json({
     token: newToken,
     user: {
@@ -310,11 +310,11 @@ export function refreshToken(req: Request, res: Response, next: NextFunction) {
       userType: req.user.userType,
     },
   });
-  
+
   return;
 }
 
-// Create a default export that functions as both the authenticate middleware 
+// Create a default export that functions as both the authenticate middleware
 // AND an object containing all exports, to satisfy different import styles.
 const authHelpers = {
   authenticate,

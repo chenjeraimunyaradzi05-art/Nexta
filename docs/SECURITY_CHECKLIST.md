@@ -52,7 +52,7 @@ This document outlines ongoing security maintenance tasks, penetration testing s
    - Web application testing
    - API security testing
    - Network perimeter testing
-   
+
 2. Internal penetration testing
    - Privilege escalation testing
    - Lateral movement testing
@@ -111,8 +111,8 @@ aws secretsmanager update-secret \
 
 | Domain | Provider | Expiry | Auto-Renew |
 |--------|----------|--------|------------|
-| *.ngurrapathways.com.au | Let's Encrypt | Check | Yes |
-| api.ngurrapathways.com.au | Let's Encrypt | Check | Yes |
+| *.nexta.com.au | Let's Encrypt | Check | Yes |
+| api.nexta.com.au | Let's Encrypt | Check | Yes |
 
 ### Certificate Renewal Script
 
@@ -150,7 +150,7 @@ fi
 **Platform**: HackerOne or Bugcrowd (recommended)
 
 **Scope**:
-- `*.ngurrapathways.com.au`
+- `*.nexta.com.au`
 - API endpoints
 - Mobile applications
 
@@ -184,14 +184,14 @@ fi
 
 1. **Export all user accounts**
    ```sql
-   SELECT id, email, role, lastLoginAt, createdAt 
-   FROM users 
+   SELECT id, email, role, lastLoginAt, createdAt
+   FROM users
    ORDER BY role, lastLoginAt;
    ```
 
 2. **Identify inactive accounts** (no login > 90 days)
    ```sql
-   SELECT * FROM users 
+   SELECT * FROM users
    WHERE lastLoginAt < NOW() - INTERVAL '90 days';
    ```
 
@@ -202,7 +202,7 @@ fi
 
 4. **Review API keys**
    ```sql
-   SELECT * FROM api_keys 
+   SELECT * FROM api_keys
    WHERE lastUsedAt < NOW() - INTERVAL '30 days';
    ```
 

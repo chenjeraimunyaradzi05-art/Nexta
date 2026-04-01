@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * Career Portfolio Builder
- * 
+ *
  * Comprehensive portfolio functionality including:
  * - Project showcase with media
  * - Work samples gallery
@@ -101,7 +101,7 @@ const s3Client = new S3Client({
   } : undefined
 });
 
-const BUCKET_NAME = process.env.AWS_S3_BUCKET || 'ngurra-portfolios';
+const BUCKET_NAME = process.env.AWS_S3_BUCKET || 'nexta-portfolios';
 
 // ============================================================================
 // PORTFOLIO MANAGEMENT
@@ -692,8 +692,8 @@ export async function getPublicUrl(userId) {
 
   if (!portfolio) return null;
 
-  const baseUrl = process.env.APP_URL || 'https://ngurrapathways.com.au';
-  
+  const baseUrl = process.env.APP_URL || 'https://nexta.com.au';
+
   return {
     url: `${baseUrl}/p/${portfolio.slug}`,
     slug: portfolio.slug,
@@ -715,7 +715,7 @@ export async function createShareableLink(userId, options = {}) {
   }
 
   const token = crypto.randomBytes(16).toString('hex');
-  const expiresAt = options.expiresIn 
+  const expiresAt = options.expiresIn
     ? new Date(Date.now() + options.expiresIn * 1000)
     : null;
 
@@ -730,7 +730,7 @@ export async function createShareableLink(userId, options = {}) {
     }
   });
 
-  const baseUrl = process.env.APP_URL || 'https://ngurrapathways.com.au';
+  const baseUrl = process.env.APP_URL || 'https://nexta.com.au';
 
   return {
     url: `${baseUrl}/p/s/${token}`,
@@ -1013,35 +1013,35 @@ export default {
   getPortfolioByUserId,
   getPortfolioBySlug,
   checkSlugAvailability,
-  
+
   // Project management
   addProject,
   updateProject,
   deleteProject,
   reorderProjects,
   getProjects,
-  
+
   // Media
   getMediaUploadUrl,
   confirmMediaUpload,
   updateMedia,
   deleteMedia,
   reorderMedia,
-  
+
   // Templates
   getTemplates,
   applyTemplate,
   getTemplatePreview,
-  
+
   // Sharing
   getPublicUrl,
   createShareableLink,
   accessViaShareLink,
-  
+
   // Analytics
   getAnalytics,
   trackProjectView,
-  
+
   // Config
   TEMPLATES,
   PROJECT_CATEGORIES,

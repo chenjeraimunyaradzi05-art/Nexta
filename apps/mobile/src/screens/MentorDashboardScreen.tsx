@@ -1,6 +1,6 @@
 /**
  * Mentor Dashboard Screen
- * 
+ *
  * Comprehensive dashboard for mentors to manage:
  * - Upcoming and past sessions
  * - Earnings and payouts
@@ -326,7 +326,7 @@ export default function MentorDashboardScreen({ navigation }: MentorDashboardScr
           duration: 45,
           topic: 'Career Transition Strategies',
           status: 'confirmed',
-          meetingUrl: 'https://meet.ngurra.com.au/abc123',
+          meetingUrl: 'https://meet.nexta.com.au/abc123',
         },
         {
           id: '2',
@@ -451,10 +451,10 @@ export default function MentorDashboardScreen({ navigation }: MentorDashboardScr
   };
 
   // Filter sessions
-  const upcomingSessions = sessions.filter(s => 
+  const upcomingSessions = sessions.filter(s =>
     isAfter(parseISO(s.scheduledAt), new Date()) && s.status !== 'cancelled'
   );
-  const pastSessions = sessions.filter(s => 
+  const pastSessions = sessions.filter(s =>
     !isAfter(parseISO(s.scheduledAt), new Date()) || s.status === 'completed'
   );
 

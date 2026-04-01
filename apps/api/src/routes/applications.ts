@@ -194,7 +194,7 @@ router.post('/', authenticate, validateRequest(z.object({ body: submitApplicatio
               recipientName: member.user.firstName,
               applicantName,
               jobTitle: job.title,
-              applicationUrl: `${process.env.WEB_URL || 'https://ngurrapathways.com.au'}/employer/applications/${application.id}`
+              applicationUrl: `${process.env.WEB_URL || 'https://nexta.com.au'}/employer/applications/${application.id}`
             },
             userId: member.user.id,
             type: 'JOB_APPLICATION_UPDATE'
@@ -258,7 +258,7 @@ router.get('/:id', authenticate, async (req, res, next) => {
     // Check access
     const isOwner = application.userId === userId;
     const isAdmin = userRole === 'admin';
-    
+
     // Check if user is the employer for this job
     let isEmployer = false;
     if (userRole === 'employer' && application.job?.company) {
@@ -366,8 +366,8 @@ router.patch('/:id', authenticate, validateRequest(z.object({ body: updateApplic
 
       if (applicant && status && status !== 'withdrawn') {
         // Determine notification type based on status
-        const notificationType = status === 'interview' ? 'INTERVIEW_SCHEDULED' 
-          : status === 'offered' ? 'OFFER_RECEIVED' 
+        const notificationType = status === 'interview' ? 'INTERVIEW_SCHEDULED'
+          : status === 'offered' ? 'OFFER_RECEIVED'
           : 'JOB_APPLICATION_UPDATE';
 
         // Send in-app notification
@@ -392,7 +392,7 @@ router.patch('/:id', authenticate, validateRequest(z.object({ body: updateApplic
             companyName: updatedApplication.job.company,
             status,
             statusMessage: statusMessages[status],
-            applicationUrl: `${process.env.WEB_URL || 'https://ngurrapathways.com.au'}/applications/${id}`,
+            applicationUrl: `${process.env.WEB_URL || 'https://nexta.com.au'}/applications/${id}`,
             notes: notes || undefined
           },
           userId: applicant.id,

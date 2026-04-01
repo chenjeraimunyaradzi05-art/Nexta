@@ -8,7 +8,7 @@ const enableWebServers = String(process.env.PW_DISABLE_WEBSERVER || "").toLowerC
 const isCI = !!process.env.CI;
 
 // Use PostgreSQL for E2E tests (consistent with production)
-const DATABASE_URL = process.env.DATABASE_URL || 'postgresql://ngurra:dev_password_secure@localhost:5432/ngurra_dev';
+const DATABASE_URL = process.env.DATABASE_URL || 'postgresql://nexta:dev_password_secure@localhost:5432/nexta_dev';
 
 module.exports = defineConfig({
     testDir: './tests',
@@ -20,8 +20,8 @@ module.exports = defineConfig({
     webServer: enableWebServers
         ? [
             {
-                command: process.env.CI 
-                    ? 'npm run db:generate && npm run db:push && npm run seed && npm run build && npm run start' 
+                command: process.env.CI
+                    ? 'npm run db:generate && npm run db:push && npm run seed && npm run build && npm run start'
                     : 'npm run build && npm run db:push && npm run seed && npm run start',
                 cwd: path.join(__dirname, '..', 'api'),
                 port: 3001,

@@ -1,22 +1,22 @@
 "use strict";
 /**
  * GDPR Privacy Routes
- * 
+ *
  * Exposes GDPR compliance tools via REST API:
  * - Data export (portable format)
  * - Right to be forgotten (deletion request)
  * - Consent management
  * - Data processing registry
- * 
+ *
  * Step 4: GDPR/Privacy Compliance
  */
 
 const express = require('express');
 const { authenticateToken, optionalAuth } = require('../middleware/auth');
-const { 
-  exportUserData, 
-  deleteUserData, 
-  recordConsent, 
+const {
+  exportUserData,
+  deleteUserData,
+  recordConsent,
   getConsentStatus,
   getDataProcessingRegistry,
   RETENTION_PERIODS
@@ -33,7 +33,7 @@ const router = express.Router();
 router.get('/export', authenticateToken, async (req, res) => {
   try {
     const userId = req.user.userId || req.user.id;
-    
+
     // Log the export request
     await logAuditEvent({
       category: AuditCategory.DATA,
@@ -46,8 +46,8 @@ router.get('/export', authenticateToken, async (req, res) => {
 
     // Set headers for download
     res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Content-Disposition', `attachment; filename="ngurra-data-export-${Date.now()}.json"`);
-    
+    res.setHeader('Content-Disposition', `attachment; filename="nexta-data-export-${Date.now()}.json"`);
+
     res.json({
       success: true,
       exportedAt: new Date().toISOString(),
@@ -56,9 +56,9 @@ router.get('/export', authenticateToken, async (req, res) => {
     });
   } catch (error) {
     logger.error('Data export failed:', error);
-    res.status(500).json({ 
-      success: false, 
-      error: 'Failed to export data. Please try again or contact support.' 
+    res.status(500).json({
+      success: false,
+      error: 'Failed to export data. Please try again or contact support.'
     });
   }
 });
@@ -99,9 +99,9 @@ router.post('/deletion-request', authenticateToken, async (req, res) => {
     }
   } catch (error) {
     logger.error('Deletion request failed:', error);
-    res.status(500).json({ 
-      success: false, 
-      error: 'Failed to process deletion request. Please contact support.' 
+    res.status(500).json({
+      success: false,
+      error: 'Failed to process deletion request. Please contact support.'
     });
   }
 });
@@ -133,9 +133,9 @@ router.post('/cancel-deletion', authenticateToken, async (req, res) => {
     });
   } catch (error) {
     logger.error('Cancel deletion failed:', error);
-    res.status(500).json({ 
-      success: false, 
-      error: 'Failed to cancel deletion request.' 
+    res.status(500).json({
+      success: false,
+      error: 'Failed to cancel deletion request.'
     });
   }
 });
@@ -155,9 +155,9 @@ router.get('/consents', authenticateToken, async (req, res) => {
     });
   } catch (error) {
     logger.error('Get consents failed:', error);
-    res.status(500).json({ 
-      success: false, 
-      error: 'Failed to retrieve consent status.' 
+    res.status(500).json({
+      success: false,
+      error: 'Failed to retrieve consent status.'
     });
   }
 });
@@ -212,9 +212,9 @@ router.post('/consents', authenticateToken, async (req, res) => {
     });
   } catch (error) {
     logger.error('Update consent failed:', error);
-    res.status(500).json({ 
-      success: false, 
-      error: 'Failed to update consent.' 
+    res.status(500).json({
+      success: false,
+      error: 'Failed to update consent.'
     });
   }
 });
@@ -232,9 +232,9 @@ router.get('/registry', optionalAuth, async (req, res) => {
     });
   } catch (error) {
     logger.error('Get registry failed:', error);
-    res.status(500).json({ 
-      success: false, 
-      error: 'Failed to retrieve data processing registry.' 
+    res.status(500).json({
+      success: false,
+      error: 'Failed to retrieve data processing registry.'
     });
   }
 });
@@ -251,8 +251,8 @@ router.get('/retention', optionalAuth, async (req, res) => {
       return {
         dataType: key,
         retentionDays: daysNum,
-        retentionDescription: daysNum < 365 
-          ? `${daysNum} days` 
+        retentionDescription: daysNum < 365
+          ? `${daysNum} days`
           : `${Math.round(daysNum / 365)} year(s)`
         };
     })
@@ -291,9 +291,9 @@ router.get('/status', authenticateToken, async (req, res) => {
     });
   } catch (error) {
     logger.error('Get privacy status failed:', error);
-    res.status(500).json({ 
-      success: false, 
-      error: 'Failed to retrieve privacy status.' 
+    res.status(500).json({
+      success: false,
+      error: 'Failed to retrieve privacy status.'
     });
   }
 });

@@ -3,7 +3,7 @@
 
 /**
  * Automated Reminder System (Step 47)
- * 
+ *
  * Features:
  * - Session reminders (24h, 1h before)
  * - Application deadline reminders
@@ -43,15 +43,15 @@ const REMINDER_CONFIG = {
  */
 async function processSessionReminders() {
   const results = { sent: 0, failed: 0 };
-  
+
   try {
     const now = new Date();
-    
+
     for (const minutesBefore of REMINDER_CONFIG.sessionReminders.times) {
       const targetTime = new Date(now.getTime() + minutesBefore * 60 * 1000);
       const windowStart = new Date(targetTime.getTime() - 7.5 * 60 * 1000); // 7.5 min window
       const windowEnd = new Date(targetTime.getTime() + 7.5 * 60 * 1000);
-      
+
       // Find sessions in this window that haven't been reminded yet
       const sessions = await prisma.mentorSession.findMany({
         where: {
@@ -77,20 +77,20 @@ async function processSessionReminders() {
           }
         }
       });
-      
+
       for (const session of sessions) {
         try {
           await sendSessionReminder(session, minutesBefore);
-          
+
           // Mark reminder as sent
           const sentReminders = session.remindersSent || [];
           sentReminders.push(`${minutesBefore}min`);
-          
+
           await prisma.mentorSession.update({
             where: { id: session.id },
             data: { remindersSent: sentReminders }
           });
-          
+
           results.sent++;
         } catch (err) {
           logger.error('Session reminder failed', { sessionId: session.id, error: err.message });
@@ -98,7 +98,7 @@ async function processSessionReminders() {
         }
       }
     }
-    
+
     return results;
   } catch (err) {
     logger.error('Process session reminders failed', { error: err.message });
@@ -119,11 +119,11 @@ async function sendSessionReminder(session, minutesBefore) {
     minute: '2-digit',
     hour12: true
   });
-  
+
   // Remind mentee
   if (session.mentee) {
     const mentorName = session.mentor?.profile?.name || 'your mentor';
-    
+
     if (await shouldSendNotification(session.mentee.id, 'SESSION_REMINDER', 'email')) {
       await queueEmail({
         to: session.mentee.email,
@@ -140,13 +140,13 @@ async function sendSessionReminder(session, minutesBefore) {
         type: 'SESSION_REMINDER'
       });
     }
-    
+
     if (minutesBefore <= 60 && await shouldSendNotification(session.mentee.id, 'SESSION_REMINDER', 'sms')) {
       await sendUserSMS(session.mentee.id, SMS_TYPES.SESSION_REMINDERS,
-        `Ngurra Pathways: Your mentor session with ${mentorName} is ${timeLabel}. Be ready!`
+        `Nexta: Your mentor session with ${mentorName} is ${timeLabel}. Be ready!`
       );
     }
-    
+
     await createNotification({
       userId: session.mentee.id,
       type: 'SESSION_REMINDER',
@@ -156,11 +156,11 @@ async function sendSessionReminder(session, minutesBefore) {
       link: `/mentorship/sessions/${session.id}`
     });
   }
-  
+
   // Remind mentor
   if (session.mentor) {
     const menteeName = session.mentee?.profile?.name || 'your mentee';
-    
+
     if (await shouldSendNotification(session.mentor.id, 'SESSION_REMINDER', 'email')) {
       await queueEmail({
         to: session.mentor.email,
@@ -177,7 +177,7 @@ async function sendSessionReminder(session, minutesBefore) {
         type: 'SESSION_REMINDER'
       });
     }
-    
+
     await createNotification({
       userId: session.mentor.id,
       type: 'SESSION_REMINDER',
@@ -209,15 +209,15 @@ function getTimeLabel(minutes) {
  */
 async function processDeadlineReminders() {
   const results = { sent: 0, failed: 0 };
-  
+
   try {
     const now = new Date();
-    
+
     for (const minutesBefore of REMINDER_CONFIG.applicationDeadlines.times) {
       const targetTime = new Date(now.getTime() + minutesBefore * 60 * 1000);
       const windowStart = new Date(targetTime.getTime() - 30 * 60 * 1000);
       const windowEnd = new Date(targetTime.getTime() + 30 * 60 * 1000);
-      
+
       // Find jobs with deadlines in this window
       const jobs = await prisma.job.findMany({
         where: {
@@ -228,7 +228,7 @@ async function processDeadlineReminders() {
           isActive: true
         }
       });
-      
+
       for (const job of jobs) {
         // Find users who saved this job but haven't applied
         const savedJobs = await prisma.savedJob.findMany({
@@ -240,19 +240,19 @@ async function processDeadlineReminders() {
             user: { include: { profile: true } }
           }
         });
-        
+
         for (const saved of savedJobs) {
           try {
             // Check if they already applied
             const applied = await prisma.application.findFirst({
               where: { jobId: job.id, applicantId: saved.userId }
             });
-            
+
             if (!applied) {
               await sendDeadlineReminder(saved.user, job, minutesBefore);
               results.sent++;
             }
-            
+
             await prisma.savedJob.update({
               where: { id: saved.id },
               data: { deadlineReminderSent: true }
@@ -264,7 +264,7 @@ async function processDeadlineReminders() {
         }
       }
     }
-    
+
     return results;
   } catch (err) {
     logger.error('Process deadline reminders failed', { error: err.message });
@@ -277,7 +277,7 @@ async function processDeadlineReminders() {
  */
 async function sendDeadlineReminder(user, job, minutesBefore) {
   const timeLabel = getTimeLabel(minutesBefore);
-  
+
   if (await shouldSendNotification(user.id, 'JOB_ALERT', 'email')) {
     await queueEmail({
       to: user.email,
@@ -295,7 +295,7 @@ async function sendDeadlineReminder(user, job, minutesBefore) {
       type: 'JOB_ALERT'
     });
   }
-  
+
   await createNotification({
     userId: user.id,
     type: 'APPLICATION_DEADLINE',
@@ -311,12 +311,12 @@ async function sendDeadlineReminder(user, job, minutesBefore) {
  */
 async function processProfileNudges() {
   const results = { sent: 0 };
-  
+
   try {
     const nudgeThreshold = new Date(
       Date.now() - REMINDER_CONFIG.profileCompletionNudge * 24 * 60 * 60 * 1000
     );
-    
+
     // Find users who signed up X days ago with incomplete profiles
     const users = await prisma.user.findMany({
       where: {
@@ -329,27 +329,27 @@ async function processProfileNudges() {
       },
       include: { profile: true }
     });
-    
+
     for (const user of users) {
       // Calculate profile completion
       const completion = calculateProfileCompletion(user);
-      
+
       if (completion < 80) {
         try {
           await sendProfileNudge(user, completion);
-          
+
           await prisma.user.update({
             where: { id: user.id },
             data: { profileNudgeSent: true }
           });
-          
+
           results.sent++;
         } catch (err) {
           logger.error('Profile nudge failed', { userId: user.id });
         }
       }
     }
-    
+
     return results;
   } catch (err) {
     logger.error('Process profile nudges failed', { error: err.message });
@@ -372,7 +372,7 @@ function calculateProfileCompletion(user) {
     profile.experience && JSON.parse(profile.experience || '[]').length > 0,
     profile.education && JSON.parse(profile.education || '[]').length > 0
   ];
-  
+
   const completed = checks.filter(Boolean).length;
   return Math.round((completed / checks.length) * 100);
 }
@@ -382,7 +382,7 @@ function calculateProfileCompletion(user) {
  */
 async function sendProfileNudge(user, completion) {
   const missingItems = getMissingProfileItems(user);
-  
+
   if (await shouldSendNotification(user.id, 'WEEKLY_DIGEST', 'email')) {
     await queueEmail({
       to: user.email,
@@ -398,7 +398,7 @@ async function sendProfileNudge(user, completion) {
       type: 'WEEKLY_DIGEST'
     });
   }
-  
+
   await createNotification({
     userId: user.id,
     type: 'PROFILE_NUDGE',
@@ -415,7 +415,7 @@ async function sendProfileNudge(user, completion) {
 function getMissingProfileItems(user) {
   const profile = user.profile || {};
   const missing = [];
-  
+
   if (!profile.bio) missing.push('Add a bio to tell employers about yourself');
   if (!profile.avatar) missing.push('Upload a profile photo');
   if (!profile.skills || JSON.parse(profile.skills || '[]').length === 0) {
@@ -427,7 +427,7 @@ function getMissingProfileItems(user) {
   if (!profile.education || JSON.parse(profile.education || '[]').length === 0) {
     missing.push('Add your education');
   }
-  
+
   return missing.slice(0, 3); // Top 3 items
 }
 
@@ -436,12 +436,12 @@ function getMissingProfileItems(user) {
  */
 async function processInactiveUserReengagement() {
   const results = { sent: 0 };
-  
+
   try {
     const inactiveThreshold = new Date(
       Date.now() - REMINDER_CONFIG.inactivityThreshold * 24 * 60 * 60 * 1000
     );
-    
+
     const users = await prisma.user.findMany({
       where: {
         lastLoginAt: {
@@ -456,12 +456,12 @@ async function processInactiveUserReengagement() {
       include: { profile: true },
       take: 100
     });
-    
+
     for (const user of users) {
       try {
         // Get personalized content
         const { newJobs, newMentors } = await getReengagementContent(user);
-        
+
         if (await shouldSendNotification(user.id, 'WEEKLY_DIGEST', 'email')) {
           await queueEmail({
             to: user.email,
@@ -477,18 +477,18 @@ async function processInactiveUserReengagement() {
             type: 'WEEKLY_DIGEST'
           });
         }
-        
+
         await prisma.user.update({
           where: { id: user.id },
           data: { lastReengagementEmail: new Date() }
         });
-        
+
         results.sent++;
       } catch (err) {
         logger.error('Reengagement email failed', { userId: user.id });
       }
     }
-    
+
     return results;
   } catch (err) {
     logger.error('Process reengagement failed', { error: err.message });
@@ -501,7 +501,7 @@ async function processInactiveUserReengagement() {
  */
 async function getReengagementContent(user) {
   const twoWeeksAgo = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000);
-  
+
   const [newJobs, newMentors] = await Promise.all([
     prisma.job.count({
       where: {
@@ -517,7 +517,7 @@ async function getReengagementContent(user) {
       }
     })
   ]);
-  
+
   return { newJobs, newMentors };
 }
 
@@ -526,10 +526,10 @@ async function getReengagementContent(user) {
  */
 async function processCourseReminders() {
   const results = { sent: 0, failed: 0 };
-  
+
   try {
     const now = new Date();
-    
+
     // Find upcoming course sessions
     const upcomingSessions = await prisma.courseSession.findMany({
       where: {
@@ -548,12 +548,12 @@ async function processCourseReminders() {
         }
       }
     });
-    
+
     for (const session of upcomingSessions) {
       for (const enrollment of session.enrollments) {
         try {
           const hoursUntil = Math.round((new Date(session.startsAt).getTime() - now.getTime()) / (60 * 60 * 1000));
-          
+
           await createNotification({
             userId: enrollment.user.id,
             type: 'COURSE_REMINDER',
@@ -562,19 +562,19 @@ async function processCourseReminders() {
             message: `${session.course.name} is starting ${getTimeLabel(hoursUntil * 60)}`,
             link: `/courses/${session.course.id}`
           });
-          
+
           await prisma.enrollment.update({
             where: { id: enrollment.id },
             data: { reminderSent: true }
           });
-          
+
           results.sent++;
         } catch (err) {
           results.failed++;
         }
       }
     }
-    
+
     return results;
   } catch (err) {
     logger.error('Process course reminders failed', { error: err.message });
@@ -592,7 +592,7 @@ async function runAllReminderJobs() {
     deadlines: await processDeadlineReminders(),
     courses: await processCourseReminders()
   };
-  
+
   logger.info('Reminder jobs completed', results);
   return results;
 }
@@ -606,7 +606,7 @@ async function runDailyReminderJobs() {
     profileNudges: await processProfileNudges(),
     reengagement: await processInactiveUserReengagement()
   };
-  
+
   logger.info('Daily reminder jobs completed', results);
   return results;
 }

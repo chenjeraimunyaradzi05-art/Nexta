@@ -1,8 +1,8 @@
-# Ngurra Pathways Website Review & Enhancement Roadmap
+# Nexta Website Review & Enhancement Roadmap
 
 ## Overview
 
-Ngurra Pathways (ngurrapathways.life) is an Indigenous employment and mentorship platform connecting First Nations people with culturally safe employers and mentors. The site's tagline — *"Your Path, Your Story"* — positions it as a community-first portal for jobs, scholarships, events, and verified partner programs. This report assesses what currently works, identifies areas for improvement, and provides a detailed roadmap for incorporating all-women inclusivity, robust security, rich profile building, and a social media feed.[^1]
+Nexta (nexta.life) is an Indigenous employment and mentorship platform connecting First Nations people with culturally safe employers and mentors. The site's tagline — *"Your Path, Your Story"* — positions it as a community-first portal for jobs, scholarships, events, and verified partner programs. This report assesses what currently works, identifies areas for improvement, and provides a detailed roadmap for incorporating all-women inclusivity, robust security, rich profile building, and a social media feed.[^1]
 
 ***
 
@@ -15,7 +15,7 @@ Based on the accessible content, the site demonstrates several strong foundation
 - **Clear mission and messaging**: The tagline and copy immediately communicate purpose — culturally safe employment and mentorship.[^1]
 - **Partner verification promise**: The statement *"All partners are verified and aligned with community values"* builds trust and signals cultural safety.[^1]
 - **Advertising model**: An "Advertise with us" pathway invites employers and program providers to promote verified programs, jobs, scholarships, and events with "full cultural review".[^1]
-- **Use of "Ngurra"**: The word appears in many Aboriginal languages and means "home", "camp", "a place of belonging", "a place of inclusion" — a culturally resonant choice.[^2]
+- **Use of "Nexta"**: The word appears in many Aboriginal languages and means "home", "camp", "a place of belonging", "a place of inclusion" — a culturally resonant choice.[^2]
 
 ### Key Issues Identified
 
@@ -70,7 +70,7 @@ The platform should meet WCAG 2.1 AA standards at minimum, including:
 
 Aboriginal women face compounding barriers in the workplace, including racism, gender discrimination, insecure employment, expectations to represent all Aboriginal communities, and the burden of unpaid cultural labour. Research shows many Aboriginal women feel "unsatisfied, undervalued and unsuccessful at obtaining progression". Meanwhile, the employment gap for Indigenous Australians remains significant — only 52% of working-age Indigenous Australians are employed compared to 75% of non-Indigenous Australians.[^5][^4]
 
-Projects like Tranby Aboriginal Co-operative's community-led program and Ember Connect's digital mentorship initiative specifically target First Nations women through culturally safe mentoring, storytelling, and professional development. Ngurra Pathways should draw from these models.[^6][^7]
+Projects like Tranby Aboriginal Co-operative's community-led program and Ember Connect's digital mentorship initiative specifically target First Nations women through culturally safe mentoring, storytelling, and professional development. Nexta should draw from these models.[^6][^7]
 
 ### Recommended Features for Women's Inclusion
 
@@ -308,15 +308,15 @@ Social media platforms should offer features that enable Indigenous communities 
 
 ## Conclusion
 
-Ngurra Pathways has a strong foundational concept and culturally resonant branding. To realise its potential, the platform needs to move beyond its current loading-screen state into a fully functional, secure, and inclusive community platform. The highest-priority actions are: (1) fix the technical rendering so the site is accessible and indexable, (2) implement a robust authentication and security layer grounded in CARE principles, (3) build a profile system that honours holistic Indigenous identity, (4) create dedicated pathways and features for Indigenous women, and (5) launch a community feed that fosters connection, storytelling, and peer support. With these enhancements, Ngurra Pathways can become a genuinely transformative platform for Indigenous employment and mentorship in Australia.
+Nexta has a strong foundational concept and culturally resonant branding. To realise its potential, the platform needs to move beyond its current loading-screen state into a fully functional, secure, and inclusive community platform. The highest-priority actions are: (1) fix the technical rendering so the site is accessible and indexable, (2) implement a robust authentication and security layer grounded in CARE principles, (3) build a profile system that honours holistic Indigenous identity, (4) create dedicated pathways and features for Indigenous women, and (5) launch a community feed that fosters connection, storytelling, and peer support. With these enhancements, Nexta can become a genuinely transformative platform for Indigenous employment and mentorship in Australia.
 
 ---
 
 ## References
 
-1. [Ngurra Pathways | Indigenous Employment & Mentorship](https://ngurrapathways.life) - Your Path, Your Story. Connect with culturally safe employers, find mentors who understand your jour...
+1. [Nexta | Indigenous Employment & Mentorship](https://nexta.life) - Your Path, Your Story. Connect with culturally safe employers, find mentors who understand your jour...
 
-2. [Ngurra | AIATSIS corporate website](https://aiatsis.gov.au/ngurra) - Ngurra aims to close the widely acknowledged gap among the existing National Cultural Institutions b...
+2. [Nexta | AIATSIS corporate website](https://aiatsis.gov.au/nexta) - Nexta aims to close the widely acknowledged gap among the existing National Cultural Institutions b...
 
 3. [Build a Real-Time Social Feed With Next.js](https://getstream.io/blog/nextjs-social-feeds/) - With a social feed, users can create content, upload images, create short video clips, and share the...
 

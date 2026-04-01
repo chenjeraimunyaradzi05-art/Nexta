@@ -1,8 +1,8 @@
 /**
  * Achievements Screen
- * 
+ *
  * Displays user's achievements, progress, level, and leaderboard.
- * Gamification hub for the Ngurra Pathways mobile app.
+ * Gamification hub for the Nexta mobile app.
  */
 
 import React, { useState, useEffect, useCallback } from 'react';
@@ -358,7 +358,7 @@ export default function AchievementsScreen() {
                 achievementFilter === category && styles.filterPillTextActive,
               ]}
             >
-              {category === 'all' ? 'All' : 
+              {category === 'all' ? 'All' :
                category === 'earned' ? '🏆 Earned' :
                category === 'locked' ? '🔒 Locked' :
                category.charAt(0) + category.slice(1).toLowerCase()}
@@ -529,7 +529,7 @@ export default function AchievementsScreen() {
                     color={COLORS.textMuted}
                   />
                   <Text style={styles.modalMetaText}>
-                    {selectedAchievement.category.charAt(0) + 
+                    {selectedAchievement.category.charAt(0) +
                      selectedAchievement.category.slice(1).toLowerCase()}
                   </Text>
                 </View>

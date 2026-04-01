@@ -21,12 +21,12 @@ async function setAuthToken(page, token) {
     await page.evaluate(
         ([t]) => {
             try {
-                localStorage.setItem('ngurra_token', t);
+                localStorage.setItem('nexta_token', t);
             } catch {
                 // ignore
             }
 
-            document.cookie = `ngurra_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`;
+            document.cookie = `nexta_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`;
         },
         [token]
     );

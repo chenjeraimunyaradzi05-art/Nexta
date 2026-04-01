@@ -4,7 +4,7 @@
 /**
  * Elasticsearch Integration
  * Step 31: Full-text search implementation
- * 
+ *
  * Provides:
  * - Connection management with retry logic
  * - Index management for jobs, courses, mentors, forums
@@ -38,7 +38,7 @@ const ES_CONFIG = {
 // Index configurations
 const INDICES = {
   jobs: {
-    name: 'ngurra_jobs',
+    name: 'nexta_jobs',
     settings: {
       number_of_shards: 1,
       number_of_replicas: 1,
@@ -81,9 +81,9 @@ const INDICES = {
       }
     }
   },
-  
+
   courses: {
-    name: 'ngurra_courses',
+    name: 'nexta_courses',
     settings: {
       number_of_shards: 1,
       number_of_replicas: 1
@@ -110,7 +110,7 @@ const INDICES = {
   },
 
   mentors: {
-    name: 'ngurra_mentors',
+    name: 'nexta_mentors',
     settings: {
       number_of_shards: 1,
       number_of_replicas: 1
@@ -135,7 +135,7 @@ const INDICES = {
   },
 
   forums: {
-    name: 'ngurra_forums',
+    name: 'nexta_forums',
     settings: {
       number_of_shards: 1,
       number_of_replicas: 1
@@ -172,17 +172,17 @@ async function initClient() {
 
   try {
     client = new Client(ES_CONFIG);
-    
+
     // Test connection
     const health = await client.cluster.health() as any;
     isConnected = health.status !== 'red';
-    
-    logger.info('Elasticsearch connected', { 
+
+    logger.info('Elasticsearch connected', {
       status: health.status,
       cluster: health.cluster_name,
       nodes: health.number_of_nodes
     });
-    
+
     return client;
   } catch (error) {
     logger.warn('Elasticsearch connection failed, using fallback', { error: error.message });
@@ -218,7 +218,7 @@ async function ensureIndices() {
   try {
     for (const [key, config] of Object.entries(INDICES)) {
       const exists = await es.indices.exists({ index: config.name });
-      
+
       if (!exists) {
         await es.indices.create({
           index: config.name,
@@ -287,7 +287,7 @@ async function bulkIndex(indexKey, documents) {
 
     try {
       const result = await es.bulk({ body, refresh: false });
-      
+
       if (result.errors) {
         result.items.forEach((item, idx) => {
           if (item.index?.error) {
@@ -343,7 +343,7 @@ async function deleteDocument(indexKey, id) {
 
 /**
  * Search with faceted filtering
- * 
+ *
  * @param {string} indexKey - Index to search (jobs, courses, mentors, forums)
  * @param {object} params - Search parameters
  * @param {string} params.query - Search query text
@@ -356,7 +356,7 @@ async function deleteDocument(indexKey, id) {
 async function search(indexKey, params) {
   const es = await getClient();
   const config = INDICES[indexKey];
-  
+
   if (!es || !config) {
     // Fallback to database search
     return await fallbackSearch(indexKey, params);
@@ -395,7 +395,7 @@ async function search(indexKey, params) {
     // Apply filters
     for (const [key, value] of Object.entries(filters)) {
       if (value === undefined || value === null || value === '') continue;
-      
+
       if (key === 'location' && filters.coordinates && filters.distance) {
         // Geo distance filter
         filter.push({
@@ -598,7 +598,7 @@ async function fallbackSearch(indexKey, params) {
   try {
     // Build basic where clause
     const where: any = { isActive: true };
-    
+
     if (query) {
       where.OR = [
         { title: { contains: query, mode: 'insensitive' } },
@@ -815,7 +815,7 @@ async function syncAll() {
     isFeatured: mentor.isFeatured || false,
     rating: mentor.averageRating || 0,
     sessionCount: mentor.sessionCount || 0,
-    specializations: mentor.specializations ? 
+    specializations: mentor.specializations ?
       mentor.specializations.split(',').map(s => s.trim()) : []
   }));
 

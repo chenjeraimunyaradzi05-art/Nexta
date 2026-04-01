@@ -1,6 +1,6 @@
 /**
  * Referral Screen
- * 
+ *
  * Allows users to share their referral code and track referrals.
  */
 
@@ -158,8 +158,8 @@ export default function ReferralScreen() {
 
     try {
       await Share.share({
-        message: `Join Ngurra Pathways - Australia's Indigenous professional network! Use my referral code: ${referralCode}\n\n${shareUrl}`,
-        title: 'Join Ngurra Pathways',
+        message: `Join Nexta - Australia's Indigenous professional network! Use my referral code: ${referralCode}\n\n${shareUrl}`,
+        title: 'Join Nexta',
       });
     } catch (error) {
       console.error('Share error:', error);
@@ -173,7 +173,7 @@ export default function ReferralScreen() {
     try {
       await Share.share({
         message: message.message,
-        title: 'Join Ngurra Pathways',
+        title: 'Join Nexta',
       });
     } catch (error) {
       console.error('Share error:', error);
@@ -197,13 +197,13 @@ export default function ReferralScreen() {
         >
           <Text style={styles.codeLabel}>Your Referral Code</Text>
           <Text style={styles.codeValue}>{referralCode || '------'}</Text>
-          
+
           <View style={styles.codeActions}>
             <TouchableOpacity style={styles.copyBtn} onPress={copyCode}>
               <Ionicons name={copied ? 'checkmark' : 'copy-outline'} size={20} color="#fff" />
               <Text style={styles.copyBtnText}>{copied ? 'Copied!' : 'Copy'}</Text>
             </TouchableOpacity>
-            
+
             <TouchableOpacity style={styles.shareBtn} onPress={shareCode}>
               <Ionicons name="share-social" size={20} color="#16a34a" />
               <Text style={styles.shareBtnText}>Share</Text>
@@ -252,9 +252,9 @@ export default function ReferralScreen() {
               <Text style={styles.stepRewardText}>+25 pts</Text>
             </View>
           </View>
-          
+
           <View style={styles.stepConnector} />
-          
+
           <View style={styles.step}>
             <View style={styles.stepIcon}>
               <Ionicons name="person-add" size={24} color={COLORS.secondary} />
@@ -267,9 +267,9 @@ export default function ReferralScreen() {
               <Text style={styles.stepRewardText}>+50 pts</Text>
             </View>
           </View>
-          
+
           <View style={styles.stepConnector} />
-          
+
           <View style={styles.step}>
             <View style={styles.stepIcon}>
               <Ionicons name="trophy" size={24} color={COLORS.gold} />
@@ -297,11 +297,11 @@ export default function ReferralScreen() {
                 {stats?.successfulReferrals || 0} / {getNextMilestone()!.count} referrals
               </Text>
               <View style={styles.milestoneBar}>
-                <View 
+                <View
                   style={[
-                    styles.milestoneBarFill, 
+                    styles.milestoneBarFill,
                     { width: `${((stats?.successfulReferrals || 0) / getNextMilestone()!.count) * 100}%` }
-                  ]} 
+                  ]}
                 />
               </View>
             </View>
@@ -317,31 +317,31 @@ export default function ReferralScreen() {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Share On</Text>
         <View style={styles.shareButtons}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.platformBtn, { backgroundColor: '#1DA1F2' }]}
             onPress={() => shareOnPlatform('twitter')}
           >
             <Ionicons name="logo-twitter" size={24} color="#fff" />
           </TouchableOpacity>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.platformBtn, { backgroundColor: '#4267B2' }]}
             onPress={() => shareOnPlatform('facebook')}
           >
             <Ionicons name="logo-facebook" size={24} color="#fff" />
           </TouchableOpacity>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.platformBtn, { backgroundColor: '#0A66C2' }]}
             onPress={() => shareOnPlatform('linkedin')}
           >
             <Ionicons name="logo-linkedin" size={24} color="#fff" />
           </TouchableOpacity>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.platformBtn, { backgroundColor: COLORS.surfaceLight }]}
             onPress={() => shareOnPlatform('email')}
           >
             <Ionicons name="mail" size={24} color="#fff" />
           </TouchableOpacity>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.platformBtn, { backgroundColor: '#25D366' }]}
             onPress={() => shareOnPlatform('sms')}
           >
@@ -383,22 +383,22 @@ export default function ReferralScreen() {
                 </Text>
               </View>
             )}
-            
+
             <View style={styles.referralInfo}>
               <Text style={styles.referralName}>{item.referredUser.name || 'Anonymous'}</Text>
               <Text style={styles.referralDate}>
                 Joined {new Date(item.createdAt).toLocaleDateString()}
               </Text>
             </View>
-            
+
             <View style={[
               styles.statusBadge,
               { backgroundColor: STATUS_CONFIG[item.status].color + '20' }
             ]}>
-              <Ionicons 
-                name={STATUS_CONFIG[item.status].icon as any} 
-                size={14} 
-                color={STATUS_CONFIG[item.status].color} 
+              <Ionicons
+                name={STATUS_CONFIG[item.status].icon as any}
+                size={14}
+                color={STATUS_CONFIG[item.status].color}
               />
               <Text style={[styles.statusText, { color: STATUS_CONFIG[item.status].color }]}>
                 {STATUS_CONFIG[item.status].label}

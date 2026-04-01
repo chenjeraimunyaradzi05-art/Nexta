@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * Email Queue System (Step 41)
- * 
+ *
  * Features:
  * - Queue-based email processing
  * - Retry logic with backoff
@@ -37,8 +37,8 @@ function generateTrackingPixel(emailLogId) {
     .update(emailLogId + process.env.JWT_SECRET || 'tracking')
     .digest('hex')
     .substring(0, 16);
-  
-  const baseUrl = process.env.API_BASE_URL || 'https://api.ngurrapathways.com.au';
+
+  const baseUrl = process.env.API_BASE_URL || 'https://api.nexta.com.au';
   return `${baseUrl}/emails/track/open/${emailLogId}/${token}`;
 }
 
@@ -47,17 +47,17 @@ function generateTrackingPixel(emailLogId) {
  */
 function wrapLinksWithTracking(html, emailLogId) {
   if (!html) return html;
-  
-  const baseUrl = process.env.API_BASE_URL || 'https://api.ngurrapathways.com.au';
+
+  const baseUrl = process.env.API_BASE_URL || 'https://api.nexta.com.au';
   const linkRegex = /href="(https?:\/\/[^"]+)"/g;
-  
+
   let linkIndex = 0;
   return html.replace(linkRegex, (match, url) => {
     // Don't wrap unsubscribe links or tracking URLs
     if (url.includes('unsubscribe') || url.includes('/track/')) {
       return match;
     }
-    
+
     const encodedUrl = Buffer.from(url).toString('base64url');
     const trackUrl = `${baseUrl}/emails/track/click/${emailLogId}/${linkIndex}/${encodedUrl}`;
     linkIndex++;
@@ -71,25 +71,25 @@ function wrapLinksWithTracking(html, emailLogId) {
 function addEmailTracking(html, emailLogId) {
   if (!QUEUE_CONFIG.trackingPixelEnabled) return html;
   if (!html) return html;
-  
+
   // Wrap links
   let trackedHtml = wrapLinksWithTracking(html, emailLogId);
-  
+
   // Add tracking pixel before closing body tag
   const trackingPixel = `<img src="${generateTrackingPixel(emailLogId)}" width="1" height="1" alt="" style="display:none;" />`;
-  
+
   if (trackedHtml.includes('</body>')) {
     trackedHtml = trackedHtml.replace('</body>', `${trackingPixel}</body>`);
   } else {
     trackedHtml += trackingPixel;
   }
-  
+
   return trackedHtml;
 }
 
 /**
  * Queue an email for sending
- * 
+ *
  * @param {object} options - Email options
  * @param {string} options.to - Recipient email
  * @param {string} options.subject - Email subject
@@ -118,20 +118,20 @@ async function queueEmail(options) {
         metadata: options.templateData ? JSON.stringify(options.templateData) : null
       }
     });
-    
+
     // Add to in-memory queue for immediate processing
     if (!options.scheduledFor || new Date(options.scheduledFor) <= new Date()) {
       emailQueue.push({
         id: emailLog.id,
         ...options
       });
-      
+
       // Start processing if not already running
       if (!processingQueue) {
         processQueue();
       }
     }
-    
+
     return { queued: true, emailLogId: emailLog.id };
   } catch (err) {
     logger.error('Failed to queue email', { error: err.message, to: options.to });
@@ -145,7 +145,7 @@ async function queueEmail(options) {
 async function processQueue() {
   if (processingQueue) return;
   processingQueue = true;
-  
+
   try {
     while (emailQueue.length > 0) {
       // Check rate limit
@@ -153,17 +153,17 @@ async function processQueue() {
       if (rateLimitWindow.minute !== currentMinute) {
         rateLimitWindow = { minute: currentMinute, count: 0 };
       }
-      
+
       if (rateLimitWindow.count >= QUEUE_CONFIG.rateLimit) {
         // Wait for next minute
         await new Promise(resolve => setTimeout(resolve, 60000 - (Date.now() % 60000)));
         continue;
       }
-      
+
       const email = emailQueue.shift();
       await sendSingleEmail(email);
       rateLimitWindow.count++;
-      
+
       // Small delay between emails
       await new Promise(resolve => setTimeout(resolve, 100));
     }
@@ -179,7 +179,7 @@ async function sendSingleEmail(email) {
   try {
     // Add tracking to HTML
     const trackedHtml = addEmailTracking(email.html, email.id);
-    
+
     // Send via mailer
     const result = await sendMail({
       to: email.to,
@@ -187,7 +187,7 @@ async function sendSingleEmail(email) {
       text: email.text,
       html: trackedHtml
     });
-    
+
     // Update status
     await prisma.emailLog.update({
       where: { id: email.id },
@@ -197,20 +197,20 @@ async function sendSingleEmail(email) {
         messageId: result?.messageId || null
       }
     });
-    
+
     logger.info('Email sent', { id: email.id, to: email.to });
     return { success: true };
-    
+
   } catch (err) {
     logger.error('Email send failed', { id: email.id, error: err.message });
-    
+
     // Update retry count
     const emailLog = await prisma.emailLog.findUnique({
       where: { id: email.id }
     });
-    
+
     const retryCount = (emailLog?.retryCount || 0) + 1;
-    
+
     if (retryCount >= QUEUE_CONFIG.maxRetries) {
       await prisma.emailLog.update({
         where: { id: email.id },
@@ -223,7 +223,7 @@ async function sendSingleEmail(email) {
     } else {
       // Schedule retry
       const retryDelay = QUEUE_CONFIG.retryDelays[retryCount - 1] || 60000;
-      
+
       await prisma.emailLog.update({
         where: { id: email.id },
         data: {
@@ -234,7 +234,7 @@ async function sendSingleEmail(email) {
         }
       });
     }
-    
+
     return { success: false, error: err.message };
   }
 }
@@ -247,9 +247,9 @@ async function trackOpen(emailLogId) {
     const emailLog = await prisma.emailLog.findUnique({
       where: { id: emailLogId }
     });
-    
+
     if (!emailLog) return false;
-    
+
     // Only track first open
     if (!emailLog.openedAt) {
       await prisma.emailLog.update({
@@ -267,7 +267,7 @@ async function trackOpen(emailLogId) {
         }
       });
     }
-    
+
     return true;
   } catch (err) {
     logger.error('Failed to track email open', { emailLogId, error: err.message });
@@ -283,9 +283,9 @@ async function trackClick(emailLogId, linkIndex, originalUrl) {
     const emailLog = await prisma.emailLog.findUnique({
       where: { id: emailLogId }
     });
-    
+
     if (!emailLog) return originalUrl;
-    
+
     // Record click
     const clicks = JSON.parse(emailLog.clicks || '[]');
     clicks.push({
@@ -293,7 +293,7 @@ async function trackClick(emailLogId, linkIndex, originalUrl) {
       url: originalUrl,
       clickedAt: new Date().toISOString()
     });
-    
+
     await prisma.emailLog.update({
       where: { id: emailLogId },
       data: {
@@ -302,7 +302,7 @@ async function trackClick(emailLogId, linkIndex, originalUrl) {
         firstClickAt: emailLog.firstClickAt || new Date()
       }
     });
-    
+
     return originalUrl;
   } catch (err) {
     logger.error('Failed to track email click', { emailLogId, error: err.message });
@@ -327,10 +327,10 @@ async function processScheduledEmails() {
       ],
       take: QUEUE_CONFIG.batchSize
     });
-    
+
     for (const email of scheduledEmails) {
       const metadata = email.metadata ? JSON.parse(email.metadata) : {};
-      
+
       emailQueue.push({
         id: email.id,
         to: email.to,
@@ -340,11 +340,11 @@ async function processScheduledEmails() {
         ...metadata
       });
     }
-    
+
     if (scheduledEmails.length > 0 && !processingQueue) {
       processQueue();
     }
-    
+
     return { processed: scheduledEmails.length };
   } catch (err) {
     logger.error('Failed to process scheduled emails', { error: err.message });
@@ -367,7 +367,7 @@ async function getEmailStats(startDate, endDate) {
         }
       }
     });
-    
+
     const totals = await prisma.emailLog.aggregate({
       _count: true,
       _sum: {
@@ -381,7 +381,7 @@ async function getEmailStats(startDate, endDate) {
         }
       }
     });
-    
+
     const byTemplate = await prisma.emailLog.groupBy({
       by: ['template'],
       _count: true,
@@ -393,7 +393,7 @@ async function getEmailStats(startDate, endDate) {
         }
       }
     });
-    
+
     return {
       byStatus: stats.reduce((acc, s) => ({ ...acc, [s.status]: s._count }), {}),
       totals: {
@@ -417,10 +417,10 @@ async function getEmailStats(startDate, endDate) {
 async function sendBulkEmails(emails, options = {}) {
   const { batchDelay = 1000 } = options;
   const results = { success: 0, failed: 0 };
-  
+
   for (let i = 0; i < emails.length; i += QUEUE_CONFIG.batchSize) {
     const batch = emails.slice(i, i + QUEUE_CONFIG.batchSize);
-    
+
     for (const email of batch) {
       try {
         await queueEmail(email);
@@ -429,13 +429,13 @@ async function sendBulkEmails(emails, options = {}) {
         results.failed++;
       }
     }
-    
+
     // Delay between batches
     if (i + QUEUE_CONFIG.batchSize < emails.length) {
       await new Promise(resolve => setTimeout(resolve, batchDelay));
     }
   }
-  
+
   return results;
 }
 

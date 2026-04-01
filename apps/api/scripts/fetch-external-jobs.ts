@@ -1,18 +1,18 @@
 /**
  * Fetch External Jobs Script
- * 
+ *
  * Fetches job data from public APIs and formats it for the import-web-data.js script.
  * This script can be run manually or scheduled via cron to keep job listings fresh.
- * 
+ *
  * Supported sources:
  * - Adzuna API (Australian jobs)
  * - Reed UK API (sample)
  * - Government Open Data portals
- * 
+ *
  * Usage:
  *   npx ts-node scripts/fetch-external-jobs.ts --source adzuna --output data/jobs.json
  *   npx ts-node scripts/fetch-external-jobs.ts --source mock --output data/jobs.json
- * 
+ *
  * Environment variables:
  *   ADZUNA_APP_ID - Your Adzuna API application ID
  *   ADZUNA_APP_KEY - Your Adzuna API key
@@ -58,7 +58,7 @@ async function fetchFromAdzuna(options: {
   resultsPerPage?: number;
 }): Promise<ExternalJob[]> {
   const { appId, appKey, what = 'indigenous', where = 'australia', resultsPerPage = 50 } = options;
-  
+
   const baseUrl = 'https://api.adzuna.com/v1/api/jobs/au/search/1';
   const params = new URLSearchParams({
     app_id: appId,
@@ -72,13 +72,13 @@ async function fetchFromAdzuna(options: {
   console.log(`📡 Fetching from Adzuna API: ${what} in ${where}...`);
 
   const response = await fetch(`${baseUrl}?${params}`);
-  
+
   if (!response.ok) {
     throw new Error(`Adzuna API error: ${response.status} ${response.statusText}`);
   }
 
   const data = await response.json() as { results?: any[] };
-  
+
   const jobs: ExternalJob[] = (data.results || []).map((job: any) => ({
     externalId: String(job.id),
     title: job.title || 'Untitled Position',
@@ -185,7 +185,7 @@ function generateMockJobs(count: number = 50): ExternalJob[] {
     const title = jobTitles[Math.floor(Math.random() * jobTitles.length)];
     const location = locations[Math.floor(Math.random() * locations.length)];
     const employment = employmentTypes[Math.floor(Math.random() * employmentTypes.length)];
-    
+
     const baseSalary = 45000 + Math.floor(Math.random() * 80000);
     const salaryRange = Math.floor(Math.random() * 20000);
 
@@ -381,12 +381,12 @@ function generateMockCourses(count: number = 30): ExternalCourse[] {
   // Add more generated courses to reach the count
   const categories = ['Business', 'Health', 'Education', 'Technology', 'Environment', 'Arts'];
   const qualifications = ['Certificate II', 'Certificate III', 'Certificate IV', 'Diploma', 'Advanced Diploma'];
-  
+
   while (courses.length < count) {
     const category = categories[Math.floor(Math.random() * categories.length)];
     const qualification = qualifications[Math.floor(Math.random() * qualifications.length)];
     const i = courses.length;
-    
+
     courses.push({
       externalId: `mock-course-${i}`,
       title: `${qualification} in ${category} Studies`,
@@ -429,13 +429,13 @@ function parseArgs(argv: string[]): Record<string, string | boolean> {
 
 async function main() {
   const args = parseArgs(process.argv);
-  
+
   const source = String(args.source || 'mock');
   const outputPath = String(args.output || 'data/external-jobs.json');
   const coursesOutput = String(args['courses-output'] || 'data/external-courses.json');
   const count = parseInt(String(args.count || '50'), 10);
 
-  console.log('\n🚀 Ngurra Pathways - External Data Fetcher\n');
+  console.log('\n🚀 Nexta - External Data Fetcher\n');
   console.log(`   Source: ${source}`);
   console.log(`   Output: ${outputPath}`);
   console.log(`   Count: ${count}\n`);
@@ -447,15 +447,15 @@ async function main() {
     case 'adzuna': {
       const appId = process.env.ADZUNA_APP_ID;
       const appKey = process.env.ADZUNA_APP_KEY;
-      
+
       if (!appId || !appKey) {
         throw new Error('ADZUNA_APP_ID and ADZUNA_APP_KEY environment variables are required');
       }
-      
+
       jobs = await fetchFromAdzuna({ appId, appKey, resultsPerPage: count });
       break;
     }
-    
+
     case 'mock':
     default:
       jobs = generateMockJobs(count);
@@ -475,7 +475,7 @@ async function main() {
     jobs,
     fetchedAt: new Date().toISOString(),
   };
-  
+
   fs.writeFileSync(outputPath, JSON.stringify(jobs, null, 2));
   console.log(`\n📁 Jobs saved to: ${outputPath}`);
 

@@ -1,7 +1,7 @@
 "use strict";
 /**
  * Multi-tenant Configuration Routes
- * 
+ *
  * Manage tenant-specific settings, branding, and data residency.
  */
 
@@ -26,19 +26,19 @@ const DATA_REGIONS = {
 router.get('/', requireAuth, async (req, res) => {
   try {
     const userId = req.user.id || req.user.userId;
-    
+
     const company = await prisma.companyProfile.findFirst({
       where: { userId }
     });
-    
+
     if (!company) {
       return void res.status(403).json({ error: 'Company profile required' });
     }
-    
+
     const config = await prisma.tenantConfig.findUnique({
       where: { companyId: company.id }
     });
-    
+
     res.json({
       configured: !!config,
       config: config ? {
@@ -75,66 +75,66 @@ router.post('/', requireAuth, async (req, res) => {
       dataRegion,
       retentionDays
     } = req.body;
-    
+
     const company = await prisma.companyProfile.findFirst({
       where: { userId }
     });
-    
+
     if (!company) {
       return void res.status(403).json({ error: 'Company profile required' });
     }
-    
+
     // Validate subdomain format
     if (subdomain) {
       if (!/^[a-z0-9-]+$/.test(subdomain) || subdomain.length < 3 || subdomain.length > 50) {
-        return void res.status(400).json({ 
-          error: 'Subdomain must be 3-50 lowercase alphanumeric characters or hyphens' 
+        return void res.status(400).json({
+          error: 'Subdomain must be 3-50 lowercase alphanumeric characters or hyphens'
         });
       }
-      
+
       // Check if subdomain is taken
       const existing = await prisma.tenantConfig.findFirst({
         where: { subdomain, NOT: { companyId: company.id } }
       });
-      
+
       if (existing) {
         return void res.status(400).json({ error: 'Subdomain is already taken' });
       }
     }
-    
+
     // Validate custom domain
     if (customDomain) {
       // Simple domain validation
       if (!/^[a-z0-9][a-z0-9.-]+[a-z0-9]$/.test(customDomain.toLowerCase())) {
         return void res.status(400).json({ error: 'Invalid domain format' });
       }
-      
+
       // Check if domain is taken
       const existing = await prisma.tenantConfig.findFirst({
         where: { customDomain, NOT: { companyId: company.id } }
       });
-      
+
       if (existing) {
         return void res.status(400).json({ error: 'Domain is already configured' });
       }
     }
-    
+
     // Validate data region
     if (dataRegion && !DATA_REGIONS[dataRegion]) {
-      return void res.status(400).json({ 
-        error: 'Invalid data region', 
-        valid: Object.keys(DATA_REGIONS) 
+      return void res.status(400).json({
+        error: 'Invalid data region',
+        valid: Object.keys(DATA_REGIONS)
       });
     }
-    
+
     // Validate retention
     const validRetention = retentionDays ? Math.min(Math.max(30, retentionDays), 3650) : 365;
-    
+
     // Check for existing config
     const existing = await prisma.tenantConfig.findUnique({
       where: { companyId: company.id }
     });
-    
+
     const data = {
       subdomain: subdomain || null,
       customDomain: customDomain || null,
@@ -143,7 +143,7 @@ router.post('/', requireAuth, async (req, res) => {
       dataRegion: dataRegion || 'AU',
       retentionDays: validRetention
     };
-    
+
     let config;
     if (existing) {
       config = await prisma.tenantConfig.update({
@@ -158,7 +158,7 @@ router.post('/', requireAuth, async (req, res) => {
         }
       });
     }
-    
+
     res.json({
       success: true,
       config: {
@@ -182,7 +182,7 @@ router.post('/', requireAuth, async (req, res) => {
 router.patch('/branding', requireAuth, async (req, res) => {
   try {
     const userId = req.user.id || req.user.userId;
-    const { 
+    const {
       primaryColor,
       secondaryColor,
       logoUrl,
@@ -190,24 +190,24 @@ router.patch('/branding', requireAuth, async (req, res) => {
       companyDisplayName,
       customCss
     } = req.body;
-    
+
     const company = await prisma.companyProfile.findFirst({
       where: { userId }
     });
-    
+
     if (!company) {
       return void res.status(403).json({ error: 'Company profile required' });
     }
-    
+
     let config = await prisma.tenantConfig.findUnique({
       where: { companyId: company.id }
     });
-    
+
     // Get existing branding or create new
-    const existingBranding = config?.brandingConfig 
-      ? JSON.parse(config.brandingConfig) 
+    const existingBranding = config?.brandingConfig
+      ? JSON.parse(config.brandingConfig)
       : {};
-    
+
     const branding = {
       ...existingBranding,
       ...(primaryColor && { primaryColor }),
@@ -217,7 +217,7 @@ router.patch('/branding', requireAuth, async (req, res) => {
       ...(companyDisplayName && { companyDisplayName }),
       ...(customCss && { customCss })
     };
-    
+
     if (config) {
       config = await prisma.tenantConfig.update({
         where: { id: config.id },
@@ -231,7 +231,7 @@ router.patch('/branding', requireAuth, async (req, res) => {
         }
       });
     }
-    
+
     res.json({
       success: true,
       branding
@@ -250,29 +250,29 @@ router.patch('/features', requireAuth, async (req, res) => {
   try {
     const userId = req.user.id || req.user.userId;
     const { features } = req.body;
-    
+
     if (!features || typeof features !== 'object') {
       return void res.status(400).json({ error: 'Features object required' });
     }
-    
+
     const company = await prisma.companyProfile.findFirst({
       where: { userId }
     });
-    
+
     if (!company) {
       return void res.status(403).json({ error: 'Company profile required' });
     }
-    
+
     let config = await prisma.tenantConfig.findUnique({
       where: { companyId: company.id }
     });
-    
-    const existingFeatures = config?.featureFlags 
-      ? JSON.parse(config.featureFlags) 
+
+    const existingFeatures = config?.featureFlags
+      ? JSON.parse(config.featureFlags)
       : {};
-    
+
     const updatedFeatures = { ...existingFeatures, ...features };
-    
+
     if (config) {
       config = await prisma.tenantConfig.update({
         where: { id: config.id },
@@ -286,7 +286,7 @@ router.patch('/features', requireAuth, async (req, res) => {
         }
       });
     }
-    
+
     res.json({
       success: true,
       features: updatedFeatures
@@ -313,34 +313,34 @@ router.post('/verify-domain', requireAuth, async (req, res) => {
   try {
     const userId = req.user.id || req.user.userId;
     const { domain } = req.body;
-    
+
     if (!domain) {
       return void res.status(400).json({ error: 'Domain required' });
     }
-    
+
     const company = await prisma.companyProfile.findFirst({
       where: { userId }
     });
-    
+
     if (!company) {
       return void res.status(403).json({ error: 'Company profile required' });
     }
-    
+
     // Generate verification token
     const verificationToken = `ngp-verify-${company.id.substring(0, 8)}`;
-    
+
     // Instructions for verification
     res.json({
       domain,
       verification: {
         method: 'DNS TXT Record',
         recordType: 'TXT',
-        recordName: '_ngurra-verify',
+        recordName: '_nexta-verify',
         recordValue: verificationToken,
-        fullRecord: `_ngurra-verify.${domain}`,
+        fullRecord: `_nexta-verify.${domain}`,
         instructions: [
           '1. Log in to your domain registrar',
-          `2. Add a TXT record for _ngurra-verify.${domain}`,
+          `2. Add a TXT record for _nexta-verify.${domain}`,
           `3. Set the value to: ${verificationToken}`,
           '4. Wait for DNS propagation (up to 24 hours)',
           '5. Click "Verify" to confirm ownership'
@@ -361,33 +361,33 @@ router.post('/check-domain', requireAuth, async (req, res) => {
   try {
     const userId = req.user.id || req.user.userId;
     const { domain } = req.body;
-    
+
     if (!domain) {
       return void res.status(400).json({ error: 'Domain required' });
     }
-    
+
     const company = await prisma.companyProfile.findFirst({
       where: { userId }
     });
-    
+
     if (!company) {
       return void res.status(403).json({ error: 'Company profile required' });
     }
-    
+
     const expectedToken = `ngp-verify-${company.id.substring(0, 8)}`;
-    
+
     // Check DNS record (simplified - use dns.resolveTxt in production)
     try {
       const dns = require('dns').promises;
-      const records = await dns.resolveTxt(`_ngurra-verify.${domain}`);
+      const records = await dns.resolveTxt(`_nexta-verify.${domain}`);
       const flatRecords = records.flat();
-      
+
       if (flatRecords.includes(expectedToken)) {
         // Domain verified - save it
         let config = await prisma.tenantConfig.findUnique({
           where: { companyId: company.id }
         });
-        
+
         if (config) {
           await prisma.tenantConfig.update({
             where: { id: config.id },
@@ -401,18 +401,18 @@ router.post('/check-domain', requireAuth, async (req, res) => {
             }
           });
         }
-        
+
         res.json({ verified: true, domain });
       } else {
-        res.json({ 
-          verified: false, 
-          message: 'Verification record not found or incorrect' 
+        res.json({
+          verified: false,
+          message: 'Verification record not found or incorrect'
         });
       }
     } catch (dnsErr) {
-      res.json({ 
-        verified: false, 
-        message: 'DNS lookup failed - record not found or not propagated yet' 
+      res.json({
+        verified: false,
+        message: 'DNS lookup failed - record not found or not propagated yet'
       });
     }
   } catch (err) {

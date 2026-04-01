@@ -1,6 +1,6 @@
 # DevOps & Deployment Guide
 
-This document covers the deployment pipeline, infrastructure, and operational procedures for Ngurra Pathways.
+This document covers the deployment pipeline, infrastructure, and operational procedures for Nexta.
 
 ## Table of Contents
 
@@ -39,8 +39,8 @@ This document covers the deployment pipeline, infrastructure, and operational pr
 | Environment | Branch   | URL                              | Purpose          |
 |-------------|----------|----------------------------------|------------------|
 | Development | `main`   | `localhost:3000/3001`           | Local development |
-| Staging     | `staging`| `staging.ngurrapathways.com.au` | Pre-production    |
-| Production  | `main`   | `ngurrapathways.com.au`         | Live site         |
+| Staging     | `staging`| `staging.nexta.com.au` | Pre-production    |
+| Production  | `main`   | `nexta.com.au`         | Live site         |
 
 ### Environment Variables
 

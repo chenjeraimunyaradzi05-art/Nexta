@@ -1,10 +1,10 @@
-# Privacy Policy - Ngurra Pathways (Gimbi)
+# Privacy Policy - Nexta (Gimbi)
 
 *Last Updated: [Current Date]*
 
 ## 1. Introduction
 
-Ngurra Pathways ("we", "us", "our") operates the Gimbi platform (the "Service"). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our Service.
+Nexta ("we", "us", "our") operates the Gimbi platform (the "Service"). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our Service.
 
 We respect your privacy and are committed to protecting your personal data. This policy complies with the Australian Privacy Act 1988, the Privacy (Credit Reporting) Code 2014, and GDPR requirements where applicable.
 
@@ -111,7 +111,7 @@ You can update incorrect data through your profile settings or by contacting sup
 You can:
 - Delete specific data (e.g., resume, applications)
 - Request full account deletion via Settings > Privacy > Delete Account
-- Request deletion by emailing privacy@ngurrapathways.com.au
+- Request deletion by emailing privacy@nexta.com.au
 
 ### 7.4 Restriction and Objection
 
@@ -168,9 +168,9 @@ We may update this Privacy Policy periodically. We will:
 
 For privacy-related inquiries:
 
-- **Email**: privacy@ngurrapathways.com.au
-- **Mail**: Privacy Officer, Ngurra Pathways, [Address]
-- **Data Protection Officer**: dpo@ngurrapathways.com.au
+- **Email**: privacy@nexta.com.au
+- **Mail**: Privacy Officer, Nexta, [Address]
+- **Data Protection Officer**: dpo@nexta.com.au
 
 For complaints about how we handle your data, you may contact the Office of the Australian Information Commissioner (OAIC) at www.oaic.gov.au.
 

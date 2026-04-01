@@ -40,8 +40,8 @@ router.post('/', async (req, res) => {
         });
 
         const baseUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
-        const supportEmail = process.env.SUPPORT_EMAIL || 'support@ngurrapathways.com.au';
-        
+        const supportEmail = process.env.SUPPORT_EMAIL || 'support@nexta.com.au';
+
         // Send notification to support team
         try {
             const notificationEmail = contactNotificationTemplate({
@@ -52,7 +52,7 @@ router.post('/', async (req, res) => {
                 subject,
                 message
             });
-            
+
             await sendMail({
                 to: supportEmail,
                 subject: notificationEmail.subject,
@@ -63,7 +63,7 @@ router.post('/', async (req, res) => {
         } catch (emailErr) {
             console.error('Failed to send contact notification:', emailErr);
         }
-        
+
         // Send confirmation email to user
         try {
             const confirmationEmail = contactConfirmationTemplate({
@@ -72,7 +72,7 @@ router.post('/', async (req, res) => {
                 subject,
                 baseUrl
             });
-            
+
             await sendMail({
                 to: email,
                 subject: confirmationEmail.subject,

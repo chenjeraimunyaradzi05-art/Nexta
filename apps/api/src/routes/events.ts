@@ -72,34 +72,34 @@ router.get('/categories', async (req, res) => {
  */
 router.get('/', async (req, res) => {
   try {
-    const { 
-      category, 
-      eventType, 
-      search, 
+    const {
+      category,
+      eventType,
+      search,
       featured,
       upcoming,
       organizerId,
       groupId,
-      page = 1, 
-      limit = 20 
+      page = 1,
+      limit = 20
     } = req.query;
 
-    const where: any = { 
+    const where: any = {
       isActive: true,
       isPublished: true
     };
-    
+
     if (category) where.category = category;
     if (eventType) where.eventType = eventType;
     if (featured === 'true') where.isFeatured = true;
     if (organizerId) where.organizerId = parseInt(organizerId);
     if (groupId) where.groupId = parseInt(groupId);
-    
+
     // Filter for upcoming events
     if (upcoming === 'true') {
       where.eventDate = { gte: new Date() };
     }
-    
+
     if (search) {
       where.AND = [
         {
@@ -185,7 +185,7 @@ router.get('/featured', async (req, res) => {
     const { limit = 6 } = req.query;
 
     let events = [];
-    
+
     try {
       events = await prisma.event.findMany({
         where: {
@@ -396,9 +396,9 @@ router.post('/', authenticateJWT, async (req, res) => {
       };
     }
 
-    res.status(201).json({ 
+    res.status(201).json({
       message: 'Event created successfully',
-      event 
+      event
     });
   } catch (error) {
     console.error('Error creating event:', error);
@@ -446,9 +446,9 @@ router.patch('/:id', authenticateJWT, async (req, res) => {
       event = { id: parseInt(id), ...updates, updatedAt: new Date() };
     }
 
-    res.json({ 
+    res.json({
       message: 'Event updated successfully',
-      event 
+      event
     });
   } catch (error) {
     console.error('Error updating event:', error);
@@ -549,9 +549,9 @@ router.post('/:id/register', authenticateJWT, async (req, res) => {
       };
     }
 
-    res.status(201).json({ 
+    res.status(201).json({
       message: 'Successfully registered for event',
-      registration 
+      registration
     });
   } catch (error) {
     console.error('Error registering for event:', error);
@@ -859,7 +859,7 @@ router.get('/:id/attendees', async (req, res) => {
 
       [attendees, total] = await Promise.all([
         prisma.eventRegistration.findMany({
-          where: { 
+          where: {
             eventId: parseInt(id),
             status: { in: ['confirmed', 'attended'] }
           },
@@ -873,7 +873,7 @@ router.get('/:id/attendees', async (req, res) => {
           orderBy: { createdAt: 'asc' }
         }),
         prisma.eventRegistration.count({
-          where: { 
+          where: {
             eventId: parseInt(id),
             status: { in: ['confirmed', 'attended'] }
           }
@@ -927,7 +927,7 @@ function getMockEvents(category?, eventType?, search?, featured?, limit = 10) {
       isFeatured: true,
       isFree: true,
       price: null,
-      organizer: { id: 1, firstName: 'Ngurra', lastName: 'Pathways' }
+      organizer: { id: 1, firstName: 'Nexta', lastName: 'Pathways' }
     },
     {
       id: 2,
@@ -963,7 +963,7 @@ function getMockEvents(category?, eventType?, search?, featured?, limit = 10) {
       isFeatured: false,
       isFree: true,
       price: null,
-      organizer: { id: 1, firstName: 'Ngurra', lastName: 'Pathways' }
+      organizer: { id: 1, firstName: 'Nexta', lastName: 'Pathways' }
     }
   ];
 
@@ -980,8 +980,8 @@ function getMockEvents(category?, eventType?, search?, featured?, limit = 10) {
   }
   if (search) {
     const s = search.toLowerCase();
-    filtered = filtered.filter(e => 
-      e.title.toLowerCase().includes(s) || 
+    filtered = filtered.filter(e =>
+      e.title.toLowerCase().includes(s) ||
       e.description.toLowerCase().includes(s)
     );
   }

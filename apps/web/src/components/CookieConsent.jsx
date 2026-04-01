@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Cookie, X, Check } from 'lucide-react';
 
-const CONSENT_KEY = 'ngurra_cookie_consent';
+const CONSENT_KEY = 'nexta_cookie_consent';
 const CONSENT_VERSION = '1'; // Increment when policy changes
 
 export default function CookieConsent() {
@@ -86,8 +86,8 @@ export default function CookieConsent() {
                   We respect your privacy
                 </h3>
                 <p className="text-sm text-slate-300 mb-4">
-                  We use cookies to enhance your experience, analyze site traffic, and 
-                  for marketing purposes. By clicking "Accept All", you consent to our 
+                  We use cookies to enhance your experience, analyze site traffic, and
+                  for marketing purposes. By clicking "Accept All", you consent to our
                   use of cookies. You can manage your preferences or learn more in our{' '}
                   <Link href="/privacy" className="text-blue-400 underline hover:underline">
                     Privacy Policy

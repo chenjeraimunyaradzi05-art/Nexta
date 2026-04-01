@@ -21,7 +21,7 @@ test('Mentor dashboard fetches AiConcierge suggestions on load', async ({ page, 
     });
 
     await page.goto(webBase);
-    await page.evaluate(([t]) => { localStorage.setItem('ngurra_token', t); document.cookie = `ngurra_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`; }, [token]);
+    await page.evaluate(([t]) => { localStorage.setItem('nexta_token', t); document.cookie = `nexta_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`; }, [token]);
     await page.goto(`${webBase}/mentor/dashboard`);
 
     // Expect AI suggestions to show up

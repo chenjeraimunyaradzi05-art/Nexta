@@ -2,10 +2,10 @@
 "use strict";
 /**
  * GDPR/Privacy Compliance Tools
- * 
+ *
  * Implements data export, deletion, consent management,
  * and right-to-be-forgotten cascade deletion.
- * 
+ *
  * Step 4: GDPR/Privacy Compliance Tools
  */
 
@@ -191,7 +191,7 @@ async function deleteUserData(userId, immediate = false) {
 
       deletionSummary.status = 'scheduled';
       deletionSummary.scheduledFor = new Date(Date.now() + RETENTION_PERIODS.deletedUsers * 24 * 60 * 60 * 1000);
-      
+
       await logAuditEvent({
         category: AuditCategory.DATA,
         event: AuditEvent.DATA_DELETION_REQUESTED,
@@ -205,7 +205,7 @@ async function deleteUserData(userId, immediate = false) {
     // Immediate deletion - cascade through all related tables
     await prisma.$transaction(async (tx) => {
       // Delete in order of dependencies (children first)
-      
+
       // Notifications
       const notifications = await tx.notification.deleteMany({ where: { userId } });
       deletionSummary.deletedRecords.notifications = notifications.count;
@@ -449,9 +449,9 @@ async function runRetentionCleanup() {
 function getDataProcessingRegistry() {
   return {
     controller: {
-      name: 'Ngurra Pathways',
-      contact: 'privacy@ngurrapathways.com.au',
-      dpo: 'dpo@ngurrapathways.com.au'
+      name: 'Nexta',
+      contact: 'privacy@nexta.com.au',
+      dpo: 'dpo@nexta.com.au'
     },
     processingActivities: [
       {

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document summarizes the 100-step security implementation completed for the Ngurra Pathways (Gimbi) platform. All security improvements have been organized into 10 phases, covering authentication, authorization, data protection, infrastructure, monitoring, and compliance.
+This document summarizes the 100-step security implementation completed for the Nexta (Gimbi) platform. All security improvements have been organized into 10 phases, covering authentication, authorization, data protection, infrastructure, monitoring, and compliance.
 
 ## Files Created/Modified
 

@@ -1,6 +1,6 @@
 # Testing Guide
 
-Comprehensive testing documentation for Ngurra Pathways platform.
+Comprehensive testing documentation for Nexta platform.
 
 ## Table of Contents
 
@@ -204,15 +204,15 @@ describe('Auth API', () => {
 
   beforeAll(async () => {
     // Setup: Clean test database
-    await prisma.user.deleteMany({ 
-      where: { email: testUser.email } 
+    await prisma.user.deleteMany({
+      where: { email: testUser.email }
     });
   });
 
   afterAll(async () => {
     // Cleanup
-    await prisma.user.deleteMany({ 
-      where: { email: testUser.email } 
+    await prisma.user.deleteMany({
+      where: { email: testUser.email }
     });
     await prisma.$disconnect();
   });
@@ -281,10 +281,10 @@ import { beforeEach, afterAll } from 'vitest';
 beforeEach(async () => {
   // Clean database before each test
   const tables = await prisma.$queryRaw`
-    SELECT tablename FROM pg_tables 
+    SELECT tablename FROM pg_tables
     WHERE schemaname = 'public'
   `;
-  
+
   for (const { tablename } of tables) {
     if (tablename !== '_prisma_migrations') {
       await prisma.$executeRawUnsafe(
@@ -323,17 +323,17 @@ import { test, expect } from '@playwright/test';
 test.describe('Authentication Flow', () => {
   test('should complete full registration flow', async ({ page }) => {
     await page.goto('/register');
-    
+
     // Fill registration form
     await page.fill('[name="firstName"]', 'Test');
     await page.fill('[name="lastName"]', 'User');
     await page.fill('[name="email"]', `test-${Date.now()}@example.com`);
     await page.fill('[name="password"]', 'SecurePass123!');
     await page.fill('[name="confirmPassword"]', 'SecurePass123!');
-    
+
     // Submit form
     await page.click('button[type="submit"]');
-    
+
     // Should redirect to dashboard
     await expect(page).toHaveURL('/dashboard');
     await expect(page.locator('h1')).toContainText('Welcome');
@@ -341,10 +341,10 @@ test.describe('Authentication Flow', () => {
 
   test('should show validation errors', async ({ page }) => {
     await page.goto('/register');
-    
+
     // Submit empty form
     await page.click('button[type="submit"]');
-    
+
     // Should show errors
     await expect(page.locator('[role="alert"]')).toBeVisible();
     await expect(page.locator('text=Email is required')).toBeVisible();
@@ -356,13 +356,13 @@ test.describe('Authentication Flow', () => {
     await page.fill('[name="email"]', 'demo@example.com');
     await page.fill('[name="password"]', 'DemoPass123!');
     await page.click('button[type="submit"]');
-    
+
     await expect(page).toHaveURL('/dashboard');
-    
+
     // Logout
     await page.click('[data-testid="user-menu"]');
     await page.click('text=Sign out');
-    
+
     await expect(page).toHaveURL('/');
   });
 });
@@ -475,21 +475,21 @@ import AxeBuilder from '@axe-core/playwright';
 test.describe('Accessibility', () => {
   test('homepage should have no violations', async ({ page }) => {
     await page.goto('/');
-    
+
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa'])
       .analyze();
-    
+
     expect(results.violations).toEqual([]);
   });
 
   test('job listing should have no violations', async ({ page }) => {
     await page.goto('/jobs');
-    
+
     const results = await new AxeBuilder({ page })
       .exclude('.third-party-widget') // Exclude third-party content
       .analyze();
-    
+
     expect(results.violations).toEqual([]);
   });
 });
@@ -500,14 +500,14 @@ test.describe('Accessibility', () => {
 ```javascript
 test('should navigate with keyboard only', async ({ page }) => {
   await page.goto('/');
-  
+
   // Tab through interactive elements
   await page.keyboard.press('Tab');
   await expect(page.locator(':focus')).toHaveAttribute('href', '/jobs');
-  
+
   await page.keyboard.press('Tab');
   await expect(page.locator(':focus')).toHaveText('Sign In');
-  
+
   // Activate with Enter
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL('/login');
@@ -534,10 +534,10 @@ describe('Component/Function', () => {
     it('should expected behavior when given input', () => {
       // Arrange - Set up test data
       const input = { email: 'test@example.com' };
-      
+
       // Act - Execute the function
       const result = validateEmail(input.email);
-      
+
       // Assert - Check the result
       expect(result).toBe(true);
     });

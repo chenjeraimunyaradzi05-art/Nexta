@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * Video Resume Module
- * 
+ *
  * Comprehensive video resume functionality including:
  * - Video upload and recording
  * - Processing and transcoding
@@ -49,7 +49,7 @@ const s3Client = new S3Client({
   } : undefined
 });
 
-const BUCKET_NAME = process.env.AWS_S3_BUCKET || 'ngurra-video-resumes';
+const BUCKET_NAME = process.env.AWS_S3_BUCKET || 'nexta-video-resumes';
 
 // ============================================================================
 // VIDEO UPLOAD
@@ -136,7 +136,7 @@ export async function confirmVideoUpload(videoId, userId) {
     console.error('Video processing failed:', err);
     prisma.videoResume.update({
       where: { id: videoId },
-      data: { 
+      data: {
         status: PROCESSING_STATUS.FAILED,
         errorMessage: err.message
       }
@@ -165,7 +165,7 @@ async function processVideo(videoId) {
   try {
     // Step 1: Extract video metadata (duration, resolution)
     const metadata = await extractVideoMetadata(video.s3Key);
-    
+
     // Validate duration
     if (metadata.duration > VIDEO_CONFIG.maxDuration) {
       throw new Error(`Video duration ${metadata.duration}s exceeds ${VIDEO_CONFIG.maxDuration}s limit`);
@@ -235,10 +235,10 @@ async function extractVideoMetadata(s3Key) {
 async function generateThumbnail(originalKey, userId, videoId) {
   // In production, use AWS MediaConvert or ffmpeg via Lambda
   const thumbnailKey = `videos/${userId}/${videoId}/thumbnail.jpg`;
-  
+
   // For now, we'll assume thumbnail generation happens
   // In production, this would call a Lambda function or MediaConvert job
-  
+
   return thumbnailKey;
 }
 
@@ -248,10 +248,10 @@ async function generateThumbnail(originalKey, userId, videoId) {
 async function transcodeVideo(originalKey, userId, videoId) {
   // In production, use AWS MediaConvert
   const transcodedKey = `videos/${userId}/${videoId}/transcoded.mp4`;
-  
+
   // For now, we'll assume transcoding happens
   // In production, this would submit an AWS MediaConvert job
-  
+
   return transcodedKey;
 }
 
@@ -261,7 +261,7 @@ async function transcodeVideo(originalKey, userId, videoId) {
 async function transcribeVideo(s3Key) {
   // In production, use AWS Transcribe or OpenAI Whisper
   // For now, return mock transcription
-  
+
   if (process.env.OPENAI_API_KEY) {
     try {
       // OpenAI Whisper transcription
@@ -367,7 +367,7 @@ export async function getVideoPlaybackUrl(videoId, requestingUserId) {
 
   // Generate signed URL for playback
   const key = video.s3Key.replace('/original', '/transcoded').replace(/\.\w+$/, '.mp4');
-  
+
   const command = new GetObjectCommand({
     Bucket: BUCKET_NAME,
     Key: key
@@ -579,7 +579,7 @@ export async function deleteVideo(videoId, userId) {
   // Soft delete from database
   await prisma.videoResume.update({
     where: { id: videoId },
-    data: { 
+    data: {
       isActive: false,
       deletedAt: new Date()
     }
@@ -784,29 +784,29 @@ export default {
   // Upload
   getVideoUploadUrl,
   confirmVideoUpload,
-  
+
   // Retrieval
   getVideoResume,
   getVideoResumeById,
   getVideoPlaybackUrl,
   getUserVideos,
-  
+
   // Privacy
   updateVideoPrivacy,
   shareVideo,
   revokeVideoAccess,
-  
+
   // Management
   setActiveVideo,
   deleteVideo,
   updateVideoMetadata,
-  
+
   // Analytics
   getVideoAnalytics,
-  
+
   // Recording
   createRecordingSession,
-  
+
   // Config
   VIDEO_CONFIG,
   PROCESSING_STATUS

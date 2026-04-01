@@ -1,6 +1,6 @@
 # Security Architecture & Data Flow
 
-This document describes the security architecture, data flows, and trust boundaries for the Ngurra Pathways (Gimbi) platform.
+This document describes the security architecture, data flows, and trust boundaries for the Nexta (Gimbi) platform.
 
 ## Architecture Overview
 

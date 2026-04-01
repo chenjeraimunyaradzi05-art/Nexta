@@ -4,21 +4,21 @@ const prisma = new PrismaClient();
 
 async function main() {
   console.log('Creating test data for Phase 2...');
-  
+
   // 1. Ensure a Mentor exists
   let mentor = await prisma.user.findFirst({ where: { userType: 'MENTOR' } });
   if (!mentor) {
     console.log('Creating Mentor...');
     mentor = await prisma.user.create({
       data: {
-        email: 'mentor@ngurra.test',
+        email: 'mentor@nexta.test',
         password: 'password123', // In a real seed this would be hashed
         userType: 'MENTOR',
         name: 'Uncle David',
         mentorProfile: {
            create: {
              title: 'Senior Cultural Advisor',
-             company: 'Ngurra Consultants',
+             company: 'Nexta Consultants',
              yearsExperience: 20,
              bio: 'Experienced mentor in cultural safety.',
              expertise: ['Culture', 'Leadership'],
@@ -30,12 +30,12 @@ async function main() {
   }
 
   // 2. Ensure a Mentee exists
-  let mentee = await prisma.user.findFirst({ where: { userType: 'MEMBER', email: 'mentee@ngurra.test' } });
+  let mentee = await prisma.user.findFirst({ where: { userType: 'MEMBER', email: 'mentee@nexta.test' } });
   if (!mentee) {
       console.log('Creating Mentee...');
       mentee = await prisma.user.create({
           data: {
-              email: 'mentee@ngurra.test',
+              email: 'mentee@nexta.test',
               password: 'password123',
               userType: 'MEMBER',
               name: 'Sarah Johnson',
@@ -58,7 +58,7 @@ async function main() {
           duration: 60,
           status: 'CONFIRMED',
           topic: 'Phase 2 Video Test',
-          // Optionally pre-create the VideoSession if your logic requires it, 
+          // Optionally pre-create the VideoSession if your logic requires it,
           // or let the API API do it on token request (which is what we implemented).
       }
   });

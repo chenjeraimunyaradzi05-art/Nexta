@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'AI Candidate Ranking | Ngurra Pathways',
+  title: 'AI Candidate Ranking | Nexta',
   description: 'AI-powered candidate ranking and matching for employers. Score applicants by skills, experience, and cultural fit.',
 };
 

@@ -1,12 +1,12 @@
 /**
  * Feed Ranking Service
- * 
+ *
  * Implements a sophisticated feed ranking algorithm that considers:
  * - Recency: Time decay with configurable half-life
  * - Engagement: Likes, comments, shares with weighted scoring
  * - Relationship: Connection strength between users
  * - Quality: Author trust level and content quality signals
- * - Cultural Relevance: Indigenous community context (unique to Ngurra)
+ * - Cultural Relevance: Indigenous community context (unique to Nexta)
  */
 
 import { prisma as prismaClient } from '../db';
@@ -24,7 +24,7 @@ interface FeedWeights {
   culturalRelevance: number;
 }
 
-// Default weights optimized for Ngurra community platform
+// Default weights optimized for Nexta community platform
 const DEFAULT_WEIGHTS: FeedWeights = {
   recency: 0.30,          // Time decay
   engagement: 0.25,       // User interactions
@@ -129,7 +129,7 @@ export class FeedRankingService {
     const qualityScore = this.calculateQualityScore(post.author);
     const culturalScore = this.calculateCulturalRelevance(post.content);
 
-    const totalScore = 
+    const totalScore =
       recencyScore * this.weights.recency +
       engagementScore * this.weights.engagement +
       relationshipScore * this.weights.relationship +
@@ -155,11 +155,11 @@ export class FeedRankingService {
    */
   private calculateRecencyScore(createdAt: Date): number {
     const ageMs = Date.now() - createdAt.getTime();
-    
+
     // Exponential decay: score = e^(-λt) where λ = ln(2) / half-life
     const decayConstant = Math.log(2) / RECENCY_HALF_LIFE_MS;
     const score = Math.exp(-decayConstant * ageMs);
-    
+
     // Ensure score is between 0 and 1
     return Math.max(0, Math.min(1, score));
   }
@@ -170,7 +170,7 @@ export class FeedRankingService {
   private calculateEngagementScore(post: PostWithAuthor): number {
     // Calculate weighted engagement sum
     let weightedEngagement = 0;
-    
+
     // Count reactions by type if available
     if (post.reactions) {
       const reactionCounts = post.reactions.reduce((acc, r) => {
@@ -184,7 +184,7 @@ export class FeedRankingService {
       }
     } else {
       // Fallback to aggregate counts
-      weightedEngagement = 
+      weightedEngagement =
         (post.likes || 0) * ENGAGEMENT_WEIGHTS.like +
         (post.commentCount || 0) * ENGAGEMENT_WEIGHTS.comment +
         (post.shareCount || 0) * ENGAGEMENT_WEIGHTS.share +
@@ -194,7 +194,7 @@ export class FeedRankingService {
     // Use logarithmic scaling to prevent viral posts from dominating
     // log(x+1) / log(100) normalizes to roughly 0-1 for reasonable engagement levels
     const normalizedScore = Math.log10(weightedEngagement + 1) / Math.log10(100);
-    
+
     return Math.min(1, normalizedScore);
   }
 
@@ -206,7 +206,7 @@ export class FeedRankingService {
     userContext: UserContext
   ): number {
     const authorId = post.authorId;
-    
+
     // Own posts get highest score
     if (authorId === userContext.userId) {
       return 1.0;
@@ -234,17 +234,17 @@ export class FeedRankingService {
    */
   private calculateQualityScore(author: PostWithAuthor['author']): number {
     let trustLevel = author.trustLevel || 'normal';
-    
+
     // Override trust level based on special statuses
     if (author.isElder) trustLevel = 'elder';
     else if (author.isMentor) trustLevel = 'mentor';
     else if (author.isVerified) trustLevel = 'verified';
 
     const multiplier = TRUST_MULTIPLIERS[trustLevel] || TRUST_MULTIPLIERS.normal;
-    
+
     // Factor in follower count (social proof) with diminishing returns
-    const followerBoost = author.followersCount 
-      ? Math.log10(author.followersCount + 1) / 10 
+    const followerBoost = author.followersCount
+      ? Math.log10(author.followersCount + 1) / 10
       : 0;
 
     return Math.min(1, multiplier * 0.8 + followerBoost);
@@ -252,11 +252,11 @@ export class FeedRankingService {
 
   /**
    * Calculate cultural relevance score for Indigenous community content
-   * This is a unique feature for Ngurra Pathways
+   * This is a unique feature for Nexta
    */
   private calculateCulturalRelevance(content: string): number {
     const lowerContent = content.toLowerCase();
-    
+
     // Count how many cultural keywords appear in the content
     let keywordMatches = 0;
     for (const keyword of CULTURAL_KEYWORDS) {
@@ -267,7 +267,7 @@ export class FeedRankingService {
 
     // Normalize: 3+ keywords = max score
     const score = Math.min(1, keywordMatches / 3);
-    
+
     return score;
   }
 
@@ -279,10 +279,10 @@ export class FeedRankingService {
     userContext: UserContext
   ): Promise<RankedPost[]> {
     const rankedPosts = posts.map(post => this.calculateScore(post, userContext));
-    
+
     // Sort by score descending
     rankedPosts.sort((a, b) => b.score - a.score);
-    
+
     return rankedPosts;
   }
 
@@ -301,7 +301,7 @@ export class FeedRankingService {
     // Try to get from cache first
     const cacheKey = `feed:ranked:${userId}:${cursor || 'start'}`;
     const cached = await redisCache.get(cacheKey) as RankedPost[];
-    
+
     if (cached) {
       return {
         posts: cached.slice(0, limit),
@@ -312,18 +312,18 @@ export class FeedRankingService {
 
     // Build user context
     const userContext = await this.buildUserContext(userId);
-    
+
     // Fetch candidate posts
     const posts = await this.fetchCandidatePosts(userId, cursor, limit * 3);
-    
+
     // Rank posts
     const rankedPosts = await this.rankPosts(posts, userContext);
-    
+
     // Cache for 5 minutes
     await redisCache.set(cacheKey, rankedPosts.slice(0, limit * 2), 300);
 
     const resultPosts = rankedPosts.slice(0, limit);
-    
+
     return {
       posts: resultPosts,
       nextCursor: rankedPosts.length > limit ? rankedPosts[limit - 1].id : null,
@@ -363,7 +363,7 @@ export class FeedRankingService {
       }
     });
 
-    const connectionIds = connections.map(c => 
+    const connectionIds = connections.map(c =>
       c.requesterId === userId ? c.receiverId : c.requesterId
     );
 
@@ -407,7 +407,7 @@ export class FeedRankingService {
       }
     });
 
-    const connectionIds = connections.map(c => 
+    const connectionIds = connections.map(c =>
       c.requesterId === userId ? c.receiverId : c.requesterId
     );
 
@@ -416,7 +416,7 @@ export class FeedRankingService {
       where: {
         OR: [
           // User's own posts (last week)
-          { 
+          {
             authorId: userId,
             createdAt: { gte: oneWeekAgo }
           },
@@ -508,7 +508,7 @@ export class FeedRankingService {
       }
     });
 
-    const followerIds = connections.map(c => 
+    const followerIds = connections.map(c =>
       c.requesterId === authorId ? c.receiverId : c.requesterId
     );
 
@@ -603,7 +603,7 @@ export class FeedRankingService {
 
     const userContext = await this.buildUserContext(userId);
     const posts = await this.fetchCandidatePosts(userId, undefined, 60);
-    
+
     return experimentalRanker.rankPosts(posts, userContext);
   }
 }

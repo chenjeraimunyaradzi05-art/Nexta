@@ -25,7 +25,7 @@
         "buildType": "apk"
       },
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://staging-api.ngurrapathways.com.au"
+        "EXPO_PUBLIC_API_URL": "https://staging-api.nexta.com.au"
       },
       "channel": "preview"
     },
@@ -38,7 +38,7 @@
         "buildType": "app-bundle"
       },
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://api.ngurrapathways.com.au"
+        "EXPO_PUBLIC_API_URL": "https://api.nexta.com.au"
       },
       "channel": "production",
       "autoIncrement": true

@@ -13,7 +13,7 @@ export default function SsoSetupPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-  
+
   const [provider, setProvider] = useState('SAML');
   const [formData, setFormData] = useState({
     issuer: '',
@@ -149,7 +149,7 @@ export default function SsoSetupPage() {
                 type="text"
                 value={formData.issuer}
                 onChange={(e) => setFormData({ ...formData, issuer: e.target.value })}
-                placeholder={provider === 'SAML' 
+                placeholder={provider === 'SAML'
                   ? 'https://your-idp.com/saml/metadata'
                   : 'https://accounts.google.com'
                 }
@@ -230,8 +230,8 @@ export default function SsoSetupPage() {
               </p>
               <code className="block bg-gray-800 text-green-400 p-2 rounded text-sm break-all">
                 {provider === 'SAML'
-                  ? 'https://api.ngurrapathways.com.au/api/sso/callback/saml'
-                  : 'https://api.ngurrapathways.com.au/api/sso/callback/oidc'
+                  ? 'https://api.nexta.com.au/api/sso/callback/saml'
+                  : 'https://api.nexta.com.au/api/sso/callback/oidc'
                 }
               </code>
             </div>

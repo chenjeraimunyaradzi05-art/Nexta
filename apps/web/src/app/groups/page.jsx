@@ -129,10 +129,10 @@ export default function GroupsPage() {
   const myGroups = groups.filter(g => g.isJoined);
 
   return (
-    <div className="ngurra-page pt-24 pb-20 relative overflow-hidden">
+    <div className="nexta-page pt-24 pb-20 relative overflow-hidden">
       {/* Decorative halos */}
-      <div className="ngurra-halo-pink" />
-      <div className="ngurra-halo-purple" />
+      <div className="nexta-halo-pink" />
+      <div className="nexta-halo-purple" />
 
       <div className="container mx-auto px-4 relative">
         {/* Header */}
@@ -145,11 +145,11 @@ export default function GroupsPage() {
               </h1>
               <p className="text-slate-500">Find your community and connect with like-minded professionals</p>
             </div>
-            
-            <Link 
-              href="/groups/create" 
+
+            <Link
+              href="/groups/create"
               className="px-6 py-3 rounded-full font-medium hidden md:flex items-center gap-2 text-white transition-all hover:scale-[1.02]"
-              style={{ 
+              style={{
                 background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)`,
                 boxShadow: '0 4px 12px rgba(233, 30, 140, 0.3)'
               }}
@@ -198,14 +198,14 @@ export default function GroupsPage() {
             </h2>
             <div className="grid md:grid-cols-3 gap-4">
               {myGroups.map(group => (
-                <Link 
-                  key={group.id} 
+                <Link
+                  key={group.id}
                   href={`/groups/${group.id}`}
                   className="bg-white border border-slate-200 rounded-xl p-4 hover:border-pink-300 transition-all group"
                   style={{ boxShadow: '0 4px 20px rgba(15, 23, 42, 0.06)' }}
                 >
                   <div className="flex items-center gap-3">
-                    <div 
+                    <div
                       className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform"
                       style={{ background: 'linear-gradient(135deg, rgba(233, 30, 140, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%)' }}
                     >
@@ -225,19 +225,19 @@ export default function GroupsPage() {
         {/* Discover Groups */}
         <div className="max-w-4xl mx-auto">
           <h2 className="text-xl font-semibold text-slate-800 mb-4 flex items-center gap-2">
-            <span style={{ color: accentPurple }}>✨</span> 
+            <span style={{ color: accentPurple }}>✨</span>
             {activeCategory === 'all' ? 'Discover Groups' : categories.find(c => c.id === activeCategory)?.label}
           </h2>
-          
+
           {filteredGroups.length === 0 ? (
-            <div 
+            <div
               className="bg-white border border-slate-200 rounded-xl p-12 text-center"
               style={{ boxShadow: '0 4px 20px rgba(15, 23, 42, 0.06)' }}
             >
               <span className="text-5xl mb-4 block">🔍</span>
               <h3 className="text-xl font-medium text-slate-800 mb-2">No groups found</h3>
               <p className="text-slate-500 mb-6">Try adjusting your search or browse different categories</p>
-              <button 
+              <button
                 onClick={() => { setSearchQuery(''); setActiveCategory('all'); }}
                 className="px-6 py-2 rounded-full text-sm text-white"
                 style={{ background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)` }}
@@ -248,19 +248,19 @@ export default function GroupsPage() {
           ) : (
             <div className="grid md:grid-cols-2 gap-4">
               {filteredGroups.map(group => (
-                <article 
+                <article
                   key={group.id}
                   className="bg-white border border-slate-200 rounded-xl p-5 hover:border-pink-300 transition-all"
                   style={{ boxShadow: '0 4px 20px rgba(15, 23, 42, 0.06)' }}
                 >
                   <div className="flex items-start gap-4">
-                    <div 
+                    <div
                       className="w-16 h-16 rounded-xl flex items-center justify-center text-3xl flex-shrink-0"
                       style={{ background: 'linear-gradient(135deg, rgba(233, 30, 140, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%)' }}
                     >
                       {group.coverEmoji}
                     </div>
-                    
+
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         <h3 className="font-semibold text-slate-800 truncate">{group.name}</h3>
@@ -271,16 +271,16 @@ export default function GroupsPage() {
                           <span className="text-xs px-2 py-0.5 rounded-full bg-pink-100 text-pink-600">🛡️ Safe</span>
                         )}
                       </div>
-                      
+
                       <p className="text-sm text-slate-500 line-clamp-2 mb-3">{group.description}</p>
-                      
+
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-400">
                           👥 {group.memberCount.toLocaleString()} members
                         </span>
-                        
+
                         {group.isJoined ? (
-                          <Link 
+                          <Link
                             href={`/groups/${group.id}`}
                             className="text-sm px-4 py-1.5 rounded-full bg-pink-100 hover:bg-pink-200 transition-colors"
                             style={{ color: accentPink }}
@@ -288,7 +288,7 @@ export default function GroupsPage() {
                             Open
                           </Link>
                         ) : (
-                          <button 
+                          <button
                             className="text-sm px-4 py-1.5 rounded-full bg-purple-100 hover:bg-purple-200 transition-colors"
                             style={{ color: accentPurple }}
                           >
@@ -306,10 +306,10 @@ export default function GroupsPage() {
 
         {/* Create Group CTA - Mobile */}
         <div className="fixed bottom-20 right-4 md:hidden z-40">
-          <Link 
+          <Link
             href="/groups/create"
             className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg text-2xl text-white"
-            style={{ 
+            style={{
               background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)`,
               boxShadow: '0 4px 20px rgba(233, 30, 140, 0.4)'
             }}

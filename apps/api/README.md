@@ -1,6 +1,6 @@
-# Ngurra API (apps/api)
+# Nexta API (apps/api)
 
-Express + Prisma backend for the Ngurra Pathways / Gimbi platform - an Indigenous employment, training, and community platform.
+Express + Prisma backend for the Nexta / Gimbi platform - an Indigenous employment, training, and community platform.
 
 ## Features
 

@@ -3,12 +3,12 @@
 
 /**
  * Video Calling Integration for Mentorship Sessions
- * 
+ *
  * Supports:
  * - Jitsi Meet (free, self-hosted or meet.jit.si)
  * - Zoom (requires Zoom API credentials)
  * - Google Meet (requires Google Workspace)
- * 
+ *
  * Default: Jitsi Meet (no authentication required)
  */
 
@@ -32,7 +32,7 @@ function generateRoomName(sessionId, mentorId) {
     .update(`${sessionId}-${mentorId}-${Date.now()}`)
     .digest('hex')
     .substring(0, 12);
-  return `ngurra-mentorship-${hash}`;
+  return `nexta-mentorship-${hash}`;
 }
 
 /**
@@ -47,10 +47,10 @@ function generateRoomName(sessionId, mentorId) {
  */
 function createJitsiMeeting(options) {
   const { sessionId, mentorId, mentorName, menteeName, topic } = options;
-  
+
   const roomName = generateRoomName(sessionId, mentorId);
   const baseUrl = `https://${JITSI_DOMAIN}/${roomName}`;
-  
+
   // Build configuration parameters
   const config = {
     'config.prejoinPageEnabled': false,
@@ -58,23 +58,23 @@ function createJitsiMeeting(options) {
     'config.startWithVideoMuted': false,
     'config.disableDeepLinking': true,
   };
-  
+
   // Add subject/topic if provided
   if (topic) {
     config['config.subject'] = encodeURIComponent(topic);
   }
-  
+
   // Build URL with config
   const configParams = Object.entries(config)
     .map(([key, value]) => `${key}=${value}`)
     .join('&');
-  
+
   const meetingUrl = `${baseUrl}#${configParams}`;
-  
+
   // Generate participant-specific URLs with display names
   const mentorUrl = `${baseUrl}#userInfo.displayName="${encodeURIComponent(mentorName || 'Mentor')}"&${configParams}`;
   const menteeUrl = `${baseUrl}#userInfo.displayName="${encodeURIComponent(menteeName || 'Mentee')}"&${configParams}`;
-  
+
   return {
     provider: 'jitsi',
     roomName,
@@ -95,11 +95,11 @@ function createJitsiMeeting(options) {
  * @returns {string} - HTML embed code
  */
 function generateJitsiEmbed(roomName, subject) {
-  return `<iframe 
-  allow="camera; microphone; fullscreen; display-capture; autoplay" 
-  src="https://${JITSI_DOMAIN}/${roomName}" 
+  return `<iframe
+  allow="camera; microphone; fullscreen; display-capture; autoplay"
+  src="https://${JITSI_DOMAIN}/${roomName}"
   style="height: 100%; width: 100%; border: 0px;"
-  title="${subject || 'Ngurra Mentorship Session'}"
+  title="${subject || 'Nexta Mentorship Session'}"
 ></iframe>`;
 }
 
@@ -112,9 +112,9 @@ async function createZoomMeeting(options) {
   if (!ZOOM_API_KEY || !ZOOM_API_SECRET) {
     throw new Error('Zoom API credentials not configured. Set ZOOM_API_KEY and ZOOM_API_SECRET.');
   }
-  
+
   const { topic, startTime, duration = 60, hostEmail } = options;
-  
+
   // Generate JWT token for Zoom API
   const jwt = require('jsonwebtoken');
   const token = jwt.sign(
@@ -124,7 +124,7 @@ async function createZoomMeeting(options) {
     },
     ZOOM_API_SECRET
   );
-  
+
   try {
     const response = await fetch('https://api.zoom.us/v2/users/me/meetings', {
       method: 'POST',
@@ -133,7 +133,7 @@ async function createZoomMeeting(options) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        topic: topic || 'Ngurra Mentorship Session',
+        topic: topic || 'Nexta Mentorship Session',
         type: 2, // Scheduled meeting
         start_time: startTime,
         duration,
@@ -149,14 +149,14 @@ async function createZoomMeeting(options) {
         },
       }),
     });
-    
+
     if (!response.ok) {
       const error = await response.json();
       throw new Error(`Zoom API error: ${error.message}`);
     }
-    
+
     const meeting = await response.json();
-    
+
     return {
       provider: 'zoom',
       meetingId: meeting.id,
@@ -175,7 +175,7 @@ async function createZoomMeeting(options) {
 /**
  * Create a video meeting for a mentorship session
  * Defaults to Jitsi if no specific provider requested
- * 
+ *
  * @param {object} options - Meeting options
  * @param {string} options.sessionId - Mentorship session ID
  * @param {string} options.mentorId - Mentor user ID
@@ -189,7 +189,7 @@ async function createZoomMeeting(options) {
  */
 async function createVideoMeeting(options) {
   const provider = options.provider || 'jitsi';
-  
+
   switch (provider.toLowerCase()) {
     case 'zoom':
       return createZoomMeeting(options);
@@ -210,7 +210,7 @@ function getEmbedProps(meetingUrl, provider = 'jitsi') {
     // Extract room name from URL
     const roomMatch = meetingUrl.match(/meet\.jit\.si\/([^#?]+)/);
     const roomName = roomMatch ? roomMatch[1] : '';
-    
+
     return {
       domain: JITSI_DOMAIN,
       roomName,
@@ -231,7 +231,7 @@ function getEmbedProps(meetingUrl, provider = 'jitsi') {
       },
     };
   }
-  
+
   return { url: meetingUrl };
 }
 

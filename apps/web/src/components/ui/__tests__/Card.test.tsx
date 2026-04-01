@@ -16,14 +16,14 @@ describe('Card', () => {
     expect(container.firstChild).toHaveClass('bg-white');
   });
 
-  it('applies ngurra variant styles', () => {
-    const { container } = render(<Card variant="ngurra">Content</Card>);
+  it('applies nexta variant styles', () => {
+    const { container } = render(<Card variant="nexta">Content</Card>);
     expect(container.firstChild).toHaveClass('backdrop-blur-md');
     expect(container.firstChild).toHaveClass('bg-white/90');
   });
 
-  it('applies ngurra-dark variant styles', () => {
-    const { container } = render(<Card variant="ngurra-dark">Content</Card>);
+  it('applies nexta-dark variant styles', () => {
+    const { container } = render(<Card variant="nexta-dark">Content</Card>);
     expect(container.firstChild).toHaveClass('backdrop-blur-md');
     expect(container.firstChild).toHaveClass('bg-slate-900/90');
   });

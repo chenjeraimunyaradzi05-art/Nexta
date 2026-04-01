@@ -16,7 +16,7 @@ export default function MemberSetupPage() {
     const [error, setError] = useState(null);
     useEffect(() => {
         // Load draft
-        const draft = typeof window !== 'undefined' ? localStorage.getItem('ngurra_member_setup') : null;
+        const draft = typeof window !== 'undefined' ? localStorage.getItem('nexta_member_setup') : null;
         if (draft) {
             try {
                 const parsed = JSON.parse(draft);
@@ -38,7 +38,7 @@ export default function MemberSetupPage() {
     }, [isAuthenticated, isLoading, router]);
     function saveDraft() {
         const payload = { phone, mobNation, skillLevel, careerInterest };
-        localStorage.setItem('ngurra_member_setup', JSON.stringify(payload));
+        localStorage.setItem('nexta_member_setup', JSON.stringify(payload));
     }
     async function submit() {
         setError(null);
@@ -51,7 +51,7 @@ export default function MemberSetupPage() {
             if (!ok)
                 throw new Error(apiError || 'Failed to save profile');
             // clear draft and go to dashboard
-            localStorage.removeItem('ngurra_member_setup');
+            localStorage.removeItem('nexta_member_setup');
             router.push('/member/dashboard');
         }
         catch (err) {
@@ -64,7 +64,7 @@ export default function MemberSetupPage() {
     return (<div className="max-w-3xl mx-auto py-12">
       <a href="/member/dashboard" className="text-blue-300 hover:text-blue-200 text-sm mb-4 inline-block">← Dashboard</a>
       <h2 className="text-2xl font-bold mb-2">Member profile setup</h2>
-      
+
       {/* Progress bar */}
       <div className="mb-6">
         <div className="flex justify-between text-xs text-slate-400 mb-1">

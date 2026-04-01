@@ -54,12 +54,12 @@ interface WhereClause {
 // ============================================
 router.get('/', authenticate, async (req: Request, res: Response) => {
   try {
-    const { 
-      month, 
-      year, 
+    const {
+      month,
+      year,
       category, // mapped to eventType
       region,
-      page = 1, 
+      page = 1,
       limit = 50,
       upcoming = 'false',
     } = req.query;
@@ -247,7 +247,7 @@ router.get('/significant-dates', authenticate, async (req: Request, res: Respons
       },
     ];
 
-    res.json({ 
+    res.json({
       year,
       significantDates,
     });
@@ -284,11 +284,11 @@ router.get('/:id', authenticate, async (req: Request, res: Response) => {
 // ============================================
 router.post('/', authenticate, canManageEvents, validate(createCulturalEventSchema), async (req: Request, res: Response) => {
   try {
-    const { 
-      title, 
-      description, 
+    const {
+      title,
+      description,
       category, // mapped to eventType
-      startDate, 
+      startDate,
       endDate,
       location,
       region,
@@ -341,11 +341,11 @@ interface UpdateData {
 router.put('/:id', authenticate, canManageEvents, validate(updateCulturalEventSchema), async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { 
-      title, 
-      description, 
+    const {
+      title,
+      description,
       category, // mapped to eventType
-      startDate, 
+      startDate,
       endDate,
       location,
       region,
@@ -436,14 +436,14 @@ router.get('/export/ical', authenticate, async (req: Request, res: Response) => 
     const { startDate, endDate, category } = req.query;
 
     const where: WhereClause = { isPublished: true };
-    
+
     if (startDate && endDate) {
       where.startDate = {
         gte: new Date(startDate as string),
         lte: new Date(endDate as string),
       };
     }
-    
+
     if (category) {
       where.eventType = category as string;
     }
@@ -457,18 +457,18 @@ router.get('/export/ical', authenticate, async (req: Request, res: Response) => 
     // Generate iCal format
     let ical = `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Ngurra Pathways//Cultural Calendar//EN
+PRODID:-//Nexta//Cultural Calendar//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-X-WR-CALNAME:Ngurra Pathways Cultural Calendar
+X-WR-CALNAME:Nexta Cultural Calendar
 X-WR-TIMEZONE:Australia/Sydney
 `;
 
     events.forEach(event => {
       const dtstart = event.startDate.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
       const dtend = (event.endDate || event.startDate).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-      const uid = `${event.id}@ngurrapathways.com.au`;
-      
+      const uid = `${event.id}@nexta.com.au`;
+
       ical += `BEGIN:VEVENT
 UID:${uid}
 DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z

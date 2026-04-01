@@ -8,7 +8,7 @@ import OptimizedImage from '@/components/ui/OptimizedImage';
 
 /**
  * OnboardingFlow - User onboarding wizard
- * 
+ *
  * Features:
  * - Multi-step onboarding process
  * - Profile setup
@@ -174,13 +174,13 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
     <div className="text-center max-w-2xl mx-auto">
       <div className="text-6xl mb-6">👋</div>
       <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-        Welcome to Ngurra Pathways
+        Welcome to Nexta
       </h2>
       <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
         We're excited to have you join our community! Let's set up your profile so you can
         discover opportunities that match your skills and aspirations.
       </p>
-      
+
       <div className="grid md:grid-cols-3 gap-6 mb-8">
         <div className="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
           <div className="text-3xl mb-3">🎯</div>
@@ -731,7 +731,7 @@ function CompleteStep({ data, onComplete }: { data: OnboardingData; onComplete: 
         You're All Set!
       </h2>
       <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-        Welcome to Ngurra Pathways, {data.profile.preferredName || data.profile.firstName}!
+        Welcome to Nexta, {data.profile.preferredName || data.profile.firstName}!
         Your profile is ready to go.
       </p>
 

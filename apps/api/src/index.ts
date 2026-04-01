@@ -11,7 +11,7 @@ const PORT = rawPort && rawPort !== '5432' ? Number(rawPort) : 3001;
 
 // Log startup immediately to see if we even get this far
 console.log('========================================');
-console.log('🚀 Starting Ngurra API...');
+console.log('🚀 Starting Nexta API...');
 console.log('========================================');
 console.log('Environment:');
 console.log('  PORT:', PORT, rawPort === '5432' ? '(ignored 5432 - PostgreSQL port)' : '');
@@ -83,10 +83,10 @@ async function startServer() {
         logger.info(`📚 API docs available at http://localhost:${PORT}/docs`);
         logger.info(`❤️  Health check at http://localhost:${PORT}/health`);
         logger.info(`🔌 Socket.io ready at ws://localhost:${PORT}`);
-        
+
         // Initialize deployment tracking
         deployment.initDeployment(server);
-        
+
         // Initialize scheduled tasks (job alerts, pre-apply processing)
         initializeScheduler();
     });

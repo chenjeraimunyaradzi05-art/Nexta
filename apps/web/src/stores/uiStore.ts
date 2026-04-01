@@ -2,7 +2,7 @@
 
 /**
  * UI Store
- * 
+ *
  * Manages global UI state like modals, sidebars, themes, and toast notifications.
  */
 
@@ -32,31 +32,31 @@ interface Modal {
 interface UIState {
   // Theme
   theme: 'light' | 'dark' | 'system';
-  
+
   // Sidebar
   sidebarOpen: boolean;
   sidebarCollapsed: boolean;
-  
+
   // Mobile menu
   mobileMenuOpen: boolean;
-  
+
   // Modals
   modals: Modal[];
-  
+
   // Toasts
   toasts: Toast[];
-  
+
   // Loading states
   globalLoading: boolean;
   loadingMessage: string | null;
-  
+
   // Search
   searchOpen: boolean;
   searchQuery: string;
-  
+
   // Command palette
   commandPaletteOpen: boolean;
-  
+
   // Onboarding
   onboardingStep: number;
   onboardingComplete: boolean;
@@ -66,36 +66,36 @@ interface UIActions {
   // Theme
   setTheme: (theme: 'light' | 'dark' | 'system') => void;
   toggleTheme: () => void;
-  
+
   // Sidebar
   setSidebarOpen: (open: boolean) => void;
   toggleSidebar: () => void;
   setSidebarCollapsed: (collapsed: boolean) => void;
-  
+
   // Mobile menu
   setMobileMenuOpen: (open: boolean) => void;
   toggleMobileMenu: () => void;
-  
+
   // Modals
   openModal: (id: string, component: string, props?: Record<string, unknown>) => void;
   closeModal: (id?: string) => void;
   closeAllModals: () => void;
-  
+
   // Toasts
   showToast: (toast: Omit<Toast, 'id'>) => void;
   dismissToast: (id: string) => void;
   clearToasts: () => void;
-  
+
   // Loading
   setGlobalLoading: (loading: boolean, message?: string) => void;
-  
+
   // Search
   setSearchOpen: (open: boolean) => void;
   setSearchQuery: (query: string) => void;
-  
+
   // Command palette
   setCommandPaletteOpen: (open: boolean) => void;
-  
+
   // Onboarding
   setOnboardingStep: (step: number) => void;
   completeOnboarding: () => void;
@@ -164,7 +164,7 @@ export const useUIStore = create<UIStore>()(
       showToast: (toast) => {
         const id = `toast-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
         const newToast = { ...toast, id };
-        
+
         set((state) => ({
           toasts: [...state.toasts, newToast],
         }));
@@ -203,7 +203,7 @@ export const useUIStore = create<UIStore>()(
       setOnboardingComplete: (complete) => set({ onboardingComplete: complete }),
     }),
     {
-      name: 'ngurra-ui',
+      name: 'nexta-ui',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         theme: state.theme,

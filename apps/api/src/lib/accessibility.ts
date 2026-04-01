@@ -1,8 +1,8 @@
 /**
  * Accessibility Enhancements
- * 
+ *
  * WCAG 2.2 AA Compliance Utilities
- * 
+ *
  * Features:
  * - Skip links generation
  * - Keyboard navigation helpers
@@ -114,7 +114,7 @@ export const WCAG_CRITERIA = {
   '1.4.11': { level: 'AA', name: 'Non-text Contrast', description: 'UI components have 3:1 contrast ratio' },
   '1.4.12': { level: 'AA', name: 'Text Spacing', description: 'No loss of content with modified text spacing' },
   '1.4.13': { level: 'AA', name: 'Content on Hover or Focus', description: 'Hover/focus content is dismissible, hoverable, persistent' },
-  
+
   // Operable
   '2.1.1': { level: 'A', name: 'Keyboard', description: 'All functionality available from keyboard' },
   '2.1.2': { level: 'A', name: 'No Keyboard Trap', description: 'Keyboard focus can be moved away' },
@@ -136,7 +136,7 @@ export const WCAG_CRITERIA = {
   '2.5.4': { level: 'A', name: 'Motion Actuation', description: 'Motion actuation has alternatives' },
   '2.5.7': { level: 'AA', name: 'Dragging Movements', description: 'Dragging has single-pointer alternative' },
   '2.5.8': { level: 'AA', name: 'Target Size (Minimum)', description: 'Targets at least 24x24 CSS pixels' },
-  
+
   // Understandable
   '3.1.1': { level: 'A', name: 'Language of Page', description: 'Page language programmatically determinable' },
   '3.1.2': { level: 'AA', name: 'Language of Parts', description: 'Language of parts programmatically determinable' },
@@ -151,7 +151,7 @@ export const WCAG_CRITERIA = {
   '3.3.4': { level: 'AA', name: 'Error Prevention (Legal, Financial, Data)', description: 'Submissions are reversible/checked/confirmed' },
   '3.3.7': { level: 'A', name: 'Redundant Entry', description: 'Previously entered info is auto-populated' },
   '3.3.8': { level: 'AA', name: 'Accessible Authentication', description: 'Cognitive function test not required for auth' },
-  
+
   // Robust
   '4.1.2': { level: 'A', name: 'Name, Role, Value', description: 'UI components have programmatic name and role' },
   '4.1.3': { level: 'AA', name: 'Status Messages', description: 'Status messages announced without focus' }
@@ -201,7 +201,7 @@ export function generateSkipLinks(pageType = 'default') {
   };
 
   const additionalLinks = pageSpecificLinks[pageType] || [];
-  
+
   return [...baseLinks, ...additionalLinks]
     .sort((a, b) => a.priority - b.priority)
     .map(link => ({
@@ -228,13 +228,13 @@ export function getSkipLinkCSS() {
       font-weight: 600;
       transition: top 0.3s ease;
     }
-    
+
     .skip-link:focus {
       top: 0;
       outline: 2px solid #fff;
       outline-offset: 2px;
     }
-    
+
     .skip-link:focus-visible {
       top: 0;
     }
@@ -264,7 +264,7 @@ export const KEYBOARD_PATTERNS = {
       End: 'Move to last item'
     }
   },
-  
+
   // Tab navigation
   tabs: {
     description: 'Tab navigation',
@@ -277,7 +277,7 @@ export const KEYBOARD_PATTERNS = {
       Space: 'Activate tab'
     }
   },
-  
+
   // Dialog/Modal
   dialog: {
     description: 'Dialog navigation',
@@ -287,7 +287,7 @@ export const KEYBOARD_PATTERNS = {
       Escape: 'Close dialog'
     }
   },
-  
+
   // Listbox/Combobox
   listbox: {
     description: 'Listbox navigation',
@@ -301,7 +301,7 @@ export const KEYBOARD_PATTERNS = {
       'Type character': 'Jump to matching option'
     }
   },
-  
+
   // Grid/Table
   grid: {
     description: 'Grid navigation',
@@ -314,7 +314,7 @@ export const KEYBOARD_PATTERNS = {
       'Ctrl+End': 'Last cell'
     }
   },
-  
+
   // Slider
   slider: {
     description: 'Slider navigation',
@@ -378,7 +378,7 @@ export function createFocusTrapConfig(containerId: string, options: FocusTrapOpt
     clickOutsideDeactivates: options.clickOutsideDeactivates || false,
     allowOutsideClick: options.allowOutsideClick || false,
     fallbackFocus: options.fallbackFocus || containerId,
-    
+
     // Selectors for focusable elements
     focusableSelectors: [
       'a[href]',
@@ -403,14 +403,14 @@ export function getFocusIndicatorStyles() {
       outlineOffset: '2px',
       borderRadius: '2px'
     },
-    
+
     // High contrast focus ring
     highContrast: {
       outline: '3px solid #000',
       outlineOffset: '2px',
       boxShadow: '0 0 0 5px #fff, 0 0 0 8px #000'
     },
-    
+
     // Focus within container
     focusWithin: {
       outline: '2px solid #2563eb',
@@ -486,62 +486,62 @@ export const LIVE_REGION_TYPES = {
  */
 export const ANNOUNCEMENT_TEMPLATES = {
   // Search results
-  searchResults: (count) => 
-    count === 0 
+  searchResults: (count) =>
+    count === 0
       ? 'No results found. Try adjusting your search criteria.'
       : `Found ${count} ${count === 1 ? 'result' : 'results'}`,
-  
+
   // Form validation
-  formError: (fieldName, error) => 
+  formError: (fieldName, error) =>
     `Error in ${fieldName}: ${error}`,
-  
-  formSuccess: (action) => 
+
+  formSuccess: (action) =>
     `${action} completed successfully`,
-  
+
   // Loading states
-  loadingStarted: (what) => 
+  loadingStarted: (what) =>
     `Loading ${what}`,
-  
-  loadingComplete: (what) => 
+
+  loadingComplete: (what) =>
     `${what} loaded`,
-  
+
   // Navigation
-  pageChanged: (title) => 
+  pageChanged: (title) =>
     `Navigated to ${title}`,
-  
+
   // Job application
-  applicationSubmitted: (jobTitle) => 
+  applicationSubmitted: (jobTitle) =>
     `Application submitted for ${jobTitle}`,
-  
-  applicationSaved: () => 
+
+  applicationSaved: () =>
     'Application progress saved',
-  
+
   // Messaging
-  newMessage: (sender) => 
+  newMessage: (sender) =>
     `New message from ${sender}`,
-  
-  messageSent: () => 
+
+  messageSent: () =>
     'Message sent',
-  
+
   // Profile updates
-  profileUpdated: (section) => 
+  profileUpdated: (section) =>
     `${section} updated successfully`,
-  
+
   // Authentication
-  loggedIn: (name) => 
+  loggedIn: (name) =>
     `Welcome back, ${name}`,
-  
-  loggedOut: () => 
+
+  loggedOut: () =>
     'You have been logged out',
-  
+
   // Generic actions
-  itemAdded: (item) => 
+  itemAdded: (item) =>
     `${item} added`,
-  
-  itemRemoved: (item) => 
+
+  itemRemoved: (item) =>
     `${item} removed`,
-  
-  itemSaved: (item) => 
+
+  itemSaved: (item) =>
     `${item} saved`
 };
 
@@ -558,23 +558,23 @@ export function getAriaAttributes(pattern: AriaPattern, options: AriaOptions = {
       'aria-controls': options.controls,
       'aria-disabled': options.disabled
     },
-    
+
     link: {
       role: options.role || undefined, // Native links don't need role
       'aria-current': options.current,
       'aria-describedby': options.describedBy
     },
-    
+
     navigation: {
       role: 'navigation',
       'aria-label': options.label || 'Main navigation'
     },
-    
+
     search: {
       role: 'search',
       'aria-label': options.label || 'Site search'
     },
-    
+
     form: {
       role: options.role,
       'aria-labelledby': options.labelledBy,
@@ -582,7 +582,7 @@ export function getAriaAttributes(pattern: AriaPattern, options: AriaOptions = {
       'aria-invalid': options.invalid,
       'aria-errormessage': options.errorMessage
     },
-    
+
     input: {
       'aria-required': options.required,
       'aria-invalid': options.invalid,
@@ -590,39 +590,39 @@ export function getAriaAttributes(pattern: AriaPattern, options: AriaOptions = {
       'aria-errormessage': options.errorMessage,
       'aria-autocomplete': options.autocomplete
     },
-    
+
     listbox: {
       role: 'listbox',
       'aria-label': options.label,
       'aria-activedescendant': options.activeDescendant,
       'aria-multiselectable': options.multiselectable
     },
-    
+
     option: {
       role: 'option',
       'aria-selected': options.selected,
       'aria-disabled': options.disabled
     },
-    
+
     dialog: {
       role: 'dialog',
       'aria-modal': 'true',
       'aria-labelledby': options.labelledBy,
       'aria-describedby': options.describedBy
     },
-    
+
     alert: {
       role: 'alert',
       'aria-live': 'assertive',
       'aria-atomic': 'true'
     },
-    
+
     status: {
       role: 'status',
       'aria-live': 'polite',
       'aria-atomic': 'true'
     },
-    
+
     progressbar: {
       role: 'progressbar',
       'aria-valuemin': options.min || 0,
@@ -631,31 +631,31 @@ export function getAriaAttributes(pattern: AriaPattern, options: AriaOptions = {
       'aria-valuetext': options.valueText,
       'aria-label': options.label
     },
-    
+
     tab: {
       role: 'tab',
       'aria-selected': options.selected,
       'aria-controls': options.controls,
       tabindex: options.selected ? 0 : -1
     },
-    
+
     tabpanel: {
       role: 'tabpanel',
       'aria-labelledby': options.labelledBy,
       tabindex: 0
     },
-    
+
     tooltip: {
       role: 'tooltip',
       'aria-hidden': !options.visible
     },
-    
+
     menu: {
       role: 'menu',
       'aria-label': options.label,
       'aria-orientation': options.orientation || 'vertical'
     },
-    
+
     menuitem: {
       role: 'menuitem',
       'aria-disabled': options.disabled,
@@ -749,8 +749,8 @@ export function checkContrast(foreground: string, background: string, options: C
     passes,
     level,
     textSize,
-    recommendation: passes 
-      ? null 
+    recommendation: passes
+      ? null
       : suggestAccessibleColor(foreground, background, required)
   };
 }
@@ -760,10 +760,10 @@ export function checkContrast(foreground: string, background: string, options: C
  */
 function suggestAccessibleColor(foreground, background, targetRatio) {
   const bgLuminance = getLuminance(background);
-  
+
   // Determine if we should go lighter or darker
   const needsLighter = bgLuminance < 0.5;
-  
+
   // Calculate required luminance
   const targetLuminance = needsLighter
     ? (bgLuminance + 0.05) * targetRatio - 0.05
@@ -775,14 +775,14 @@ function suggestAccessibleColor(foreground, background, targetRatio) {
   return {
     direction: needsLighter ? 'lighter' : 'darker',
     targetLuminance: clampedLuminance,
-    suggestion: needsLighter 
-      ? 'Try a lighter foreground color' 
+    suggestion: needsLighter
+      ? 'Try a lighter foreground color'
       : 'Try a darker foreground color'
   };
 }
 
 /**
- * Ngurra Pathways color palette with contrast info
+ * Nexta color palette with contrast info
  */
 export const ACCESSIBLE_COLORS = {
   primary: {
@@ -823,30 +823,30 @@ export function suggestAltText(imageContext) {
   const { type, fileName, pageContext, nearbyText } = imageContext;
 
   const suggestions = {
-    profilePhoto: (name) => 
+    profilePhoto: (name) =>
       `Profile photo of ${name || 'user'}`,
-    
-    companyLogo: (companyName) => 
+
+    companyLogo: (companyName) =>
       `${companyName || 'Company'} logo`,
-    
-    jobImage: (jobTitle, company) => 
+
+    jobImage: (jobTitle, company) =>
       `${jobTitle || 'Job'} at ${company || 'company'}`,
-    
-    certificateBadge: (certName) => 
+
+    certificateBadge: (certName) =>
       `${certName || 'Certification'} badge`,
-    
+
     decorative: () => '', // Empty alt for decorative images
-    
-    icon: (action) => 
+
+    icon: (action) =>
       action || 'Icon', // Or use aria-label on parent button
-    
-    chart: (chartType, dataDescription) => 
+
+    chart: (chartType, dataDescription) =>
       `${chartType || 'Chart'} showing ${dataDescription || 'data'}`,
-    
-    screenshot: (feature) => 
+
+    screenshot: (feature) =>
       `Screenshot of ${feature || 'application feature'}`,
-    
-    infographic: (topic) => 
+
+    infographic: (topic) =>
       `Infographic about ${topic || 'topic'}. See text description below.`
   };
 
@@ -910,7 +910,7 @@ export function validateAltText(altText: string | null | undefined, imageType: s
  */
 export async function runAccessibilityAudit(pageUrl, userId) {
   const auditId = `audit_${Date.now()}`;
-  
+
   // Store audit record
   const audit = await prisma.accessibilityAudit.create({
     data: {
@@ -1030,10 +1030,10 @@ export async function submitAuditResults(auditId: string, results: any) {
     issues,
     passedChecks: results.checks.filter(c => c.passed).length,
     totalChecks: results.checks.length,
-    recommendation: score >= 90 
-      ? 'Excellent accessibility!' 
-      : score >= 70 
-        ? 'Good, but some improvements needed' 
+    recommendation: score >= 90
+      ? 'Excellent accessibility!'
+      : score >= 70
+        ? 'Good, but some improvements needed'
         : 'Significant accessibility issues found'
   };
 }
@@ -1045,35 +1045,35 @@ export async function submitAuditResults(auditId: string, results: any) {
 export default {
   // Configuration
   WCAG_CRITERIA,
-  
+
   // Skip links
   generateSkipLinks,
   getSkipLinkCSS,
-  
+
   // Keyboard
   KEYBOARD_PATTERNS,
   getKeyboardShortcutHelp,
-  
+
   // Focus
   createFocusTrapConfig,
   getFocusIndicatorStyles,
   getRecommendedFocusOrder,
-  
+
   // Screen reader
   LIVE_REGION_TYPES,
   ANNOUNCEMENT_TEMPLATES,
   getAriaAttributes,
-  
+
   // Color contrast
   getLuminance,
   getContrastRatio,
   checkContrast,
   ACCESSIBLE_COLORS,
-  
+
   // Alt text
   suggestAltText,
   validateAltText,
-  
+
   // Audit
   runAccessibilityAudit,
   submitAuditResults

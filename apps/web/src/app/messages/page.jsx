@@ -507,7 +507,7 @@ export default function MessagesPage() {
   }, [displayMessages]);
 
   return (
-    <div className="ngurra-page pt-16">
+    <div className="nexta-page pt-16">
       <div className="h-[calc(100vh-4rem)] flex">
         {/* Conversations List */}
         <aside

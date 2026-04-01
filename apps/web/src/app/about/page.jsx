@@ -110,11 +110,11 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <div className="ngurra-page relative">
+    <div className="nexta-page relative">
       {/* Decorative halos */}
-      <div className="ngurra-halos">
-        <div className="ngurra-halo-pink" />
-        <div className="ngurra-halo-purple" />
+      <div className="nexta-halos">
+        <div className="nexta-halo-pink" />
+        <div className="nexta-halo-purple" />
       </div>
 
       {/* Hero Section */}
@@ -127,25 +127,25 @@ export default function AboutPage() {
             <Gem className="w-5 h-5" style={{ color: '#50C878' }} />
           </div>
 
-          <h1 className="ngurra-h1 text-4xl md:text-5xl mb-6">
-            About Ngurra Pathways
+          <h1 className="nexta-h1 text-4xl md:text-5xl mb-6">
+            About Nexta
           </h1>
-          <p className="text-xl mb-8 max-w-3xl mx-auto ngurra-text">
-            Ngurra means "home" or "country" in many Aboriginal languages. We're building a platform 
-            that creates pathways home—to fulfilling careers, supportive communities, and a future 
+          <p className="text-xl mb-8 max-w-3xl mx-auto nexta-text">
+            Nexta means "home" or "country" in many Aboriginal languages. We're building a platform
+            that creates pathways home—to fulfilling careers, supportive communities, and a future
             where Indigenous Australians thrive in the workplace. ✨
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <Link
               href="/jobs"
-              className="ngurra-btn-primary px-8 py-3.5"
+              className="nexta-btn-primary px-8 py-3.5"
             >
               <Gem className="w-5 h-5" />
               Browse Jobs
             </Link>
             <Link
               href="/mentorship"
-              className="ngurra-btn-secondary px-8 py-3.5"
+              className="nexta-btn-secondary px-8 py-3.5"
             >
               <Sparkles className="w-5 h-5" />
               Find a Mentor
@@ -155,9 +155,9 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section 
+      <section
         className="py-16 px-6 relative z-10"
-        style={{ 
+        style={{
           background: 'linear-gradient(135deg, rgba(26, 15, 46, 0.6), rgba(45, 27, 105, 0.4))',
           borderTop: '1px solid rgba(255, 215, 0, 0.15)',
           borderBottom: '1px solid rgba(255, 215, 0, 0.15)'
@@ -175,7 +175,7 @@ export default function AboutPage() {
                   <div className="text-3xl md:text-4xl font-bold mb-2 text-gradient-gold">
                     {stat.value}
                   </div>
-                  <div className="text-sm ngurra-muted">{stat.label}</div>
+                  <div className="text-sm nexta-muted">{stat.label}</div>
                 </div>
               );
             })}
@@ -191,23 +191,23 @@ export default function AboutPage() {
             <span className="text-sm font-medium" style={{ color: '#50C878' }}>Our Mission</span>
           </div>
           <h2 className="text-3xl font-bold mb-6 text-gradient-gold">Building Noble Pathways</h2>
-          <p className="text-lg mb-6 ngurra-text">
-            Ngurra Pathways exists to close the employment gap for Aboriginal and Torres Strait Islander 
-            peoples by connecting job seekers with culturally safe employers, meaningful mentorship, 
+          <p className="text-lg mb-6 nexta-text">
+            Nexta exists to close the employment gap for Aboriginal and Torres Strait Islander
+            peoples by connecting job seekers with culturally safe employers, meaningful mentorship,
             and accredited training pathways.
           </p>
-          <p className="text-lg ngurra-text">
-            We partner with employers who have genuine Reconciliation Action Plans (RAPs) and a 
-            commitment to creating inclusive workplaces. Our platform is built on Indigenous data 
+          <p className="text-lg nexta-text">
+            We partner with employers who have genuine Reconciliation Action Plans (RAPs) and a
+            commitment to creating inclusive workplaces. Our platform is built on Indigenous data
             sovereignty principles, ensuring that community members maintain control over their data.
           </p>
         </div>
       </section>
 
       {/* Values Section */}
-      <section 
+      <section
         className="py-20 px-6 relative z-10"
-        style={{ 
+        style={{
           background: 'linear-gradient(135deg, rgba(26, 15, 46, 0.4), rgba(45, 27, 105, 0.3))'
         }}
       >
@@ -226,7 +226,7 @@ export default function AboutPage() {
                 <div
                   key={i}
                   className="rounded-2xl p-6 transition-all duration-300"
-                  style={{ 
+                  style={{
                     background: 'linear-gradient(135deg, rgba(26, 15, 46, 0.7), rgba(45, 27, 105, 0.5))',
                     border: '1px solid rgba(255, 215, 0, 0.2)',
                     boxShadow: '0 8px 30px rgba(26, 15, 46, 0.4)'
@@ -242,9 +242,9 @@ export default function AboutPage() {
                     e.currentTarget.style.transform = 'none';
                   }}
                 >
-                  <div 
+                  <div
                     className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-                    style={{ 
+                    style={{
                       background: `linear-gradient(135deg, ${value.color}20, ${value.color}10)`,
                       border: `1px solid ${value.color}40`
                     }}
@@ -252,7 +252,7 @@ export default function AboutPage() {
                     <Icon className="w-6 h-6" style={{ color: value.color }} />
                   </div>
                   <h3 className="text-lg font-semibold mb-2 text-slate-900 dark:text-white">{value.title}</h3>
-                  <p className="text-sm ngurra-text">{value.description}</p>
+                  <p className="text-sm nexta-text">{value.description}</p>
                 </div>
               );
             })}
@@ -275,7 +275,7 @@ export default function AboutPage() {
               <div
                 key={i}
                 className="rounded-2xl p-6 text-center transition-all duration-300"
-                style={{ 
+                style={{
                   background: 'linear-gradient(135deg, rgba(26, 15, 46, 0.6), rgba(45, 27, 105, 0.4))',
                   border: '1px solid rgba(255, 215, 0, 0.2)',
                   boxShadow: '0 8px 30px rgba(26, 15, 46, 0.4)'
@@ -291,14 +291,14 @@ export default function AboutPage() {
                   e.currentTarget.style.transform = 'none';
                 }}
               >
-                <div 
+                <div
                   className="text-sm font-semibold mb-2 px-3 py-1 rounded-full inline-block"
                   style={{ background: `${partner.color}20`, color: partner.color }}
                 >
                   {partner.role}
                 </div>
                 <h3 className="text-lg font-semibold mb-3 text-slate-900 dark:text-white">{partner.name}</h3>
-                <p className="text-sm ngurra-text">{partner.description}</p>
+                <p className="text-sm nexta-text">{partner.description}</p>
               </div>
             ))}
           </div>
@@ -306,16 +306,16 @@ export default function AboutPage() {
       </section>
 
       {/* Acknowledgement Section */}
-      <section 
+      <section
         className="py-20 px-6 relative z-10"
-        style={{ 
+        style={{
           background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.1), rgba(26, 15, 46, 0.9))'
         }}
       >
         <div className="max-w-4xl mx-auto text-center">
-          <div 
+          <div
             className="rounded-2xl p-8"
-            style={{ 
+            style={{
               background: 'linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(196, 30, 58, 0.03), rgba(26, 15, 46, 0.8))',
               border: '2px solid rgba(255, 215, 0, 0.3)',
               boxShadow: '0 12px 40px rgba(26, 15, 46, 0.4), 0 0 40px rgba(255, 215, 0, 0.08), inset 0 0 60px rgba(255, 215, 0, 0.02)'
@@ -323,10 +323,10 @@ export default function AboutPage() {
           >
             <Crown className="w-10 h-10 mx-auto mb-4" style={{ color: '#FFD700' }} />
             <h2 className="text-2xl font-bold mb-6 text-gradient-gold">Acknowledgement of Country</h2>
-            <p className="mb-6 ngurra-text">
-              Ngurra Pathways acknowledges the Traditional Custodians of the lands on which we work 
-              and live. We pay our respects to Elders past, present, and emerging, and recognise the 
-              continuing connection of Aboriginal and Torres Strait Islander peoples to land, waters, 
+            <p className="mb-6 nexta-text">
+              Nexta acknowledges the Traditional Custodians of the lands on which we work
+              and live. We pay our respects to Elders past, present, and emerging, and recognise the
+              continuing connection of Aboriginal and Torres Strait Islander peoples to land, waters,
               and community.
             </p>
             <p className="text-sm italic" style={{ color: '#B76E79' }}>
@@ -339,24 +339,24 @@ export default function AboutPage() {
       {/* CTA Section */}
       <section className="py-16 px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <div 
+          <div
             className="rounded-2xl p-10"
-            style={{ 
+            style={{
               background: 'linear-gradient(135deg, rgba(196, 30, 58, 0.1), rgba(80, 200, 120, 0.08), rgba(26, 15, 46, 0.9))',
               border: '1px solid rgba(255, 215, 0, 0.3)',
               boxShadow: '0 12px 40px rgba(26, 15, 46, 0.4), inset 0 0 60px rgba(255, 215, 0, 0.02)'
             }}
           >
             <h2 className="text-2xl font-bold mb-4 text-gradient-gold">Ready to Start Your Journey?</h2>
-            <p className="mb-8 ngurra-text">
-              Whether you're looking for your next career opportunity, seeking a mentor, or wanting 
+            <p className="mb-8 nexta-text">
+              Whether you're looking for your next career opportunity, seeking a mentor, or wanting
               to upskill, we're here to support you every step of the way. ✨
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <Link
                 href="/company/setup"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold transition-all duration-300"
-                style={{ 
+                style={{
                   background: 'linear-gradient(135deg, #C41E3A, #E85B8A)',
                   color: 'white',
                   border: '2px solid #FFD700',
@@ -377,7 +377,7 @@ export default function AboutPage() {
               <Link
                 href="/help"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold transition-all duration-300"
-                style={{ 
+                style={{
                   background: 'transparent',
                   color: '#FFD700',
                   border: '2px solid rgba(255, 215, 0, 0.5)'

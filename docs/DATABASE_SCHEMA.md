@@ -2,7 +2,7 @@
 
 ## Overview
 
-Ngurra Pathways uses PostgreSQL with Prisma ORM. The database is designed to support an Indigenous employment, education, and mentorship platform.
+Nexta uses PostgreSQL with Prisma ORM. The database is designed to support an Indigenous employment, education, and mentorship platform.
 
 ## Entity Relationship Diagram
 
@@ -82,12 +82,12 @@ model Profile {
   linkedinUrl String?
   website     String?
   skills      String[] @default([])
-  
+
   // Indigenous-specific fields
   indigenousIdentity    Boolean  @default(false)
   indigenousCommunity   String?
   culturalBackground    String?
-  
+
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
@@ -114,11 +114,11 @@ model Job {
   salary          Decimal?  @db.Decimal(10, 2)
   salaryType      SalaryType?
   employmentType  EmploymentType
-  
+
   // Indigenous considerations
   indigenousPreferred  Boolean @default(false)
   culturalSafetyInfo   String?
-  
+
   companyId       String
   postedById      String
   status          JobStatus @default(DRAFT)
@@ -170,7 +170,7 @@ model Application {
   notes       String?   @db.Text
   appliedAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-  
+
   user        User      @relation(fields: [userId], references: [id])
   job         Job       @relation(fields: [jobId], references: [id])
   timeline    ApplicationTimeline[]
@@ -202,11 +202,11 @@ model Company {
   industry    String?
   size        CompanySize?
   location    String?
-  
+
   // Indigenous engagement
   rapStatus   RAPStatus?
   supplyNation Boolean  @default(false)
-  
+
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
@@ -245,7 +245,7 @@ model MentorSession {
   notes       String?   @db.Text
   status      SessionStatus @default(SCHEDULED)
   meetingUrl  String?
-  
+
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
@@ -278,10 +278,10 @@ model Course {
   imageUrl    String?
   isFree      Boolean   @default(false)
   price       Decimal?  @db.Decimal(10, 2)
-  
+
   // Cultural relevance
   culturallyRelevant Boolean @default(false)
-  
+
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
@@ -404,5 +404,5 @@ await audit.log('data.accessed', {
 
 ```bash
 # Restore from backup
-pg_restore -d ngurra_pathways backup_20240101.dump
+pg_restore -d nexta backup_20240101.dump
 ```

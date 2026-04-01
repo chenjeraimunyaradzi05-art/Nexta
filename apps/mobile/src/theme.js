@@ -1,5 +1,5 @@
 /**
- * Ngurra Pathways Theme Configuration
+ * Nexta Theme Configuration
  * Dark theme with First Nations design elements
  */
 
@@ -8,36 +8,36 @@ export const colors = {
   primary: '#3B82F6',      // Blue
   primaryLight: '#60A5FA',
   primaryDark: '#2563EB',
-  
+
   // Secondary palette
   secondary: '#1E293B',    // Slate
   secondaryLight: '#334155',
-  
+
   // Accent colors
   accent: '#10B981',       // Green
   accentLight: '#34D399',
   purple: '#9333EA',       // Purple for 2FA
-  
+
   // Background colors (dark theme)
   background: '#0F172A',   // Slate 900
   surface: '#1E293B',      // Slate 800
   surfaceLight: '#334155', // Slate 700
-  
+
   // Text colors
   text: '#F8FAFC',         // Slate 50
   textSecondary: '#CBD5E1', // Slate 300
   textMuted: '#64748B',    // Slate 500
-  
+
   // Status colors
   success: '#10B981',
   warning: '#F59E0B',
   error: '#EF4444',
   info: '#3B82F6',
-  
+
   // Border colors
   border: '#334155',
   borderLight: '#475569',
-  
+
   // Overlay
   overlay: 'rgba(0, 0, 0, 0.5)',
 };

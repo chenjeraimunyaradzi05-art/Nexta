@@ -31,7 +31,7 @@ export default function TwoFactorAuth() {
   const [actionLoading, setActionLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
-  
+
   // Setup state
   const [setupData, setSetupData] = useState(null);
   const [verificationCode, setVerificationCode] = useState('');
@@ -45,7 +45,7 @@ export default function TwoFactorAuth() {
     async function fetchStatus() {
       try {
         const { ok, data } = await api('/security/2fa/status');
-        
+
         if (ok) {
           setStatus(data);
         }
@@ -55,7 +55,7 @@ export default function TwoFactorAuth() {
         setLoading(false);
       }
     }
-    
+
     if (isAuthenticated) {
       fetchStatus();
     }
@@ -65,16 +65,16 @@ export default function TwoFactorAuth() {
   const handleEnable = async () => {
     setError(null);
     setActionLoading(true);
-    
+
     try {
       const { ok, data, error: apiError } = await api('/security/2fa/enable', {
         method: 'POST',
       });
-      
+
       if (!ok) {
         throw new Error(apiError || 'Failed to enable 2FA');
       }
-      
+
       setSetupData(data);
     } catch (err) {
       setError(err.message);
@@ -88,17 +88,17 @@ export default function TwoFactorAuth() {
     e.preventDefault();
     setError(null);
     setActionLoading(true);
-    
+
     try {
       const { ok, data, error: apiError } = await api('/security/2fa/verify', {
         method: 'POST',
         body: { token: verificationCode },
       });
-      
+
       if (!ok) {
         throw new Error(apiError || 'Verification failed');
       }
-      
+
       setSuccess('Two-factor authentication enabled successfully!');
       setStatus({ enabled: true, backupCodesRemaining: 10 });
       setShowBackupCodes(true);
@@ -114,17 +114,17 @@ export default function TwoFactorAuth() {
     e.preventDefault();
     setError(null);
     setActionLoading(true);
-    
+
     try {
       const { ok, data, error: apiError } = await api('/security/2fa/disable', {
         method: 'POST',
         body: { token: disableCode },
       });
-      
+
       if (!ok) {
         throw new Error(apiError || 'Failed to disable 2FA');
       }
-      
+
       setSuccess('Two-factor authentication disabled');
       setStatus({ enabled: false });
       setSetupData(null);
@@ -149,9 +149,9 @@ export default function TwoFactorAuth() {
   // Download backup codes
   const downloadBackupCodes = () => {
     if (!setupData?.backupCodes) return;
-    
+
     const content = [
-      'Ngurra Pathways - Two-Factor Authentication Backup Codes',
+      'Nexta - Two-Factor Authentication Backup Codes',
       '='.repeat(50),
       '',
       'Store these codes in a safe place. Each code can only be used once.',
@@ -160,12 +160,12 @@ export default function TwoFactorAuth() {
       '',
       `Generated: ${new Date().toISOString()}`,
     ].join('\n');
-    
+
     const blob = new Blob([content], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'ngurra-pathways-backup-codes.txt';
+    a.download = 'nexta-backup-codes.txt';
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -187,7 +187,7 @@ export default function TwoFactorAuth() {
           {error}
         </div>
       )}
-      
+
       {success && (
         <div className="p-3 bg-green-900/30 border border-green-800 rounded-lg flex items-center gap-2 text-green-300 text-sm">
           <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
@@ -212,7 +212,7 @@ export default function TwoFactorAuth() {
             </div>
             <Check className="w-5 h-5 text-green-400" />
           </div>
-          
+
           <button
             onClick={() => setShowDisable(true)}
             className="text-sm text-red-400 hover:text-red-300 transition-colors"
@@ -233,7 +233,7 @@ export default function TwoFactorAuth() {
             <p className="text-sm text-red-300/70 mb-4">
               This will reduce the security of your account. Enter your current 2FA code to confirm.
             </p>
-            
+
             <input
               type="text"
               inputMode="numeric"
@@ -246,7 +246,7 @@ export default function TwoFactorAuth() {
               autoComplete="one-time-code"
             />
           </div>
-          
+
           <div className="flex gap-3">
             <button
               type="button"
@@ -292,12 +292,12 @@ export default function TwoFactorAuth() {
               Not Enabled
             </span>
           </div>
-          
+
           <p className="text-sm text-slate-400">
-            Two-factor authentication adds an extra layer of security by requiring a code 
+            Two-factor authentication adds an extra layer of security by requiring a code
             from your phone in addition to your password.
           </p>
-          
+
           <button
             onClick={handleEnable}
             disabled={actionLoading}
@@ -326,7 +326,7 @@ export default function TwoFactorAuth() {
                 <p className="text-sm text-slate-400 mb-4">
                   Scan this code with your authenticator app (Google Authenticator, Authy, etc.)
                 </p>
-                
+
                 {/* QR Code placeholder */}
                 <div className="bg-white p-4 rounded-lg inline-block mb-4">
                   <div className="w-48 h-48 bg-slate-200 flex items-center justify-center">
@@ -336,7 +336,7 @@ export default function TwoFactorAuth() {
                     Use authenticator app to scan
                   </p>
                 </div>
-                
+
                 {/* Manual entry */}
                 <div className="text-left bg-slate-800 rounded-lg p-4">
                   <p className="text-xs text-slate-400 mb-2">Or enter this code manually:</p>
@@ -366,7 +366,7 @@ export default function TwoFactorAuth() {
                   <p className="text-sm text-slate-400 mb-3">
                     Enter the 6-digit code from your authenticator app
                   </p>
-                  
+
                   <input
                     type="text"
                     inputMode="numeric"
@@ -379,7 +379,7 @@ export default function TwoFactorAuth() {
                     autoComplete="one-time-code"
                   />
                 </div>
-                
+
                 <button
                   type="submit"
                   disabled={verificationCode.length !== 6 || actionLoading}
@@ -407,13 +407,13 @@ export default function TwoFactorAuth() {
                   <span className="font-medium text-amber-300">Save Your Backup Codes</span>
                 </div>
                 <p className="text-sm text-amber-300/70 mb-4">
-                  Store these codes in a safe place. You can use them to sign in if you lose 
+                  Store these codes in a safe place. You can use them to sign in if you lose
                   access to your authenticator app. Each code can only be used once.
                 </p>
-                
+
                 <div className="grid grid-cols-2 gap-2 mb-4">
                   {setupData.backupCodes.map((code, i) => (
-                    <code 
+                    <code
                       key={i}
                       className="bg-slate-900 px-3 py-2 rounded font-mono text-sm text-center"
                     >
@@ -421,7 +421,7 @@ export default function TwoFactorAuth() {
                     </code>
                   ))}
                 </div>
-                
+
                 <button
                   onClick={downloadBackupCodes}
                   className="w-full py-2 bg-amber-600 hover:bg-amber-500 rounded-lg text-sm font-medium flex items-center justify-center gap-2 transition-colors"
@@ -430,7 +430,7 @@ export default function TwoFactorAuth() {
                   Download Backup Codes
                 </button>
               </div>
-              
+
               <button
                 onClick={() => {
                   setSetupData(null);

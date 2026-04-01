@@ -1,16 +1,16 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Terms of Service | Ngurra Pathways',
-  description: 'Terms of service and conditions for using Ngurra Pathways platform.',
+  title: 'Terms of Service | Nexta',
+  description: 'Terms of service and conditions for using Nexta platform.',
 };
 
 const SECTIONS = [
   {
     title: '1. Acceptance of Terms',
-    content: `By accessing or using Ngurra Pathways ("the Platform"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the Platform.
+    content: `By accessing or using Nexta ("the Platform"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the Platform.
 
-The Platform is operated by Ngurra Pathways Pty Ltd (ABN: [To be registered]). We reserve the right to modify these terms at any time. Continued use of the Platform after changes constitutes acceptance of the modified terms.`,
+The Platform is operated by Nexta Pty Ltd (ABN: [To be registered]). We reserve the right to modify these terms at any time. Continued use of the Platform after changes constitutes acceptance of the modified terms.`,
   },
   {
     title: '2. Eligibility',
@@ -90,7 +90,7 @@ Violations may result in immediate account suspension or termination.`,
     title: '7. Content and Intellectual Property',
     content: `**Your Content**: You retain ownership of content you submit (resumes, profiles, posts). By submitting content, you grant us a licence to display, store, and process it for Platform purposes.
 
-**Our Content**: The Platform's design, code, logos, and features are owned by Ngurra Pathways and protected by intellectual property laws.
+**Our Content**: The Platform's design, code, logos, and features are owned by Nexta and protected by intellectual property laws.
 
 **Cultural Content**: We respect Indigenous Cultural and Intellectual Property (ICIP). Users must not share cultural knowledge, designs, or stories without appropriate permissions from Traditional Custodians.`,
   },
@@ -132,7 +132,7 @@ We are not an employment agency and do not make hiring decisions. Employment rel
   },
   {
     title: '11. Limitation of Liability',
-    content: `To the maximum extent permitted by law, Ngurra Pathways is not liable for:
+    content: `To the maximum extent permitted by law, Nexta is not liable for:
 • Indirect, incidental, or consequential damages
 • Loss of data, profits, or business opportunities
 • Actions of other users or third parties
@@ -175,37 +175,37 @@ Continued use after changes take effect constitutes acceptance. If you disagree 
     title: '15. Contact Us',
     content: `For questions about these Terms, contact us at:
 
-**Email**: legal@ngurrapathways.com.au
-**Mail**: Ngurra Pathways Pty Ltd, [Address to be added]
+**Email**: legal@nexta.com.au
+**Mail**: Nexta Pty Ltd, [Address to be added]
 **Phone**: [Phone to be added]
 
-For urgent safety concerns, contact: safety@ngurrapathways.com.au`,
+For urgent safety concerns, contact: safety@nexta.com.au`,
   },
 ];
 
 export default function TermsPage() {
   return (
-    <div className="ngurra-page py-12 px-6">
+    <div className="nexta-page py-12 px-6">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="ngurra-h1 mb-4">
+          <h1 className="nexta-h1 mb-4">
             Terms of Service
           </h1>
-          <p className="ngurra-muted">
+          <p className="nexta-muted">
             Last updated: {new Date().toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' })}
           </p>
         </div>
 
         {/* Table of Contents */}
-        <nav className="ngurra-card p-6 mb-12">
+        <nav className="nexta-card p-6 mb-12">
           <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Contents</h2>
           <ul className="grid md:grid-cols-2 gap-2">
             {SECTIONS.map((section, i) => (
               <li key={i}>
                 <a
                   href={`#section-${i + 1}`}
-                  className="text-sm ngurra-link hover:underline"
+                  className="text-sm nexta-link hover:underline"
                 >
                   {section.title}
                 </a>
@@ -218,10 +218,10 @@ export default function TermsPage() {
         <div className="space-y-12">
           {SECTIONS.map((section, i) => (
             <section key={i} id={`section-${i + 1}`} className="scroll-mt-8">
-              <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-4 pb-2 ngurra-divider">
+              <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-4 pb-2 nexta-divider">
                 {section.title}
               </h2>
-              <div className="ngurra-text text-sm leading-relaxed whitespace-pre-line">
+              <div className="nexta-text text-sm leading-relaxed whitespace-pre-line">
                 {section.content}
               </div>
             </section>
@@ -229,28 +229,28 @@ export default function TermsPage() {
         </div>
 
         {/* Footer */}
-        <div className="mt-16 pt-8 ngurra-divider text-center">
-          <p className="ngurra-muted text-sm mb-4">
-            By using Ngurra Pathways, you acknowledge that you have read, understood, and agree to these Terms of Service.
+        <div className="mt-16 pt-8 nexta-divider text-center">
+          <p className="nexta-muted text-sm mb-4">
+            By using Nexta, you acknowledge that you have read, understood, and agree to these Terms of Service.
           </p>
           <div className="flex gap-4 justify-center">
             <Link
               href="/privacy"
-              className="text-sm ngurra-link"
+              className="text-sm nexta-link"
             >
               Privacy Policy
             </Link>
             <span className="text-slate-400 dark:text-slate-600">|</span>
             <Link
               href="/help"
-              className="text-sm ngurra-link"
+              className="text-sm nexta-link"
             >
               Help Centre
             </Link>
             <span className="text-slate-400 dark:text-slate-600">|</span>
             <Link
               href="/about"
-              className="text-sm ngurra-link"
+              className="text-sm nexta-link"
             >
               About Us
             </Link>

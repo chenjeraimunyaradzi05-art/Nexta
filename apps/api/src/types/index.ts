@@ -1,7 +1,7 @@
 /**
  * API Type Definitions
- * 
- * Centralized type definitions for the Ngurra Pathways API.
+ *
+ * Centralized type definitions for the Nexta API.
  */
 
 // ============================================================================
@@ -123,7 +123,7 @@ export interface Application {
   withdrawnAt?: Date;
 }
 
-export type ApplicationStatus = 
+export type ApplicationStatus =
   | 'pending'
   | 'reviewing'
   | 'shortlisted'
@@ -205,7 +205,7 @@ export interface Notification {
   createdAt: Date;
 }
 
-export type NotificationType = 
+export type NotificationType =
   | 'application_status'
   | 'job_match'
   | 'message'

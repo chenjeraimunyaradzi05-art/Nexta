@@ -10,9 +10,9 @@ import { ToastProvider } from './Toast';
 
 /**
  * Root Providers Component
- * 
+ *
  * Wraps the application with all necessary context providers.
- * Ngurra Pathways - Celestial Precious Stone Theme
+ * Nexta - Celestial Precious Stone Theme
  */
 export function Providers({ children }: { children: React.ReactNode }) {
   return (

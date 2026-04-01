@@ -1,5 +1,5 @@
 # =====================================
-# Ngurra Pathways - Production Docker Compose
+# Nexta - Production Docker Compose
 # =====================================
 # Complete production stack with all services
 # Security: Resource limits, read-only filesystems, security options
@@ -14,7 +14,7 @@ services:
     build:
       context: ./apps/api
       dockerfile: Dockerfile
-    container_name: ngurra-api
+    container_name: nexta-api
     restart: unless-stopped
     ports:
       - "3001:3001"
@@ -39,7 +39,7 @@ services:
       retries: 3
       start_period: 40s
     networks:
-      - ngurra-network
+      - nexta-network
     volumes:
       - api-logs:/app/logs
       - api-tmp:/app/tmp
@@ -71,7 +71,7 @@ services:
     build:
       context: ./apps/api
       dockerfile: Dockerfile
-    container_name: ngurra-worker
+    container_name: nexta-worker
     restart: unless-stopped
     command: ["node", "src/worker.js"]
     environment:
@@ -84,7 +84,7 @@ services:
       - api
       - redis
     networks:
-      - ngurra-network
+      - nexta-network
     volumes:
       - worker-logs:/app/logs
     deploy:
@@ -101,7 +101,7 @@ services:
     build:
       context: ./apps/web
       dockerfile: Dockerfile
-    container_name: ngurra-web
+    container_name: nexta-web
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -118,7 +118,7 @@ services:
       timeout: 10s
       retries: 3
     networks:
-      - ngurra-network
+      - nexta-network
     deploy:
       resources:
         limits:
@@ -130,27 +130,27 @@ services:
   # =====================================
   postgres:
     image: postgres:16-alpine
-    container_name: ngurra-postgres
+    container_name: nexta-postgres
     restart: unless-stopped
     # SECURITY: No ports exposed to host - only accessible within Docker network
     # Database should never be directly accessible from the internet
     # ports:
     #   - "5432:5432"
     environment:
-      - POSTGRES_USER=${POSTGRES_USER:-ngurra}
+      - POSTGRES_USER=${POSTGRES_USER:-nexta}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB:-ngurra_production}
+      - POSTGRES_DB=${POSTGRES_DB:-nexta_production}
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./backups:/backups
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ngurra}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-nexta}"]
       interval: 10s
       timeout: 5s
       retries: 5
     networks:
-      - ngurra-network
+      - nexta-network
     deploy:
       resources:
         limits:
@@ -162,7 +162,7 @@ services:
   # =====================================
   redis:
     image: redis:7-alpine
-    container_name: ngurra-redis
+    container_name: nexta-redis
     restart: unless-stopped
     # SECURITY: No ports exposed to host - only accessible within Docker network
     # Redis should never be directly accessible from the internet
@@ -177,7 +177,7 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - ngurra-network
+      - nexta-network
     deploy:
       resources:
         limits:
@@ -189,7 +189,7 @@ services:
   # =====================================
   nginx:
     image: nginx:alpine
-    container_name: ngurra-nginx
+    container_name: nexta-nginx
     restart: unless-stopped
     ports:
       - "80:80"
@@ -202,7 +202,7 @@ services:
       - api
       - web
     networks:
-      - ngurra-network
+      - nexta-network
     deploy:
       resources:
         limits:
@@ -214,13 +214,13 @@ services:
   # =====================================
   backup:
     image: postgres:16-alpine
-    container_name: ngurra-backup
+    container_name: nexta-backup
     restart: "no"
     environment:
       - POSTGRES_HOST=postgres
-      - POSTGRES_USER=${POSTGRES_USER:-ngurra}
+      - POSTGRES_USER=${POSTGRES_USER:-nexta}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB:-ngurra_production}
+      - POSTGRES_DB=${POSTGRES_DB:-nexta_production}
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
       - AWS_S3_BUCKET=${BACKUP_S3_BUCKET}
@@ -231,7 +231,7 @@ services:
     depends_on:
       - postgres
     networks:
-      - ngurra-network
+      - nexta-network
     profiles:
       - backup
 
@@ -239,7 +239,7 @@ services:
 # Networks
 # =====================================
 networks:
-  ngurra-network:
+  nexta-network:
     driver: bridge
 
 # =====================================

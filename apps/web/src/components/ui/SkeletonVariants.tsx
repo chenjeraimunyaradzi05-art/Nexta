@@ -4,8 +4,8 @@ import React from 'react';
 import { Skeleton } from './Skeleton';
 
 /**
- * Skeleton Variants for Ngurra Pathways
- * 
+ * Skeleton Variants for Nexta
+ *
  * Pre-built skeleton loading states for common UI patterns.
  * Uses the Celestial Precious Stone theme.
  */

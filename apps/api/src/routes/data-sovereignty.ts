@@ -469,7 +469,7 @@ async function processDataExport(exportId) {
 
     // In production: upload to S3 and generate signed URL
     // For now: store as JSON in the database
-    const exportData = exportRequest.format === 'json' 
+    const exportData = exportRequest.format === 'json'
       ? JSON.stringify(userData, null, 2)
       : convertToCsv(userData);
 
@@ -631,7 +631,7 @@ async function gatherUserData(userId, includeFiles) {
 function convertToCsv(userData) {
   // Simplified CSV conversion - in production use a proper CSV library
   const lines = ['Section,Key,Value'];
-  
+
   function flatten(obj, prefix = '') {
     for (const [key, value] of Object.entries(obj || {})) {
       const fullKey = prefix ? `${prefix}.${key}` : key;
@@ -642,7 +642,7 @@ function convertToCsv(userData) {
       }
     }
   }
-  
+
   flatten(userData);
   return lines.join('\n');
 }
@@ -677,13 +677,13 @@ router.get('/export/:exportId/download', authenticateJWT, async (req, res) => {
       return void res.status(410).json({ error: 'Export has expired' });
     }
 
-    const contentType = exportRequest.format === 'json' 
-      ? 'application/json' 
+    const contentType = exportRequest.format === 'json'
+      ? 'application/json'
       : 'text/csv';
     const extension = exportRequest.format === 'json' ? 'json' : 'csv';
 
     res.setHeader('Content-Type', contentType);
-    res.setHeader('Content-Disposition', `attachment; filename="ngurra-data-export-${exportId}.${extension}"`);
+    res.setHeader('Content-Disposition', `attachment; filename="nexta-data-export-${exportId}.${extension}"`);
     res.send(exportRequest.exportData);
 
   } catch (error) {

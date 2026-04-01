@@ -1,66 +1,98 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Nexta open graph image">
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#F8FAFC" />
-      <stop offset="55%" stop-color="#ECFDF5" />
-      <stop offset="100%" stop-color="#E0F2FE" />
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="panel" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0F766E" />
-      <stop offset="100%" stop-color="#0F172A" />
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ef4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dc2626;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38BDF8" />
-      <stop offset="100%" stop-color="#F97316" />
-    </linearGradient>
+    <pattern id="dotPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#334155" opacity="0.5"/>
+    </pattern>
+    <!-- Aboriginal-inspired pattern -->
+    <pattern id="indigenousPattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+      <circle cx="30" cy="30" r="3" fill="#f59e0b" opacity="0.3"/>
+      <circle cx="30" cy="30" r="8" fill="none" stroke="#f59e0b" stroke-width="1" opacity="0.2"/>
+      <circle cx="30" cy="30" r="15" fill="none" stroke="#ef4444" stroke-width="1" opacity="0.15"/>
+    </pattern>
   </defs>
 
-  <rect width="1200" height="630" fill="url(#bg)" />
-  <circle cx="1040" cy="110" r="130" fill="#D1FAE5" opacity="0.8" />
-  <circle cx="980" cy="500" r="170" fill="#BAE6FD" opacity="0.85" />
-  <circle cx="180" cy="120" r="90" fill="#FED7AA" opacity="0.7" />
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  <rect width="1200" height="630" fill="url(#dotPattern)"/>
 
-  <rect x="80" y="74" width="230" height="62" rx="31" fill="white" stroke="#CBD5E1" />
-  <text x="136" y="113" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#0F172A">Nexta</text>
-  <circle cx="112" cy="105" r="18" fill="url(#panel)" />
-  <path d="M104 114V96h3.2l10.6 12.7V96h3.2v18h-3.2l-10.6-12.7V114H104Z" fill="white" />
+  <!-- Indigenous pattern overlay on right side -->
+  <rect x="600" y="0" width="600" height="630" fill="url(#indigenousPattern)" opacity="0.6"/>
 
-  <text x="80" y="236" font-family="Arial, sans-serif" font-size="72" font-weight="700" fill="#0F172A">
-    Opportunity, connected.
+  <!-- Decorative accent line at top -->
+  <rect x="0" y="0" width="1200" height="6" fill="url(#accentGradient)"/>
+
+  <!-- Left decorative circles (Aboriginal dot art inspired) -->
+  <g opacity="0.4">
+    <circle cx="80" cy="500" r="60" fill="none" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="80" cy="500" r="45" fill="none" stroke="#ef4444" stroke-width="2"/>
+    <circle cx="80" cy="500" r="30" fill="none" stroke="#f59e0b" stroke-width="2"/>
+    <circle cx="80" cy="500" r="15" fill="#f59e0b"/>
+  </g>
+
+  <!-- Right decorative circles -->
+  <g opacity="0.3">
+    <circle cx="1100" cy="150" r="80" fill="none" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="1100" cy="150" r="60" fill="none" stroke="#ef4444" stroke-width="2"/>
+    <circle cx="1100" cy="150" r="40" fill="none" stroke="#f59e0b" stroke-width="2"/>
+    <circle cx="1100" cy="150" r="20" fill="#ef4444"/>
+  </g>
+
+  <!-- Logo placeholder circle -->
+  <circle cx="600" cy="200" r="70" fill="#1e3a8a" stroke="#f59e0b" stroke-width="4"/>
+  <text x="600" y="215" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">N</text>
+
+  <!-- Main Title -->
+  <text x="600" y="330" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="white" text-anchor="middle">
+    Nexta
   </text>
-  <text x="80" y="318" font-family="Arial, sans-serif" font-size="72" font-weight="700" fill="#0F172A">
-    Progress, supported.
+
+  <!-- Accent underline -->
+  <rect x="350" y="350" width="500" height="4" rx="2" fill="url(#accentGradient)"/>
+
+  <!-- Tagline -->
+  <text x="600" y="410" font-family="Arial, sans-serif" font-size="28" fill="#94a3b8" text-anchor="middle">
+    Indigenous Employment &amp; Mentorship Platform
   </text>
 
-  <text x="80" y="384" font-family="Arial, sans-serif" font-size="30" fill="#334155">
-    Jobs, learning, mentors, community, business tools, financial wellbeing,
-  </text>
-  <text x="80" y="424" font-family="Arial, sans-serif" font-size="30" fill="#334155">
-    and real-world opportunities in one guided platform built for long-term progress.
+  <!-- Sub-tagline -->
+  <text x="600" y="460" font-family="Arial, sans-serif" font-size="22" fill="#64748b" text-anchor="middle">
+    Connecting First Nations talent with opportunity
   </text>
 
-  <rect x="80" y="478" width="250" height="72" rx="20" fill="url(#panel)" />
-  <text x="160" y="523" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="white">Get Started</text>
+  <!-- Feature pills -->
+  <g font-family="Arial, sans-serif" font-size="16" fill="white">
+    <!-- Jobs pill -->
+    <rect x="280" y="510" width="120" height="36" rx="18" fill="#1e3a8a"/>
+    <text x="340" y="534" text-anchor="middle">🎯 Jobs</text>
 
-  <rect x="352" y="478" width="300" height="72" rx="20" fill="white" stroke="#0F766E" stroke-width="3" />
-  <text x="398" y="523" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#0F766E">Explore Pathways</text>
+    <!-- Mentorship pill -->
+    <rect x="420" y="510" width="160" height="36" rx="18" fill="#1e3a8a"/>
+    <text x="500" y="534" text-anchor="middle">🤝 Mentorship</text>
 
-  <rect x="766" y="104" width="324" height="408" rx="36" fill="url(#panel)" />
-  <rect x="790" y="134" width="276" height="54" rx="18" fill="rgba(255,255,255,0.12)" />
-  <text x="824" y="169" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="white">Your next step, connected.</text>
+    <!-- Courses pill -->
+    <rect x="600" y="510" width="140" height="36" rx="18" fill="#1e3a8a"/>
+    <text x="670" y="534" text-anchor="middle">📚 Courses</text>
 
-  <rect x="790" y="216" width="276" height="110" rx="24" fill="white" opacity="0.98" />
-  <text x="816" y="256" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#0F172A">Continue your Pathway</text>
-  <text x="816" y="292" font-family="Arial, sans-serif" font-size="18" fill="#475569">You are 62% through this week's plan.</text>
+    <!-- Community pill -->
+    <rect x="760" y="510" width="160" height="36" rx="18" fill="#1e3a8a"/>
+    <text x="840" y="534" text-anchor="middle">🌏 Community</text>
+  </g>
 
-  <rect x="790" y="350" width="128" height="58" rx="18" fill="rgba(255,255,255,0.12)" />
-  <rect x="938" y="350" width="128" height="58" rx="18" fill="rgba(255,255,255,0.12)" />
-  <rect x="790" y="426" width="128" height="58" rx="18" fill="rgba(255,255,255,0.12)" />
-  <rect x="938" y="426" width="128" height="58" rx="18" fill="rgba(255,255,255,0.12)" />
-  <text x="816" y="386" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="white">Find Work</text>
-  <text x="970" y="386" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="white">Upgrade Skills</text>
-  <text x="823" y="462" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="white">Nexta AI</text>
-  <text x="955" y="462" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="white">Track Money</text>
+  <!-- Domain -->
+  <text x="600" y="600" font-family="Arial, sans-serif" font-size="18" fill="#64748b" text-anchor="middle">
+    nexta.com.au
+  </text>
 
-  <path d="M1026 84L1050 108L1026 132L1002 108L1026 84Z" fill="url(#accent)" />
+  <!-- Bottom accent line -->
+  <rect x="0" y="624" width="1200" height="6" fill="url(#accentGradient)"/>
 </svg>

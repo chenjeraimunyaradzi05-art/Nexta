@@ -1,6 +1,6 @@
 #!/bin/bash
 # =====================================
-# Ngurra Pathways - Database Backup Script
+# Nexta - Database Backup Script
 # Step 50: Encrypted daily backups to S3
 # =====================================
 # Runs daily via cron or Docker compose profile
@@ -10,8 +10,8 @@ set -e
 # Configuration
 BACKUP_DIR="/backups"
 DATE=$(date +%Y%m%d_%H%M%S)
-BACKUP_FILE="${BACKUP_DIR}/ngurra_${DATE}.sql.gz"
-ENCRYPTED_FILE="${BACKUP_DIR}/ngurra_${DATE}.sql.gz.enc"
+BACKUP_FILE="${BACKUP_DIR}/nexta_${DATE}.sql.gz"
+ENCRYPTED_FILE="${BACKUP_DIR}/nexta_${DATE}.sql.gz.enc"
 RETENTION_DAYS=${BACKUP_RETENTION_DAYS:-30}
 ENCRYPTION_KEY_FILE="${BACKUP_ENCRYPTION_KEY_FILE:-/run/secrets/backup_key}"
 
@@ -24,8 +24,8 @@ mkdir -p ${BACKUP_DIR}
 echo "Creating backup: ${BACKUP_FILE}"
 PGPASSWORD="${POSTGRES_PASSWORD}" pg_dump \
     -h "${POSTGRES_HOST:-postgres}" \
-    -U "${POSTGRES_USER:-ngurra}" \
-    -d "${POSTGRES_DB:-ngurra_production}" \
+    -U "${POSTGRES_USER:-nexta}" \
+    -d "${POSTGRES_DB:-nexta_production}" \
     --format=custom \
     --compress=9 \
     --verbose \
@@ -47,7 +47,7 @@ if [ -f "${ENCRYPTION_KEY_FILE}" ]; then
         -in "${BACKUP_FILE}" \
         -out "${ENCRYPTED_FILE}" \
         -pass file:"${ENCRYPTION_KEY_FILE}"
-    
+
     # Remove unencrypted backup
     rm -f "${BACKUP_FILE}"
     BACKUP_FILE="${ENCRYPTED_FILE}"
@@ -58,7 +58,7 @@ elif [ -n "${BACKUP_ENCRYPTION_KEY}" ]; then
         -in "${BACKUP_FILE}" \
         -out "${ENCRYPTED_FILE}" \
         -pass env:BACKUP_ENCRYPTION_KEY
-    
+
     # Remove unencrypted backup
     rm -f "${BACKUP_FILE}"
     BACKUP_FILE="${ENCRYPTED_FILE}"
@@ -70,26 +70,26 @@ fi
 # Upload to S3 if configured
 if [ -n "${AWS_S3_BUCKET}" ]; then
     echo "Uploading to S3: s3://${AWS_S3_BUCKET}/backups/"
-    
+
     # Install AWS CLI if not present
     if ! command -v aws &> /dev/null; then
         apk add --no-cache aws-cli
     fi
-    
+
     # Upload with server-side encryption
     aws s3 cp "${BACKUP_FILE}" "s3://${AWS_S3_BUCKET}/backups/$(basename ${BACKUP_FILE})" \
         --sse aws:kms \
         --storage-class STANDARD_IA
-    
+
     echo "Upload complete"
-    
+
     # Verify upload
     aws s3 ls "s3://${AWS_S3_BUCKET}/backups/$(basename ${BACKUP_FILE})" && echo "Upload verified"
 fi
 
 # Cleanup old local backups
 echo "Cleaning up backups older than ${RETENTION_DAYS} days"
-find ${BACKUP_DIR} -name "ngurra_*.sql.gz" -mtime +${RETENTION_DAYS} -delete
+find ${BACKUP_DIR} -name "nexta_*.sql.gz" -mtime +${RETENTION_DAYS} -delete
 
 # List remaining backups
 echo "Current backups:"

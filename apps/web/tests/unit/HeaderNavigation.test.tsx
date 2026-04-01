@@ -49,16 +49,16 @@ describe('HeaderNavigation', () => {
   describe('Logo', () => {
     it('renders the logo image', () => {
       render(<HeaderNavigation />);
-      
-      const logo = screen.getByRole('img', { name: /ngurra pathways/i });
+
+      const logo = screen.getByRole('img', { name: /nexta pathways/i });
       expect(logo).toBeInTheDocument();
-      expect(logo).toHaveAttribute('src', '/brand/ngurra-logo.png');
+      expect(logo).toHaveAttribute('src', '/brand/nexta-logo.png');
     });
 
     it('logo links to homepage', () => {
       render(<HeaderNavigation />);
-      
-      const logoLink = screen.getByRole('link', { name: /ngurra pathways/i });
+
+      const logoLink = screen.getByRole('link', { name: /nexta pathways/i });
       expect(logoLink).toHaveAttribute('href', '/');
     });
   });
@@ -66,7 +66,7 @@ describe('HeaderNavigation', () => {
   describe('Navigation Links', () => {
     it('renders public navigation when logged out', () => {
       render(<HeaderNavigation />);
-      
+
       expect(screen.getByRole('link', { name: /jobs/i })).toBeInTheDocument();
       expect(screen.getByRole('link', { name: /courses/i })).toBeInTheDocument();
       expect(screen.getByRole('link', { name: /mentorship/i })).toBeInTheDocument();
@@ -76,7 +76,7 @@ describe('HeaderNavigation', () => {
     it('renders member navigation when logged in as member', () => {
       mockIsAuthenticated = true;
       render(<HeaderNavigation />);
-      
+
       expect(screen.getByRole('link', { name: /dashboard/i })).toBeInTheDocument();
       expect(screen.getByRole('link', { name: /settings/i })).toBeInTheDocument();
     });
@@ -85,7 +85,7 @@ describe('HeaderNavigation', () => {
   describe('Auth Buttons', () => {
     it('shows sign in and sign up when logged out', () => {
       render(<HeaderNavigation />);
-      
+
       expect(screen.getByRole('link', { name: /sign in/i })).toBeInTheDocument();
       expect(screen.getByRole('link', { name: /sign up/i })).toBeInTheDocument();
     });
@@ -93,7 +93,7 @@ describe('HeaderNavigation', () => {
     it('shows logout button when logged in', () => {
       mockIsAuthenticated = true;
       render(<HeaderNavigation />);
-      
+
       expect(screen.getByRole('button', { name: /logout/i })).toBeInTheDocument();
       expect(screen.queryByRole('link', { name: /sign in/i })).not.toBeInTheDocument();
     });
@@ -101,10 +101,10 @@ describe('HeaderNavigation', () => {
     it('calls logout when logout button is clicked', async () => {
       mockIsAuthenticated = true;
       render(<HeaderNavigation />);
-      
+
       const logoutButton = screen.getByRole('button', { name: /logout/i });
       await userEvent.click(logoutButton);
-      
+
       expect(mockLogout).toHaveBeenCalledTimes(1);
     });
   });
@@ -112,7 +112,7 @@ describe('HeaderNavigation', () => {
   describe('Mobile Menu', () => {
     it('mobile menu button has proper ARIA attributes', () => {
       render(<HeaderNavigation />);
-      
+
       const menuButton = screen.getByRole('button', { name: /open menu/i });
       expect(menuButton).toHaveAttribute('aria-expanded', 'false');
       expect(menuButton).toHaveAttribute('aria-controls', 'mobile-menu');
@@ -120,17 +120,17 @@ describe('HeaderNavigation', () => {
 
     it('toggles mobile menu on button click', async () => {
       render(<HeaderNavigation />);
-      
+
       const menuButton = screen.getByRole('button', { name: /open menu/i });
-      
+
       // Menu should be closed initially
       expect(screen.queryByRole('menu')).not.toBeInTheDocument();
-      
+
       // Click to open
       await userEvent.click(menuButton);
       expect(screen.getByRole('menu')).toBeInTheDocument();
       expect(menuButton).toHaveAttribute('aria-expanded', 'true');
-      
+
       // Click to close
       await userEvent.click(menuButton);
       expect(screen.queryByRole('menu')).not.toBeInTheDocument();
@@ -140,15 +140,15 @@ describe('HeaderNavigation', () => {
   describe('Accessibility', () => {
     it('has proper landmark roles', () => {
       render(<HeaderNavigation />);
-      
+
       expect(screen.getByRole('banner')).toBeInTheDocument();
       expect(screen.getByRole('navigation', { name: /main/i })).toBeInTheDocument();
     });
 
     it('logo has screen reader text', () => {
       render(<HeaderNavigation />);
-      
-      expect(screen.getByText('Ngurra Pathways')).toBeInTheDocument();
+
+      expect(screen.getByText('Nexta')).toBeInTheDocument();
     });
   });
 });

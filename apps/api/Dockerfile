@@ -1,5 +1,5 @@
 # =====================================
-# Ngurra Pathways API - Production Dockerfile
+# Nexta API - Production Dockerfile
 # =====================================
 # Multi-stage build for optimized production image
 
@@ -40,7 +40,7 @@ RUN apk add --no-cache openssl
 
 # Create non-root user
 RUN addgroup -g 1001 -S nodejs && \
-    adduser -S ngurra -u 1001
+    adduser -S nexta -u 1001
 
 # Copy package files
 COPY package*.json ./
@@ -57,16 +57,16 @@ COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder /app/ecosystem.config.cjs ./
 
 # Create logs directory
-RUN mkdir -p logs && chown -R ngurra:nodejs logs
+RUN mkdir -p logs && chown -R nexta:nodejs logs
 
 # Step 44: Create tmp directory for read-only root filesystem support
-RUN mkdir -p /app/tmp && chown -R ngurra:nodejs /app/tmp
+RUN mkdir -p /app/tmp && chown -R nexta:nodejs /app/tmp
 
 # Set ownership
-RUN chown -R ngurra:nodejs /app
+RUN chown -R nexta:nodejs /app
 
 # Switch to non-root user
-USER ngurra
+USER nexta
 
 # Environment variables
 ENV NODE_ENV=production
@@ -84,7 +84,7 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
     CMD node -e "require('http').get('http://localhost:3001/health/ready', (r) => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"
 
 # Security labels
-LABEL maintainer="security@ngurrapathways.com.au"
+LABEL maintainer="security@nexta.com.au"
 LABEL security.scan="required"
 LABEL security.non-root="true"
 

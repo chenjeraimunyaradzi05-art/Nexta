@@ -320,11 +320,11 @@ export default function SocialFeedPage() {
   ];
 
   return (
-    <div className={`${spaceGrotesk.className} ngurra-page`}>
+    <div className={`${spaceGrotesk.className} nexta-page`}>
       {/* Decorative halos */}
-      <div className="ngurra-halos">
-        <div className="ngurra-halo-pink" />
-        <div className="ngurra-halo-purple" />
+      <div className="nexta-halos">
+        <div className="nexta-halo-pink" />
+        <div className="nexta-halo-purple" />
       </div>
       {/* Dot pattern overlay */}
       <div

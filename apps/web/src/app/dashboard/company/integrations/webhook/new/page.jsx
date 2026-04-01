@@ -14,7 +14,7 @@ export default function NewWebhookPage() {
   const [error, setError] = useState(null);
   const [events, setEvents] = useState({});
   const [secret, setSecret] = useState(null);
-  
+
   const [formData, setFormData] = useState({
     name: '',
     url: '',
@@ -91,7 +91,7 @@ export default function NewWebhookPage() {
             <h1 className="text-2xl font-bold text-green-600 mb-4">
               ✓ Webhook Created Successfully
             </h1>
-            
+
             <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg mb-6">
               <h3 className="font-semibold text-yellow-800 mb-2">
                 ⚠️ Save Your Webhook Secret
@@ -189,7 +189,7 @@ const isValid = verifySignature(
               type="url"
               value={formData.url}
               onChange={(e) => setFormData({ ...formData, url: e.target.value })}
-              placeholder="https://your-server.com/webhooks/ngurra"
+              placeholder="https://your-server.com/webhooks/nexta"
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
               required
               pattern="https://.*"
@@ -222,7 +222,7 @@ const isValid = verifySignature(
                 </button>
               </div>
             </div>
-            
+
             <div className="border rounded-lg p-4 max-h-64 overflow-y-auto space-y-2">
               {Object.entries(events).map(([event, description]) => (
                 <label

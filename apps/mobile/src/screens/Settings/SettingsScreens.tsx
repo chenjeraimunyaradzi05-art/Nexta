@@ -1,6 +1,6 @@
 /**
  * Settings Screens
- * 
+ *
  * Comprehensive settings for:
  * - Profile settings
  * - Privacy controls
@@ -106,7 +106,7 @@ export function SettingsScreen() {
 
       {/* Logout Button */}
       {/* App Version */}
-      <Text style={styles.version}>Ngurra Pathways v1.0.0</Text>
+      <Text style={styles.version}>Nexta v1.0.0</Text>
     </ScrollView>
   );
 }

@@ -11,8 +11,8 @@ type CardVariant =
   | 'glass'
   | 'cosmic'
   | 'gradient'
-  | 'ngurra' // Ngurra theme - main sidebar/content cards
-  | 'ngurra-dark' // Ngurra dark variant
+  | 'nexta' // Nexta theme - main sidebar/content cards
+  | 'nexta-dark' // Nexta dark variant
   | 'aura'; // Gradient CTA style
 
 type CardNode = ReactNode;
@@ -50,7 +50,7 @@ interface CardFooterProps {
   divided?: boolean;
 }
 
-// Ngurra Pathways theme - consistent card styling
+// Nexta theme - consistent card styling
 const variantClasses: Record<CardVariant, string> = {
   default: 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700',
   elevated: 'bg-white dark:bg-gray-800 shadow-lg dark:shadow-gray-900/50',
@@ -59,10 +59,10 @@ const variantClasses: Record<CardVariant, string> = {
   cosmic:
     'bg-gradient-to-br from-[#1A0F2E]/90 to-[#2D1B69]/80 border border-[#FFD700]/20 backdrop-blur-sm',
   gradient: 'bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20',
-  // Ngurra theme variants - consistent with homepage design system
-  ngurra:
+  // Nexta theme variants - consistent with homepage design system
+  nexta:
     'backdrop-blur-md bg-white/90 border border-slate-200/80 dark:bg-slate-900/80 dark:border-slate-700/50 shadow-sm',
-  'ngurra-dark': 'backdrop-blur-md bg-slate-900/90 border border-slate-700/50 shadow-sm',
+  'nexta-dark': 'backdrop-blur-md bg-slate-900/90 border border-slate-700/50 shadow-sm',
   aura: 'backdrop-blur-sm border border-white/20 shadow-lg',
 };
 

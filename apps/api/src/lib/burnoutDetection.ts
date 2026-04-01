@@ -1,13 +1,13 @@
 // @ts-nocheck
 /**
  * Burnout Detection System
- * 
+ *
  * Monitors user activity patterns to detect signs of:
  * - Excessive job searching (applying to many jobs in short time)
  * - Late night usage patterns
  * - Prolonged sessions without breaks
  * - Declining engagement over time
- * 
+ *
  * Provides gentle wellness check-ins and resources when needed.
  */
 
@@ -19,22 +19,22 @@ const THRESHOLDS = {
   APPLICATIONS_PER_HOUR: 10,      // More than this suggests stress
   APPLICATIONS_PER_DAY: 25,       // Daily limit before alert
   SESSION_DURATION_MINUTES: 180,  // 3+ hours without break
-  
+
   // Time patterns
   NIGHT_START_HOUR: 23,           // 11 PM
   NIGHT_END_HOUR: 5,              // 5 AM
   NIGHT_SESSIONS_THRESHOLD: 3,    // Sessions in night hours per week
-  
+
   // Engagement decline
   ACTIVITY_DROP_PERCENT: 50,      // 50% drop in activity week-over-week
-  
+
   // Rejection pattern
   REJECTIONS_BEFORE_CHECK: 10,    // After 10 rejections, offer support
 };
 
 /**
  * Log user activity
- * 
+ *
  * @param {string} userId - User ID
  * @param {string} activityType - Type of activity (LOGIN, JOB_VIEW, APPLICATION, etc.)
  * @param {object} metadata - Additional context
@@ -57,7 +57,7 @@ async function logActivity(userId, activityType, metadata = {}, duration = null)
 
 /**
  * Analyze user activity and detect burnout indicators
- * 
+ *
  * @param {string} userId - User ID
  * @returns {object} Analysis results with any alerts
  */
@@ -220,7 +220,7 @@ async function createAlerts(userId, alerts) {
   if (alerts.length === 0) return [];
 
   const createdAlerts = [];
-  
+
   for (const alert of alerts) {
     try {
       // Check if similar alert exists in last 24 hours
@@ -316,7 +316,7 @@ async function recordWellnessCheckIn(userId, data) {
 
     // If scores are low, suggest resources
     const avgScore = (mood + (6 - stressLevel) + hopefulness) / 3; // Invert stress
-    
+
     let recommendation = null;
     if (avgScore <= 2) {
       recommendation = {
@@ -398,7 +398,7 @@ function getWellnessResources(severity = 'LOW') {
     career: [
       {
         name: 'Mentor Support',
-        description: 'Connect with an experienced mentor on Ngurra',
+        description: 'Connect with an experienced mentor on Nexta',
         url: '/mentorship',
         internal: true,
         icon: '👥'

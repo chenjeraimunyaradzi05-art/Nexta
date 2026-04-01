@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * Alert Management Utilities
- * 
+ *
  * Provides functions for managing alerts and notifications
  * for system monitoring and incident response.
  */
@@ -95,32 +95,32 @@ export function registerNotificationChannel(channel: NotificationChannel): void 
  */
 async function fireAlert(rule: AlertRule): Promise<void> {
   const fingerprint = generateFingerprint(rule);
-  
+
   // Check if alert already exists
   const existingAlert = Array.from(activeAlerts.values()).find(
     a => a.fingerprint === fingerprint && a.status === 'firing'
   );
-  
+
   if (existingAlert) {
     return; // Alert already firing
   }
-  
+
   const alert: Alert = {
     id: generateAlertId(),
     name: rule.name,
     severity: rule.severity,
     status: 'firing',
     message: rule.message,
-    source: 'ngurra-api',
+    source: 'nexta-api',
     labels: rule.labels || {},
     annotations: rule.annotations || {},
     startsAt: new Date(),
     fingerprint,
   };
-  
+
   activeAlerts.set(alert.id, alert);
   alertHistory.push(alert);
-  
+
   // Send notifications
   await sendNotifications(alert);
 }
@@ -131,10 +131,10 @@ async function fireAlert(rule: AlertRule): Promise<void> {
 export async function resolveAlert(alertId: string): Promise<void> {
   const alert = activeAlerts.get(alertId);
   if (!alert) return;
-  
+
   alert.status = 'resolved';
   alert.endsAt = new Date();
-  
+
   // Send resolution notification
   await sendNotifications(alert);
 }
@@ -156,7 +156,7 @@ async function resolveAlertsByFingerprint(fingerprint: string): Promise<void> {
 export function acknowledgeAlert(alertId: string, userId: string): void {
   const alert = activeAlerts.get(alertId);
   if (!alert) return;
-  
+
   alert.status = 'acknowledged';
   alert.acknowledgedAt = new Date();
   alert.acknowledgedBy = userId;
@@ -180,7 +180,7 @@ export async function evaluateAlertRules(): Promise<void> {
       const isTriggered = await rule.expression();
       const fingerprint = generateFingerprint(rule);
       const pending = pendingAlerts.get(name);
-      
+
       if (isTriggered) {
         if (rule.forDuration && rule.forDuration > 0) {
           // Check if condition has been true long enough
@@ -239,7 +239,7 @@ export function getAlertsBySeverity(severity: AlertSeverity): Alert[] {
  */
 export function cleanupResolvedAlerts(maxAge: number = 86400000): void {
   const cutoff = Date.now() - maxAge;
-  
+
   for (const [id, alert] of activeAlerts.entries()) {
     if (alert.status === 'resolved' && alert.endsAt && alert.endsAt.getTime() < cutoff) {
       activeAlerts.delete(id);
@@ -263,9 +263,9 @@ export function registerDefaultAlertRules(): void {
     message: 'Error rate exceeds 5% threshold',
     forDuration: 60000, // Must be true for 1 minute
     labels: { component: 'api' },
-    annotations: { runbook: 'https://docs.ngurra-pathways.com/runbooks/high-error-rate' },
+    annotations: { runbook: 'https://docs.nexta.com/runbooks/high-error-rate' },
   });
-  
+
   // Slow response time alert
   registerAlertRule({
     name: 'SlowResponses',
@@ -278,7 +278,7 @@ export function registerDefaultAlertRules(): void {
     forDuration: 120000, // Must be true for 2 minutes
     labels: { component: 'api' },
   });
-  
+
   // Service degraded alert
   registerAlertRule({
     name: 'ServiceDegraded',
@@ -290,7 +290,7 @@ export function registerDefaultAlertRules(): void {
     message: 'Service health is degraded',
     labels: { component: 'health' },
   });
-  
+
   // Service unhealthy alert
   registerAlertRule({
     name: 'ServiceUnhealthy',
@@ -302,7 +302,7 @@ export function registerDefaultAlertRules(): void {
     message: 'Service is unhealthy',
     labels: { component: 'health' },
   });
-  
+
   // High memory usage alert
   registerAlertRule({
     name: 'HighMemoryUsage',
@@ -323,9 +323,9 @@ export function registerDefaultAlertRules(): void {
  */
 export function createSlackChannel(webhookUrl: string): NotificationChannel {
   return async (alert: Alert) => {
-    const color = alert.severity === 'critical' ? 'danger' : 
+    const color = alert.severity === 'critical' ? 'danger' :
                   alert.severity === 'warning' ? 'warning' : 'good';
-    
+
     const payload = {
       attachments: [{
         color,
@@ -337,11 +337,11 @@ export function createSlackChannel(webhookUrl: string): NotificationChannel {
           { title: 'Source', value: alert.source, short: true },
           { title: 'Started', value: alert.startsAt.toISOString(), short: true },
         ],
-        footer: 'Ngurra Pathways Alerting',
+        footer: 'Nexta Alerting',
         ts: Math.floor(Date.now() / 1000),
       }],
     };
-    
+
     await fetch(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -374,7 +374,7 @@ ${Object.entries(alert.labels).map(([k, v]) => `  ${k}: ${v}`).join('\n')}
 Annotations:
 ${Object.entries(alert.annotations).map(([k, v]) => `  ${k}: ${v}`).join('\n')}
     `.trim();
-    
+
     await Promise.allSettled(
       recipients.map(to => sendEmail(to, subject, body))
     );
@@ -387,14 +387,14 @@ ${Object.entries(alert.annotations).map(([k, v]) => `  ${k}: ${v}`).join('\n')}
 export function createPagerDutyChannel(routingKey: string): NotificationChannel {
   return async (alert: Alert) => {
     const eventAction = alert.status === 'resolved' ? 'resolve' : 'trigger';
-    
+
     const payload = {
       routing_key: routingKey,
       event_action: eventAction,
       dedup_key: alert.fingerprint,
       payload: {
         summary: `${alert.name}: ${alert.message}`,
-        severity: alert.severity === 'critical' ? 'critical' : 
+        severity: alert.severity === 'critical' ? 'critical' :
                   alert.severity === 'warning' ? 'warning' : 'info',
         source: alert.source,
         timestamp: alert.startsAt.toISOString(),
@@ -404,7 +404,7 @@ export function createPagerDutyChannel(routingKey: string): NotificationChannel 
         },
       },
     };
-    
+
     await fetch('https://events.pagerduty.com/v2/enqueue', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -435,25 +435,25 @@ export function getAlertingMetrics(): string {
     '# HELP alerts_active Number of active alerts by severity',
     '# TYPE alerts_active gauge',
   ];
-  
+
   const activeByLevel = {
     critical: 0,
     warning: 0,
     info: 0,
   };
-  
+
   for (const alert of getActiveAlerts()) {
     activeByLevel[alert.severity]++;
   }
-  
+
   for (const [severity, count] of Object.entries(activeByLevel)) {
     lines.push(`alerts_active{severity="${severity}"} ${count}`);
   }
-  
+
   lines.push('# HELP alerts_total Total number of alerts fired');
   lines.push('# TYPE alerts_total counter');
   lines.push(`alerts_total ${alertHistory.length}`);
-  
+
   return lines.join('\n');
 }
 

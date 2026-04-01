@@ -1,7 +1,7 @@
 /**
  * Mentors Discovery Page
- * 
- * Browse and connect with mentors in the Ngurra Pathways community.
+ *
+ * Browse and connect with mentors in the Nexta community.
  */
 
 'use client';
@@ -159,7 +159,7 @@ function MentorCard({ mentor }: { mentor: Mentor }) {
           ⭐ Featured Mentor
         </div>
       )}
-      
+
       <div className="p-6">
         <div className="flex gap-4">
           {/* Avatar */}
@@ -186,7 +186,7 @@ function MentorCard({ mentor }: { mentor: Mentor }) {
                 <Link href={`/member/mentors/${mentor.id}`} className="text-lg font-semibold text-white hover:text-green-400 transition-colors">
                   {mentor.name}
                 </Link>
-                
+
                 {/* Cultural Identity */}
                 {mentor.culturalIdentity?.nation && (
                   <div className="flex items-center gap-2 mt-1">
@@ -215,7 +215,7 @@ function MentorCard({ mentor }: { mentor: Mentor }) {
             </div>
 
             <p className="text-slate-400 text-sm mt-1 line-clamp-1">{mentor.headline}</p>
-            
+
             {/* Location & Availability */}
             <div className="flex items-center gap-3 mt-2 text-sm">
               <span className="text-slate-500 flex items-center gap-1">

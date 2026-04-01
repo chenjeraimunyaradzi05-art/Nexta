@@ -12,5 +12,5 @@ CREATE EXTENSION IF NOT EXISTS "vector";  -- For AI semantic search (pgvector)
 -- Log that initialization is complete
 DO $$
 BEGIN
-  RAISE NOTICE 'Ngurra database initialized with extensions: uuid-ossp, pgcrypto, vector';
+  RAISE NOTICE 'Nexta database initialized with extensions: uuid-ossp, pgcrypto, vector';
 END $$;

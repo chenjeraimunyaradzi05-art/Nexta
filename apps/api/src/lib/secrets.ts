@@ -24,7 +24,7 @@ const secretCache = new Map();
 const SECRET_CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
 // Encryption key for local secret encryption
-const LOCAL_ENCRYPTION_KEY = process.env.LOCAL_SECRETS_KEY || 
+const LOCAL_ENCRYPTION_KEY = process.env.LOCAL_SECRETS_KEY ||
   crypto.randomBytes(32).toString('hex');
 
 /**
@@ -92,7 +92,7 @@ class SecretManager {
         endpoint: process.env.VAULT_ADDR || 'http://127.0.0.1:8200',
         token: process.env.VAULT_TOKEN,
       });
-      
+
       // Verify connection
       await this.vaultClient.health();
       logger.info('HashiCorp Vault initialized');
@@ -109,11 +109,11 @@ class SecretManager {
     try {
       const { DefaultAzureCredential } = await import('@azure/identity');
       const { SecretClient } = await import('@azure/keyvault-secrets');
-      
+
       const credential = new DefaultAzureCredential();
       const vaultName = process.env.AZURE_KEYVAULT_NAME;
       const vaultUrl = `https://${vaultName}.vault.azure.net`;
-      
+
       this.azureClient = new SecretClient(vaultUrl, credential);
       logger.info('Azure Key Vault initialized');
     } catch (error) {
@@ -142,7 +142,7 @@ class SecretManager {
    */
   async getSecret(name, options = {}) {
     const cacheKey = `${this.provider}:${name}`;
-    
+
     // Check cache first
     if (!options.skipCache) {
       const cached = secretCache.get(cacheKey);
@@ -190,7 +190,7 @@ class SecretManager {
       const response = await this.awsClient.send(
         new GetSecretValueCommand({ SecretId: name })
       );
-      
+
       if (response.SecretString) {
         return JSON.parse(response.SecretString);
       }
@@ -206,7 +206,7 @@ class SecretManager {
    */
   async getFromVault(name) {
     try {
-      const path = process.env.VAULT_SECRET_PATH || 'secret/data/ngurra';
+      const path = process.env.VAULT_SECRET_PATH || 'secret/data/nexta';
       const response = await this.vaultClient.read(`${path}/${name}`);
       return response.data.data;
     } catch (error) {
@@ -276,9 +276,9 @@ class SecretManager {
   async setInAWS(name, value, options = {}) {
     try {
       const { PutSecretValueCommand, CreateSecretCommand } = await import('@aws-sdk/client-secrets-manager');
-      
+
       const secretValue = typeof value === 'string' ? value : JSON.stringify(value);
-      
+
       try {
         await this.awsClient.send(new PutSecretValueCommand({
           SecretId: name,
@@ -289,16 +289,16 @@ class SecretManager {
           await this.awsClient.send(new CreateSecretCommand({
             Name: name,
             SecretString: secretValue,
-            Description: options.description || 'Ngurra Pathways secret',
+            Description: options.description || 'Nexta secret',
           }));
         } else {
           throw error;
         }
       }
-      
+
       // Invalidate cache
       secretCache.delete(`${this.provider}:${name}`);
-      
+
       logger.info('Secret stored in AWS', { name });
       return true;
     } catch (error) {
@@ -312,13 +312,13 @@ class SecretManager {
    */
   async setInVault(name, value, options = {}) {
     try {
-      const path = process.env.VAULT_SECRET_PATH || 'secret/data/ngurra';
+      const path = process.env.VAULT_SECRET_PATH || 'secret/data/nexta';
       await this.vaultClient.write(`${path}/${name}`, {
         data: typeof value === 'object' ? value : { value },
       });
-      
+
       secretCache.delete(`${this.provider}:${name}`);
-      
+
       logger.info('Secret stored in Vault', { name });
       return true;
     } catch (error) {
@@ -334,9 +334,9 @@ class SecretManager {
     try {
       const secretValue = typeof value === 'string' ? value : JSON.stringify(value);
       await this.azureClient.setSecret(name, secretValue);
-      
+
       secretCache.delete(`${this.provider}:${name}`);
-      
+
       logger.info('Secret stored in Azure', { name });
       return true;
     } catch (error) {
@@ -373,9 +373,9 @@ class SecretManager {
         parent: `projects/${this.gcpProject}/secrets/${name}`,
         payload: { data: payload },
       });
-      
+
       secretCache.delete(`${this.provider}:${name}`);
-      
+
       logger.info('Secret stored in GCP', { name });
       return true;
     } catch (error) {
@@ -390,7 +390,7 @@ class SecretManager {
   async rotateSecret(name, generator) {
     const newValue = await generator();
     await this.setSecret(name, newValue);
-    
+
     // Notify rotation callbacks
     const callbacks = this.rotationCallbacks.get(name) || [];
     for (const callback of callbacks) {
@@ -485,12 +485,12 @@ export function encryptLocal(value) {
   const iv = crypto.randomBytes(16);
   const key = Buffer.from(LOCAL_ENCRYPTION_KEY.slice(0, 32), 'hex');
   const cipher = crypto.createCipheriv('aes-256-gcm', key, iv);
-  
+
   let encrypted = cipher.update(value, 'utf8', 'hex');
   encrypted += cipher.final('hex');
-  
+
   const authTag = cipher.getAuthTag();
-  
+
   return `${iv.toString('hex')}:${authTag.toString('hex')}:${encrypted}`;
 }
 
@@ -499,17 +499,17 @@ export function encryptLocal(value) {
  */
 export function decryptLocal(encrypted) {
   const [ivHex, authTagHex, data] = encrypted.split(':');
-  
+
   const iv = Buffer.from(ivHex, 'hex');
   const authTag = Buffer.from(authTagHex, 'hex');
   const key = Buffer.from(LOCAL_ENCRYPTION_KEY.slice(0, 32), 'hex');
-  
+
   const decipher = crypto.createDecipheriv('aes-256-gcm', key, iv);
   decipher.setAuthTag(authTag);
-  
+
   let decrypted = decipher.update(data, 'hex', 'utf8');
   decrypted += decipher.final('utf8');
-  
+
   return decrypted;
 }
 

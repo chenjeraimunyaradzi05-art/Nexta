@@ -89,17 +89,17 @@ export default function TafeCourseManagement() {
 
   async function saveCourse() {
     try {
-      const url = editingCourse 
+      const url = editingCourse
         ? `${API_BASE}/courses/${editingCourse.id}`
         : `${API_BASE}/courses`;
-      
+
       // Transform form data to API format
       const payload = {
         ...form,
         price: form.price ? Math.round(parseFloat(form.price) * 100) : null,
         maxEnrolments: form.maxEnrolments ? parseInt(form.maxEnrolments, 10) : null
       };
-      
+
       const res = await fetch(url, {
         method: editingCourse ? 'PUT' : 'POST',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
@@ -117,10 +117,10 @@ export default function TafeCourseManagement() {
 
   if (!token) {
     return (
-      <div className="ngurra-page">
+      <div className="nexta-page">
         <div className="max-w-5xl mx-auto py-12 px-4">
-          <h1 className="ngurra-h1 mb-4">Course Management</h1>
-          <p className="ngurra-text">Please log in to manage courses.</p>
+          <h1 className="nexta-h1 mb-4">Course Management</h1>
+          <p className="nexta-text">Please log in to manage courses.</p>
         </div>
       </div>
     );
@@ -130,14 +130,14 @@ export default function TafeCourseManagement() {
     <div className="min-h-screen">
       {/* === HERO SECTION === */}
       <section className="relative overflow-hidden py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-pink-50/40 to-purple-50/40 dark:from-slate-900 dark:to-slate-800">
-        <div className="ngurra-halo-pink" />
-        <div className="ngurra-halo-purple" />
+        <div className="nexta-halo-pink" />
+        <div className="nexta-halo-purple" />
 
         <div className="relative max-w-5xl mx-auto">
           <Link href="/tafe/dashboard" className="text-pink-600 hover:text-pink-700 text-sm mb-4 inline-flex items-center gap-1 font-medium">
             ← Dashboard
           </Link>
-          
+
           <div className="flex justify-between items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.25em] text-pink-600 mb-2">Training Programs</p>
@@ -188,7 +188,7 @@ export default function TafeCourseManagement() {
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <Link 
+                  <Link
                     href={`/tafe/courses/${course.id}/enrolments`}
                     className="px-3 py-2 border-2 rounded-lg text-sm font-semibold transition-all hover:bg-slate-50" style={{ borderColor: '#94A3B8', color: '#475569' }}
                   >

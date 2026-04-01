@@ -20,9 +20,9 @@ const CAREER_INTERESTS = ['Construction', 'Community Services', 'Healthcare', 'M
 const LOCATIONS = ['Sydney, NSW', 'Melbourne, VIC', 'Brisbane, QLD', 'Perth, WA', 'Adelaide, SA', 'Darwin, NT', 'Cairns, QLD', 'Alice Springs, NT', 'Broome, WA', 'Dubbo, NSW'];
 
 async function main() {
-    console.log('🌏 Seeding Ngurra Pathways database...');
+    console.log('🌏 Seeding Nexta database...');
     console.log('========================================\n');
-    
+
     const pw = await bcryptjs_1.default.hash('password123', 10);
     // Create sample member user (idempotent)
     const member = await prisma.user.upsert({
@@ -51,8 +51,8 @@ async function main() {
     });
     const cprofile = await prisma.companyProfile.upsert({
         where: { userId: company.id },
-        update: { companyName: 'Ngurra Demo Co', abn: '123456789', industry: 'Construction', description: 'Demo company for seeding', website: 'https://example.com', phone: '07 5555 5555', hrEmail: 'hr@ngurra.example' },
-        create: { userId: company.id, companyName: 'Ngurra Demo Co', abn: '123456789', industry: 'Construction', description: 'Demo company for seeding', website: 'https://example.com', phone: '07 5555 5555', hrEmail: 'hr@ngurra.example' },
+        update: { companyName: 'Nexta Demo Co', abn: '123456789', industry: 'Construction', description: 'Demo company for seeding', website: 'https://example.com', phone: '07 5555 5555', hrEmail: 'hr@nexta.example' },
+        create: { userId: company.id, companyName: 'Nexta Demo Co', abn: '123456789', industry: 'Construction', description: 'Demo company for seeding', website: 'https://example.com', phone: '07 5555 5555', hrEmail: 'hr@nexta.example' },
     });
     console.log('Company seeded:', { company: company.email, companyProfileId: cprofile.id });
 
@@ -116,8 +116,8 @@ async function main() {
     });
     await prisma.institutionProfile.upsert({
         where: { userId: tafe.id },
-        update: { institutionName: 'Ngurra TAFE Campus', institutionType: 'TAFE', courses: 'Certificate III in Community Services; Short-course: Work readiness', phone: '07 6666 6666' },
-        create: { userId: tafe.id, institutionName: 'Ngurra TAFE Campus', institutionType: 'TAFE', courses: 'Certificate III in Community Services; Short-course: Work readiness', phone: '07 6666 6666' }
+        update: { institutionName: 'Nexta TAFE Campus', institutionType: 'TAFE', courses: 'Certificate III in Community Services; Short-course: Work readiness', phone: '07 6666 6666' },
+        create: { userId: tafe.id, institutionName: 'Nexta TAFE Campus', institutionType: 'TAFE', courses: 'Certificate III in Community Services; Short-course: Work readiness', phone: '07 6666 6666' }
     });
     console.log('Seeded tafe:', { email: tafe.email });
     // Create default email templates (idempotent)
@@ -225,11 +225,11 @@ async function main() {
         update: { subject: 'Interview scheduled', text: 'An interview has been scheduled', html: '<p>An interview has been scheduled</p>' },
         create: { key: 'interview_scheduled', subject: 'Interview scheduled', text: 'An interview has been scheduled', html: '<p>An interview has been scheduled</p>' },
     });
-    
+
     // ===== NEW SEED DATA FOR EXTENDED FEATURES =====
     // These features may not exist in all schema versions (e.g., SQLite vs PostgreSQL)
     // Wrap each in try-catch to gracefully skip missing models
-    
+
     // Seed Forum Categories
     try {
         console.log('Seeding forum categories...');
@@ -241,7 +241,7 @@ async function main() {
             { name: 'Success Stories', slug: 'success', description: 'Celebrate achievements and inspire others', icon: '🎉', color: 'pink', sortOrder: 5 },
             { name: 'Cultural Connections', slug: 'cultural', description: 'Share culture, stories, and community news', icon: '🌏', color: 'teal', sortOrder: 6 },
         ];
-        
+
         for (const cat of forumCategories) {
             await prisma.forumCategory.upsert({
                 where: { slug: cat.slug },
@@ -253,7 +253,7 @@ async function main() {
     } catch (e) {
         console.log('Skipping forum categories (model not available):', e.message);
     }
-    
+
     // Seed Badge Definitions
     try {
         console.log('Seeding badge definitions...');
@@ -266,7 +266,7 @@ async function main() {
             { id: 'badge-first-aid', name: 'First Aid', description: 'Current First Aid certification', imageUrl: '/badges/firstaid.svg', category: 'verification' },
             { id: 'badge-mentor-champion', name: 'Mentor Champion', description: 'Completed 20+ mentoring sessions', imageUrl: '/badges/mentor.svg', category: 'achievement' },
         ];
-        
+
         for (const badge of badges) {
             await prisma.badge.upsert({
                 where: { id: badge.id },
@@ -278,7 +278,7 @@ async function main() {
     } catch (e) {
         console.log('Skipping badge definitions (model not available):', e.message);
     }
-    
+
     // Seed Courses (TAFE/External Training)
     try {
         console.log('Seeding courses...');
@@ -290,7 +290,7 @@ async function main() {
             { id: 'course-forklift', title: 'Forklift License', providerName: 'Skill Set Training', description: 'High Risk Work License for forklift operation.', category: 'Trade', duration: '2 days', priceInCents: 45000, isOnline: false, skills: 'Forklift,Warehouse,Logistics', url: 'https://skillset.com.au' },
             { id: 'course-mental-health', title: 'Mental Health First Aid', providerName: 'Mental Health First Aid Australia', description: 'Learn to provide initial support to people experiencing mental health problems.', category: 'Health & Safety', duration: '2 days', priceInCents: 29500, isOnline: true, skills: 'Mental Health,First Aid,Community Support', url: 'https://mhfa.com.au' },
         ];
-        
+
         for (const course of courses) {
             await prisma.course.upsert({
                 where: { id: course.id },
@@ -302,7 +302,7 @@ async function main() {
     } catch (e) {
         console.log('Skipping courses (model not available):', e.message);
     }
-    
+
     // Seed Mentorship Circles
     try {
         console.log('Seeding mentorship circles...');
@@ -311,7 +311,7 @@ async function main() {
             { id: 'circle-tech-skills', name: 'Digital Skills Circle', description: 'Learn essential digital and computer skills for the modern workplace.', mentorId: mentor.id, topic: 'Technology', maxMembers: 8 },
             { id: 'circle-cultural', name: 'Cultural Leadership Circle', description: 'Develop cultural leadership skills and connect with community.', mentorId: mentor.id, topic: 'Cultural Leadership', maxMembers: 12 },
         ];
-        
+
         for (const circle of circles) {
             await prisma.mentorshipCircle.upsert({
                 where: { id: circle.id },
@@ -323,7 +323,7 @@ async function main() {
     } catch (e) {
         console.log('Skipping mentorship circles (model not available):', e.message);
     }
-    
+
     // Seed Impact Metrics
     try {
         console.log('Seeding impact metrics...');
@@ -333,7 +333,7 @@ async function main() {
             { id: 'metric-retention-6m', metric: 'RETENTION_6M', value: 78, period: 'QUARTERLY', recordedAt: new Date('2024-12-31') },
             { id: 'metric-training', metric: 'TRAINING_COMPLETIONS', value: 89, period: 'QUARTERLY', recordedAt: new Date('2024-12-31') },
         ];
-        
+
         for (const m of metrics) {
             await prisma.impactMetric.upsert({
                 where: { id: m.id },
@@ -345,15 +345,15 @@ async function main() {
     } catch (e) {
         console.log('Skipping impact metrics (model not available):', e.message);
     }
-    
+
     // Seed Success Stories
     try {
         console.log('Seeding success stories...');
         const stories = [
-            { id: 'story-1', memberId: mprofile.id, title: 'From Trainee to Team Leader', content: 'After completing the Certificate III program and getting matched with my mentor through Ngurra Pathways, I landed my first job in construction. Two years later, I am now a team leader!', isPublished: true, isFeatured: true },
+            { id: 'story-1', memberId: mprofile.id, title: 'From Trainee to Team Leader', content: 'After completing the Certificate III program and getting matched with my mentor through Nexta, I landed my first job in construction. Two years later, I am now a team leader!', isPublished: true, isFeatured: true },
             { id: 'story-2', memberId: mprofile.id, title: 'Finding My Path in Community Services', content: 'The mentorship program helped me discover my passion for helping others. I now work as a case worker supporting other First Nations families.', isPublished: true, isFeatured: false },
         ];
-        
+
         for (const story of stories) {
             await prisma.successStory.upsert({
                 where: { id: story.id },
@@ -365,7 +365,7 @@ async function main() {
     } catch (e) {
         console.log('Skipping success stories (model not available):', e.message);
     }
-    
+
     // Seed Mentor Availability
     try {
         console.log('Seeding mentor availability...');
@@ -374,7 +374,7 @@ async function main() {
             { id: 'avail-wed', mentorId: mentor.id, dayOfWeek: 3, startTime: '09:00', endTime: '17:00' },
             { id: 'avail-fri', mentorId: mentor.id, dayOfWeek: 5, startTime: '10:00', endTime: '14:00' },
         ];
-        
+
         for (const avail of availability) {
             await prisma.mentorAvailability.upsert({
                 where: { id: avail.id },
@@ -386,7 +386,7 @@ async function main() {
     } catch (e) {
         console.log('Skipping mentor availability (model not available):', e.message);
     }
-    
+
     // Seed Sample Mentor Sessions
     try {
         console.log('Seeding mentor sessions...');
@@ -394,7 +394,7 @@ async function main() {
             { id: 'session-1', mentorId: mentor.id, menteeId: mprofile.id, scheduledAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), duration: 60, status: 'scheduled', notes: 'Initial career planning session' },
             { id: 'session-2', mentorId: mentor.id, menteeId: mprofile.id, scheduledAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000), duration: 45, status: 'completed', feedback: 'Great session, very helpful advice on resume.', rating: 5 },
         ];
-        
+
         for (const session of sessions) {
             await prisma.mentorSession.upsert({
                 where: { id: session.id },
@@ -406,13 +406,13 @@ async function main() {
     } catch (e) {
         console.log('Skipping mentor sessions (model not available):', e.message);
     }
-    
+
     // Skip skills taxonomy (model doesn't exist)
     console.log('Skipping skills taxonomy (using skills field on courses instead)');
-    
+
     // Skip partners (model doesn't exist)
     console.log('Skipping partners seeding (model not available)');
-    
+
     console.log('===== Seed complete! =====');
 }
 main()

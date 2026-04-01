@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * User Data Export Route
- * 
+ *
  * Provides GDPR/Privacy Act compliant data export functionality.
  * Allows users to download all their personal data.
  */
@@ -15,7 +15,7 @@ const { queueEmail } = require('../lib/emailQueue');
 
 /**
  * POST /data-export/request
- * 
+ *
  * Request a data export. Creates an export job that runs asynchronously.
  */
 router.post('/request', authenticateJWT, async (req, res) => {
@@ -84,7 +84,7 @@ router.post('/request', authenticateJWT, async (req, res) => {
 
 /**
  * GET /data-export/status/:exportId
- * 
+ *
  * Check the status of a data export request.
  */
 router.get('/status/:exportId', authenticateJWT, async (req, res) => {
@@ -112,8 +112,8 @@ router.get('/status/:exportId', authenticateJWT, async (req, res) => {
       createdAt: exportRequest.createdAt,
       completedAt: exportRequest.completedAt,
       expiresAt: exportRequest.expiresAt,
-      downloadUrl: exportRequest.status === 'completed' 
-        ? `/data-export/download/${exportRequest.id}` 
+      downloadUrl: exportRequest.status === 'completed'
+        ? `/data-export/download/${exportRequest.id}`
         : null,
     });
   } catch (error) {
@@ -124,7 +124,7 @@ router.get('/status/:exportId', authenticateJWT, async (req, res) => {
 
 /**
  * GET /data-export/download/:exportId
- * 
+ *
  * Download a completed data export.
  */
 router.get('/download/:exportId', authenticateJWT, async (req, res) => {
@@ -162,13 +162,13 @@ router.get('/download/:exportId', authenticateJWT, async (req, res) => {
     });
 
     // Send the file
-    const filename = `ngurra-pathways-data-export-${new Date().toISOString().split('T')[0]}.${exportRequest.format}`;
-    
-    res.setHeader('Content-Type', exportRequest.format === 'json' 
-      ? 'application/json' 
+    const filename = `nexta-data-export-${new Date().toISOString().split('T')[0]}.${exportRequest.format}`;
+
+    res.setHeader('Content-Type', exportRequest.format === 'json'
+      ? 'application/json'
       : 'application/zip');
     res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
-    
+
     // Stream from storage or send data
     res.send(exportRequest.data);
   } catch (error) {
@@ -179,7 +179,7 @@ router.get('/download/:exportId', authenticateJWT, async (req, res) => {
 
 /**
  * GET /data-export/history
- * 
+ *
  * Get user's export history.
  */
 router.get('/history', authenticateJWT, async (req, res) => {
@@ -280,11 +280,11 @@ async function processDataExport(exportId) {
         if (user.email) {
           await queueEmail({
             to: user.email,
-            subject: 'Your Data Export is Ready - Ngurra Pathways',
+            subject: 'Your Data Export is Ready - Nexta',
             template: 'data-export-ready',
             templateData: {
               recipientName: user.firstName || 'there',
-              exportUrl: `${process.env.WEB_URL || 'https://ngurrapathways.com.au'}/settings/privacy/exports/${exportId}`,
+              exportUrl: `${process.env.WEB_URL || 'https://nexta.com.au'}/settings/privacy/exports/${exportId}`,
               expiresAt: expiresAt.toLocaleDateString('en-AU', {
                 weekday: 'long',
                 year: 'numeric',
@@ -304,7 +304,7 @@ async function processDataExport(exportId) {
     console.log(`[DataExport] Export ${exportId} completed`);
   } catch (error) {
     console.error(`[DataExport] Processing error for ${exportId}:`, error);
-    
+
     await prisma.dataExport.update({
       where: { id: exportId },
       data: { status: 'failed' },
@@ -424,7 +424,7 @@ async function collectUserData(userId, includeUploads = false) {
 
   return {
     exportDate: new Date().toISOString(),
-    exportFormat: 'Ngurra Pathways Data Export v1.0',
+    exportFormat: 'Nexta Data Export v1.0',
     user,
     applications: applications.map((a) => ({
       id: a.id,

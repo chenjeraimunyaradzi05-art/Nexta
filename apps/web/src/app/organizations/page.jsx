@@ -11,7 +11,7 @@ export default function OrganizationsPage() {
   // Theme colors
   const accentPink = '#E91E8C';
   const accentPurple = '#8B5CF6';
-  
+
   const [activeType, setActiveType] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -134,10 +134,10 @@ export default function OrganizationsPage() {
   const followingOrgs = organizations.filter(o => o.isFollowing);
 
   return (
-    <div className="ngurra-page pt-24 pb-20 relative overflow-hidden">
+    <div className="nexta-page pt-24 pb-20 relative overflow-hidden">
       {/* Decorative halos */}
-      <div className="ngurra-halo-pink" />
-      <div className="ngurra-halo-purple" />
+      <div className="nexta-halo-pink" />
+      <div className="nexta-halo-purple" />
 
       <div className="container mx-auto px-4 relative">
         {/* Header */}
@@ -145,7 +145,7 @@ export default function OrganizationsPage() {
           <div className="flex items-center justify-between mb-6">
             <div>
               <h1 className="text-3xl md:text-4xl font-bold mb-2">
-                <span 
+                <span
                   className="text-transparent bg-clip-text"
                   style={{ backgroundImage: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)` }}
                 >
@@ -200,13 +200,13 @@ export default function OrganizationsPage() {
             </h2>
             <div className="grid md:grid-cols-4 gap-4">
               {followingOrgs.map(org => (
-                <Link 
-                  key={org.id} 
+                <Link
+                  key={org.id}
                   href={`/organizations/${org.id}`}
                   className="bg-white border border-slate-200 rounded-xl p-4 hover:border-pink-300 transition-all group text-center"
                   style={{ boxShadow: '0 4px 20px rgba(15, 23, 42, 0.06)' }}
                 >
-                  <div 
+                  <div
                     className="w-16 h-16 mx-auto rounded-xl flex items-center justify-center text-3xl mb-3 group-hover:scale-110 transition-transform"
                     style={{ background: 'linear-gradient(135deg, rgba(233, 30, 140, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%)' }}
                   >
@@ -228,19 +228,19 @@ export default function OrganizationsPage() {
             <span style={{ color: accentPink }}>✨</span>
             {activeType === 'all' ? 'Discover Organizations' : orgTypes.find(t => t.id === activeType)?.label}
           </h2>
-          
+
           {filteredOrgs.length === 0 ? (
-            <div 
+            <div
               className="bg-white border border-slate-200 rounded-xl p-12 text-center"
               style={{ boxShadow: '0 4px 20px rgba(15, 23, 42, 0.06)' }}
             >
               <span className="text-5xl mb-4 block">🔍</span>
               <h3 className="text-xl font-medium text-slate-800 mb-2">No organizations found</h3>
               <p className="text-slate-500 mb-6">Try adjusting your search or browse different categories</p>
-              <button 
+              <button
                 onClick={() => { setSearchQuery(''); setActiveType('all'); }}
                 className="px-6 py-2 rounded-full text-sm text-white font-medium transition-all hover:opacity-90"
-                style={{ 
+                style={{
                   background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)`,
                   boxShadow: '0 4px 12px rgba(233, 30, 140, 0.3)'
                 }}
@@ -251,20 +251,20 @@ export default function OrganizationsPage() {
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredOrgs.map(org => (
-                <Link 
+                <Link
                   key={org.id}
                   href={`/organizations/${org.id}`}
                   className="bg-white border border-slate-200 rounded-xl p-5 hover:border-pink-300 transition-all group"
                   style={{ boxShadow: '0 4px 20px rgba(15, 23, 42, 0.06)' }}
                 >
                   <div className="flex items-start gap-4">
-                    <div 
+                    <div
                       className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 group-hover:scale-110 transition-transform"
                       style={{ background: 'linear-gradient(135deg, rgba(233, 30, 140, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%)' }}
                     >
                       {org.logo}
                     </div>
-                    
+
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         <h3 className="font-semibold text-slate-800 truncate">{org.name}</h3>
@@ -272,7 +272,7 @@ export default function OrganizationsPage() {
                           <span style={{ color: accentPink }} className="text-sm">✓✓</span>
                         )}
                       </div>
-                      
+
                       <div className="flex flex-wrap gap-1 mb-2">
                         <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
                           {orgTypes.find(t => t.id === org.type)?.label}
@@ -288,14 +288,14 @@ export default function OrganizationsPage() {
                           </span>
                         )}
                       </div>
-                      
+
                       <p className="text-sm text-slate-500 line-clamp-2 mb-3">{org.tagline}</p>
-                      
+
                       <div className="flex items-center justify-between text-sm">
                         <span className="text-slate-400">
                           👥 {org.followerCount.toLocaleString()} followers
                         </span>
-                        
+
                         {org.jobCount > 0 && (
                           <span style={{ color: accentPink }}>
                             💼 {org.jobCount} jobs
@@ -304,19 +304,19 @@ export default function OrganizationsPage() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
                     <span className="text-xs text-slate-400">📍 {org.location}</span>
-                    
+
                     {org.isFollowing ? (
-                      <span 
+                      <span
                         className="text-sm px-4 py-1.5 rounded-full text-white"
                         style={{ background: accentPurple }}
                       >
                         Following ✓
                       </span>
                     ) : (
-                      <span 
+                      <span
                         className="text-sm px-4 py-1.5 rounded-full group-hover:opacity-90 transition-opacity"
                         style={{ background: 'rgba(233, 30, 140, 0.15)', color: accentPink }}
                       >

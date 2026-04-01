@@ -62,8 +62,8 @@ test.describe('Phase 8A - Mentorship', () => {
 
     await page.goto(webBase);
     await page.evaluate(([t]) => {
-      localStorage.setItem('ngurra_token', t);
-      document.cookie = `ngurra_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`;
+      localStorage.setItem('nexta_token', t);
+      document.cookie = `nexta_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`;
     }, [member.token]);
 
     await page.goto(`${webBase}/mentorship/request/${mentorId}`);
@@ -109,8 +109,8 @@ test.describe('Phase 8A - Mentorship', () => {
 
     await page.goto(webBase);
     await page.evaluate(([t]) => {
-      localStorage.setItem('ngurra_token', t);
-      document.cookie = `ngurra_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`;
+      localStorage.setItem('nexta_token', t);
+      document.cookie = `nexta_token=${t}; path=/; max-age=${7 * 24 * 60 * 60}`;
     }, [mentor.token]);
 
     await page.goto(`${webBase}/mentor/requests`);

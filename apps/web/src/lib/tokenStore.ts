@@ -1,11 +1,11 @@
 /**
  * Secure Token Storage
- * 
+ *
  * SECURITY: Stores access tokens in memory instead of localStorage to prevent XSS attacks.
  * - Access tokens are short-lived and stored only in memory
  * - Refresh tokens are stored in HttpOnly cookies (set by server)
  * - On page reload, the token is refreshed via the HttpOnly cookie
- * 
+ *
  * This approach ensures:
  * 1. XSS attacks cannot steal access tokens from localStorage
  * 2. Refresh tokens are never accessible to JavaScript
@@ -59,10 +59,10 @@ export function clearTokens(): void {
   accessToken = null;
   tokenExpiry = null;
   stopIdleTimer();
-  
+
   // Clear legacy tokens from older versions
   if (typeof window !== 'undefined') {
-    localStorage.removeItem('ngurra_token');
+    localStorage.removeItem('nexta_token');
   }
 }
 
@@ -127,7 +127,7 @@ export async function refreshAccessToken(): Promise<string | null> {
  */
 export async function initializeAuth(): Promise<boolean> {
   if (typeof window !== 'undefined') {
-    localStorage.removeItem('ngurra_token');
+    localStorage.removeItem('nexta_token');
   }
   // If we already have a token in memory, we're good
   if (hasValidToken()) {
@@ -148,11 +148,11 @@ export function setSessionExpiredCallback(callback: SessionExpiredCallback): voi
  */
 function resetIdleTimer(): void {
   lastActivityTime = Date.now();
-  
+
   if (idleTimeoutId) {
     clearTimeout(idleTimeoutId);
   }
-  
+
   if (accessToken) {
     idleTimeoutId = setTimeout(() => {
       clearTokens();

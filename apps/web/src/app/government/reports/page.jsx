@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 /**
  * Government Reports Page
- * 
+ *
  * View and download compliance reports aligned with Closing the Gap.
  * Supports quarterly and annual reporting periods.
  */
@@ -143,7 +143,7 @@ function ReportDetailModal({ report, onClose, onDownload }) {
           </div>
           {/* Print header */}
           <div className="hidden print:block mt-2">
-            <p className="text-sm text-gray-500">Ngurra Pathways - Closing the Gap Compliance Report</p>
+            <p className="text-sm text-gray-500">Nexta - Closing the Gap Compliance Report</p>
             <p className="text-sm text-gray-500">Generated: {new Date().toLocaleDateString('en-AU')}</p>
           </div>
         </div>

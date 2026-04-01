@@ -1,6 +1,6 @@
 /**
  * Crash Reporting and Analytics Service for React Native
- * 
+ *
  * Integrates with Sentry for crash reporting and performance monitoring.
  */
 import * as Sentry from '@sentry/react-native';
@@ -23,19 +23,19 @@ export function initCrashReporting() {
   Sentry.init({
     dsn: SENTRY_DSN,
     environment: ENVIRONMENT,
-    release: `ngurra-pathways-mobile@${APP_VERSION}`,
-    
+    release: `nexta-mobile@${APP_VERSION}`,
+
     // Performance monitoring
     tracesSampleRate: ENVIRONMENT === 'production' ? 0.2 : 1.0,
-    
+
     // Session tracking
     enableAutoSessionTracking: true,
     sessionTrackingIntervalMillis: 30000,
-    
+
     // Additional options
     enableNativeCrashHandling: true,
     attachStacktrace: true,
-    
+
     // Before sending events
     beforeSend(event, hint) {
       // Filter out events in development
@@ -43,13 +43,13 @@ export function initCrashReporting() {
         console.log('[Sentry] Would send event:', event.message || event.exception);
         return null;
       }
-      
+
       // Scrub sensitive data
       if (event.user) {
         delete event.user.email;
         delete event.user.ip_address;
       }
-      
+
       return event;
     },
   });

@@ -14,7 +14,7 @@ scrape_configs:
       - targets:
           - localhost
         labels:
-          job: ngurra-api
+          job: nexta-api
           __path__: /var/log/api/*.log
 
   - job_name: system

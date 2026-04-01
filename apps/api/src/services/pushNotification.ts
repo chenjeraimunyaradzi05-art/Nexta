@@ -1,6 +1,6 @@
 /**
  * Push Notification Service
- * 
+ *
  * Handles:
  * - Firebase Cloud Messaging (FCM) for Android
  * - Apple Push Notification Service (APNS) for iOS
@@ -141,7 +141,7 @@ const NOTIFICATION_TEMPLATES: Record<string, { title: string; body: string }> = 
     body: 'Complete your profile to unlock more opportunities',
   },
   welcome: {
-    title: 'Welcome to Ngurra Pathways! 🌿',
+    title: 'Welcome to Nexta! 🌿',
     body: 'Start exploring opportunities and connect with your community',
   },
 };
@@ -542,10 +542,10 @@ class PushNotificationService {
    */
   async processScheduledNotifications(): Promise<void> {
     const now = Date.now();
-    
+
     // Get all notifications due
     const dueIds = await redisCache.zrangebyscore('push:scheduled', 0, now);
-    
+
     if (!dueIds || dueIds.length === 0) return;
 
     for (const scheduledId of dueIds) {

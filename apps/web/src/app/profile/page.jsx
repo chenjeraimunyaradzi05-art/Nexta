@@ -3,11 +3,11 @@
 import { API_BASE } from '@/lib/apiBase';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { 
-  User, 
-  Mail, 
-  Phone, 
-  MapPin, 
+import {
+  User,
+  Mail,
+  Phone,
+  MapPin,
   Camera,
   Save,
   ArrowLeft,
@@ -134,7 +134,7 @@ export default function ProfilePage() {
 
   if (loading) {
     return (
-      <div className="ngurra-page flex items-center justify-center">
+      <div className="nexta-page flex items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-2 border-pink-200 border-t-pink-600" />
       </div>
     );
@@ -142,8 +142,8 @@ export default function ProfilePage() {
 
   if (!token) {
     return (
-      <div className="ngurra-page flex items-center justify-center px-4">
-        <div className="text-center ngurra-card p-8">
+      <div className="nexta-page flex items-center justify-center px-4">
+        <div className="text-center nexta-card p-8">
           <h1 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">Please Sign In</h1>
           <p className="text-slate-500 dark:text-slate-400 mb-6">Sign in to edit your profile details.</p>
           <Link
@@ -159,11 +159,11 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="ngurra-page py-12 px-4">
+    <div className="nexta-page py-12 px-4">
       {/* Decorative Halos */}
-      <div className="ngurra-halos">
-        <div className="ngurra-halo-pink" />
-        <div className="ngurra-halo-purple" />
+      <div className="nexta-halos">
+        <div className="nexta-halo-pink" />
+        <div className="nexta-halo-purple" />
       </div>
 
       <div className="max-w-3xl mx-auto relative z-10">
@@ -179,7 +179,7 @@ export default function ProfilePage() {
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
           <div className="relative">
-            <div 
+            <div
               className="w-20 h-20 bg-white rounded-full flex items-center justify-center border-2"
               style={{ borderColor: accentPink }}
             >
@@ -452,7 +452,7 @@ export default function ProfilePage() {
               type="submit"
               disabled={saving}
               className="inline-flex items-center gap-2 text-white font-medium rounded-lg px-6 py-3 transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-              style={{ 
+              style={{
                 background: `linear-gradient(135deg, ${accentPink} 0%, ${accentPurple} 100%)`,
                 boxShadow: '0 4px 12px rgba(233, 30, 140, 0.3)'
               }}

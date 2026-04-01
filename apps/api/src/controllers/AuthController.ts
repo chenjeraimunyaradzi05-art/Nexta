@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * Authentication Controller
- * 
+ *
  * Handles user registration, login, logout, and token refresh.
  * Business logic extracted from routes/auth.ts
  */
@@ -31,15 +31,15 @@ const loginSchema = z.object({
 // Secure JWT secret handling
 function getJwtSecret(): string {
   const secret = process.env.JWT_SECRET || process.env.DEV_JWT_SECRET;
-  
+
   if (!secret) {
     if (process.env.NODE_ENV === 'production') {
       throw new Error('FATAL: JWT_SECRET must be set in production');
     }
     console.warn('⚠️  Using development JWT secret - set JWT_SECRET for production!');
-    return 'ngurra-dev-secret-minimum-32-chars';
+    return 'nexta-dev-secret-minimum-32-chars';
   }
-  
+
   return secret;
 }
 
@@ -182,7 +182,7 @@ class AuthController extends BaseController {
   logout = asyncHandler(async (req: Request, res: Response) => {
     // JWT is stateless, so logout is handled client-side
     // In future, could add token to blocklist in Redis
-    
+
     const user = this.getUser(req);
     if (user) {
       logger.info('User logged out', { userId: user.id });

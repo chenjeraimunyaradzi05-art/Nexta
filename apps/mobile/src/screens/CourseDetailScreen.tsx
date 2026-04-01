@@ -94,10 +94,10 @@ function ModuleItem({ module, index, isLocked }: { module: Module; index: number
           {module.title}
         </Text>
         <View style={styles.moduleMeta}>
-          <Ionicons 
-            name={isLocked ? 'lock-closed' : 'time-outline'} 
-            size={14} 
-            color={colors.textMuted} 
+          <Ionicons
+            name={isLocked ? 'lock-closed' : 'time-outline'}
+            size={14}
+            color={colors.textMuted}
           />
           <Text style={styles.moduleMetaText}>
             {isLocked ? 'Enroll to access' : module.duration}
@@ -160,7 +160,7 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
   const [loading, setLoading] = useState(true);
   const [enrolling, setEnrolling] = useState(false);
   const [saved, setSaved] = useState(false);
-  
+
   // Fetch course details
   useEffect(() => {
     const fetchCourse = async () => {
@@ -177,10 +177,10 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
         setLoading(false);
       }
     };
-    
+
     fetchCourse();
   }, [courseId, navigation]);
-  
+
   // Handle enrollment
   const handleEnroll = async () => {
     if (!course) return;
@@ -189,7 +189,7 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
       await coursesApi.enroll(courseId);
       setCourse(prev => prev ? ({ ...prev, isEnrolled: true, progress: 0 }) : null);
       Alert.alert(
-        'Enrolled!', 
+        'Enrolled!',
         `You've successfully enrolled in ${course.title}. Start learning now!`,
         [{ text: 'Start Learning', onPress: () => {} }]
       );
@@ -200,7 +200,7 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
       setEnrolling(false);
     }
   };
-  
+
   // Handle unenrollment
   const handleUnenroll = () => {
     Alert.alert(
@@ -208,8 +208,8 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
       'Are you sure you want to unenroll? Your progress will be saved.',
       [
         { text: 'Cancel', style: 'cancel' },
-        { 
-          text: 'Unenroll', 
+        {
+          text: 'Unenroll',
           style: 'destructive',
           onPress: async () => {
             try {
@@ -223,7 +223,7 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
       ]
     );
   };
-  
+
   // Handle save
   const handleSave = async () => {
     try {
@@ -237,20 +237,20 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
       console.error('Failed to save course:', error);
     }
   };
-  
+
   // Handle share
   const handleShare = async () => {
     if (!course) return;
     try {
       await Share.share({
-        message: `Check out this course: ${course.title} on Ngurra Pathways`,
-        url: `https://ngurrapathways.com.au/courses/${courseId}`,
+        message: `Check out this course: ${course.title} on Nexta`,
+        url: `https://nexta.com.au/courses/${courseId}`,
       });
     } catch (error) {
       console.error('Failed to share:', error);
     }
   };
-  
+
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
@@ -258,35 +258,35 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
       </View>
     );
   }
-  
+
   if (!course) {
     return null;
   }
-  
+
   return (
     <View style={styles.container}>
-      <ScrollView 
+      <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
         {/* Course Image */}
         {course.imageUrl && (
-          <Image 
-            source={{ uri: course.imageUrl }} 
+          <Image
+            source={{ uri: course.imageUrl }}
             style={styles.courseImage}
             resizeMode="cover"
           />
         )}
-        
+
         {/* Course Header */}
         <View style={styles.header}>
           <View style={styles.categoryBadge}>
             <Text style={styles.categoryText}>{course.category}</Text>
           </View>
-          
+
           <Text style={styles.title}>{course.title}</Text>
-          
+
           <View style={styles.metaRow}>
             <View style={styles.metaItem}>
               <Ionicons name="time-outline" size={16} color={colors.textMuted} />
@@ -301,27 +301,27 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
               <Text style={styles.metaText}>{course.enrolled} enrolled</Text>
             </View>
           </View>
-          
+
           {/* Progress (if enrolled) */}
           {course.isEnrolled && (
             <ProgressBar progress={course.progress || 0} />
           )}
         </View>
-        
+
         {/* Action Buttons */}
         <View style={styles.actionRow}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.actionButton}
             onPress={handleSave}
             accessibilityLabel={saved ? 'Remove from saved' : 'Save course'}
           >
-            <Ionicons 
-              name={saved ? 'bookmark' : 'bookmark-outline'} 
-              size={24} 
-              color={saved ? colors.primary : colors.text} 
+            <Ionicons
+              name={saved ? 'bookmark' : 'bookmark-outline'}
+              size={24}
+              color={saved ? colors.primary : colors.text}
             />
           </TouchableOpacity>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.actionButton}
             onPress={handleShare}
             accessibilityLabel="Share course"
@@ -329,13 +329,13 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
             <Ionicons name="share-outline" size={24} color={colors.text} />
           </TouchableOpacity>
         </View>
-        
+
         {/* About Section */}
         <View style={styles.section}>
           <SectionHeader title="About this course" icon="information-circle-outline" />
           <Text style={styles.description}>{course.description}</Text>
         </View>
-        
+
         {/* What You'll Learn */}
         {course.learningOutcomes && course.learningOutcomes.length > 0 && (
           <View style={styles.section}>
@@ -348,7 +348,7 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
             ))}
           </View>
         )}
-        
+
         {/* Prerequisites */}
         {course.prerequisites && course.prerequisites.length > 0 && (
           <View style={styles.section}>
@@ -360,7 +360,7 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
             ))}
           </View>
         )}
-        
+
         {/* Course Content */}
         <View style={styles.section}>
           <SectionHeader title="Course content" icon="book-outline" />
@@ -368,7 +368,7 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
             {course.modules?.length || 0} modules
           </Text>
           {course.modules?.map((module, index) => (
-            <ModuleItem 
+            <ModuleItem
               key={module.id || index}
               module={module}
               index={index}
@@ -376,7 +376,7 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
             />
           ))}
         </View>
-        
+
         {/* Instructor */}
         {course.instructor && (
           <View style={styles.section}>
@@ -384,7 +384,7 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
             <InstructorCard instructor={course.instructor} />
           </View>
         )}
-        
+
         {/* Cultural Context */}
         {course.culturalContext && (
           <View style={styles.section}>
@@ -394,7 +394,7 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
             </View>
           </View>
         )}
-        
+
         {/* Certification */}
         {course.certification && (
           <View style={styles.section}>
@@ -410,16 +410,16 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
             </View>
           </View>
         )}
-        
+
         {/* Bottom Padding */}
         <View style={{ height: 100 }} />
       </ScrollView>
-      
+
       {/* Enrollment Footer */}
       <View style={styles.footer}>
         {course.isEnrolled ? (
           <View style={styles.enrolledFooter}>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.continueButton}
               onPress={() => {
                 // Navigate to continue learning
@@ -428,7 +428,7 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
               <Ionicons name="play" size={20} color={colors.text} />
               <Text style={styles.continueText}>Continue Learning</Text>
             </TouchableOpacity>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.unenrollButton}
               onPress={handleUnenroll}
             >
@@ -449,7 +449,7 @@ export default function CourseDetailScreen({ route, navigation }: Props) {
                 </>
               )}
             </View>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.enrollButton}
               onPress={handleEnroll}
               disabled={enrolling}
