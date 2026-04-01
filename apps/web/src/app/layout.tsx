@@ -1,10 +1,9 @@
 import './globals.css';
 import dynamic from 'next/dynamic';
-import { Inter } from 'next/font/google';
+import { inter, plusJakarta } from './fonts';
 import HeaderNavigation from '../components/HeaderNavigation';
 import { Providers } from '../components/Providers';
 
-const inter = Inter({ subsets: ['latin'] });
 const PartnershipModuleWrapper = dynamic(() => import('../components/PartnershipModuleWrapper'));
 const Footer = dynamic(() => import('../components/Footer'));
 const CookieConsent = dynamic(() => import('../components/CookieConsent'));
@@ -131,7 +130,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   };
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${inter.variable} ${plusJakarta.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <link rel="apple-touch-icon" href="/favicon.svg" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -163,9 +166,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body
-        className={`${inter.className} min-h-screen flex flex-col bg-white dark:bg-gray-900 cosmic:bg-cosmic-dark text-gray-900 dark:text-slate-50 cosmic:text-slate-50 transition-colors duration-200`}
-      >
+      <body className="min-h-screen flex flex-col bg-white dark:bg-gray-900 cosmic:bg-cosmic-dark text-gray-900 dark:text-slate-50 cosmic:text-slate-50 transition-colors duration-200">
         {/* Celestial background layers - only visible in cosmic mode */}
         <div
           className="fixed inset-0 pointer-events-none opacity-0 cosmic:opacity-80 transition-opacity duration-300"

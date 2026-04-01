@@ -1,11 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './src/**/*.{js,jsx,ts,tsx}',
-  ],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        heading: ['var(--font-heading)', 'system-ui', 'sans-serif'],
+        body: ['var(--font-body)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-body)', 'system-ui', 'sans-serif'],
+      },
       colors: {
         // Core Brand Colors (mapped from general.css / style.css)
         primary: {
@@ -22,7 +25,7 @@ module.exports = {
           DEFAULT: '#050816',
           dark: '#020617', // darkened based on rgba(2,6,23,0.92)
         },
-        
+
         // Aura Theme Components
         aura: {
           pink: '#ec4899',
@@ -54,7 +57,7 @@ module.exports = {
           light: '#3D2E6B',
           lighter: '#4C1D95',
           // Mapped from css vars
-          deep: '#1A0F2E', 
+          deep: '#1A0F2E',
           purple: '#2D1B69',
           maroon: '#3D1A2A',
         },
@@ -129,7 +132,7 @@ module.exports = {
   },
   plugins: [
     // Add cosmic: variant for the cosmic theme
-    function({ addVariant }) {
+    function ({ addVariant }) {
       addVariant('cosmic', '.cosmic &');
     },
   ],

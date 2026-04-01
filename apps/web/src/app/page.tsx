@@ -78,7 +78,12 @@ const productSuite = [
     tagline: 'From idea to income - with the right tools.',
     description:
       'Business setup guidance, templates, invoicing, cashbook support, documents, grants, and compliance-ready workflows.',
-    bullets: ['Business setup guidance', 'Templates and documents', 'Invoicing and cashbook', 'Grants and resources'],
+    bullets: [
+      'Business setup guidance',
+      'Templates and documents',
+      'Invoicing and cashbook',
+      'Grants and resources',
+    ],
   },
   {
     icon: MessageSquare,
@@ -105,11 +110,13 @@ const partnerActions = [
 ];
 
 const deckSlides = [
-  { title: 'Slide 1 - Title', body: 'Nexta. The pathway platform for opportunity and economic progress.' },
+  {
+    title: 'Slide 1 - Title',
+    body: 'Nexta. The pathway platform for opportunity and economic progress.',
+  },
   {
     title: 'Slide 2 - The Problem',
-    body:
-      'Opportunity is fragmented, people drop off after discovery, and organisations struggle to measure outcomes beyond views and applications.',
+    body: 'Opportunity is fragmented, people drop off after discovery, and organisations struggle to measure outcomes beyond views and applications.',
   },
   {
     title: 'Slide 3 - The Insight',
@@ -117,58 +124,47 @@ const deckSlides = [
   },
   {
     title: 'Slide 4 - The Solution',
-    body:
-      'Nexta unifies discovery, readiness, application, support, retention, progression, and independence in one guided platform.',
+    body: 'Nexta unifies discovery, readiness, application, support, retention, progression, and independence in one guided platform.',
   },
   {
     title: 'Slide 5 - Product Overview',
-    body:
-      'Jobs and career pathways, learning, mentors, community, AI guidance, business tools, financial wellbeing, housing and stability, plus employer and program dashboards.',
+    body: 'Jobs and career pathways, learning, mentors, community, AI guidance, business tools, financial wellbeing, housing and stability, plus employer and program dashboards.',
   },
   {
     title: 'Slide 6 - Why Now',
-    body:
-      'AI disruption, skills transitions, cost-of-living pressure, and partner demand for measurable outcomes make a connected platform timely.',
+    body: 'AI disruption, skills transitions, cost-of-living pressure, and partner demand for measurable outcomes make a connected platform timely.',
   },
   {
     title: 'Slide 7 - Who It Is For',
-    body:
-      'Individuals, mentors, employers, education providers, and government or enterprise partners running programs.',
+    body: 'Individuals, mentors, employers, education providers, and government or enterprise partners running programs.',
   },
   {
     title: 'Slide 8 - Differentiation',
-    body:
-      'Pathway-based, whole-of-life support, ecosystem workflows, user agency, and AI focused on next steps instead of empty chat.',
+    body: 'Pathway-based, whole-of-life support, ecosystem workflows, user agency, and AI focused on next steps instead of empty chat.',
   },
   {
     title: 'Slide 9 - Business Model',
-    body:
-      'Freemium consumer tools, employer seats and analytics, program deployments, outcome reporting, and verified marketplace services.',
+    body: 'Freemium consumer tools, employer seats and analytics, program deployments, outcome reporting, and verified marketplace services.',
   },
   {
     title: 'Slide 10 - Go To Market',
-    body:
-      'Start with jobs, learning, and guidance. Expand through employers, providers, and partners. Deepen retention with pathways, mentors, and community.',
+    body: 'Start with jobs, learning, and guidance. Expand through employers, providers, and partners. Deepen retention with pathways, mentors, and community.',
   },
   {
     title: 'Slide 11 - Traction',
-    body:
-      'A flexible slide for shipped modules, active cohorts, partner pilots, engagement, retention, and case studies as you add real numbers.',
+    body: 'A flexible slide for shipped modules, active cohorts, partner pilots, engagement, retention, and case studies as you add real numbers.',
   },
   {
     title: 'Slide 12 - Roadmap',
-    body:
-      'Personalised pathways, stronger radar, marketplace expansion, procurement workflows, messaging, notifications, trust tooling, and analytics.',
+    body: 'Personalised pathways, stronger radar, marketplace expansion, procurement workflows, messaging, notifications, trust tooling, and analytics.',
   },
   {
     title: 'Slide 13 - Team',
-    body:
-      'Founder story, engineering and product capability, and advisors or domain partners as the team grows.',
+    body: 'Founder story, engineering and product capability, and advisors or domain partners as the team grows.',
   },
   {
     title: 'Slide 14 - The Ask',
-    body:
-      'Funding range, what it unlocks, phased milestones, and the contact path for investors and strategic partners.',
+    body: 'Funding range, what it unlocks, phased milestones, and the contact path for investors and strategic partners.',
   },
 ];
 
@@ -250,7 +246,7 @@ export default function HomePage() {
             </div>
 
             <div className="space-y-5">
-              <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
+              <h1 className="max-w-4xl font-heading text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
                 Nexta helps you take the next step &mdash; and the step after that.
               </h1>
               <p className="max-w-3xl text-lg leading-8 text-slate-700 sm:text-xl">
@@ -317,7 +313,7 @@ export default function HomePage() {
                   <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700">
                     Mobile Hero
                   </p>
-                  <h2 className="mt-2 text-2xl font-bold text-slate-950">
+                  <h2 className="mt-2 font-heading text-2xl font-bold text-slate-950">
                     Nexta &mdash; your next step, in your pocket.
                   </h2>
                 </div>
@@ -326,8 +322,8 @@ export default function HomePage() {
                 </div>
               </div>
               <p className="text-sm leading-7 text-slate-600">
-                Discover opportunities, build skills, get guidance, and track your progress
-                wherever you are.
+                Discover opportunities, build skills, get guidance, and track your progress wherever
+                you are.
               </p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {mobileFeatureChips.map((chip) => (
@@ -354,7 +350,7 @@ export default function HomePage() {
                 <LineChart className="h-4 w-4" />
                 In-App Home
               </div>
-              <h3 className="mt-3 text-2xl font-bold">
+              <h3 className="mt-3 font-heading text-2xl font-bold">
                 Welcome back &mdash; ready for your next step?
               </h3>
               <div className="mt-5 rounded-2xl bg-white/10 p-4">
@@ -389,7 +385,7 @@ export default function HomePage() {
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-700">
             Platform Pathways
           </p>
-          <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+          <h2 className="font-heading text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
             The full pathway, not just a feature list.
           </h2>
           <p className="text-lg leading-8 text-slate-600">
@@ -416,11 +412,14 @@ export default function HomePage() {
 
         <div className="grid gap-5 lg:grid-cols-4">
           {pathwayPillars.map((pillar) => (
-            <div key={pillar.title} className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm">
+            <div
+              key={pillar.title}
+              className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm"
+            >
               <div className="inline-flex rounded-2xl bg-teal-50 p-3 text-teal-700">
                 <pillar.icon className="h-6 w-6" />
               </div>
-              <h3 className="mt-5 text-xl font-bold text-slate-950">{pillar.title}</h3>
+              <h3 className="mt-5 font-heading text-xl font-bold text-slate-950">{pillar.title}</h3>
               <p className="mt-3 text-sm leading-7 text-slate-600">{pillar.description}</p>
             </div>
           ))}
@@ -432,12 +431,12 @@ export default function HomePage() {
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-700">
             Product Suite
           </p>
-          <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+          <h2 className="font-heading text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
             Built as one platform, expressed as a clean suite.
           </h2>
           <p className="text-lg leading-8 text-slate-600">
-            Start with the core brand, launch the highest-value modules first, and expand the
-            system without breaking the story.
+            Start with the core brand, launch the highest-value modules first, and expand the system
+            without breaking the story.
           </p>
         </div>
 
@@ -450,7 +449,9 @@ export default function HomePage() {
               <div className="inline-flex rounded-2xl bg-slate-950 p-3 text-white">
                 <product.icon className="h-6 w-6" />
               </div>
-              <h3 className="mt-5 text-2xl font-bold text-slate-950">{product.title}</h3>
+              <h3 className="mt-5 font-heading text-2xl font-bold text-slate-950">
+                {product.title}
+              </h3>
               <p className="mt-2 text-sm font-semibold text-teal-700">{product.tagline}</p>
               <p className="mt-4 text-sm leading-7 text-slate-600">{product.description}</p>
               <div className="mt-5 flex flex-wrap gap-2">
@@ -470,7 +471,9 @@ export default function HomePage() {
         <div className="rounded-[2rem] border border-dashed border-slate-300 bg-slate-50 p-6">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <h3 className="text-xl font-bold text-slate-950">Optional expansion sub-brands</h3>
+              <h3 className="font-heading text-xl font-bold text-slate-950">
+                Optional expansion sub-brands
+              </h3>
               <p className="mt-2 text-sm text-slate-600">
                 You do not need all of these at launch, but they stay consistent if the platform
                 expands.
@@ -490,13 +493,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="partners" className="rounded-[2rem] border border-slate-200 bg-slate-950 px-6 py-8 text-white shadow-xl sm:px-8">
+      <section
+        id="partners"
+        className="rounded-[2rem] border border-slate-200 bg-slate-950 px-6 py-8 text-white shadow-xl sm:px-8"
+      >
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.9fr)] lg:items-center">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">
               For Employers & Partners
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
               Partner workflows, outcome reporting, and trusted pathways for people and programs.
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">
@@ -526,20 +532,22 @@ export default function HomePage() {
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-700">
             Pitch Deck
           </p>
-          <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+          <h2 className="font-heading text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
             A slide-by-slide investor and partner story, ready to refine.
           </h2>
           <p className="text-lg leading-8 text-slate-600">
-            The homepage now carries the same narrative arc as the deck: problem, insight,
-            solution, product, timing, differentiation, revenue, go-to-market, proof, roadmap,
-            team, and ask.
+            The homepage now carries the same narrative arc as the deck: problem, insight, solution,
+            product, timing, differentiation, revenue, go-to-market, proof, roadmap, team, and ask.
           </p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {deckSlides.map((slide) => (
-            <div key={slide.title} className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
-              <h3 className="text-base font-bold text-slate-950">{slide.title}</h3>
+            <div
+              key={slide.title}
+              className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm"
+            >
+              <h3 className="font-heading text-base font-bold text-slate-950">{slide.title}</h3>
               <p className="mt-3 text-sm leading-7 text-slate-600">{slide.body}</p>
             </div>
           ))}
@@ -551,12 +559,12 @@ export default function HomePage() {
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-700">
             Brand Voice
           </p>
-          <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+          <h2 className="font-heading text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
             Calm, capable, and practical by default.
           </h2>
           <p className="text-lg leading-8 text-slate-600">
-            Nexta should feel clear, respectful, and helpful. Not hype. Not judgement. Just
-            tools, guidance, and momentum.
+            Nexta should feel clear, respectful, and helpful. Not hype. Not judgement. Just tools,
+            guidance, and momentum.
           </p>
         </div>
 
@@ -568,7 +576,10 @@ export default function HomePage() {
             </div>
             <div className="mt-5 space-y-3">
               {voicePillars.map((pillar) => (
-                <div key={pillar} className="rounded-2xl bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700">
+                <div
+                  key={pillar}
+                  className="rounded-2xl bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700"
+                >
                   {pillar}
                 </div>
               ))}
@@ -582,7 +593,10 @@ export default function HomePage() {
             </div>
             <div className="mt-5 space-y-3">
               {toneContexts.map((context) => (
-                <div key={context} className="rounded-2xl bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700">
+                <div
+                  key={context}
+                  className="rounded-2xl bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700"
+                >
                   {context}
                 </div>
               ))}
@@ -628,7 +642,7 @@ export default function HomePage() {
 
         <div className="grid gap-5 lg:grid-cols-2">
           <div className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="text-xl font-bold text-slate-950">Copy guidance</h3>
+            <h3 className="font-heading text-xl font-bold text-slate-950">Copy guidance</h3>
             <div className="mt-5 space-y-4 text-sm leading-7 text-slate-600">
               <p>
                 <span className="font-semibold text-slate-900">Do:</span> Want to strengthen your
@@ -642,7 +656,7 @@ export default function HomePage() {
           </div>
 
           <div className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="text-xl font-bold text-slate-950">Formatting rules</h3>
+            <h3 className="font-heading text-xl font-bold text-slate-950">Formatting rules</h3>
             <div className="mt-5 space-y-3 text-sm leading-7 text-slate-600">
               <p>Short sentences.</p>
               <p>Headings and scannable sections.</p>
@@ -658,7 +672,7 @@ export default function HomePage() {
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-700">
             App Store Copy
           </p>
-          <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+          <h2 className="font-heading text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
             Storefront messaging aligned with the platform story.
           </h2>
           <p className="text-lg leading-8 text-slate-600">
@@ -676,8 +690,7 @@ export default function HomePage() {
             <div className="mt-5 space-y-4 text-sm leading-7 text-slate-600">
               <p>
                 Nexta is your all-in-one pathway platform for progress &mdash; designed to help you
-                discover opportunities, build skills, get support, and move forward with
-                confidence.
+                discover opportunities, build skills, get support, and move forward with confidence.
               </p>
               <p>
                 Whether you&apos;re looking for work, learning something new, building a business,
@@ -715,7 +728,7 @@ export default function HomePage() {
         <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <h3 className="text-xl font-bold text-slate-950">Starter keyword set</h3>
+              <h3 className="font-heading text-xl font-bold text-slate-950">Starter keyword set</h3>
               <p className="mt-2 text-sm text-slate-600">
                 Optimised around work, learning, guidance, tools, and opportunity discovery.
               </p>
@@ -740,7 +753,7 @@ export default function HomePage() {
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">
               Built By
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
               Nexta is now positioned as a long-term progress platform, with Munyaradzi Chenjerai
               present as the developer.
             </h2>
