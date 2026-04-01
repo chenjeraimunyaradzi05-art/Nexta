@@ -6,7 +6,7 @@ export const metadata = {
   openGraph: {
     title: 'About Nexta',
     description: 'A culturally-grounded platform connecting First Nations job seekers with meaningful opportunities.',
-    url: 'https://nexta.life/about',
+    url: '/about',
   },
   alternates: {
     canonical: '/about',

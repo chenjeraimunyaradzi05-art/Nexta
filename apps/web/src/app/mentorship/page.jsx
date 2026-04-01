@@ -9,7 +9,7 @@ export const metadata = {
   openGraph: {
     title: 'Indigenous Mentorship Program | Nexta',
     description: 'Connect with experienced First Nations mentors for career guidance.',
-    url: 'https://nexta.life/mentorship',
+    url: '/mentorship',
   },
   alternates: {
     canonical: '/mentorship',

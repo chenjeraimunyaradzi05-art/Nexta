@@ -16,6 +16,10 @@ export default function ReferralsPage() {
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState(null);
+  const fallbackShareUrl =
+    typeof window !== 'undefined'
+      ? window.location.origin
+      : process.env.DEPLOY_PRIME_URL || process.env.URL || process.env.NEXT_PUBLIC_APP_URL || 'https://nexta.life';
 
   useEffect(() => {
     fetchReferralData();
@@ -47,8 +51,8 @@ export default function ReferralsPage() {
       setError('Failed to load referral data');
       // Demo data
       setReferralData({
-        referralCode: 'NG-ABC123',
-        shareUrl: 'https://nexta.life/',
+        referralCode: 'NEXTA-ABC123',
+        shareUrl: `${fallbackShareUrl}/`,
         stats: {
           totalReferrals: 5,
           signedUp: 3,
@@ -142,7 +146,7 @@ export default function ReferralsPage() {
           <h2 className="text-lg font-medium mb-4">Your Referral Code</h2>
           <div className="bg-white/20 backdrop-blur rounded-xl p-4 flex items-center justify-between gap-4">
             <code className="text-2xl font-bold tracking-wider">
-              {referralData?.referralCode || 'NG-XXXXXX'}
+              {referralData?.referralCode || 'NEXTA-XXXXXX'}
             </code>
             <button
               onClick={() => copyToClipboard(referralData?.referralCode)}
@@ -173,7 +177,7 @@ export default function ReferralsPage() {
           {/* Social share buttons */}
           <div className="mt-6 flex gap-3">
             <a
-              href={`https://wa.me/?text=Join%20Nexta%20Pathways%20and%20start%20your%20career%20journey!%20Use%20my%20referral%20code%3A%20${referralData?.referralCode}%20${encodeURIComponent(referralData?.shareUrl || '')}`}
+              href={`https://wa.me/?text=Join%20Nexta%20and%20start%20your%20career%20journey!%20Use%20my%20referral%20code%3A%20${referralData?.referralCode}%20${encodeURIComponent(referralData?.shareUrl || '')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors"
@@ -181,7 +185,7 @@ export default function ReferralsPage() {
               📱 WhatsApp
             </a>
             <a
-              href={`mailto:?subject=Join%20Nexta%20Pathways&body=I%27m%20inviting%20you%20to%20join%20Nexta%20Pathways!%20Use%20my%20referral%20code%3A%20${referralData?.referralCode}%0A%0A${referralData?.shareUrl}`}
+              href={`mailto:?subject=Join%20Nexta&body=I%27m%20inviting%20you%20to%20join%20Nexta!%20Use%20my%20referral%20code%3A%20${referralData?.referralCode}%0A%0A${referralData?.shareUrl}`}
               className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors"
             >
               ✉️ Email

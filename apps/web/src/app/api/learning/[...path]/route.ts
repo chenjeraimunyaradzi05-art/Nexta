@@ -1,28 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
-
-const API_ORIGIN = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333';
+import { BACKEND_API_ORIGIN } from '@/lib/apiBase';
 
 // Headers that should never be forwarded to the backend
 const STRIP_HEADERS = ['host', 'cookie', 'set-cookie', 'x-forwarded-for', 'x-real-ip', 'cf-connecting-ip'];
 
 async function proxy(req: NextRequest) {
+  if (!BACKEND_API_ORIGIN) {
+    return NextResponse.json({ error: 'Backend API origin is not configured.' }, { status: 500 });
+  }
+
   const url = new URL(req.url);
   const path = url.pathname.replace(/^\/api\/learning/, '');
-  const target = `${API_ORIGIN}/learning${path}${url.search}`;
+  const target = `${BACKEND_API_ORIGIN}/learning${path}${url.search}`;
 
   const headers = new Headers(req.headers);
   for (const h of STRIP_HEADERS) {
     headers.delete(h);
   }
 
-  const init: RequestInit = {
+  const requestBody = req.method !== 'GET' && req.method !== 'HEAD' ? await req.text() : undefined;
+
+  const init = {
     method: req.method,
     headers,
+    ...(requestBody !== undefined ? { body: requestBody } : {}),
   };
-
-  if (req.method !== 'GET' && req.method !== 'HEAD') {
-    init.body = await req.text();
-  }
 
   const response = await fetch(target, init);
   const body = await response.arrayBuffer();

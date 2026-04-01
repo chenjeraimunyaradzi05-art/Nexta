@@ -16,7 +16,11 @@ import AIAssistantWrapper from '../components/AIAssistantWrapper';
 import Script from 'next/script';
 import { Metadata, Viewport } from 'next';
 
-const SITE_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+const SITE_URL =
+  process.env.DEPLOY_PRIME_URL ||
+  process.env.URL ||
+  process.env.NEXT_PUBLIC_APP_URL ||
+  (process.env.NODE_ENV === 'production' ? 'https://nexta.life' : 'http://localhost:3000');
 const DEVELOPER_NAME = 'Munyaradzi Chenjerai';
 
 export const metadata: Metadata = {

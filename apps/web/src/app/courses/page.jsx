@@ -9,7 +9,7 @@ export const metadata = {
   openGraph: {
     title: 'Indigenous Training & Courses | Nexta',
     description: 'Explore culturally-grounded training courses for First Nations people.',
-    url: 'https://nexta.life/courses',
+    url: '/courses',
   },
   alternates: {
     canonical: '/courses',

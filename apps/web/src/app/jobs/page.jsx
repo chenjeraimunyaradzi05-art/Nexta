@@ -9,7 +9,7 @@ export const metadata = {
     openGraph: {
         title: 'Indigenous Jobs & Careers | Nexta',
         description: 'Find Indigenous employment opportunities across Australia from leading employers.',
-        url: 'https://nexta.life/jobs',
+        url: '/jobs',
     },
     alternates: {
         canonical: '/jobs',

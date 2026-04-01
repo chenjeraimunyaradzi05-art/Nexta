@@ -1,6 +1,10 @@
 import { MetadataRoute } from 'next';
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://nexta.life';
+const BASE_URL =
+  process.env.DEPLOY_PRIME_URL ||
+  process.env.URL ||
+  process.env.NEXT_PUBLIC_APP_URL ||
+  (process.env.NODE_ENV === 'production' ? 'https://nexta.life' : 'http://localhost:3000');
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date().toISOString();

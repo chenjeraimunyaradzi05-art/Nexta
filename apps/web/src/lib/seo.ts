@@ -23,7 +23,11 @@ export interface SEOProps {
 const SITE_NAME = 'Nexta';
 const DEFAULT_DESCRIPTION = 'Nexta helps people discover opportunities, build skills, connect with mentors, and move forward with practical support.';
 const DEFAULT_IMAGE = '/brand/nexta-og-image.svg';
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+const BASE_URL =
+  process.env.DEPLOY_PRIME_URL ||
+  process.env.URL ||
+  process.env.NEXT_PUBLIC_APP_URL ||
+  (process.env.NODE_ENV === 'production' ? 'https://nexta.life' : 'http://localhost:3000');
 
 /**
  * Generate metadata object for Next.js App Router

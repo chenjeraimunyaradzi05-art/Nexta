@@ -18,7 +18,7 @@ import {
   Loader2,
 } from 'lucide-react';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+import { withApiBase } from '@/lib/apiBase';
 
 // Theme colors
 const accentPink = '#E91E8C';
@@ -130,7 +130,7 @@ export default function EventsClient({ initialEvents, hasPrefetched }) {
 
     const fetchEvents = async () => {
       try {
-        const res = await fetch(`${API_BASE}/events`);
+        const res = await fetch(withApiBase('/events'));
         if (res.ok) {
           const data = await res.json();
           const normalizedEvents = (data.events || data || []).map((e) => ({

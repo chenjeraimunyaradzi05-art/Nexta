@@ -4,12 +4,29 @@
 // - In server-side: Use the full URL for direct backend access
 
 const isBrowser = typeof window !== 'undefined';
-const envApiUrl = process.env.NEXT_PUBLIC_API_URL;
+const isProduction = process.env.NODE_ENV === 'production';
+const trimTrailingSlash = (value = '') => value.replace(/\/+$/, '');
+const localApiOrigin = 'http://localhost:3333';
+const envApiUrl = trimTrailingSlash(process.env.NEXT_PUBLIC_API_URL || process.env.API_INTERNAL_URL || '');
+const appOrigin = trimTrailingSlash(
+  process.env.DEPLOY_PRIME_URL ||
+  process.env.URL ||
+  process.env.NEXT_PUBLIC_APP_URL ||
+  process.env.NEXTAUTH_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : ''),
+);
 
 // In the browser, ALWAYS use the /api proxy (Netlify redirect).
 // This avoids CORS issues and keeps auth cookies on the same origin.
 // On the server (SSR), use the full backend URL for direct access.
-export const API_BASE = isBrowser ? '/api' : (envApiUrl || 'http://localhost:3333');
+export const BACKEND_API_ORIGIN = envApiUrl || (isProduction ? '' : localApiOrigin);
+export const API_BASE =
+  isBrowser ? '/api' : BACKEND_API_ORIGIN || (appOrigin ? `${appOrigin}/api` : localApiOrigin);
+export const SOCKET_BASE =
+  trimTrailingSlash(process.env.NEXT_PUBLIC_SOCKET_URL || process.env.NEXT_PUBLIC_API_URL || '') ||
+  (isBrowser ? trimTrailingSlash(window.location.origin) : '') ||
+  (isProduction ? appOrigin : localApiOrigin) ||
+  localApiOrigin;
 
 export function withApiBase(path = '') {
   if (!path) return API_BASE;

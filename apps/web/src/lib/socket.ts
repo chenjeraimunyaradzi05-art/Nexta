@@ -11,12 +11,10 @@
 
 import { io, Socket } from 'socket.io-client';
 import { EventEmitter } from 'events';
+import { SOCKET_BASE } from './apiBase';
 
 // Socket configuration
-const SOCKET_URL =
-  process.env.NEXT_PUBLIC_SOCKET_URL ||
-  process.env.NEXT_PUBLIC_API_URL ||
-  'http://localhost:3333';
+const SOCKET_URL = SOCKET_BASE;
 
 // Types
 export interface SocketMessage {
@@ -90,7 +88,7 @@ export type SocketEventType =
   | 'mentorship:session-reminder';
 
 // Event handlers map
-type EventHandler<T = unknown> = (data: T) => void;
+type EventHandler<T = unknown> = (...args: [T]) => void;
 type EventHandlers = Map<SocketEventType, Set<EventHandler>>;
 
 class SocketService extends EventEmitter {

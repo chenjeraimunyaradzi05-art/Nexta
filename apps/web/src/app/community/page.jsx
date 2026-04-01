@@ -9,7 +9,7 @@ export const metadata = {
   openGraph: {
     title: 'Indigenous Community Forums | Nexta',
     description: 'Join the Nexta community and connect with First Nations professionals.',
-    url: 'https://nexta.life/community',
+    url: '/community',
   },
   alternates: {
     canonical: '/community',

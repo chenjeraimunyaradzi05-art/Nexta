@@ -21,8 +21,7 @@ import {
   X,
 } from 'lucide-react';
 import OptimizedImage from '@/components/ui/OptimizedImage';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+import { withApiBase } from '@/lib/apiBase';
 
 // Helper to check if URL is a Cloudinary public ID
 function isCloudinaryPublicId(url) {
@@ -216,7 +215,7 @@ export default function MentorshipClient({ initialMentors, hasPrefetched }) {
 
   async function fetchFeaturedMentors() {
     try {
-      const res = await fetch(`${API_URL}/mentorship/top-mentors?limit=6`);
+      const res = await fetch(withApiBase('/mentorship/top-mentors?limit=6'));
       if (res.ok) {
         const data = await res.json();
         if (data.mentors && data.mentors.length > 0) {
