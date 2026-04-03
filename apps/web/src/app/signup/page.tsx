@@ -3,7 +3,17 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Loader2, CheckCircle, Sparkles } from 'lucide-react';
+import {
+  Eye,
+  EyeOff,
+  Mail,
+  Lock,
+  User,
+  ArrowRight,
+  Loader2,
+  CheckCircle,
+  Sparkles,
+} from 'lucide-react';
 import { useAuthStore } from '@/stores/authStore';
 import { API_BASE } from '@/lib/apiBase';
 import { setAuthSessionCookie } from '@/lib/authSession';
@@ -73,7 +83,6 @@ export default function SignUpPage() {
       return;
     }
 
-
     setIsLoading(true);
 
     try {
@@ -83,10 +92,9 @@ export default function SignUpPage() {
         body: JSON.stringify({
           email: formData.email,
           password: formData.password,
-          firstName: formData.firstName,
-          lastName: formData.lastName,
+          name: `${formData.firstName} ${formData.lastName}`.trim(),
           userType: 'MEMBER',
-          inviteCode: formData.inviteCode,
+          acceptTerms: true,
         }),
       });
 
@@ -169,7 +177,7 @@ export default function SignUpPage() {
 
           <div className="mb-6 rounded-2xl border border-teal-200/60 dark:border-teal-800/40 bg-gradient-to-r from-teal-50 to-emerald-50 dark:from-slate-800/60 dark:to-slate-800/40 p-4">
             <p className="text-sm font-semibold text-teal-700 dark:text-teal-300 mb-2">
-              What you'll get
+              What you&apos;ll get
             </p>
             <ul className="text-xs text-slate-600 dark:text-slate-300 space-y-1">
               <li>• A skills dashboard and learning pathways</li>
@@ -365,11 +373,17 @@ export default function SignUpPage() {
               />
               <label htmlFor="terms" className="ml-2 text-sm text-slate-600 dark:text-slate-400">
                 I agree to the{' '}
-                <Link href="/terms" className="text-teal-600 hover:text-teal-700 dark:text-teal-400">
+                <Link
+                  href="/terms"
+                  className="text-teal-600 hover:text-teal-700 dark:text-teal-400"
+                >
                   Terms of Service
                 </Link>{' '}
                 and{' '}
-                <Link href="/privacy" className="text-teal-600 hover:text-teal-700 dark:text-teal-400">
+                <Link
+                  href="/privacy"
+                  className="text-teal-600 hover:text-teal-700 dark:text-teal-400"
+                >
                   Privacy Policy
                 </Link>
               </label>
