@@ -50,7 +50,8 @@
 
 [[redirects]]
   from = "/api/*"
-  to = "https://nexta-api-production-039e.up.railway.app/:splat"
+  # Updated Railway API domain - 039e
+to = "https://nexta-api-production-039e.up.railway.app/:splat"
   status = 200
   force = true
 
