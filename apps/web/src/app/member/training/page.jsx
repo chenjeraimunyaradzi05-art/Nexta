@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { API_BASE } from '@/lib/apiBase';
 import { useEffect, useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
@@ -29,8 +29,8 @@ export default function TrainingPage() {
       if (industry) params.set('industry', industry);
 
       const [coursesRes, categoriesRes] = await Promise.all([
-        fetch(`${API_BASE}/courses?${params}`),
-        fetch(`${API_BASE}/courses/categories`)
+        fetch(`/api/neon/courses?${params}`),
+        fetch(`/api/neon/courses/categories`),
       ]);
 
       const coursesJson = await coursesRes.json();
@@ -47,7 +47,7 @@ export default function TrainingPage() {
       // Load user's enrolments if logged in
       if (token) {
         const enrolRes = await fetch(`${API_BASE}/courses/my/enrolments`, {
-          headers: { Authorization: `Bearer ${token}` }
+          headers: { Authorization: `Bearer ${token}` },
         });
         if (enrolRes.ok) {
           const enrolJson = await enrolRes.json();
@@ -68,7 +68,7 @@ export default function TrainingPage() {
     try {
       const res = await fetch(`${API_BASE}/courses/${courseId}/enrol`, {
         method: 'POST',
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json?.error || 'Enrolment failed');
@@ -79,23 +79,35 @@ export default function TrainingPage() {
     }
   }
 
-  const enrolledIds = new Set(enrolments.filter(e => e.status !== 'WITHDRAWN').map(e => e.courseId));
-  const activeEnrolments = enrolments.filter(e => e.status === 'ENROLLED' || e.status === 'IN_PROGRESS');
-  const completedEnrolments = enrolments.filter(e => e.status === 'COMPLETED');
+  const enrolledIds = new Set(
+    enrolments.filter((e) => e.status !== 'WITHDRAWN').map((e) => e.courseId),
+  );
+  const activeEnrolments = enrolments.filter(
+    (e) => e.status === 'ENROLLED' || e.status === 'IN_PROGRESS',
+  );
+  const completedEnrolments = enrolments.filter((e) => e.status === 'COMPLETED');
 
   return (
     <div className="max-w-6xl mx-auto py-12 px-4">
       {/* Breadcrumb */}
       <nav className="mb-6 text-sm" aria-label="Breadcrumb">
         <ol className="flex items-center gap-2 text-slate-400">
-          <li><a href="/member/dashboard" className="hover:text-blue-400 transition-colors">Dashboard</a></li>
-          <li><span className="text-slate-600">/</span></li>
+          <li>
+            <a href="/member/dashboard" className="hover:text-blue-400 transition-colors">
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <span className="text-slate-600">/</span>
+          </li>
           <li className="text-white">Training</li>
         </ol>
       </nav>
-      
+
       <h1 className="text-2xl font-bold mb-2">📚 Training & Courses</h1>
-      <p className="text-slate-300 mb-8">Develop your skills with courses from TAFE and training partners.</p>
+      <p className="text-slate-300 mb-8">
+        Develop your skills with courses from TAFE and training partners.
+      </p>
 
       {/* My Enrolments Section */}
       {token && activeEnrolments.length > 0 && (
@@ -104,21 +116,28 @@ export default function TrainingPage() {
             <span className="text-green-400">●</span> My Current Courses
           </h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {activeEnrolments.map(enrol => (
+            {activeEnrolments.map((enrol) => (
               <div key={enrol.id} className="border border-green-800 bg-green-900/20 p-4 rounded">
                 <div className="font-semibold">{enrol.course?.title}</div>
                 <div className="text-sm text-slate-400 mt-1">{enrol.course?.provider}</div>
                 <div className="mt-3 flex items-center justify-between">
-                  <span className={`text-xs px-2 py-1 rounded ${
-                    enrol.status === 'ENROLLED' ? 'bg-green-900/50 text-green-300' : 'bg-blue-900/50 text-blue-300'
-                  }`}>
+                  <span
+                    className={`text-xs px-2 py-1 rounded ${
+                      enrol.status === 'ENROLLED'
+                        ? 'bg-green-900/50 text-green-300'
+                        : 'bg-blue-900/50 text-blue-300'
+                    }`}
+                  >
                     {enrol.status}
                   </span>
                   <span className="text-xs text-slate-500">
                     Started {new Date(enrol.startDate || enrol.createdAt).toLocaleDateString()}
                   </span>
                 </div>
-                <a href={`/member/training/${enrol.id}`} className="mt-3 inline-block text-sm text-blue-300 hover:text-blue-200">
+                <a
+                  href={`/member/training/${enrol.id}`}
+                  className="mt-3 inline-block text-sm text-blue-300 hover:text-blue-200"
+                >
                   Continue learning →
                 </a>
               </div>
@@ -132,7 +151,7 @@ export default function TrainingPage() {
         <section className="mb-8">
           <h2 className="text-xl font-semibold mb-4 text-slate-400">🏆 Completed Courses</h2>
           <div className="flex flex-wrap gap-2">
-            {completedEnrolments.map(enrol => (
+            {completedEnrolments.map((enrol) => (
               <div key={enrol.id} className="px-3 py-2 bg-slate-800 rounded text-sm">
                 ✅ {enrol.course?.title}
               </div>
@@ -146,18 +165,26 @@ export default function TrainingPage() {
         <input
           type="text"
           value={search}
-          onChange={(e) => { setSearch(e.target.value); setPage(1); }}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setPage(1);
+          }}
           placeholder="Search courses..."
           className="flex-1 min-w-[200px] border border-slate-700 bg-slate-950/40 text-slate-100 px-4 py-2 rounded placeholder:text-slate-500"
         />
         <select
           value={industry}
-          onChange={(e) => { setIndustry(e.target.value); setPage(1); }}
+          onChange={(e) => {
+            setIndustry(e.target.value);
+            setPage(1);
+          }}
           className="border border-slate-700 bg-slate-950/40 text-slate-100 px-4 py-2 rounded"
         >
           <option value="">All industries</option>
-          {categories.map(cat => (
-            <option key={cat.name} value={cat.name}>{cat.name} ({cat.count})</option>
+          {categories.map((cat) => (
+            <option key={cat.name} value={cat.name}>
+              {cat.name} ({cat.count})
+            </option>
           ))}
         </select>
       </div>
@@ -170,12 +197,19 @@ export default function TrainingPage() {
       ) : (
         <>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {courses.map(course => (
-              <div key={course.id} className="border border-slate-800 bg-slate-900/40 p-4 rounded flex flex-col">
+            {courses.map((course) => (
+              <div
+                key={course.id}
+                className="border border-slate-800 bg-slate-900/40 p-4 rounded flex flex-col"
+              >
                 <div className="flex-1">
                   <div className="flex gap-2 mb-1">
-                    {course.industry && <span className="text-xs text-slate-400">{course.industry}</span>}
-                    {course.qualification && <span className="text-xs text-blue-400">{course.qualification}</span>}
+                    {course.industry && (
+                      <span className="text-xs text-slate-400">{course.industry}</span>
+                    )}
+                    {course.qualification && (
+                      <span className="text-xs text-blue-400">{course.qualification}</span>
+                    )}
                   </div>
                   <div className="font-semibold">{course.title}</div>
                   <div className="text-sm text-slate-300 mt-1">{course.provider}</div>
@@ -211,7 +245,7 @@ export default function TrainingPage() {
             <div className="flex justify-center gap-4 mt-8">
               <button
                 disabled={page <= 1}
-                onClick={() => setPage(p => Math.max(1, p - 1))}
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
                 className="px-4 py-2 border border-slate-700 rounded hover:bg-slate-900 disabled:opacity-50"
               >
                 Previous
@@ -221,7 +255,7 @@ export default function TrainingPage() {
               </span>
               <button
                 disabled={page * pageSize >= total}
-                onClick={() => setPage(p => p + 1)}
+                onClick={() => setPage((p) => p + 1)}
                 className="px-4 py-2 border border-slate-700 rounded hover:bg-slate-900 disabled:opacity-50"
               >
                 Next

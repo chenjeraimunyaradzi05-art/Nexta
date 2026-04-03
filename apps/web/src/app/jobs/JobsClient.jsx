@@ -1,5 +1,4 @@
 'use client';
-import { API_BASE } from '@/lib/apiBase';
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import {
@@ -202,7 +201,7 @@ export default function JobsClient({ initialJobs = [] }) {
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      let url = `${API_BASE}/jobs?q=${encodeURIComponent(q)}&page=${page}&pageSize=${pageSize}`;
+      let url = `/api/neon/jobs?q=${encodeURIComponent(q)}&page=${page}&pageSize=${pageSize}`;
       if (locationFilter) url += `&location=${encodeURIComponent(locationFilter)}`;
       if (employmentFilter) url += `&employment=${encodeURIComponent(employmentFilter)}`;
       if (minSalary) url += `&minSalary=${encodeURIComponent(minSalary)}`;
