@@ -44,6 +44,11 @@
   # Let Next.js handle Neon-powered routes (no external redirect)
 
 [[redirects]]
+  from = "/api/health/*"
+  status = 200
+  # Let Next.js handle health checks locally (no external dependency)
+
+[[redirects]]
   from = "/api/*"
   to = "https://nexta-api-production.up.railway.app/:splat"
   status = 200
