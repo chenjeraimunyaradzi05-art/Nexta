@@ -26,7 +26,7 @@ const TIERS = [
     cta: 'Current Plan',
     popular: false,
     icon: Shield,
-    color: 'bg-gray-100 dark:bg-gray-800 cosmic:bg-white/10'
+    color: 'bg-slate-100 dark:bg-slate-800 cosmic:bg-white/10'
   },
   {
     name: 'Starter',
@@ -158,10 +158,10 @@ export default function PricingTable({ currentTier = 'FREE', onSelect }) {
               relative rounded-2xl p-6 flex flex-col h-full border transition-all duration-300
               ${tier.popular 
                 ? 'border-purple-500 shadow-xl scale-105 z-10 dark:border-purple-400 cosmic:border-gold cosmic:shadow-gold/20' 
-                : 'border-gray-200 dark:border-gray-700 cosmic:border-white/10 hover:border-purple-300 dark:hover:border-purple-700'}
+                : 'border-slate-200 dark:border-slate-700 cosmic:border-white/10 hover:border-purple-300 dark:hover:border-purple-700'}
               ${tier.color}
               ${isCurrent ? 'ring-2 ring-primary ring-offset-2 dark:ring-offset-gray-900' : ''}
-              bg-white dark:bg-gray-800 cosmic:bg-cosmic-dark/80 backdrop-blur-sm
+              bg-white dark:bg-slate-800 cosmic:bg-cosmic-dark/80 backdrop-blur-sm
             `}
           >
             {tier.popular && (
@@ -172,16 +172,16 @@ export default function PricingTable({ currentTier = 'FREE', onSelect }) {
 
             <div className="mb-4">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white cosmic:text-gray-50">{tier.name}</h3>
-                {Icon && <Icon className="w-5 h-5 text-gray-400 dark:text-gray-500 cosmic:text-gold" />}
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white cosmic:text-slate-50">{tier.name}</h3>
+                {Icon && <Icon className="w-5 h-5 text-slate-400 dark:text-slate-500 cosmic:text-gold" />}
               </div>
-              <p className="text-sm text-gray-500 dark:text-gray-400 cosmic:text-gray-300 min-h-[40px]">{tier.description}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400 cosmic:text-slate-300 min-h-[40px]">{tier.description}</p>
             </div>
 
             <div className="mb-6">
               <div className="flex items-baseline">
-                <span className="text-4xl font-extrabold text-gray-900 dark:text-white cosmic:text-white">${tier.price}</span>
-                <span className="text-gray-500 dark:text-gray-400 ml-1 cosmic:text-gray-400">{tier.period}</span>
+                <span className="text-4xl font-extrabold text-slate-900 dark:text-white cosmic:text-white">${tier.price}</span>
+                <span className="text-slate-500 dark:text-slate-400 ml-1 cosmic:text-slate-400">{tier.period}</span>
               </div>
             </div>
 
@@ -189,15 +189,15 @@ export default function PricingTable({ currentTier = 'FREE', onSelect }) {
               {tier.features.map((feature, idx) => (
                 <li key={idx} className="flex items-start text-sm">
                   <Check className="w-5 h-5 text-green-500 mr-2 shrink-0 cosmic:text-emerald" />
-                  <span className="text-gray-600 dark:text-gray-300 cosmic:text-gray-200">{feature}</span>
+                  <span className="text-slate-600 dark:text-slate-300 cosmic:text-slate-200">{feature}</span>
                 </li>
               ))}
               {tier.limitations?.map((limit, idx) => (
                 <li key={`lim-${idx}`} className="flex items-start text-sm opacity-60">
                   <div className="w-5 h-5 mr-2 flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-gray-600" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600" />
                   </div>
-                  <span className="text-gray-500 dark:text-gray-500 cosmic:text-gray-400 decoration-slate-500 line-through">{limit}</span>
+                  <span className="text-slate-500 dark:text-slate-500 cosmic:text-slate-400 decoration-slate-500 line-through">{limit}</span>
                 </li>
               ))}
             </ul>
@@ -208,10 +208,10 @@ export default function PricingTable({ currentTier = 'FREE', onSelect }) {
               className={`
                 w-full py-3 px-4 rounded-xl text-sm font-semibold transition-all duration-200
                 ${isCurrent
-                  ? 'bg-gray-100 text-gray-500 cursor-default dark:bg-gray-700 dark:text-gray-400'
+                  ? 'bg-slate-100 text-slate-500 cursor-default dark:bg-slate-700 dark:text-slate-400'
                   : tier.popular
                     ? 'bg-purple-600 hover:bg-purple-700 text-white shadow-lg cosmic:bg-gradient-to-r cosmic:from-purple-royal cosmic:to-cosmic-linker'
-                    : 'bg-gray-900 hover:bg-gray-800 text-white dark:bg-white dark:text-gray-900 cosmic:bg-cosmic-light cosmic:text-white cosmic:hover:bg-cosmic-lighter'}
+                    : 'bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:text-slate-900 cosmic:bg-cosmic-light cosmic:text-white cosmic:hover:bg-cosmic-lighter'}
                 disabled:opacity-50 disabled:cursor-not-allowed
               `}
             >

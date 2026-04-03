@@ -218,7 +218,7 @@ function FrequencyBadge({ frequency }: { frequency: string }) {
     instant: { label: 'Instant', color: 'bg-green-100 text-green-700' },
     daily: { label: 'Daily', color: 'bg-blue-100 text-blue-700' },
     weekly: { label: 'Weekly', color: 'bg-purple-100 text-purple-700' },
-    never: { label: 'Off', color: 'bg-gray-100 text-gray-500' },
+    never: { label: 'Off', color: 'bg-slate-100 text-slate-500' },
   };
 
   const badge = config[frequency as keyof typeof config] || config.never;
@@ -245,22 +245,22 @@ function CategoryCard({
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
       <div className="p-4 flex items-start justify-between">
         <div className="flex items-start gap-3">
           <span className="text-2xl">{category.icon}</span>
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="font-medium text-gray-900 dark:text-white">{category.name}</h3>
+              <h3 className="font-medium text-slate-900 dark:text-white">{category.name}</h3>
               <FrequencyBadge frequency={category.enabled ? category.frequency : 'never'} />
             </div>
-            <p className="text-sm text-gray-500 mt-0.5">{category.description}</p>
+            <p className="text-sm text-slate-500 mt-0.5">{category.description}</p>
           </div>
         </div>
         <button
           onClick={onToggle}
           className={`w-12 h-6 rounded-full relative transition-colors ${
-            category.enabled ? 'bg-blue-500' : 'bg-gray-300'
+            category.enabled ? 'bg-blue-500' : 'bg-slate-300'
           }`}
         >
           <span
@@ -282,7 +282,7 @@ function CategoryCard({
                 className={`px-3 py-1.5 text-sm rounded-lg capitalize transition-colors ${
                   category.frequency === freq
                     ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30'
-                    : 'bg-gray-100 text-gray-600 dark:bg-gray-700 hover:bg-gray-200'
+                    : 'bg-slate-100 text-slate-600 dark:bg-slate-700 hover:bg-slate-200'
                 }`}
               >
                 {freq}
@@ -301,17 +301,17 @@ function CategoryCard({
               </button>
 
               {isExpanded && (
-                <div className="space-y-2 mt-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+                <div className="space-y-2 mt-2 pt-2 border-t border-slate-200 dark:border-slate-700">
                   {category.subcategories.map((sub) => (
                     <label
                       key={sub.id}
-                      className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-900 rounded-lg cursor-pointer"
+                      className="flex items-center justify-between p-2 bg-slate-50 dark:bg-slate-900 rounded-lg cursor-pointer"
                     >
-                      <span className="text-sm text-gray-700 dark:text-gray-300">{sub.name}</span>
+                      <span className="text-sm text-slate-700 dark:text-slate-300">{sub.name}</span>
                       <button
                         onClick={() => onSubcategoryToggle(sub.id)}
                         className={`w-10 h-5 rounded-full relative transition-colors ${
-                          sub.enabled ? 'bg-blue-500' : 'bg-gray-300'
+                          sub.enabled ? 'bg-blue-500' : 'bg-slate-300'
                         }`}
                       >
                         <span
@@ -343,16 +343,16 @@ function DigestSettingsSection({
   const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Email Digest</h3>
-          <p className="text-sm text-gray-500">Get a summary email instead of individual notifications</p>
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Email Digest</h3>
+          <p className="text-sm text-slate-500">Get a summary email instead of individual notifications</p>
         </div>
         <button
           onClick={() => onChange({ enabled: !settings.enabled })}
           className={`w-12 h-6 rounded-full relative transition-colors ${
-            settings.enabled ? 'bg-blue-500' : 'bg-gray-300'
+            settings.enabled ? 'bg-blue-500' : 'bg-slate-300'
           }`}
         >
           <span
@@ -364,10 +364,10 @@ function DigestSettingsSection({
       </div>
 
       {settings.enabled && (
-        <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+        <div className="space-y-4 pt-4 border-t border-slate-200 dark:border-slate-700">
           {/* Frequency */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Frequency
             </label>
             <div className="flex gap-2">
@@ -378,7 +378,7 @@ function DigestSettingsSection({
                   className={`px-4 py-2 rounded-lg capitalize ${
                     settings.frequency === freq
                       ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30'
-                      : 'bg-gray-100 text-gray-600 dark:bg-gray-700'
+                      : 'bg-slate-100 text-slate-600 dark:bg-slate-700'
                   }`}
                 >
                   {freq}
@@ -390,13 +390,13 @@ function DigestSettingsSection({
           {/* Day of Week (for weekly) */}
           {settings.frequency === 'weekly' && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 Day of Week
               </label>
               <select
                 value={settings.dayOfWeek}
                 onChange={(e) => onChange({ dayOfWeek: parseInt(e.target.value) })}
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               >
                 {daysOfWeek.map((day, idx) => (
                   <option key={idx} value={idx}>{day}</option>
@@ -407,20 +407,20 @@ function DigestSettingsSection({
 
           {/* Time of Day */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Time of Day
             </label>
             <input
               type="time"
               value={settings.timeOfDay}
               onChange={(e) => onChange({ timeOfDay: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
 
           {/* Include Options */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Include in digest
             </label>
             <div className="space-y-2">
@@ -432,13 +432,13 @@ function DigestSettingsSection({
               ].map((item) => (
                 <label
                   key={item.key}
-                  className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 rounded-lg cursor-pointer"
+                  className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900 rounded-lg cursor-pointer"
                 >
-                  <span className="text-sm text-gray-700 dark:text-gray-300">{item.label}</span>
+                  <span className="text-sm text-slate-700 dark:text-slate-300">{item.label}</span>
                   <button
                     onClick={() => onChange({ [item.key]: !settings[item.key as keyof DigestSettings] })}
                     className={`w-10 h-5 rounded-full relative transition-colors ${
-                      settings[item.key as keyof DigestSettings] ? 'bg-blue-500' : 'bg-gray-300'
+                      settings[item.key as keyof DigestSettings] ? 'bg-blue-500' : 'bg-slate-300'
                     }`}
                   >
                     <span
@@ -466,16 +466,16 @@ function QuietHoursSection({
   onChange: (updates: Partial<QuietHours>) => void;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Quiet Hours</h3>
-          <p className="text-sm text-gray-500">Don't send emails during these hours</p>
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Quiet Hours</h3>
+          <p className="text-sm text-slate-500">Don't send emails during these hours</p>
         </div>
         <button
           onClick={() => onChange({ enabled: !settings.enabled })}
           className={`w-12 h-6 rounded-full relative transition-colors ${
-            settings.enabled ? 'bg-blue-500' : 'bg-gray-300'
+            settings.enabled ? 'bg-blue-500' : 'bg-slate-300'
           }`}
         >
           <span
@@ -487,27 +487,27 @@ function QuietHoursSection({
       </div>
 
       {settings.enabled && (
-        <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+        <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-200 dark:border-slate-700">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Start Time
             </label>
             <input
               type="time"
               value={settings.startTime}
               onChange={(e) => onChange({ startTime: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               End Time
             </label>
             <input
               type="time"
               value={settings.endTime}
               onChange={(e) => onChange({ endTime: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
         </div>
@@ -656,8 +656,8 @@ export function EmailPreferencesPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Email Preferences</h1>
-          <p className="text-gray-500 mt-1">Manage what emails you receive</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Email Preferences</h1>
+          <p className="text-slate-500 mt-1">Manage what emails you receive</p>
         </div>
         <Button variant="outline" onClick={handleUnsubscribeAll}>
           Unsubscribe All
@@ -673,11 +673,11 @@ export function EmailPreferencesPage() {
       )}
 
       {/* Email Address */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 mb-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 mb-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-gray-500">Email address</p>
-            <p className="font-medium text-gray-900 dark:text-white">{preferences.emailAddress}</p>
+            <p className="text-sm text-slate-500">Email address</p>
+            <p className="font-medium text-slate-900 dark:text-white">{preferences.emailAddress}</p>
           </div>
           {preferences.verified ? (
             <span className="text-sm text-green-600 flex items-center gap-1">
@@ -694,7 +694,7 @@ export function EmailPreferencesPage() {
 
       {/* Email Categories */}
       <div className="space-y-4 mb-8">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Email Categories</h2>
+        <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Email Categories</h2>
         {preferences.categories.map((category) => (
           <CategoryCard
             key={category.id}

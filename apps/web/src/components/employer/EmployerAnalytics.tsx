@@ -96,11 +96,11 @@ function StatCard({
   const trendColors = {
     up: 'text-green-600',
     down: 'text-red-600',
-    neutral: 'text-gray-500',
+    neutral: 'text-slate-500',
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5">
       <div className="flex items-start justify-between mb-3">
         <span className="text-2xl">{icon}</span>
         {change !== undefined && (
@@ -109,8 +109,8 @@ function StatCard({
           </span>
         )}
       </div>
-      <div className="text-2xl font-bold text-gray-900 dark:text-white">{value}</div>
-      <div className="text-sm text-gray-500">{title}</div>
+      <div className="text-2xl font-bold text-slate-900 dark:text-white">{value}</div>
+      <div className="text-sm text-slate-500">{title}</div>
     </div>
   );
 }
@@ -120,8 +120,8 @@ function PipelineChart({ pipeline }: { pipeline: EmployerAnalytics['pipeline'] }
   const max = Math.max(...pipeline.map(p => p.count));
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Hiring Pipeline</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Hiring Pipeline</h3>
       
       <div className="flex items-end gap-2 h-48 mb-4">
         {pipeline.map((stage, idx) => (
@@ -137,9 +137,9 @@ function PipelineChart({ pipeline }: { pipeline: EmployerAnalytics['pipeline'] }
       <div className="flex gap-2">
         {pipeline.map((stage, idx) => (
           <div key={stage.stage} className="flex-1 text-center">
-            <div className="text-sm font-medium text-gray-900 dark:text-white">{stage.count}</div>
-            <div className="text-xs text-gray-500">{stage.stage}</div>
-            <div className="text-xs text-gray-400">{stage.avgDaysInStage}d avg</div>
+            <div className="text-sm font-medium text-slate-900 dark:text-white">{stage.count}</div>
+            <div className="text-xs text-slate-500">{stage.stage}</div>
+            <div className="text-xs text-slate-400">{stage.avgDaysInStage}d avg</div>
           </div>
         ))}
       </div>
@@ -152,17 +152,17 @@ function JobPerformanceTable({ jobs }: { jobs: EmployerAnalytics['jobPerformance
   const statusColors = {
     active: 'bg-green-100 text-green-700',
     paused: 'bg-yellow-100 text-yellow-700',
-    closed: 'bg-gray-100 text-gray-700',
+    closed: 'bg-slate-100 text-slate-700',
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Job Performance</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Job Performance</h3>
       
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="text-left text-sm text-gray-500 border-b dark:border-gray-700">
+            <tr className="text-left text-sm text-slate-500 border-b dark:border-slate-700">
               <th className="pb-3 font-medium">Job Title</th>
               <th className="pb-3 font-medium">Views</th>
               <th className="pb-3 font-medium">Applications</th>
@@ -173,15 +173,15 @@ function JobPerformanceTable({ jobs }: { jobs: EmployerAnalytics['jobPerformance
           </thead>
           <tbody>
             {jobs.map((job) => (
-              <tr key={job.jobId} className="border-b dark:border-gray-700 last:border-0">
-                <td className="py-3 font-medium text-gray-900 dark:text-white">{job.title}</td>
-                <td className="py-3 text-gray-600 dark:text-gray-400">{job.views.toLocaleString()}</td>
-                <td className="py-3 text-gray-600 dark:text-gray-400">{job.applications}</td>
-                <td className="py-3 text-gray-600 dark:text-gray-400">{job.conversionRate.toFixed(1)}%</td>
+              <tr key={job.jobId} className="border-b dark:border-slate-700 last:border-0">
+                <td className="py-3 font-medium text-slate-900 dark:text-white">{job.title}</td>
+                <td className="py-3 text-slate-600 dark:text-slate-400">{job.views.toLocaleString()}</td>
+                <td className="py-3 text-slate-600 dark:text-slate-400">{job.applications}</td>
+                <td className="py-3 text-slate-600 dark:text-slate-400">{job.conversionRate.toFixed(1)}%</td>
                 <td className="py-3">
                   <div className="flex items-center gap-1">
                     <span className="text-yellow-500">★</span>
-                    <span className="text-gray-600 dark:text-gray-400">{job.avgQualityScore.toFixed(1)}</span>
+                    <span className="text-slate-600 dark:text-slate-400">{job.avgQualityScore.toFixed(1)}</span>
                   </div>
                 </td>
                 <td className="py-3">
@@ -201,24 +201,24 @@ function JobPerformanceTable({ jobs }: { jobs: EmployerAnalytics['jobPerformance
 // Source Performance
 function SourcePerformance({ sources }: { sources: EmployerAnalytics['sourcing'] }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Candidate Sources</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Candidate Sources</h3>
       
       <div className="space-y-4">
         {sources.map((source) => (
           <div key={source.source}>
             <div className="flex items-center justify-between mb-1">
-              <span className="text-sm font-medium text-gray-900 dark:text-white">{source.source}</span>
-              <span className="text-sm text-gray-500">{source.applications} applications</span>
+              <span className="text-sm font-medium text-slate-900 dark:text-white">{source.source}</span>
+              <span className="text-sm text-slate-500">{source.applications} applications</span>
             </div>
             <div className="flex gap-2 items-center">
-              <div className="flex-1 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+              <div className="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-blue-500 rounded-full"
                   style={{ width: `${(source.applications / sources[0].applications) * 100}%` }}
                 />
               </div>
-              <span className="text-xs text-gray-500 w-16 text-right">
+              <span className="text-xs text-slate-500 w-16 text-right">
                 {source.hires} hired
               </span>
             </div>
@@ -232,34 +232,34 @@ function SourcePerformance({ sources }: { sources: EmployerAnalytics['sourcing']
 // Diversity Insights
 function DiversityInsights({ diversity }: { diversity: EmployerAnalytics['diversity'] }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Diversity Insights</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Diversity Insights</h3>
       
       {/* Indigenous Employment */}
       <div className="mb-6 p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-xl">🌏</span>
-          <span className="font-semibold text-gray-900 dark:text-white">Indigenous Employment</span>
+          <span className="font-semibold text-slate-900 dark:text-white">Indigenous Employment</span>
         </div>
         <div className="grid grid-cols-3 gap-4 text-center">
           <div>
             <div className="text-2xl font-bold text-amber-600">{diversity.indigenous.applied}</div>
-            <div className="text-sm text-gray-500">Applied</div>
+            <div className="text-sm text-slate-500">Applied</div>
           </div>
           <div>
             <div className="text-2xl font-bold text-green-600">{diversity.indigenous.hired}</div>
-            <div className="text-sm text-gray-500">Hired</div>
+            <div className="text-sm text-slate-500">Hired</div>
           </div>
           <div>
             <div className="text-2xl font-bold text-blue-600">{diversity.indigenous.rate}%</div>
-            <div className="text-sm text-gray-500">Hire Rate</div>
+            <div className="text-sm text-slate-500">Hire Rate</div>
           </div>
         </div>
       </div>
 
       {/* Gender Distribution */}
       <div className="mb-4">
-        <p className="text-sm text-gray-500 mb-2">Gender Distribution</p>
+        <p className="text-sm text-slate-500 mb-2">Gender Distribution</p>
         <div className="flex gap-1 h-6 rounded-full overflow-hidden">
           {diversity.gender.map((g, idx) => (
             <div
@@ -272,7 +272,7 @@ function DiversityInsights({ diversity }: { diversity: EmployerAnalytics['divers
         </div>
         <div className="flex justify-between mt-2">
           {diversity.gender.map((g, idx) => (
-            <span key={g.label} className="text-xs text-gray-500">
+            <span key={g.label} className="text-xs text-slate-500">
               {g.label}: {g.percentage}%
             </span>
           ))}
@@ -281,18 +281,18 @@ function DiversityInsights({ diversity }: { diversity: EmployerAnalytics['divers
 
       {/* Age Groups */}
       <div>
-        <p className="text-sm text-gray-500 mb-2">Age Distribution</p>
+        <p className="text-sm text-slate-500 mb-2">Age Distribution</p>
         <div className="space-y-2">
           {diversity.ageGroups.map((age) => (
             <div key={age.label} className="flex items-center gap-2">
-              <span className="text-xs text-gray-500 w-16">{age.label}</span>
-              <div className="flex-1 h-3 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+              <span className="text-xs text-slate-500 w-16">{age.label}</span>
+              <div className="flex-1 h-3 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-indigo-500 rounded-full"
                   style={{ width: `${age.percentage}%` }}
                 />
               </div>
-              <span className="text-xs text-gray-500 w-10 text-right">{age.percentage}%</span>
+              <span className="text-xs text-slate-500 w-10 text-right">{age.percentage}%</span>
             </div>
           ))}
         </div>
@@ -314,14 +314,14 @@ function TrendChart({
   const max = Math.max(...data.map(d => d.count));
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{label} Over Time</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">{label} Over Time</h3>
       
       <div className="flex items-end gap-1 h-32">
         {data.map((point, idx) => (
           <div key={idx} className="flex-1 flex flex-col items-center group">
             <div className="relative">
-              <div className="opacity-0 group-hover:opacity-100 absolute -top-6 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap">
+              <div className="opacity-0 group-hover:opacity-100 absolute -top-6 left-1/2 -translate-x-1/2 px-2 py-1 bg-slate-900 text-white text-xs rounded whitespace-nowrap">
                 {point.count}
               </div>
             </div>
@@ -337,7 +337,7 @@ function TrendChart({
         ))}
       </div>
       
-      <div className="flex justify-between mt-2 text-xs text-gray-400">
+      <div className="flex justify-between mt-2 text-xs text-slate-400">
         <span>{new Date(data[0]?.date).toLocaleDateString('en-AU', { month: 'short', day: 'numeric' })}</span>
         <span>{new Date(data[data.length - 1]?.date).toLocaleDateString('en-AU', { month: 'short', day: 'numeric' })}</span>
       </div>
@@ -348,25 +348,25 @@ function TrendChart({
 // Engagement Metrics
 function EngagementMetrics({ engagement }: { engagement: EmployerAnalytics['engagement'] }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Candidate Engagement</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Candidate Engagement</h3>
       
       <div className="grid grid-cols-2 gap-4">
-        <div className="text-center p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <div className="text-center p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
           <div className="text-2xl font-bold text-green-600">{engagement.responseRate}%</div>
-          <div className="text-sm text-gray-500">Response Rate</div>
+          <div className="text-sm text-slate-500">Response Rate</div>
         </div>
-        <div className="text-center p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <div className="text-center p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
           <div className="text-2xl font-bold text-blue-600">{engagement.avgResponseTime}</div>
-          <div className="text-sm text-gray-500">Avg Response Time</div>
+          <div className="text-sm text-slate-500">Avg Response Time</div>
         </div>
-        <div className="text-center p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <div className="text-center p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
           <div className="text-2xl font-bold text-purple-600">{engagement.candidateSatisfaction}/5</div>
-          <div className="text-sm text-gray-500">Candidate Rating</div>
+          <div className="text-sm text-slate-500">Candidate Rating</div>
         </div>
-        <div className="text-center p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <div className="text-center p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
           <div className="text-2xl font-bold text-orange-600">{engagement.profileViews}</div>
-          <div className="text-sm text-gray-500">Company Views</div>
+          <div className="text-sm text-slate-500">Company Views</div>
         </div>
       </div>
     </div>
@@ -423,14 +423,14 @@ export function EmployerAnalyticsPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Recruiting Analytics</h1>
-          <p className="text-gray-500 mt-1">Track your hiring performance and candidate pipeline</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Recruiting Analytics</h1>
+          <p className="text-slate-500 mt-1">Track your hiring performance and candidate pipeline</p>
         </div>
         <div className="flex gap-3">
           <select
             value={period}
             onChange={(e) => setPeriod(e.target.value as typeof period)}
-            className="px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+            className="px-4 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
           >
             <option value="7d">Last 7 Days</option>
             <option value="30d">Last 30 Days</option>

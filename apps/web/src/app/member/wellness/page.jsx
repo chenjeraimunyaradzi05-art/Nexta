@@ -147,15 +147,15 @@ export default function WellnessPage() {
       MEDIUM: 'bg-amber-50 border-amber-200 text-amber-800',
       LOW: 'bg-blue-50 border-blue-200 text-blue-800'
     };
-    return colors[severity] || 'bg-gray-50 border-gray-200';
+    return colors[severity] || 'bg-slate-50 border-slate-200';
   }
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin w-8 h-8 border-4 border-teal-600 border-t-transparent rounded-full mx-auto"></div>
-          <p className="text-gray-500 mt-4">Loading...</p>
+          <p className="text-slate-500 mt-4">Loading...</p>
         </div>
       </div>
     );
@@ -166,10 +166,10 @@ export default function WellnessPage() {
       <div className="max-w-4xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 flex items-center justify-center gap-3">
+          <h1 className="text-3xl font-bold text-slate-900 flex items-center justify-center gap-3">
             <span>🌿</span> Wellness Centre
           </h1>
-          <p className="text-gray-600 mt-2">
+          <p className="text-slate-600 mt-2">
             Your wellbeing matters. Check in with yourself and access support when you need it.
           </p>
         </div>
@@ -214,7 +214,7 @@ export default function WellnessPage() {
                   </div>
                   <button
                     onClick={() => dismissAlert(alert.id)}
-                    className="text-gray-400 hover:text-gray-600"
+                    className="text-slate-400 hover:text-slate-600"
                     aria-label="Dismiss"
                   >
                     ✕
@@ -243,7 +243,7 @@ export default function WellnessPage() {
               
               {/* Mood */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-slate-700 mb-2">
                   How's your mood? {getEmojiForScore(checkInData.mood)}
                 </label>
                 <input
@@ -252,9 +252,9 @@ export default function WellnessPage() {
                   max="5"
                   value={checkInData.mood}
                   onChange={(e) => setCheckInData({ ...checkInData, mood: parseInt(e.target.value) })}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-teal-600"
+                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-teal-600"
                 />
-                <div className="flex justify-between text-xs text-gray-500 mt-1">
+                <div className="flex justify-between text-xs text-slate-500 mt-1">
                   <span>Low</span>
                   <span>Great</span>
                 </div>
@@ -262,7 +262,7 @@ export default function WellnessPage() {
 
               {/* Stress */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-slate-700 mb-2">
                   Stress level? {checkInData.stressLevel <= 2 ? '😌' : checkInData.stressLevel >= 4 ? '😰' : '😐'}
                 </label>
                 <input
@@ -271,9 +271,9 @@ export default function WellnessPage() {
                   max="5"
                   value={checkInData.stressLevel}
                   onChange={(e) => setCheckInData({ ...checkInData, stressLevel: parseInt(e.target.value) })}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-amber-500"
+                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-amber-500"
                 />
-                <div className="flex justify-between text-xs text-gray-500 mt-1">
+                <div className="flex justify-between text-xs text-slate-500 mt-1">
                   <span>Relaxed</span>
                   <span>Stressed</span>
                 </div>
@@ -281,7 +281,7 @@ export default function WellnessPage() {
 
               {/* Hopefulness */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-slate-700 mb-2">
                   How hopeful about your job search? {getEmojiForScore(checkInData.hopefulness)}
                 </label>
                 <input
@@ -290,9 +290,9 @@ export default function WellnessPage() {
                   max="5"
                   value={checkInData.hopefulness}
                   onChange={(e) => setCheckInData({ ...checkInData, hopefulness: parseInt(e.target.value) })}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-green-500"
+                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-green-500"
                 />
-                <div className="flex justify-between text-xs text-gray-500 mt-1">
+                <div className="flex justify-between text-xs text-slate-500 mt-1">
                   <span>Discouraged</span>
                   <span>Very hopeful</span>
                 </div>
@@ -300,7 +300,7 @@ export default function WellnessPage() {
 
               {/* Notes */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-slate-700 mb-2">
                   Anything else on your mind? (optional)
                 </label>
                 <textarea
@@ -315,7 +315,7 @@ export default function WellnessPage() {
               <div className="flex gap-3">
                 <button
                   onClick={() => setShowCheckIn(false)}
-                  className="flex-1 px-4 py-2 border rounded-lg hover:bg-gray-50"
+                  className="flex-1 px-4 py-2 border rounded-lg hover:bg-slate-50"
                 >
                   Cancel
                 </button>
@@ -336,7 +336,7 @@ export default function WellnessPage() {
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             {/* General */}
             <div className="bg-white rounded-xl shadow-sm border p-5">
-              <h3 className="font-semibold text-gray-900 mb-4">💙 Mental Health</h3>
+              <h3 className="font-semibold text-slate-900 mb-4">💙 Mental Health</h3>
               <div className="space-y-3">
                 {resources.general?.map((r, i) => (
                   <a
@@ -344,7 +344,7 @@ export default function WellnessPage() {
                     href={r.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                    className="block p-3 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors"
                   >
                     <span className="mr-2">{r.icon}</span>
                     <span className="font-medium">{r.name}</span>
@@ -355,7 +355,7 @@ export default function WellnessPage() {
 
             {/* Indigenous */}
             <div className="bg-white rounded-xl shadow-sm border p-5">
-              <h3 className="font-semibold text-gray-900 mb-4">🌿 First Nations Support</h3>
+              <h3 className="font-semibold text-slate-900 mb-4">🌿 First Nations Support</h3>
               <div className="space-y-3">
                 {resources.indigenous?.map((r, i) => (
                   <a
@@ -363,7 +363,7 @@ export default function WellnessPage() {
                     href={r.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                    className="block p-3 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors"
                   >
                     <span className="mr-2">{r.icon}</span>
                     <span className="font-medium">{r.name}</span>
@@ -374,13 +374,13 @@ export default function WellnessPage() {
 
             {/* Career */}
             <div className="bg-white rounded-xl shadow-sm border p-5">
-              <h3 className="font-semibold text-gray-900 mb-4">💼 Career Support</h3>
+              <h3 className="font-semibold text-slate-900 mb-4">💼 Career Support</h3>
               <div className="space-y-3">
                 {resources.career?.map((r, i) => (
                   <a
                     key={i}
                     href={r.url}
-                    className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                    className="block p-3 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors"
                   >
                     <span className="mr-2">{r.icon}</span>
                     <span className="font-medium">{r.name}</span>
@@ -402,14 +402,14 @@ export default function WellnessPage() {
                     {getEmojiForScore(h.mood)}
                   </div>
                   <div className="flex-1">
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-slate-600">
                       Mood: {h.mood}/5 | Stress: {h.stressLevel}/5 | Hope: {h.hopefulness}/5
                     </div>
                     {h.notes && (
-                      <div className="text-sm text-gray-500 truncate">{h.notes}</div>
+                      <div className="text-sm text-slate-500 truncate">{h.notes}</div>
                     )}
                   </div>
-                  <div className="text-xs text-gray-400">
+                  <div className="text-xs text-slate-400">
                     {new Date(h.createdAt).toLocaleDateString()}
                   </div>
                 </div>

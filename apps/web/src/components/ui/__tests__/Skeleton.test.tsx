@@ -11,7 +11,7 @@ describe('Skeleton', () => {
     expect(container.firstChild).toBeInTheDocument();
     expect(container.firstChild).toHaveClass('animate-pulse');
     expect(container.firstChild).toHaveClass('rounded-md');
-    expect(container.firstChild).toHaveClass('bg-gray-200');
+    expect(container.firstChild).toHaveClass('bg-slate-200');
   });
 
   it('applies custom className', () => {

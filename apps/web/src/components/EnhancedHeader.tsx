@@ -99,7 +99,7 @@ export default function EnhancedHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+      <header className="sticky top-0 z-40 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
         <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
@@ -131,7 +131,7 @@ export default function EnhancedHeader() {
                       ${
                         isActiveLink(link.href)
                           ? 'text-[#FFD700] bg-[#FFD700]/10'
-                          : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
                       }
                     `}
                   >
@@ -150,7 +150,7 @@ export default function EnhancedHeader() {
               </div>
               <button
                 onClick={() => setSearchOpen(true)}
-                className="md:hidden p-2 rounded-lg text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="md:hidden p-2 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
                 aria-label="Search"
               >
                 <Search className="w-5 h-5" />
@@ -164,7 +164,7 @@ export default function EnhancedHeader() {
                   {/* User Menu */}
                   <Dropdown
                     trigger={
-                      <button className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                      <button className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                         <Avatar
                           src={undefined}
                           name={
@@ -175,18 +175,18 @@ export default function EnhancedHeader() {
                           size="sm"
                           status="online"
                         />
-                        <ChevronDown className="w-4 h-4 text-gray-400 hidden sm:block" />
+                        <ChevronDown className="w-4 h-4 text-slate-400 hidden sm:block" />
                       </button>
                     }
                     placement="bottom-end"
                   >
                     <div className="px-4 py-3">
-                      <p className="text-sm font-medium text-gray-900 dark:text-white">
+                      <p className="text-sm font-medium text-slate-900 dark:text-white">
                         {user?.profile?.firstName
                           ? `${user.profile.firstName} ${user.profile.lastName || ''}`.trim()
                           : 'User'}
                       </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                      <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
                         {user?.email}
                       </p>
                       <div className="mt-2">
@@ -217,7 +217,7 @@ export default function EnhancedHeader() {
               {/* Mobile Menu Button */}
               <button
                 type="button"
-                className="lg:hidden p-2 rounded-lg text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="lg:hidden p-2 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 <span className="sr-only">Open main menu</span>
@@ -232,7 +232,7 @@ export default function EnhancedHeader() {
 
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="lg:hidden py-4 space-y-2 border-t border-gray-200 dark:border-gray-800">
+            <div className="lg:hidden py-4 space-y-2 border-t border-slate-200 dark:border-slate-800">
               {navItems.map((link) => (
                 <Link
                   key={link.name}
@@ -243,7 +243,7 @@ export default function EnhancedHeader() {
                     ${
                       isActiveLink(link.href)
                         ? 'text-[#FFD700] bg-[#FFD700]/10'
-                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                        : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
                     }
                   `}
                 >
@@ -255,7 +255,7 @@ export default function EnhancedHeader() {
               {!isAuthenticated && <></>}
 
               {isAuthenticated && (
-                <div className="pt-4 mt-4 border-t border-gray-200 dark:border-gray-800">
+                <div className="pt-4 mt-4 border-t border-slate-200 dark:border-slate-800">
                   <button
                     onClick={() => {
                       setMobileMenuOpen(false);

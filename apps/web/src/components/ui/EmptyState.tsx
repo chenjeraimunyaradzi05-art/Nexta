@@ -82,21 +82,21 @@ export function EmptyState({
       ? 'bg-gradient-to-br from-[#2D1B69]/50 to-[#1A0F2E]/50 border border-[#FFD700]/20'
       : variant === 'minimal'
       ? 'bg-transparent'
-      : 'bg-gray-100 dark:bg-gray-800';
+      : 'bg-slate-100 dark:bg-slate-800';
 
   const iconColor =
     variant === 'cosmic'
       ? 'text-[#FFD700]'
-      : 'text-gray-400 dark:text-gray-500';
+      : 'text-slate-400 dark:text-slate-500';
 
   const ActionButton = ({ actionData, primary = false }: { actionData: typeof action; primary?: boolean }) => {
     if (!actionData) return null;
     
     const buttonClass = primary
       ? variant === 'cosmic'
-        ? `${sizes.button} rounded-lg bg-gradient-to-r from-[#FFD700] to-[#50C878] text-gray-900 font-medium hover:opacity-90 transition-opacity`
+        ? `${sizes.button} rounded-lg bg-gradient-to-r from-[#FFD700] to-[#50C878] text-slate-900 font-medium hover:opacity-90 transition-opacity`
         : `${sizes.button} rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors`
-      : `${sizes.button} rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors`;
+      : `${sizes.button} rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors`;
 
     if (actionData.href) {
       return (
@@ -144,7 +144,7 @@ export function EmptyState({
         className={`
           ${sizes.title}
           font-semibold
-          ${variant === 'cosmic' ? 'text-white' : 'text-gray-900 dark:text-white'}
+          ${variant === 'cosmic' ? 'text-white' : 'text-slate-900 dark:text-white'}
         `}
       >
         {title}
@@ -156,7 +156,7 @@ export function EmptyState({
           className={`
             ${sizes.description}
             mt-2 max-w-sm
-            ${variant === 'cosmic' ? 'text-gray-400' : 'text-gray-500 dark:text-gray-400'}
+            ${variant === 'cosmic' ? 'text-slate-400' : 'text-slate-500 dark:text-slate-400'}
           `}
         >
           {description}

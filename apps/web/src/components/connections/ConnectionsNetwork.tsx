@@ -169,7 +169,7 @@ function ConnectionCard({
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
       <div className="flex items-start gap-4">
         {/* Avatar */}
         {connection.user.avatar ? (
@@ -191,7 +191,7 @@ function ConnectionCard({
           <div className="flex items-start justify-between gap-2">
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-semibold text-gray-900 dark:text-white">{connection.user.name}</h3>
+                <h3 className="font-semibold text-slate-900 dark:text-white">{connection.user.name}</h3>
                 {connection.user.isVerified && (
                   <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -204,10 +204,10 @@ function ConnectionCard({
                 )}
               </div>
               {connection.user.title && (
-                <p className="text-sm text-gray-600 dark:text-gray-400">{connection.user.title}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-400">{connection.user.title}</p>
               )}
               {connection.user.company && (
-                <p className="text-sm text-gray-500">{connection.user.company}</p>
+                <p className="text-sm text-slate-500">{connection.user.company}</p>
               )}
             </div>
 
@@ -215,23 +215,23 @@ function ConnectionCard({
             <div className="relative">
               <button
                 onClick={() => setShowMenu(!showMenu)}
-                className="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="p-2 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
                 </svg>
               </button>
               {showMenu && (
-                <div className="absolute right-0 top-full mt-1 w-40 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-10">
+                <div className="absolute right-0 top-full mt-1 w-40 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 py-1 z-10">
                   <button
                     onClick={() => { onMessage(); setShowMenu(false); }}
-                    className="w-full px-4 py-2 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
+                    className="w-full px-4 py-2 text-left text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700"
                   >
                     Send Message
                   </button>
                   <button
                     onClick={() => { onRemove(); setShowMenu(false); }}
-                    className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-gray-50 dark:hover:bg-gray-700"
+                    className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-slate-50 dark:hover:bg-slate-700"
                   >
                     Remove Connection
                   </button>
@@ -241,7 +241,7 @@ function ConnectionCard({
           </div>
 
           {/* Meta */}
-          <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-gray-500">
+          <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-slate-500">
             {connection.user.location && (
               <span className="flex items-center gap-1">
                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -263,7 +263,7 @@ function ConnectionCard({
               {connection.sharedInterests.slice(0, 3).map((interest, i) => (
                 <span
                   key={i}
-                  className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded"
+                  className="px-2 py-0.5 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 text-xs rounded"
                 >
                   {interest}
                 </span>
@@ -295,7 +295,7 @@ function RequestCard({
   onCancel?: () => void;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
       <div className="flex items-start gap-4">
         {/* Avatar */}
         {request.user.avatar ? (
@@ -315,21 +315,21 @@ function RequestCard({
         {/* Content */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <h3 className="font-semibold text-gray-900 dark:text-white">{request.user.name}</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white">{request.user.name}</h3>
             {request.user.isIndigenous && (
               <span className="text-xs">🌏</span>
             )}
           </div>
           {request.user.title && (
-            <p className="text-sm text-gray-600 dark:text-gray-400">{request.user.title}</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">{request.user.title}</p>
           )}
           {request.mutualConnections > 0 && (
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-slate-500 mt-1">
               {request.mutualConnections} mutual connections
             </p>
           )}
           {request.message && (
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 italic">
+            <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 italic">
               "{request.message}"
             </p>
           )}
@@ -362,7 +362,7 @@ function SuggestionCard({
   onDismiss: () => void;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
       <div className="flex items-start gap-4">
         {/* Avatar */}
         {suggestion.user.avatar ? (
@@ -384,7 +384,7 @@ function SuggestionCard({
           <div className="flex items-start justify-between gap-2">
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-semibold text-gray-900 dark:text-white">{suggestion.user.name}</h3>
+                <h3 className="font-semibold text-slate-900 dark:text-white">{suggestion.user.name}</h3>
                 {suggestion.user.isVerified && (
                   <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -395,10 +395,10 @@ function SuggestionCard({
                 )}
               </div>
               {suggestion.user.title && (
-                <p className="text-sm text-gray-600 dark:text-gray-400">{suggestion.user.title}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-400">{suggestion.user.title}</p>
               )}
             </div>
-            <button onClick={onDismiss} className="text-gray-400 hover:text-gray-600">
+            <button onClick={onDismiss} className="text-slate-400 hover:text-slate-600">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -408,7 +408,7 @@ function SuggestionCard({
           <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">{suggestion.reason}</p>
 
           {suggestion.mutualConnections > 0 && (
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-slate-500 mt-1">
               {suggestion.mutualConnections} mutual connections
             </p>
           )}
@@ -442,8 +442,8 @@ function ConnectModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-6">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-md w-full p-6">
+        <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
           Connect with {user.name}
         </h3>
 
@@ -453,9 +453,9 @@ function ConnectModal({
               type="checkbox"
               checked={addNote}
               onChange={(e) => setAddNote(e.target.checked)}
-              className="rounded border-gray-300"
+              className="rounded border-slate-300"
             />
-            <span className="text-sm text-gray-600 dark:text-gray-400">
+            <span className="text-sm text-slate-600 dark:text-slate-400">
               Add a note to your invitation
             </span>
           </label>
@@ -467,7 +467,7 @@ function ConnectModal({
               placeholder="Hi! I'd like to connect because..."
               rows={3}
               maxLength={300}
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white resize-none"
             />
           )}
         </div>
@@ -614,15 +614,15 @@ export function ConnectionsNetwork() {
     <div className="max-w-6xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">My Network</h1>
-        <p className="text-gray-500 mt-1">
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">My Network</h1>
+        <p className="text-slate-500 mt-1">
           {connections.length} connections
         </p>
       </div>
 
       {/* Search */}
       <div className="relative mb-6">
-        <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
         <input
@@ -630,17 +630,17 @@ export function ConnectionsNetwork() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search connections or find new people..."
-          className="w-full pl-10 pr-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          className="w-full pl-10 pr-4 py-3 border border-slate-200 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
         />
 
         {/* Search Results Dropdown */}
         {searchResults && (
-          <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 max-h-80 overflow-y-auto z-10">
+          <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 max-h-80 overflow-y-auto z-10">
             {searchResults.length > 0 ? (
               searchResults.map((person) => (
                 <div
                   key={person.id}
-                  className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700 border-b border-gray-100 dark:border-gray-700 last:border-b-0"
+                  className="flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-slate-700 border-b border-slate-100 dark:border-slate-700 last:border-b-0"
                 >
                   <div className="flex items-center gap-3">
                     {person.user.avatar ? (
@@ -652,13 +652,13 @@ export function ConnectionsNetwork() {
                         className="w-10 h-10 rounded-full"
                       />
                     ) : (
-                      <div className="w-10 h-10 bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center font-medium">
+                      <div className="w-10 h-10 bg-slate-200 dark:bg-slate-600 rounded-full flex items-center justify-center font-medium">
                         {person.user.name.charAt(0)}
                       </div>
                     )}
                     <div>
-                      <p className="font-medium text-gray-900 dark:text-white">{person.user.name}</p>
-                      <p className="text-sm text-gray-500">{person.user.title}</p>
+                      <p className="font-medium text-slate-900 dark:text-white">{person.user.name}</p>
+                      <p className="text-sm text-slate-500">{person.user.title}</p>
                     </div>
                   </div>
                   <Button
@@ -670,20 +670,20 @@ export function ConnectionsNetwork() {
                 </div>
               ))
             ) : (
-              <p className="p-4 text-center text-gray-500">No results found</p>
+              <p className="p-4 text-center text-slate-500">No results found</p>
             )}
           </div>
         )}
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-gray-200 dark:border-gray-700 mb-6">
+      <div className="flex border-b border-slate-200 dark:border-slate-700 mb-6">
         <button
           onClick={() => setActiveTab('connections')}
           className={`px-4 py-3 font-medium border-b-2 transition-colors ${
             activeTab === 'connections'
               ? 'border-blue-500 text-blue-600 dark:text-blue-400'
-              : 'border-transparent text-gray-500 hover:text-gray-700'
+              : 'border-transparent text-slate-500 hover:text-slate-700'
           }`}
         >
           Connections ({connections.length})
@@ -693,7 +693,7 @@ export function ConnectionsNetwork() {
           className={`px-4 py-3 font-medium border-b-2 transition-colors ${
             activeTab === 'requests'
               ? 'border-blue-500 text-blue-600 dark:text-blue-400'
-              : 'border-transparent text-gray-500 hover:text-gray-700'
+              : 'border-transparent text-slate-500 hover:text-slate-700'
           }`}
         >
           Requests
@@ -708,7 +708,7 @@ export function ConnectionsNetwork() {
           className={`px-4 py-3 font-medium border-b-2 transition-colors ${
             activeTab === 'suggestions'
               ? 'border-blue-500 text-blue-600 dark:text-blue-400'
-              : 'border-transparent text-gray-500 hover:text-gray-700'
+              : 'border-transparent text-slate-500 hover:text-slate-700'
           }`}
         >
           Suggestions
@@ -730,8 +730,8 @@ export function ConnectionsNetwork() {
           ) : (
             <div className="col-span-2 text-center py-16">
               <div className="text-6xl mb-4">🤝</div>
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white">No connections yet</h3>
-              <p className="text-gray-500 mt-2">
+              <h3 className="text-lg font-medium text-slate-900 dark:text-white">No connections yet</h3>
+              <p className="text-slate-500 mt-2">
                 Start building your network by connecting with people
               </p>
               <Button className="mt-4" onClick={() => setActiveTab('suggestions')}>
@@ -746,7 +746,7 @@ export function ConnectionsNetwork() {
         <div className="space-y-6">
           {/* Received */}
           <div>
-            <h3 className="font-medium text-gray-900 dark:text-white mb-4">
+            <h3 className="font-medium text-slate-900 dark:text-white mb-4">
               Received ({requests.received.length})
             </h3>
             {requests.received.length > 0 ? (
@@ -761,13 +761,13 @@ export function ConnectionsNetwork() {
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500">No pending requests</p>
+              <p className="text-slate-500">No pending requests</p>
             )}
           </div>
 
           {/* Sent */}
           <div>
-            <h3 className="font-medium text-gray-900 dark:text-white mb-4">
+            <h3 className="font-medium text-slate-900 dark:text-white mb-4">
               Sent ({requests.sent.length})
             </h3>
             {requests.sent.length > 0 ? (
@@ -781,7 +781,7 @@ export function ConnectionsNetwork() {
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500">No pending sent requests</p>
+              <p className="text-slate-500">No pending sent requests</p>
             )}
           </div>
         </div>
@@ -789,7 +789,7 @@ export function ConnectionsNetwork() {
 
       {activeTab === 'suggestions' && (
         <div>
-          <p className="text-gray-500 mb-4">People you may know</p>
+          <p className="text-slate-500 mb-4">People you may know</p>
           <div className="grid gap-4 md:grid-cols-3">
             {suggestions.map((suggestion) => (
               <SuggestionCard

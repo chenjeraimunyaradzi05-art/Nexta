@@ -79,14 +79,14 @@ function ThemeCard({
       className={`text-left p-4 rounded-xl border-2 transition-all ${
         selected
           ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-          : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
+          : 'border-slate-200 dark:border-slate-700 hover:border-slate-300'
       }`}
     >
       <div className="w-full h-24 rounded-lg overflow-hidden mb-3">
         {preview}
       </div>
-      <h4 className="font-medium text-gray-900 dark:text-white">{label}</h4>
-      <p className="text-sm text-gray-500">{description}</p>
+      <h4 className="font-medium text-slate-900 dark:text-white">{label}</h4>
+      <p className="text-sm text-slate-500">{description}</p>
     </button>
   );
 }
@@ -111,7 +111,7 @@ function ColorSchemeCard({
       className={`p-4 rounded-xl border-2 transition-all ${
         selected
           ? 'border-blue-500 ring-2 ring-blue-200'
-          : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
+          : 'border-slate-200 dark:border-slate-700 hover:border-slate-300'
       }`}
     >
       <div className="flex gap-1 mb-2">
@@ -123,7 +123,7 @@ function ColorSchemeCard({
           />
         ))}
       </div>
-      <span className="text-sm font-medium text-gray-900 dark:text-white">{label}</span>
+      <span className="text-sm font-medium text-slate-900 dark:text-white">{label}</span>
     </button>
   );
 }
@@ -139,9 +139,9 @@ function SettingSection({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 mb-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">{title}</h3>
-      {description && <p className="text-sm text-gray-500 mb-4">{description}</p>}
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 mb-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">{title}</h3>
+      {description && <p className="text-sm text-slate-500 mb-4">{description}</p>}
       {children}
     </div>
   );
@@ -166,14 +166,14 @@ function ToggleOption({
       <div className="flex items-center gap-3">
         {icon && <span className="text-xl">{icon}</span>}
         <div>
-          <span className="font-medium text-gray-900 dark:text-white">{label}</span>
-          {description && <p className="text-sm text-gray-500">{description}</p>}
+          <span className="font-medium text-slate-900 dark:text-white">{label}</span>
+          {description && <p className="text-sm text-slate-500">{description}</p>}
         </div>
       </div>
       <div
         onClick={() => onChange(!checked)}
         className={`relative w-12 h-6 rounded-full transition-colors ${
-          checked ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'
+          checked ? 'bg-blue-500' : 'bg-slate-300 dark:bg-slate-600'
         }`}
       >
         <div
@@ -207,14 +207,14 @@ function SelectOption({
       <div className="flex items-center gap-3">
         {icon && <span className="text-xl">{icon}</span>}
         <div>
-          <span className="font-medium text-gray-900 dark:text-white">{label}</span>
-          {description && <p className="text-sm text-gray-500">{description}</p>}
+          <span className="font-medium text-slate-900 dark:text-white">{label}</span>
+          {description && <p className="text-sm text-slate-500">{description}</p>}
         </div>
       </div>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="px-3 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+        className="px-3 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
       >
         {options.map((opt) => (
           <option key={opt.value} value={opt.value}>
@@ -229,11 +229,11 @@ function SelectOption({
 // Theme Preview Components
 function LightThemePreview() {
   return (
-    <div className="w-full h-full bg-white border border-gray-200 flex">
-      <div className="w-1/4 bg-gray-100 h-full" />
+    <div className="w-full h-full bg-white border border-slate-200 flex">
+      <div className="w-1/4 bg-slate-100 h-full" />
       <div className="flex-1 p-2">
-        <div className="h-2 bg-gray-200 rounded mb-2" />
-        <div className="h-2 bg-gray-200 rounded w-3/4" />
+        <div className="h-2 bg-slate-200 rounded mb-2" />
+        <div className="h-2 bg-slate-200 rounded w-3/4" />
       </div>
     </div>
   );
@@ -241,11 +241,11 @@ function LightThemePreview() {
 
 function DarkThemePreview() {
   return (
-    <div className="w-full h-full bg-gray-900 border border-gray-700 flex">
-      <div className="w-1/4 bg-gray-800 h-full" />
+    <div className="w-full h-full bg-slate-900 border border-slate-700 flex">
+      <div className="w-1/4 bg-slate-800 h-full" />
       <div className="flex-1 p-2">
-        <div className="h-2 bg-gray-700 rounded mb-2" />
-        <div className="h-2 bg-gray-700 rounded w-3/4" />
+        <div className="h-2 bg-slate-700 rounded mb-2" />
+        <div className="h-2 bg-slate-700 rounded w-3/4" />
       </div>
     </div>
   );
@@ -253,20 +253,20 @@ function DarkThemePreview() {
 
 function SystemThemePreview() {
   return (
-    <div className="w-full h-full flex border border-gray-300">
+    <div className="w-full h-full flex border border-slate-300">
       <div className="w-1/2 bg-white">
         <div className="w-full h-full flex">
-          <div className="w-1/4 bg-gray-100 h-full" />
+          <div className="w-1/4 bg-slate-100 h-full" />
           <div className="flex-1 p-1">
-            <div className="h-1.5 bg-gray-200 rounded mb-1" />
+            <div className="h-1.5 bg-slate-200 rounded mb-1" />
           </div>
         </div>
       </div>
-      <div className="w-1/2 bg-gray-900">
+      <div className="w-1/2 bg-slate-900">
         <div className="w-full h-full flex">
-          <div className="w-1/4 bg-gray-800 h-full" />
+          <div className="w-1/4 bg-slate-800 h-full" />
           <div className="flex-1 p-1">
-            <div className="h-1.5 bg-gray-700 rounded mb-1" />
+            <div className="h-1.5 bg-slate-700 rounded mb-1" />
           </div>
         </div>
       </div>
@@ -378,8 +378,8 @@ export function AppearanceSettings() {
     <div className="max-w-3xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Appearance</h1>
-          <p className="text-gray-500 mt-1">Customize how Nexta looks for you</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Appearance</h1>
+          <p className="text-slate-500 mt-1">Customize how Nexta looks for you</p>
         </div>
         <Button variant="outline" onClick={handleReset}>
           Reset to Defaults
@@ -439,7 +439,7 @@ export function AppearanceSettings() {
           ))}
         </div>
         {preferences.colorScheme === 'indigenous' && (
-          <p className="mt-4 text-sm text-gray-500 bg-gray-50 dark:bg-gray-900 p-3 rounded-lg">
+          <p className="mt-4 text-sm text-slate-500 bg-slate-50 dark:bg-slate-900 p-3 rounded-lg">
             🎨 The Indigenous color scheme is inspired by traditional Aboriginal and Torres Strait Islander art,
             featuring ochre, red earth, and blue representing sky and water.
           </p>

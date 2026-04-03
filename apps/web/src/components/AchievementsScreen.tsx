@@ -66,9 +66,9 @@ interface AchievementStats {
 const rarityConfig: Record<BadgeRarity, { label: string; color: string; bgColor: string; border: string }> = {
   common: { 
     label: 'Common', 
-    color: 'text-gray-600 dark:text-gray-400',
-    bgColor: 'bg-gray-100 dark:bg-gray-700',
-    border: 'border-gray-300 dark:border-gray-600',
+    color: 'text-slate-600 dark:text-slate-400',
+    bgColor: 'bg-slate-100 dark:bg-slate-700',
+    border: 'border-slate-300 dark:border-slate-600',
   },
   uncommon: { 
     label: 'Uncommon', 
@@ -212,7 +212,7 @@ function BadgeCard({
       className={`relative p-4 rounded-xl border-2 transition-all cursor-pointer
         ${isEarned 
           ? `${rarity.bgColor} ${rarity.border}` 
-          : 'bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 opacity-60'
+          : 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 opacity-60'
         }
         hover:shadow-lg hover:scale-105
       `}
@@ -225,7 +225,7 @@ function BadgeCard({
       {/* Badge Icon */}
       <div className="flex justify-center mb-3">
         <div className={`w-16 h-16 rounded-full flex items-center justify-center text-3xl
-          ${isEarned ? 'bg-white dark:bg-gray-900 shadow-lg' : 'bg-gray-200 dark:bg-gray-700'}
+          ${isEarned ? 'bg-white dark:bg-slate-900 shadow-lg' : 'bg-slate-200 dark:bg-slate-700'}
         `}>
           {badge.isSecret && !isEarned ? '❓' : badge.icon}
         </div>
@@ -233,17 +233,17 @@ function BadgeCard({
       
       {/* Badge Info */}
       <div className="text-center">
-        <h3 className={`font-semibold ${isEarned ? rarity.color : 'text-gray-400 dark:text-gray-500'}`}>
+        <h3 className={`font-semibold ${isEarned ? rarity.color : 'text-slate-400 dark:text-slate-500'}`}>
           {badge.isSecret && !isEarned ? '???' : badge.name}
         </h3>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">
           {badge.isSecret && !isEarned ? 'Complete the secret requirement to unlock' : badge.description}
         </p>
         
         {/* Points */}
         <div className="mt-2 flex items-center justify-center gap-1">
           <span className="text-yellow-500">⭐</span>
-          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+          <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
             {badge.points} pts
           </span>
         </div>
@@ -251,13 +251,13 @@ function BadgeCard({
         {/* Progress bar */}
         {showProgress && !isEarned && badge.progress !== undefined && badge.maxProgress && (
           <div className="mt-3">
-            <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
+            <div className="h-2 bg-slate-200 dark:bg-slate-600 rounded-full overflow-hidden">
               <div 
                 className="h-full bg-blue-500 rounded-full transition-all"
                 style={{ width: `${(badge.progress / badge.maxProgress) * 100}%` }}
               />
             </div>
-            <p className="text-xs text-gray-400 mt-1">
+            <p className="text-xs text-slate-400 mt-1">
               {badge.progress} / {badge.maxProgress}
             </p>
           </div>
@@ -265,7 +265,7 @@ function BadgeCard({
         
         {/* Earned date */}
         {isEarned && badge.earnedAt && (
-          <p className="mt-2 text-xs text-gray-400">
+          <p className="mt-2 text-xs text-slate-400">
             Earned {new Date(badge.earnedAt).toLocaleDateString()}
           </p>
         )}
@@ -332,14 +332,14 @@ function Leaderboard({
   onPeriodChange: (period: string) => void;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-        <h3 className="font-semibold text-gray-900 dark:text-white">Leaderboard</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+      <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700">
+        <h3 className="font-semibold text-slate-900 dark:text-white">Leaderboard</h3>
         <select
           value={period}
           onChange={(e) => onPeriodChange(e.target.value)}
-          className="text-sm border border-gray-200 dark:border-gray-600 rounded-lg px-2 py-1
-            bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          className="text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2 py-1
+            bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
         >
           <option value="weekly">This Week</option>
           <option value="monthly">This Month</option>
@@ -358,19 +358,19 @@ function Leaderboard({
             {/* Rank */}
             <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm
               ${entry.rank === 1 ? 'bg-yellow-400 text-yellow-900' : ''}
-              ${entry.rank === 2 ? 'bg-gray-300 text-gray-700' : ''}
+              ${entry.rank === 2 ? 'bg-slate-300 text-slate-700' : ''}
               ${entry.rank === 3 ? 'bg-amber-600 text-white' : ''}
-              ${entry.rank > 3 ? 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400' : ''}
+              ${entry.rank > 3 ? 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400' : ''}
             `}>
               {entry.rank}
             </div>
             
             {/* Avatar */}
-            <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden">
+            <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-600 overflow-hidden">
               {entry.avatar ? (
                 <OptimizedImage src={toCloudinaryAutoUrl(entry.avatar)} alt={entry.userName} width={40} height={40} className="w-full h-full object-cover" />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
+                <div className="w-full h-full flex items-center justify-center text-slate-400">
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                   </svg>
@@ -380,19 +380,19 @@ function Leaderboard({
             
             {/* Name */}
             <div className="flex-1">
-              <p className={`font-medium ${entry.isCurrentUser ? 'text-blue-600 dark:text-blue-400' : 'text-gray-900 dark:text-white'}`}>
+              <p className={`font-medium ${entry.isCurrentUser ? 'text-blue-600 dark:text-blue-400' : 'text-slate-900 dark:text-white'}`}>
                 {entry.userName}
                 {entry.isCurrentUser && <span className="text-xs ml-2">(You)</span>}
               </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 {entry.badgeCount} badges
               </p>
             </div>
             
             {/* Points */}
             <div className="text-right">
-              <p className="font-bold text-gray-900 dark:text-white">{entry.points.toLocaleString()}</p>
-              <p className="text-xs text-gray-500">points</p>
+              <p className="font-bold text-slate-900 dark:text-white">{entry.points.toLocaleString()}</p>
+              <p className="text-xs text-slate-500">points</p>
             </div>
           </div>
         ))}
@@ -466,10 +466,10 @@ export function AchievementsScreen() {
     <div className="max-w-6xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
           Achievements
         </h1>
-        <p className="mt-2 text-gray-500 dark:text-gray-400">
+        <p className="mt-2 text-slate-500 dark:text-slate-400">
           Earn badges by engaging with the community and advancing your career
         </p>
       </div>
@@ -481,7 +481,7 @@ export function AchievementsScreen() {
           {stats && <StatsCard stats={stats} />}
 
           {/* Tabs */}
-          <div className="flex items-center gap-2 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center gap-2 border-b border-slate-200 dark:border-slate-700">
             {[
               { key: 'earned', label: 'Earned' },
               { key: 'progress', label: 'In Progress' },
@@ -493,7 +493,7 @@ export function AchievementsScreen() {
                 className={`px-4 py-3 text-sm font-medium border-b-2 -mb-px transition-colors ${
                   activeTab === tab.key
                     ? 'border-blue-500 text-blue-600 dark:text-blue-400'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
+                    : 'border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'
                 }`}
               >
                 {tab.label}
@@ -508,7 +508,7 @@ export function AchievementsScreen() {
               className={`px-3 py-1.5 text-sm rounded-full whitespace-nowrap transition-colors ${
                 selectedCategory === 'all'
                   ? 'bg-blue-500 text-white'
-                  : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200'
+                  : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
               }`}
             >
               All
@@ -520,7 +520,7 @@ export function AchievementsScreen() {
                 className={`flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-full whitespace-nowrap transition-colors ${
                   selectedCategory === key
                     ? 'bg-blue-500 text-white'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200'
+                    : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
                 }`}
               >
                 {config.icon}
@@ -544,10 +544,10 @@ export function AchievementsScreen() {
           ) : (
             <div className="text-center py-12">
               <div className="text-6xl mb-4">🏆</div>
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+              <h3 className="text-lg font-medium text-slate-900 dark:text-white">
                 {activeTab === 'earned' ? 'No badges earned yet' : 'No badges in this category'}
               </h3>
-              <p className="mt-2 text-gray-500 dark:text-gray-400">
+              <p className="mt-2 text-slate-500 dark:text-slate-400">
                 {activeTab === 'earned' 
                   ? 'Start engaging with the platform to earn your first badge!'
                   : 'Check other categories or keep working towards new achievements.'
@@ -582,23 +582,23 @@ export function AchievementsScreen() {
             <span className={`inline-block mt-2 px-3 py-1 rounded-full text-sm ${rarityConfig[selectedBadge.rarity].bgColor} ${rarityConfig[selectedBadge.rarity].color}`}>
               {rarityConfig[selectedBadge.rarity].label}
             </span>
-            <p className="mt-4 text-gray-600 dark:text-gray-400">
+            <p className="mt-4 text-slate-600 dark:text-slate-400">
               {selectedBadge.description}
             </p>
-            <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+            <div className="mt-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-lg">
+              <p className="text-sm text-slate-500 dark:text-slate-400">
                 <strong>How to earn:</strong> {selectedBadge.criteria}
               </p>
             </div>
             <div className="mt-4 flex items-center justify-center gap-4">
               <div className="text-center">
                 <p className="text-2xl font-bold text-yellow-500">{selectedBadge.points}</p>
-                <p className="text-xs text-gray-500">Points</p>
+                <p className="text-xs text-slate-500">Points</p>
               </div>
               {selectedBadge.earnedAt && (
                 <div className="text-center">
                   <p className="text-sm font-medium text-green-600">✓ Earned</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-slate-500">
                     {new Date(selectedBadge.earnedAt).toLocaleDateString()}
                   </p>
                 </div>

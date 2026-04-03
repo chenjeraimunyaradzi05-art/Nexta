@@ -111,7 +111,7 @@ export default function HeaderNavigation() {
         className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
         aria-label="Main navigation"
       >
-        <div className="flex w-full items-center justify-between border-b border-gray-200 dark:border-slate-800 py-4 lg:border-none">
+        <div className="flex w-full items-center justify-between border-b border-slate-200 dark:border-slate-800 py-4 lg:border-none">
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-3">
               <span className="sr-only">Nexta</span>
@@ -149,7 +149,7 @@ export default function HeaderNavigation() {
           <div className="ml-10 space-x-4 hidden lg:flex lg:items-center">
             <button
               onClick={cycleTheme}
-              className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:text-teal-700 dark:hover:text-teal-300 hover:bg-teal-50 dark:hover:bg-gray-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 transition-colors duration-150"
+              className="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-teal-700 dark:hover:text-teal-300 hover:bg-teal-50 dark:hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 transition-colors duration-150"
               aria-label={`Switch to ${resolvedTheme === 'light' ? 'dark' : resolvedTheme === 'dark' ? 'cosmic' : 'light'} mode`}
               title={`Current: ${resolvedTheme || 'system'} mode`}
             >
@@ -195,7 +195,7 @@ export default function HeaderNavigation() {
               type="button"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 transition-colors duration-150"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-700 hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 transition-colors duration-150"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <span className="sr-only">{mobileMenuOpen ? 'Close menu' : 'Open menu'}</span>

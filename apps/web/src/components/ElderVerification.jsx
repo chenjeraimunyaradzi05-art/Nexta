@@ -211,7 +211,7 @@ export default function ElderVerification({ userId }) {
 function VerificationForm({ formData, handleChange, handleSubmit, submitting, error, success }) {
     return (
         <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-sm border p-6 space-y-6">
-            <h4 className="text-lg font-semibold text-gray-900">Request Verification</h4>
+            <h4 className="text-lg font-semibold text-slate-900">Request Verification</h4>
             
             {error && (
                 <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
@@ -227,7 +227,7 @@ function VerificationForm({ formData, handleChange, handleSubmit, submitting, er
             
             <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-slate-700 mb-1">
                         Community/Region Name *
                     </label>
                     <input
@@ -236,13 +236,13 @@ function VerificationForm({ formData, handleChange, handleSubmit, submitting, er
                         value={formData.communityName}
                         onChange={handleChange}
                         required
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                         placeholder="e.g., Redfern, Sydney"
                     />
                 </div>
                 
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-slate-700 mb-1">
                         Mob/Nation *
                     </label>
                     <input
@@ -251,7 +251,7 @@ function VerificationForm({ formData, handleChange, handleSubmit, submitting, er
                         value={formData.mobNation}
                         onChange={handleChange}
                         required
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                         placeholder="e.g., Noongar, Wiradjuri"
                     />
                 </div>
@@ -259,7 +259,7 @@ function VerificationForm({ formData, handleChange, handleSubmit, submitting, er
             
             <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-slate-700 mb-1">
                         Community Verifier Name *
                     </label>
                     <input
@@ -268,16 +268,16 @@ function VerificationForm({ formData, handleChange, handleSubmit, submitting, er
                         value={formData.verifierName}
                         onChange={handleChange}
                         required
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                         placeholder="Name of person who can verify your status"
                     />
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-slate-500 mt-1">
                         A community member, organization leader, or other Elder who can confirm your status.
                     </p>
                 </div>
                 
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-slate-700 mb-1">
                         Verifier Contact *
                     </label>
                     <input
@@ -286,14 +286,14 @@ function VerificationForm({ formData, handleChange, handleSubmit, submitting, er
                         value={formData.verifierContact}
                         onChange={handleChange}
                         required
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                         placeholder="Email or phone number"
                     />
                 </div>
             </div>
             
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-slate-700 mb-1">
                     Statement *
                 </label>
                 <textarea
@@ -302,13 +302,13 @@ function VerificationForm({ formData, handleChange, handleSubmit, submitting, er
                     onChange={handleChange}
                     required
                     rows={4}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="Please share about your role as an Elder in your community..."
                 />
             </div>
             
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-slate-700 mb-1">
                     Additional Information (Optional)
                 </label>
                 <textarea
@@ -316,7 +316,7 @@ function VerificationForm({ formData, handleChange, handleSubmit, submitting, er
                     value={formData.additionalInfo}
                     onChange={handleChange}
                     rows={3}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="Any other information that may help with verification..."
                 />
             </div>

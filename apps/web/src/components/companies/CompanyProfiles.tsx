@@ -188,7 +188,7 @@ function StarRating({ rating, size = 'sm' }: { rating: number; size?: 'sm' | 'md
       {[1, 2, 3, 4, 5].map((star) => (
         <svg
           key={star}
-          className={`${sizeClass} ${star <= rating ? 'text-yellow-400' : 'text-gray-300'}`}
+          className={`${sizeClass} ${star <= rating ? 'text-yellow-400' : 'text-slate-300'}`}
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -211,7 +211,7 @@ function CompanyCard({
 }) {
   return (
     <div
-      className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
+      className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
       onClick={onSelect}
     >
       {/* Cover */}
@@ -249,23 +249,23 @@ function CompanyCard({
                 alt={`${company.name} logo`}
                 width={64}
                 height={64}
-                className="w-16 h-16 rounded-xl border-4 border-white dark:border-gray-800 bg-white object-contain"
+                className="w-16 h-16 rounded-xl border-4 border-white dark:border-slate-800 bg-white object-contain"
               />
             ) : (
-              <div className="w-16 h-16 rounded-xl border-4 border-white dark:border-gray-800 bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-2xl font-bold text-gray-400">
+              <div className="w-16 h-16 rounded-xl border-4 border-white dark:border-slate-800 bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-2xl font-bold text-slate-400">
                 {company.name.charAt(0)}
               </div>
             )}
           </div>
 
           <div className="flex-1 min-w-0 pt-2">
-            <h3 className="font-semibold text-gray-900 dark:text-white">{company.name}</h3>
-            <p className="text-sm text-gray-500">{company.industry}</p>
+            <h3 className="font-semibold text-slate-900 dark:text-white">{company.name}</h3>
+            <p className="text-sm text-slate-500">{company.industry}</p>
           </div>
         </div>
 
         {company.tagline && (
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-3 line-clamp-2">
+          <p className="text-sm text-slate-600 dark:text-slate-400 mt-3 line-clamp-2">
             {company.tagline}
           </p>
         )}
@@ -274,7 +274,7 @@ function CompanyCard({
         <div className="flex items-center gap-4 mt-4 text-sm">
           <div className="flex items-center gap-1">
             <StarRating rating={Math.round(company.stats.averageRating)} />
-            <span className="text-gray-600 dark:text-gray-400">
+            <span className="text-slate-600 dark:text-slate-400">
               ({company.stats.reviewCount})
             </span>
           </div>
@@ -284,7 +284,7 @@ function CompanyCard({
         </div>
 
         {/* Location */}
-        <p className="text-xs text-gray-500 mt-2">
+        <p className="text-xs text-slate-500 mt-2">
           📍 {company.headquarters.city}, {company.headquarters.state}
         </p>
 
@@ -351,7 +351,7 @@ function CompanyDetailModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Cover */}
         <div className="h-32 bg-gradient-to-r from-blue-500 to-purple-500 relative">
           {company.coverImage && (
@@ -374,7 +374,7 @@ function CompanyDetailModal({
         </div>
 
         {/* Header */}
-        <div className="px-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="px-6 pb-4 border-b border-slate-200 dark:border-slate-700">
           <div className="flex items-end gap-4 -mt-8">
             {company.logo ? (
               <OptimizedImage
@@ -382,10 +382,10 @@ function CompanyDetailModal({
                 alt={`${company.name} logo`}
                 width={80}
                 height={80}
-                className="w-20 h-20 rounded-xl border-4 border-white dark:border-gray-800 bg-white object-contain"
+                className="w-20 h-20 rounded-xl border-4 border-white dark:border-slate-800 bg-white object-contain"
               />
             ) : (
-              <div className="w-20 h-20 rounded-xl border-4 border-white dark:border-gray-800 bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-3xl font-bold text-gray-400">
+              <div className="w-20 h-20 rounded-xl border-4 border-white dark:border-slate-800 bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-3xl font-bold text-slate-400">
                 {company.name.charAt(0)}
               </div>
             )}
@@ -393,14 +393,14 @@ function CompanyDetailModal({
               <div className="flex items-start justify-between">
                 <div>
                   <div className="flex items-center gap-2">
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">{company.name}</h2>
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-white">{company.name}</h2>
                     {company.isIndigenousOwned && (
                       <span className="px-2 py-0.5 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs rounded-full">
                         🌏 Indigenous Owned
                       </span>
                     )}
                   </div>
-                  <p className="text-gray-500">{company.industry} · {sizeLabels[company.size]}</p>
+                  <p className="text-slate-500">{company.industry} · {sizeLabels[company.size]}</p>
                 </div>
                 <Button
                   variant={company.isFollowing ? 'outline' : 'primary'}
@@ -418,21 +418,21 @@ function CompanyDetailModal({
             <div className="flex items-center gap-1">
               <StarRating rating={Math.round(company.stats.averageRating)} size="md" />
               <span className="font-medium">{company.stats.averageRating.toFixed(1)}</span>
-              <span className="text-gray-500">({company.stats.reviewCount} reviews)</span>
+              <span className="text-slate-500">({company.stats.reviewCount} reviews)</span>
             </div>
-            <span className="text-gray-300">|</span>
+            <span className="text-slate-300">|</span>
             <span className="text-blue-600 dark:text-blue-400 font-medium">
               {company.stats.openJobs} open positions
             </span>
-            <span className="text-gray-300">|</span>
-            <span className="text-gray-500">
+            <span className="text-slate-300">|</span>
+            <span className="text-slate-500">
               📍 {company.headquarters.city}, {company.headquarters.state}
             </span>
           </div>
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b border-gray-200 dark:border-gray-700 px-6">
+        <div className="flex border-b border-slate-200 dark:border-slate-700 px-6">
           {['about', 'culture', 'jobs', 'reviews'].map((tab) => (
             <button
               key={tab}
@@ -440,7 +440,7 @@ function CompanyDetailModal({
               className={`px-4 py-3 font-medium border-b-2 capitalize transition-colors ${
                 activeTab === tab
                   ? 'border-blue-500 text-blue-600 dark:text-blue-400'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
+                  : 'border-transparent text-slate-500 hover:text-slate-700'
               }`}
             >
               {tab === 'culture' ? '🎥 Culture' : tab}
@@ -459,8 +459,8 @@ function CompanyDetailModal({
             <div className="space-y-6">
               {/* Description */}
               <div>
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">About</h3>
-                <p className="text-gray-600 dark:text-gray-400 whitespace-pre-line">
+                <h3 className="font-semibold text-slate-900 dark:text-white mb-2">About</h3>
+                <p className="text-slate-600 dark:text-slate-400 whitespace-pre-line">
                   {company.description}
                 </p>
               </div>
@@ -496,10 +496,10 @@ function CompanyDetailModal({
               {/* Values */}
               {company.values.length > 0 && (
                 <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Our Values</h3>
+                  <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Our Values</h3>
                   <div className="flex flex-wrap gap-2">
                     {company.values.map((value, i) => (
-                      <span key={i} className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm">
+                      <span key={i} className="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm">
                         {value}
                       </span>
                     ))}
@@ -510,7 +510,7 @@ function CompanyDetailModal({
               {/* Benefits — Enhanced with category icons */}
               {company.benefits.length > 0 && (
                 <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Benefits & Perks</h3>
+                  <h3 className="font-semibold text-slate-900 dark:text-white mb-3">Benefits & Perks</h3>
                   <div className="grid grid-cols-2 gap-3">
                     {company.benefits.map((benefit, i) => {
                       const benefitIcons: Record<string, string> = {
@@ -524,7 +524,7 @@ function CompanyDetailModal({
                       const key = Object.keys(benefitIcons).find(k => benefit.toLowerCase().includes(k));
                       const icon = key ? benefitIcons[key] : '✅';
                       return (
-                        <div key={i} className="flex items-center gap-2.5 p-2.5 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-sm text-gray-700 dark:text-gray-300">
+                        <div key={i} className="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700/50 text-sm text-slate-700 dark:text-slate-300">
                           <span className="text-lg flex-shrink-0">{icon}</span>
                           {benefit}
                         </div>
@@ -538,17 +538,17 @@ function CompanyDetailModal({
               <div className="grid grid-cols-2 gap-4">
                 {company.founded && (
                   <div>
-                    <p className="text-sm text-gray-500">Founded</p>
-                    <p className="font-medium text-gray-900 dark:text-white">{company.founded}</p>
+                    <p className="text-sm text-slate-500">Founded</p>
+                    <p className="font-medium text-slate-900 dark:text-white">{company.founded}</p>
                   </div>
                 )}
                 <div>
-                  <p className="text-sm text-gray-500">Company Size</p>
-                  <p className="font-medium text-gray-900 dark:text-white">{sizeLabels[company.size]}</p>
+                  <p className="text-sm text-slate-500">Company Size</p>
+                  <p className="font-medium text-slate-900 dark:text-white">{sizeLabels[company.size]}</p>
                 </div>
                 {company.website && (
                   <div>
-                    <p className="text-sm text-gray-500">Website</p>
+                    <p className="text-sm text-slate-500">Website</p>
                     <a
                       href={company.website}
                       target="_blank"
@@ -567,33 +567,33 @@ function CompanyDetailModal({
             <div className="space-y-6">
               {/* Company Intro Video */}
               <div>
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                <h3 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
                   🎬 Company Video
                 </h3>
-                <div className="aspect-video rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-gray-200 dark:border-gray-700 flex items-center justify-center relative overflow-hidden group cursor-pointer">
+                <div className="aspect-video rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-slate-200 dark:border-slate-700 flex items-center justify-center relative overflow-hidden group cursor-pointer">
                   <div className="text-center">
                     <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                       <div className="w-0 h-0 border-l-[20px] border-l-blue-500 border-y-[12px] border-y-transparent ml-1" />
                     </div>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm">Watch our intro video</p>
-                    <p className="text-gray-400 dark:text-gray-500 text-xs mt-1">2:45</p>
+                    <p className="text-slate-500 dark:text-slate-400 text-sm">Watch our intro video</p>
+                    <p className="text-slate-400 dark:text-slate-500 text-xs mt-1">2:45</p>
                   </div>
                 </div>
               </div>
 
               {/* Team Culture Video */}
               <div>
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                <h3 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
                   👥 Life at {company.name}
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
                   {['Team Culture', 'Office Tour', 'Day in the Life', 'Community Impact'].map((title, i) => (
-                    <div key={i} className="aspect-video rounded-lg bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-700 dark:to-gray-800 border border-gray-200 dark:border-gray-700 flex items-center justify-center relative overflow-hidden group cursor-pointer hover:border-blue-300 dark:hover:border-blue-600 transition-colors">
+                    <div key={i} className="aspect-video rounded-lg bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-700 dark:to-gray-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center relative overflow-hidden group cursor-pointer hover:border-blue-300 dark:hover:border-blue-600 transition-colors">
                       <div className="text-center p-2">
-                        <div className="w-10 h-10 rounded-full bg-white/80 dark:bg-gray-600 flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform shadow-sm">
+                        <div className="w-10 h-10 rounded-full bg-white/80 dark:bg-slate-600 flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform shadow-sm">
                           <div className="w-0 h-0 border-l-[10px] border-l-gray-600 dark:border-l-gray-300 border-y-[6px] border-y-transparent ml-0.5" />
                         </div>
-                        <p className="text-gray-600 dark:text-gray-400 text-xs font-medium">{title}</p>
+                        <p className="text-slate-600 dark:text-slate-400 text-xs font-medium">{title}</p>
                       </div>
                     </div>
                   ))}
@@ -602,7 +602,7 @@ function CompanyDetailModal({
 
               {/* Employee Testimonials */}
               <div>
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                <h3 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
                   💬 Employee Spotlight
                 </h3>
                 <div className="space-y-3">
@@ -611,19 +611,19 @@ function CompanyDetailModal({
                     { name: 'Team Member', role: 'HR Coordinator', quote: 'Our RAP commitments are real — not just words on a page. I see genuine cultural safety every day.', avatar: '👨🏾', years: 5 },
                     { name: 'Team Member', role: 'Graduate Program', quote: 'As a CareerTrackers intern turned full-time employee, I can say the pathway programs actually work.', avatar: '👩🏻', years: 1 },
                   ].map((testimonial, i) => (
-                    <div key={i} className="p-4 rounded-xl bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600">
+                    <div key={i} className="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600">
                       <div className="flex items-start gap-3">
                         <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-lg flex-shrink-0">
                           {testimonial.avatar}
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center gap-2">
-                            <p className="font-medium text-gray-900 dark:text-white text-sm">{testimonial.name}</p>
-                            <span className="text-gray-400 text-xs">·</span>
-                            <p className="text-gray-500 text-xs">{testimonial.role}</p>
+                            <p className="font-medium text-slate-900 dark:text-white text-sm">{testimonial.name}</p>
+                            <span className="text-slate-400 text-xs">·</span>
+                            <p className="text-slate-500 text-xs">{testimonial.role}</p>
                           </div>
-                          <p className="text-gray-600 dark:text-gray-400 text-sm mt-1 italic">"{testimonial.quote}"</p>
-                          <p className="text-gray-400 text-xs mt-2">{testimonial.years} year{testimonial.years > 1 ? 's' : ''} at {company.name}</p>
+                          <p className="text-slate-600 dark:text-slate-400 text-sm mt-1 italic">"{testimonial.quote}"</p>
+                          <p className="text-slate-400 text-xs mt-2">{testimonial.years} year{testimonial.years > 1 ? 's' : ''} at {company.name}</p>
                         </div>
                       </div>
                     </div>
@@ -633,7 +633,7 @@ function CompanyDetailModal({
 
               {/* Programs & Pathways */}
               <div>
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                <h3 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
                   🚀 Programs & Pathways
                 </h3>
                 <div className="space-y-2">
@@ -643,18 +643,18 @@ function CompanyDetailModal({
                     { name: 'Career Mentoring', icon: '🤝', description: 'Matched mentoring with senior leaders and cultural advisors', status: 'Always Open' },
                     { name: 'Community Partnerships', icon: '🤲', description: 'Partnerships with Indigenous organisations and community groups', status: 'Active' },
                   ].map((program, i) => (
-                    <div key={i} className="flex items-start gap-3 p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transition-colors">
+                    <div key={i} className="flex items-start gap-3 p-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-colors">
                       <span className="text-2xl flex-shrink-0 mt-0.5">{program.icon}</span>
                       <div className="flex-1">
                         <div className="flex items-center justify-between gap-2">
-                          <p className="font-medium text-gray-900 dark:text-white text-sm">{program.name}</p>
+                          <p className="font-medium text-slate-900 dark:text-white text-sm">{program.name}</p>
                           <span className={`px-2 py-0.5 text-xs rounded-full font-medium flex-shrink-0 ${
                             program.status === 'Applications Open' ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' :
                             program.status === 'Coming Soon' ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400' :
                             'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
                           }`}>{program.status}</span>
                         </div>
-                        <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">{program.description}</p>
+                        <p className="text-slate-500 dark:text-slate-400 text-xs mt-1">{program.description}</p>
                       </div>
                     </div>
                   ))}
@@ -674,10 +674,10 @@ function CompanyDetailModal({
                   {jobs.map((job) => (
                     <div
                       key={job.id}
-                      className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-300 transition-colors cursor-pointer"
+                      className="p-4 border border-slate-200 dark:border-slate-700 rounded-lg hover:border-blue-300 transition-colors cursor-pointer"
                     >
-                      <h4 className="font-medium text-gray-900 dark:text-white">{job.title}</h4>
-                      <div className="flex flex-wrap items-center gap-3 mt-2 text-sm text-gray-500">
+                      <h4 className="font-medium text-slate-900 dark:text-white">{job.title}</h4>
+                      <div className="flex flex-wrap items-center gap-3 mt-2 text-sm text-slate-500">
                         <span>{job.location}</span>
                         <span className="capitalize">{job.workArrangement}</span>
                         <span>{job.employmentType}</span>
@@ -691,7 +691,7 @@ function CompanyDetailModal({
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-12 text-gray-500">
+                <div className="text-center py-12 text-slate-500">
                   No open positions at this time
                 </div>
               )}
@@ -707,18 +707,18 @@ function CompanyDetailModal({
               ) : reviews.length > 0 ? (
                 <div className="space-y-4">
                   {reviews.map((review) => (
-                    <div key={review.id} className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
+                    <div key={review.id} className="p-4 border border-slate-200 dark:border-slate-700 rounded-lg">
                       <div className="flex items-start justify-between gap-4">
                         <div>
                           <div className="flex items-center gap-2">
                             <StarRating rating={review.rating} />
-                            <span className="font-medium text-gray-900 dark:text-white">{review.title}</span>
+                            <span className="font-medium text-slate-900 dark:text-white">{review.title}</span>
                           </div>
-                          <p className="text-sm text-gray-500 mt-1">
+                          <p className="text-sm text-slate-500 mt-1">
                             {review.position} · {review.employmentStatus === 'current' ? 'Current Employee' : 'Former Employee'}
                           </p>
                         </div>
-                        <span className="text-xs text-gray-400">
+                        <span className="text-xs text-slate-400">
                           {new Date(review.createdAt).toLocaleDateString('en-AU')}
                         </span>
                       </div>
@@ -726,23 +726,23 @@ function CompanyDetailModal({
                       <div className="mt-4 space-y-3">
                         <div>
                           <p className="text-xs font-medium text-green-600 mb-1">Pros</p>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">{review.pros}</p>
+                          <p className="text-sm text-slate-600 dark:text-slate-400">{review.pros}</p>
                         </div>
                         <div>
                           <p className="text-xs font-medium text-red-600 mb-1">Cons</p>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">{review.cons}</p>
+                          <p className="text-sm text-slate-600 dark:text-slate-400">{review.cons}</p>
                         </div>
                         {review.advice && (
                           <div>
                             <p className="text-xs font-medium text-blue-600 mb-1">Advice to Management</p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">{review.advice}</p>
+                            <p className="text-sm text-slate-600 dark:text-slate-400">{review.advice}</p>
                           </div>
                         )}
                       </div>
 
                       {review.culturalRating && (
                         <div className="mt-3 flex items-center gap-2 text-sm">
-                          <span className="text-gray-500">Cultural Inclusivity:</span>
+                          <span className="text-slate-500">Cultural Inclusivity:</span>
                           <StarRating rating={review.culturalRating} />
                         </div>
                       )}
@@ -750,7 +750,7 @@ function CompanyDetailModal({
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-12 text-gray-500">
+                <div className="text-center py-12 text-slate-500">
                   No reviews yet
                 </div>
               )}
@@ -830,14 +830,14 @@ export function CompanyProfiles() {
     <div className="max-w-6xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Companies</h1>
-        <p className="text-gray-500 mt-1">Explore employers and find your next opportunity</p>
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Companies</h1>
+        <p className="text-slate-500 mt-1">Explore employers and find your next opportunity</p>
       </div>
 
       {/* Filters */}
       <div className="flex flex-wrap gap-4 mb-6">
         <div className="flex-1 min-w-64 relative">
-          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <input
@@ -845,14 +845,14 @@ export function CompanyProfiles() {
             value={searchQuery}
             onChange={(e) => { setSearchQuery(e.target.value); setPage(1); }}
             placeholder="Search companies..."
-            className="w-full pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="w-full pl-10 pr-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
           />
         </div>
 
         <select
           value={industryFilter}
           onChange={(e) => { setIndustryFilter(e.target.value); setPage(1); }}
-          className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
         >
           <option value="">All Industries</option>
           {industries.map((ind) => (
@@ -863,7 +863,7 @@ export function CompanyProfiles() {
         <select
           value={sizeFilter}
           onChange={(e) => { setSizeFilter(e.target.value); setPage(1); }}
-          className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
         >
           <option value="">Any Size</option>
           {Object.entries(sizeLabels).map(([key, label]) => (
@@ -871,14 +871,14 @@ export function CompanyProfiles() {
           ))}
         </select>
 
-        <label className="flex items-center gap-2 px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg cursor-pointer bg-white dark:bg-gray-700">
+        <label className="flex items-center gap-2 px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg cursor-pointer bg-white dark:bg-slate-700">
           <input
             type="checkbox"
             checked={indigenousOnly}
             onChange={(e) => { setIndigenousOnly(e.target.checked); setPage(1); }}
-            className="rounded border-gray-300"
+            className="rounded border-slate-300"
           />
-          <span className="text-sm text-gray-700 dark:text-gray-300">
+          <span className="text-sm text-slate-700 dark:text-slate-300">
             🌏 Indigenous Owned
           </span>
         </label>
@@ -909,7 +909,7 @@ export function CompanyProfiles() {
               >
                 Previous
               </Button>
-              <span className="px-4 py-2 text-gray-600 dark:text-gray-400">
+              <span className="px-4 py-2 text-slate-600 dark:text-slate-400">
                 Page {page} of {totalPages}
               </span>
               <Button
@@ -926,8 +926,8 @@ export function CompanyProfiles() {
       ) : (
         <div className="text-center py-16">
           <div className="text-6xl mb-4">🏢</div>
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">No companies found</h3>
-          <p className="text-gray-500 mt-2">Try adjusting your search or filters</p>
+          <h3 className="text-lg font-medium text-slate-900 dark:text-white">No companies found</h3>
+          <p className="text-slate-500 mt-2">Try adjusting your search or filters</p>
         </div>
       )}
 

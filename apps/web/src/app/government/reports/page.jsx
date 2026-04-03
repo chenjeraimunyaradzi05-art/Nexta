@@ -16,7 +16,7 @@ import Link from 'next/link';
 function Skeleton({ className = '' }) {
   return (
     <div
-      className={`animate-pulse bg-gray-200 dark:bg-gray-700 rounded ${className}`}
+      className={`animate-pulse bg-slate-200 dark:bg-slate-700 rounded ${className}`}
       aria-hidden="true"
     />
   );
@@ -27,7 +27,7 @@ function StatusBadge({ status }) {
   const colors = {
     PUBLISHED: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
     DRAFT: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
-    PENDING: 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200',
+    PENDING: 'bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200',
   };
 
   return (
@@ -40,24 +40,24 @@ function StatusBadge({ status }) {
 // Report card component
 function ReportCard({ report, onView, onDownload }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
+    <div className="bg-white dark:bg-slate-800 rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-2">
             <svg className="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-            <span className="text-xs uppercase tracking-wide text-gray-500">
+            <span className="text-xs uppercase tracking-wide text-slate-500">
               {report.type} Report
             </span>
           </div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
             {report.title}
           </h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
             Period: {report.period}
           </p>
-          <p className="text-xs text-gray-400 mt-1">
+          <p className="text-xs text-slate-400 mt-1">
             Generated: {new Date(report.generatedAt).toLocaleDateString('en-AU')}
           </p>
         </div>
@@ -66,7 +66,7 @@ function ReportCard({ report, onView, onDownload }) {
       <div className="flex gap-2 mt-4">
         <button
           onClick={() => onView(report)}
-          className="flex-1 px-3 py-2 text-sm bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400"
+          className="flex-1 px-3 py-2 text-sm bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400"
         >
           View Details
         </button>
@@ -101,18 +101,18 @@ function ReportDetailModal({ report, onClose, onDownload }) {
       aria-labelledby="report-modal-title"
     >
       <div
-        className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto print:max-w-none print:max-h-none print:shadow-none"
+        className="bg-white dark:bg-slate-800 rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto print:max-w-none print:max-h-none print:shadow-none"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700 print:border-none">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700 print:border-none">
           <div className="flex items-center justify-between">
-            <h2 id="report-modal-title" className="text-xl font-bold text-gray-900 dark:text-white">
+            <h2 id="report-modal-title" className="text-xl font-bold text-slate-900 dark:text-white">
               {report.title || `Report ${report.reportId}`}
             </h2>
             <div className="flex items-center gap-2 print:hidden">
               <button
                 onClick={handlePrint}
-                className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+                className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
                 aria-label="Print report"
                 title="Print report"
               >
@@ -122,7 +122,7 @@ function ReportDetailModal({ report, onClose, onDownload }) {
               </button>
               <button
                 onClick={() => onDownload?.(report.reportId || report.id, 'csv')}
-                className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+                className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
                 aria-label="Download CSV"
                 title="Download CSV"
               >
@@ -132,7 +132,7 @@ function ReportDetailModal({ report, onClose, onDownload }) {
               </button>
               <button
                 onClick={onClose}
-                className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+                className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
                 aria-label="Close modal"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -143,39 +143,39 @@ function ReportDetailModal({ report, onClose, onDownload }) {
           </div>
           {/* Print header */}
           <div className="hidden print:block mt-2">
-            <p className="text-sm text-gray-500">Nexta - Closing the Gap Compliance Report</p>
-            <p className="text-sm text-gray-500">Generated: {new Date().toLocaleDateString('en-AU')}</p>
+            <p className="text-sm text-slate-500">Nexta - Closing the Gap Compliance Report</p>
+            <p className="text-sm text-slate-500">Generated: {new Date().toLocaleDateString('en-AU')}</p>
           </div>
         </div>
 
         <div className="p-6 space-y-6">
           {/* Executive Summary */}
           <section>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">
               Executive Summary
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              <div className="bg-gray-50 dark:bg-gray-900 p-3 rounded">
-                <p className="text-sm text-gray-500">Total Placements</p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+              <div className="bg-slate-50 dark:bg-slate-900 p-3 rounded">
+                <p className="text-sm text-slate-500">Total Placements</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-white">
                   {report.executiveSummary?.totalPlacements || 0}
                 </p>
               </div>
-              <div className="bg-gray-50 dark:bg-gray-900 p-3 rounded">
-                <p className="text-sm text-gray-500">Retention Rate</p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+              <div className="bg-slate-50 dark:bg-slate-900 p-3 rounded">
+                <p className="text-sm text-slate-500">Retention Rate</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-white">
                   {report.executiveSummary?.retentionRate || 0}%
                 </p>
               </div>
-              <div className="bg-gray-50 dark:bg-gray-900 p-3 rounded">
-                <p className="text-sm text-gray-500">Training Completions</p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+              <div className="bg-slate-50 dark:bg-slate-900 p-3 rounded">
+                <p className="text-sm text-slate-500">Training Completions</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-white">
                   {report.executiveSummary?.trainingCompletions || 0}
                 </p>
               </div>
-              <div className="bg-gray-50 dark:bg-gray-900 p-3 rounded">
-                <p className="text-sm text-gray-500">Employer Partners</p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+              <div className="bg-slate-50 dark:bg-slate-900 p-3 rounded">
+                <p className="text-sm text-slate-500">Employer Partners</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-white">
                   {report.executiveSummary?.employerPartnerships || 0}
                 </p>
               </div>
@@ -185,7 +185,7 @@ function ReportDetailModal({ report, onClose, onDownload }) {
           {/* Key Highlights */}
           {report.executiveSummary?.keyHighlights?.length > 0 && (
             <section>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">
                 Key Highlights
               </h3>
               <ul className="space-y-2">
@@ -194,7 +194,7 @@ function ReportDetailModal({ report, onClose, onDownload }) {
                     <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-gray-700 dark:text-gray-300">{highlight}</span>
+                    <span className="text-slate-700 dark:text-slate-300">{highlight}</span>
                   </li>
                 ))}
               </ul>
@@ -204,18 +204,18 @@ function ReportDetailModal({ report, onClose, onDownload }) {
           {/* CTG Alignment */}
           {report.closingTheGapAlignment && (
             <section>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">
                 Closing the Gap Alignment
               </h3>
               <div className="space-y-3">
                 {Object.entries(report.closingTheGapAlignment).map(([key, target]) => (
-                  <div key={key} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 rounded">
+                  <div key={key} className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900 rounded">
                     <div>
-                      <p className="font-medium text-gray-900 dark:text-white">{target.name}</p>
-                      <p className="text-sm text-gray-500">Target #{target.targetNumber}</p>
+                      <p className="font-medium text-slate-900 dark:text-white">{target.name}</p>
+                      <p className="text-sm text-slate-500">Target #{target.targetNumber}</p>
                     </div>
                     <div className="text-right">
-                      <p className="font-bold text-gray-900 dark:text-white">{target.currentValue}</p>
+                      <p className="font-bold text-slate-900 dark:text-white">{target.currentValue}</p>
                       <p className={`text-sm ${target.trend?.startsWith('+') ? 'text-green-600' : 'text-red-600'}`}>
                         {target.trend}
                       </p>
@@ -229,7 +229,7 @@ function ReportDetailModal({ report, onClose, onDownload }) {
           {/* Recommendations */}
           {report.recommendations?.length > 0 && (
             <section>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">
                 Recommendations
               </h3>
               <ul className="space-y-2">
@@ -238,7 +238,7 @@ function ReportDetailModal({ report, onClose, onDownload }) {
                     <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-amber-100 text-amber-800 rounded-full text-sm font-medium">
                       {idx + 1}
                     </span>
-                    <span className="text-gray-700 dark:text-gray-300">{rec}</span>
+                    <span className="text-slate-700 dark:text-slate-300">{rec}</span>
                   </li>
                 ))}
               </ul>
@@ -246,11 +246,11 @@ function ReportDetailModal({ report, onClose, onDownload }) {
           )}
         </div>
 
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex justify-between gap-3 print:hidden">
+        <div className="p-6 border-t border-slate-200 dark:border-slate-700 flex justify-between gap-3 print:hidden">
           <div className="flex gap-2">
             <button
               onClick={handlePrint}
-              className="inline-flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              className="inline-flex items-center px-4 py-2 text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 rounded hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
             >
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
@@ -269,7 +269,7 @@ function ReportDetailModal({ report, onClose, onDownload }) {
           </div>
           <button
             onClick={onClose}
-            className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors"
+            className="px-4 py-2 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded transition-colors"
           >
             Close
           </button>
@@ -299,25 +299,25 @@ function GenerateReportModal({ onClose, onGenerate, loading }) {
       aria-labelledby="generate-modal-title"
     >
       <div
-        className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full"
+        className="bg-white dark:bg-slate-800 rounded-lg shadow-xl max-w-md w-full"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-          <h2 id="generate-modal-title" className="text-xl font-bold text-gray-900 dark:text-white">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700">
+          <h2 id="generate-modal-title" className="text-xl font-bold text-slate-900 dark:text-white">
             Generate New Report
           </h2>
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div>
-            <label htmlFor="reportType" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label htmlFor="reportType" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Report Type
             </label>
             <select
               id="reportType"
               value={reportType}
               onChange={(e) => setReportType(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
             >
               <option value="quarterly">Quarterly Report</option>
               <option value="annual">Annual Report</option>
@@ -326,7 +326,7 @@ function GenerateReportModal({ onClose, onGenerate, loading }) {
           </div>
 
           <div>
-            <label htmlFor="periodStart" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label htmlFor="periodStart" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Period Start
             </label>
             <input
@@ -334,12 +334,12 @@ function GenerateReportModal({ onClose, onGenerate, loading }) {
               type="date"
               value={periodStart}
               onChange={(e) => setPeriodStart(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
             />
           </div>
 
           <div>
-            <label htmlFor="periodEnd" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label htmlFor="periodEnd" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Period End
             </label>
             <input
@@ -347,7 +347,7 @@ function GenerateReportModal({ onClose, onGenerate, loading }) {
               type="date"
               value={periodEnd}
               onChange={(e) => setPeriodEnd(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
             />
           </div>
 
@@ -355,7 +355,7 @@ function GenerateReportModal({ onClose, onGenerate, loading }) {
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              className="flex-1 px-4 py-2 text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
             >
               Cancel
             </button>
@@ -467,30 +467,30 @@ export default function GovernmentReportsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
       {/* Header */}
-      <header className="bg-white dark:bg-gray-800 shadow">
+      <header className="bg-white dark:bg-slate-800 shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <nav className="text-sm text-gray-500 mb-2" aria-label="Breadcrumb">
+              <nav className="text-sm text-slate-500 mb-2" aria-label="Breadcrumb">
                 <Link href="/government/dashboard" className="hover:text-amber-600">
                   Government Portal
                 </Link>
                 <span className="mx-2">/</span>
-                <span className="text-gray-900 dark:text-white">Reports</span>
+                <span className="text-slate-900 dark:text-white">Reports</span>
               </nav>
-              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
                 Compliance Reports
               </h1>
-              <p className="mt-1 text-gray-500 dark:text-gray-400">
+              <p className="mt-1 text-slate-500 dark:text-slate-400">
                 View and download Closing the Gap compliance reports
               </p>
             </div>
             <div className="flex gap-3">
               <Link
                 href="/government/dashboard"
-                className="inline-flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                className="inline-flex items-center px-4 py-2 text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
               >
                 ← Dashboard
               </Link>
@@ -535,7 +535,7 @@ export default function GovernmentReportsPage() {
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+              <div key={i} className="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
                 <Skeleton className="h-4 w-24 mb-3" />
                 <Skeleton className="h-6 w-48 mb-2" />
                 <Skeleton className="h-4 w-32 mb-1" />
@@ -549,13 +549,13 @@ export default function GovernmentReportsPage() {
           </div>
         ) : reports.length === 0 ? (
           <div className="text-center py-12">
-            <svg className="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-16 h-16 mx-auto text-slate-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+            <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">
               No Reports Yet
             </h3>
-            <p className="text-gray-500 dark:text-gray-400 mb-4">
+            <p className="text-slate-500 dark:text-slate-400 mb-4">
               Generate your first Closing the Gap compliance report.
             </p>
             <button

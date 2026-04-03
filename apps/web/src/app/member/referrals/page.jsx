@@ -105,7 +105,7 @@ export default function ReferralsPage() {
       HIRED: 'Hired! 🎉',
     };
     return (
-      <span className={`px-2 py-1 rounded-full text-xs font-medium ${styles[status] || 'bg-gray-100 text-gray-800'}`}>
+      <span className={`px-2 py-1 rounded-full text-xs font-medium ${styles[status] || 'bg-slate-100 text-slate-800'}`}>
         {labels[status] || status}
       </span>
     );
@@ -113,24 +113,24 @@ export default function ReferralsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin w-8 h-8 border-4 border-amber-600 border-t-transparent rounded-full mx-auto"></div>
-          <p className="text-gray-500 mt-4">Loading...</p>
+          <p className="text-slate-500 mt-4">Loading...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-slate-50 py-8">
       <div className="max-w-4xl mx-auto px-4">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
+          <h1 className="text-3xl font-bold text-slate-900 flex items-center gap-3">
             <span>🎁</span> Refer a Friend
           </h1>
-          <p className="text-gray-600 mt-2">
+          <p className="text-slate-600 mt-2">
             Share your referral code with friends and earn credits when they join and get hired!
           </p>
         </div>
@@ -196,28 +196,28 @@ export default function ReferralsPage() {
         {/* Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="bg-white rounded-xl p-6 text-center shadow-sm">
-            <div className="text-3xl font-bold text-gray-900">
+            <div className="text-3xl font-bold text-slate-900">
               {referralData?.stats?.totalReferrals || 0}
             </div>
-            <div className="text-sm text-gray-500 mt-1">Total Referrals</div>
+            <div className="text-sm text-slate-500 mt-1">Total Referrals</div>
           </div>
           <div className="bg-white rounded-xl p-6 text-center shadow-sm">
             <div className="text-3xl font-bold text-blue-600">
               {referralData?.stats?.signedUp || 0}
             </div>
-            <div className="text-sm text-gray-500 mt-1">Signed Up</div>
+            <div className="text-sm text-slate-500 mt-1">Signed Up</div>
           </div>
           <div className="bg-white rounded-xl p-6 text-center shadow-sm">
             <div className="text-3xl font-bold text-green-600">
               {referralData?.stats?.hired || 0}
             </div>
-            <div className="text-sm text-gray-500 mt-1">Got Hired</div>
+            <div className="text-sm text-slate-500 mt-1">Got Hired</div>
           </div>
           <div className="bg-white rounded-xl p-6 text-center shadow-sm">
             <div className="text-3xl font-bold text-amber-600">
               {referralData?.credits?.available || 0}
             </div>
-            <div className="text-sm text-gray-500 mt-1">Credits Available</div>
+            <div className="text-sm text-slate-500 mt-1">Credits Available</div>
           </div>
         </div>
 
@@ -230,7 +230,7 @@ export default function ReferralsPage() {
                 <span className="text-2xl">1️⃣</span>
               </div>
               <h4 className="font-medium mb-1">Share Your Code</h4>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-slate-600">
                 Share your unique referral code with friends and family
               </p>
             </div>
@@ -239,7 +239,7 @@ export default function ReferralsPage() {
                 <span className="text-2xl">2️⃣</span>
               </div>
               <h4 className="font-medium mb-1">They Sign Up</h4>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-slate-600">
                 When they join using your code, you earn <strong>25 credits</strong>
               </p>
             </div>
@@ -248,7 +248,7 @@ export default function ReferralsPage() {
                 <span className="text-2xl">3️⃣</span>
               </div>
               <h4 className="font-medium mb-1">They Get Hired</h4>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-slate-600">
                 When they land a job, you earn <strong>100 bonus credits!</strong>
               </p>
             </div>
@@ -259,7 +259,7 @@ export default function ReferralsPage() {
         <div className="bg-white rounded-xl shadow-sm p-6">
           <h3 className="font-semibold text-lg mb-4">Referral History</h3>
           {history.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-slate-500">
               <span className="text-4xl block mb-2">👥</span>
               <p>No referrals yet. Share your code to get started!</p>
             </div>
@@ -267,7 +267,7 @@ export default function ReferralsPage() {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="text-left text-sm text-gray-500 border-b">
+                  <tr className="text-left text-sm text-slate-500 border-b">
                     <th className="pb-3 font-medium">Friend</th>
                     <th className="pb-3 font-medium">Status</th>
                     <th className="pb-3 font-medium">Credits Earned</th>
@@ -280,7 +280,7 @@ export default function ReferralsPage() {
                       <td className="py-4">{ref.refereeName}</td>
                       <td className="py-4">{getStatusBadge(ref.status)}</td>
                       <td className="py-4 font-medium text-amber-600">+{ref.creditsEarned}</td>
-                      <td className="py-4 text-gray-500 text-sm">
+                      <td className="py-4 text-slate-500 text-sm">
                         {new Date(ref.createdAt).toLocaleDateString()}
                       </td>
                     </tr>

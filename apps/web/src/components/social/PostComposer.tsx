@@ -155,7 +155,7 @@ export default function PostComposer({
           backdropFilter: 'blur(10px)',
         }}
       >
-        <p className="text-gray-400 text-center py-4">
+        <p className="text-slate-400 text-center py-4">
           <a href="/signin?returnTo=/connections" className="text-pink-400 hover:text-pink-300">
             Sign in
           </a>{' '}
@@ -191,13 +191,13 @@ export default function PostComposer({
               onChange={(e) => setContent(e.target.value)}
               onFocus={() => setIsExpanded(true)}
               placeholder={placeholder}
-              className="w-full bg-transparent text-white placeholder-gray-400 resize-none focus:outline-none min-h-[80px]"
+              className="w-full bg-transparent text-white placeholder-slate-400 resize-none focus:outline-none min-h-[80px]"
               rows={3}
             />
           ) : (
             <button
               onClick={() => setIsExpanded(true)}
-              className="w-full p-3 rounded-xl text-left text-gray-400 hover:bg-white/5 transition-colors"
+              className="w-full p-3 rounded-xl text-left text-slate-400 hover:bg-white/5 transition-colors"
               style={{ background: 'rgba(255, 255, 255, 0.05)' }}
             >
               {placeholder}
@@ -289,7 +289,7 @@ export default function PostComposer({
             <select
               value={visibility}
               onChange={(e) => setVisibility(e.target.value as Visibility)}
-              className="bg-white/5 text-gray-300 text-sm rounded-lg px-2 py-1.5 border border-white/10 focus:outline-none focus:border-pink-500/50"
+              className="bg-white/5 text-slate-300 text-sm rounded-lg px-2 py-1.5 border border-white/10 focus:outline-none focus:border-pink-500/50"
             >
               {visibilityOptions.map((opt) => (
                 <option key={opt.id} value={opt.id} className="bg-[#1A0F2E]">

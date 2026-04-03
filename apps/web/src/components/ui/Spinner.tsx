@@ -26,7 +26,7 @@ const borderClasses = {
 };
 
 const colorClasses = {
-  default: 'border-gray-300 dark:border-gray-600 border-t-gray-600 dark:border-t-gray-300',
+  default: 'border-slate-300 dark:border-slate-600 border-t-gray-600 dark:border-t-gray-300',
   primary: 'border-blue-200 border-t-blue-600',
   gold: 'border-[#FFD700]/30 border-t-[#FFD700]',
   emerald: 'border-[#50C878]/30 border-t-[#50C878]',
@@ -53,7 +53,7 @@ export function Spinner({
         `}
       />
       {label && (
-        <span className={`text-sm ${variant === 'cosmic' ? 'text-gray-400' : 'text-gray-600 dark:text-gray-400'}`}>
+        <span className={`text-sm ${variant === 'cosmic' ? 'text-slate-400' : 'text-slate-600 dark:text-slate-400'}`}>
           {label}
         </span>
       )}
@@ -80,7 +80,7 @@ export function LoadingSpinner({
     <div className={`flex flex-col items-center justify-center gap-3 ${className}`}>
       <Spinner size={size} variant={variant} />
       {text && (
-        <p className={`text-sm ${variant === 'cosmic' ? 'text-gray-400' : 'text-gray-500 dark:text-gray-400'}`}>
+        <p className={`text-sm ${variant === 'cosmic' ? 'text-slate-400' : 'text-slate-500 dark:text-slate-400'}`}>
           {text}
         </p>
       )}
@@ -138,7 +138,7 @@ export function OverlaySpinner({
         absolute inset-0 z-50 flex items-center justify-center
         ${isCosmic 
           ? 'bg-[#1A0F2E]/80 backdrop-blur-sm' 
-          : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm'}
+          : 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm'}
       `}
     >
       <LoadingSpinner 
@@ -165,7 +165,7 @@ interface DotsSpinnerProps {
 
 export function DotsSpinner({ variant = 'default', className = '' }: DotsSpinnerProps) {
   const isCosmic = variant === 'cosmic';
-  const dotClass = isCosmic ? 'bg-[#FFD700]' : 'bg-gray-400 dark:bg-gray-500';
+  const dotClass = isCosmic ? 'bg-[#FFD700]' : 'bg-slate-400 dark:bg-slate-500';
   
   return (
     <div className={`inline-flex items-center gap-1 ${className}`} role="status" aria-label="Loading">

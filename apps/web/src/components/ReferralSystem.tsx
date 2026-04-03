@@ -156,7 +156,7 @@ function StatusBadge({ status }: { status: string }) {
   const config = {
     pending: { label: 'Pending', className: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400' },
     completed: { label: 'Completed', className: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' },
-    expired: { label: 'Expired', className: 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-400' },
+    expired: { label: 'Expired', className: 'bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-400' },
     available: { label: 'Available', className: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' },
     claimed: { label: 'Claimed', className: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' },
   };
@@ -219,21 +219,21 @@ function TierProgress({ completedReferrals }: { completedReferrals: number }) {
     : 100;
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <span className="text-3xl">{currentTier.icon}</span>
           <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white">{currentTier.name}</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <h3 className="font-semibold text-slate-900 dark:text-white">{currentTier.name}</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400">
               {currentTier.bonusMultiplier}x reward multiplier
             </p>
           </div>
         </div>
         {nextTier && (
           <div className="text-right">
-            <p className="text-sm text-gray-500 dark:text-gray-400">Next: {nextTier.name}</p>
-            <p className="text-sm font-medium text-gray-900 dark:text-white">
+            <p className="text-sm text-slate-500 dark:text-slate-400">Next: {nextTier.name}</p>
+            <p className="text-sm font-medium text-slate-900 dark:text-white">
               {nextTier.minReferrals - completedReferrals} more referrals
             </p>
           </div>
@@ -242,7 +242,7 @@ function TierProgress({ completedReferrals }: { completedReferrals: number }) {
 
       {nextTier && (
         <div className="mb-4">
-          <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+          <div className="h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
             <div
               className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all"
               style={{ width: `${progress}%` }}
@@ -254,7 +254,7 @@ function TierProgress({ completedReferrals }: { completedReferrals: number }) {
       {/* Tier Perks */}
       <div className="space-y-2">
         {currentTier.perks.map((perk, index) => (
-          <div key={index} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+          <div key={index} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
             <svg className="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
@@ -293,10 +293,10 @@ function ShareModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-md w-full p-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Share Your Referral Link</h3>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Share Your Referral Link</h3>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -309,8 +309,8 @@ function ShareModal({
             type="text"
             value={referralLink}
             readOnly
-            className="flex-1 px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg
-              bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="flex-1 px-3 py-2 text-sm border border-slate-300 dark:border-slate-600 rounded-lg
+              bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white"
           />
           <Button onClick={copyToClipboard}>
             Copy
@@ -361,7 +361,7 @@ function ShareModal({
           </a>
           <a
             href={shareLinks.email}
-            className="flex items-center justify-center p-3 bg-gray-600 rounded-lg text-white hover:opacity-90 transition-opacity"
+            className="flex items-center justify-center p-3 bg-slate-600 rounded-lg text-white hover:opacity-90 transition-opacity"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -442,10 +442,10 @@ export function ReferralSystem() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
             Referral Program
           </h1>
-          <p className="mt-2 text-gray-500 dark:text-gray-400">
+          <p className="mt-2 text-slate-500 dark:text-slate-400">
             Invite friends and earn rewards for each successful referral
           </p>
         </div>
@@ -513,7 +513,7 @@ export function ReferralSystem() {
       )}
 
       {/* Tabs */}
-      <div className="flex items-center gap-4 border-b border-gray-200 dark:border-gray-700 mb-6">
+      <div className="flex items-center gap-4 border-b border-slate-200 dark:border-slate-700 mb-6">
         {[
           { key: 'referrals', label: 'My Referrals' },
           { key: 'rewards', label: 'Rewards' },
@@ -524,7 +524,7 @@ export function ReferralSystem() {
             className={`px-4 py-3 text-sm font-medium border-b-2 -mb-px transition-colors ${
               activeTab === tab.key
                 ? 'border-blue-500 text-blue-600 dark:text-blue-400'
-                : 'border-transparent text-gray-500 hover:text-gray-700'
+                : 'border-transparent text-slate-500 hover:text-slate-700'
             }`}
           >
             {tab.label}
@@ -544,7 +544,7 @@ export function ReferralSystem() {
                 className={`px-3 py-1.5 text-sm rounded-full capitalize transition-colors ${
                   referralFilter === filter
                     ? 'bg-blue-500 text-white'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200'
+                    : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
                 }`}
               >
                 {filter}
@@ -558,10 +558,10 @@ export function ReferralSystem() {
               {filteredReferrals.map((referral) => (
                 <div
                   key={referral.id}
-                  className="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"
+                  className="flex items-center gap-4 p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700"
                 >
                   {/* Avatar */}
-                  <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden">
+                  <div className="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-600 overflow-hidden">
                     {referral.referredUser.avatar ? (
                       <OptimizedImage
                         src={toCloudinaryAutoUrl(referral.referredUser.avatar)}
@@ -571,7 +571,7 @@ export function ReferralSystem() {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-gray-400">
+                      <div className="w-full h-full flex items-center justify-center text-slate-400">
                         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                         </svg>
@@ -581,10 +581,10 @@ export function ReferralSystem() {
 
                   {/* Info */}
                   <div className="flex-1">
-                    <p className="font-medium text-gray-900 dark:text-white">
+                    <p className="font-medium text-slate-900 dark:text-white">
                       {referral.referredUser.name}
                     </p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="text-sm text-slate-500 dark:text-slate-400">
                       Joined {new Date(referral.createdAt).toLocaleDateString()}
                     </p>
                   </div>
@@ -606,8 +606,8 @@ export function ReferralSystem() {
           ) : (
             <div className="text-center py-12">
               <div className="text-6xl mb-4">🔗</div>
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white">No referrals yet</h3>
-              <p className="mt-2 text-gray-500 dark:text-gray-400">
+              <h3 className="text-lg font-medium text-slate-900 dark:text-white">No referrals yet</h3>
+              <p className="mt-2 text-slate-500 dark:text-slate-400">
                 Share your referral link to start inviting friends!
               </p>
               <Button className="mt-4" onClick={() => setShowShareModal(true)}>
@@ -629,7 +629,7 @@ export function ReferralSystem() {
                     ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
                     : reward.status === 'claimed'
                     ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
-                    : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 opacity-60'
+                    : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 opacity-60'
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">
@@ -640,8 +640,8 @@ export function ReferralSystem() {
                   </span>
                   <StatusBadge status={reward.status} />
                 </div>
-                <h3 className="font-semibold text-gray-900 dark:text-white">{reward.name}</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{reward.description}</p>
+                <h3 className="font-semibold text-slate-900 dark:text-white">{reward.name}</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">{reward.description}</p>
                 <p className="text-lg font-bold text-blue-600 dark:text-blue-400 mt-2">
                   {reward.type === 'credit' ? `$${reward.value}` :
                    reward.type === 'discount' ? `${reward.value}% off` :
@@ -656,7 +656,7 @@ export function ReferralSystem() {
                   </Button>
                 )}
                 {reward.expiresAt && reward.status === 'available' && (
-                  <p className="text-xs text-gray-400 mt-2 text-center">
+                  <p className="text-xs text-slate-400 mt-2 text-center">
                     Expires {new Date(reward.expiresAt).toLocaleDateString()}
                   </p>
                 )}
@@ -665,8 +665,8 @@ export function ReferralSystem() {
           ) : (
             <div className="col-span-full text-center py-12">
               <div className="text-6xl mb-4">🎁</div>
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white">No rewards yet</h3>
-              <p className="mt-2 text-gray-500 dark:text-gray-400">
+              <h3 className="text-lg font-medium text-slate-900 dark:text-white">No rewards yet</h3>
+              <p className="mt-2 text-slate-500 dark:text-slate-400">
                 Complete referrals to earn rewards!
               </p>
             </div>

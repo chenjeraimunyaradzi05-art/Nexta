@@ -42,24 +42,24 @@ const variantClasses: Record<TabsVariant, {
   indicator?: string;
 }> = {
   default: {
-    container: 'border-b border-gray-200 dark:border-gray-700',
-    tab: 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600 border-b-2 border-transparent',
+    container: 'border-b border-slate-200 dark:border-slate-700',
+    tab: 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600 border-b-2 border-transparent',
     activeTab: 'text-blue-600 dark:text-blue-400 border-blue-500 dark:border-blue-400',
   },
   pills: {
-    container: 'bg-gray-100 dark:bg-gray-800 p-1 rounded-lg',
-    tab: 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-md',
-    activeTab: 'text-gray-900 dark:text-white bg-white dark:bg-gray-700 shadow-sm',
+    container: 'bg-slate-100 dark:bg-slate-800 p-1 rounded-lg',
+    tab: 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-md',
+    activeTab: 'text-slate-900 dark:text-white bg-white dark:bg-slate-700 shadow-sm',
   },
   underline: {
     container: '',
-    tab: 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300',
-    activeTab: 'text-gray-900 dark:text-white',
+    tab: 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300',
+    activeTab: 'text-slate-900 dark:text-white',
     indicator: 'bg-blue-500',
   },
   cosmic: {
     container: 'bg-[#1A0F2E]/50 p-1 rounded-xl border border-[#FFD700]/20',
-    tab: 'text-gray-400 hover:text-white rounded-lg',
+    tab: 'text-slate-400 hover:text-white rounded-lg',
     activeTab: 'text-white bg-gradient-to-r from-[#FFD700]/20 to-[#50C878]/20 border border-[#FFD700]/30',
   },
 };
@@ -148,7 +148,7 @@ export function Tabs({
                   ml-1 py-0.5 px-2 rounded-full text-xs
                   ${isActive 
                     ? 'bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-400' 
-                    : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
+                    : 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400'
                   }
                 `}>
                   {tab.badge}
@@ -234,11 +234,11 @@ export function VerticalTabs({
 }: VerticalTabsProps) {
   const variantStyles = {
     default: {
-      tab: 'text-gray-600 hover:text-gray-900 hover:bg-gray-50 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-800',
+      tab: 'text-slate-600 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-400 dark:hover:text-white dark:hover:bg-slate-800',
       activeTab: 'text-blue-600 bg-blue-50 border-l-2 border-blue-500 dark:text-blue-400 dark:bg-blue-900/20',
     },
     cosmic: {
-      tab: 'text-gray-400 hover:text-white hover:bg-white/5',
+      tab: 'text-slate-400 hover:text-white hover:bg-white/5',
       activeTab: 'text-[#FFD700] bg-[#FFD700]/10 border-l-2 border-[#FFD700]',
     },
   };
@@ -272,7 +272,7 @@ export function VerticalTabs({
                 py-0.5 px-2 rounded-full text-xs
                 ${isActive 
                   ? 'bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-400' 
-                  : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
+                  : 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400'
                 }
               `}>
                 {tab.badge}

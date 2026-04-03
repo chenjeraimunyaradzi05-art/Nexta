@@ -19,7 +19,7 @@ interface SkeletonProps {
 export function Skeleton({ className = '', animate = true }: SkeletonProps): React.ReactElement {
   return (
     <div
-      className={`bg-gray-200 dark:bg-gray-700 rounded ${animate ? 'animate-pulse' : ''} ${className}`}
+      className={`bg-slate-200 dark:bg-slate-700 rounded ${animate ? 'animate-pulse' : ''} ${className}`}
       aria-hidden="true"
     />
   );
@@ -66,7 +66,7 @@ export function SkeletonButton({ width = 'w-24' }: { width?: string }): React.Re
  */
 export function SkeletonCard({ className = '' }: { className?: string }): React.ReactElement {
   return (
-    <div className={`rounded-lg border border-gray-200 dark:border-gray-700 p-4 ${className}`}>
+    <div className={`rounded-lg border border-slate-200 dark:border-slate-700 p-4 ${className}`}>
       <div className="flex items-center space-x-4 mb-4">
         <SkeletonAvatar />
         <div className="flex-1 space-y-2">
@@ -88,7 +88,7 @@ export function SkeletonCard({ className = '' }: { className?: string }): React.
  */
 export function SkeletonJobCard(): React.ReactElement {
   return (
-    <div className="rounded-lg border border-gray-200 dark:border-gray-700 p-6">
+    <div className="rounded-lg border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex justify-between items-start mb-4">
         <div className="flex-1">
           <Skeleton className="h-6 w-2/3 mb-2" />
@@ -102,7 +102,7 @@ export function SkeletonJobCard(): React.ReactElement {
         <Skeleton className="h-6 w-16 rounded-full" />
       </div>
       <SkeletonText lines={2} />
-      <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+      <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-100 dark:border-slate-700">
         <Skeleton className="h-4 w-24" />
         <SkeletonButton width="w-28" />
       </div>
@@ -117,7 +117,7 @@ export function SkeletonTable({ rows = 5, columns = 4 }: { rows?: number; column
   return (
     <div className="w-full">
       {/* Header */}
-      <div className="flex border-b border-gray-200 dark:border-gray-700 pb-3 mb-3">
+      <div className="flex border-b border-slate-200 dark:border-slate-700 pb-3 mb-3">
         {Array.from({ length: columns }).map((_, i) => (
           <div key={i} className="flex-1 px-2">
             <Skeleton className="h-4 w-3/4" />
@@ -126,7 +126,7 @@ export function SkeletonTable({ rows = 5, columns = 4 }: { rows?: number; column
       </div>
       {/* Rows */}
       {Array.from({ length: rows }).map((_, rowIndex) => (
-        <div key={rowIndex} className="flex py-3 border-b border-gray-100 dark:border-gray-800">
+        <div key={rowIndex} className="flex py-3 border-b border-slate-100 dark:border-slate-800">
           {Array.from({ length: columns }).map((_, colIndex) => (
             <div key={colIndex} className="flex-1 px-2">
               <Skeleton className="h-4 w-5/6" />
@@ -145,7 +145,7 @@ export function SkeletonPage(): React.ReactElement {
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
-      <div className="hidden lg:block w-64 border-r border-gray-200 dark:border-gray-700 p-4">
+      <div className="hidden lg:block w-64 border-r border-slate-200 dark:border-slate-700 p-4">
         <Skeleton className="h-8 w-32 mb-8" />
         <div className="space-y-4">
           {Array.from({ length: 6 }).map((_, i) => (

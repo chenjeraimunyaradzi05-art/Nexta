@@ -58,7 +58,7 @@ export default function JobMatchExplanation({
     const missingNames = pickTopSkillNames(missingSkills, maxExamples);
 
     let message = '';
-    let colorClass = 'text-gray-600';
+    let colorClass = 'text-slate-600';
 
     if (pct >= 90) {
         message = `Excellent match! You have strong skills for this ${jobTitle} role`;
@@ -90,7 +90,7 @@ export default function JobMatchExplanation({
             message += ` such as ${formatList(missingNames)}`;
         }
         message += ` that aren't on your profile yet.`;
-        colorClass = 'text-gray-700 bg-gray-50 border-gray-200';
+        colorClass = 'text-slate-700 bg-slate-50 border-slate-200';
     }
 
     return (

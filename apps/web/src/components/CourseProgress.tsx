@@ -196,7 +196,7 @@ function CourseCard({
   return (
     <div
       onClick={onClick}
-      className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden
+      className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden
         cursor-pointer hover:shadow-lg transition-shadow"
     >
       {/* Course Image */}
@@ -225,33 +225,33 @@ function CourseCard({
         <p className="text-xs text-blue-600 dark:text-blue-400 font-medium uppercase tracking-wide">
           {course.category}
         </p>
-        <h3 className="mt-1 font-semibold text-gray-900 dark:text-white line-clamp-2">
+        <h3 className="mt-1 font-semibold text-slate-900 dark:text-white line-clamp-2">
           {course.title}
         </h3>
 
         {/* Instructor */}
         <div className="mt-3 flex items-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden">
+          <div className="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-600 overflow-hidden">
             {course.instructor.avatar ? (
               <OptimizedImage src={toCloudinaryAutoUrl(course.instructor.avatar)} alt={course.instructor.name} width={24} height={24} className="w-full h-full object-cover" />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">
+              <div className="w-full h-full flex items-center justify-center text-slate-400 text-xs">
                 {course.instructor.name.charAt(0)}
               </div>
             )}
           </div>
-          <span className="text-sm text-gray-500 dark:text-gray-400">{course.instructor.name}</span>
+          <span className="text-sm text-slate-500 dark:text-slate-400">{course.instructor.name}</span>
         </div>
 
         {/* Progress Bar */}
         <div className="mt-4">
           <div className="flex items-center justify-between text-sm mb-1">
-            <span className="text-gray-600 dark:text-gray-400">
+            <span className="text-slate-600 dark:text-slate-400">
               {course.completedLessons} / {course.totalLessons} lessons
             </span>
             <span className="font-medium text-blue-600 dark:text-blue-400">{course.progress}%</span>
           </div>
-          <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+          <div className="h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
             <div 
               className={`h-full rounded-full transition-all ${
                 course.progress === 100 
@@ -264,7 +264,7 @@ function CourseCard({
         </div>
 
         {/* Stats */}
-        <div className="mt-3 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+        <div className="mt-3 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
           <span>{formatDuration(course.timeSpent)} spent</span>
           {course.lastAccessedAt && (
             <span>Last: {formatDate(course.lastAccessedAt)}</span>
@@ -349,7 +349,7 @@ function CourseDetailView({
       <div className="flex items-center gap-4 mb-6">
         <button 
           onClick={onBack}
-          className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+          className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -357,7 +357,7 @@ function CourseDetailView({
         </button>
         <div className="flex-1">
           <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">{course.category}</p>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{course.title}</h1>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{course.title}</h1>
         </div>
         {course.certificateAvailable && (
           <Button onClick={onDownloadCertificate}>
@@ -370,26 +370,26 @@ function CourseDetailView({
       </div>
 
       {/* Progress Overview */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 mb-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 mb-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className="text-3xl font-bold text-gray-900 dark:text-white">{course.progress}%</p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">Course Complete</p>
+            <p className="text-3xl font-bold text-slate-900 dark:text-white">{course.progress}%</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Course Complete</p>
           </div>
           <div className="text-right">
-            <p className="text-lg font-semibold text-gray-900 dark:text-white">
+            <p className="text-lg font-semibold text-slate-900 dark:text-white">
               {course.completedLessons} / {course.totalLessons}
             </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">Lessons</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Lessons</p>
           </div>
           <div className="text-right">
-            <p className="text-lg font-semibold text-gray-900 dark:text-white">
+            <p className="text-lg font-semibold text-slate-900 dark:text-white">
               {formatDuration(course.timeSpent)}
             </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">Time Spent</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Time Spent</p>
           </div>
         </div>
-        <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+        <div className="h-3 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
           <div 
             className={`h-full rounded-full transition-all ${
               course.progress === 100 ? 'bg-green-500' : 'bg-blue-500'
@@ -405,31 +405,31 @@ function CourseDetailView({
           {course.modules.map((module, moduleIndex) => (
             <div 
               key={module.id}
-              className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden"
+              className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden"
             >
               {/* Module Header */}
               <button
                 onClick={() => toggleModule(module.id)}
-                className="w-full flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-750"
+                className="w-full flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-slate-750"
               >
                 <div className="flex items-center gap-3">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center font-medium text-sm
                     ${module.progress === 100 
                       ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400' 
-                      : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
+                      : 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400'
                     }`}
                   >
                     {module.progress === 100 ? '✓' : moduleIndex + 1}
                   </div>
                   <div className="text-left">
-                    <h3 className="font-medium text-gray-900 dark:text-white">{module.title}</h3>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                    <h3 className="font-medium text-slate-900 dark:text-white">{module.title}</h3>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
                       {module.lessons.filter(l => l.completed).length} / {module.lessons.length} completed
                     </p>
                   </div>
                 </div>
                 <svg 
-                  className={`w-5 h-5 text-gray-400 transition-transform ${
+                  className={`w-5 h-5 text-slate-400 transition-transform ${
                     expandedModules.has(module.id) ? 'rotate-180' : ''
                   }`} 
                   fill="none" 
@@ -442,7 +442,7 @@ function CourseDetailView({
 
               {/* Lessons */}
               {expandedModules.has(module.id) && (
-                <div className="border-t border-gray-200 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700">
+                <div className="border-t border-slate-200 dark:border-slate-700 divide-y divide-gray-100 dark:divide-gray-700">
                   {module.lessons.map((lesson) => (
                     <div 
                       key={lesson.id}
@@ -456,7 +456,7 @@ function CourseDetailView({
                         className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${
                           lesson.completed
                             ? 'bg-green-500 border-green-500 text-white'
-                            : 'border-gray-300 dark:border-gray-600 hover:border-blue-500'
+                            : 'border-slate-300 dark:border-slate-600 hover:border-blue-500'
                         }`}
                       >
                         {lesson.completed && (
@@ -467,7 +467,7 @@ function CourseDetailView({
                       </button>
 
                       {/* Lesson type icon */}
-                      <div className="text-gray-400">
+                      <div className="text-slate-400">
                         {lessonTypeIcons[lesson.type]}
                       </div>
 
@@ -475,12 +475,12 @@ function CourseDetailView({
                       <div className="flex-1">
                         <p className={`font-medium ${
                           lesson.completed 
-                            ? 'text-gray-500 dark:text-gray-400 line-through' 
-                            : 'text-gray-900 dark:text-white'
+                            ? 'text-slate-500 dark:text-slate-400 line-through' 
+                            : 'text-slate-900 dark:text-white'
                         }`}>
                           {lesson.title}
                         </p>
-                        <p className="text-xs text-gray-400">
+                        <p className="text-xs text-slate-400">
                           {formatDuration(lesson.duration)} · {lesson.type}
                         </p>
                       </div>
@@ -488,7 +488,7 @@ function CourseDetailView({
                       {/* Progress indicator for in-progress lessons */}
                       {!lesson.completed && lesson.progress > 0 && (
                         <div className="w-16">
-                          <div className="h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                          <div className="h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
                             <div 
                               className="h-full bg-blue-500 rounded-full"
                               style={{ width: `${lesson.progress}%` }}
@@ -506,10 +506,10 @@ function CourseDetailView({
 
         {/* Sidebar - Notes */}
         <div className="lg:col-span-1">
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-semibold text-gray-900 dark:text-white">Course Notes</h3>
-              <span className="text-sm text-gray-500">{notes.length}</span>
+              <h3 className="font-semibold text-slate-900 dark:text-white">Course Notes</h3>
+              <span className="text-sm text-slate-500">{notes.length}</span>
             </div>
 
             {/* Add Note */}
@@ -519,8 +519,8 @@ function CourseDetailView({
                 onChange={(e) => setNewNote(e.target.value)}
                 placeholder="Add a note..."
                 rows={3}
-                className="w-full px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg
-                  bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white
+                className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-600 rounded-lg
+                  bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white
                   focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
               />
               <Button 
@@ -536,9 +536,9 @@ function CourseDetailView({
             {/* Notes List */}
             <div className="space-y-3 max-h-96 overflow-y-auto">
               {notes.map((note) => (
-                <div key={note.id} className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                  <p className="text-sm text-gray-700 dark:text-gray-300">{note.content}</p>
-                  <div className="mt-2 flex items-center justify-between text-xs text-gray-400">
+                <div key={note.id} className="p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                  <p className="text-sm text-slate-700 dark:text-slate-300">{note.content}</p>
+                  <div className="mt-2 flex items-center justify-between text-xs text-slate-400">
                     <span>{formatDate(note.createdAt)}</span>
                     <button 
                       onClick={() => handleDeleteNote(note.id)}
@@ -550,7 +550,7 @@ function CourseDetailView({
                 </div>
               ))}
               {notes.length === 0 && (
-                <p className="text-sm text-gray-500 dark:text-gray-400 text-center py-4">
+                <p className="text-sm text-slate-500 dark:text-slate-400 text-center py-4">
                   No notes yet. Start taking notes to remember key points!
                 </p>
               )}
@@ -662,29 +662,29 @@ export function CourseProgress() {
     <div className="max-w-6xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">My Courses</h1>
-        <p className="mt-2 text-gray-500 dark:text-gray-400">
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">My Courses</h1>
+        <p className="mt-2 text-slate-500 dark:text-slate-400">
           Track your learning progress and earn certificates
         </p>
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-          <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.totalCourses}</p>
-          <p className="text-sm text-gray-500">Enrolled Courses</p>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+          <p className="text-2xl font-bold text-slate-900 dark:text-white">{stats.totalCourses}</p>
+          <p className="text-sm text-slate-500">Enrolled Courses</p>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
           <p className="text-2xl font-bold text-green-600">{stats.completed}</p>
-          <p className="text-sm text-gray-500">Completed</p>
+          <p className="text-sm text-slate-500">Completed</p>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
           <p className="text-2xl font-bold text-blue-600">{stats.inProgress}</p>
-          <p className="text-sm text-gray-500">In Progress</p>
+          <p className="text-sm text-slate-500">In Progress</p>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
           <p className="text-2xl font-bold text-purple-600">{formatDuration(stats.totalTime)}</p>
-          <p className="text-sm text-gray-500">Total Time</p>
+          <p className="text-sm text-slate-500">Total Time</p>
         </div>
       </div>
 
@@ -701,7 +701,7 @@ export function CourseProgress() {
             className={`px-4 py-2 text-sm rounded-full transition-colors ${
               filter === item.key
                 ? 'bg-blue-500 text-white'
-                : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200'
+                : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
             }`}
           >
             {item.label}
@@ -723,10 +723,10 @@ export function CourseProgress() {
       ) : (
         <div className="text-center py-16">
           <div className="text-6xl mb-4">📚</div>
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+          <h3 className="text-lg font-medium text-slate-900 dark:text-white">
             {filter === 'all' ? 'No courses enrolled' : `No ${filter} courses`}
           </h3>
-          <p className="mt-2 text-gray-500 dark:text-gray-400">
+          <p className="mt-2 text-slate-500 dark:text-slate-400">
             {filter === 'all' 
               ? 'Explore our course catalog to start learning!'
               : 'Check other filters or enroll in new courses.'}

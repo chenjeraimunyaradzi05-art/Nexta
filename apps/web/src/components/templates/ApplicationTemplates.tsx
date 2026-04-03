@@ -201,14 +201,14 @@ function TemplateCard({
   const preview = template.content.substring(0, 150) + (template.content.length > 150 ? '...' : '');
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex items-start justify-between gap-4 mb-3">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <h3 className="font-semibold text-gray-900 dark:text-white truncate">{template.title}</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white truncate">{template.title}</h3>
             <button
               onClick={onToggleFavorite}
-              className={`flex-shrink-0 ${template.isFavorite ? 'text-yellow-500' : 'text-gray-300 hover:text-yellow-500'}`}
+              className={`flex-shrink-0 ${template.isFavorite ? 'text-yellow-500' : 'text-slate-300 hover:text-yellow-500'}`}
             >
               <svg className="w-5 h-5" fill={template.isFavorite ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
@@ -222,7 +222,7 @@ function TemplateCard({
       </div>
 
       {/* Preview */}
-      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">{preview}</p>
+      <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 line-clamp-3">{preview}</p>
 
       {/* Tags */}
       {template.tags.length > 0 && (
@@ -230,19 +230,19 @@ function TemplateCard({
           {template.tags.slice(0, 4).map((tag, i) => (
             <span
               key={i}
-              className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded"
+              className="px-2 py-0.5 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 text-xs rounded"
             >
               {tag}
             </span>
           ))}
           {template.tags.length > 4 && (
-            <span className="text-xs text-gray-500">+{template.tags.length - 4}</span>
+            <span className="text-xs text-slate-500">+{template.tags.length - 4}</span>
           )}
         </div>
       )}
 
       {/* Usage Stats */}
-      <div className="flex items-center gap-4 text-xs text-gray-500 mb-4">
+      <div className="flex items-center gap-4 text-xs text-slate-500 mb-4">
         <span>Used {template.usageCount} times</span>
         {template.lastUsed && (
           <span>Last: {new Date(template.lastUsed).toLocaleDateString('en-AU')}</span>
@@ -259,7 +259,7 @@ function TemplateCard({
         </Button>
         <button
           onClick={onEdit}
-          className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+          className="p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -267,7 +267,7 @@ function TemplateCard({
         </button>
         <button
           onClick={onDelete}
-          className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+          className="p-2 text-slate-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -322,13 +322,13 @@ function TemplateModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700 sticky top-0 bg-white dark:bg-gray-800">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700 sticky top-0 bg-white dark:bg-slate-800">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">
               {template ? 'Edit Template' : 'Create Template'}
             </h2>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+            <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -339,7 +339,7 @@ function TemplateModal({
         <div className="p-6 space-y-6">
           {/* Title */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Title *
             </label>
             <input
@@ -347,14 +347,14 @@ function TemplateModal({
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g., My career background summary"
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
 
           {/* Quick Question Buttons */}
           {!template && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 Common Questions (click to set title)
               </label>
               <div className="flex flex-wrap gap-2">
@@ -367,7 +367,7 @@ function TemplateModal({
                         setTags([...tags, prompt.tag]);
                       }
                     }}
-                    className="px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                    className="px-3 py-1.5 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
                   >
                     {prompt.label}
                   </button>
@@ -378,7 +378,7 @@ function TemplateModal({
 
           {/* Category */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Template Type
             </label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -389,7 +389,7 @@ function TemplateModal({
                   className={`p-3 rounded-lg border-2 transition-colors ${
                     category === key
                       ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                      : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
+                      : 'border-slate-200 dark:border-slate-700 hover:border-slate-300'
                   }`}
                 >
                   <span className={`inline-block px-2 py-0.5 text-xs font-medium rounded-full ${config.color}`}>
@@ -402,7 +402,7 @@ function TemplateModal({
 
           {/* Content */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Content *
             </label>
             <textarea
@@ -410,9 +410,9 @@ function TemplateModal({
               onChange={(e) => setContent(e.target.value)}
               rows={10}
               placeholder="Write your template content here. You can use placeholders like [Company Name], [Job Title], [Year], etc."
-              className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-3 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
-            <div className="flex items-center justify-between mt-2 text-sm text-gray-500">
+            <div className="flex items-center justify-between mt-2 text-sm text-slate-500">
               <span>{content.split(/\s+/).filter(w => w).length} words</span>
               <span>{content.length} characters</span>
             </div>
@@ -436,7 +436,7 @@ function TemplateModal({
 
           {/* Tags */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Tags
             </label>
             <div className="flex gap-2 mb-2">
@@ -446,7 +446,7 @@ function TemplateModal({
                 onChange={(e) => setTagInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
                 placeholder="Add a tag..."
-                className="flex-1 px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="flex-1 px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               />
               <Button onClick={addTag}>Add</Button>
             </div>
@@ -455,7 +455,7 @@ function TemplateModal({
                 {tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm"
+                    className="inline-flex items-center gap-1 px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm"
                   >
                     {tag}
                     <button onClick={() => removeTag(tag)} className="hover:text-red-500">
@@ -470,7 +470,7 @@ function TemplateModal({
           </div>
         </div>
 
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex gap-3 sticky bottom-0 bg-white dark:bg-gray-800">
+        <div className="p-6 border-t border-slate-200 dark:border-slate-700 flex gap-3 sticky bottom-0 bg-white dark:bg-slate-800">
           <Button variant="outline" onClick={onClose} className="flex-1">Cancel</Button>
           <Button onClick={handleSave} className="flex-1" disabled={!title || !content}>
             {template ? 'Save Changes' : 'Create Template'}
@@ -642,8 +642,8 @@ export function ApplicationTemplates() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Application Templates</h1>
-          <p className="text-gray-500 mt-1">Reusable answers for job applications</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Application Templates</h1>
+          <p className="text-slate-500 mt-1">Reusable answers for job applications</p>
         </div>
         <Button onClick={() => setShowModal(true)}>
           <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -658,21 +658,21 @@ export function ApplicationTemplates() {
 
       {/* Stats */}
       <div className="grid grid-cols-4 gap-4 mb-8">
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
-          <div className="text-2xl font-bold text-gray-900 dark:text-white">{templates.length}</div>
-          <div className="text-sm text-gray-500">Templates</div>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
+          <div className="text-2xl font-bold text-slate-900 dark:text-white">{templates.length}</div>
+          <div className="text-sm text-slate-500">Templates</div>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
           <div className="text-2xl font-bold text-yellow-600">{templates.filter(t => t.isFavorite).length}</div>
-          <div className="text-sm text-gray-500">Favorites</div>
+          <div className="text-sm text-slate-500">Favorites</div>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
           <div className="text-2xl font-bold text-blue-600">{templates.reduce((acc, t) => acc + t.usageCount, 0)}</div>
-          <div className="text-sm text-gray-500">Total Uses</div>
+          <div className="text-sm text-slate-500">Total Uses</div>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
           <div className="text-2xl font-bold text-green-600">{allTags.length}</div>
-          <div className="text-sm text-gray-500">Tags</div>
+          <div className="text-sm text-slate-500">Tags</div>
         </div>
       </div>
 
@@ -684,13 +684,13 @@ export function ApplicationTemplates() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search templates..."
-            className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
           />
         </div>
         <select
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
-          className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
         >
           <option value="">All Types</option>
           {Object.entries(categoryConfig).map(([key, config]) => (
@@ -700,7 +700,7 @@ export function ApplicationTemplates() {
         <select
           value={tagFilter}
           onChange={(e) => setTagFilter(e.target.value)}
-          className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
         >
           <option value="">All Tags</option>
           {allTags.map((tag) => (
@@ -712,7 +712,7 @@ export function ApplicationTemplates() {
           className={`px-4 py-2 rounded-lg border transition-colors ${
             showFavoritesOnly
               ? 'bg-yellow-100 border-yellow-300 text-yellow-700'
-              : 'border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300'
+              : 'border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300'
           }`}
         >
           ⭐ Favorites
@@ -734,12 +734,12 @@ export function ApplicationTemplates() {
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+        <div className="text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
           <div className="text-6xl mb-4">📝</div>
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+          <h3 className="text-lg font-medium text-slate-900 dark:text-white">
             {templates.length > 0 ? 'No matching templates' : 'No templates yet'}
           </h3>
-          <p className="text-gray-500 mt-2 mb-6">
+          <p className="text-slate-500 mt-2 mb-6">
             {templates.length > 0 
               ? 'Try adjusting your filters' 
               : 'Create templates to speed up your job applications'}
@@ -753,7 +753,7 @@ export function ApplicationTemplates() {
       {/* Quick Start Templates */}
       {templates.length === 0 && (
         <div className="mt-12">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">
             Quick Start: Common Questions
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -761,11 +761,11 @@ export function ApplicationTemplates() {
               <button
                 key={category.id}
                 onClick={() => setShowModal(true)}
-                className="p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 text-left hover:border-blue-300 transition-colors"
+                className="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 text-left hover:border-blue-300 transition-colors"
               >
                 <span className="text-2xl">{category.icon}</span>
-                <h3 className="font-medium text-gray-900 dark:text-white mt-2">{category.name}</h3>
-                <p className="text-sm text-gray-500 mt-1">{category.description}</p>
+                <h3 className="font-medium text-slate-900 dark:text-white mt-2">{category.name}</h3>
+                <p className="text-sm text-slate-500 mt-1">{category.description}</p>
               </button>
             ))}
           </div>

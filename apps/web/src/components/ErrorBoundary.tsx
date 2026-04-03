@@ -97,7 +97,7 @@ export class ErrorBoundary extends Component<Props, State> {
         <div
           className={`
             min-h-[400px] flex items-center justify-center p-8
-            ${isCosmic ? 'bg-gradient-to-br from-[#1A0F2E] to-[#2D1B69]' : 'bg-gray-50 dark:bg-gray-900'}
+            ${isCosmic ? 'bg-gradient-to-br from-[#1A0F2E] to-[#2D1B69]' : 'bg-slate-50 dark:bg-slate-900'}
           `}
         >
           <div
@@ -105,7 +105,7 @@ export class ErrorBoundary extends Component<Props, State> {
               max-w-lg w-full p-8 rounded-2xl text-center
               ${isCosmic 
                 ? 'bg-[#1A0F2E]/80 border border-[#FFD700]/20 shadow-2xl shadow-[#FFD700]/5' 
-                : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl'}
+                : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl'}
             `}
           >
             {/* Icon */}
@@ -126,7 +126,7 @@ export class ErrorBoundary extends Component<Props, State> {
             <h2
               className={`
                 text-2xl font-bold mb-3
-                ${isCosmic ? 'text-white' : 'text-gray-900 dark:text-white'}
+                ${isCosmic ? 'text-white' : 'text-slate-900 dark:text-white'}
               `}
             >
               Oops! Something went wrong
@@ -136,7 +136,7 @@ export class ErrorBoundary extends Component<Props, State> {
             <p
               className={`
                 mb-6
-                ${isCosmic ? 'text-gray-400' : 'text-gray-600 dark:text-gray-400'}
+                ${isCosmic ? 'text-slate-400' : 'text-slate-600 dark:text-slate-400'}
               `}
             >
               We encountered an unexpected error. Please try again or return home.
@@ -149,7 +149,7 @@ export class ErrorBoundary extends Component<Props, State> {
                 className={`
                   inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium transition-all
                   ${isCosmic 
-                    ? 'bg-gradient-to-r from-[#FFD700] to-[#50C878] text-gray-900 hover:opacity-90' 
+                    ? 'bg-gradient-to-r from-[#FFD700] to-[#50C878] text-slate-900 hover:opacity-90' 
                     : 'bg-blue-600 text-white hover:bg-blue-700'}
                 `}
               >
@@ -163,7 +163,7 @@ export class ErrorBoundary extends Component<Props, State> {
                   inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium transition-colors
                   ${isCosmic 
                     ? 'bg-white/10 text-white hover:bg-white/20' 
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'}
+                    : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'}
                 `}
               >
                 <Home className="w-4 h-4" />
@@ -173,12 +173,12 @@ export class ErrorBoundary extends Component<Props, State> {
 
             {/* Error details (collapsible) */}
             {process.env.NODE_ENV === 'development' && error && (
-              <div className={`border-t ${isCosmic ? 'border-white/10' : 'border-gray-200 dark:border-gray-700'} pt-4`}>
+              <div className={`border-t ${isCosmic ? 'border-white/10' : 'border-slate-200 dark:border-slate-700'} pt-4`}>
                 <button
                   onClick={this.toggleDetails}
                   className={`
                     inline-flex items-center gap-2 text-sm
-                    ${isCosmic ? 'text-gray-400 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}
+                    ${isCosmic ? 'text-slate-400 hover:text-slate-300' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}
                   `}
                 >
                   <Bug className="w-4 h-4" />
@@ -196,7 +196,7 @@ export class ErrorBoundary extends Component<Props, State> {
                       mt-4 p-4 rounded-lg text-left text-sm font-mono overflow-x-auto
                       ${isCosmic 
                         ? 'bg-black/30 text-red-400 border border-red-500/20' 
-                        : 'bg-gray-100 dark:bg-gray-900 text-red-600 dark:text-red-400'}
+                        : 'bg-slate-100 dark:bg-slate-900 text-red-600 dark:text-red-400'}
                     `}
                   >
                     <p className="font-bold mb-2">{error.name}: {error.message}</p>

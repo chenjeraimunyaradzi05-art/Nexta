@@ -204,10 +204,10 @@ function StoryCard({
   };
 
   return (
-    <article className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-shadow">
+    <article className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-lg transition-shadow">
       {/* Media */}
       {story.type === 'video' && story.thumbnailUrl && (
-        <div className="relative aspect-video bg-gray-900 cursor-pointer group" onClick={onViewFull}>
+        <div className="relative aspect-video bg-slate-900 cursor-pointer group" onClick={onViewFull}>
           <OptimizedImage
             src={toCloudinaryAutoUrl(story.thumbnailUrl)}
             alt={`${story.title} video thumbnail`}
@@ -217,7 +217,7 @@ function StoryCard({
           />
           <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity">
             <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
-              <svg className="w-8 h-8 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-8 h-8 text-slate-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z" />
               </svg>
             </div>
@@ -278,14 +278,14 @@ function StoryCard({
           )}
           <div className="flex-1">
             <div className="flex items-center gap-1">
-              <span className="font-medium text-gray-900 dark:text-white">{story.author.name}</span>
+              <span className="font-medium text-slate-900 dark:text-white">{story.author.name}</span>
               {story.author.isVerified && (
                 <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
               )}
             </div>
-            <div className="flex items-center gap-2 text-xs text-gray-500">
+            <div className="flex items-center gap-2 text-xs text-slate-500">
               {story.author.role && <span>{story.author.role}</span>}
               <span>·</span>
               <span>{formatTimeAgo(story.createdAt)}</span>
@@ -298,12 +298,12 @@ function StoryCard({
 
         {/* Content */}
         <h3 
-          className="font-semibold text-gray-900 dark:text-white text-lg mb-2 cursor-pointer hover:text-blue-600"
+          className="font-semibold text-slate-900 dark:text-white text-lg mb-2 cursor-pointer hover:text-blue-600"
           onClick={onViewFull}
         >
           {story.title}
         </h3>
-        <p className="text-gray-600 dark:text-gray-400 line-clamp-3">
+        <p className="text-slate-600 dark:text-slate-400 line-clamp-3">
           {story.excerpt || story.content}
         </p>
 
@@ -320,7 +320,7 @@ function StoryCard({
         {story.tags.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-3">
             {story.tags.map((tag) => (
-              <span key={tag} className="px-2 py-0.5 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded">
+              <span key={tag} className="px-2 py-0.5 text-xs bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded">
                 #{tag}
               </span>
             ))}
@@ -329,7 +329,7 @@ function StoryCard({
 
         {/* Region/Language */}
         {(story.region || story.language) && (
-          <div className="flex items-center gap-3 mt-3 text-xs text-gray-500">
+          <div className="flex items-center gap-3 mt-3 text-xs text-slate-500">
             {story.region && (
               <span className="flex items-center gap-1">
                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -350,12 +350,12 @@ function StoryCard({
         )}
 
         {/* Actions */}
-        <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+        <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-100 dark:border-slate-700">
           <div className="flex items-center gap-4">
             <button
               onClick={onLike}
               className={`flex items-center gap-1 ${
-                story.isLiked ? 'text-red-500' : 'text-gray-500 hover:text-red-500'
+                story.isLiked ? 'text-red-500' : 'text-slate-500 hover:text-red-500'
               }`}
             >
               <svg className={`w-5 h-5 ${story.isLiked ? 'fill-current' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -363,13 +363,13 @@ function StoryCard({
               </svg>
               <span className="text-sm">{story.likes}</span>
             </button>
-            <button className="flex items-center gap-1 text-gray-500 hover:text-blue-500">
+            <button className="flex items-center gap-1 text-slate-500 hover:text-blue-500">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
               <span className="text-sm">{story.comments}</span>
             </button>
-            <button className="flex items-center gap-1 text-gray-500 hover:text-green-500">
+            <button className="flex items-center gap-1 text-slate-500 hover:text-green-500">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
               </svg>
@@ -378,7 +378,7 @@ function StoryCard({
           </div>
           <button
             onClick={onBookmark}
-            className={story.isBookmarked ? 'text-yellow-500' : 'text-gray-400 hover:text-yellow-500'}
+            className={story.isBookmarked ? 'text-yellow-500' : 'text-slate-400 hover:text-yellow-500'}
           >
             <svg className={`w-5 h-5 ${story.isBookmarked ? 'fill-current' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
@@ -436,9 +436,9 @@ function StoryDetailModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+        <div className="p-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
           <div className="flex items-center gap-3">
             {story.author.avatar ? (
               <OptimizedImage
@@ -454,11 +454,11 @@ function StoryDetailModal({
               </div>
             )}
             <div>
-              <p className="font-medium text-gray-900 dark:text-white">{story.author.name}</p>
-              <p className="text-xs text-gray-500">{formatTimeAgo(story.createdAt)}</p>
+              <p className="font-medium text-slate-900 dark:text-white">{story.author.name}</p>
+              <p className="text-xs text-slate-500">{formatTimeAgo(story.createdAt)}</p>
             </div>
           </div>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -471,7 +471,7 @@ function StoryDetailModal({
             {category.icon} {category.label}
           </span>
 
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{story.title}</h1>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{story.title}</h1>
 
           {/* Video Player */}
           {story.type === 'video' && story.mediaUrl && (
@@ -510,7 +510,7 @@ function StoryDetailModal({
           {story.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-6">
               {story.tags.map((tag) => (
-                <span key={tag} className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full">
+                <span key={tag} className="px-3 py-1 text-sm bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-full">
                   #{tag}
                 </span>
               ))}
@@ -518,14 +518,14 @@ function StoryDetailModal({
           )}
 
           {/* Comments Section */}
-          <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">
               Comments ({comments.length})
             </h3>
 
             {/* Add Comment */}
             <div className="flex gap-3 mb-6">
-              <div className="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-400">
+              <div className="w-10 h-10 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center text-slate-400">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
@@ -536,8 +536,8 @@ function StoryDetailModal({
                   onChange={(e) => setNewComment(e.target.value)}
                   placeholder="Share your thoughts..."
                   rows={2}
-                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                    bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+                  className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                    bg-white dark:bg-slate-700 text-slate-900 dark:text-white resize-none"
                 />
                 <div className="flex justify-end mt-2">
                   <Button size="sm" onClick={handleAddComment} disabled={!newComment.trim() || isSubmitting}>
@@ -565,21 +565,21 @@ function StoryDetailModal({
                         className="w-10 h-10 rounded-full"
                       />
                     ) : (
-                      <div className="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 font-medium text-sm">
+                      <div className="w-10 h-10 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-400 font-medium text-sm">
                         {comment.author.name.charAt(0)}
                       </div>
                     )}
                     <div className="flex-1">
-                      <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3">
+                      <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-3">
                         <div className="flex items-center gap-2">
-                          <span className="font-medium text-gray-900 dark:text-white text-sm">
+                          <span className="font-medium text-slate-900 dark:text-white text-sm">
                             {comment.author.name}
                           </span>
-                          <span className="text-xs text-gray-400">{formatTimeAgo(comment.createdAt)}</span>
+                          <span className="text-xs text-slate-400">{formatTimeAgo(comment.createdAt)}</span>
                         </div>
-                        <p className="text-gray-700 dark:text-gray-300 text-sm mt-1">{comment.content}</p>
+                        <p className="text-slate-700 dark:text-slate-300 text-sm mt-1">{comment.content}</p>
                       </div>
-                      <div className="flex items-center gap-4 mt-1 text-xs text-gray-500">
+                      <div className="flex items-center gap-4 mt-1 text-xs text-slate-500">
                         <button className="hover:text-blue-500">Like ({comment.likes})</button>
                         <button className="hover:text-blue-500">Reply</button>
                       </div>
@@ -588,18 +588,18 @@ function StoryDetailModal({
                 ))}
               </div>
             ) : (
-              <p className="text-center text-gray-500 py-4">No comments yet. Be the first to comment!</p>
+              <p className="text-center text-slate-500 py-4">No comments yet. Be the first to comment!</p>
             )}
           </div>
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
+        <div className="p-4 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <button
               onClick={onLike}
               className={`flex items-center gap-1 ${
-                story.isLiked ? 'text-red-500' : 'text-gray-500 hover:text-red-500'
+                story.isLiked ? 'text-red-500' : 'text-slate-500 hover:text-red-500'
               }`}
             >
               <svg className={`w-6 h-6 ${story.isLiked ? 'fill-current' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -607,8 +607,8 @@ function StoryDetailModal({
               </svg>
               <span>{story.likes}</span>
             </button>
-            <span className="text-gray-500">{story.comments} comments</span>
-            <span className="text-gray-500">{story.shares} shares</span>
+            <span className="text-slate-500">{story.comments} comments</span>
+            <span className="text-slate-500">{story.shares} shares</span>
           </div>
           <Button variant="outline" onClick={onClose}>Close</Button>
         </div>
@@ -690,8 +690,8 @@ export function StoriesFeed() {
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Stories</h1>
-        <p className="mt-2 text-gray-500 dark:text-gray-400">
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Stories</h1>
+        <p className="mt-2 text-slate-500 dark:text-slate-400">
           Discover stories from our community
         </p>
       </div>
@@ -703,7 +703,7 @@ export function StoriesFeed() {
           className={`px-4 py-2 rounded-full font-medium transition-colors ${
             selectedCategory === 'all'
               ? 'bg-blue-500 text-white'
-              : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200'
+              : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
           }`}
         >
           All Stories
@@ -715,7 +715,7 @@ export function StoriesFeed() {
             className={`px-4 py-2 rounded-full font-medium flex items-center gap-1 transition-colors ${
               selectedCategory === key
                 ? 'bg-blue-500 text-white'
-                : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200'
+                : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
             }`}
           >
             {config.icon} {config.label}
@@ -739,8 +739,8 @@ export function StoriesFeed() {
       ) : (
         <div className="text-center py-16">
           <div className="text-6xl mb-4">📖</div>
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">No stories found</h3>
-          <p className="text-gray-500 mt-2">Be the first to share a story in this category</p>
+          <h3 className="text-lg font-medium text-slate-900 dark:text-white">No stories found</h3>
+          <p className="text-slate-500 mt-2">Be the first to share a story in this category</p>
           <Button className="mt-4">Share Your Story</Button>
         </div>
       )}

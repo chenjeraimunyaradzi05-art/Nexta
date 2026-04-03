@@ -184,9 +184,9 @@ function SettingSection({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 mb-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">{title}</h3>
-      {description && <p className="text-sm text-gray-500 mb-4">{description}</p>}
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 mb-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">{title}</h3>
+      {description && <p className="text-sm text-slate-500 mb-4">{description}</p>}
       {children}
     </div>
   );
@@ -207,7 +207,7 @@ function Toggle({
       onClick={() => !disabled && onChange(!checked)}
       disabled={disabled}
       className={`relative w-12 h-6 rounded-full transition-colors ${
-        checked ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'
+        checked ? 'bg-blue-500' : 'bg-slate-300 dark:bg-slate-600'
       } ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
     >
       <div
@@ -236,12 +236,12 @@ function MasterToggle({
   onTest?: () => void;
 }) {
   return (
-    <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+    <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
       <div className="flex items-center gap-3">
         <span className="text-2xl">{icon}</span>
         <div>
-          <span className="font-medium text-gray-900 dark:text-white">{label}</span>
-          <p className="text-sm text-gray-500">{description}</p>
+          <span className="font-medium text-slate-900 dark:text-white">{label}</span>
+          <p className="text-sm text-slate-500">{description}</p>
         </div>
       </div>
       <div className="flex items-center gap-3">
@@ -284,11 +284,11 @@ function CategoryRow({
   const priorityColors = {
     high: 'bg-red-100 text-red-700',
     normal: 'bg-blue-100 text-blue-700',
-    low: 'bg-gray-100 text-gray-700',
+    low: 'bg-slate-100 text-slate-700',
   };
 
   return (
-    <div className="border-b border-gray-100 dark:border-gray-700 last:border-0">
+    <div className="border-b border-slate-100 dark:border-slate-700 last:border-0">
       <div
         className="flex items-center justify-between py-4 cursor-pointer"
         onClick={() => setExpanded(!expanded)}
@@ -297,15 +297,15 @@ function CategoryRow({
           <span className="text-xl">{category.icon}</span>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-medium text-gray-900 dark:text-white">{category.name}</span>
+              <span className="font-medium text-slate-900 dark:text-white">{category.name}</span>
               <span className={`text-xs px-2 py-0.5 rounded ${priorityColors[category.priority]}`}>
                 {category.priority}
               </span>
             </div>
-            <p className="text-sm text-gray-500">{category.description}</p>
+            <p className="text-sm text-slate-500">{category.description}</p>
           </div>
         </div>
-        <span className="text-gray-400">{expanded ? '▲' : '▼'}</span>
+        <span className="text-slate-400">{expanded ? '▲' : '▼'}</span>
       </div>
 
       {expanded && (
@@ -316,7 +316,7 @@ function CategoryRow({
               onChange={() => handleToggle('push')}
               disabled={!pushEnabled}
             />
-            <span className="text-sm text-gray-600 dark:text-gray-400">Push</span>
+            <span className="text-sm text-slate-600 dark:text-slate-400">Push</span>
           </div>
           <div className="flex items-center gap-2">
             <Toggle
@@ -324,7 +324,7 @@ function CategoryRow({
               onChange={() => handleToggle('inApp')}
               disabled={!inAppEnabled}
             />
-            <span className="text-sm text-gray-600 dark:text-gray-400">In-App</span>
+            <span className="text-sm text-slate-600 dark:text-slate-400">In-App</span>
           </div>
           <div className="flex items-center gap-2">
             <Toggle
@@ -332,7 +332,7 @@ function CategoryRow({
               onChange={() => handleToggle('email')}
               disabled={!emailEnabled}
             />
-            <span className="text-sm text-gray-600 dark:text-gray-400">Email</span>
+            <span className="text-sm text-slate-600 dark:text-slate-400">Email</span>
           </div>
           <div className="flex items-center gap-2">
             <Toggle
@@ -340,7 +340,7 @@ function CategoryRow({
               onChange={() => handleToggle('sms')}
               disabled={!smsEnabled}
             />
-            <span className="text-sm text-gray-600 dark:text-gray-400">SMS</span>
+            <span className="text-sm text-slate-600 dark:text-slate-400">SMS</span>
           </div>
         </div>
       )}
@@ -380,8 +380,8 @@ function DoNotDisturbSection({
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <span className="font-medium text-gray-900 dark:text-white">Do Not Disturb</span>
-          <p className="text-sm text-gray-500">Pause all notifications</p>
+          <span className="font-medium text-slate-900 dark:text-white">Do Not Disturb</span>
+          <p className="text-sm text-slate-500">Pause all notifications</p>
         </div>
         <Toggle
           checked={settings.enabled}
@@ -389,9 +389,9 @@ function DoNotDisturbSection({
         />
       </div>
 
-      <div className="pl-4 border-l-2 border-gray-200 dark:border-gray-700 space-y-4">
+      <div className="pl-4 border-l-2 border-slate-200 dark:border-slate-700 space-y-4">
         <div className="flex items-center justify-between">
-          <span className="text-sm text-gray-700 dark:text-gray-300">Scheduled</span>
+          <span className="text-sm text-slate-700 dark:text-slate-300">Scheduled</span>
           <Toggle
             checked={settings.schedule.enabled}
             onChange={(v) =>
@@ -404,7 +404,7 @@ function DoNotDisturbSection({
           <>
             <div className="flex gap-4">
               <div>
-                <label className="text-sm text-gray-500">From</label>
+                <label className="text-sm text-slate-500">From</label>
                 <input
                   type="time"
                   value={settings.schedule.startTime}
@@ -414,11 +414,11 @@ function DoNotDisturbSection({
                       schedule: { ...settings.schedule, startTime: e.target.value },
                     })
                   }
-                  className="block px-3 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                  className="block px-3 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                 />
               </div>
               <div>
-                <label className="text-sm text-gray-500">To</label>
+                <label className="text-sm text-slate-500">To</label>
                 <input
                   type="time"
                   value={settings.schedule.endTime}
@@ -428,13 +428,13 @@ function DoNotDisturbSection({
                       schedule: { ...settings.schedule, endTime: e.target.value },
                     })
                   }
-                  className="block px-3 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                  className="block px-3 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                 />
               </div>
             </div>
 
             <div>
-              <label className="text-sm text-gray-500 mb-2 block">Days</label>
+              <label className="text-sm text-slate-500 mb-2 block">Days</label>
               <div className="flex gap-2">
                 {days.map((day) => (
                   <button
@@ -443,7 +443,7 @@ function DoNotDisturbSection({
                     className={`px-3 py-1 rounded-lg text-sm ${
                       settings.schedule.days.includes(day.value)
                         ? 'bg-blue-500 text-white'
-                        : 'bg-gray-100 dark:bg-gray-700'
+                        : 'bg-slate-100 dark:bg-slate-700'
                     }`}
                   >
                     {day.label}
@@ -456,8 +456,8 @@ function DoNotDisturbSection({
 
         <div className="flex items-center justify-between">
           <div>
-            <span className="text-sm text-gray-700 dark:text-gray-300">Allow exceptions</span>
-            <p className="text-xs text-gray-500">Critical notifications will still come through</p>
+            <span className="text-sm text-slate-700 dark:text-slate-300">Allow exceptions</span>
+            <p className="text-xs text-slate-500">Critical notifications will still come through</p>
           </div>
           <Toggle
             checked={settings.allowExceptions}
@@ -580,8 +580,8 @@ export function NotificationSettings() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Notifications</h1>
-      <p className="text-gray-500 mb-8">Control how and when you receive notifications</p>
+      <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Notifications</h1>
+      <p className="text-slate-500 mb-8">Control how and when you receive notifications</p>
 
       {/* Channels */}
       <SettingSection title="Notification Channels" description="Enable or disable notification methods">
@@ -660,10 +660,10 @@ export function NotificationSettings() {
       {/* Behavior */}
       <SettingSection title="Notification Behavior">
         <div className="space-y-4">
-          <div className="flex items-center justify-between py-3 border-b border-gray-100 dark:border-gray-700">
+          <div className="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-700">
             <div>
-              <span className="font-medium text-gray-900 dark:text-white">Sound</span>
-              <p className="text-sm text-gray-500">Play a sound for notifications</p>
+              <span className="font-medium text-slate-900 dark:text-white">Sound</span>
+              <p className="text-sm text-slate-500">Play a sound for notifications</p>
             </div>
             <Toggle
               checked={preferences.soundEnabled}
@@ -671,10 +671,10 @@ export function NotificationSettings() {
             />
           </div>
 
-          <div className="flex items-center justify-between py-3 border-b border-gray-100 dark:border-gray-700">
+          <div className="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-700">
             <div>
-              <span className="font-medium text-gray-900 dark:text-white">Vibration</span>
-              <p className="text-sm text-gray-500">Vibrate for notifications (mobile)</p>
+              <span className="font-medium text-slate-900 dark:text-white">Vibration</span>
+              <p className="text-sm text-slate-500">Vibrate for notifications (mobile)</p>
             </div>
             <Toggle
               checked={preferences.vibrationEnabled}
@@ -682,10 +682,10 @@ export function NotificationSettings() {
             />
           </div>
 
-          <div className="flex items-center justify-between py-3 border-b border-gray-100 dark:border-gray-700">
+          <div className="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-700">
             <div>
-              <span className="font-medium text-gray-900 dark:text-white">Badge Count</span>
-              <p className="text-sm text-gray-500">Show unread count on app icon</p>
+              <span className="font-medium text-slate-900 dark:text-white">Badge Count</span>
+              <p className="text-sm text-slate-500">Show unread count on app icon</p>
             </div>
             <Toggle
               checked={preferences.badgeEnabled}
@@ -695,8 +695,8 @@ export function NotificationSettings() {
 
           <div className="flex items-center justify-between py-3">
             <div>
-              <span className="font-medium text-gray-900 dark:text-white">Show Preview</span>
-              <p className="text-sm text-gray-500">Show notification content in alerts</p>
+              <span className="font-medium text-slate-900 dark:text-white">Show Preview</span>
+              <p className="text-sm text-slate-500">Show notification content in alerts</p>
             </div>
             <Toggle
               checked={preferences.previewEnabled}

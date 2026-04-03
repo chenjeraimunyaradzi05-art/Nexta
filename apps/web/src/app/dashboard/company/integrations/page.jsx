@@ -129,13 +129,13 @@ export default function IntegrationsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-slate-50 py-8">
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Integrations</h1>
-            <p className="text-gray-600 mt-1">
+            <h1 className="text-3xl font-bold text-slate-900">Integrations</h1>
+            <p className="text-slate-600 mt-1">
               Manage API access, webhooks, and enterprise features
             </p>
           </div>
@@ -149,7 +149,7 @@ export default function IntegrationsPage() {
 
         {/* Tabs */}
         <div className="bg-white rounded-lg shadow mb-6">
-          <div className="border-b border-gray-200">
+          <div className="border-b border-slate-200">
             <nav className="flex -mb-px">
               {tabs.map(tab => (
                 <button
@@ -158,7 +158,7 @@ export default function IntegrationsPage() {
                   className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
                     activeTab === tab.id
                       ? 'border-blue-500 text-blue-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                      : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'
                   }`}
                 >
                   <span className="mr-2">{tab.icon}</span>
@@ -187,7 +187,7 @@ export default function IntegrationsPage() {
                   <div>
                     <div className="mb-6">
                       <h2 className="text-xl font-semibold mb-2">API Keys</h2>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-slate-600 text-sm">
                         Create API keys for programmatic access to the Nexta API.
                       </p>
                     </div>
@@ -215,7 +215,7 @@ export default function IntegrationsPage() {
                         </button>
                         <button
                           onClick={() => setNewKeySecret(null)}
-                          className="mt-3 ml-4 text-sm text-gray-500"
+                          className="mt-3 ml-4 text-sm text-slate-500"
                         >
                           Dismiss
                         </button>
@@ -242,18 +242,18 @@ export default function IntegrationsPage() {
                     {/* Keys list */}
                     <div className="space-y-3">
                       {apiKeys.length === 0 ? (
-                        <p className="text-gray-500 text-center py-8">
+                        <p className="text-slate-500 text-center py-8">
                           No API keys yet. Create one above.
                         </p>
                       ) : (
                         apiKeys.map(key => (
                           <div
                             key={key.id}
-                            className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+                            className="flex items-center justify-between p-4 bg-slate-50 rounded-lg"
                           >
                             <div>
                               <h4 className="font-medium">{key.name}</h4>
-                              <p className="text-sm text-gray-500">
+                              <p className="text-sm text-slate-500">
                                 <code>{key.keyPrefix}...</code>
                                 {' • '}
                                 Created {new Date(key.createdAt).toLocaleDateString()}
@@ -294,7 +294,7 @@ export default function IntegrationsPage() {
                   <div>
                     <div className="mb-6">
                       <h2 className="text-xl font-semibold mb-2">Webhooks</h2>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-slate-600 text-sm">
                         Receive real-time notifications when events happen in your account.
                       </p>
                     </div>
@@ -308,19 +308,19 @@ export default function IntegrationsPage() {
 
                     <div className="space-y-3">
                       {webhooks.length === 0 ? (
-                        <p className="text-gray-500 text-center py-8">
+                        <p className="text-slate-500 text-center py-8">
                           No webhooks configured.
                         </p>
                       ) : (
                         webhooks.map(webhook => (
                           <div
                             key={webhook.id}
-                            className="p-4 bg-gray-50 rounded-lg"
+                            className="p-4 bg-slate-50 rounded-lg"
                           >
                             <div className="flex items-start justify-between">
                               <div>
                                 <h4 className="font-medium">{webhook.name}</h4>
-                                <p className="text-sm text-gray-500 mt-1">
+                                <p className="text-sm text-slate-500 mt-1">
                                   {webhook.url}
                                 </p>
                                 <div className="flex flex-wrap gap-1 mt-2">
@@ -333,7 +333,7 @@ export default function IntegrationsPage() {
                                     </span>
                                   ))}
                                   {webhook.events.length > 3 && (
-                                    <span className="text-xs text-gray-500">
+                                    <span className="text-xs text-slate-500">
                                       +{webhook.events.length - 3} more
                                     </span>
                                   )}
@@ -343,7 +343,7 @@ export default function IntegrationsPage() {
                                 <span className={`px-2 py-1 text-xs rounded ${
                                   webhook.isActive
                                     ? 'bg-green-100 text-green-800'
-                                    : 'bg-gray-100 text-gray-800'
+                                    : 'bg-slate-100 text-slate-800'
                                 }`}>
                                   {webhook.isActive ? 'Active' : 'Disabled'}
                                 </span>
@@ -360,11 +360,11 @@ export default function IntegrationsPage() {
                       )}
                     </div>
 
-                    <div className="mt-6 p-4 bg-gray-100 rounded-lg">
+                    <div className="mt-6 p-4 bg-slate-100 rounded-lg">
                       <h4 className="font-medium mb-2">Available Events</h4>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
                         {Object.entries(webhookEvents).map(([event, desc]) => (
-                          <div key={event} title={desc} className="text-gray-600">
+                          <div key={event} title={desc} className="text-slate-600">
                             <code className="text-xs">{event}</code>
                           </div>
                         ))}
@@ -378,13 +378,13 @@ export default function IntegrationsPage() {
                   <div>
                     <div className="mb-6">
                       <h2 className="text-xl font-semibold mb-2">Single Sign-On</h2>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-slate-600 text-sm">
                         Configure SAML or OIDC for enterprise authentication.
                       </p>
                     </div>
 
                     {ssoConfig ? (
-                      <div className="bg-gray-50 rounded-lg p-6">
+                      <div className="bg-slate-50 rounded-lg p-6">
                         <div className="flex items-center justify-between mb-4">
                           <h3 className="font-medium">
                             {ssoConfig.provider} Configuration
@@ -399,16 +399,16 @@ export default function IntegrationsPage() {
                         </div>
                         <dl className="space-y-2 text-sm">
                           <div className="flex">
-                            <dt className="w-24 text-gray-500">Provider:</dt>
+                            <dt className="w-24 text-slate-500">Provider:</dt>
                             <dd>{ssoConfig.provider}</dd>
                           </div>
                           <div className="flex">
-                            <dt className="w-24 text-gray-500">Issuer:</dt>
+                            <dt className="w-24 text-slate-500">Issuer:</dt>
                             <dd>{ssoConfig.issuer}</dd>
                           </div>
                           {ssoConfig.ssoUrl && (
                             <div className="flex">
-                              <dt className="w-24 text-gray-500">SSO URL:</dt>
+                              <dt className="w-24 text-slate-500">SSO URL:</dt>
                               <dd className="break-all">{ssoConfig.ssoUrl}</dd>
                             </div>
                           )}
@@ -416,7 +416,7 @@ export default function IntegrationsPage() {
                         <div className="mt-4 flex gap-2">
                           <Link
                             href="/dashboard/company/integrations/sso/edit"
-                            className="px-3 py-1.5 text-sm bg-gray-200 rounded hover:bg-gray-300"
+                            className="px-3 py-1.5 text-sm bg-slate-200 rounded hover:bg-slate-300"
                           >
                             Edit
                           </Link>
@@ -424,7 +424,7 @@ export default function IntegrationsPage() {
                       </div>
                     ) : (
                       <div className="text-center py-8">
-                        <p className="text-gray-500 mb-4">
+                        <p className="text-slate-500 mb-4">
                           SSO is not configured for your organization.
                         </p>
                         <Link
@@ -443,7 +443,7 @@ export default function IntegrationsPage() {
                   <div>
                     <div className="mb-6">
                       <h2 className="text-xl font-semibold mb-2">Bulk Import</h2>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-slate-600 text-sm">
                         Import jobs, candidates, or courses from CSV files.
                       </p>
                     </div>
@@ -451,19 +451,19 @@ export default function IntegrationsPage() {
                     <div className="flex gap-3 mb-6">
                       <a
                         href="/api/bulk-import/templates/jobs"
-                        className="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 text-sm"
+                        className="px-4 py-2 bg-slate-100 rounded-lg hover:bg-slate-200 text-sm"
                       >
                         📄 Jobs Template
                       </a>
                       <a
                         href="/api/bulk-import/templates/candidates"
-                        className="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 text-sm"
+                        className="px-4 py-2 bg-slate-100 rounded-lg hover:bg-slate-200 text-sm"
                       >
                         📄 Candidates Template
                       </a>
                       <a
                         href="/api/bulk-import/templates/courses"
-                        className="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 text-sm"
+                        className="px-4 py-2 bg-slate-100 rounded-lg hover:bg-slate-200 text-sm"
                       >
                         📄 Courses Template
                       </a>
@@ -479,18 +479,18 @@ export default function IntegrationsPage() {
                     <h3 className="font-medium mb-3">Recent Imports</h3>
                     <div className="space-y-3">
                       {imports.length === 0 ? (
-                        <p className="text-gray-500 text-center py-8">
+                        <p className="text-slate-500 text-center py-8">
                           No imports yet.
                         </p>
                       ) : (
                         imports.map(imp => (
                           <div
                             key={imp.id}
-                            className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+                            className="flex items-center justify-between p-4 bg-slate-50 rounded-lg"
                           >
                             <div>
                               <h4 className="font-medium">{imp.type} Import</h4>
-                              <p className="text-sm text-gray-500">
+                              <p className="text-sm text-slate-500">
                                 {imp.fileName}
                                 {' • '}
                                 {imp.processedRows}/{imp.totalRows} rows

@@ -29,7 +29,7 @@ export default function MediaUpload() {
 
   return (
     <div>
-      <label className="block text-sm text-gray-300 mb-2">
+      <label className="block text-sm text-slate-300 mb-2">
         Photos & Videos (Up to 40 photos, 2 videos max 20 mins each)
       </label>
       <div
@@ -37,9 +37,9 @@ export default function MediaUpload() {
         style={{ background: 'rgba(255, 255, 255, 0.02)' }}
         onClick={() => inputRef.current?.click()}
       >
-        <Upload className="w-10 h-10 mx-auto text-gray-500 mb-3" />
-        <p className="text-gray-400 mb-1">Drag and drop files here, or click to browse</p>
-        <p className="text-xs text-gray-500">PNG, JPG up to 10MB · MP4 up to 500MB</p>
+        <Upload className="w-10 h-10 mx-auto text-slate-500 mb-3" />
+        <p className="text-slate-400 mb-1">Drag and drop files here, or click to browse</p>
+        <p className="text-xs text-slate-500">PNG, JPG up to 10MB · MP4 up to 500MB</p>
         <input
           ref={inputRef}
           type="file"
@@ -83,7 +83,7 @@ export default function MediaUpload() {
         ))}
       </div>
       {(photos.length > 0 || videos.length > 0) && (
-        <div className="mt-2 text-xs text-gray-400">
+        <div className="mt-2 text-xs text-slate-400">
           {photos.length} photo(s), {videos.length} video(s) selected
         </div>
       )}

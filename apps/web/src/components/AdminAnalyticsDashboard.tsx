@@ -112,11 +112,11 @@ const StatCard: React.FC<{
   icon: React.ReactNode;
   color?: string;
 }> = ({ title, value, change, changeLabel, icon, color = colors.primary }) => (
-  <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+  <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
     <div className="flex items-start justify-between">
       <div>
-        <p className="text-sm text-gray-500 font-medium">{title}</p>
-        <p className="text-2xl font-bold text-gray-900 mt-1">{value}</p>
+        <p className="text-sm text-slate-500 font-medium">{title}</p>
+        <p className="text-2xl font-bold text-slate-900 mt-1">{value}</p>
         {change !== undefined && (
           <div className="flex items-center mt-2">
             <span
@@ -126,7 +126,7 @@ const StatCard: React.FC<{
             >
               {change >= 0 ? '↑' : '↓'} {Math.abs(change)}%
             </span>
-            <span className="text-xs text-gray-400 ml-1">{changeLabel || 'vs last month'}</span>
+            <span className="text-xs text-slate-400 ml-1">{changeLabel || 'vs last month'}</span>
           </div>
         )}
       </div>
@@ -145,10 +145,10 @@ const SummaryCard: React.FC<{
   value: string | number;
   subtitle?: string;
 }> = ({ title, value, subtitle }) => (
-  <div className="bg-white/80 backdrop-blur rounded-xl px-4 py-3 border border-gray-100">
-    <p className="text-xs text-gray-500 font-medium">{title}</p>
-    <p className="text-lg font-semibold text-gray-900 mt-1">{value}</p>
-    {subtitle && <p className="text-xs text-gray-400 mt-1">{subtitle}</p>}
+  <div className="bg-white/80 backdrop-blur rounded-xl px-4 py-3 border border-slate-100">
+    <p className="text-xs text-slate-500 font-medium">{title}</p>
+    <p className="text-lg font-semibold text-slate-900 mt-1">{value}</p>
+    {subtitle && <p className="text-xs text-slate-400 mt-1">{subtitle}</p>}
   </div>
 );
 
@@ -159,11 +159,11 @@ const ChartCard: React.FC<{
   children: React.ReactNode;
   action?: React.ReactNode;
 }> = ({ title, subtitle, children, action }) => (
-  <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+  <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
     <div className="flex items-center justify-between mb-4">
       <div>
-        <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-        {subtitle && <p className="text-sm text-gray-500">{subtitle}</p>}
+        <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
+        {subtitle && <p className="text-sm text-slate-500">{subtitle}</p>}
       </div>
       {action}
     </div>
@@ -179,7 +179,7 @@ const DateRangeSelector: React.FC<{
   <select
     value={value}
     onChange={(e) => onChange(e.target.value)}
-    className="px-4 py-2 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary/20"
+    className="px-4 py-2 border border-slate-200 rounded-lg text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary/20"
   >
     <option value="7d">Last 7 days</option>
     <option value="30d">Last 30 days</option>
@@ -328,14 +328,14 @@ export default function AdminAnalyticsDashboard() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto p-6">
         {/* Header */}
-        <div className="relative overflow-hidden rounded-2xl border border-gray-100 bg-gradient-to-br from-white via-white to-emerald-50 p-6 mb-8">
+        <div className="relative overflow-hidden rounded-2xl border border-slate-100 bg-gradient-to-br from-white via-white to-emerald-50 p-6 mb-8">
           <div className="absolute -top-12 -right-12 h-40 w-40 rounded-full bg-emerald-200/40 blur-3xl" />
           <div className="absolute -bottom-16 -left-16 h-40 w-40 rounded-full bg-blue-200/40 blur-3xl" />
           <div className="relative flex flex-wrap items-center justify-between gap-4">
             <div>
-              <p className="text-sm text-gray-500">Admin Analytics</p>
-              <h1 className="text-2xl font-bold text-gray-900">Analytics Dashboard</h1>
-              <p className="text-gray-500 mt-1">Platform performance and insights</p>
+              <p className="text-sm text-slate-500">Admin Analytics</p>
+              <h1 className="text-2xl font-bold text-slate-900">Analytics Dashboard</h1>
+              <p className="text-slate-500 mt-1">Platform performance and insights</p>
             </div>
             <div className="flex items-center gap-3">
               <DateRangeSelector value={dateRange} onChange={setDateRange} />
@@ -367,7 +367,7 @@ export default function AdminAnalyticsDashboard() {
         )}
 
         {/* Tab Navigation */}
-        <div className="flex gap-1 mb-6 bg-gray-100/80 p-1 rounded-full w-fit">
+        <div className="flex gap-1 mb-6 bg-slate-100/80 p-1 rounded-full w-fit">
           {(['overview', 'users', 'jobs', 'mentorship', 'revenue'] as const).map((tab) => (
             <button
               key={tab}
@@ -375,7 +375,7 @@ export default function AdminAnalyticsDashboard() {
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 activeTab === tab
                   ? 'bg-white text-primary shadow-sm'
-                  : 'text-gray-600 hover:text-gray-900'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -496,25 +496,25 @@ export default function AdminAnalyticsDashboard() {
             <ChartCard title="Mentorship Sessions">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-3xl font-bold text-gray-900">
+                  <p className="text-3xl font-bold text-slate-900">
                     {metrics.mentorship.completedSessions.toLocaleString()}
                   </p>
-                  <p className="text-sm text-gray-500">completed sessions</p>
+                  <p className="text-sm text-slate-500">completed sessions</p>
                 </div>
                 <div className="text-right">
                   <p className="text-2xl font-bold text-primary">
                     {metrics.mentorship.avgRating.toFixed(1)} ⭐
                   </p>
-                  <p className="text-sm text-gray-500">average rating</p>
+                  <p className="text-sm text-slate-500">average rating</p>
                 </div>
               </div>
-              <div className="mt-4 pt-4 border-t border-gray-100">
+              <div className="mt-4 pt-4 border-t border-slate-100">
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Active Mentors</span>
+                  <span className="text-slate-500">Active Mentors</span>
                   <span className="font-medium">{metrics.mentorship.activeMentors}</span>
                 </div>
                 <div className="flex justify-between text-sm mt-2">
-                  <span className="text-gray-500">Total Hours</span>
+                  <span className="text-slate-500">Total Hours</span>
                   <span className="font-medium">{metrics.mentorship.totalHours.toLocaleString()}</span>
                 </div>
               </div>
@@ -523,25 +523,25 @@ export default function AdminAnalyticsDashboard() {
             <ChartCard title="Job Applications">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-3xl font-bold text-gray-900">
+                  <p className="text-3xl font-bold text-slate-900">
                     {metrics.jobs.applications.toLocaleString()}
                   </p>
-                  <p className="text-sm text-gray-500">total applications</p>
+                  <p className="text-sm text-slate-500">total applications</p>
                 </div>
                 <div className="text-right">
                   <p className="text-2xl font-bold text-blue-600">
                     {metrics.jobs.avgApplicationsPerJob.toFixed(1)}
                   </p>
-                  <p className="text-sm text-gray-500">avg per job</p>
+                  <p className="text-sm text-slate-500">avg per job</p>
                 </div>
               </div>
-              <div className="mt-4 pt-4 border-t border-gray-100">
+              <div className="mt-4 pt-4 border-t border-slate-100">
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Indigenous Designated Jobs</span>
+                  <span className="text-slate-500">Indigenous Designated Jobs</span>
                   <span className="font-medium text-ochre">{metrics.jobs.indigenousDesignated}</span>
                 </div>
                 <div className="flex justify-between text-sm mt-2">
-                  <span className="text-gray-500">Hire Rate</span>
+                  <span className="text-slate-500">Hire Rate</span>
                   <span className="font-medium">{metrics.jobs.hireRate}%</span>
                 </div>
               </div>
@@ -569,10 +569,10 @@ export default function AdminAnalyticsDashboard() {
             subtitle="Daily revenue over selected period"
             action={
               <div className="text-right">
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-2xl font-bold text-slate-900">
                   ${(metrics.revenue.mrr / 1000).toFixed(1)}k
                 </p>
-                <p className="text-sm text-gray-500">MRR</p>
+                <p className="text-sm text-slate-500">MRR</p>
               </div>
             }
           >
@@ -602,7 +602,7 @@ export default function AdminAnalyticsDashboard() {
 
           {/* Indigenous Impact Section */}
           <div className="mt-8">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Indigenous Impact</h2>
+            <h2 className="text-lg font-semibold text-slate-900 mb-4">Indigenous Impact</h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div className="bg-gradient-to-br from-ochre to-terracotta text-white rounded-xl p-6">
                 <p className="text-sm opacity-80">Total Indigenous Users</p>
@@ -613,26 +613,26 @@ export default function AdminAnalyticsDashboard() {
                   {metrics.indigenous.indigenousPercentage}% of platform
                 </p>
               </div>
-              <div className="bg-white rounded-xl p-6 border border-gray-100">
-                <p className="text-sm text-gray-500">Indigenous Hires</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">
+              <div className="bg-white rounded-xl p-6 border border-slate-100">
+                <p className="text-sm text-slate-500">Indigenous Hires</p>
+                <p className="text-3xl font-bold text-slate-900 mt-1">
                   {metrics.indigenous.indigenousHires}
                 </p>
                 <p className="text-sm text-green-600 mt-2">↑ 23% this quarter</p>
               </div>
-              <div className="bg-white rounded-xl p-6 border border-gray-100">
-                <p className="text-sm text-gray-500">RAP Certified Companies</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">
+              <div className="bg-white rounded-xl p-6 border border-slate-100">
+                <p className="text-sm text-slate-500">RAP Certified Companies</p>
+                <p className="text-3xl font-bold text-slate-900 mt-1">
                   {metrics.indigenous.rapCertifiedCompanies}
                 </p>
                 <p className="text-sm text-green-600 mt-2">↑ 12 new this month</p>
               </div>
-              <div className="bg-white rounded-xl p-6 border border-gray-100">
-                <p className="text-sm text-gray-500">Mentorship Hours</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">
+              <div className="bg-white rounded-xl p-6 border border-slate-100">
+                <p className="text-sm text-slate-500">Mentorship Hours</p>
+                <p className="text-3xl font-bold text-slate-900 mt-1">
                   {metrics.mentorship.totalHours.toLocaleString()}
                 </p>
-                <p className="text-sm text-gray-500 mt-2">by Indigenous mentors</p>
+                <p className="text-sm text-slate-500 mt-2">by Indigenous mentors</p>
               </div>
             </div>
           </div>

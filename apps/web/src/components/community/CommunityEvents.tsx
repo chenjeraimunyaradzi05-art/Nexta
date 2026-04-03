@@ -222,7 +222,7 @@ function EventCard({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-lg transition-shadow">
       {/* Image */}
       <div className="relative h-40 bg-gradient-to-r from-blue-500 to-purple-500">
         {event.image && (
@@ -256,40 +256,40 @@ function EventCard({
         <div className="flex items-start justify-between mb-2">
           <span className="text-2xl">{typeInfo?.icon}</span>
           <div className="text-right">
-            <div className="text-lg font-bold text-gray-900 dark:text-white">
+            <div className="text-lg font-bold text-slate-900 dark:text-white">
               {startDate.getDate()}
             </div>
-            <div className="text-xs text-gray-500 uppercase">
+            <div className="text-xs text-slate-500 uppercase">
               {startDate.toLocaleDateString('en-AU', { month: 'short' })}
             </div>
           </div>
         </div>
 
         <h3
-          className="font-semibold text-gray-900 dark:text-white mb-2 cursor-pointer hover:text-blue-600"
+          className="font-semibold text-slate-900 dark:text-white mb-2 cursor-pointer hover:text-blue-600"
           onClick={onClick}
         >
           {event.title}
         </h3>
 
-        <p className="text-sm text-gray-500 mb-3 line-clamp-2">{event.description}</p>
+        <p className="text-sm text-slate-500 mb-3 line-clamp-2">{event.description}</p>
 
         {/* Location/Time */}
         <div className="space-y-1 mb-4">
-          <div className="flex items-center gap-2 text-sm text-gray-500">
+          <div className="flex items-center gap-2 text-sm text-slate-500">
             <span>🕐</span>
             <span>
               {startDate.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' })}
             </span>
           </div>
           {event.location && (
-            <div className="flex items-center gap-2 text-sm text-gray-500">
+            <div className="flex items-center gap-2 text-sm text-slate-500">
               <span>📍</span>
               <span>{event.location.city}, {event.location.state}</span>
             </div>
           )}
           {event.format === 'virtual' && (
-            <div className="flex items-center gap-2 text-sm text-gray-500">
+            <div className="flex items-center gap-2 text-sm text-slate-500">
               <span>💻</span>
               <span>Online Event</span>
             </div>
@@ -298,7 +298,7 @@ function EventCard({
 
         {/* Organizer */}
         <div className="flex items-center gap-2 mb-4">
-          <div className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+          <div className="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
             {event.organizer.avatar ? (
               <OptimizedImage
                 src={toCloudinaryAutoUrl(event.organizer.avatar)}
@@ -311,12 +311,12 @@ function EventCard({
               <span className="text-xs">🏢</span>
             )}
           </div>
-          <span className="text-sm text-gray-500">{event.organizer.name}</span>
+          <span className="text-sm text-slate-500">{event.organizer.name}</span>
         </div>
 
         {/* Footer */}
         <div className="flex items-center justify-between">
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-slate-500">
             👥 {event.attendees}{event.maxAttendees && ` / ${event.maxAttendees}`}
           </div>
           {isUpcoming && (
@@ -325,7 +325,7 @@ function EventCard({
                 ✓ Registered
               </span>
             ) : isFull ? (
-              <span className="px-3 py-1 bg-gray-100 text-gray-500 rounded text-sm">
+              <span className="px-3 py-1 bg-slate-100 text-slate-500 rounded text-sm">
                 Full
               </span>
             ) : (
@@ -363,7 +363,7 @@ function EventDetailModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header Image */}
         <div className="relative h-48 bg-gradient-to-r from-blue-500 to-purple-500">
           {event.image && (
@@ -386,23 +386,23 @@ function EventDetailModal({
         {/* Content */}
         <div className="p-6">
           <div className="flex items-start gap-4 mb-4">
-            <div className="w-16 text-center p-2 bg-gray-100 dark:bg-gray-900 rounded-lg">
-              <div className="text-2xl font-bold text-gray-900 dark:text-white">
+            <div className="w-16 text-center p-2 bg-slate-100 dark:bg-slate-900 rounded-lg">
+              <div className="text-2xl font-bold text-slate-900 dark:text-white">
                 {startDate.getDate()}
               </div>
-              <div className="text-xs text-gray-500 uppercase">
+              <div className="text-xs text-slate-500 uppercase">
                 {startDate.toLocaleDateString('en-AU', { month: 'short' })}
               </div>
             </div>
             <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
                 {event.title}
               </h2>
               <div className="flex flex-wrap gap-2">
                 <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-sm">
                   {typeInfo?.icon} {typeInfo?.label}
                 </span>
-                <span className="px-2 py-1 bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded text-sm">
+                <span className="px-2 py-1 bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300 rounded text-sm">
                   {event.format}
                 </span>
                 {event.isIndigenousEvent && (
@@ -416,39 +416,39 @@ function EventDetailModal({
 
           {/* Details */}
           <div className="grid md:grid-cols-2 gap-4 mb-6">
-            <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-              <p className="text-sm text-gray-500 mb-1">Date & Time</p>
-              <p className="font-medium text-gray-900 dark:text-white">
+            <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+              <p className="text-sm text-slate-500 mb-1">Date & Time</p>
+              <p className="font-medium text-slate-900 dark:text-white">
                 {startDate.toLocaleDateString('en-AU', { weekday: 'long', month: 'long', day: 'numeric' })}
               </p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-slate-600 dark:text-slate-400">
                 {startDate.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' })} -
                 {endDate.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' })}
               </p>
             </div>
 
-            <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-              <p className="text-sm text-gray-500 mb-1">Location</p>
+            <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+              <p className="text-sm text-slate-500 mb-1">Location</p>
               {event.location ? (
                 <>
-                  <p className="font-medium text-gray-900 dark:text-white">{event.location.venue}</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{event.location.address}</p>
+                  <p className="font-medium text-slate-900 dark:text-white">{event.location.venue}</p>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">{event.location.address}</p>
                 </>
               ) : (
-                <p className="font-medium text-gray-900 dark:text-white">Online Event</p>
+                <p className="font-medium text-slate-900 dark:text-white">Online Event</p>
               )}
             </div>
           </div>
 
           {/* Description */}
           <div className="mb-6">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">About This Event</h3>
-            <p className="text-gray-600 dark:text-gray-400 whitespace-pre-wrap">{event.description}</p>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">About This Event</h3>
+            <p className="text-slate-600 dark:text-slate-400 whitespace-pre-wrap">{event.description}</p>
           </div>
 
           {/* Organizer */}
-          <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg mb-6">
-            <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+          <div className="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-900 rounded-lg mb-6">
+            <div className="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
               {event.organizer.avatar ? (
                 <OptimizedImage
                   src={toCloudinaryAutoUrl(event.organizer.avatar)}
@@ -462,8 +462,8 @@ function EventDetailModal({
               )}
             </div>
             <div>
-              <p className="text-sm text-gray-500">Organized by</p>
-              <p className="font-medium text-gray-900 dark:text-white">{event.organizer.name}</p>
+              <p className="text-sm text-slate-500">Organized by</p>
+              <p className="font-medium text-slate-900 dark:text-white">{event.organizer.name}</p>
             </div>
           </div>
 
@@ -473,7 +473,7 @@ function EventDetailModal({
               {event.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full text-sm"
+                  className="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-full text-sm"
                 >
                   #{tag}
                 </span>
@@ -482,14 +482,14 @@ function EventDetailModal({
           )}
 
           {/* Footer */}
-          <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-700">
             <div>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-slate-500">
                 👥 {event.attendees} attending
                 {event.maxAttendees && ` • ${event.maxAttendees - event.attendees} spots left`}
               </p>
               {!event.isFree && (
-                <p className="font-semibold text-gray-900 dark:text-white">${event.price}</p>
+                <p className="font-semibold text-slate-900 dark:text-white">${event.price}</p>
               )}
             </div>
             {isUpcoming && (
@@ -524,7 +524,7 @@ function FiltersBar({
   onChange: (filters: any) => void;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 mb-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 mb-6">
       <div className="flex flex-wrap gap-4">
         {/* Search */}
         <div className="flex-1 min-w-[200px]">
@@ -533,7 +533,7 @@ function FiltersBar({
             placeholder="Search events..."
             value={filters.query || ''}
             onChange={(e) => onChange({ ...filters, query: e.target.value })}
-            className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+            className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
           />
         </div>
 
@@ -541,7 +541,7 @@ function FiltersBar({
         <select
           value={filters.type || ''}
           onChange={(e) => onChange({ ...filters, type: e.target.value })}
-          className="px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+          className="px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
         >
           <option value="">All Types</option>
           {EVENT_TYPES.map((type) => (
@@ -555,7 +555,7 @@ function FiltersBar({
         <select
           value={filters.format || ''}
           onChange={(e) => onChange({ ...filters, format: e.target.value })}
-          className="px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+          className="px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
         >
           <option value="">All Formats</option>
           <option value="in-person">In Person</option>
@@ -663,8 +663,8 @@ export function CommunityEvents() {
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Community Events</h1>
-          <p className="text-gray-500 mt-1">Connect, learn, and celebrate with our community</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Community Events</h1>
+          <p className="text-slate-500 mt-1">Connect, learn, and celebrate with our community</p>
         </div>
       </div>
 
@@ -675,7 +675,7 @@ export function CommunityEvents() {
           className={`px-4 py-2 rounded-lg ${
             activeTab === 'discover'
               ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30'
-              : 'text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800'
+              : 'text-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800'
           }`}
         >
           🔍 Discover
@@ -685,7 +685,7 @@ export function CommunityEvents() {
           className={`px-4 py-2 rounded-lg ${
             activeTab === 'my-events'
               ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30'
-              : 'text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800'
+              : 'text-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800'
           }`}
         >
           📅 My Events ({myEvents.length})
@@ -703,12 +703,12 @@ export function CommunityEvents() {
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" />
         </div>
       ) : displayEvents.length === 0 ? (
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-12 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-12 text-center">
           <div className="text-6xl mb-4">📅</div>
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+          <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
             {activeTab === 'my-events' ? 'No registered events' : 'No events found'}
           </h3>
-          <p className="text-gray-500">
+          <p className="text-slate-500">
             {activeTab === 'my-events'
               ? 'Register for events to see them here'
               : 'Try adjusting your filters or check back later'}

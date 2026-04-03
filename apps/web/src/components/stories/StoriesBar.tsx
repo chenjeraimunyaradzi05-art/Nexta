@@ -188,8 +188,8 @@ export default function StoriesBar() {
             <div className="flex gap-4 p-4 overflow-x-auto">
                 {[1, 2, 3, 4].map(i => (
                     <div key={i} className="flex flex-col items-center gap-2 animate-pulse">
-                        <div className="w-16 h-16 rounded-full bg-gray-700" />
-                        <div className="w-12 h-3 rounded bg-gray-700" />
+                        <div className="w-16 h-16 rounded-full bg-slate-700" />
+                        <div className="w-12 h-3 rounded bg-slate-700" />
                     </div>
                 ))}
             </div>
@@ -210,7 +210,7 @@ export default function StoriesBar() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                         </svg>
                     </div>
-                    <span className="text-xs text-gray-400">Add Story</span>
+                    <span className="text-xs text-slate-400">Add Story</span>
                 </button>
 
                 {/* Story Circles */}
@@ -223,9 +223,9 @@ export default function StoriesBar() {
                         <div className={`p-0.5 rounded-full ${
                             group.hasUnviewed 
                                 ? 'bg-gradient-to-br from-yellow-400 via-pink-500 to-purple-600' 
-                                : 'bg-gray-600'
+                                : 'bg-slate-600'
                         }`}>
-                            <div className="w-14 h-14 rounded-full border-2 border-gray-900 overflow-hidden">
+                            <div className="w-14 h-14 rounded-full border-2 border-slate-900 overflow-hidden">
                                 {group.userAvatar ? (
                                     <Image
                                         src={group.userAvatar}
@@ -235,13 +235,13 @@ export default function StoriesBar() {
                                         className="object-cover"
                                     />
                                 ) : (
-                                    <div className="w-full h-full bg-gray-700 flex items-center justify-center text-white text-lg font-semibold">
+                                    <div className="w-full h-full bg-slate-700 flex items-center justify-center text-white text-lg font-semibold">
                                         {group.userName.charAt(0).toUpperCase()}
                                     </div>
                                 )}
                             </div>
                         </div>
-                        <span className="text-xs text-gray-400 max-w-[64px] truncate">
+                        <span className="text-xs text-slate-400 max-w-[64px] truncate">
                             {group.userName}
                         </span>
                     </button>
@@ -254,7 +254,7 @@ export default function StoriesBar() {
                     {/* Progress Bars */}
                     <div className="absolute top-0 left-0 right-0 flex gap-1 p-2 z-10">
                         {activeStory.group.stories.map((story, i) => (
-                            <div key={story.id} className="flex-1 h-1 bg-gray-600 rounded-full overflow-hidden">
+                            <div key={story.id} className="flex-1 h-1 bg-slate-600 rounded-full overflow-hidden">
                                 <div
                                     className="h-full bg-white transition-all duration-100"
                                     style={{
@@ -280,14 +280,14 @@ export default function StoriesBar() {
                                         className="object-cover"
                                     />
                                 ) : (
-                                    <div className="w-full h-full bg-gray-700 flex items-center justify-center text-white font-semibold">
+                                    <div className="w-full h-full bg-slate-700 flex items-center justify-center text-white font-semibold">
                                         {activeStory.group.userName.charAt(0).toUpperCase()}
                                     </div>
                                 )}
                             </div>
                             <div>
                                 <p className="text-white font-semibold text-sm">{activeStory.group.userName}</p>
-                                <p className="text-gray-400 text-xs">
+                                <p className="text-slate-400 text-xs">
                                     {getTimeRemaining(activeStory.group.stories[activeStory.index].expiresAt)}
                                 </p>
                             </div>
@@ -346,7 +346,7 @@ export default function StoriesBar() {
                     {/* Reactions */}
                     <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-4 z-10">
                         {showReactions ? (
-                            <div className="bg-gray-800/90 rounded-full px-4 py-2 flex gap-4">
+                            <div className="bg-slate-800/90 rounded-full px-4 py-2 flex gap-4">
                                 {REACTION_EMOJIS.map(emoji => (
                                     <button
                                         key={emoji}
@@ -360,7 +360,7 @@ export default function StoriesBar() {
                         ) : (
                             <button
                                 onClick={() => setShowReactions(true)}
-                                className="bg-gray-800/90 rounded-full px-6 py-2 text-white flex items-center gap-2"
+                                className="bg-slate-800/90 rounded-full px-6 py-2 text-white flex items-center gap-2"
                             >
                                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

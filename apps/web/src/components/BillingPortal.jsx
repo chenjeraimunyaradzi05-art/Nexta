@@ -195,7 +195,7 @@ export default function BillingPortal({ companyId }) {
             
             {/* Current Plan */}
             <div className="bg-white rounded-xl shadow-sm border p-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">Current Plan</h2>
+                <h2 className="text-xl font-semibold text-slate-900 mb-4">Current Plan</h2>
                 
                 {subscription ? (
                     <div className="flex items-start justify-between">
@@ -203,7 +203,7 @@ export default function BillingPortal({ companyId }) {
                             <p className="text-2xl font-bold text-primary">
                                 {tierInfo?.name || 'Free'} Plan
                             </p>
-                            <p className="text-gray-600 mt-1">
+                            <p className="text-slate-600 mt-1">
                                 {subscription.status === 'active' ? (
                                     <>
                                         ${tierInfo?.price || 0}/month • Renews on{' '}
@@ -225,7 +225,7 @@ export default function BillingPortal({ companyId }) {
                                     <button
                                         onClick={handleManageBilling}
                                         disabled={actionLoading}
-                                        className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+                                        className="px-4 py-2 border border-slate-300 rounded-lg text-slate-700 hover:bg-slate-50 disabled:opacity-50"
                                     >
                                         Manage Billing
                                     </button>
@@ -251,8 +251,8 @@ export default function BillingPortal({ companyId }) {
                     </div>
                 ) : (
                     <div>
-                        <p className="text-2xl font-bold text-gray-900">Free Plan</p>
-                        <p className="text-gray-600 mt-1">
+                        <p className="text-2xl font-bold text-slate-900">Free Plan</p>
+                        <p className="text-slate-600 mt-1">
                             Limited features. Upgrade to unlock more capabilities.
                         </p>
                     </div>
@@ -295,10 +295,10 @@ export default function BillingPortal({ companyId }) {
                             </span>
                         )}
                         
-                        <h3 className="text-lg font-semibold text-gray-900">{tier.name}</h3>
+                        <h3 className="text-lg font-semibold text-slate-900">{tier.name}</h3>
                         <p className="mt-2">
                             <span className="text-3xl font-bold">${tier.price}</span>
-                            <span className="text-gray-600">/month</span>
+                            <span className="text-slate-600">/month</span>
                         </p>
                         
                         <ul className="mt-6 space-y-3">
@@ -307,7 +307,7 @@ export default function BillingPortal({ companyId }) {
                                     <svg className="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                     </svg>
-                                    <span className="text-gray-600 text-sm">{feature}</span>
+                                    <span className="text-slate-600 text-sm">{feature}</span>
                                 </li>
                             ))}
                         </ul>
@@ -317,7 +317,7 @@ export default function BillingPortal({ companyId }) {
                             disabled={actionLoading || currentTier === key}
                             className={`mt-6 w-full py-2 px-4 rounded-lg font-medium disabled:opacity-50 ${
                                 currentTier === key
-                                    ? 'bg-gray-100 text-gray-500 cursor-not-allowed'
+                                    ? 'bg-slate-100 text-slate-500 cursor-not-allowed'
                                     : tier.popular
                                     ? 'bg-primary text-white hover:bg-primary-dark'
                                     : 'border border-primary text-primary hover:bg-primary/5'
@@ -332,16 +332,16 @@ export default function BillingPortal({ companyId }) {
             {/* Invoice History */}
             {invoices.length > 0 && (
                 <div className="bg-white rounded-xl shadow-sm border p-6">
-                    <h2 className="text-xl font-semibold text-gray-900 mb-4">Invoice History</h2>
+                    <h2 className="text-xl font-semibold text-slate-900 mb-4">Invoice History</h2>
                     <div className="overflow-x-auto">
                         <table className="w-full">
                             <thead>
                                 <tr className="border-b">
-                                    <th className="text-left py-3 px-4 text-gray-600 font-medium">Date</th>
-                                    <th className="text-left py-3 px-4 text-gray-600 font-medium">Description</th>
-                                    <th className="text-left py-3 px-4 text-gray-600 font-medium">Amount</th>
-                                    <th className="text-left py-3 px-4 text-gray-600 font-medium">Status</th>
-                                    <th className="text-left py-3 px-4 text-gray-600 font-medium"></th>
+                                    <th className="text-left py-3 px-4 text-slate-600 font-medium">Date</th>
+                                    <th className="text-left py-3 px-4 text-slate-600 font-medium">Description</th>
+                                    <th className="text-left py-3 px-4 text-slate-600 font-medium">Amount</th>
+                                    <th className="text-left py-3 px-4 text-slate-600 font-medium">Status</th>
+                                    <th className="text-left py-3 px-4 text-slate-600 font-medium"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -360,7 +360,7 @@ export default function BillingPortal({ companyId }) {
                                                     ? 'bg-green-100 text-green-700'
                                                     : invoice.status === 'open'
                                                     ? 'bg-yellow-100 text-yellow-700'
-                                                    : 'bg-gray-100 text-gray-700'
+                                                    : 'bg-slate-100 text-slate-700'
                                             }`}>
                                                 {invoice.status}
                                             </span>
@@ -397,13 +397,13 @@ function UsageStat({ label, used, limit }) {
     const isNearLimit = !isUnlimited && percentage >= 80;
     
     return (
-        <div className="bg-gray-50 rounded-lg p-4">
-            <p className="text-sm text-gray-600">{label}</p>
+        <div className="bg-slate-50 rounded-lg p-4">
+            <p className="text-sm text-slate-600">{label}</p>
             <p className="text-xl font-semibold mt-1">
                 {used} / {isUnlimited ? '∞' : limit}
             </p>
             {!isUnlimited && (
-                <div className="mt-2 h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div className="mt-2 h-2 bg-slate-200 rounded-full overflow-hidden">
                     <div
                         className={`h-full rounded-full ${
                             isNearLimit ? 'bg-orange-500' : 'bg-primary'

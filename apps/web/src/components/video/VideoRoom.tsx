@@ -82,7 +82,7 @@ function MyCustomLayout() {
           <ParticipantTile />
         </GridLayout>
       </div>
-      <div className="p-4 bg-gray-900 border-t border-gray-800">
+      <div className="p-4 bg-slate-900 border-t border-slate-800">
         <ControlBar 
             variation="minimal" 
             controls={{ microphone: true, camera: true, screenShare: true, chat: false }}

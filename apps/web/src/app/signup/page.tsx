@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Loader2, CheckCircle } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Loader2, CheckCircle, Sparkles } from 'lucide-react';
 import { useAuthStore } from '@/stores/authStore';
 import { API_BASE } from '@/lib/apiBase';
 import { setAuthSessionCookie } from '@/lib/authSession';
@@ -20,7 +20,6 @@ export default function SignUpPage() {
     email: '',
     password: '',
     confirmPassword: '',
-    gender: '',
     inviteCode: '',
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -28,7 +27,6 @@ export default function SignUpPage() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
-  const [isFemale, setIsFemale] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -75,18 +73,6 @@ export default function SignUpPage() {
       return;
     }
 
-    // Enforce Female Only - must select FEMALE and check the attestation box
-    if (formData.gender !== 'FEMALE') {
-      setError(
-        'Nexta is a culturally safe space for First Nations women. Please select "Female / Woman / Tiddas" to continue.',
-      );
-      return;
-    }
-
-    if (!isFemale) {
-      setError('Please verify that you identify as a woman by checking the attestation checkbox.');
-      return;
-    }
 
     setIsLoading(true);
 
@@ -100,7 +86,6 @@ export default function SignUpPage() {
           firstName: formData.firstName,
           lastName: formData.lastName,
           userType: 'MEMBER',
-          gender: formData.gender,
           inviteCode: formData.inviteCode,
         }),
       });
@@ -167,22 +152,26 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50 dark:from-slate-900 dark:to-slate-800 px-4 py-12">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-50/50 via-white to-purple-50/40 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950/50 px-4 py-12">
       <div className="w-full max-w-md">
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+        <div className="bg-white dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-600/40 rounded-2xl shadow-xl p-8 backdrop-blur-sm">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            <div className="inline-flex items-center gap-2 rounded-full border border-teal-300/60 dark:border-teal-500/30 bg-teal-50 dark:bg-teal-950/40 px-4 py-2 text-sm font-semibold text-teal-800 dark:text-teal-300 shadow-sm mb-4">
+              <Sparkles className="h-4 w-4" />
+              Start your journey
+            </div>
+            <h1 className="text-3xl font-bold text-slate-950 dark:text-white mb-2 font-heading">
               Create Account
             </h1>
-            <p className="text-gray-600 dark:text-gray-400">Join Nexta today</p>
+            <p className="text-slate-600 dark:text-slate-400">Join Nexta today</p>
           </div>
 
-          <div className="mb-6 rounded-2xl border border-emerald-100 dark:border-emerald-900/40 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-slate-900 dark:to-slate-800 p-4">
-            <p className="text-sm font-semibold text-emerald-700 dark:text-emerald-300 mb-2">
-              What you’ll get
+          <div className="mb-6 rounded-2xl border border-teal-200/60 dark:border-teal-800/40 bg-gradient-to-r from-teal-50 to-emerald-50 dark:from-slate-800/60 dark:to-slate-800/40 p-4">
+            <p className="text-sm font-semibold text-teal-700 dark:text-teal-300 mb-2">
+              What you'll get
             </p>
-            <ul className="text-xs text-gray-600 dark:text-gray-300 space-y-1">
+            <ul className="text-xs text-slate-600 dark:text-slate-300 space-y-1">
               <li>• A skills dashboard and learning pathways</li>
               <li>• Access to mentorship and community groups</li>
               <li>• Personalized opportunities and grants</li>
@@ -195,31 +184,6 @@ export default function SignUpPage() {
               <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
             </div>
           )}
-
-          {/* Women-Only Gate Notice */}
-          <div className="mb-8 bg-pink-50 dark:bg-pink-900/10 border-l-4 border-pink-500 p-4 rounded-r-lg">
-            <h3 className="text-pink-800 dark:text-pink-200 font-bold flex items-center gap-2 mb-2">
-              <Lock className="w-4 h-4" /> Women-Only Safe Space
-            </h3>
-            <p className="text-sm text-pink-700 dark:text-pink-300">
-              Nexta is a culturally safe digital ecosystem exclusively for First Nations
-              women.
-            </p>
-            <ul className="mt-2 space-y-1 text-xs text-pink-600 dark:text-pink-400 list-disc pl-4">
-              <li>
-                <strong>Self-Attestation Required:</strong> You must verify your identity as a
-                woman.
-              </li>
-              <li>
-                <strong>Verification:</strong> Accounts may require verification or paid
-                subscription to access sensitive areas.
-              </li>
-              <li>
-                <strong>Invitation:</strong> If you have an invitation code, please enter it below
-                for expedited access.
-              </li>
-            </ul>
-          </div>
 
           {success && (
             <div className="mb-6 p-4 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-lg">
@@ -235,12 +199,12 @@ export default function SignUpPage() {
               <div>
                 <label
                   htmlFor="firstName"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
                 >
                   First Name
                 </label>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                   <input
                     id="firstName"
                     name="firstName"
@@ -249,7 +213,7 @@ export default function SignUpPage() {
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
                     required
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                    className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
                     placeholder="First"
                   />
                 </div>
@@ -257,7 +221,7 @@ export default function SignUpPage() {
               <div>
                 <label
                   htmlFor="lastName"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
                 >
                   Last Name
                 </label>
@@ -269,89 +233,46 @@ export default function SignUpPage() {
                   onChange={handleChange}
                   onKeyDown={handleKeyDown}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                  className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
                   placeholder="Last"
                 />
               </div>
             </div>
 
-            {/* Gender Identity Enforcement */}
-            <div className="bg-white dark:bg-slate-800 rounded-lg space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-pink-50 dark:bg-pink-900/10 border border-pink-100 dark:border-pink-900/30 rounded-lg p-4">
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Gender Identity *
-                  </label>
-                  <div className="space-y-3">
-                    <select
-                      name="gender"
-                      value={formData.gender}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-pink-500 focus:border-transparent transition"
-                      required
-                    >
-                      <option value="">Select your identity...</option>
-                      <option value="FEMALE">Female / Woman / Tiddas</option>
-                      <option value="MALE">Male</option>
-                      <option value="NON_BINARY">Non-binary</option>
-                      <option value="PREFER_NOT_SAY">Prefer not to say</option>
-                    </select>
-
-                    <div className="flex items-start">
-                      <input
-                        id="isFemale"
-                        type="checkbox"
-                        checked={isFemale}
-                        onChange={(e) => setIsFemale(e.target.checked)}
-                        className="h-4 w-4 mt-1 text-pink-600 focus:ring-pink-500 border-gray-300 rounded"
-                      />
-                      <label
-                        htmlFor="isFemale"
-                        className="ml-2 text-xs text-gray-600 dark:text-gray-400"
-                      >
-                        I verify that I identify as a woman and understand this is a safe space for
-                        women.
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-purple-50 dark:bg-purple-900/10 border border-purple-100 dark:border-purple-900/30 rounded-lg p-4">
-                  <label
-                    htmlFor="inviteCode"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-                  >
-                    Invitation Code (Optional)
-                  </label>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-                    <input
-                      id="inviteCode"
-                      name="inviteCode"
-                      type="text"
-                      value={formData.inviteCode}
-                      onChange={handleChange}
-                      onKeyDown={handleKeyDown}
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
-                      placeholder="ENTER-CODE"
-                    />
-                  </div>
-                  <p className="mt-2 text-xs text-purple-700 dark:text-purple-400">
-                    Have an invite? Enter it here to fast-track your verification.
-                  </p>
-                </div>
+            <div>
+              <label
+                htmlFor="inviteCode"
+                className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+              >
+                Invitation Code (Optional)
+              </label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+                <input
+                  id="inviteCode"
+                  name="inviteCode"
+                  type="text"
+                  value={formData.inviteCode}
+                  onChange={handleChange}
+                  onKeyDown={handleKeyDown}
+                  className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+                  placeholder="ENTER-CODE"
+                />
               </div>
+              <p className="mt-2 text-xs text-teal-700 dark:text-teal-400">
+                Have an invite? Enter it here to fast-track your verification.
+              </p>
             </div>
 
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
               >
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                 <input
                   id="email"
                   name="email"
@@ -360,7 +281,7 @@ export default function SignUpPage() {
                   onChange={handleChange}
                   onKeyDown={handleKeyDown}
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                  className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
                   placeholder="you@example.com"
                 />
               </div>
@@ -369,12 +290,12 @@ export default function SignUpPage() {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
               >
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                 <input
                   id="password"
                   name="password"
@@ -383,13 +304,13 @@ export default function SignUpPage() {
                   onChange={handleChange}
                   onKeyDown={handleKeyDown}
                   required
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                  className="w-full pl-10 pr-12 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
                   placeholder="Create a password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                 >
                   {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                 </button>
@@ -399,10 +320,10 @@ export default function SignUpPage() {
                 {passwordRequirements.map((req, i) => (
                   <div key={i} className="flex items-center gap-2 text-xs">
                     <CheckCircle
-                      className={`h-4 w-4 ${req.met ? 'text-green-500' : 'text-gray-300'}`}
+                      className={`h-4 w-4 ${req.met ? 'text-green-500' : 'text-slate-300'}`}
                     />
                     <span
-                      className={req.met ? 'text-green-600 dark:text-green-400' : 'text-gray-500'}
+                      className={req.met ? 'text-green-600 dark:text-green-400' : 'text-slate-500'}
                     >
                       {req.label}
                     </span>
@@ -414,12 +335,12 @@ export default function SignUpPage() {
             <div>
               <label
                 htmlFor="confirmPassword"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
               >
                 Confirm Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                 <input
                   id="confirmPassword"
                   name="confirmPassword"
@@ -428,7 +349,7 @@ export default function SignUpPage() {
                   onChange={handleChange}
                   onKeyDown={handleKeyDown}
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                  className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
                   placeholder="Confirm your password"
                 />
               </div>
@@ -440,15 +361,15 @@ export default function SignUpPage() {
                 type="checkbox"
                 checked={agreedToTerms}
                 onChange={(e) => setAgreedToTerms(e.target.checked)}
-                className="h-4 w-4 mt-1 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                className="h-4 w-4 mt-1 text-teal-600 focus:ring-teal-500 border-slate-300 rounded"
               />
-              <label htmlFor="terms" className="ml-2 text-sm text-gray-600 dark:text-gray-400">
+              <label htmlFor="terms" className="ml-2 text-sm text-slate-600 dark:text-slate-400">
                 I agree to the{' '}
-                <Link href="/terms" className="text-purple-600 hover:text-purple-700">
+                <Link href="/terms" className="text-teal-600 hover:text-teal-700 dark:text-teal-400">
                   Terms of Service
                 </Link>{' '}
                 and{' '}
-                <Link href="/privacy" className="text-purple-600 hover:text-purple-700">
+                <Link href="/privacy" className="text-teal-600 hover:text-teal-700 dark:text-teal-400">
                   Privacy Policy
                 </Link>
               </label>
@@ -458,7 +379,7 @@ export default function SignUpPage() {
               type="button"
               disabled={isLoading}
               onClick={() => void handleSubmit()}
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-purple-600 hover:bg-purple-700 disabled:bg-purple-400 text-white font-semibold rounded-lg transition focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+              className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-700 hover:to-teal-600 disabled:opacity-50 text-white font-semibold rounded-lg transition focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 shadow-lg shadow-teal-600/25"
             >
               {isLoading ? (
                 <>
@@ -476,17 +397,17 @@ export default function SignUpPage() {
 
           {/* Divider */}
           <div className="my-6 flex items-center">
-            <div className="flex-1 border-t border-gray-300 dark:border-slate-600"></div>
-            <span className="px-4 text-sm text-gray-500">or</span>
-            <div className="flex-1 border-t border-gray-300 dark:border-slate-600"></div>
+            <div className="flex-1 border-t border-slate-300 dark:border-slate-600"></div>
+            <span className="px-4 text-sm text-slate-500">or</span>
+            <div className="flex-1 border-t border-slate-300 dark:border-slate-600"></div>
           </div>
 
           {/* Sign In Link */}
-          <p className="text-center text-gray-600 dark:text-gray-400">
+          <p className="text-center text-slate-600 dark:text-slate-400">
             Already have an account?{' '}
             <Link
               href="/signin"
-              className="text-purple-600 hover:text-purple-700 dark:text-purple-400 font-semibold"
+              className="text-teal-600 hover:text-teal-700 dark:text-teal-400 font-semibold"
             >
               Sign in
             </Link>

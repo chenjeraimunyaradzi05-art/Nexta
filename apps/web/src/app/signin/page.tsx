@@ -95,24 +95,24 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50 dark:from-slate-900 dark:to-slate-800 px-4 py-12">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-50/50 via-white to-purple-50/40 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950/50 px-4 py-12">
       <div className="w-full max-w-md">
-        <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+        <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-600/40 rounded-2xl shadow-xl p-8 backdrop-blur-sm">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            <h1 className="text-3xl font-bold text-slate-950 dark:text-white mb-2 font-heading">
               Welcome Back
             </h1>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-slate-600 dark:text-slate-400">
               Sign in to continue to Nexta
             </p>
           </div>
 
-          <div className="mb-6 rounded-2xl border border-purple-100 dark:border-purple-900/40 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-slate-900 dark:to-slate-800 p-4">
-            <p className="text-sm font-semibold text-purple-700 dark:text-purple-300 mb-2">
+          <div className="mb-6 rounded-2xl border border-teal-200/60 dark:border-teal-800/40 bg-gradient-to-r from-teal-50 to-emerald-50 dark:from-slate-800/60 dark:to-slate-800/40 p-4">
+            <p className="text-sm font-semibold text-teal-700 dark:text-teal-300 mb-2">
               Your pathway, personalized
             </p>
-            <ul className="text-xs text-gray-600 dark:text-gray-300 space-y-1">
+            <ul className="text-xs text-slate-600 dark:text-slate-300 space-y-1">
               <li>• Tailored job matches and career guidance</li>
               <li>• Mentor access and community support</li>
               <li>• Scholarships, grants, and financial tools</li>
@@ -134,42 +134,42 @@ export default function SignInPage() {
           {/* Form */}
           <div className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                 <input
                   id="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                  className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
                   placeholder="you@example.com"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label htmlFor="password" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                 <input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                  className="w-full pl-10 pr-12 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
                   placeholder="Enter your password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                 >
                   {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                 </button>
@@ -178,10 +178,10 @@ export default function SignInPage() {
 
             <div className="flex items-center justify-between">
               <label className="flex items-center">
-                <input type="checkbox" className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded" />
-                <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
+                <input type="checkbox" className="h-4 w-4 text-teal-600 focus:ring-teal-500 border-slate-300 rounded" />
+                <span className="ml-2 text-sm text-slate-600 dark:text-slate-400">Remember me</span>
               </label>
-              <Link href="/forgot-password" className="text-sm text-purple-600 hover:text-purple-700 dark:text-purple-400">
+              <Link href="/forgot-password" className="text-sm text-teal-600 hover:text-teal-700 dark:text-teal-400">
                 Forgot password?
               </Link>
             </div>
@@ -189,7 +189,7 @@ export default function SignInPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-purple-600 hover:bg-purple-700 disabled:bg-purple-400 text-white font-semibold rounded-lg transition focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+              className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-700 hover:to-teal-600 disabled:opacity-50 text-white font-semibold rounded-lg transition focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 shadow-lg shadow-teal-600/25"
             >
               {isLoading ? (
                 <>
@@ -207,15 +207,15 @@ export default function SignInPage() {
 
           {/* Divider */}
           <div className="my-6 flex items-center">
-            <div className="flex-1 border-t border-gray-300 dark:border-slate-600"></div>
-            <span className="px-4 text-sm text-gray-500">or</span>
-            <div className="flex-1 border-t border-gray-300 dark:border-slate-600"></div>
+            <div className="flex-1 border-t border-slate-300 dark:border-slate-600"></div>
+            <span className="px-4 text-sm text-slate-500">or</span>
+            <div className="flex-1 border-t border-slate-300 dark:border-slate-600"></div>
           </div>
 
           {/* Sign Up Link */}
-          <p className="text-center text-gray-600 dark:text-gray-400">
+          <p className="text-center text-slate-600 dark:text-slate-400">
             Don't have an account?{' '}
-            <Link href="/signup" className="text-purple-600 hover:text-purple-700 dark:text-purple-400 font-semibold">
+            <Link href="/signup" className="text-teal-600 hover:text-teal-700 dark:text-teal-400 font-semibold">
               Sign up
             </Link>
           </p>

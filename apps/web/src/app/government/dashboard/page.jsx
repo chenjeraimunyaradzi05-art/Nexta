@@ -32,7 +32,7 @@ const DATE_PRESETS = [
 function Skeleton({ className = '' }) {
   return (
     <div
-      className={`animate-pulse bg-gray-200 dark:bg-gray-700 rounded ${className}`}
+      className={`animate-pulse bg-slate-200 dark:bg-slate-700 rounded ${className}`}
       aria-hidden="true"
     />
   );
@@ -42,7 +42,7 @@ function Skeleton({ className = '' }) {
 function MetricCard({ title, value, trend, status, targetNumber, loading = false }) {
   if (loading) {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
         <Skeleton className="h-4 w-24 mb-2" />
         <Skeleton className="h-8 w-16 mb-2" />
         <Skeleton className="h-3 w-20" />
@@ -51,11 +51,11 @@ function MetricCard({ title, value, trend, status, targetNumber, loading = false
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">{title}</p>
-          <p className="text-3xl font-bold text-gray-900 dark:text-white mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-400">{title}</p>
+          <p className="text-3xl font-bold text-slate-900 dark:text-white mt-1">
             {typeof value === 'number' ? value.toLocaleString() : value}
           </p>
           {trend && (
@@ -65,7 +65,7 @@ function MetricCard({ title, value, trend, status, targetNumber, loading = false
           )}
         </div>
         {targetNumber && (
-          <span className="text-xs text-gray-400">Target #{targetNumber}</span>
+          <span className="text-xs text-slate-400">Target #{targetNumber}</span>
         )}
       </div>
       {status && (
@@ -81,7 +81,7 @@ function MetricCard({ title, value, trend, status, targetNumber, loading = false
 function RegionalChart({ data, loading = false }) {
   if (loading) {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
         <Skeleton className="h-5 w-40 mb-4" />
         {[...Array(5)].map((_, i) => (
           <div key={i} className="mb-3">
@@ -96,18 +96,18 @@ function RegionalChart({ data, loading = false }) {
   const maxPlacements = Math.max(...(data?.regions?.map(r => r.placements) || [1]));
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+    <div className="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
         Regional Breakdown
       </h3>
       <div className="space-y-3">
         {data?.regions?.map((region) => (
           <div key={region.region}>
             <div className="flex justify-between text-sm mb-1">
-              <span className="text-gray-700 dark:text-gray-300">{region.name}</span>
-              <span className="text-gray-500">{region.placements} placements</span>
+              <span className="text-slate-700 dark:text-slate-300">{region.name}</span>
+              <span className="text-slate-500">{region.placements} placements</span>
             </div>
-            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+            <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3">
               <div
                 className="bg-amber-500 h-3 rounded-full transition-all duration-500"
                 style={{ width: `${(region.placements / maxPlacements) * 100}%` }}
@@ -127,10 +127,10 @@ function RegionalChart({ data, loading = false }) {
 function IndustryChart({ data, loading = false }) {
   if (loading) {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
         <Skeleton className="h-5 w-40 mb-4" />
         {[...Array(4)].map((_, i) => (
-          <div key={i} className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+          <div key={i} className="flex justify-between items-center py-2 border-b border-slate-100 dark:border-slate-700">
             <Skeleton className="h-4 w-32" />
             <Skeleton className="h-4 w-16" />
           </div>
@@ -140,19 +140,19 @@ function IndustryChart({ data, loading = false }) {
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+    <div className="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
         Industry Sectors
       </h3>
       <div className="space-y-2">
         {data?.sectors?.slice(0, 5).map((sector) => (
           <div
             key={sector.sector}
-            className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700 last:border-0"
+            className="flex justify-between items-center py-2 border-b border-slate-100 dark:border-slate-700 last:border-0"
           >
-            <span className="text-gray-700 dark:text-gray-300">{sector.sector}</span>
+            <span className="text-slate-700 dark:text-slate-300">{sector.sector}</span>
             <div className="flex items-center gap-2">
-              <span className="text-gray-500">{sector.placements}</span>
+              <span className="text-slate-500">{sector.placements}</span>
               <span className={`text-sm ${sector.growth.startsWith('+') ? 'text-green-600' : 'text-red-600'}`}>
                 {sector.growth}
               </span>
@@ -168,7 +168,7 @@ function IndustryChart({ data, loading = false }) {
 function TrendChart({ data, loading = false }) {
   if (loading) {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
         <Skeleton className="h-5 w-40 mb-4" />
         <Skeleton className="h-48 w-full" />
       </div>
@@ -178,8 +178,8 @@ function TrendChart({ data, loading = false }) {
   const maxValue = Math.max(...(data?.trends?.map(t => t.placements) || [1]));
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+    <div className="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
         12-Month Trend
       </h3>
       <div className="flex items-end gap-1 h-48">
@@ -191,7 +191,7 @@ function TrendChart({ data, loading = false }) {
               title={`${point.label}: ${point.placements} placements`}
             />
             {idx % 2 === 0 && (
-              <span className="text-xs text-gray-500 mt-1 transform -rotate-45">
+              <span className="text-xs text-slate-500 mt-1 transform -rotate-45">
                 {point.label}
               </span>
             )}
@@ -200,11 +200,11 @@ function TrendChart({ data, loading = false }) {
       </div>
       <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
         <div>
-          <span className="text-gray-500">Placements Growth</span>
+          <span className="text-slate-500">Placements Growth</span>
           <p className="font-semibold text-green-600">{data?.overallGrowth?.placements}</p>
         </div>
         <div>
-          <span className="text-gray-500">Active Users Growth</span>
+          <span className="text-slate-500">Active Users Growth</span>
           <p className="font-semibold text-green-600">{data?.overallGrowth?.activeUsers}</p>
         </div>
       </div>
@@ -216,7 +216,7 @@ function TrendChart({ data, loading = false }) {
 function EmployerTable({ data, loading = false }) {
   if (loading) {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
         <Skeleton className="h-5 w-48 mb-4" />
         <div className="space-y-3">
           {[...Array(5)].map((_, i) => (
@@ -231,31 +231,31 @@ function EmployerTable({ data, loading = false }) {
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
       <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+        <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
           Top Performing Employers
         </h3>
-        <span className="text-sm text-gray-500">
+        <span className="text-sm text-slate-500">
           {data?.rapVerifiedEmployers} RAP-verified ({data?.rapAdoptionRate}%)
         </span>
       </div>
       <div className="overflow-x-auto">
         <table className="min-w-full" role="table" aria-label="Top performing employers">
           <thead>
-            <tr className="border-b border-gray-200 dark:border-gray-700">
-              <th scope="col" className="text-left py-2 text-sm font-medium text-gray-500">Employer</th>
-              <th scope="col" className="text-right py-2 text-sm font-medium text-gray-500">Placements</th>
-              <th scope="col" className="text-right py-2 text-sm font-medium text-gray-500">Retention</th>
-              <th scope="col" className="text-right py-2 text-sm font-medium text-gray-500">RAP Level</th>
+            <tr className="border-b border-slate-200 dark:border-slate-700">
+              <th scope="col" className="text-left py-2 text-sm font-medium text-slate-500">Employer</th>
+              <th scope="col" className="text-right py-2 text-sm font-medium text-slate-500">Placements</th>
+              <th scope="col" className="text-right py-2 text-sm font-medium text-slate-500">Retention</th>
+              <th scope="col" className="text-right py-2 text-sm font-medium text-slate-500">RAP Level</th>
             </tr>
           </thead>
           <tbody>
             {data?.topPerformers?.map((emp) => (
-              <tr key={emp.name} className="border-b border-gray-100 dark:border-gray-800">
-                <td className="py-2 text-gray-900 dark:text-white">{emp.name}</td>
-                <td className="text-right py-2 text-gray-600 dark:text-gray-400">{emp.placements}</td>
-                <td className="text-right py-2 text-gray-600 dark:text-gray-400">{emp.retention}%</td>
+              <tr key={emp.name} className="border-b border-slate-100 dark:border-slate-800">
+                <td className="py-2 text-slate-900 dark:text-white">{emp.name}</td>
+                <td className="text-right py-2 text-slate-600 dark:text-slate-400">{emp.placements}</td>
+                <td className="text-right py-2 text-slate-600 dark:text-slate-400">{emp.retention}%</td>
                 <td className="text-right py-2">
                   <span className="px-2 py-1 text-xs bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200 rounded">
                     {emp.rapLevel}
@@ -266,9 +266,9 @@ function EmployerTable({ data, loading = false }) {
           </tbody>
         </table>
       </div>
-      <div className="mt-4 p-3 bg-gray-50 dark:bg-gray-900 rounded">
+      <div className="mt-4 p-3 bg-slate-50 dark:bg-slate-900 rounded">
         <div className="flex justify-between text-sm">
-          <span className="text-gray-500">Average Retention Rate</span>
+          <span className="text-slate-500">Average Retention Rate</span>
           <span className={`font-semibold ${data?.averageRetention >= data?.targetRetention ? 'text-green-600' : 'text-yellow-600'}`}>
             {data?.averageRetention}% (target: {data?.targetRetention}%)
           </span>
@@ -282,7 +282,7 @@ function EmployerTable({ data, loading = false }) {
 function DemographicsChart({ data, loading = false }) {
   if (loading) {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
         <Skeleton className="h-5 w-40 mb-4" />
         <div className="flex items-center justify-center">
           <Skeleton className="h-32 w-32 rounded-full" />
@@ -295,8 +295,8 @@ function DemographicsChart({ data, loading = false }) {
   const colors = ['#f59e0b', '#3b82f6', '#10b981', '#8b5cf6', '#ec4899'];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+    <div className="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
         Age Demographics
       </h3>
       <div className="flex flex-col sm:flex-row items-center gap-6">
@@ -326,7 +326,7 @@ function DemographicsChart({ data, loading = false }) {
             }, { elements: [], offset: 0 }).elements}
           </svg>
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-lg font-bold text-gray-900 dark:text-white">
+            <span className="text-lg font-bold text-slate-900 dark:text-white">
               {ageGroups.reduce((sum, g) => sum + g.count, 0)}
             </span>
           </div>
@@ -339,7 +339,7 @@ function DemographicsChart({ data, loading = false }) {
                 className="w-3 h-3 rounded-full flex-shrink-0" 
                 style={{ backgroundColor: colors[idx % colors.length] }}
               />
-              <span className="text-sm text-gray-600 dark:text-gray-400">
+              <span className="text-sm text-slate-600 dark:text-slate-400">
                 {group.range} ({group.percentage}%)
               </span>
             </div>
@@ -354,14 +354,14 @@ function DemographicsChart({ data, loading = false }) {
 function DateRangeFilter({ value, onChange }) {
   return (
     <div className="flex items-center gap-2">
-      <label htmlFor="date-range" className="text-sm text-gray-500 dark:text-gray-400">
+      <label htmlFor="date-range" className="text-sm text-slate-500 dark:text-slate-400">
         Period:
       </label>
       <select
         id="date-range"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="text-sm px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+        className="text-sm px-3 py-1.5 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
       >
         {DATE_PRESETS.map((preset) => (
           <option key={preset.value} value={preset.value}>
@@ -456,16 +456,16 @@ export default function GovernmentDashboardPage() {
   const ctg = dashboardData?.closingTheGap || {};
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
       {/* Header */}
-      <header className="bg-white dark:bg-gray-800 shadow">
+      <header className="bg-white dark:bg-slate-800 shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
                 Government Portal
               </h1>
-              <p className="mt-1 text-gray-500 dark:text-gray-400">
+              <p className="mt-1 text-slate-500 dark:text-slate-400">
                 Closing the Gap - Employment Outcomes Dashboard
               </p>
             </div>
@@ -474,7 +474,7 @@ export default function GovernmentDashboardPage() {
               <button
                 onClick={handleRefresh}
                 disabled={refreshing}
-                className="inline-flex items-center px-3 py-2 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 disabled:opacity-50"
+                className="inline-flex items-center px-3 py-2 text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 disabled:opacity-50"
                 aria-label="Refresh data"
               >
                 <svg 
@@ -528,7 +528,7 @@ export default function GovernmentDashboardPage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* CTG Priority Metrics */}
         <section aria-labelledby="ctg-heading">
-          <h2 id="ctg-heading" className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <h2 id="ctg-heading" className="text-xl font-semibold text-slate-900 dark:text-white mb-4">
             Closing the Gap Priorities
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
@@ -569,7 +569,7 @@ export default function GovernmentDashboardPage() {
 
         {/* Summary Stats */}
         <section aria-labelledby="summary-heading">
-          <h2 id="summary-heading" className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <h2 id="summary-heading" className="text-xl font-semibold text-slate-900 dark:text-white mb-4">
             Platform Summary
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
@@ -626,9 +626,9 @@ export default function GovernmentDashboardPage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-8">
+      <footer className="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 mt-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+          <p className="text-sm text-slate-500 dark:text-slate-400 text-center">
             Data aligned with the National Agreement on Closing the Gap. Last updated: {new Date().toLocaleDateString('en-AU')}
           </p>
         </div>

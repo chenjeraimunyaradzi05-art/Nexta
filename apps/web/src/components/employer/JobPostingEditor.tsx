@@ -148,7 +148,7 @@ function ListEditor({
 
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+      <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
         {label}
       </label>
 
@@ -156,7 +156,7 @@ function ListEditor({
       <div className="space-y-2 mb-3">
         {items.map((item, index) => (
           <div key={index} className="flex items-center gap-2">
-            <span className="text-gray-400">•</span>
+            <span className="text-slate-400">•</span>
             <input
               type="text"
               value={item}
@@ -165,7 +165,7 @@ function ListEditor({
                 newItems[index] = e.target.value;
                 onChange(newItems);
               }}
-              className="flex-1 px-3 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+              className="flex-1 px-3 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
             />
             <button
               onClick={() => removeItem(index)}
@@ -185,7 +185,7 @@ function ListEditor({
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addItem(inputValue))}
           placeholder={placeholder}
-          className="flex-1 px-3 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+          className="flex-1 px-3 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
         />
         <Button variant="outline" onClick={() => addItem(inputValue)}>
           Add
@@ -202,7 +202,7 @@ function ListEditor({
               <button
                 key={suggestion}
                 onClick={() => addItem(suggestion)}
-                className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-200"
+                className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-200"
               >
                 + {suggestion}
               </button>
@@ -240,7 +240,7 @@ function SkillSelector({
 
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+      <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
         Required Skills
       </label>
       <div className="flex flex-wrap gap-2 mb-3">
@@ -251,7 +251,7 @@ function SkillSelector({
             className={`px-3 py-1 rounded-full text-sm ${
               selected.includes(skill)
                 ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30'
-                : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
+                : 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400'
             }`}
           >
             {selected.includes(skill) ? '✓' : '+'} {skill}
@@ -265,7 +265,7 @@ function SkillSelector({
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addCustomSkill())}
           placeholder="Add custom skill..."
-          className="flex-1 px-3 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+          className="flex-1 px-3 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
         />
         <Button variant="outline" onClick={addCustomSkill}>Add</Button>
       </div>
@@ -276,7 +276,7 @@ function SkillSelector({
 // Job Preview
 function JobPreview({ job }: { job: JobPosting }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-2">
           {job.isIndigenousPreferred && (
@@ -287,32 +287,32 @@ function JobPreview({ job }: { job: JobPosting }) {
           <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-sm capitalize">
             {job.employmentType}
           </span>
-          <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-sm capitalize">
+          <span className="px-2 py-1 bg-slate-100 text-slate-700 rounded text-sm capitalize">
             {job.workType}
           </span>
         </div>
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{job.title || 'Job Title'}</h1>
-        <p className="text-gray-500">{job.department} • {job.location}</p>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{job.title || 'Job Title'}</h1>
+        <p className="text-slate-500">{job.department} • {job.location}</p>
 
         {job.salary.showOnPosting && (
           <p className="text-lg font-semibold text-green-600 mt-2">
             {job.salary.currency} {job.salary.min.toLocaleString()} - {job.salary.max.toLocaleString()}
-            <span className="text-sm font-normal text-gray-500"> / {job.salary.frequency}</span>
+            <span className="text-sm font-normal text-slate-500"> / {job.salary.frequency}</span>
           </p>
         )}
       </div>
 
       {job.description && (
         <div className="mb-6">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-2">About the Role</h3>
-          <p className="text-gray-600 dark:text-gray-400 whitespace-pre-wrap">{job.description}</p>
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">About the Role</h3>
+          <p className="text-slate-600 dark:text-slate-400 whitespace-pre-wrap">{job.description}</p>
         </div>
       )}
 
       {job.responsibilities.length > 0 && (
         <div className="mb-6">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Responsibilities</h3>
-          <ul className="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Responsibilities</h3>
+          <ul className="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-400">
             {job.responsibilities.map((item, idx) => (
               <li key={idx}>{item}</li>
             ))}
@@ -322,8 +322,8 @@ function JobPreview({ job }: { job: JobPosting }) {
 
       {job.requirements.length > 0 && (
         <div className="mb-6">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Requirements</h3>
-          <ul className="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Requirements</h3>
+          <ul className="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-400">
             {job.requirements.map((item, idx) => (
               <li key={idx}>{item}</li>
             ))}
@@ -333,8 +333,8 @@ function JobPreview({ job }: { job: JobPosting }) {
 
       {job.niceToHave.length > 0 && (
         <div className="mb-6">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Nice to Have</h3>
-          <ul className="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Nice to Have</h3>
+          <ul className="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-400">
             {job.niceToHave.map((item, idx) => (
               <li key={idx}>{item}</li>
             ))}
@@ -344,7 +344,7 @@ function JobPreview({ job }: { job: JobPosting }) {
 
       {job.skills.length > 0 && (
         <div className="mb-6">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Skills</h3>
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Skills</h3>
           <div className="flex flex-wrap gap-2">
             {job.skills.map((skill, idx) => (
               <span key={idx} className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">
@@ -357,7 +357,7 @@ function JobPreview({ job }: { job: JobPosting }) {
 
       {job.benefits.length > 0 && (
         <div className="mb-6">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Benefits</h3>
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Benefits</h3>
           <div className="flex flex-wrap gap-2">
             {job.benefits.map((benefit, idx) => (
               <span key={idx} className="px-3 py-1 bg-green-50 text-green-700 rounded-full text-sm">
@@ -510,10 +510,10 @@ export function JobPostingEditor({
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
             {jobId ? 'Edit Job Posting' : 'Create Job Posting'}
           </h1>
-          <p className="text-gray-500 mt-1">
+          <p className="text-slate-500 mt-1">
             {job.status === 'draft' ? '📝 Draft' : job.status === 'active' ? '🟢 Active' : job.status}
           </p>
         </div>
@@ -545,7 +545,7 @@ export function JobPostingEditor({
                   <button
                     key={template.id}
                     onClick={() => applyTemplate(template)}
-                    className="px-3 py-1 bg-white dark:bg-gray-800 rounded-lg text-sm hover:shadow"
+                    className="px-3 py-1 bg-white dark:bg-slate-800 rounded-lg text-sm hover:shadow"
                   >
                     {template.name}
                   </button>
@@ -555,7 +555,7 @@ export function JobPostingEditor({
           )}
 
           {/* Tabs */}
-          <div className="flex border-b border-gray-200 dark:border-gray-700 mb-6">
+          <div className="flex border-b border-slate-200 dark:border-slate-700 mb-6">
             {(['basics', 'details', 'compensation', 'indigenous'] as const).map((tab) => (
               <button
                 key={tab}
@@ -563,7 +563,7 @@ export function JobPostingEditor({
                 className={`px-6 py-3 font-medium capitalize ${
                   activeTab === tab
                     ? 'border-b-2 border-blue-500 text-blue-600'
-                    : 'text-gray-500 hover:text-gray-700'
+                    : 'text-slate-500 hover:text-slate-700'
                 }`}
               >
                 {tab}
@@ -572,12 +572,12 @@ export function JobPostingEditor({
           </div>
 
           {/* Tab Content */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
             {activeTab === 'basics' && (
               <div className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                       Job Title *
                     </label>
                     <input
@@ -585,17 +585,17 @@ export function JobPostingEditor({
                       value={job.title}
                       onChange={(e) => updateJob({ title: e.target.value })}
                       placeholder="e.g., Senior Software Engineer"
-                      className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                      className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                       Department *
                     </label>
                     <select
                       value={job.department}
                       onChange={(e) => updateJob({ department: e.target.value })}
-                      className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                      className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                     >
                       <option value="">Select department</option>
                       {DEPARTMENTS.map((dept) => (
@@ -607,7 +607,7 @@ export function JobPostingEditor({
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                       Location *
                     </label>
                     <input
@@ -615,11 +615,11 @@ export function JobPostingEditor({
                       value={job.location}
                       onChange={(e) => updateJob({ location: e.target.value })}
                       placeholder="e.g., Sydney, NSW"
-                      className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                      className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                       Work Type *
                     </label>
                     <div className="flex gap-3">
@@ -630,7 +630,7 @@ export function JobPostingEditor({
                           className={`flex-1 px-4 py-2 rounded-lg capitalize ${
                             job.workType === type
                               ? 'bg-blue-100 text-blue-700 border-2 border-blue-500'
-                              : 'bg-gray-100 dark:bg-gray-700 border-2 border-transparent'
+                              : 'bg-slate-100 dark:bg-slate-700 border-2 border-transparent'
                           }`}
                         >
                           {type}
@@ -641,7 +641,7 @@ export function JobPostingEditor({
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Employment Type *
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -652,7 +652,7 @@ export function JobPostingEditor({
                         className={`px-4 py-2 rounded-lg capitalize ${
                           job.employmentType === type
                             ? 'bg-blue-100 text-blue-700'
-                            : 'bg-gray-100 text-gray-600 dark:bg-gray-700'
+                            : 'bg-slate-100 text-slate-600 dark:bg-slate-700'
                         }`}
                       >
                         {type}
@@ -662,7 +662,7 @@ export function JobPostingEditor({
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Job Description *
                   </label>
                   <textarea
@@ -670,7 +670,7 @@ export function JobPostingEditor({
                     onChange={(e) => updateJob({ description: e.target.value })}
                     placeholder="Describe the role, team, and what makes this opportunity exciting..."
                     rows={6}
-                    className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                    className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                   />
                 </div>
               </div>
@@ -706,7 +706,7 @@ export function JobPostingEditor({
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                       Experience (Years)
                     </label>
                     <div className="flex gap-2">
@@ -715,7 +715,7 @@ export function JobPostingEditor({
                         value={job.experience.min}
                         onChange={(e) => updateJob({ experience: { ...job.experience, min: parseInt(e.target.value) || 0 } })}
                         placeholder="Min"
-                        className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                        className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                       />
                       <span className="py-2">to</span>
                       <input
@@ -723,18 +723,18 @@ export function JobPostingEditor({
                         value={job.experience.max}
                         onChange={(e) => updateJob({ experience: { ...job.experience, max: parseInt(e.target.value) || 0 } })}
                         placeholder="Max"
-                        className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                        className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                       Education Level
                     </label>
                     <select
                       value={job.education || ''}
                       onChange={(e) => updateJob({ education: e.target.value })}
-                      className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                      className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                     >
                       <option value="">Not specified</option>
                       <option value="high-school">High School</option>
@@ -751,14 +751,14 @@ export function JobPostingEditor({
             {activeTab === 'compensation' && (
               <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Salary Range
                   </label>
                   <div className="flex gap-4 items-center">
                     <select
                       value={job.salary.currency}
                       onChange={(e) => updateJob({ salary: { ...job.salary, currency: e.target.value } })}
-                      className="px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                      className="px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                     >
                       <option value="AUD">AUD</option>
                       <option value="USD">USD</option>
@@ -769,7 +769,7 @@ export function JobPostingEditor({
                       value={job.salary.min || ''}
                       onChange={(e) => updateJob({ salary: { ...job.salary, min: parseInt(e.target.value) || 0 } })}
                       placeholder="Min"
-                      className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                      className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                     />
                     <span>to</span>
                     <input
@@ -777,12 +777,12 @@ export function JobPostingEditor({
                       value={job.salary.max || ''}
                       onChange={(e) => updateJob({ salary: { ...job.salary, max: parseInt(e.target.value) || 0 } })}
                       placeholder="Max"
-                      className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                      className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                     />
                     <select
                       value={job.salary.frequency}
                       onChange={(e) => updateJob({ salary: { ...job.salary, frequency: e.target.value as any } })}
-                      className="px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                      className="px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                     >
                       <option value="annual">Annual</option>
                       <option value="hourly">Hourly</option>
@@ -795,12 +795,12 @@ export function JobPostingEditor({
                       onChange={(e) => updateJob({ salary: { ...job.salary, showOnPosting: e.target.checked } })}
                       className="rounded"
                     />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Show salary on job posting</span>
+                    <span className="text-sm text-slate-600 dark:text-slate-400">Show salary on job posting</span>
                   </label>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Benefits & Perks
                   </label>
                   <div className="flex flex-wrap gap-2 mb-3">
@@ -816,7 +816,7 @@ export function JobPostingEditor({
                         className={`px-3 py-1 rounded-full text-sm ${
                           job.benefits.includes(benefit)
                             ? 'bg-green-100 text-green-700'
-                            : 'bg-gray-100 text-gray-600 dark:bg-gray-700'
+                            : 'bg-slate-100 text-slate-600 dark:bg-slate-700'
                         }`}
                       >
                         {job.benefits.includes(benefit) ? '✓' : '+'} {benefit}
@@ -827,25 +827,25 @@ export function JobPostingEditor({
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                       Application Deadline
                     </label>
                     <input
                       type="date"
                       value={job.applicationDeadline || ''}
                       onChange={(e) => updateJob({ applicationDeadline: e.target.value })}
-                      className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                      className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                       Start Date
                     </label>
                     <input
                       type="date"
                       value={job.startDate || ''}
                       onChange={(e) => updateJob({ startDate: e.target.value })}
-                      className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                      className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                     />
                   </div>
                 </div>
@@ -861,7 +861,7 @@ export function JobPostingEditor({
                   </p>
                 </div>
 
-                <label className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg cursor-pointer">
+                <label className="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-900 rounded-lg cursor-pointer">
                   <input
                     type="checkbox"
                     checked={job.isIndigenousPreferred}
@@ -869,15 +869,15 @@ export function JobPostingEditor({
                     className="w-5 h-5 rounded"
                   />
                   <div>
-                    <p className="font-medium text-gray-900 dark:text-white">Indigenous Preferred Role</p>
-                    <p className="text-sm text-gray-500">
+                    <p className="font-medium text-slate-900 dark:text-white">Indigenous Preferred Role</p>
+                    <p className="text-sm text-slate-500">
                       This role is designated as Indigenous preferred under special measures
                     </p>
                   </div>
                 </label>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Indigenous Employment Initiatives
                   </label>
                   <textarea
@@ -885,12 +885,12 @@ export function JobPostingEditor({
                     onChange={(e) => updateJob({ indigenousInitiatives: e.target.value })}
                     placeholder="Describe your organization's Indigenous employment programs, RAPs, or initiatives..."
                     rows={4}
-                    className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                    className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Cultural Considerations
                   </label>
                   <textarea
@@ -898,7 +898,7 @@ export function JobPostingEditor({
                     onChange={(e) => updateJob({ culturalConsiderations: e.target.value })}
                     placeholder="Describe cultural leave policies, support for cultural obligations, or other considerations..."
                     rows={4}
-                    className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                    className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                   />
                 </div>
               </div>

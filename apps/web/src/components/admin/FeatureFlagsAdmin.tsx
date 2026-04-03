@@ -155,7 +155,7 @@ function FlagCard({
   onDelete: () => void;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md transition-shadow">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between">
         <div className="flex-1">
           {/* Header */}
@@ -163,13 +163,13 @@ function FlagCard({
             <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${envColors[flag.environment].bg} ${envColors[flag.environment].text}`}>
               {flag.environment}
             </span>
-            <span className="text-xs text-gray-500 dark:text-gray-400 font-mono">{flag.key}</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">{flag.key}</span>
           </div>
           
           {/* Name & Description */}
-          <h3 className="mt-2 font-semibold text-gray-900 dark:text-white">{flag.name}</h3>
+          <h3 className="mt-2 font-semibold text-slate-900 dark:text-white">{flag.name}</h3>
           {flag.description && (
-            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">
+            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
               {flag.description}
             </p>
           )}
@@ -178,7 +178,7 @@ function FlagCard({
           {flag.tags.length > 0 && (
             <div className="mt-2 flex flex-wrap gap-1">
               {flag.tags.map((tag) => (
-                <span key={tag} className="px-2 py-0.5 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded">
+                <span key={tag} className="px-2 py-0.5 text-xs bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded">
                   {tag}
                 </span>
               ))}
@@ -186,7 +186,7 @@ function FlagCard({
           )}
           
           {/* Stats */}
-          <div className="mt-3 flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
+          <div className="mt-3 flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
             <span>Type: <span className="font-medium">{flag.type}</span></span>
             {flag.rolloutPercentage < 100 && (
               <span>Rollout: <span className="font-medium">{flag.rolloutPercentage}%</span></span>
@@ -206,7 +206,7 @@ function FlagCard({
           <button
             onClick={onToggle}
             className={`relative w-12 h-6 rounded-full transition-colors ${
-              flag.enabled ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'
+              flag.enabled ? 'bg-green-500' : 'bg-slate-300 dark:bg-slate-600'
             }`}
           >
             <span
@@ -219,7 +219,7 @@ function FlagCard({
           {/* Actions */}
           <button
             onClick={onEdit}
-            className="p-2 text-gray-400 hover:text-blue-500 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="p-2 text-slate-400 hover:text-blue-500 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -227,7 +227,7 @@ function FlagCard({
           </button>
           <button
             onClick={onDelete}
-            className="p-2 text-gray-400 hover:text-red-500 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="p-2 text-slate-400 hover:text-red-500 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -321,13 +321,13 @@ function FlagEditorModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+        <div className="p-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
             {isNew ? 'Create Feature Flag' : 'Edit Feature Flag'}
           </h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -340,7 +340,7 @@ function FlagEditorModal({
             {/* Key & Name */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Flag Key *
                 </label>
                 <input
@@ -348,14 +348,14 @@ function FlagEditorModal({
                   value={formData.key}
                   onChange={(e) => setFormData(prev => ({ ...prev, key: e.target.value.toLowerCase().replace(/[^a-z0-9_-]/g, '_') }))}
                   placeholder="my_feature_flag"
-                  className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                    bg-white dark:bg-gray-700 text-gray-900 dark:text-white font-mono text-sm"
+                  className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                    bg-white dark:bg-slate-700 text-slate-900 dark:text-white font-mono text-sm"
                   required
                   disabled={!isNew}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Display Name *
                 </label>
                 <input
@@ -363,8 +363,8 @@ function FlagEditorModal({
                   value={formData.name}
                   onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                   placeholder="My Feature Flag"
-                  className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                    bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                    bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                   required
                 />
               </div>
@@ -372,7 +372,7 @@ function FlagEditorModal({
 
             {/* Description */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Description
               </label>
               <textarea
@@ -380,22 +380,22 @@ function FlagEditorModal({
                 onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
                 placeholder="What does this flag control?"
                 rows={2}
-                className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                  bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+                className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                  bg-white dark:bg-slate-700 text-slate-900 dark:text-white resize-none"
               />
             </div>
 
             {/* Type & Environment */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Type
                 </label>
                 <select
                   value={formData.type}
                   onChange={(e) => setFormData(prev => ({ ...prev, type: e.target.value as any }))}
-                  className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                    bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                    bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                 >
                   <option value="boolean">Boolean</option>
                   <option value="string">String</option>
@@ -404,14 +404,14 @@ function FlagEditorModal({
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Environment
                 </label>
                 <select
                   value={formData.environment}
                   onChange={(e) => setFormData(prev => ({ ...prev, environment: e.target.value as any }))}
-                  className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                    bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                    bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                 >
                   <option value="development">Development</option>
                   <option value="staging">Staging</option>
@@ -422,7 +422,7 @@ function FlagEditorModal({
 
             {/* Default Value */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Default Value
               </label>
               {formData.type === 'boolean' ? (
@@ -434,7 +434,7 @@ function FlagEditorModal({
                       onChange={() => setFormData(prev => ({ ...prev, defaultValue: true }))}
                       className="text-blue-600"
                     />
-                    <span className="text-gray-700 dark:text-gray-300">True</span>
+                    <span className="text-slate-700 dark:text-slate-300">True</span>
                   </label>
                   <label className="flex items-center gap-2">
                     <input
@@ -443,7 +443,7 @@ function FlagEditorModal({
                       onChange={() => setFormData(prev => ({ ...prev, defaultValue: false }))}
                       className="text-blue-600"
                     />
-                    <span className="text-gray-700 dark:text-gray-300">False</span>
+                    <span className="text-slate-700 dark:text-slate-300">False</span>
                   </label>
                 </div>
               ) : formData.type === 'number' ? (
@@ -451,16 +451,16 @@ function FlagEditorModal({
                   type="number"
                   value={formData.defaultValue}
                   onChange={(e) => setFormData(prev => ({ ...prev, defaultValue: parseFloat(e.target.value) }))}
-                  className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                    bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                    bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                 />
               ) : formData.type === 'json' ? (
                 <textarea
                   value={typeof formData.defaultValue === 'string' ? formData.defaultValue : JSON.stringify(formData.defaultValue, null, 2)}
                   onChange={(e) => setFormData(prev => ({ ...prev, defaultValue: e.target.value }))}
                   rows={4}
-                  className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                    bg-white dark:bg-gray-700 text-gray-900 dark:text-white font-mono text-sm resize-none"
+                  className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                    bg-white dark:bg-slate-700 text-slate-900 dark:text-white font-mono text-sm resize-none"
                   placeholder='{"key": "value"}'
                 />
               ) : (
@@ -468,15 +468,15 @@ function FlagEditorModal({
                   type="text"
                   value={formData.defaultValue}
                   onChange={(e) => setFormData(prev => ({ ...prev, defaultValue: e.target.value }))}
-                  className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                    bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                    bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                 />
               )}
             </div>
 
             {/* Rollout Percentage */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Rollout Percentage: {formData.rolloutPercentage}%
               </label>
               <input
@@ -487,7 +487,7 @@ function FlagEditorModal({
                 onChange={(e) => setFormData(prev => ({ ...prev, rolloutPercentage: parseInt(e.target.value) }))}
                 className="w-full"
               />
-              <div className="flex justify-between text-xs text-gray-500">
+              <div className="flex justify-between text-xs text-slate-500">
                 <span>0%</span>
                 <span>50%</span>
                 <span>100%</span>
@@ -496,7 +496,7 @@ function FlagEditorModal({
 
             {/* Tags */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Tags
               </label>
               <div className="flex gap-2 mb-2">
@@ -506,8 +506,8 @@ function FlagEditorModal({
                   onChange={(e) => setNewTag(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
                   placeholder="Add tag..."
-                  className="flex-1 px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                    bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
+                  className="flex-1 px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                    bg-white dark:bg-slate-700 text-slate-900 dark:text-white text-sm"
                 />
                 <Button type="button" size="sm" onClick={addTag}>Add</Button>
               </div>
@@ -516,14 +516,14 @@ function FlagEditorModal({
                   {formData.tags.map((tag) => (
                     <span 
                       key={tag}
-                      className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 dark:bg-gray-700 
-                        text-gray-700 dark:text-gray-300 rounded text-sm"
+                      className="inline-flex items-center gap-1 px-2 py-1 bg-slate-100 dark:bg-slate-700 
+                        text-slate-700 dark:text-slate-300 rounded text-sm"
                     >
                       {tag}
                       <button 
                         type="button"
                         onClick={() => removeTag(tag)}
-                        className="text-gray-400 hover:text-red-500"
+                        className="text-slate-400 hover:text-red-500"
                       >
                         ×
                       </button>
@@ -535,7 +535,7 @@ function FlagEditorModal({
 
             {/* Targeting Rules */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 Targeting Rules
               </label>
               
@@ -545,9 +545,9 @@ function FlagEditorModal({
                   {formData.targetingRules.map((rule) => (
                     <div 
                       key={rule.id}
-                      className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-750 rounded-lg"
+                      className="flex items-center gap-2 p-2 bg-slate-50 dark:bg-slate-750 rounded-lg"
                     >
-                      <span className="text-sm text-gray-600 dark:text-gray-400">
+                      <span className="text-sm text-slate-600 dark:text-slate-400">
                         <span className="font-medium">{rule.attribute}</span>
                         {' '}{rule.operator.replace(/_/g, ' ')}{' '}
                         <span className="font-medium text-blue-600 dark:text-blue-400">
@@ -557,7 +557,7 @@ function FlagEditorModal({
                       <button
                         type="button"
                         onClick={() => removeRule(rule.id)}
-                        className="ml-auto text-gray-400 hover:text-red-500"
+                        className="ml-auto text-slate-400 hover:text-red-500"
                       >
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -573,8 +573,8 @@ function FlagEditorModal({
                 <select
                   value={newRule.attribute}
                   onChange={(e) => setNewRule(prev => ({ ...prev, attribute: e.target.value }))}
-                  className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                    bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
+                  className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                    bg-white dark:bg-slate-700 text-slate-900 dark:text-white text-sm"
                 >
                   <option value="role">Role</option>
                   <option value="email">Email</option>
@@ -586,8 +586,8 @@ function FlagEditorModal({
                 <select
                   value={newRule.operator}
                   onChange={(e) => setNewRule(prev => ({ ...prev, operator: e.target.value as any }))}
-                  className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                    bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
+                  className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                    bg-white dark:bg-slate-700 text-slate-900 dark:text-white text-sm"
                 >
                   <option value="equals">equals</option>
                   <option value="not_equals">not equals</option>
@@ -601,8 +601,8 @@ function FlagEditorModal({
                     value={typeof newRule.value === 'string' ? newRule.value : ''}
                     onChange={(e) => setNewRule(prev => ({ ...prev, value: e.target.value }))}
                     placeholder="Value"
-                    className="flex-1 px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                      bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
+                    className="flex-1 px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                      bg-white dark:bg-slate-700 text-slate-900 dark:text-white text-sm"
                   />
                   <Button type="button" size="sm" onClick={addRule}>+</Button>
                 </div>
@@ -612,7 +612,7 @@ function FlagEditorModal({
         </form>
 
         {/* Footer */}
-        <div className="p-4 border-t border-gray-200 dark:border-gray-700 flex justify-end gap-2">
+        <div className="p-4 border-t border-slate-200 dark:border-slate-700 flex justify-end gap-2">
           <Button variant="outline" onClick={onClose}>Cancel</Button>
           <Button onClick={handleSubmit} disabled={isSaving}>
             {isSaving ? 'Saving...' : isNew ? 'Create Flag' : 'Save Changes'}
@@ -650,10 +650,10 @@ function AuditLogModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-lg w-full max-h-[80vh] overflow-hidden">
-        <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Audit Log</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-lg w-full max-h-[80vh] overflow-hidden">
+        <div className="p-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Audit Log</h2>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -668,24 +668,24 @@ function AuditLogModal({
           ) : logs.length > 0 ? (
             <div className="space-y-4">
               {logs.map((log) => (
-                <div key={log.id} className="border-l-2 border-gray-200 dark:border-gray-600 pl-4">
+                <div key={log.id} className="border-l-2 border-slate-200 dark:border-slate-600 pl-4">
                   <div className="flex items-center justify-between">
                     <span className={`text-sm font-medium ${
                       log.action === 'enabled' ? 'text-green-600' :
                       log.action === 'disabled' ? 'text-red-600' :
-                      'text-gray-600 dark:text-gray-400'
+                      'text-slate-600 dark:text-slate-400'
                     }`}>
                       {log.action.charAt(0).toUpperCase() + log.action.slice(1)}
                     </span>
-                    <span className="text-xs text-gray-400">
+                    <span className="text-xs text-slate-400">
                       {new Date(log.timestamp).toLocaleString()}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                  <p className="text-sm text-slate-500 dark:text-slate-400">
                     by {log.performedBy}
                   </p>
                   {Object.keys(log.changes).length > 0 && (
-                    <div className="mt-2 text-xs text-gray-500">
+                    <div className="mt-2 text-xs text-slate-500">
                       {Object.entries(log.changes).map(([key, change]) => (
                         <div key={key}>
                           <span className="font-medium">{key}:</span> {String(change.from)} → {String(change.to)}
@@ -697,7 +697,7 @@ function AuditLogModal({
               ))}
             </div>
           ) : (
-            <p className="text-center text-gray-500 py-8">No audit logs found</p>
+            <p className="text-center text-slate-500 py-8">No audit logs found</p>
           )}
         </div>
       </div>
@@ -800,8 +800,8 @@ export function FeatureFlagsAdmin() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Feature Flags</h1>
-          <p className="mt-2 text-gray-500 dark:text-gray-400">
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Feature Flags</h1>
+          <p className="mt-2 text-slate-500 dark:text-slate-400">
             Manage feature toggles and rollout configurations
           </p>
         </div>
@@ -815,17 +815,17 @@ export function FeatureFlagsAdmin() {
 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mb-8">
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-          <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.total}</p>
-          <p className="text-sm text-gray-500">Total Flags</p>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+          <p className="text-2xl font-bold text-slate-900 dark:text-white">{stats.total}</p>
+          <p className="text-sm text-slate-500">Total Flags</p>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
           <p className="text-2xl font-bold text-green-600">{stats.enabled}</p>
-          <p className="text-sm text-gray-500">Enabled</p>
+          <p className="text-sm text-slate-500">Enabled</p>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-          <p className="text-2xl font-bold text-gray-400">{stats.disabled}</p>
-          <p className="text-sm text-gray-500">Disabled</p>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+          <p className="text-2xl font-bold text-slate-400">{stats.disabled}</p>
+          <p className="text-sm text-slate-500">Disabled</p>
         </div>
       </div>
 
@@ -838,8 +838,8 @@ export function FeatureFlagsAdmin() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search flags..."
-            className="w-full px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg
-              bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+            className="w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg
+              bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
           />
         </div>
 
@@ -852,7 +852,7 @@ export function FeatureFlagsAdmin() {
               className={`px-3 py-2 text-sm rounded-lg capitalize transition-colors ${
                 selectedEnvironment === env
                   ? 'bg-blue-500 text-white'
-                  : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200'
+                  : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
               }`}
             >
               {env}
@@ -877,10 +877,10 @@ export function FeatureFlagsAdmin() {
       ) : (
         <div className="text-center py-16">
           <div className="text-6xl mb-4">🚩</div>
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+          <h3 className="text-lg font-medium text-slate-900 dark:text-white">
             No feature flags found
           </h3>
-          <p className="mt-2 text-gray-500 dark:text-gray-400">
+          <p className="mt-2 text-slate-500 dark:text-slate-400">
             {searchQuery ? 'Try a different search term' : 'Create your first feature flag to get started'}
           </p>
         </div>

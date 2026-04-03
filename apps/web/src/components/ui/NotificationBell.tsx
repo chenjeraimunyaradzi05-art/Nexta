@@ -62,7 +62,7 @@ const sizeClasses = {
 
 const variantClasses = {
   default: {
-    button: 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700',
+    button: 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-700',
     badge: 'bg-red-500 text-white',
     dot: 'bg-red-500',
   },
@@ -72,7 +72,7 @@ const variantClasses = {
     dot: 'bg-[#FFD700]',
   },
   minimal: {
-    button: 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200',
+    button: 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200',
     badge: 'bg-blue-500 text-white',
     dot: 'bg-blue-500',
   },

@@ -395,7 +395,7 @@ function StoryCard({
   const publishedDate = new Date(story.publishedAt);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-all">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-lg transition-all">
       {/* Image */}
       <div className="relative h-48 bg-gradient-to-br from-blue-500 to-purple-500">
         {story.featuredImage && (
@@ -423,24 +423,24 @@ function StoryCard({
       <div className="p-5">
         <h3
           onClick={onRead}
-          className="font-semibold text-gray-900 dark:text-white mb-2 cursor-pointer hover:text-blue-600 line-clamp-2"
+          className="font-semibold text-slate-900 dark:text-white mb-2 cursor-pointer hover:text-blue-600 line-clamp-2"
         >
           {story.title}
         </h3>
-        <p className="text-sm text-gray-500 mb-4 line-clamp-3">{story.excerpt}</p>
+        <p className="text-sm text-slate-500 mb-4 line-clamp-3">{story.excerpt}</p>
 
         {/* Journey Preview */}
         {story.journey && (
-          <div className="flex items-center gap-2 text-sm text-gray-500 mb-4 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <div className="flex items-center gap-2 text-sm text-slate-500 mb-4 p-3 bg-slate-50 dark:bg-slate-900 rounded-lg">
             <span>{story.journey.from}</span>
             <span>→</span>
-            <span className="font-medium text-gray-900 dark:text-white">{story.journey.to}</span>
+            <span className="font-medium text-slate-900 dark:text-white">{story.journey.to}</span>
           </div>
         )}
 
         {/* Author */}
         <div className="flex items-center gap-3 mb-4">
-          <div className="relative w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+          <div className="relative w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
             {story.author.avatar ? (
               <OptimizedImage
                 src={toCloudinaryAutoUrl(story.author.avatar)}
@@ -454,13 +454,13 @@ function StoryCard({
             )}
           </div>
           <div>
-            <p className="text-sm font-medium text-gray-900 dark:text-white">{story.author.name}</p>
-            <p className="text-xs text-gray-500">{publishedDate.toLocaleDateString('en-AU')}</p>
+            <p className="text-sm font-medium text-slate-900 dark:text-white">{story.author.name}</p>
+            <p className="text-xs text-slate-500">{publishedDate.toLocaleDateString('en-AU')}</p>
           </div>
         </div>
 
         {/* Stats */}
-        <div className="flex items-center justify-between text-sm text-gray-400">
+        <div className="flex items-center justify-between text-sm text-slate-400">
           <button
             onClick={onLike}
             className={`flex items-center gap-1 ${story.isLiked ? 'text-red-500' : 'hover:text-red-500'}`}
@@ -506,7 +506,7 @@ function StoryDetailModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header Image */}
         <div className="relative h-64 bg-gradient-to-br from-blue-500 to-purple-500">
           {story.featuredImage && (
@@ -541,11 +541,11 @@ function StoryDetailModal({
 
         {/* Content */}
         <div className="p-6">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{story.title}</h1>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{story.title}</h1>
 
           {/* Author */}
-          <div className="flex items-center gap-4 mb-6 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-            <div className="relative w-14 h-14 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+          <div className="flex items-center gap-4 mb-6 p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+            <div className="relative w-14 h-14 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
               {story.author.avatar ? (
                 <OptimizedImage
                   src={toCloudinaryAutoUrl(story.author.avatar)}
@@ -559,9 +559,9 @@ function StoryDetailModal({
               )}
             </div>
             <div>
-              <p className="font-medium text-gray-900 dark:text-white">{story.author.name}</p>
-              {story.author.role && <p className="text-sm text-gray-500">{story.author.role}</p>}
-              <p className="text-sm text-gray-500">
+              <p className="font-medium text-slate-900 dark:text-white">{story.author.name}</p>
+              {story.author.role && <p className="text-sm text-slate-500">{story.author.role}</p>}
+              <p className="text-sm text-slate-500">
                 {story.author.location}
                 {story.author.countryGroup && ` • ${story.author.countryGroup} Country`}
               </p>
@@ -572,21 +572,21 @@ function StoryDetailModal({
           {story.journey && (
             <div className="flex items-center justify-center gap-6 mb-6 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl">
               <div className="text-center">
-                <p className="text-sm text-gray-500 mb-1">From</p>
-                <p className="text-lg font-semibold text-gray-900 dark:text-white">
+                <p className="text-sm text-slate-500 mb-1">From</p>
+                <p className="text-lg font-semibold text-slate-900 dark:text-white">
                   {story.journey.from}
                 </p>
               </div>
               <div className="text-3xl">→</div>
               <div className="text-center">
-                <p className="text-sm text-gray-500 mb-1">To</p>
-                <p className="text-lg font-semibold text-gray-900 dark:text-white">
+                <p className="text-sm text-slate-500 mb-1">To</p>
+                <p className="text-lg font-semibold text-slate-900 dark:text-white">
                   {story.journey.to}
                 </p>
               </div>
-              <div className="border-l border-gray-300 dark:border-gray-600 pl-6">
-                <p className="text-sm text-gray-500 mb-1">Duration</p>
-                <p className="text-lg font-semibold text-gray-900 dark:text-white">
+              <div className="border-l border-slate-300 dark:border-slate-600 pl-6">
+                <p className="text-sm text-slate-500 mb-1">Duration</p>
+                <p className="text-lg font-semibold text-slate-900 dark:text-white">
                   {story.journey.duration}
                 </p>
               </div>
@@ -595,7 +595,7 @@ function StoryDetailModal({
 
           {/* Story Content */}
           <div className="prose dark:prose-invert max-w-none mb-6">
-            <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{story.content}</p>
+            <p className="text-slate-700 dark:text-slate-300 whitespace-pre-wrap">{story.content}</p>
           </div>
 
           {/* Tags */}
@@ -604,7 +604,7 @@ function StoryDetailModal({
               {story.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full text-sm"
+                  className="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-full text-sm"
                 >
                   #{tag}
                 </span>
@@ -613,19 +613,19 @@ function StoryDetailModal({
           )}
 
           {/* Actions */}
-          <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center gap-4 mb-6 pb-6 border-b border-slate-200 dark:border-slate-700">
             <button
               onClick={onLike}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
                 story.isLiked
                   ? 'bg-red-50 text-red-600 dark:bg-red-900/20'
-                  : 'bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-red-600 dark:bg-gray-700'
+                  : 'bg-slate-100 text-slate-600 hover:bg-red-50 hover:text-red-600 dark:bg-slate-700'
               }`}
             >
               {story.isLiked ? '❤️' : '🤍'} {story.likes} Likes
             </button>
-            <span className="text-gray-500">👁️ {story.views} views</span>
-            <span className="text-sm text-gray-400">
+            <span className="text-slate-500">👁️ {story.views} views</span>
+            <span className="text-sm text-slate-400">
               {publishedDate.toLocaleDateString('en-AU', {
                 month: 'long',
                 day: 'numeric',
@@ -636,7 +636,7 @@ function StoryDetailModal({
 
           {/* Comments */}
           <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">
               Comments ({comments.length})
             </h3>
 
@@ -647,7 +647,7 @@ function StoryDetailModal({
                 onChange={(e) => setCommentText(e.target.value)}
                 placeholder="Share your thoughts..."
                 rows={2}
-                className="flex-1 px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                className="flex-1 px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
               />
               <Button onClick={handleSubmitComment} disabled={!commentText.trim()}>
                 Post
@@ -658,7 +658,7 @@ function StoryDetailModal({
             <div className="space-y-4">
               {comments.map((comment) => (
                 <div key={comment.id} className="flex gap-3">
-                  <div className="relative w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden flex-shrink-0">
+                  <div className="relative w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden flex-shrink-0">
                     {comment.author.avatar ? (
                       <OptimizedImage
                         src={toCloudinaryAutoUrl(comment.author.avatar)}
@@ -673,16 +673,16 @@ function StoryDetailModal({
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <span className="font-medium text-gray-900 dark:text-white">
+                      <span className="font-medium text-slate-900 dark:text-white">
                         {comment.author.name}
                       </span>
                       {comment.author.isIndigenous && <span>🌏</span>}
-                      <span className="text-xs text-gray-400">
+                      <span className="text-xs text-slate-400">
                         {new Date(comment.createdAt).toLocaleDateString('en-AU')}
                       </span>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-400 mt-1">{comment.content}</p>
-                    <button className="text-sm text-gray-400 mt-1 hover:text-red-500">
+                    <p className="text-slate-600 dark:text-slate-400 mt-1">{comment.content}</p>
+                    <button className="text-sm text-slate-400 mt-1 hover:text-red-500">
                       {comment.isLiked ? '❤️' : '🤍'} {comment.likes}
                     </button>
                   </div>
@@ -739,16 +739,16 @@ function SubmitStoryModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">
             Share Your Success Story
           </h2>
-          <p className="text-sm text-gray-500 mt-1">Inspire others with your journey</p>
+          <p className="text-sm text-slate-500 mt-1">Inspire others with your journey</p>
         </div>
         <div className="p-6 space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Title *
             </label>
             <input
@@ -756,18 +756,18 @@ function SubmitStoryModal({
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="A compelling title for your story"
-              className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+              className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Category *
             </label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value as SuccessStory['category'])}
-              className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+              className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
             >
               {STORY_CATEGORIES.map((cat) => (
                 <option key={cat.value} value={cat.value}>
@@ -778,7 +778,7 @@ function SubmitStoryModal({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Short Excerpt *
             </label>
             <textarea
@@ -786,12 +786,12 @@ function SubmitStoryModal({
               onChange={(e) => setExcerpt(e.target.value)}
               placeholder="A brief summary of your story (shown on cards)"
               rows={2}
-              className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+              className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Your Story *
             </label>
             <textarea
@@ -799,13 +799,13 @@ function SubmitStoryModal({
               onChange={(e) => setContent(e.target.value)}
               placeholder="Tell us about your journey, challenges, and achievements..."
               rows={8}
-              className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+              className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
             />
           </div>
 
           {/* Journey */}
-          <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-            <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+          <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+            <p className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">
               Your Journey (Optional)
             </p>
             <div className="grid grid-cols-3 gap-3">
@@ -814,27 +814,27 @@ function SubmitStoryModal({
                 value={journeyFrom}
                 onChange={(e) => setJourneyFrom(e.target.value)}
                 placeholder="From (e.g., Student)"
-                className="px-3 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+                className="px-3 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
               />
               <input
                 type="text"
                 value={journeyTo}
                 onChange={(e) => setJourneyTo(e.target.value)}
                 placeholder="To (e.g., Software Engineer)"
-                className="px-3 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+                className="px-3 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
               />
               <input
                 type="text"
                 value={journeyDuration}
                 onChange={(e) => setJourneyDuration(e.target.value)}
                 placeholder="Duration (e.g., 2 years)"
-                className="px-3 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+                className="px-3 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Tags (comma-separated)
             </label>
             <input
@@ -842,11 +842,11 @@ function SubmitStoryModal({
               value={tags}
               onChange={(e) => setTags(e.target.value)}
               placeholder="technology, career-change, mentorship"
-              className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+              className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
             />
           </div>
         </div>
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex justify-end gap-3">
+        <div className="p-6 border-t border-slate-200 dark:border-slate-700 flex justify-end gap-3">
           <Button variant="outline" onClick={onClose}>
             Cancel
           </Button>
@@ -967,8 +967,8 @@ export function SuccessStories() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Success Stories</h1>
-          <p className="text-gray-500 mt-1">Be inspired by journeys from our community</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Success Stories</h1>
+          <p className="text-slate-500 mt-1">Be inspired by journeys from our community</p>
         </div>
         <Button onClick={() => setShowSubmitModal(true)}>✏️ Share Your Story</Button>
       </div>
@@ -983,7 +983,7 @@ export function SuccessStories() {
         <select
           value={filters.category}
           onChange={(e) => setFilters({ ...filters, category: e.target.value })}
-          className="px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+          className="px-4 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
         >
           <option value="">All Categories</option>
           {STORY_CATEGORIES.map((cat) => (
@@ -1006,7 +1006,7 @@ export function SuccessStories() {
         <select
           value={filters.sort}
           onChange={(e) => setFilters({ ...filters, sort: e.target.value })}
-          className="px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+          className="px-4 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
         >
           <option value="latest">Latest</option>
           <option value="popular">Most Popular</option>
@@ -1020,12 +1020,12 @@ export function SuccessStories() {
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" />
         </div>
       ) : stories.length === 0 ? (
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-12 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-12 text-center">
           <div className="text-6xl mb-4">📖</div>
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+          <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
             No stories yet
           </h3>
-          <p className="text-gray-500 mb-4">Be the first to share your success story!</p>
+          <p className="text-slate-500 mb-4">Be the first to share your success story!</p>
           <Button onClick={() => setShowSubmitModal(true)}>Share Your Story</Button>
         </div>
       ) : (

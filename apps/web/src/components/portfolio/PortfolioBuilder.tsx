@@ -201,13 +201,13 @@ function ProjectCard({
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
       {/* Thumbnail */}
-      <div className="aspect-video bg-gray-100 dark:bg-gray-700 relative">
+      <div className="aspect-video bg-slate-100 dark:bg-slate-700 relative">
         {project.thumbnail ? (
           <OptimizedImage src={toCloudinaryAutoUrl(project.thumbnail)} alt={project.title || 'Project thumbnail'} width={400} height={225} className="w-full h-full object-cover" />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-gray-400">
+          <div className="w-full h-full flex items-center justify-center text-slate-400">
             <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
@@ -219,7 +219,7 @@ function ProjectCard({
           <span className={`px-2 py-1 text-xs font-medium rounded-full ${
             project.isPublished
               ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
-              : 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
+              : 'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300'
           }`}>
             {project.isPublished ? 'Published' : 'Draft'}
           </span>
@@ -229,29 +229,29 @@ function ProjectCard({
         <div className="absolute top-2 right-2">
           <button
             onClick={() => setShowMenu(!showMenu)}
-            className="p-1.5 bg-white/90 dark:bg-gray-800/90 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-800"
+            className="p-1.5 bg-white/90 dark:bg-slate-800/90 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-800"
           >
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
             </svg>
           </button>
           {showMenu && (
-            <div className="absolute right-0 top-full mt-1 w-36 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-10">
+            <div className="absolute right-0 top-full mt-1 w-36 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 py-1 z-10">
               <button
                 onClick={() => { onEdit(); setShowMenu(false); }}
-                className="w-full px-3 py-2 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
+                className="w-full px-3 py-2 text-left text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700"
               >
                 Edit
               </button>
               <button
                 onClick={() => { onTogglePublish(); setShowMenu(false); }}
-                className="w-full px-3 py-2 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
+                className="w-full px-3 py-2 text-left text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700"
               >
                 {project.isPublished ? 'Unpublish' : 'Publish'}
               </button>
               <button
                 onClick={() => { onDelete(); setShowMenu(false); }}
-                className="w-full px-3 py-2 text-left text-sm text-red-600 hover:bg-gray-50 dark:hover:bg-gray-700"
+                className="w-full px-3 py-2 text-left text-sm text-red-600 hover:bg-slate-50 dark:hover:bg-slate-700"
               >
                 Delete
               </button>
@@ -262,13 +262,13 @@ function ProjectCard({
 
       {/* Content */}
       <div className="p-4">
-        <h3 className="font-semibold text-gray-900 dark:text-white">{project.title}</h3>
-        <p className="text-sm text-gray-500 mt-1">{project.category}</p>
+        <h3 className="font-semibold text-slate-900 dark:text-white">{project.title}</h3>
+        <p className="text-sm text-slate-500 mt-1">{project.category}</p>
 
         {project.tags.length > 0 && (
           <div className="flex flex-wrap gap-1 mt-2">
             {project.tags.slice(0, 3).map((tag, i) => (
-              <span key={i} className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded">
+              <span key={i} className="px-2 py-0.5 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 text-xs rounded">
                 {tag}
               </span>
             ))}
@@ -276,7 +276,7 @@ function ProjectCard({
         )}
 
         {/* Stats */}
-        <div className="flex items-center gap-4 mt-3 text-xs text-gray-400">
+        <div className="flex items-center gap-4 mt-3 text-xs text-slate-400">
           <span className="flex items-center gap-1">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -369,13 +369,13 @@ function ProjectEditorModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">
             {project ? 'Edit Project' : 'New Project'}
           </h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -386,7 +386,7 @@ function ProjectEditorModal({
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {/* Title */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Project Title *
             </label>
             <input
@@ -394,13 +394,13 @@ function ProjectEditorModal({
               value={formData.title}
               onChange={(e) => setFormData(d => ({ ...d, title: e.target.value }))}
               placeholder="My Awesome Project"
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Description *
             </label>
             <textarea
@@ -408,19 +408,19 @@ function ProjectEditorModal({
               onChange={(e) => setFormData(d => ({ ...d, description: e.target.value }))}
               placeholder="Describe your project..."
               rows={4}
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white resize-none"
             />
           </div>
 
           {/* Category */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Category
             </label>
             <select
               value={formData.category}
               onChange={(e) => setFormData(d => ({ ...d, category: e.target.value }))}
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             >
               {categories.map((cat) => (
                 <option key={cat} value={cat}>{cat}</option>
@@ -430,7 +430,7 @@ function ProjectEditorModal({
 
           {/* Tags */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Tags
             </label>
             <div className="flex gap-2 mb-2">
@@ -440,7 +440,7 @@ function ProjectEditorModal({
                 onChange={(e) => setTagInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTag())}
                 placeholder="Add a tag..."
-                className="flex-1 px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="flex-1 px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               />
               <Button type="button" size="sm" onClick={handleAddTag}>Add</Button>
             </div>
@@ -458,7 +458,7 @@ function ProjectEditorModal({
 
           {/* Tools */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Tools & Technologies
             </label>
             <div className="flex gap-2 mb-2">
@@ -468,15 +468,15 @@ function ProjectEditorModal({
                 onChange={(e) => setToolInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTool())}
                 placeholder="Add a tool..."
-                className="flex-1 px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="flex-1 px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               />
               <Button type="button" size="sm" onClick={handleAddTool}>Add</Button>
             </div>
             <div className="flex flex-wrap gap-2">
               {formData.tools?.map((tool, i) => (
-                <span key={i} className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded flex items-center gap-1">
+                <span key={i} className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm rounded flex items-center gap-1">
                   {tool}
-                  <button onClick={() => handleRemoveTool(tool)} className="text-gray-400 hover:text-gray-600">
+                  <button onClick={() => handleRemoveTool(tool)} className="text-slate-400 hover:text-slate-600">
                     ×
                   </button>
                 </span>
@@ -486,14 +486,14 @@ function ProjectEditorModal({
 
           {/* Links */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Project Links
             </label>
             <div className="flex gap-2 mb-2">
               <select
                 value={newLink.type}
                 onChange={(e) => setNewLink(l => ({ ...l, type: e.target.value as PortfolioLink['type'] }))}
-                className="w-28 px-2 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
+                className="w-28 px-2 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white text-sm"
               >
                 {linkTypes.map((lt) => (
                   <option key={lt.value} value={lt.value}>{lt.icon} {lt.label}</option>
@@ -504,25 +504,25 @@ function ProjectEditorModal({
                 value={newLink.label}
                 onChange={(e) => setNewLink(l => ({ ...l, label: e.target.value }))}
                 placeholder="Label"
-                className="w-28 px-2 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
+                className="w-28 px-2 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white text-sm"
               />
               <input
                 type="url"
                 value={newLink.url}
                 onChange={(e) => setNewLink(l => ({ ...l, url: e.target.value }))}
                 placeholder="https://..."
-                className="flex-1 px-2 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
+                className="flex-1 px-2 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white text-sm"
               />
               <Button type="button" size="sm" onClick={handleAddLink}>Add</Button>
             </div>
             {formData.links && formData.links.length > 0 && (
               <div className="space-y-2">
                 {formData.links.map((link) => (
-                  <div key={link.id} className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-900 rounded-lg">
+                  <div key={link.id} className="flex items-center justify-between p-2 bg-slate-50 dark:bg-slate-900 rounded-lg">
                     <div className="flex items-center gap-2 text-sm">
                       <span>{linkTypes.find(lt => lt.value === link.type)?.icon}</span>
                       <span className="font-medium">{link.label}</span>
-                      <span className="text-gray-400 truncate max-w-48">{link.url}</span>
+                      <span className="text-slate-400 truncate max-w-48">{link.url}</span>
                     </div>
                     <button onClick={() => handleRemoveLink(link.id)} className="text-red-500 hover:text-red-700">
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -542,24 +542,24 @@ function ProjectEditorModal({
                 type="checkbox"
                 checked={formData.isOngoing}
                 onChange={(e) => setFormData(d => ({ ...d, isOngoing: e.target.checked }))}
-                className="rounded border-gray-300"
+                className="rounded border-slate-300"
               />
-              <span className="text-sm text-gray-700 dark:text-gray-300">Ongoing Project</span>
+              <span className="text-sm text-slate-700 dark:text-slate-300">Ongoing Project</span>
             </label>
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
                 checked={formData.isPublished}
                 onChange={(e) => setFormData(d => ({ ...d, isPublished: e.target.checked }))}
-                className="rounded border-gray-300"
+                className="rounded border-slate-300"
               />
-              <span className="text-sm text-gray-700 dark:text-gray-300">Publish to Portfolio</span>
+              <span className="text-sm text-slate-700 dark:text-slate-300">Publish to Portfolio</span>
             </label>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-gray-200 dark:border-gray-700 flex justify-end gap-3">
+        <div className="p-4 border-t border-slate-200 dark:border-slate-700 flex justify-end gap-3">
           <Button variant="outline" onClick={onClose}>Cancel</Button>
           <Button onClick={handleSubmit} disabled={isSaving || !formData.title || !formData.description}>
             {isSaving ? 'Saving...' : 'Save Project'}
@@ -591,44 +591,44 @@ function SettingsPanel({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">Portfolio Settings</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-6">Portfolio Settings</h3>
 
       <div className="space-y-6">
         {/* Public Toggle */}
         <label className="flex items-center justify-between cursor-pointer">
           <div>
-            <span className="font-medium text-gray-900 dark:text-white">Public Portfolio</span>
-            <p className="text-sm text-gray-500">Make your portfolio visible to everyone</p>
+            <span className="font-medium text-slate-900 dark:text-white">Public Portfolio</span>
+            <p className="text-sm text-slate-500">Make your portfolio visible to everyone</p>
           </div>
           <input
             type="checkbox"
             checked={formData.isPublic}
             onChange={(e) => setFormData(d => ({ ...d, isPublic: e.target.checked }))}
-            className="w-5 h-5 rounded border-gray-300"
+            className="w-5 h-5 rounded border-slate-300"
           />
         </label>
 
         {/* Custom URL */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
             Custom URL
           </label>
           <div className="flex items-center gap-2">
-            <span className="text-gray-500">nexta.com.au/portfolio/</span>
+            <span className="text-slate-500">nexta.com.au/portfolio/</span>
             <input
               type="text"
               value={formData.customUrl || ''}
               onChange={(e) => setFormData(d => ({ ...d, customUrl: e.target.value }))}
               placeholder="your-name"
-              className="flex-1 px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="flex-1 px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
         </div>
 
         {/* Headline */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
             Headline
           </label>
           <input
@@ -636,13 +636,13 @@ function SettingsPanel({
             value={formData.headline || ''}
             onChange={(e) => setFormData(d => ({ ...d, headline: e.target.value }))}
             placeholder="Full Stack Developer | Creative Designer"
-            className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
           />
         </div>
 
         {/* Bio */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
             Bio
           </label>
           <textarea
@@ -650,13 +650,13 @@ function SettingsPanel({
             onChange={(e) => setFormData(d => ({ ...d, bio: e.target.value }))}
             placeholder="Tell visitors about yourself..."
             rows={3}
-            className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+            className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white resize-none"
           />
         </div>
 
         {/* Layout */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
             Layout
           </label>
           <div className="flex gap-4">
@@ -668,7 +668,7 @@ function SettingsPanel({
                   onChange={() => setFormData(d => ({ ...d, layout: layout as PortfolioSettings['layout'] }))}
                   className="text-blue-600"
                 />
-                <span className="text-sm text-gray-700 dark:text-gray-300 capitalize">{layout}</span>
+                <span className="text-sm text-slate-700 dark:text-slate-300 capitalize">{layout}</span>
               </label>
             ))}
           </div>
@@ -676,7 +676,7 @@ function SettingsPanel({
 
         {/* Theme */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
             Theme
           </label>
           <div className="flex gap-4">
@@ -688,7 +688,7 @@ function SettingsPanel({
                   onChange={() => setFormData(d => ({ ...d, theme: theme as PortfolioSettings['theme'] }))}
                   className="text-blue-600"
                 />
-                <span className="text-sm text-gray-700 dark:text-gray-300 capitalize">{theme}</span>
+                <span className="text-sm text-slate-700 dark:text-slate-300 capitalize">{theme}</span>
               </label>
             ))}
           </div>
@@ -697,14 +697,14 @@ function SettingsPanel({
         {/* Contact Info */}
         <label className="flex items-center justify-between cursor-pointer">
           <div>
-            <span className="font-medium text-gray-900 dark:text-white">Show Contact Info</span>
-            <p className="text-sm text-gray-500">Display your email for inquiries</p>
+            <span className="font-medium text-slate-900 dark:text-white">Show Contact Info</span>
+            <p className="text-sm text-slate-500">Display your email for inquiries</p>
           </div>
           <input
             type="checkbox"
             checked={formData.showContactInfo}
             onChange={(e) => setFormData(d => ({ ...d, showContactInfo: e.target.checked }))}
-            className="w-5 h-5 rounded border-gray-300"
+            className="w-5 h-5 rounded border-slate-300"
           />
         </label>
 
@@ -806,8 +806,8 @@ export function PortfolioBuilder() {
       {/* Header */}
       <div className="flex items-start justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Portfolio</h1>
-          <p className="text-gray-500 mt-1">Showcase your work and achievements</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Portfolio</h1>
+          <p className="text-slate-500 mt-1">Showcase your work and achievements</p>
         </div>
         <div className="flex gap-3">
           {settings?.isPublic && settings.customUrl && (
@@ -833,7 +833,7 @@ export function PortfolioBuilder() {
             className={`px-4 py-2 font-medium rounded-lg capitalize transition-colors ${
               activeTab === tab
                 ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
-                : 'text-gray-500 hover:text-gray-700'
+                : 'text-slate-500 hover:text-slate-700'
             }`}
           >
             {tab}
@@ -857,10 +857,10 @@ export function PortfolioBuilder() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+            <div className="text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
               <div className="text-6xl mb-4">🎨</div>
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white">No projects yet</h3>
-              <p className="text-gray-500 mt-2 mb-4">Start building your portfolio by adding your first project</p>
+              <h3 className="text-lg font-medium text-slate-900 dark:text-white">No projects yet</h3>
+              <p className="text-slate-500 mt-2 mb-4">Start building your portfolio by adding your first project</p>
               <Button onClick={() => setEditingProject('new')}>Add Your First Project</Button>
             </div>
           )}
@@ -875,34 +875,34 @@ export function PortfolioBuilder() {
         <div className="space-y-6">
           {/* Stats Cards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-              <p className="text-sm text-gray-500">Total Views</p>
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.totalViews}</p>
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+              <p className="text-sm text-slate-500">Total Views</p>
+              <p className="text-2xl font-bold text-slate-900 dark:text-white">{stats.totalViews}</p>
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-              <p className="text-sm text-gray-500">Unique Visitors</p>
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.uniqueVisitors}</p>
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+              <p className="text-sm text-slate-500">Unique Visitors</p>
+              <p className="text-2xl font-bold text-slate-900 dark:text-white">{stats.uniqueVisitors}</p>
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-              <p className="text-sm text-gray-500">Projects</p>
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">{projects.length}</p>
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+              <p className="text-sm text-slate-500">Projects</p>
+              <p className="text-2xl font-bold text-slate-900 dark:text-white">{projects.length}</p>
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-              <p className="text-sm text-gray-500">Published</p>
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+              <p className="text-sm text-slate-500">Published</p>
+              <p className="text-2xl font-bold text-slate-900 dark:text-white">
                 {projects.filter(p => p.isPublished).length}
               </p>
             </div>
           </div>
 
           {/* Top Projects */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Top Projects by Views</h3>
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Top Projects by Views</h3>
             <div className="space-y-3">
               {stats.projectViews.slice(0, 5).map((pv) => (
                 <div key={pv.projectId} className="flex items-center justify-between">
-                  <span className="text-gray-700 dark:text-gray-300">{pv.title}</span>
-                  <span className="text-gray-500">{pv.views} views</span>
+                  <span className="text-slate-700 dark:text-slate-300">{pv.title}</span>
+                  <span className="text-slate-500">{pv.views} views</span>
                 </div>
               ))}
             </div>

@@ -205,7 +205,7 @@ function QuestionCard({
   const category = categories.find(c => c.value === question.category);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-2">
@@ -213,16 +213,16 @@ function QuestionCard({
             <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${difficultyColors[question.difficulty]}`}>
               {question.difficulty}
             </span>
-            <span className="text-xs text-gray-500">{question.timeLimit}s suggested</span>
+            <span className="text-xs text-slate-500">{question.timeLimit}s suggested</span>
           </div>
-          <h3 className="font-medium text-gray-900 dark:text-white">{question.question}</h3>
+          <h3 className="font-medium text-slate-900 dark:text-white">{question.question}</h3>
         </div>
         <button
           onClick={onBookmark}
           className={`p-2 rounded-lg transition-colors ${
             question.isBookmarked
               ? 'text-yellow-500 bg-yellow-50 dark:bg-yellow-900/30'
-              : 'text-gray-400 hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
+              : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700'
           }`}
         >
           <svg className="w-5 h-5" fill={question.isBookmarked ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor">
@@ -235,7 +235,7 @@ function QuestionCard({
       {question.tags.length > 0 && (
         <div className="flex flex-wrap gap-1 mt-2">
           {question.tags.map((tag, i) => (
-            <span key={i} className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded">
+            <span key={i} className="px-2 py-0.5 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 text-xs rounded">
               {tag}
             </span>
           ))}
@@ -244,14 +244,14 @@ function QuestionCard({
 
       {/* Expandable content */}
       {isExpanded && (
-        <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 space-y-4">
+        <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700 space-y-4">
           {/* Tips */}
           {question.tips.length > 0 && (
             <div>
-              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Tips</h4>
+              <h4 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Tips</h4>
               <ul className="space-y-1">
                 {question.tips.map((tip, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <li key={i} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400">
                     <span className="text-blue-500">•</span>
                     {tip}
                   </li>
@@ -290,8 +290,8 @@ function QuestionCard({
           {/* Sample Answer */}
           {showAnswer && question.sampleAnswer && (
             <div>
-              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Sample Answer</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400 italic">{question.sampleAnswer}</p>
+              <h4 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Sample Answer</h4>
+              <p className="text-sm text-slate-600 dark:text-slate-400 italic">{question.sampleAnswer}</p>
             </div>
           )}
         </div>
@@ -380,29 +380,29 @@ function PracticeMode({
   const category = categories.find(c => c.value === currentQuestion?.category);
 
   return (
-    <div className="fixed inset-0 bg-gray-100 dark:bg-gray-900 z-50 flex flex-col">
+    <div className="fixed inset-0 bg-slate-100 dark:bg-slate-900 z-50 flex flex-col">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4">
+      <div className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <button onClick={onExit} className="text-gray-500 hover:text-gray-700">
+            <button onClick={onExit} className="text-slate-500 hover:text-slate-700">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            <span className="text-gray-500">
+            <span className="text-slate-500">
               Question {currentIndex + 1} of {session.questions.length}
             </span>
           </div>
           <div className={`px-4 py-2 rounded-lg font-mono text-lg ${
-            timeLeft < 30 ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+            timeLeft < 30 ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
           }`}>
             {formatTime(timeLeft)}
           </div>
         </div>
 
         {/* Progress Bar */}
-        <div className="mt-3 w-full h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+        <div className="mt-3 w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
           <div
             className="h-full bg-blue-500 transition-all duration-300"
             style={{ width: `${progress}%` }}
@@ -414,23 +414,23 @@ function PracticeMode({
       <div className="flex-1 overflow-y-auto p-6">
         <div className="max-w-3xl mx-auto">
           {/* Question */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 mb-6">
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 mb-6">
             <div className="flex items-center gap-2 mb-4">
               <span className="text-2xl">{category?.icon}</span>
-              <span className="text-sm text-gray-500">{category?.label}</span>
+              <span className="text-sm text-slate-500">{category?.label}</span>
               <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${difficultyColors[currentQuestion.difficulty]}`}>
                 {currentQuestion.difficulty}
               </span>
             </div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
               {currentQuestion.question}
             </h2>
           </div>
 
           {/* Answer Area */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-medium text-gray-900 dark:text-white">Your Answer</h3>
+              <h3 className="font-medium text-slate-900 dark:text-white">Your Answer</h3>
               <button
                 onClick={() => setShowTips(!showTips)}
                 className="text-sm text-blue-600 hover:underline"
@@ -482,7 +482,7 @@ function PracticeMode({
               onChange={(e) => setAnswer(e.target.value)}
               placeholder="Type your answer here..."
               rows={8}
-              className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+              className="w-full px-4 py-3 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white resize-none"
             />
 
             {/* Recording Options */}
@@ -492,7 +492,7 @@ function PracticeMode({
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
                   isRecording
                     ? 'bg-red-500 text-white'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                    : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -500,7 +500,7 @@ function PracticeMode({
                 </svg>
                 {isRecording ? 'Stop Recording' : 'Record Audio'}
               </button>
-              <button className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600">
+              <button className="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                 </svg>
@@ -512,7 +512,7 @@ function PracticeMode({
       </div>
 
       {/* Footer */}
-      <div className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-6 py-4">
+      <div className="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 px-6 py-4">
         <div className="max-w-3xl mx-auto flex justify-between">
           <Button
             variant="outline"
@@ -543,10 +543,10 @@ function FeedbackView({
   onClose: () => void;
 }) {
   return (
-    <div className="fixed inset-0 bg-gray-100 dark:bg-gray-900 z-50 flex flex-col">
+    <div className="fixed inset-0 bg-slate-100 dark:bg-slate-900 z-50 flex flex-col">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex items-center justify-between">
-        <h1 className="text-lg font-semibold text-gray-900 dark:text-white">Session Results</h1>
+      <div className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 px-6 py-4 flex items-center justify-between">
+        <h1 className="text-lg font-semibold text-slate-900 dark:text-white">Session Results</h1>
         <Button variant="outline" onClick={onClose}>Close</Button>
       </div>
 
@@ -554,9 +554,9 @@ function FeedbackView({
       <div className="flex-1 overflow-y-auto p-6">
         <div className="max-w-3xl mx-auto space-y-6">
           {/* Overall Score */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 text-center">
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 text-center">
             <div className="text-6xl font-bold text-blue-600 mb-2">{feedback.overallScore}%</div>
-            <p className="text-gray-500">Overall Performance</p>
+            <p className="text-slate-500">Overall Performance</p>
           </div>
 
           {/* Strengths & Improvements */}
@@ -590,15 +590,15 @@ function FeedbackView({
           </div>
 
           {/* Question Feedback */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Question-by-Question Feedback</h3>
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Question-by-Question Feedback</h3>
             <div className="space-y-4">
               {feedback.questionFeedback.map((qf, i) => {
                 const question = questions.find(q => q.id === qf.questionId);
                 return (
-                  <div key={i} className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+                  <div key={i} className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
                     <div className="flex items-start justify-between gap-4 mb-2">
-                      <p className="font-medium text-gray-900 dark:text-white">{question?.question}</p>
+                      <p className="font-medium text-slate-900 dark:text-white">{question?.question}</p>
                       <span className={`px-2 py-1 text-sm font-medium rounded ${
                         qf.score >= 80 ? 'bg-green-100 text-green-700' :
                         qf.score >= 60 ? 'bg-yellow-100 text-yellow-700' :
@@ -607,7 +607,7 @@ function FeedbackView({
                         {qf.score}%
                       </span>
                     </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{qf.feedback}</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">{qf.feedback}</p>
                   </div>
                 );
               })}
@@ -725,8 +725,8 @@ export function InterviewPrep() {
     <div className="max-w-6xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Interview Prep</h1>
-        <p className="text-gray-500 mt-1">Practice and prepare for your interviews</p>
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Interview Prep</h1>
+        <p className="text-slate-500 mt-1">Practice and prepare for your interviews</p>
       </div>
 
       {/* Tabs */}
@@ -738,7 +738,7 @@ export function InterviewPrep() {
             className={`px-4 py-2 font-medium rounded-lg capitalize transition-colors ${
               activeTab === tab
                 ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
-                : 'text-gray-500 hover:text-gray-700'
+                : 'text-slate-500 hover:text-slate-700'
             }`}
           >
             {tab}
@@ -775,18 +775,18 @@ export function InterviewPrep() {
           </div>
 
           {/* Categories */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Practice by Category</h3>
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Practice by Category</h3>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
               {categories.map((cat) => (
                 <button
                   key={cat.value}
                   onClick={() => { setCategoryFilter(cat.value); setActiveTab('questions'); }}
-                  className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors text-center"
+                  className="p-4 border border-slate-200 dark:border-slate-700 rounded-lg hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors text-center"
                 >
                   <div className="text-3xl mb-2">{cat.icon}</div>
-                  <div className="font-medium text-gray-900 dark:text-white">{cat.label}</div>
-                  <div className="text-xs text-gray-500 mt-1">{cat.description}</div>
+                  <div className="font-medium text-slate-900 dark:text-white">{cat.label}</div>
+                  <div className="text-xs text-slate-500 mt-1">{cat.description}</div>
                 </button>
               ))}
             </div>
@@ -838,7 +838,7 @@ export function InterviewPrep() {
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             >
               <option value="">All Categories</option>
               {categories.map((cat) => (
@@ -848,7 +848,7 @@ export function InterviewPrep() {
             <select
               value={difficultyFilter}
               onChange={(e) => setDifficultyFilter(e.target.value)}
-              className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             >
               <option value="">All Difficulties</option>
               <option value="easy">Easy</option>
@@ -874,22 +874,22 @@ export function InterviewPrep() {
       {activeTab === 'companies' && (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {companies.map((company) => (
-            <div key={company.id} className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+            <div key={company.id} className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
               <div className="flex items-center gap-4 mb-4">
                 {company.companyLogo ? (
                   <OptimizedImage src={toCloudinaryAutoUrl(company.companyLogo)} alt={company.company} width={48} height={48} className="w-12 h-12 rounded-lg object-contain" />
                 ) : (
-                  <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center text-xl font-bold text-gray-400">
+                  <div className="w-12 h-12 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center text-xl font-bold text-slate-400">
                     {company.company.charAt(0)}
                   </div>
                 )}
                 <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white">{company.company}</h3>
-                  <p className="text-sm text-gray-500">{company.role}</p>
+                  <h3 className="font-semibold text-slate-900 dark:text-white">{company.company}</h3>
+                  <p className="text-sm text-slate-500">{company.role}</p>
                 </div>
               </div>
 
-              <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              <div className="text-sm text-slate-600 dark:text-slate-400 mb-4">
                 {company.interviewStages.length} interview stages • {company.commonQuestions.length} sample questions
               </div>
 
@@ -906,16 +906,16 @@ export function InterviewPrep() {
           {sessionHistory.length > 0 ? (
             <div className="space-y-4">
               {sessionHistory.map((session) => (
-                <div key={session.id} className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 flex items-center justify-between">
+                <div key={session.id} className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 flex items-center justify-between">
                   <div>
-                    <h3 className="font-medium text-gray-900 dark:text-white capitalize">
+                    <h3 className="font-medium text-slate-900 dark:text-white capitalize">
                       {session.type} Practice
                     </h3>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-slate-500">
                       {session.questions.length} questions • {session.duration} minutes
                     </p>
                     {session.completedAt && (
-                      <p className="text-xs text-gray-400 mt-1">
+                      <p className="text-xs text-slate-400 mt-1">
                         {new Date(session.completedAt).toLocaleDateString('en-AU')}
                       </p>
                     )}
@@ -933,10 +933,10 @@ export function InterviewPrep() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+            <div className="text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
               <div className="text-6xl mb-4">📝</div>
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white">No practice sessions yet</h3>
-              <p className="text-gray-500 mt-2 mb-4">Start practicing to track your progress</p>
+              <h3 className="text-lg font-medium text-slate-900 dark:text-white">No practice sessions yet</h3>
+              <p className="text-slate-500 mt-2 mb-4">Start practicing to track your progress</p>
               <Button onClick={startQuickPractice}>Start Practice</Button>
             </div>
           )}

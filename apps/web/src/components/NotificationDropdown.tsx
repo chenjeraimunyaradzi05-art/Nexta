@@ -76,7 +76,7 @@ function getNotificationIcon(type: Notification['type']) {
         </svg>
       );
     default:
-      return <Bell className={`${iconClasses} text-gray-500`} />;
+      return <Bell className={`${iconClasses} text-slate-500`} />;
   }
 }
 
@@ -185,14 +185,14 @@ export function NotificationDropdown({
 
   const variantClasses = {
     default: {
-      button: 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700',
-      dropdown: 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700',
-      header: 'border-b border-gray-200 dark:border-gray-700',
-      item: 'hover:bg-gray-50 dark:hover:bg-gray-700/50',
+      button: 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-700',
+      dropdown: 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700',
+      header: 'border-b border-slate-200 dark:border-slate-700',
+      item: 'hover:bg-slate-50 dark:hover:bg-slate-700/50',
       unread: 'bg-blue-50 dark:bg-blue-900/20',
     },
     cosmic: {
-      button: 'text-gray-400 hover:text-[#FFD700] hover:bg-white/5',
+      button: 'text-slate-400 hover:text-[#FFD700] hover:bg-white/5',
       dropdown: 'bg-[#1A0F2E] border border-[#FFD700]/20',
       header: 'border-b border-[#FFD700]/10',
       item: 'hover:bg-white/5',
@@ -230,7 +230,7 @@ export function NotificationDropdown({
         >
           {/* Header */}
           <div className={`flex items-center justify-between px-4 py-3 ${styles.header}`}>
-            <h3 className="font-semibold text-gray-900 dark:text-white">
+            <h3 className="font-semibold text-slate-900 dark:text-white">
               Notifications
             </h3>
             <div className="flex items-center gap-2">
@@ -244,7 +244,7 @@ export function NotificationDropdown({
               )}
               <Link
                 href="/member/notifications/settings"
-                className="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                className="p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
               >
                 <Settings className="w-4 h-4" />
               </Link>
@@ -254,7 +254,7 @@ export function NotificationDropdown({
           {/* Notifications List */}
           <div className="max-h-[400px] overflow-y-auto">
             {localNotifications.length === 0 ? (
-              <div className="py-8 text-center text-gray-500 dark:text-gray-400">
+              <div className="py-8 text-center text-slate-500 dark:text-slate-400">
                 <Bell className="w-8 h-8 mx-auto mb-2 opacity-50" />
                 <p>No notifications yet</p>
               </div>
@@ -282,7 +282,7 @@ export function NotificationDropdown({
                           size="sm"
                         />
                       ) : (
-                        <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+                        <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center">
                           {getNotificationIcon(notification.type)}
                         </div>
                       )}
@@ -290,13 +290,13 @@ export function NotificationDropdown({
 
                     {/* Content */}
                     <div className="flex-1 min-w-0">
-                      <p className={`text-sm font-medium ${!notification.read ? 'text-gray-900 dark:text-white' : 'text-gray-600 dark:text-gray-400'}`}>
+                      <p className={`text-sm font-medium ${!notification.read ? 'text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400'}`}>
                         {notification.title}
                       </p>
-                      <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">
+                      <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
                         {notification.message}
                       </p>
-                      <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                      <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">
                         {formatTimeAgo(notification.timestamp)}
                       </p>
                     </div>
@@ -315,7 +315,7 @@ export function NotificationDropdown({
                       e.preventDefault();
                       handleDelete(notification.id);
                     }}
-                    className="absolute right-2 top-2 p-1 opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 transition-opacity"
+                    className="absolute right-2 top-2 p-1 opacity-0 group-hover:opacity-100 text-slate-400 hover:text-red-500 transition-opacity"
                   >
                     <X className="w-4 h-4" />
                   </button>

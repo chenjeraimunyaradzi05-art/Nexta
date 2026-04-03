@@ -143,7 +143,7 @@ export function Modal({
         aria-labelledby={titleId}
         aria-describedby={descriptionId}
         className={`
-          relative bg-white dark:bg-gray-800 rounded-lg shadow-xl dark:shadow-2xl
+          relative bg-white dark:bg-slate-800 rounded-lg shadow-xl dark:shadow-2xl
           w-full ${sizeStyles[size]}
           transform transition-all duration-200
           ${isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}
@@ -153,17 +153,17 @@ export function Modal({
         }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700">
           <h2
             id={titleId}
-            className="text-lg font-semibold text-gray-900 dark:text-white"
+            className="text-lg font-semibold text-slate-900 dark:text-white"
           >
             {title}
           </h2>
           {showCloseButton && (
             <button
               onClick={onClose}
-              className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+              className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700"
               aria-label="Close modal"
             >
               <svg
@@ -184,13 +184,13 @@ export function Modal({
         </div>
 
         {/* Content */}
-        <div id={descriptionId} className="p-4 text-gray-700 dark:text-gray-300">
+        <div id={descriptionId} className="p-4 text-slate-700 dark:text-slate-300">
           {children}
         </div>
 
         {/* Footer */}
         {footer && (
-          <div className="flex justify-end gap-3 p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 rounded-b-lg">
+          <div className="flex justify-end gap-3 p-4 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 rounded-b-lg">
             {footer}
           </div>
         )}
@@ -239,7 +239,7 @@ export function ConfirmDialog({
         <>
           <button
             onClick={onClose}
-            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+            className="px-4 py-2 text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
             disabled={isLoading}
           >
             {cancelText}
@@ -254,7 +254,7 @@ export function ConfirmDialog({
         </>
       }
     >
-      <p className="text-gray-600">{message}</p>
+      <p className="text-slate-600">{message}</p>
     </Modal>
   );
 }

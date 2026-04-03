@@ -126,7 +126,7 @@ export default function AudioRoomPage() {
       <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-gray-900 flex flex-col items-center justify-center text-white">
         <div className="text-6xl mb-4">🎙️</div>
         <h2 className="text-2xl font-bold mb-2">Room Not Found</h2>
-        <p className="text-gray-400 mb-6">This room may have ended or doesn't exist.</p>
+        <p className="text-slate-400 mb-6">This room may have ended or doesn't exist.</p>
         <Link
           href="/live"
           className="px-6 py-3 rounded-lg text-white font-medium"
@@ -145,7 +145,7 @@ export default function AudioRoomPage() {
       <div className="max-w-4xl mx-auto p-4 md:p-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <Link href="/live" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
+          <Link href="/live" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
             <span>←</span>
             <span>All Rooms</span>
           </Link>
@@ -154,15 +154,15 @@ export default function AudioRoomPage() {
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
               Live
             </span>
-            <span className="text-gray-400">🕐 {formatDuration(room.createdAt)}</span>
-            <span className="text-gray-400">👥 {totalParticipants}</span>
+            <span className="text-slate-400">🕐 {formatDuration(room.createdAt)}</span>
+            <span className="text-slate-400">👥 {totalParticipants}</span>
           </div>
         </div>
 
         {/* Room Info */}
         <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 mb-6">
           <h1 className="text-2xl md:text-3xl font-bold mb-2">{room.title}</h1>
-          <p className="text-gray-300 mb-4">{room.description}</p>
+          <p className="text-slate-300 mb-4">{room.description}</p>
           <div className="flex flex-wrap gap-2">
             {room.topics.map((topic, idx) => (
               <span key={idx} className="px-3 py-1 bg-purple-500/30 text-purple-200 text-sm rounded-full">
@@ -200,7 +200,7 @@ export default function AudioRoomPage() {
                   )}
                 </div>
                 <p className="text-sm font-medium text-center">{speaker.name}</p>
-                <p className="text-xs text-gray-400 capitalize">{speaker.role}</p>
+                <p className="text-xs text-slate-400 capitalize">{speaker.role}</p>
               </div>
             ))}
           </div>
@@ -239,14 +239,14 @@ export default function AudioRoomPage() {
             {room.listeners.map((listener) => (
               <div key={listener.id} className="flex flex-col items-center">
                 <span className="text-3xl">{listener.avatar}</span>
-                <p className="text-xs text-gray-400 mt-1">{listener.name}</p>
+                <p className="text-xs text-slate-400 mt-1">{listener.name}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Control Bar */}
-        <div className="fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur-lg border-t border-gray-800 p-4">
+        <div className="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-lg border-t border-slate-800 p-4">
           <div className="max-w-4xl mx-auto flex items-center justify-between">
             <button
               onClick={leaveRoom}
@@ -277,7 +277,7 @@ export default function AudioRoomPage() {
                   className={`w-14 h-14 rounded-full font-medium transition-all flex items-center justify-center text-2xl ${
                     isMuted
                       ? 'bg-red-500 text-white'
-                      : 'bg-white text-gray-900'
+                      : 'bg-white text-slate-900'
                   }`}
                 >
                   {isMuted ? '🔇' : '🎤'}
@@ -299,7 +299,7 @@ export default function AudioRoomPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-medium">Want to participate?</p>
-                  <p className="text-sm text-gray-400">Sign in to raise your hand or join as a speaker</p>
+                  <p className="text-sm text-slate-400">Sign in to raise your hand or join as a speaker</p>
                 </div>
                 <Link
                   href="/"

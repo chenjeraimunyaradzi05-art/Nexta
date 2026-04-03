@@ -172,13 +172,13 @@ function FiltersPanel({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Filters</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Filters</h3>
 
       <div className="space-y-4">
         {/* Keywords */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
             Keywords
           </label>
           <input
@@ -186,13 +186,13 @@ function FiltersPanel({
             value={filters.query}
             onChange={(e) => onChange({ query: e.target.value })}
             placeholder="Skills, job titles, keywords..."
-            className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+            className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
           />
         </div>
 
         {/* Location */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
             Location
           </label>
           <input
@@ -200,7 +200,7 @@ function FiltersPanel({
             value={filters.location}
             onChange={(e) => onChange({ location: e.target.value })}
             placeholder="City, State, or Postcode"
-            className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+            className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
           />
           <div className="flex items-center gap-2 mt-2">
             <input
@@ -211,19 +211,19 @@ function FiltersPanel({
               onChange={(e) => onChange({ radius: parseInt(e.target.value) })}
               className="flex-1"
             />
-            <span className="text-sm text-gray-500 w-16">{filters.radius} km</span>
+            <span className="text-sm text-slate-500 w-16">{filters.radius} km</span>
           </div>
         </div>
 
         {/* Experience */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
             Experience Level
           </label>
           <select
             value={filters.experience}
             onChange={(e) => onChange({ experience: e.target.value })}
-            className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+            className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
           >
             <option value="">Any experience</option>
             <option value="entry">Entry Level (0-2 years)</option>
@@ -235,7 +235,7 @@ function FiltersPanel({
 
         {/* Skills */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
             Skills
           </label>
           <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">
@@ -246,7 +246,7 @@ function FiltersPanel({
                 className={`px-3 py-1 rounded-full text-sm ${
                   selectedSkills.includes(skill)
                     ? 'bg-blue-500 text-white'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+                    : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
                 }`}
               >
                 {skill}
@@ -257,13 +257,13 @@ function FiltersPanel({
 
         {/* Availability */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
             Availability
           </label>
           <select
             value={filters.availability}
             onChange={(e) => onChange({ availability: e.target.value })}
-            className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+            className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
           >
             <option value="">Any availability</option>
             <option value="immediate">Immediately available</option>
@@ -282,7 +282,7 @@ function FiltersPanel({
               onChange={(e) => onChange({ indigenousOnly: e.target.checked })}
               className="w-4 h-4 rounded text-blue-500"
             />
-            <span className="text-sm text-gray-700 dark:text-gray-300">
+            <span className="text-sm text-slate-700 dark:text-slate-300">
               Indigenous candidates only
             </span>
           </label>
@@ -294,7 +294,7 @@ function FiltersPanel({
               onChange={(e) => onChange({ remoteOk: e.target.checked })}
               className="w-4 h-4 rounded text-blue-500"
             />
-            <span className="text-sm text-gray-700 dark:text-gray-300">
+            <span className="text-sm text-slate-700 dark:text-slate-300">
               Open to remote work
             </span>
           </label>
@@ -306,7 +306,7 @@ function FiltersPanel({
               onChange={(e) => onChange({ relocateOk: e.target.checked })}
               className="w-4 h-4 rounded text-blue-500"
             />
-            <span className="text-sm text-gray-700 dark:text-gray-300">
+            <span className="text-sm text-slate-700 dark:text-slate-300">
               Willing to relocate
             </span>
           </label>
@@ -339,14 +339,14 @@ function CandidateCard({
   onAddToShortlist: () => void;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex items-start gap-4">
         {/* Avatar */}
-        <div className="w-16 h-16 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+        <div className="w-16 h-16 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
           {candidate.avatar ? (
             <OptimizedImage src={toCloudinaryAutoUrl(candidate.avatar)} alt={`${candidate.firstName} ${candidate.lastName}`} width={64} height={64} className="w-full h-full object-cover" />
           ) : (
-            <span className="text-2xl text-gray-400">👤</span>
+            <span className="text-2xl text-slate-400">👤</span>
           )}
         </div>
 
@@ -355,15 +355,15 @@ function CandidateCard({
           <div className="flex items-start justify-between">
             <div>
               <div className="flex items-center gap-2">
-                <h4 className="font-semibold text-gray-900 dark:text-white">
+                <h4 className="font-semibold text-slate-900 dark:text-white">
                   {candidate.firstName} {candidate.lastName}
                 </h4>
                 {candidate.isIndigenous && (
                   <span className="text-sm" title="Indigenous Australian">🌏</span>
                 )}
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{candidate.headline}</p>
-              <p className="text-sm text-gray-500">📍 {candidate.location}</p>
+              <p className="text-sm text-slate-600 dark:text-slate-400">{candidate.headline}</p>
+              <p className="text-sm text-slate-500">📍 {candidate.location}</p>
             </div>
 
             {/* Match Score */}
@@ -374,12 +374,12 @@ function CandidateCard({
                     ? 'text-green-600'
                     : candidate.matchScore >= 60
                     ? 'text-blue-600'
-                    : 'text-gray-500'
+                    : 'text-slate-500'
                 }`}
               >
                 {candidate.matchScore}%
               </div>
-              <div className="text-xs text-gray-500">match</div>
+              <div className="text-xs text-slate-500">match</div>
             </div>
           </div>
 
@@ -388,26 +388,26 @@ function CandidateCard({
             {candidate.skills.slice(0, 5).map((skill) => (
               <span
                 key={skill}
-                className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded text-xs"
+                className="px-2 py-0.5 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded text-xs"
               >
                 {skill}
               </span>
             ))}
             {candidate.skills.length > 5 && (
-              <span className="text-xs text-gray-500">+{candidate.skills.length - 5} more</span>
+              <span className="text-xs text-slate-500">+{candidate.skills.length - 5} more</span>
             )}
           </div>
 
           {/* Details */}
-          <div className="flex items-center gap-4 mt-3 text-sm text-gray-500">
+          <div className="flex items-center gap-4 mt-3 text-sm text-slate-500">
             <span>💼 {candidate.experience}</span>
             <span>🎓 {candidate.education}</span>
             <span>⏰ {candidate.availability}</span>
           </div>
 
           {/* Actions */}
-          <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
-            <span className="text-xs text-gray-400">
+          <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-100 dark:border-slate-700">
+            <span className="text-xs text-slate-400">
               Active {candidate.lastActive}
               {candidate.isContacted && ' • Contacted'}
             </span>
@@ -417,14 +417,14 @@ function CandidateCard({
                 className={`p-2 rounded-lg ${
                   candidate.isBookmarked
                     ? 'bg-yellow-100 text-yellow-600'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-600'
+                    : 'bg-slate-100 dark:bg-slate-700 text-slate-600'
                 }`}
               >
                 {candidate.isBookmarked ? '⭐' : '☆'}
               </button>
               <button
                 onClick={onAddToShortlist}
-                className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg"
+                className="p-2 bg-slate-100 dark:bg-slate-700 rounded-lg"
               >
                 📋
               </button>
@@ -450,22 +450,22 @@ function SavedSearchesSidebar({
   onDelete: (id: string) => void;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-      <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Saved Searches</h4>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+      <h4 className="font-semibold text-slate-900 dark:text-white mb-3">Saved Searches</h4>
       {searches.length === 0 ? (
-        <p className="text-sm text-gray-500">No saved searches yet</p>
+        <p className="text-sm text-slate-500">No saved searches yet</p>
       ) : (
         <div className="space-y-2">
           {searches.map((search) => (
             <div
               key={search.id}
-              className="flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg"
+              className="flex items-center justify-between p-2 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg"
             >
               <button onClick={() => onLoad(search)} className="text-left flex-1">
-                <p className="font-medium text-gray-900 dark:text-white text-sm">{search.name}</p>
-                <p className="text-xs text-gray-500">{search.candidateCount} candidates</p>
+                <p className="font-medium text-slate-900 dark:text-white text-sm">{search.name}</p>
+                <p className="text-xs text-slate-500">{search.candidateCount} candidates</p>
               </button>
-              <button onClick={() => onDelete(search.id)} className="text-gray-400 hover:text-red-500">
+              <button onClick={() => onDelete(search.id)} className="text-slate-400 hover:text-red-500">
                 ×
               </button>
             </div>
@@ -494,11 +494,11 @@ function ContactModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-lg w-full p-6">
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-lg w-full p-6">
+        <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
           Contact {candidate.firstName}
         </h3>
-        <p className="text-sm text-gray-500 mb-4">
+        <p className="text-sm text-slate-500 mb-4">
           Send a message to express your interest in this candidate
         </p>
 
@@ -506,7 +506,7 @@ function ContactModal({
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           rows={5}
-          className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600 mb-4"
+          className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600 mb-4"
           placeholder="Hello, I came across your profile and would love to discuss an opportunity..."
         />
 
@@ -539,8 +539,8 @@ function SaveSearchModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-6">
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-md w-full p-6">
+        <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">
           Save Search
         </h3>
 
@@ -548,7 +548,7 @@ function SaveSearchModal({
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600 mb-4"
+          className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600 mb-4"
           placeholder="Search name..."
         />
 
@@ -589,23 +589,23 @@ function AddToShortlistModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-6">
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-md w-full p-6">
+        <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
           Add to Shortlist
         </h3>
-        <p className="text-sm text-gray-500 mb-4">
+        <p className="text-sm text-slate-500 mb-4">
           Select a shortlist for {candidate.firstName} {candidate.lastName}
         </p>
 
         {shortlists.length === 0 ? (
-          <div className="text-sm text-gray-500 mb-4">
+          <div className="text-sm text-slate-500 mb-4">
             No shortlists available yet. Create a shortlist to use this feature.
           </div>
         ) : (
           <select
             value={selectedShortlistId}
             onChange={(e) => onChangeShortlist(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600 mb-4"
+            className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600 mb-4"
           >
             {shortlists.map((shortlist) => (
               <option key={shortlist.id} value={shortlist.id}>
@@ -765,8 +765,8 @@ export function CandidateSearch() {
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Find Candidates</h1>
-          <p className="text-gray-500 mt-1">Search and discover qualified talent</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Find Candidates</h1>
+          <p className="text-slate-500 mt-1">Search and discover qualified talent</p>
         </div>
         {candidates.length > 0 && (
           <Button variant="outline" onClick={() => setShowSaveSearch(true)}>
@@ -801,22 +801,22 @@ export function CandidateSearch() {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" />
             </div>
           ) : candidates.length === 0 ? (
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-12 text-center">
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-12 text-center">
               <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
                 Search for candidates
               </h3>
-              <p className="text-gray-500">
+              <p className="text-slate-500">
                 Use the filters to find qualified candidates that match your requirements
               </p>
             </div>
           ) : (
             <>
               <div className="flex items-center justify-between mb-4">
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-slate-600 dark:text-slate-400">
                   Found <strong>{totalResults}</strong> candidates
                 </p>
-                <select className="px-3 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600 text-sm">
+                <select className="px-3 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600 text-sm">
                   <option>Best Match</option>
                   <option>Most Recent</option>
                   <option>Experience</option>
@@ -845,7 +845,7 @@ export function CandidateSearch() {
                   >
                     Previous
                   </Button>
-                  <span className="px-4 py-2 text-gray-600">
+                  <span className="px-4 py-2 text-slate-600">
                     Page {page} of {Math.ceil(totalResults / 20)}
                   </span>
                   <Button

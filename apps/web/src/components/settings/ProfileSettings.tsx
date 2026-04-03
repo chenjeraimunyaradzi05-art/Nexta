@@ -188,7 +188,7 @@ function SettingsTab({
       className={`flex items-center gap-3 px-4 py-3 rounded-lg text-left w-full transition-colors ${
         active
           ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-medium'
-          : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+          : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
       }`}
     >
       {icon}
@@ -212,16 +212,16 @@ function Toggle({
   return (
     <label className="flex items-start justify-between cursor-pointer py-3">
       <div className="flex-1">
-        <span className="font-medium text-gray-900 dark:text-white">{label}</span>
+        <span className="font-medium text-slate-900 dark:text-white">{label}</span>
         {description && (
-          <p className="text-sm text-gray-500 mt-0.5">{description}</p>
+          <p className="text-sm text-slate-500 mt-0.5">{description}</p>
         )}
       </div>
       <button
         type="button"
         onClick={() => onChange(!checked)}
         className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-          checked ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'
+          checked ? 'bg-blue-500' : 'bg-slate-300 dark:bg-slate-600'
         }`}
       >
         <span
@@ -354,7 +354,7 @@ export function ProfileSettings() {
   if (!profile) {
     return (
       <div className="text-center py-16">
-        <p className="text-gray-500">Failed to load profile settings</p>
+        <p className="text-slate-500">Failed to load profile settings</p>
         <Button className="mt-4" onClick={loadProfile}>Retry</Button>
       </div>
     );
@@ -362,7 +362,7 @@ export function ProfileSettings() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Settings</h1>
+      <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">Settings</h1>
 
       {/* Success/Error Messages */}
       {successMessage && (
@@ -430,11 +430,11 @@ export function ProfileSettings() {
         </aside>
 
         {/* Content */}
-        <main className="flex-1 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+        <main className="flex-1 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
           {/* Profile Tab */}
           {activeTab === 'profile' && (
             <div className="space-y-6">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Profile Information</h2>
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Profile Information</h2>
               
               {/* Avatar */}
               <div className="flex items-center gap-6">
@@ -452,8 +452,8 @@ export function ProfileSettings() {
                       {profile.firstName?.charAt(0) || '?'}
                     </div>
                   )}
-                  <label className="absolute bottom-0 right-0 p-2 bg-white dark:bg-gray-700 rounded-full shadow cursor-pointer hover:bg-gray-50">
-                    <svg className="w-4 h-4 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <label className="absolute bottom-0 right-0 p-2 bg-white dark:bg-slate-700 rounded-full shadow cursor-pointer hover:bg-slate-50">
+                    <svg className="w-4 h-4 text-slate-600 dark:text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
@@ -461,40 +461,40 @@ export function ProfileSettings() {
                   </label>
                 </div>
                 <div>
-                  <p className="font-medium text-gray-900 dark:text-white">{profile.firstName} {profile.lastName}</p>
-                  <p className="text-sm text-gray-500">{profile.email}</p>
+                  <p className="font-medium text-slate-900 dark:text-white">{profile.firstName} {profile.lastName}</p>
+                  <p className="text-sm text-slate-500">{profile.email}</p>
                 </div>
               </div>
 
               {/* Name */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                     First Name
                   </label>
                   <input
                     type="text"
                     value={profile.firstName}
                     onChange={(e) => updateProfile('firstName', e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Last Name
                   </label>
                   <input
                     type="text"
                     value={profile.lastName}
                     onChange={(e) => updateProfile('lastName', e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                   />
                 </div>
               </div>
 
               {/* Headline */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Professional Headline
                 </label>
                 <input
@@ -502,13 +502,13 @@ export function ProfileSettings() {
                   value={profile.headline || ''}
                   onChange={(e) => updateProfile('headline', e.target.value)}
                   placeholder="e.g., Senior Software Engineer at Tech Corp"
-                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                 />
               </div>
 
               {/* Bio */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                   About Me
                 </label>
                 <textarea
@@ -516,14 +516,14 @@ export function ProfileSettings() {
                   onChange={(e) => updateProfile('bio', e.target.value)}
                   placeholder="Tell others about yourself..."
                   rows={4}
-                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+                  className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white resize-none"
                 />
               </div>
 
               {/* Location */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Location
                   </label>
                   <input
@@ -531,11 +531,11 @@ export function ProfileSettings() {
                     value={profile.location || ''}
                     onChange={(e) => updateProfile('location', e.target.value)}
                     placeholder="e.g., Sydney, NSW"
-                    className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Phone
                   </label>
                   <input
@@ -543,7 +543,7 @@ export function ProfileSettings() {
                     value={profile.phone || ''}
                     onChange={(e) => updateProfile('phone', e.target.value)}
                     placeholder="+61 400 000 000"
-                    className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                   />
                 </div>
               </div>
@@ -551,7 +551,7 @@ export function ProfileSettings() {
               {/* Links */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Website
                   </label>
                   <input
@@ -559,11 +559,11 @@ export function ProfileSettings() {
                     value={profile.website || ''}
                     onChange={(e) => updateProfile('website', e.target.value)}
                     placeholder="https://yourwebsite.com"
-                    className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                     LinkedIn
                   </label>
                   <input
@@ -571,7 +571,7 @@ export function ProfileSettings() {
                     value={profile.linkedIn || ''}
                     onChange={(e) => updateProfile('linkedIn', e.target.value)}
                     placeholder="https://linkedin.com/in/yourprofile"
-                    className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                   />
                 </div>
               </div>
@@ -582,8 +582,8 @@ export function ProfileSettings() {
           {activeTab === 'cultural' && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Cultural Identity</h2>
-                <p className="text-sm text-gray-500 mt-1">
+                <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Cultural Identity</h2>
+                <p className="text-sm text-slate-500 mt-1">
                   This information is optional and helps us connect you with culturally appropriate opportunities.
                 </p>
               </div>
@@ -605,7 +605,7 @@ export function ProfileSettings() {
               {profile.indigenousIdentity?.isIndigenous && (
                 <div className="space-y-4 pl-4 border-l-2 border-amber-300 dark:border-amber-700">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                       Nation / Language Group
                     </label>
                     <input
@@ -613,12 +613,12 @@ export function ProfileSettings() {
                       value={profile.indigenousIdentity?.nation || ''}
                       onChange={(e) => updateNestedProfile('indigenousIdentity.nation', e.target.value)}
                       placeholder="e.g., Wiradjuri, Yolngu, Noongar"
-                      className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                       Mob / Community
                     </label>
                     <input
@@ -626,12 +626,12 @@ export function ProfileSettings() {
                       value={profile.indigenousIdentity?.mob || ''}
                       onChange={(e) => updateNestedProfile('indigenousIdentity.mob', e.target.value)}
                       placeholder="Your mob or community (optional)"
-                      className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                       Connection to Country
                     </label>
                     <textarea
@@ -639,7 +639,7 @@ export function ProfileSettings() {
                       onChange={(e) => updateNestedProfile('indigenousIdentity.connectionToCountry', e.target.value)}
                       placeholder="Share your connection to country (optional)"
                       rows={3}
-                      className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+                      className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white resize-none"
                     />
                   </div>
                 </div>
@@ -657,7 +657,7 @@ export function ProfileSettings() {
           {/* Career Preferences Tab */}
           {activeTab === 'career' && (
             <div className="space-y-6">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Career Preferences</h2>
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Career Preferences</h2>
 
               <Toggle
                 checked={profile.careerPreferences?.openToWork || false}
@@ -668,7 +668,7 @@ export function ProfileSettings() {
 
               {/* Work Types */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Preferred Work Types
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -686,7 +686,7 @@ export function ProfileSettings() {
                       className={`px-3 py-2 rounded-lg border transition-colors ${
                         profile.careerPreferences?.workTypes?.includes(type)
                           ? 'bg-blue-50 dark:bg-blue-900/30 border-blue-500 text-blue-700 dark:text-blue-400'
-                          : 'border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400'
+                          : 'border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400'
                       }`}
                     >
                       {type}
@@ -697,7 +697,7 @@ export function ProfileSettings() {
 
               {/* Remote Preference */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Work Location Preference
                 </label>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -714,7 +714,7 @@ export function ProfileSettings() {
                       className={`px-3 py-2 rounded-lg border transition-colors ${
                         profile.careerPreferences?.remotePreference === value
                           ? 'bg-blue-50 dark:bg-blue-900/30 border-blue-500 text-blue-700 dark:text-blue-400'
-                          : 'border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400'
+                          : 'border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400'
                       }`}
                     >
                       {icon} {label}
@@ -725,7 +725,7 @@ export function ProfileSettings() {
 
               {/* Preferred Locations */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Preferred Locations
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -743,7 +743,7 @@ export function ProfileSettings() {
                       className={`px-3 py-1.5 text-sm rounded-lg border transition-colors ${
                         profile.careerPreferences?.preferredLocations?.includes(region)
                           ? 'bg-blue-50 dark:bg-blue-900/30 border-blue-500 text-blue-700 dark:text-blue-400'
-                          : 'border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400'
+                          : 'border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400'
                       }`}
                     >
                       {region}
@@ -754,7 +754,7 @@ export function ProfileSettings() {
 
               {/* Industries */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Preferred Industries
                 </label>
                 <div className="grid grid-cols-2 gap-2">
@@ -772,7 +772,7 @@ export function ProfileSettings() {
                       className={`px-3 py-2 text-sm rounded-lg border text-left transition-colors ${
                         profile.careerPreferences?.industries?.includes(industry)
                           ? 'bg-blue-50 dark:bg-blue-900/30 border-blue-500 text-blue-700 dark:text-blue-400'
-                          : 'border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400'
+                          : 'border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400'
                       }`}
                     >
                       {industry}
@@ -786,17 +786,17 @@ export function ProfileSettings() {
           {/* Privacy Tab */}
           {activeTab === 'privacy' && (
             <div className="space-y-6">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Privacy Settings</h2>
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Privacy Settings</h2>
 
               {/* Profile Visibility */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Profile Visibility
                 </label>
                 <select
                   value={profile.privacy.profileVisibility}
                   onChange={(e) => updateNestedProfile('privacy.profileVisibility', e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                 >
                   <option value="public">Public - Anyone can view your profile</option>
                   <option value="connections">Connections Only - Only your connections</option>
@@ -804,7 +804,7 @@ export function ProfileSettings() {
                 </select>
               </div>
 
-              <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+              <div className="border-t border-slate-200 dark:border-slate-700 pt-4">
                 <Toggle
                   checked={profile.privacy.showEmail}
                   onChange={(checked) => updateNestedProfile('privacy.showEmail', checked)}
@@ -833,13 +833,13 @@ export function ProfileSettings() {
 
               {/* Messaging */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Who can message you
                 </label>
                 <select
                   value={profile.privacy.allowMessages}
                   onChange={(e) => updateNestedProfile('privacy.allowMessages', e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                 >
                   <option value="everyone">Everyone</option>
                   <option value="connections">Connections only</option>
@@ -852,12 +852,12 @@ export function ProfileSettings() {
           {/* Notifications Tab */}
           {activeTab === 'notifications' && (
             <div className="space-y-6">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Notification Preferences</h2>
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Notification Preferences</h2>
 
               {/* Email Notifications */}
               <div>
-                <h3 className="font-medium text-gray-900 dark:text-white mb-3">Email Notifications</h3>
-                <div className="border border-gray-200 dark:border-gray-700 rounded-lg divide-y divide-gray-200 dark:divide-gray-700">
+                <h3 className="font-medium text-slate-900 dark:text-white mb-3">Email Notifications</h3>
+                <div className="border border-slate-200 dark:border-slate-700 rounded-lg divide-y divide-gray-200 dark:divide-gray-700">
                   <div className="p-4">
                     <Toggle
                       checked={profile.notifications.email.jobAlerts}
@@ -903,8 +903,8 @@ export function ProfileSettings() {
 
               {/* Push Notifications */}
               <div>
-                <h3 className="font-medium text-gray-900 dark:text-white mb-3">Push Notifications</h3>
-                <div className="border border-gray-200 dark:border-gray-700 rounded-lg divide-y divide-gray-200 dark:divide-gray-700">
+                <h3 className="font-medium text-slate-900 dark:text-white mb-3">Push Notifications</h3>
+                <div className="border border-slate-200 dark:border-slate-700 rounded-lg divide-y divide-gray-200 dark:divide-gray-700">
                   <div className="p-4">
                     <Toggle
                       checked={profile.notifications.push.messages}
@@ -937,43 +937,43 @@ export function ProfileSettings() {
           {/* Security Tab */}
           {activeTab === 'security' && (
             <div className="space-y-6">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Security Settings</h2>
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Security Settings</h2>
 
               {/* Change Password */}
-              <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
-                <h3 className="font-medium text-gray-900 dark:text-white mb-4">Change Password</h3>
+              <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-6">
+                <h3 className="font-medium text-slate-900 dark:text-white mb-4">Change Password</h3>
                 <div className="space-y-4 max-w-md">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                       Current Password
                     </label>
                     <input
                       type="password"
                       value={passwordData.currentPassword}
                       onChange={(e) => setPasswordData(prev => ({ ...prev, currentPassword: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                       New Password
                     </label>
                     <input
                       type="password"
                       value={passwordData.newPassword}
                       onChange={(e) => setPasswordData(prev => ({ ...prev, newPassword: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                       Confirm New Password
                     </label>
                     <input
                       type="password"
                       value={passwordData.confirmPassword}
                       onChange={(e) => setPasswordData(prev => ({ ...prev, confirmPassword: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                     />
                   </div>
                   <Button onClick={handlePasswordChange}>
@@ -983,11 +983,11 @@ export function ProfileSettings() {
               </div>
 
               {/* Two-Factor Authentication */}
-              <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
+              <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-medium text-gray-900 dark:text-white">Two-Factor Authentication</h3>
-                    <p className="text-sm text-gray-500 mt-1">
+                    <h3 className="font-medium text-slate-900 dark:text-white">Two-Factor Authentication</h3>
+                    <p className="text-sm text-slate-500 mt-1">
                       Add an extra layer of security to your account
                     </p>
                   </div>
@@ -1017,7 +1017,7 @@ export function ProfileSettings() {
           )}
 
           {/* Save Button */}
-          <div className="flex justify-end mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex justify-end mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
             <Button onClick={handleSave} disabled={isSaving}>
               {isSaving ? 'Saving...' : 'Save Changes'}
             </Button>

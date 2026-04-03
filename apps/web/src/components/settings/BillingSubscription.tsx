@@ -163,7 +163,7 @@ function PlanCard({
           ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
           : plan.popular
           ? 'border-purple-500'
-          : 'border-gray-200 dark:border-gray-700'
+          : 'border-slate-200 dark:border-slate-700'
       }`}
     >
       {plan.popular && (
@@ -172,21 +172,21 @@ function PlanCard({
         </span>
       )}
 
-      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{plan.name}</h3>
-      <p className="text-sm text-gray-500 mb-4">{plan.description}</p>
+      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{plan.name}</h3>
+      <p className="text-sm text-slate-500 mb-4">{plan.description}</p>
 
       <div className="mb-6">
-        <span className="text-4xl font-bold text-gray-900 dark:text-white">
+        <span className="text-4xl font-bold text-slate-900 dark:text-white">
           ${plan.price}
         </span>
-        <span className="text-gray-500">/{plan.interval}</span>
+        <span className="text-slate-500">/{plan.interval}</span>
       </div>
 
       <ul className="space-y-3 mb-6">
         {plan.features.map((feature, idx) => (
           <li key={idx} className="flex items-start gap-2">
             <span className="text-green-500">✓</span>
-            <span className="text-sm text-gray-600 dark:text-gray-400">{feature}</span>
+            <span className="text-sm text-slate-600 dark:text-slate-400">{feature}</span>
           </li>
         ))}
       </ul>
@@ -217,7 +217,7 @@ function CurrentSubscription({
     active: 'bg-green-100 text-green-700',
     trialing: 'bg-blue-100 text-blue-700',
     past_due: 'bg-red-100 text-red-700',
-    cancelled: 'bg-gray-100 text-gray-700',
+    cancelled: 'bg-slate-100 text-slate-700',
   };
 
   const planNames = {
@@ -227,10 +227,10 @@ function CurrentSubscription({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex items-start justify-between mb-4">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
             {planNames[subscription.plan]} Plan
           </h3>
           <span className={`inline-block px-2 py-1 rounded text-xs font-medium mt-1 ${statusColors[subscription.status]}`}>
@@ -242,7 +242,7 @@ function CurrentSubscription({
         </span>
       </div>
 
-      <div className="space-y-2 text-sm text-gray-600 dark:text-gray-400 mb-4">
+      <div className="space-y-2 text-sm text-slate-600 dark:text-slate-400 mb-4">
         <p>
           Current period: {new Date(subscription.currentPeriodStart).toLocaleDateString('en-AU')} -{' '}
           {new Date(subscription.currentPeriodEnd).toLocaleDateString('en-AU')}
@@ -296,16 +296,16 @@ function PaymentMethods({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Payment Methods</h3>
+        <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Payment Methods</h3>
         <Button variant="outline" size="sm" onClick={onAdd}>
           + Add Method
         </Button>
       </div>
 
       {methods.length === 0 ? (
-        <p className="text-gray-500 text-center py-4">No payment methods added</p>
+        <p className="text-slate-500 text-center py-4">No payment methods added</p>
       ) : (
         <div className="space-y-3">
           {methods.map((method) => (
@@ -316,11 +316,11 @@ function PaymentMethods({
               <div className="flex items-center gap-3">
                 <span className="text-2xl">{brandIcons[method.brand || method.type]}</span>
                 <div>
-                  <p className="font-medium text-gray-900 dark:text-white">
+                  <p className="font-medium text-slate-900 dark:text-white">
                     {method.brand ? method.brand.toUpperCase() : 'Bank Account'} ••••{method.last4}
                   </p>
                   {method.expiryMonth && (
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-slate-500">
                       Expires {method.expiryMonth.toString().padStart(2, '0')}/{method.expiryYear}
                     </p>
                   )}
@@ -364,16 +364,16 @@ function BillingHistory({ invoices }: { invoices: Invoice[] }) {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Billing History</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Billing History</h3>
 
       {invoices.length === 0 ? (
-        <p className="text-gray-500 text-center py-4">No invoices yet</p>
+        <p className="text-slate-500 text-center py-4">No invoices yet</p>
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="text-left text-sm text-gray-500 border-b">
+              <tr className="text-left text-sm text-slate-500 border-b">
                 <th className="pb-3">Invoice</th>
                 <th className="pb-3">Date</th>
                 <th className="pb-3">Amount</th>
@@ -384,11 +384,11 @@ function BillingHistory({ invoices }: { invoices: Invoice[] }) {
             <tbody>
               {invoices.map((invoice) => (
                 <tr key={invoice.id} className="border-b last:border-0">
-                  <td className="py-3 text-gray-900 dark:text-white">{invoice.number}</td>
-                  <td className="py-3 text-gray-600 dark:text-gray-400">
+                  <td className="py-3 text-slate-900 dark:text-white">{invoice.number}</td>
+                  <td className="py-3 text-slate-600 dark:text-slate-400">
                     {new Date(invoice.date).toLocaleDateString('en-AU')}
                   </td>
-                  <td className="py-3 text-gray-900 dark:text-white">
+                  <td className="py-3 text-slate-900 dark:text-white">
                     ${invoice.amount.toFixed(2)}
                   </td>
                   <td className={`py-3 capitalize ${statusColors[invoice.status]}`}>
@@ -424,8 +424,8 @@ function UsageOverview({ usage }: { usage: UsageStats }) {
   ];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Usage This Month</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Usage This Month</h3>
 
       <div className="grid md:grid-cols-2 gap-4">
         {categories.map((cat) => {
@@ -433,18 +433,18 @@ function UsageOverview({ usage }: { usage: UsageStats }) {
           const percentage = (data.used / data.limit) * 100;
 
           return (
-            <div key={cat.key} className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+            <div key={cat.key} className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
               <div className="flex items-center justify-between mb-2">
                 <span className="flex items-center gap-2">
                   <span>{cat.icon}</span>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">{cat.label}</span>
+                  <span className="text-sm text-slate-600 dark:text-slate-400">{cat.label}</span>
                 </span>
-                <span className="text-sm font-medium text-gray-900 dark:text-white">
+                <span className="text-sm font-medium text-slate-900 dark:text-white">
                   {data.used} / {data.limit === -1 ? '∞' : data.limit}
                 </span>
               </div>
               {data.limit !== -1 && (
-                <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div className="h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
                   <div
                     className={`h-full rounded-full ${
                       percentage > 90 ? 'bg-red-500' : percentage > 70 ? 'bg-yellow-500' : 'bg-blue-500'
@@ -486,35 +486,35 @@ function AddPaymentModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-6">
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-md w-full p-6">
+        <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-6">
           Add Payment Method
         </h3>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Cardholder Name
             </label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+              className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
               placeholder="Name on card"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Card Number
             </label>
             <input
               type="text"
               value={cardNumber}
               onChange={(e) => setCardNumber(e.target.value.replace(/\D/g, '').slice(0, 16))}
-              className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+              className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
               placeholder="1234 5678 9012 3456"
               required
             />
@@ -522,27 +522,27 @@ function AddPaymentModal({
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Expiry Date
               </label>
               <input
                 type="text"
                 value={expiry}
                 onChange={(e) => setExpiry(e.target.value)}
-                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                 placeholder="MM/YY"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 CVC
               </label>
               <input
                 type="text"
                 value={cvc}
                 onChange={(e) => setCvc(e.target.value.replace(/\D/g, '').slice(0, 4))}
-                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                 placeholder="123"
                 required
               />
@@ -579,22 +579,22 @@ function CancelModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-6">
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-md w-full p-6">
+        <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
           Cancel Subscription
         </h3>
-        <p className="text-gray-500 mb-6">
+        <p className="text-slate-500 mb-6">
           We're sorry to see you go. Your subscription will remain active until the end of the current billing period.
         </p>
 
         <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
             Tell us why you're leaving (optional)
           </label>
           <textarea
             value={reason}
             onChange={(e) => setReason(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+            className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
             rows={3}
             placeholder="Your feedback helps us improve..."
           />
@@ -719,8 +719,8 @@ export function BillingSubscription() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Billing & Subscription</h1>
-      <p className="text-gray-500 mb-8">Manage your subscription and payment details</p>
+      <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Billing & Subscription</h1>
+      <p className="text-slate-500 mb-8">Manage your subscription and payment details</p>
 
       {/* Tabs */}
       <div className="flex gap-2 mb-8 overflow-x-auto">
@@ -736,7 +736,7 @@ export function BillingSubscription() {
             className={`px-4 py-2 rounded-lg whitespace-nowrap ${
               activeTab === tab.key
                 ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30'
-                : 'text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800'
+                : 'text-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
           >
             {tab.icon} {tab.label}

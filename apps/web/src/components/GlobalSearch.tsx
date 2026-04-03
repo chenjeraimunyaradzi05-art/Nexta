@@ -199,13 +199,13 @@ function SearchResultCard({ result, onClick }: { result: SearchResult; onClick: 
   return (
     <div
       onClick={onClick}
-      className="p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl
+      className="p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl
         hover:shadow-md hover:border-blue-300 dark:hover:border-blue-600 cursor-pointer transition-all"
     >
       <div className="flex gap-4">
         {/* Image */}
         {result.imageUrl && (
-          <div className="w-16 h-16 rounded-lg bg-gray-100 dark:bg-gray-700 overflow-hidden flex-shrink-0">
+          <div className="w-16 h-16 rounded-lg bg-slate-100 dark:bg-slate-700 overflow-hidden flex-shrink-0">
             <OptimizedImage src={toCloudinaryAutoUrl(result.imageUrl)} alt={result.title || ''} width={64} height={64} className="w-full h-full object-cover" />
           </div>
         )}
@@ -220,20 +220,20 @@ function SearchResultCard({ result, onClick }: { result: SearchResult; onClick: 
           </span>
           
           {/* Title */}
-          <h3 className="mt-1 font-semibold text-gray-900 dark:text-white truncate">
+          <h3 className="mt-1 font-semibold text-slate-900 dark:text-white truncate">
             {result.title}
           </h3>
           
           {/* Description */}
           {result.description && (
-            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">
+            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
               {result.description}
             </p>
           )}
           
           {/* Highlights */}
           {result.highlights && result.highlights.length > 0 && (
-            <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+            <div className="mt-2 text-xs text-slate-500 dark:text-slate-400">
               <span className="font-medium">Matches:</span>
               {' '}
               <span 
@@ -255,7 +255,7 @@ function SearchResultCard({ result, onClick }: { result: SearchResult; onClick: 
               {Object.entries(result.metadata).slice(0, 3).map(([key, value]) => (
                 <span 
                   key={key}
-                  className="text-xs text-gray-400 dark:text-gray-500"
+                  className="text-xs text-slate-400 dark:text-slate-500"
                 >
                   {value}
                 </span>
@@ -294,14 +294,14 @@ function FacetFilter({
   };
 
   return (
-    <div className="border-b border-gray-200 dark:border-gray-700 pb-4 mb-4 last:border-0 last:pb-0 last:mb-0">
+    <div className="border-b border-slate-200 dark:border-slate-700 pb-4 mb-4 last:border-0 last:pb-0 last:mb-0">
       <button
         onClick={() => setExpanded(!expanded)}
         className="w-full flex items-center justify-between text-left"
       >
-        <span className="font-medium text-gray-900 dark:text-white">{facet.label}</span>
+        <span className="font-medium text-slate-900 dark:text-white">{facet.label}</span>
         <svg 
-          className={`w-4 h-4 text-gray-400 transition-transform ${expanded ? 'rotate-180' : ''}`}
+          className={`w-4 h-4 text-slate-400 transition-transform ${expanded ? 'rotate-180' : ''}`}
           fill="none" 
           viewBox="0 0 24 24" 
           stroke="currentColor"
@@ -321,12 +321,12 @@ function FacetFilter({
                 type="checkbox"
                 checked={selected.includes(option.value)}
                 onChange={() => toggleValue(option.value)}
-                className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
               />
-              <span className="flex-1 text-sm text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+              <span className="flex-1 text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white">
                 {option.label}
               </span>
-              <span className="text-xs text-gray-400">{option.count}</span>
+              <span className="text-xs text-slate-400">{option.count}</span>
             </label>
           ))}
           
@@ -358,12 +358,12 @@ function SuggestionDropdown({
 }) {
   const suggestionTypeIcons: Record<string, React.ReactNode> = {
     query: (
-      <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
       </svg>
     ),
     recent: (
-      <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
@@ -380,17 +380,17 @@ function SuggestionDropdown({
   };
 
   return (
-    <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 
-      dark:border-gray-700 shadow-xl overflow-hidden z-50">
+    <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 
+      dark:border-slate-700 shadow-xl overflow-hidden z-50">
       {suggestions.map((suggestion, index) => (
         <button
           key={`${suggestion.type}-${suggestion.text}`}
           onClick={() => onSelect(suggestion)}
-          className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gray-50 dark:hover:bg-gray-750
-            ${index === highlightIndex ? 'bg-gray-50 dark:bg-gray-750' : ''}`}
+          className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-slate-50 dark:hover:bg-slate-750
+            ${index === highlightIndex ? 'bg-slate-50 dark:bg-slate-750' : ''}`}
         >
           {suggestionTypeIcons[suggestion.type]}
-          <span className="text-gray-900 dark:text-white">{suggestion.text}</span>
+          <span className="text-slate-900 dark:text-white">{suggestion.text}</span>
           {suggestion.type === 'trending' && (
             <span className="ml-auto text-xs text-orange-500 font-medium">Trending</span>
           )}
@@ -571,8 +571,8 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
       {/* Header */}
       {!embedded && (
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Search</h1>
-          <p className="mt-2 text-gray-500 dark:text-gray-400">
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Search</h1>
+          <p className="mt-2 text-slate-500 dark:text-slate-400">
             Find jobs, courses, mentors, and more
           </p>
         </div>
@@ -595,12 +595,12 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
               onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
               onKeyDown={handleKeyDown}
               placeholder="Search for jobs, courses, mentors..."
-              className="w-full px-4 py-3 pl-12 border border-gray-200 dark:border-gray-700 rounded-xl
-                bg-white dark:bg-gray-800 text-gray-900 dark:text-white
+              className="w-full px-4 py-3 pl-12 border border-slate-200 dark:border-slate-700 rounded-xl
+                bg-white dark:bg-slate-800 text-slate-900 dark:text-white
                 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
             <svg 
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"
               fill="none" 
               viewBox="0 0 24 24" 
               stroke="currentColor"
@@ -639,7 +639,7 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
             className={`px-3 py-1.5 text-sm rounded-full transition-colors ${
               !selectedType
                 ? 'bg-blue-500 text-white'
-                : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200'
+                : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
             }`}
           >
             All
@@ -651,7 +651,7 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
               className={`px-3 py-1.5 text-sm rounded-full flex items-center gap-1.5 transition-colors ${
                 selectedType === type
                   ? 'bg-blue-500 text-white'
-                  : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200'
+                  : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
               }`}
             >
               {config.icon}
@@ -666,9 +666,9 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Filters sidebar */}
           <div className="lg:col-span-1">
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 sticky top-4">
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 sticky top-4">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold text-gray-900 dark:text-white">Filters</h3>
+                <h3 className="font-semibold text-slate-900 dark:text-white">Filters</h3>
                 {activeFilterCount > 0 && (
                   <button
                     onClick={clearFilters}
@@ -689,7 +689,7 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
               ))}
               
               {facets.length === 0 && (
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <p className="text-sm text-slate-500 dark:text-slate-400">
                   No filters available
                 </p>
               )}
@@ -700,7 +700,7 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
           <div className="lg:col-span-3">
             {/* Results header */}
             <div className="flex items-center justify-between mb-4">
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-slate-600 dark:text-slate-400">
                 {total} result{total !== 1 ? 's' : ''} for "{query}"
               </p>
               {user && query && (
@@ -720,7 +720,7 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
             {isLoading ? (
               <div className="space-y-4">
                 {[...Array(3)].map((_, i) => (
-                  <div key={i} className="animate-pulse bg-gray-100 dark:bg-gray-700 rounded-xl h-32" />
+                  <div key={i} className="animate-pulse bg-slate-100 dark:bg-slate-700 rounded-xl h-32" />
                 ))}
               </div>
             ) : results.length > 0 ? (
@@ -741,17 +741,17 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
                     <button
                       onClick={() => { setPage(p => p - 1); executeSearch(false); }}
                       disabled={page === 1}
-                      className="px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 disabled:opacity-50"
+                      className="px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-700 disabled:opacity-50"
                     >
                       Previous
                     </button>
-                    <span className="text-gray-600 dark:text-gray-400">
+                    <span className="text-slate-600 dark:text-slate-400">
                       Page {page} of {totalPages}
                     </span>
                     <button
                       onClick={() => { setPage(p => p + 1); executeSearch(false); }}
                       disabled={page === totalPages}
-                      className="px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 disabled:opacity-50"
+                      className="px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-700 disabled:opacity-50"
                     >
                       Next
                     </button>
@@ -761,10 +761,10 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
             ) : (
               <div className="text-center py-16">
                 <div className="text-6xl mb-4">🔍</div>
-                <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+                <h3 className="text-lg font-medium text-slate-900 dark:text-white">
                   No results found
                 </h3>
-                <p className="mt-2 text-gray-500 dark:text-gray-400">
+                <p className="mt-2 text-slate-500 dark:text-slate-400">
                   Try adjusting your search or filters
                 </p>
               </div>
@@ -776,8 +776,8 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Recent searches */}
           {recentSearches.length > 0 && (
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Recent Searches</h3>
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+              <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Recent Searches</h3>
               <div className="space-y-2">
                 {recentSearches.map((search, index) => (
                   <button
@@ -786,12 +786,12 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
                       setQuery(search);
                       setTimeout(() => executeSearch(true), 100);
                     }}
-                    className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-750 text-left"
+                    className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-750 text-left"
                   >
-                    <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span className="text-gray-700 dark:text-gray-300">{search}</span>
+                    <span className="text-slate-700 dark:text-slate-300">{search}</span>
                   </button>
                 ))}
               </div>
@@ -799,8 +799,8 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
           )}
           
           {/* Popular categories */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Popular Categories</h3>
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Popular Categories</h3>
             <div className="flex flex-wrap gap-2">
               {['Engineering', 'Healthcare', 'Education', 'Arts & Culture', 'Business', 'Technology'].map((cat) => (
                 <button
@@ -809,7 +809,7 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
                     setQuery(cat);
                     setTimeout(() => executeSearch(true), 100);
                   }}
-                  className="px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300
+                  className="px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300
                     hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-600 dark:hover:text-blue-400"
                 >
                   {cat}
@@ -823,12 +823,12 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
       {/* Saved Searches Modal */}
       {showSavedSearches && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-gray-800 rounded-xl max-w-lg w-full mx-4 max-h-[80vh] overflow-hidden">
-            <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-              <h3 className="font-semibold text-gray-900 dark:text-white">Saved Searches</h3>
+          <div className="bg-white dark:bg-slate-800 rounded-xl max-w-lg w-full mx-4 max-h-[80vh] overflow-hidden">
+            <div className="p-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+              <h3 className="font-semibold text-slate-900 dark:text-white">Saved Searches</h3>
               <button 
                 onClick={() => setShowSavedSearches(false)}
-                className="text-gray-400 hover:text-gray-600"
+                className="text-slate-400 hover:text-slate-600"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -841,14 +841,14 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
                   {savedSearches.map((saved) => (
                     <div 
                       key={saved.id}
-                      className="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-gray-750"
+                      className="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-slate-750"
                     >
                       <button 
                         onClick={() => loadSavedSearch(saved)}
                         className="flex-1 text-left"
                       >
-                        <p className="font-medium text-gray-900 dark:text-white">{saved.query}</p>
-                        <p className="text-xs text-gray-500">
+                        <p className="font-medium text-slate-900 dark:text-white">{saved.query}</p>
+                        <p className="text-xs text-slate-500">
                           {new Date(saved.createdAt).toLocaleDateString()}
                         </p>
                       </button>
@@ -857,7 +857,7 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
                           await searchApi.deleteSavedSearch(saved.id);
                           setSavedSearches(prev => prev.filter(s => s.id !== saved.id));
                         }}
-                        className="p-1 text-gray-400 hover:text-red-500"
+                        className="p-1 text-slate-400 hover:text-red-500"
                       >
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -867,7 +867,7 @@ export function GlobalSearch({ embedded = false }: { embedded?: boolean }) {
                   ))}
                 </div>
               ) : (
-                <p className="text-center text-gray-500 py-8">
+                <p className="text-center text-slate-500 py-8">
                   No saved searches yet
                 </p>
               )}
@@ -898,12 +898,12 @@ export function SearchBar() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search..."
-        className="w-64 px-4 py-2 pl-10 text-sm border border-gray-200 dark:border-gray-700 rounded-full
-          bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white
-          focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white dark:focus:bg-gray-700"
+        className="w-64 px-4 py-2 pl-10 text-sm border border-slate-200 dark:border-slate-700 rounded-full
+          bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white
+          focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white dark:focus:bg-slate-700"
       />
       <svg 
-        className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
+        className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
         fill="none" 
         viewBox="0 0 24 24" 
         stroke="currentColor"

@@ -184,7 +184,7 @@ const accommodationTypes: { value: AccommodationType; label: string; icon: strin
 
 // Status configuration
 const statusConfig = {
-  draft: { label: 'Draft', color: 'bg-gray-100 text-gray-700', icon: '📝' },
+  draft: { label: 'Draft', color: 'bg-slate-100 text-slate-700', icon: '📝' },
   submitted: { label: 'Submitted', color: 'bg-blue-100 text-blue-700', icon: '📤' },
   'under-review': { label: 'Under Review', color: 'bg-yellow-100 text-yellow-700', icon: '🔍' },
   approved: { label: 'Approved', color: 'bg-green-100 text-green-700', icon: '✅' },
@@ -194,7 +194,7 @@ const statusConfig = {
 
 // Priority configuration
 const priorityConfig = {
-  low: { label: 'Low', color: 'text-gray-500' },
+  low: { label: 'Low', color: 'text-slate-500' },
   medium: { label: 'Medium', color: 'text-blue-500' },
   high: { label: 'High', color: 'text-orange-500' },
   urgent: { label: 'Urgent', color: 'text-red-500' },
@@ -217,13 +217,13 @@ function AccommodationCard({
   const priority = priorityConfig[accommodation.priority];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex items-start justify-between gap-4 mb-4">
         <div className="flex items-center gap-3">
           <span className="text-2xl">{typeInfo?.icon}</span>
           <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white">{accommodation.title}</h3>
-            <p className="text-sm text-gray-500">{typeInfo?.label}</p>
+            <h3 className="font-semibold text-slate-900 dark:text-white">{accommodation.title}</h3>
+            <p className="text-sm text-slate-500">{typeInfo?.label}</p>
           </div>
         </div>
         <div className="flex flex-col items-end gap-1">
@@ -236,12 +236,12 @@ function AccommodationCard({
         </div>
       </div>
 
-      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
+      <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 line-clamp-2">
         {accommodation.description}
       </p>
 
       {/* Timeline */}
-      <div className="flex items-center gap-4 text-xs text-gray-500 mb-4">
+      <div className="flex items-center gap-4 text-xs text-slate-500 mb-4">
         <span>Requested: {new Date(accommodation.requestedAt).toLocaleDateString('en-AU')}</span>
         {accommodation.approvedAt && (
           <span>Approved: {new Date(accommodation.approvedAt).toLocaleDateString('en-AU')}</span>
@@ -250,9 +250,9 @@ function AccommodationCard({
 
       {/* Employer Info */}
       {accommodation.employer && (
-        <div className="p-3 bg-gray-50 dark:bg-gray-900 rounded-lg mb-4">
-          <p className="text-sm font-medium text-gray-900 dark:text-white">{accommodation.employer.name}</p>
-          <p className="text-xs text-gray-500">{accommodation.employer.contactPerson}</p>
+        <div className="p-3 bg-slate-50 dark:bg-slate-900 rounded-lg mb-4">
+          <p className="text-sm font-medium text-slate-900 dark:text-white">{accommodation.employer.name}</p>
+          <p className="text-xs text-slate-500">{accommodation.employer.contactPerson}</p>
         </div>
       )}
 
@@ -265,7 +265,7 @@ function AccommodationCard({
           </>
         )}
         {accommodation.status === 'submitted' && (
-          <span className="text-sm text-gray-500 flex-1">Awaiting review...</span>
+          <span className="text-sm text-slate-500 flex-1">Awaiting review...</span>
         )}
         {['approved', 'implemented'].includes(accommodation.status) && (
           <span className="text-sm text-green-600 flex-1">✓ Request approved</span>
@@ -273,7 +273,7 @@ function AccommodationCard({
         {accommodation.status === 'draft' && (
           <button
             onClick={onDelete}
-            className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+            className="p-2 text-slate-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -322,13 +322,13 @@ function AccommodationModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700 sticky top-0 bg-white dark:bg-gray-800">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700 sticky top-0 bg-white dark:bg-slate-800">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">
               {accommodation ? 'Edit Request' : 'Request Accommodation'}
             </h2>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+            <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -339,7 +339,7 @@ function AccommodationModal({
         <div className="p-6 space-y-6">
           {/* Accommodation Type */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Accommodation Type *
             </label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -350,17 +350,17 @@ function AccommodationModal({
                   className={`p-3 rounded-lg border-2 transition-colors text-left ${
                     type === accType.value
                       ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                      : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
+                      : 'border-slate-200 dark:border-slate-700 hover:border-slate-300'
                   }`}
                 >
                   <span className="text-2xl">{accType.icon}</span>
-                  <p className="text-sm font-medium text-gray-900 dark:text-white mt-1">{accType.label}</p>
+                  <p className="text-sm font-medium text-slate-900 dark:text-white mt-1">{accType.label}</p>
                 </button>
               ))}
             </div>
             {selectedType && (
-              <div className="mt-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="mt-3 p-3 bg-slate-50 dark:bg-slate-900 rounded-lg">
+                <p className="text-sm text-slate-600 dark:text-slate-400">
                   <strong>Examples:</strong> {selectedType.examples.join(', ')}
                 </p>
               </div>
@@ -369,7 +369,7 @@ function AccommodationModal({
 
           {/* Title */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Request Title *
             </label>
             <input
@@ -377,13 +377,13 @@ function AccommodationModal({
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Brief description of accommodation needed"
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Detailed Description *
             </label>
             <textarea
@@ -391,13 +391,13 @@ function AccommodationModal({
               onChange={(e) => setDescription(e.target.value)}
               rows={4}
               placeholder="Describe the accommodation you need and how it will help you perform your job effectively..."
-              className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-3 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
 
           {/* Priority */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Priority Level
             </label>
             <div className="flex gap-2">
@@ -408,7 +408,7 @@ function AccommodationModal({
                   className={`px-4 py-2 rounded-lg border transition-colors ${
                     priority === key
                       ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                      : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
+                      : 'border-slate-200 dark:border-slate-700 hover:border-slate-300'
                   }`}
                 >
                   <span className={`font-medium ${config.color}`}>{config.label}</span>
@@ -419,7 +419,7 @@ function AccommodationModal({
 
           {/* Employer Information */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Employer Information (Optional)
             </label>
             <div className="space-y-3">
@@ -428,7 +428,7 @@ function AccommodationModal({
                 value={employerName}
                 onChange={(e) => setEmployerName(e.target.value)}
                 placeholder="Company/Organization name"
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               />
               <div className="grid grid-cols-2 gap-3">
                 <input
@@ -436,14 +436,14 @@ function AccommodationModal({
                   value={contactPerson}
                   onChange={(e) => setContactPerson(e.target.value)}
                   placeholder="HR/Manager name"
-                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                 />
                 <input
                   type="email"
                   value={contactEmail}
                   onChange={(e) => setContactEmail(e.target.value)}
                   placeholder="Contact email"
-                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                 />
               </div>
             </div>
@@ -461,7 +461,7 @@ function AccommodationModal({
           </div>
         </div>
 
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex gap-3 sticky bottom-0 bg-white dark:bg-gray-800">
+        <div className="p-6 border-t border-slate-200 dark:border-slate-700 flex gap-3 sticky bottom-0 bg-white dark:bg-slate-800">
           <Button variant="outline" onClick={onClose} className="flex-1">Cancel</Button>
           <Button onClick={handleSave} className="flex-1" disabled={!title || !description}>
             {accommodation ? 'Save Changes' : 'Save as Draft'}
@@ -489,13 +489,13 @@ function ResourceCard({ resource }: { resource: AccommodationResource }) {
       href={resource.url || resource.downloadUrl}
       target={resource.isExternal ? '_blank' : undefined}
       rel={resource.isExternal ? 'noopener noreferrer' : undefined}
-      className="block bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 hover:border-blue-300 transition-colors"
+      className="block bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 hover:border-blue-300 transition-colors"
     >
       <div className="flex items-start gap-3">
         <span className={`p-2 rounded-lg ${config.color}`}>{config.icon}</span>
         <div>
-          <h3 className="font-medium text-gray-900 dark:text-white">{resource.title}</h3>
-          <p className="text-sm text-gray-500 mt-1">{resource.description}</p>
+          <h3 className="font-medium text-slate-900 dark:text-white">{resource.title}</h3>
+          <p className="text-sm text-slate-500 mt-1">{resource.description}</p>
         </div>
       </div>
     </a>
@@ -514,9 +514,9 @@ function ServiceCard({ service }: { service: SupportService }) {
   const config = typeConfig[service.type];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex items-start justify-between mb-3">
-        <h3 className="font-semibold text-gray-900 dark:text-white">{service.name}</h3>
+        <h3 className="font-semibold text-slate-900 dark:text-white">{service.name}</h3>
         <div className="flex gap-2">
           {service.isIndigenousFocused && (
             <span className="text-lg" title="Indigenous-Focused">🪶</span>
@@ -527,14 +527,14 @@ function ServiceCard({ service }: { service: SupportService }) {
         </div>
       </div>
 
-      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{service.description}</p>
+      <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">{service.description}</p>
 
       {/* Services List */}
       <div className="flex flex-wrap gap-1 mb-4">
         {service.services.slice(0, 3).map((s, i) => (
           <span
             key={i}
-            className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded"
+            className="px-2 py-0.5 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 text-xs rounded"
           >
             {s}
           </span>
@@ -544,17 +544,17 @@ function ServiceCard({ service }: { service: SupportService }) {
       {/* Contact */}
       <div className="space-y-2 text-sm">
         {service.contact.phone && (
-          <a href={`tel:${service.contact.phone}`} className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600">
+          <a href={`tel:${service.contact.phone}`} className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-blue-600">
             <span>📞</span> {service.contact.phone}
           </a>
         )}
         {service.contact.email && (
-          <a href={`mailto:${service.contact.email}`} className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600">
+          <a href={`mailto:${service.contact.email}`} className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-blue-600">
             <span>📧</span> {service.contact.email}
           </a>
         )}
         {service.contact.website && (
-          <a href={service.contact.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600">
+          <a href={service.contact.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-blue-600">
             <span>🌐</span> Visit Website
           </a>
         )}
@@ -646,8 +646,8 @@ export function WorkplaceAccommodations() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Workplace Accommodations</h1>
-          <p className="text-gray-500 mt-1">Request and manage workplace accessibility support</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Workplace Accommodations</h1>
+          <p className="text-slate-500 mt-1">Request and manage workplace accessibility support</p>
         </div>
         <Button onClick={() => setShowModal(true)}>
           <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -673,32 +673,32 @@ export function WorkplaceAccommodations() {
 
       {/* Stats */}
       <div className="grid grid-cols-4 gap-4 mb-8">
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
-          <div className="text-2xl font-bold text-gray-900 dark:text-white">{accommodations.length}</div>
-          <div className="text-sm text-gray-500">Total Requests</div>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
+          <div className="text-2xl font-bold text-slate-900 dark:text-white">{accommodations.length}</div>
+          <div className="text-sm text-slate-500">Total Requests</div>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
           <div className="text-2xl font-bold text-yellow-600">
             {accommodations.filter(a => ['submitted', 'under-review'].includes(a.status)).length}
           </div>
-          <div className="text-sm text-gray-500">Pending</div>
+          <div className="text-sm text-slate-500">Pending</div>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
           <div className="text-2xl font-bold text-green-600">
             {accommodations.filter(a => a.status === 'approved').length}
           </div>
-          <div className="text-sm text-gray-500">Approved</div>
+          <div className="text-sm text-slate-500">Approved</div>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
           <div className="text-2xl font-bold text-purple-600">
             {accommodations.filter(a => a.status === 'implemented').length}
           </div>
-          <div className="text-sm text-gray-500">Implemented</div>
+          <div className="text-sm text-slate-500">Implemented</div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-4 mb-6 border-b border-gray-200 dark:border-gray-700">
+      <div className="flex gap-4 mb-6 border-b border-slate-200 dark:border-slate-700">
         {([
           { key: 'requests', label: 'My Requests' },
           { key: 'resources', label: 'Resources' },
@@ -710,7 +710,7 @@ export function WorkplaceAccommodations() {
             className={`px-4 py-3 font-medium border-b-2 transition-colors ${
               activeTab === tab.key
                 ? 'border-blue-500 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700'
+                : 'border-transparent text-slate-500 hover:text-slate-700'
             }`}
           >
             {tab.label}
@@ -733,10 +733,10 @@ export function WorkplaceAccommodations() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+          <div className="text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
             <div className="text-6xl mb-4">♿</div>
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white">No requests yet</h3>
-            <p className="text-gray-500 mt-2 mb-6">Create a request to get workplace accommodations</p>
+            <h3 className="text-lg font-medium text-slate-900 dark:text-white">No requests yet</h3>
+            <p className="text-slate-500 mt-2 mb-6">Create a request to get workplace accommodations</p>
             <Button onClick={() => setShowModal(true)}>New Request</Button>
           </div>
         )

@@ -57,8 +57,8 @@ export default function ForgotPasswordPage() {
       <div className="w-full max-w-md">
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Forgot Password</h1>
-            <p className="text-gray-600 dark:text-gray-400">
+            <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Forgot Password</h1>
+            <p className="text-slate-600 dark:text-slate-400">
               We’ll email you a link to reset your password.
             </p>
           </div>
@@ -86,18 +86,18 @@ export default function ForgotPasswordPage() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Email Address
                 </label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                   <input
                     id="email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                    className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
                     placeholder="you@example.com"
                     autoComplete="email"
                   />
@@ -122,7 +122,7 @@ export default function ForgotPasswordPage() {
                 )}
               </button>
 
-              <p className="text-center text-gray-600 dark:text-gray-400">
+              <p className="text-center text-slate-600 dark:text-slate-400">
                 Remembered your password?{' '}
                 <Link href="/signin" className="text-purple-600 hover:text-purple-700 dark:text-purple-400 font-semibold">
                   Sign in

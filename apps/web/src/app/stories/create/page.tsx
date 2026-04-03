@@ -126,10 +126,10 @@ export default function CreateStoryPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gray-900 text-white">
+        <div className="min-h-screen bg-slate-900 text-white">
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-800">
-                <button onClick={() => router.back()} className="text-gray-400 hover:text-white">
+            <div className="flex items-center justify-between p-4 border-b border-slate-800">
+                <button onClick={() => router.back()} className="text-slate-400 hover:text-white">
                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -138,20 +138,20 @@ export default function CreateStoryPage() {
                 <button
                     onClick={handleSubmit}
                     disabled={isSubmitting}
-                    className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-600 px-4 py-2 rounded-lg font-medium transition-colors"
+                    className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-600 px-4 py-2 rounded-lg font-medium transition-colors"
                 >
                     {isSubmitting ? 'Posting...' : 'Share'}
                 </button>
             </div>
 
             {/* Story Type Selector */}
-            <div className="flex gap-4 p-4 border-b border-gray-800">
+            <div className="flex gap-4 p-4 border-b border-slate-800">
                 <button
                     onClick={() => setStoryType('text')}
                     className={`flex-1 py-2 rounded-lg font-medium transition-colors ${
                         storyType === 'text' 
                             ? 'bg-indigo-600 text-white' 
-                            : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                            : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
                     }`}
                 >
                     Text
@@ -164,7 +164,7 @@ export default function CreateStoryPage() {
                     className={`flex-1 py-2 rounded-lg font-medium transition-colors ${
                         storyType === 'image' 
                             ? 'bg-indigo-600 text-white' 
-                            : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                            : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
                     }`}
                 >
                     Photo
@@ -177,7 +177,7 @@ export default function CreateStoryPage() {
                     className={`flex-1 py-2 rounded-lg font-medium transition-colors ${
                         storyType === 'video' 
                             ? 'bg-indigo-600 text-white' 
-                            : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                            : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
                     }`}
                 >
                     Video
@@ -227,13 +227,13 @@ export default function CreateStoryPage() {
                     )
                 ) : (
                     <div 
-                        className="w-full h-full flex flex-col items-center justify-center bg-gray-800 cursor-pointer"
+                        className="w-full h-full flex flex-col items-center justify-center bg-slate-800 cursor-pointer"
                         onClick={() => fileInputRef.current?.click()}
                     >
-                        <svg className="w-16 h-16 text-gray-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-16 h-16 text-slate-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
-                        <p className="text-gray-400">Tap to upload {storyType}</p>
+                        <p className="text-slate-400">Tap to upload {storyType}</p>
                     </div>
                 )}
             </div>
@@ -243,7 +243,7 @@ export default function CreateStoryPage() {
                 <div className="p-4 space-y-4">
                     {/* Background Colors */}
                     <div>
-                        <p className="text-sm text-gray-400 mb-2">Background</p>
+                        <p className="text-sm text-slate-400 mb-2">Background</p>
                         <div className="flex gap-2 overflow-x-auto pb-2">
                             {BACKGROUND_COLORS.map(color => (
                                 <button
@@ -260,7 +260,7 @@ export default function CreateStoryPage() {
 
                     {/* Font Styles */}
                     <div>
-                        <p className="text-sm text-gray-400 mb-2">Font Style</p>
+                        <p className="text-sm text-slate-400 mb-2">Font Style</p>
                         <div className="flex gap-2">
                             {FONT_STYLES.map(style => (
                                 <button
@@ -269,7 +269,7 @@ export default function CreateStoryPage() {
                                     className={`px-4 py-2 rounded-lg ${style.className} ${
                                         fontStyle === style.id 
                                             ? 'bg-indigo-600 text-white' 
-                                            : 'bg-gray-800 text-gray-400'
+                                            : 'bg-slate-800 text-slate-400'
                                     }`}
                                 >
                                     {style.name}
@@ -281,15 +281,15 @@ export default function CreateStoryPage() {
             )}
 
             {/* Visibility Options */}
-            <div className="p-4 border-t border-gray-800">
-                <p className="text-sm text-gray-400 mb-2">Who can see this?</p>
+            <div className="p-4 border-t border-slate-800">
+                <p className="text-sm text-slate-400 mb-2">Who can see this?</p>
                 <div className="flex gap-2">
                     <button
                         onClick={() => setVisibility('public')}
                         className={`flex-1 py-2 rounded-lg text-sm ${
                             visibility === 'public' 
                                 ? 'bg-indigo-600 text-white' 
-                                : 'bg-gray-800 text-gray-400'
+                                : 'bg-slate-800 text-slate-400'
                         }`}
                     >
                         Everyone
@@ -299,7 +299,7 @@ export default function CreateStoryPage() {
                         className={`flex-1 py-2 rounded-lg text-sm ${
                             visibility === 'connections' 
                                 ? 'bg-indigo-600 text-white' 
-                                : 'bg-gray-800 text-gray-400'
+                                : 'bg-slate-800 text-slate-400'
                         }`}
                     >
                         Connections
@@ -309,7 +309,7 @@ export default function CreateStoryPage() {
                         className={`flex-1 py-2 rounded-lg text-sm ${
                             visibility === 'close_friends' 
                                 ? 'bg-indigo-600 text-white' 
-                                : 'bg-gray-800 text-gray-400'
+                                : 'bg-slate-800 text-slate-400'
                         }`}
                     >
                         Close Friends
@@ -319,7 +319,7 @@ export default function CreateStoryPage() {
 
             {/* Info */}
             <div className="p-4 text-center">
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-slate-500">
                     Stories disappear after 24 hours. Save to Highlights to keep them on your profile.
                 </p>
             </div>

@@ -285,7 +285,7 @@ export default function CalendarSettingsPage() {
                     ) : (
                       <button
                         onClick={() => handleConnect('google')}
-                        className="px-4 py-2 bg-white text-gray-800 hover:bg-gray-100 rounded-lg text-sm font-medium flex items-center gap-2"
+                        className="px-4 py-2 bg-white text-slate-800 hover:bg-slate-100 rounded-lg text-sm font-medium flex items-center gap-2"
                       >
                         <ExternalLink className="w-4 h-4" />
                         Connect

@@ -55,7 +55,7 @@ const sizeClasses: Record<ProgressSize, string> = {
   lg: 'h-4',
 };
 
-const trackClasses = 'bg-gray-200 dark:bg-gray-700';
+const trackClasses = 'bg-slate-200 dark:bg-slate-700';
 
 export function Progress({
   value,
@@ -82,11 +82,11 @@ export function Progress({
     <div className={`w-full ${className}`}>
       {showLabel && labelPosition === 'top' && (
         <div className="flex justify-between items-center mb-1">
-          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
             {displayLabel}
           </span>
           {!label && (
-            <span className="text-sm text-gray-500 dark:text-gray-400">
+            <span className="text-sm text-slate-500 dark:text-slate-400">
               {value}/{max}
             </span>
           )}
@@ -122,7 +122,7 @@ export function Progress({
         </div>
         
         {showLabel && labelPosition === 'right' && (
-          <span className="text-sm font-medium text-gray-700 dark:text-gray-300 min-w-[3rem] text-right">
+          <span className="text-sm font-medium text-slate-700 dark:text-slate-300 min-w-[3rem] text-right">
             {displayLabel}
           </span>
         )}
@@ -193,7 +193,7 @@ export function CircularProgress({
           stroke="currentColor"
           strokeWidth={strokeWidth}
           fill="none"
-          className="text-gray-200 dark:text-gray-700"
+          className="text-slate-200 dark:text-slate-700"
         />
         
         {/* Progress circle */}
@@ -214,7 +214,7 @@ export function CircularProgress({
       {showLabel && (
         <div className="absolute inset-0 flex items-center justify-center">
           {label || (
-            <span className={`font-bold text-gray-900 dark:text-white ${size === 'sm' ? 'text-xs' : size === 'md' ? 'text-sm' : 'text-lg'}`}>
+            <span className={`font-bold text-slate-900 dark:text-white ${size === 'sm' ? 'text-xs' : size === 'md' ? 'text-sm' : 'text-lg'}`}>
               {Math.round(percentage)}%
             </span>
           )}
@@ -235,21 +235,21 @@ export function StepProgress({
     default: {
       active: 'bg-blue-500 border-blue-500 text-white',
       complete: 'bg-blue-500 border-blue-500 text-white',
-      pending: 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-400',
+      pending: 'bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 text-slate-400',
       line: 'bg-blue-500',
-      linePending: 'bg-gray-300 dark:bg-gray-600',
+      linePending: 'bg-slate-300 dark:bg-slate-600',
     },
     gold: {
       active: 'bg-[#FFD700] border-[#FFD700] text-black',
       complete: 'bg-[#FFD700] border-[#FFD700] text-black',
-      pending: 'bg-white dark:bg-gray-800 border-[#FFD700]/30 text-[#FFD700]/50',
+      pending: 'bg-white dark:bg-slate-800 border-[#FFD700]/30 text-[#FFD700]/50',
       line: 'bg-[#FFD700]',
       linePending: 'bg-[#FFD700]/20',
     },
     emerald: {
       active: 'bg-[#50C878] border-[#50C878] text-white',
       complete: 'bg-[#50C878] border-[#50C878] text-white',
-      pending: 'bg-white dark:bg-gray-800 border-[#50C878]/30 text-[#50C878]/50',
+      pending: 'bg-white dark:bg-slate-800 border-[#50C878]/30 text-[#50C878]/50',
       line: 'bg-[#50C878]',
       linePending: 'bg-[#50C878]/20',
     },
@@ -289,7 +289,7 @@ export function StepProgress({
                 {labels[i] && (
                   <span className={`
                     mt-2 text-xs font-medium
-                    ${isComplete || isActive ? 'text-gray-900 dark:text-white' : 'text-gray-400'}
+                    ${isComplete || isActive ? 'text-slate-900 dark:text-white' : 'text-slate-400'}
                   `}>
                     {labels[i]}
                   </span>

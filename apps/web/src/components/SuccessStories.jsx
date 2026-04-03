@@ -49,8 +49,8 @@ export default function SuccessStories({ showSubmitForm = false }) {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div>
-                    <h2 className="text-2xl font-bold text-gray-900">Success Stories</h2>
-                    <p className="text-gray-600 mt-1">
+                    <h2 className="text-2xl font-bold text-slate-900">Success Stories</h2>
+                    <p className="text-slate-600 mt-1">
                         Celebrating achievements from our community
                     </p>
                 </div>
@@ -83,11 +83,11 @@ export default function SuccessStories({ showSubmitForm = false }) {
 
             {/* Stories Grid */}
             {stories.length === 0 ? (
-                <div className="text-center py-12 bg-gray-50 rounded-xl">
-                    <svg className="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="text-center py-12 bg-slate-50 rounded-xl">
+                    <svg className="w-16 h-16 text-slate-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                     </svg>
-                    <p className="text-gray-500">No stories published yet.</p>
+                    <p className="text-slate-500">No stories published yet.</p>
                     {showSubmitForm && user && (
                         <button
                             onClick={() => setShowForm(true)}
@@ -115,7 +115,7 @@ function StoryCard({ story }) {
     return (
         <div className="bg-white rounded-xl shadow-sm border overflow-hidden hover:shadow-md transition-shadow">
             {story.imageUrl && (
-                <div className="relative h-48 bg-gray-100">
+                <div className="relative h-48 bg-slate-100">
                     <Image
                         src={story.imageUrl}
                         alt={story.title}
@@ -131,8 +131,8 @@ function StoryCard({ story }) {
                         {story.category}
                     </span>
                 )}
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{story.title}</h3>
-                <p className="text-gray-600 text-sm line-clamp-3">{story.summary}</p>
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">{story.title}</h3>
+                <p className="text-slate-600 text-sm line-clamp-3">{story.summary}</p>
 
                 {/* Author info */}
                 <div className="mt-4 pt-4 border-t flex items-center gap-3">
@@ -142,11 +142,11 @@ function StoryCard({ story }) {
                         </span>
                     </div>
                     <div>
-                        <p className="text-sm font-medium text-gray-900">
+                        <p className="text-sm font-medium text-slate-900">
                             {story.authorName || 'Community Member'}
                         </p>
                         {story.location && (
-                            <p className="text-xs text-gray-500">{story.location}</p>
+                            <p className="text-xs text-slate-500">{story.location}</p>
                         )}
                     </div>
                 </div>
@@ -230,8 +230,8 @@ function StorySubmitForm({ onSuccess }) {
 
     return (
         <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-sm border p-6 space-y-6">
-            <h3 className="text-lg font-semibold text-gray-900">Share Your Success Story</h3>
-            <p className="text-gray-600 text-sm">
+            <h3 className="text-lg font-semibold text-slate-900">Share Your Success Story</h3>
+            <p className="text-slate-600 text-sm">
                 Your story can inspire others in our community. Share your journey!
             </p>
 
@@ -243,7 +243,7 @@ function StorySubmitForm({ onSuccess }) {
 
             <div className="grid md:grid-cols-2 gap-6">
                 <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-slate-700 mb-1">
                         Story Title *
                     </label>
                     <input
@@ -252,20 +252,20 @@ function StorySubmitForm({ onSuccess }) {
                         value={formData.title}
                         onChange={handleChange}
                         required
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                         placeholder="Give your story a title"
                     />
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-slate-700 mb-1">
                         Category
                     </label>
                     <select
                         name="category"
                         value={formData.category}
                         onChange={handleChange}
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                     >
                         <option value="">Select a category</option>
                         {categories.map((cat) => (
@@ -275,7 +275,7 @@ function StorySubmitForm({ onSuccess }) {
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-slate-700 mb-1">
                         Location
                     </label>
                     <input
@@ -283,14 +283,14 @@ function StorySubmitForm({ onSuccess }) {
                         name="location"
                         value={formData.location}
                         onChange={handleChange}
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                         placeholder="e.g., Sydney, NSW"
                     />
                 </div>
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-slate-700 mb-1">
                     Short Summary *
                 </label>
                 <textarea
@@ -300,16 +300,16 @@ function StorySubmitForm({ onSuccess }) {
                     required
                     rows={2}
                     maxLength={280}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="A brief summary of your story (max 280 characters)"
                 />
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-slate-500 mt-1">
                     {formData.summary.length}/280 characters
                 </p>
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-slate-700 mb-1">
                     Your Full Story *
                 </label>
                 <textarea
@@ -318,7 +318,7 @@ function StorySubmitForm({ onSuccess }) {
                     onChange={handleChange}
                     required
                     rows={8}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="Share your journey, challenges, and achievements..."
                 />
             </div>
@@ -332,7 +332,7 @@ function StorySubmitForm({ onSuccess }) {
                     onChange={handleChange}
                     className="mt-1"
                 />
-                <label htmlFor="consentToPublish" className="text-sm text-gray-600">
+                <label htmlFor="consentToPublish" className="text-sm text-slate-600">
                     I consent to having my story published on the Nexta platform. I understand it will
                     be reviewed before publication and may be edited for clarity. I confirm all
                     information is accurate and I have the right to share this story.

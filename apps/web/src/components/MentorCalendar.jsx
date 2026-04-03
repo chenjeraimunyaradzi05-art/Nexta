@@ -108,16 +108,16 @@ export default function MentorCalendar({ mentorId, isOwnCalendar = false }) {
         <div className="bg-white rounded-xl shadow-sm border p-6">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3 className="text-lg font-semibold text-slate-900">
                     {isOwnCalendar ? 'My Availability' : 'Available Times'}
                 </h3>
                 <div className="flex items-center gap-4">
                     {/* View Toggle */}
-                    <div className="flex bg-gray-100 rounded-lg p-1">
+                    <div className="flex bg-slate-100 rounded-lg p-1">
                         <button
                             onClick={() => setView('week')}
                             className={`px-3 py-1 text-sm rounded ${
-                                view === 'week' ? 'bg-white shadow text-gray-900' : 'text-gray-600'
+                                view === 'week' ? 'bg-white shadow text-slate-900' : 'text-slate-600'
                             }`}
                         >
                             Week
@@ -125,7 +125,7 @@ export default function MentorCalendar({ mentorId, isOwnCalendar = false }) {
                         <button
                             onClick={() => setView('month')}
                             className={`px-3 py-1 text-sm rounded ${
-                                view === 'month' ? 'bg-white shadow text-gray-900' : 'text-gray-600'
+                                view === 'month' ? 'bg-white shadow text-slate-900' : 'text-slate-600'
                             }`}
                         >
                             Month
@@ -136,7 +136,7 @@ export default function MentorCalendar({ mentorId, isOwnCalendar = false }) {
                     <div className="flex items-center gap-2">
                         <button
                             onClick={() => navigateWeek(-1)}
-                            className="p-2 hover:bg-gray-100 rounded"
+                            className="p-2 hover:bg-slate-100 rounded"
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -150,7 +150,7 @@ export default function MentorCalendar({ mentorId, isOwnCalendar = false }) {
                         </button>
                         <button
                             onClick={() => navigateWeek(1)}
-                            className="p-2 hover:bg-gray-100 rounded"
+                            className="p-2 hover:bg-slate-100 rounded"
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -179,7 +179,7 @@ export default function MentorCalendar({ mentorId, isOwnCalendar = false }) {
                 {/* Day Headers */}
                 <div className="grid grid-cols-7 gap-1 mb-2">
                     {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-                        <div key={day} className="text-center text-sm font-medium text-gray-500 py-2">
+                        <div key={day} className="text-center text-sm font-medium text-slate-500 py-2">
                             {day}
                         </div>
                     ))}
@@ -199,14 +199,14 @@ export default function MentorCalendar({ mentorId, isOwnCalendar = false }) {
                                 key={idx}
                                 className={`min-h-24 border rounded-lg p-2 ${
                                     isToday ? 'border-primary bg-primary/5' :
-                                    isPast ? 'bg-gray-50' :
-                                    !isCurrentMonth ? 'bg-gray-50/50' : ''
+                                    isPast ? 'bg-slate-50' :
+                                    !isCurrentMonth ? 'bg-slate-50/50' : ''
                                 }`}
                             >
                                 <div className={`text-sm font-medium mb-1 ${
                                     isToday ? 'text-primary' :
-                                    isPast ? 'text-gray-400' :
-                                    !isCurrentMonth ? 'text-gray-400' : 'text-gray-700'
+                                    isPast ? 'text-slate-400' :
+                                    !isCurrentMonth ? 'text-slate-400' : 'text-slate-700'
                                 }`}>
                                     {date.getDate()}
                                 </div>
@@ -223,7 +223,7 @@ export default function MentorCalendar({ mentorId, isOwnCalendar = false }) {
                                         />
                                     ))}
                                     {daySlots.length > 3 && (
-                                        <span className="text-xs text-gray-500">
+                                        <span className="text-xs text-slate-500">
                                             +{daySlots.length - 3} more
                                         </span>
                                     )}
@@ -235,7 +235,7 @@ export default function MentorCalendar({ mentorId, isOwnCalendar = false }) {
             </div>
             
             {/* Legend */}
-            <div className="mt-6 flex items-center gap-6 text-sm text-gray-600">
+            <div className="mt-6 flex items-center gap-6 text-sm text-slate-600">
                 <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded bg-green-500"></div>
                     <span>Available</span>
@@ -245,7 +245,7 @@ export default function MentorCalendar({ mentorId, isOwnCalendar = false }) {
                     <span>Booked</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded bg-gray-300"></div>
+                    <div className="w-3 h-3 rounded bg-slate-300"></div>
                     <span>Unavailable</span>
                 </div>
             </div>
@@ -390,10 +390,10 @@ function AddAvailabilityForm({ onSuccess }) {
     }
     
     return (
-        <form onSubmit={handleSubmit} className="bg-gray-50 rounded-lg p-4 mb-4 space-y-4">
+        <form onSubmit={handleSubmit} className="bg-slate-50 rounded-lg p-4 mb-4 space-y-4">
             <div className="grid grid-cols-3 gap-4">
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Date</label>
                     <input
                         type="date"
                         value={formData.date}
@@ -404,7 +404,7 @@ function AddAvailabilityForm({ onSuccess }) {
                     />
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Start Time</label>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Start Time</label>
                     <input
                         type="time"
                         value={formData.startTime}
@@ -414,7 +414,7 @@ function AddAvailabilityForm({ onSuccess }) {
                     />
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">End Time</label>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">End Time</label>
                     <input
                         type="time"
                         value={formData.endTime}
@@ -460,7 +460,7 @@ function AddAvailabilityForm({ onSuccess }) {
                 <button
                     type="button"
                     onClick={() => setIsOpen(false)}
-                    className="px-4 py-2 border rounded-lg hover:bg-gray-100"
+                    className="px-4 py-2 border rounded-lg hover:bg-slate-100"
                 >
                     Cancel
                 </button>

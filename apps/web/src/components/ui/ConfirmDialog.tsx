@@ -23,8 +23,8 @@ interface ConfirmDialogProps {
 const variantConfig = {
   default: {
     icon: <HelpCircle className="w-6 h-6" />,
-    iconBg: 'bg-gray-100 dark:bg-gray-800',
-    iconColor: 'text-gray-600 dark:text-gray-400',
+    iconBg: 'bg-slate-100 dark:bg-slate-800',
+    iconColor: 'text-slate-600 dark:text-slate-400',
     confirmBg: 'bg-blue-600 hover:bg-blue-700',
     confirmText: 'text-white',
   },
@@ -61,7 +61,7 @@ const variantConfig = {
     iconBg: 'bg-[#FFD700]/20',
     iconColor: 'text-[#FFD700]',
     confirmBg: 'bg-gradient-to-r from-[#FFD700] to-[#50C878] hover:opacity-90',
-    confirmText: 'text-gray-900',
+    confirmText: 'text-slate-900',
   },
 };
 
@@ -152,7 +152,7 @@ export function ConfirmDialog({
           transform transition-all
           ${isCosmic 
             ? 'bg-[#1A0F2E] border border-[#FFD700]/20 shadow-[#FFD700]/5' 
-            : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700'}
+            : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700'}
         `}
       >
         {/* Close button */}
@@ -163,8 +163,8 @@ export function ConfirmDialog({
             absolute top-4 right-4 p-1 rounded-lg transition-colors
             disabled:opacity-50 disabled:cursor-not-allowed
             ${isCosmic 
-              ? 'text-gray-400 hover:text-white hover:bg-white/10' 
-              : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'}
+              ? 'text-slate-400 hover:text-white hover:bg-white/10' 
+              : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'}
           `}
           aria-label="Close dialog"
         >
@@ -186,7 +186,7 @@ export function ConfirmDialog({
           id="confirm-dialog-title"
           className={`
             text-lg font-semibold text-center mb-2
-            ${isCosmic ? 'text-white' : 'text-gray-900 dark:text-white'}
+            ${isCosmic ? 'text-white' : 'text-slate-900 dark:text-white'}
           `}
         >
           {title}
@@ -196,7 +196,7 @@ export function ConfirmDialog({
         <div
           className={`
             text-center mb-6
-            ${isCosmic ? 'text-gray-400' : 'text-gray-600 dark:text-gray-400'}
+            ${isCosmic ? 'text-slate-400' : 'text-slate-600 dark:text-slate-400'}
           `}
         >
           {typeof message === 'string' ? <p>{message}</p> : message}
@@ -213,7 +213,7 @@ export function ConfirmDialog({
               disabled:opacity-50 disabled:cursor-not-allowed
               ${isCosmic 
                 ? 'bg-white/10 text-white hover:bg-white/20' 
-                : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'}
+                : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'}
             `}
           >
             {cancelText}

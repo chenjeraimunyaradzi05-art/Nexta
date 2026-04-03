@@ -121,7 +121,7 @@ function StatCard({
   icon: string;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5">
       <div className="flex items-start justify-between mb-2">
         <span className="text-2xl">{icon}</span>
         {change !== undefined && (
@@ -130,9 +130,9 @@ function StatCard({
           </span>
         )}
       </div>
-      <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{value}</div>
-      <div className="text-sm text-gray-500">{title}</div>
-      {subtitle && <div className="text-xs text-gray-400 mt-1">{subtitle}</div>}
+      <div className="text-2xl font-bold text-slate-900 dark:text-white mb-1">{value}</div>
+      <div className="text-sm text-slate-500">{title}</div>
+      {subtitle && <div className="text-xs text-slate-400 mt-1">{subtitle}</div>}
     </div>
   );
 }
@@ -153,7 +153,7 @@ function ProgressRing({ value, label, color }: { value: number; label: string; c
           stroke="currentColor"
           strokeWidth="8"
           fill="none"
-          className="text-gray-200 dark:text-gray-700"
+          className="text-slate-200 dark:text-slate-700"
         />
         <circle
           cx="50"
@@ -168,8 +168,8 @@ function ProgressRing({ value, label, color }: { value: number; label: string; c
         />
       </svg>
       <div className="text-center -mt-16">
-        <div className="text-2xl font-bold text-gray-900 dark:text-white">{value}%</div>
-        <div className="text-xs text-gray-500">{label}</div>
+        <div className="text-2xl font-bold text-slate-900 dark:text-white">{value}%</div>
+        <div className="text-xs text-slate-500">{label}</div>
       </div>
     </div>
   );
@@ -183,14 +183,14 @@ function SimpleBarChart({ data }: { data: { label: string; value: number }[] }) 
     <div className="space-y-2">
       {data.map((item, idx) => (
         <div key={idx} className="flex items-center gap-3">
-          <span className="text-sm text-gray-500 w-20 truncate">{item.label}</span>
-          <div className="flex-1 bg-gray-100 dark:bg-gray-700 rounded-full h-4 overflow-hidden">
+          <span className="text-sm text-slate-500 w-20 truncate">{item.label}</span>
+          <div className="flex-1 bg-slate-100 dark:bg-slate-700 rounded-full h-4 overflow-hidden">
             <div
               className="h-full bg-blue-500 rounded-full transition-all duration-500"
               style={{ width: `${(item.value / max) * 100}%` }}
             />
           </div>
-          <span className="text-sm font-medium text-gray-900 dark:text-white w-12 text-right">{item.value}</span>
+          <span className="text-sm font-medium text-slate-900 dark:text-white w-12 text-right">{item.value}</span>
         </div>
       ))}
     </div>
@@ -207,8 +207,8 @@ function CareerScoreCard({ score }: { score: UserAnalytics['careerScore'] }) {
   ];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">Career Score</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-6">Career Score</h3>
       
       <div className="flex items-center justify-center mb-8">
         <div className="relative">
@@ -220,7 +220,7 @@ function CareerScoreCard({ score }: { score: UserAnalytics['careerScore'] }) {
               stroke="currentColor"
               strokeWidth="12"
               fill="none"
-              className="text-gray-200 dark:text-gray-700"
+              className="text-slate-200 dark:text-slate-700"
             />
             <circle
               cx="80"
@@ -238,8 +238,8 @@ function CareerScoreCard({ score }: { score: UserAnalytics['careerScore'] }) {
             />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-4xl font-bold text-gray-900 dark:text-white">{score.overall}</span>
-            <span className="text-sm text-gray-500">out of 100</span>
+            <span className="text-4xl font-bold text-slate-900 dark:text-white">{score.overall}</span>
+            <span className="text-sm text-slate-500">out of 100</span>
           </div>
         </div>
       </div>
@@ -251,8 +251,8 @@ function CareerScoreCard({ score }: { score: UserAnalytics['careerScore'] }) {
               className="w-3 h-3 rounded-full"
               style={{ backgroundColor: cat.color }}
             />
-            <span className="text-sm text-gray-600 dark:text-gray-400">{cat.label}</span>
-            <span className="text-sm font-medium text-gray-900 dark:text-white ml-auto">
+            <span className="text-sm text-slate-600 dark:text-slate-400">{cat.label}</span>
+            <span className="text-sm font-medium text-slate-900 dark:text-white ml-auto">
               {score[cat.key as keyof typeof score]}
             </span>
           </div>
@@ -270,15 +270,15 @@ function ProfilePerformance({ analytics }: { analytics: UserAnalytics }) {
   }, [analytics.profileViews?.thisWeek, analytics.searchAppearances?.thisWeek, analytics.profileViews?.total]);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Profile Performance</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Profile Performance</h3>
       
       <div className="space-y-6">
         {/* Profile Views */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-500">Profile Views</span>
-            <span className="text-sm font-medium text-gray-900 dark:text-white">
+            <span className="text-sm text-slate-500">Profile Views</span>
+            <span className="text-sm font-medium text-slate-900 dark:text-white">
               {analytics.profileViews.thisWeek} this week
             </span>
           </div>
@@ -299,13 +299,13 @@ function ProfilePerformance({ analytics }: { analytics: UserAnalytics }) {
         {/* Search Appearances */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-500">Search Appearances</span>
-            <span className="text-sm font-medium text-gray-900 dark:text-white">
+            <span className="text-sm text-slate-500">Search Appearances</span>
+            <span className="text-sm font-medium text-slate-900 dark:text-white">
               {analytics.searchAppearances.thisWeek} this week
             </span>
           </div>
-          <div className="p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
-            <p className="text-xs text-gray-500 mb-2">Top keywords:</p>
+          <div className="p-3 bg-slate-50 dark:bg-slate-900 rounded-lg">
+            <p className="text-xs text-slate-500 mb-2">Top keywords:</p>
             <div className="flex flex-wrap gap-1">
               {analytics.searchAppearances.keywords.slice(0, 5).map((kw) => (
                 <span
@@ -321,7 +321,7 @@ function ProfilePerformance({ analytics }: { analytics: UserAnalytics }) {
 
         {/* Top Viewers */}
         <div>
-          <p className="text-sm text-gray-500 mb-2">Who's viewing your profile</p>
+          <p className="text-sm text-slate-500 mb-2">Who's viewing your profile</p>
           <SimpleBarChart
             data={analytics.profileViews.topViewers.map(v => ({
               label: v.industry,
@@ -337,22 +337,22 @@ function ProfilePerformance({ analytics }: { analytics: UserAnalytics }) {
 // Application Insights
 function ApplicationInsights({ metrics }: { metrics: UserAnalytics['applicationMetrics'] }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Application Insights</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Application Insights</h3>
       
       <div className="grid grid-cols-2 gap-4 mb-6">
-        <div className="text-center p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-          <div className="text-2xl font-bold text-gray-900 dark:text-white">{metrics.responseRate}%</div>
-          <div className="text-sm text-gray-500">Response Rate</div>
+        <div className="text-center p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+          <div className="text-2xl font-bold text-slate-900 dark:text-white">{metrics.responseRate}%</div>
+          <div className="text-sm text-slate-500">Response Rate</div>
         </div>
-        <div className="text-center p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-          <div className="text-2xl font-bold text-gray-900 dark:text-white">{metrics.avgResponseTime}</div>
-          <div className="text-sm text-gray-500">Avg Response</div>
+        <div className="text-center p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+          <div className="text-2xl font-bold text-slate-900 dark:text-white">{metrics.avgResponseTime}</div>
+          <div className="text-sm text-slate-500">Avg Response</div>
         </div>
       </div>
 
       <div>
-        <p className="text-sm text-gray-500 mb-2">Applications by status</p>
+        <p className="text-sm text-slate-500 mb-2">Applications by status</p>
         <div className="space-y-2">
           {metrics.byStatus.map((item) => {
             const colors: Record<string, string> = {
@@ -364,9 +364,9 @@ function ApplicationInsights({ metrics }: { metrics: UserAnalytics['applicationM
             };
             return (
               <div key={item.status} className="flex items-center gap-2">
-                <div className={`w-3 h-3 rounded ${colors[item.status] || 'bg-gray-500'}`} />
-                <span className="text-sm text-gray-600 dark:text-gray-400 capitalize flex-1">{item.status}</span>
-                <span className="text-sm font-medium text-gray-900 dark:text-white">{item.count}</span>
+                <div className={`w-3 h-3 rounded ${colors[item.status] || 'bg-slate-500'}`} />
+                <span className="text-sm text-slate-600 dark:text-slate-400 capitalize flex-1">{item.status}</span>
+                <span className="text-sm font-medium text-slate-900 dark:text-white">{item.count}</span>
               </div>
             );
           })}
@@ -387,8 +387,8 @@ function ActivityFeed({ activities }: { activities: ActivityItem[] }) {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Recent Activity</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Recent Activity</h3>
       
       <div className="space-y-4">
         {activities.map((activity) => (
@@ -397,10 +397,10 @@ function ActivityFeed({ activities }: { activities: ActivityItem[] }) {
               {activity.icon}
             </span>
             <div className="flex-1 min-w-0">
-              <p className="text-sm text-gray-900 dark:text-white">{activity.title}</p>
-              <p className="text-xs text-gray-500">{activity.description}</p>
+              <p className="text-sm text-slate-900 dark:text-white">{activity.title}</p>
+              <p className="text-xs text-slate-500">{activity.description}</p>
             </div>
-            <span className="text-xs text-gray-400 whitespace-nowrap">
+            <span className="text-xs text-slate-400 whitespace-nowrap">
               {new Date(activity.timestamp).toLocaleDateString('en-AU')}
             </span>
           </div>
@@ -413,38 +413,38 @@ function ActivityFeed({ activities }: { activities: ActivityItem[] }) {
 // Engagement Stats
 function EngagementStats({ engagement, content }: { engagement: UserAnalytics['engagement']; content: UserAnalytics['content'] }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Engagement</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Engagement</h3>
       
       <div className="grid grid-cols-2 gap-4">
         <div className="text-center">
           <div className="text-2xl font-bold text-orange-500">🔥 {engagement.streak}</div>
-          <div className="text-sm text-gray-500">Day Streak</div>
+          <div className="text-sm text-slate-500">Day Streak</div>
         </div>
         <div className="text-center">
           <div className="text-2xl font-bold text-blue-500">{engagement.totalLogins}</div>
-          <div className="text-sm text-gray-500">Total Logins</div>
+          <div className="text-sm text-slate-500">Total Logins</div>
         </div>
       </div>
 
-      <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-        <p className="text-sm text-gray-500 mb-3">Content Performance</p>
+      <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-700">
+        <p className="text-sm text-slate-500 mb-3">Content Performance</p>
         <div className="grid grid-cols-4 gap-2">
           <div className="text-center">
-            <div className="text-lg font-medium text-gray-900 dark:text-white">{content.posts}</div>
-            <div className="text-xs text-gray-500">Posts</div>
+            <div className="text-lg font-medium text-slate-900 dark:text-white">{content.posts}</div>
+            <div className="text-xs text-slate-500">Posts</div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-medium text-gray-900 dark:text-white">{content.likes}</div>
-            <div className="text-xs text-gray-500">Likes</div>
+            <div className="text-lg font-medium text-slate-900 dark:text-white">{content.likes}</div>
+            <div className="text-xs text-slate-500">Likes</div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-medium text-gray-900 dark:text-white">{content.comments}</div>
-            <div className="text-xs text-gray-500">Comments</div>
+            <div className="text-lg font-medium text-slate-900 dark:text-white">{content.comments}</div>
+            <div className="text-xs text-slate-500">Comments</div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-medium text-gray-900 dark:text-white">{content.shares}</div>
-            <div className="text-xs text-gray-500">Shares</div>
+            <div className="text-lg font-medium text-slate-900 dark:text-white">{content.shares}</div>
+            <div className="text-xs text-slate-500">Shares</div>
           </div>
         </div>
       </div>
@@ -455,28 +455,28 @@ function EngagementStats({ engagement, content }: { engagement: UserAnalytics['e
 // Learning Progress
 function LearningProgress({ learning }: { learning: UserAnalytics['learning'] }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Learning Journey</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Learning Journey</h3>
       
       <div className="grid grid-cols-2 gap-4">
         <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg text-center">
           <div className="text-2xl font-bold text-green-600">{learning.coursesCompleted}</div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">Courses Completed</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">Courses Completed</div>
         </div>
         <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg text-center">
           <div className="text-2xl font-bold text-purple-600">{learning.certificatesEarned}</div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">Certificates</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">Certificates</div>
         </div>
       </div>
 
-      <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+      <div className="mt-4 p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm text-gray-500">Hours Learned</span>
-          <span className="text-sm font-medium text-gray-900 dark:text-white">{learning.hoursLearned}h</span>
+          <span className="text-sm text-slate-500">Hours Learned</span>
+          <span className="text-sm font-medium text-slate-900 dark:text-white">{learning.hoursLearned}h</span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-sm text-gray-500">Current Streak</span>
-          <span className="text-sm font-medium text-gray-900 dark:text-white">🔥 {learning.currentStreak} days</span>
+          <span className="text-sm text-slate-500">Current Streak</span>
+          <span className="text-sm font-medium text-slate-900 dark:text-white">🔥 {learning.currentStreak} days</span>
         </div>
       </div>
     </div>
@@ -524,8 +524,8 @@ export function UserAnalyticsPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Your Analytics</h1>
-          <p className="text-gray-500 mt-1">Track your profile performance and career progress</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Your Analytics</h1>
+          <p className="text-slate-500 mt-1">Track your profile performance and career progress</p>
         </div>
         <div className="flex gap-2">
           {(['7d', '30d', '90d'] as const).map((range) => (
@@ -535,7 +535,7 @@ export function UserAnalyticsPage() {
               className={`px-4 py-2 rounded-lg text-sm ${
                 dateRange === range
                   ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30'
-                  : 'bg-gray-100 text-gray-600 dark:bg-gray-700'
+                  : 'bg-slate-100 text-slate-600 dark:bg-slate-700'
               }`}
             >
               {range === '7d' ? '7 Days' : range === '30d' ? '30 Days' : '90 Days'}

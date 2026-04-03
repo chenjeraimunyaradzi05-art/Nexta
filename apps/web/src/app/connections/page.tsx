@@ -429,7 +429,7 @@ export default function ConnectionsPage() {
               </Link>
               <div>
                 <h1 className="text-3xl font-bold text-white">My Network</h1>
-                <p className="text-gray-400 text-sm mt-1">Manage your professional connections</p>
+                <p className="text-slate-400 text-sm mt-1">Manage your professional connections</p>
               </div>
             </div>
             <Link
@@ -474,11 +474,11 @@ export default function ConnectionsPage() {
                           : 'rgba(255, 255, 255, 0.1)',
                       }}
                     >
-                      <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-gray-400'}`} />
+                      <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-slate-400'}`} />
                     </div>
                     <div className="text-left">
                       <p className="text-2xl font-bold text-white">{tab.count}</p>
-                      <p className={`text-xs ${isActive ? 'text-pink-300' : 'text-gray-400'}`}>{tab.label}</p>
+                      <p className={`text-xs ${isActive ? 'text-pink-300' : 'text-slate-400'}`}>{tab.label}</p>
                     </div>
                   </div>
                   {isActive && (
@@ -510,13 +510,13 @@ export default function ConnectionsPage() {
           <div className="lg:col-span-2 space-y-6">
             {/* Search Bar */}
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={`Search ${activeTab}...`}
-                className="w-full pl-12 pr-4 py-3.5 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500/50 transition-all"
+                className="w-full pl-12 pr-4 py-3.5 rounded-2xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-pink-500/50 transition-all"
                 style={{
                   background: 'rgba(255, 255, 255, 0.08)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -546,10 +546,10 @@ export default function ConnectionsPage() {
                     <p className="text-white font-medium">
                       {stats.requests} pending request{stats.requests > 1 ? 's' : ''}
                     </p>
-                    <p className="text-gray-400 text-sm">Tap to review</p>
+                    <p className="text-slate-400 text-sm">Tap to review</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-gray-400" />
+                <ChevronRight className="w-5 h-5 text-slate-400" />
               </button>
             )}
 
@@ -563,7 +563,7 @@ export default function ConnectionsPage() {
                     borderTopColor: colors.purple,
                   }}
                 />
-                <p className="text-gray-400 mt-4">Loading your network...</p>
+                <p className="text-slate-400 mt-4">Loading your network...</p>
               </div>
             ) : filteredData.length === 0 ? (
               <div
@@ -583,7 +583,7 @@ export default function ConnectionsPage() {
                 <h3 className="text-xl font-semibold text-white mb-2">
                   {searchQuery ? 'No results found' : `No ${activeTab} yet`}
                 </h3>
-                <p className="text-gray-400 mb-6">
+                <p className="text-slate-400 mb-6">
                   {searchQuery
                     ? 'Try a different search term'
                     : `Start building your network by connecting with others`}
@@ -666,18 +666,18 @@ export default function ConnectionsPage() {
                             )}
                           </div>
                           {person.role && (
-                            <p className="text-gray-300 text-sm truncate flex items-center gap-1">
-                              <Briefcase className="w-3.5 h-3.5 text-gray-500" />
+                            <p className="text-slate-300 text-sm truncate flex items-center gap-1">
+                              <Briefcase className="w-3.5 h-3.5 text-slate-500" />
                               {person.role}
                             </p>
                           )}
                           {person.company && (
-                            <p className="text-gray-400 text-sm truncate flex items-center gap-1">
-                              <Building2 className="w-3.5 h-3.5 text-gray-500" />
+                            <p className="text-slate-400 text-sm truncate flex items-center gap-1">
+                              <Building2 className="w-3.5 h-3.5 text-slate-500" />
                               {person.company}
                             </p>
                           )}
-                          <div className="flex items-center gap-3 mt-1.5 text-xs text-gray-500">
+                          <div className="flex items-center gap-3 mt-1.5 text-xs text-slate-500">
                             {person.location && (
                               <span className="flex items-center gap-1">
                                 <MapPin className="w-3 h-3" />
@@ -705,7 +705,7 @@ export default function ConnectionsPage() {
                             <>
                               <Link
                                 href={`/messages?user=${person.id}`}
-                                className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+                                className="w-10 h-10 rounded-full flex items-center justify-center text-slate-400 hover:text-white transition-colors"
                                 style={{ background: 'rgba(255, 255, 255, 0.1)' }}
                               >
                                 <MessageCircle className="w-5 h-5" />
@@ -713,7 +713,7 @@ export default function ConnectionsPage() {
                               <button
                                 onClick={() => handleRemoveConnection(person.id)}
                                 disabled={isLoading}
-                                className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-white transition-colors opacity-0 group-hover:opacity-100"
+                                className="w-10 h-10 rounded-full flex items-center justify-center text-slate-400 hover:text-white transition-colors opacity-0 group-hover:opacity-100"
                                 style={{ background: 'rgba(255, 255, 255, 0.1)' }}
                               >
                                 <MoreHorizontal className="w-5 h-5" />
@@ -781,7 +781,7 @@ export default function ConnectionsPage() {
                               <button
                                 onClick={() => handleDecline(person.id)}
                                 disabled={isLoading}
-                                className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-red-400 transition-colors"
+                                className="w-10 h-10 rounded-full flex items-center justify-center text-slate-400 hover:text-red-400 transition-colors"
                                 style={{ background: 'rgba(255, 255, 255, 0.1)' }}
                               >
                                 <X className="w-5 h-5" />
@@ -863,9 +863,9 @@ export default function ConnectionsPage() {
                         >
                           {person.name}
                         </Link>
-                        <p className="text-gray-400 text-xs truncate">{person.role}</p>
+                        <p className="text-slate-400 text-xs truncate">{person.role}</p>
                         {person.mutualConnections !== undefined && person.mutualConnections > 0 && (
-                          <p className="text-gray-500 text-xs">{person.mutualConnections} mutual</p>
+                          <p className="text-slate-500 text-xs">{person.mutualConnections} mutual</p>
                         )}
                       </div>
                       <button
@@ -903,7 +903,7 @@ export default function ConnectionsPage() {
                 <Mail className="w-8 h-8 text-pink-400" />
               </div>
               <h3 className="text-lg font-semibold text-white mb-2">Grow Your Network</h3>
-              <p className="text-gray-400 text-sm mb-4">Invite friends and colleagues to join the community</p>
+              <p className="text-slate-400 text-sm mb-4">Invite friends and colleagues to join the community</p>
               <button
                 className="w-full py-3 rounded-xl font-medium text-white transition-all hover:scale-[1.02]"
                 style={{
@@ -932,21 +932,21 @@ export default function ConnectionsPage() {
                 <div className="flex items-center justify-between p-3 rounded-xl" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
                   <div className="flex items-center gap-2">
                     <Globe className="w-4 h-4 text-sky-400" />
-                    <span className="text-gray-300 text-sm">Profile views</span>
+                    <span className="text-slate-300 text-sm">Profile views</span>
                   </div>
                   <span className="text-white font-semibold">47</span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-xl" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
                   <div className="flex items-center gap-2">
                     <Search className="w-4 h-4 text-amber-400" />
-                    <span className="text-gray-300 text-sm">Search appearances</span>
+                    <span className="text-slate-300 text-sm">Search appearances</span>
                   </div>
                   <span className="text-white font-semibold">23</span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-xl" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
                   <div className="flex items-center gap-2">
                     <Award className="w-4 h-4 text-pink-400" />
-                    <span className="text-gray-300 text-sm">Network strength</span>
+                    <span className="text-slate-300 text-sm">Network strength</span>
                   </div>
                   <span className="text-emerald-400 font-semibold">Strong</span>
                 </div>

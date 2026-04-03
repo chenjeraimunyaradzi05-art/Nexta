@@ -188,7 +188,7 @@ export default function CommunityClient({ initialCategories = [], initialTopics 
       <div className={`${spaceGrotesk.className} nexta-page flex items-center justify-center`}>
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4 text-pink-500" />
-          <p className="text-gray-400 font-medium">Loading community...</p>
+          <p className="text-slate-400 font-medium">Loading community...</p>
         </div>
       </div>
     );
@@ -235,7 +235,7 @@ export default function CommunityClient({ initialCategories = [], initialTopics 
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
                 Connect & Share
               </h1>
-              <p className="text-lg text-gray-400 max-w-2xl">
+              <p className="text-lg text-slate-400 max-w-2xl">
                 Join conversations, share experiences, and learn from the Nexta community.
                 Your voice matters here.
               </p>
@@ -256,13 +256,13 @@ export default function CommunityClient({ initialCategories = [], initialTopics 
 
           {/* Search */}
           <div className="relative max-w-2xl">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
             <input
               type="text"
               placeholder="Search discussions..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500/50 transition-all"
+              className="w-full pl-12 pr-4 py-4 rounded-2xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-pink-500/50 transition-all"
               style={{
                 background: 'rgba(255, 255, 255, 0.08)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -324,7 +324,7 @@ export default function CommunityClient({ initialCategories = [], initialTopics 
                     <p className="text-sm text-pink-400 font-medium">{story.role}</p>
                   </div>
                 </div>
-                <p className="text-gray-400 text-sm leading-relaxed italic">
+                <p className="text-slate-400 text-sm leading-relaxed italic">
                   &ldquo;{story.story}&rdquo;
                 </p>
               </div>
@@ -349,11 +349,11 @@ export default function CommunityClient({ initialCategories = [], initialTopics 
                 <h3 className="text-lg font-bold text-white group-hover:text-pink-400 transition-colors">
                   Employer Leaderboard
                 </h3>
-                <p className="text-gray-400 text-sm">
+                <p className="text-slate-400 text-sm">
                   Discover top employers leading Indigenous employment initiatives
                 </p>
               </div>
-              <ArrowRight className="w-5 h-5 text-gray-500 group-hover:text-pink-400 group-hover:translate-x-1 transition-all" />
+              <ArrowRight className="w-5 h-5 text-slate-500 group-hover:text-pink-400 group-hover:translate-x-1 transition-all" />
             </div>
           </Link>
 
@@ -372,11 +372,11 @@ export default function CommunityClient({ initialCategories = [], initialTopics 
                 <h3 className="text-lg font-bold text-white group-hover:text-purple-400 transition-colors">
                   Community Advisory Council
                 </h3>
-                <p className="text-gray-400 text-sm">
+                <p className="text-slate-400 text-sm">
                   Meet our First Nations council members guiding platform decisions
                 </p>
               </div>
-              <ArrowRight className="w-5 h-5 text-gray-500 group-hover:text-purple-400 group-hover:translate-x-1 transition-all" />
+              <ArrowRight className="w-5 h-5 text-slate-500 group-hover:text-purple-400 group-hover:translate-x-1 transition-all" />
             </div>
           </Link>
         </div>
@@ -420,12 +420,12 @@ export default function CommunityClient({ initialCategories = [], initialTopics 
                       <h3 className="font-bold text-white mb-1 group-hover:text-pink-400 transition-colors">
                         {category.name}
                       </h3>
-                      <p className="text-sm text-gray-400 mb-3 line-clamp-2">
+                      <p className="text-sm text-slate-400 mb-3 line-clamp-2">
                         {category.description}
                       </p>
                       <div className="flex items-center gap-4 text-xs font-semibold">
                         <span className="text-pink-400">{category.topicCount} topics</span>
-                        <span className="text-gray-500">{category.postCount} posts</span>
+                        <span className="text-slate-500">{category.postCount} posts</span>
                       </div>
                     </div>
                   </div>
@@ -472,7 +472,7 @@ export default function CommunityClient({ initialCategories = [], initialTopics 
                   <MessageSquare className="w-8 h-8 text-purple-400" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">No discussions found</h3>
-                <p className="text-gray-400 mb-6">Be the first to start a conversation!</p>
+                <p className="text-slate-400 mb-6">Be the first to start a conversation!</p>
                 <Link
                   href="/community/new"
                   className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl font-medium text-white"
@@ -501,12 +501,12 @@ export default function CommunityClient({ initialCategories = [], initialTopics 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         {topic.isPinned && <Pin className="w-4 h-4 text-pink-500" />}
-                        {topic.isLocked && <Lock className="w-4 h-4 text-gray-500" />}
+                        {topic.isLocked && <Lock className="w-4 h-4 text-slate-500" />}
                         <h3 className="font-semibold text-white truncate group-hover:text-pink-400 transition-colors">
                           {topic.title}
                         </h3>
                       </div>
-                      <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500">
+                      <div className="flex flex-wrap items-center gap-2 text-sm text-slate-500">
                         <span
                           className="px-2 py-0.5 rounded-full text-xs font-semibold"
                           style={{ background: 'rgba(139, 92, 246, 0.2)', color: colors.purple }}
@@ -514,7 +514,7 @@ export default function CommunityClient({ initialCategories = [], initialTopics 
                           {topic.categoryName}
                         </span>
                         <span className="flex items-center gap-1">
-                          by <span className="font-medium text-gray-300">{topic.author}</span>
+                          by <span className="font-medium text-slate-300">{topic.author}</span>
                         </span>
                         <span className="flex items-center gap-1">
                           <Clock className="w-3.5 h-3.5" />
@@ -524,19 +524,19 @@ export default function CommunityClient({ initialCategories = [], initialTopics 
                     </div>
 
                     {/* Stats */}
-                    <div className="hidden sm:flex items-center gap-6 text-sm text-gray-500">
+                    <div className="hidden sm:flex items-center gap-6 text-sm text-slate-500">
                       <div className="flex items-center gap-1.5">
                         <MessageSquare className="w-4 h-4" />
-                        <span className="font-medium text-gray-300">{topic.replyCount}</span>
+                        <span className="font-medium text-slate-300">{topic.replyCount}</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <Eye className="w-4 h-4" />
-                        <span className="font-medium text-gray-300">{topic.viewCount}</span>
+                        <span className="font-medium text-slate-300">{topic.viewCount}</span>
                       </div>
                     </div>
 
                     {/* Arrow */}
-                    <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-pink-400 group-hover:translate-x-1 transition-all" />
+                    <ChevronRight className="w-5 h-5 text-slate-500 group-hover:text-pink-400 group-hover:translate-x-1 transition-all" />
                   </Link>
                 ))}
               </div>

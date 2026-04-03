@@ -162,7 +162,7 @@ function StatCard({
   color: string;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5">
       <div className="flex items-center justify-between mb-3">
         <span className={`p-2 rounded-lg ${color}`}>{icon}</span>
         {change !== undefined && (
@@ -171,8 +171,8 @@ function StatCard({
           </span>
         )}
       </div>
-      <div className="text-2xl font-bold text-gray-900 dark:text-white">{value}</div>
-      <div className="text-sm text-gray-500">{title}</div>
+      <div className="text-2xl font-bold text-slate-900 dark:text-white">{value}</div>
+      <div className="text-sm text-slate-500">{title}</div>
     </div>
   );
 }
@@ -195,7 +195,7 @@ function UserTable({
   };
 
   const roleConfig = {
-    candidate: { label: 'Candidate', color: 'bg-gray-100 text-gray-700' },
+    candidate: { label: 'Candidate', color: 'bg-slate-100 text-slate-700' },
     employer: { label: 'Employer', color: 'bg-purple-100 text-purple-700' },
     admin: { label: 'Admin', color: 'bg-red-100 text-red-700' },
     moderator: { label: 'Moderator', color: 'bg-orange-100 text-orange-700' },
@@ -205,31 +205,31 @@ function UserTable({
     <div className="overflow-x-auto">
       <table className="w-full">
         <thead>
-          <tr className="border-b border-gray-200 dark:border-gray-700">
-            <th className="text-left py-3 px-4 text-sm font-medium text-gray-500">User</th>
-            <th className="text-left py-3 px-4 text-sm font-medium text-gray-500">Role</th>
-            <th className="text-left py-3 px-4 text-sm font-medium text-gray-500">Status</th>
-            <th className="text-left py-3 px-4 text-sm font-medium text-gray-500">Last Login</th>
-            <th className="text-left py-3 px-4 text-sm font-medium text-gray-500">Actions</th>
+          <tr className="border-b border-slate-200 dark:border-slate-700">
+            <th className="text-left py-3 px-4 text-sm font-medium text-slate-500">User</th>
+            <th className="text-left py-3 px-4 text-sm font-medium text-slate-500">Role</th>
+            <th className="text-left py-3 px-4 text-sm font-medium text-slate-500">Status</th>
+            <th className="text-left py-3 px-4 text-sm font-medium text-slate-500">Last Login</th>
+            <th className="text-left py-3 px-4 text-sm font-medium text-slate-500">Actions</th>
           </tr>
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr key={user.id} className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900">
+            <tr key={user.id} className="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900">
               <td className="py-3 px-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-400 font-medium">
+                  <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 font-medium">
                     {user.firstName.charAt(0)}{user.lastName.charAt(0)}
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-medium text-gray-900 dark:text-white">
+                      <span className="font-medium text-slate-900 dark:text-white">
                         {user.firstName} {user.lastName}
                       </span>
                       {user.isIndigenous && <span title="Indigenous">🪶</span>}
                       {user.verified && <span className="text-blue-500" title="Verified">✓</span>}
                     </div>
-                    <span className="text-sm text-gray-500">{user.email}</span>
+                    <span className="text-sm text-slate-500">{user.email}</span>
                   </div>
                 </div>
               </td>
@@ -243,7 +243,7 @@ function UserTable({
                   {statusConfig[user.status].label}
                 </span>
               </td>
-              <td className="py-3 px-4 text-sm text-gray-500">
+              <td className="py-3 px-4 text-sm text-slate-500">
                 {new Date(user.lastLoginAt).toLocaleDateString('en-AU')}
               </td>
               <td className="py-3 px-4">
@@ -257,7 +257,7 @@ function UserTable({
                   <select
                     value={user.status}
                     onChange={(e) => onUpdateStatus(user.id, e.target.value as User['status'])}
-                    className="text-sm border border-gray-200 dark:border-gray-600 rounded px-2 py-1 bg-white dark:bg-gray-700"
+                    className="text-sm border border-slate-200 dark:border-slate-600 rounded px-2 py-1 bg-white dark:bg-slate-700"
                   >
                     <option value="active">Active</option>
                     <option value="suspended">Suspend</option>
@@ -282,7 +282,7 @@ function ModerationQueue({
   onModerate: (id: string, action: 'approve' | 'reject' | 'escalate') => void;
 }) {
   const priorityConfig = {
-    low: { color: 'text-gray-500' },
+    low: { color: 'text-slate-500' },
     medium: { color: 'text-blue-500' },
     high: { color: 'text-orange-500' },
     urgent: { color: 'text-red-500' },
@@ -299,7 +299,7 @@ function ModerationQueue({
   return (
     <div className="space-y-3">
       {items.length === 0 ? (
-        <div className="text-center py-8 text-gray-500">
+        <div className="text-center py-8 text-slate-500">
           <span className="text-4xl">✓</span>
           <p className="mt-2">No items pending moderation</p>
         </div>
@@ -307,7 +307,7 @@ function ModerationQueue({
         items.map((item) => (
           <div
             key={item.id}
-            className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4"
+            className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4"
           >
             <div className="flex items-start justify-between gap-4">
               <div className="flex-1">
@@ -316,12 +316,12 @@ function ModerationQueue({
                   <span className={`text-sm font-medium ${priorityConfig[item.priority].color}`}>
                     {item.priority.toUpperCase()}
                   </span>
-                  <span className="text-sm text-gray-500">
+                  <span className="text-sm text-slate-500">
                     {new Date(item.createdAt).toLocaleDateString('en-AU')}
                   </span>
                 </div>
-                <p className="text-gray-900 dark:text-white mb-1">{item.contentPreview}</p>
-                <p className="text-sm text-gray-500">
+                <p className="text-slate-900 dark:text-white mb-1">{item.contentPreview}</p>
+                <p className="text-sm text-slate-500">
                   <strong>Reason:</strong> {item.reason}
                 </p>
               </div>
@@ -373,9 +373,9 @@ function SystemHealthMonitor({ health }: { health: SystemHealth }) {
   const config = statusConfig[health.status];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">System Health</h3>
+        <h3 className="text-lg font-semibold text-slate-900 dark:text-white">System Health</h3>
         <span className={`px-3 py-1 rounded-full text-sm font-medium ${config.color}`}>
           {config.icon} {config.label}
         </span>
@@ -384,20 +384,20 @@ function SystemHealthMonitor({ health }: { health: SystemHealth }) {
       {/* Metrics */}
       <div className="grid grid-cols-4 gap-4 mb-6">
         <div className="text-center">
-          <div className="text-2xl font-bold text-gray-900 dark:text-white">{health.cpuUsage}%</div>
-          <div className="text-sm text-gray-500">CPU</div>
+          <div className="text-2xl font-bold text-slate-900 dark:text-white">{health.cpuUsage}%</div>
+          <div className="text-sm text-slate-500">CPU</div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-bold text-gray-900 dark:text-white">{health.memoryUsage}%</div>
-          <div className="text-sm text-gray-500">Memory</div>
+          <div className="text-2xl font-bold text-slate-900 dark:text-white">{health.memoryUsage}%</div>
+          <div className="text-sm text-slate-500">Memory</div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-bold text-gray-900 dark:text-white">{health.activeConnections}</div>
-          <div className="text-sm text-gray-500">Connections</div>
+          <div className="text-2xl font-bold text-slate-900 dark:text-white">{health.activeConnections}</div>
+          <div className="text-sm text-slate-500">Connections</div>
         </div>
         <div className="text-center">
           <div className="text-2xl font-bold text-red-600">{health.recentErrors}</div>
-          <div className="text-sm text-gray-500">Errors (24h)</div>
+          <div className="text-sm text-slate-500">Errors (24h)</div>
         </div>
       </div>
 
@@ -406,13 +406,13 @@ function SystemHealthMonitor({ health }: { health: SystemHealth }) {
         {health.services.map((service) => (
           <div
             key={service.name}
-            className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 rounded-lg"
+            className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900 rounded-lg"
           >
             <div className="flex items-center gap-3">
               <span className={`w-2 h-2 rounded-full ${serviceStatusConfig[service.status]}`} />
-              <span className="font-medium text-gray-900 dark:text-white">{service.name}</span>
+              <span className="font-medium text-slate-900 dark:text-white">{service.name}</span>
             </div>
-            <div className="flex items-center gap-4 text-sm text-gray-500">
+            <div className="flex items-center gap-4 text-sm text-slate-500">
               <span>{service.latency}ms</span>
               <span>{service.uptime}% uptime</span>
             </div>
@@ -426,25 +426,25 @@ function SystemHealthMonitor({ health }: { health: SystemHealth }) {
 // Activity Log
 function ActivityLogSection({ logs }: { logs: ActivityLog[] }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Recent Activity</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Recent Activity</h3>
       
       <div className="space-y-3">
         {logs.map((log) => (
           <div
             key={log.id}
-            className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg"
+            className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-900 rounded-lg"
           >
-            <span className="text-gray-400 text-lg">📋</span>
+            <span className="text-slate-400 text-lg">📋</span>
             <div className="flex-1 min-w-0">
-              <p className="text-sm text-gray-900 dark:text-white">
+              <p className="text-sm text-slate-900 dark:text-white">
                 <strong>{log.user}</strong> {log.action}
                 {log.target && <span className="text-blue-600"> {log.target}</span>}
               </p>
               {log.details && (
-                <p className="text-xs text-gray-500 mt-0.5">{log.details}</p>
+                <p className="text-xs text-slate-500 mt-0.5">{log.details}</p>
               )}
-              <p className="text-xs text-gray-400 mt-1">
+              <p className="text-xs text-slate-400 mt-1">
                 {new Date(log.timestamp).toLocaleString('en-AU')} • {log.ip}
               </p>
             </div>
@@ -465,17 +465,17 @@ function QuickActions() {
   ];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Actions</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Quick Actions</h3>
       <div className="grid grid-cols-2 gap-3">
         {actions.map((action) => (
           <button
             key={action.label}
             onClick={action.action}
-            className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg text-left hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
           >
             <span className="text-2xl mb-2 block">{action.icon}</span>
-            <span className="text-sm font-medium text-gray-900 dark:text-white">{action.label}</span>
+            <span className="text-sm font-medium text-slate-900 dark:text-white">{action.label}</span>
           </button>
         ))}
       </div>
@@ -551,8 +551,8 @@ export function AdminDashboard() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Admin Dashboard</h1>
-          <p className="text-gray-500 mt-1">Platform administration and monitoring</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Admin Dashboard</h1>
+          <p className="text-slate-500 mt-1">Platform administration and monitoring</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" onClick={loadData}>Refresh</Button>
@@ -561,7 +561,7 @@ export function AdminDashboard() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-4 mb-6 border-b border-gray-200 dark:border-gray-700">
+      <div className="flex gap-4 mb-6 border-b border-slate-200 dark:border-slate-700">
         {([
           { key: 'overview', label: 'Overview' },
           { key: 'users', label: 'Users' },
@@ -574,7 +574,7 @@ export function AdminDashboard() {
             className={`px-4 py-3 font-medium border-b-2 transition-colors ${
               activeTab === tab.key
                 ? 'border-blue-500 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700'
+                : 'border-transparent text-slate-500 hover:text-slate-700'
             }`}
           >
             {tab.label}
@@ -595,46 +595,46 @@ export function AdminDashboard() {
 
           <div className="grid lg:grid-cols-3 gap-6">
             {/* Engagement */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Engagement</h3>
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Engagement</h3>
               <div className="space-y-4">
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Daily Active Users</span>
-                  <span className="font-medium text-gray-900 dark:text-white">{stats.engagement.dailyActiveUsers}</span>
+                  <span className="text-slate-500">Daily Active Users</span>
+                  <span className="font-medium text-slate-900 dark:text-white">{stats.engagement.dailyActiveUsers}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Weekly Active Users</span>
-                  <span className="font-medium text-gray-900 dark:text-white">{stats.engagement.weeklyActiveUsers}</span>
+                  <span className="text-slate-500">Weekly Active Users</span>
+                  <span className="font-medium text-slate-900 dark:text-white">{stats.engagement.weeklyActiveUsers}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Avg Session</span>
-                  <span className="font-medium text-gray-900 dark:text-white">{stats.engagement.avgSessionDuration}</span>
+                  <span className="text-slate-500">Avg Session</span>
+                  <span className="font-medium text-slate-900 dark:text-white">{stats.engagement.avgSessionDuration}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Bounce Rate</span>
-                  <span className="font-medium text-gray-900 dark:text-white">{stats.engagement.bounceRate}%</span>
+                  <span className="text-slate-500">Bounce Rate</span>
+                  <span className="font-medium text-slate-900 dark:text-white">{stats.engagement.bounceRate}%</span>
                 </div>
               </div>
             </div>
 
             {/* Content Status */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Content Status</h3>
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Content Status</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-500">Pending Moderation</span>
+                  <span className="text-slate-500">Pending Moderation</span>
                   <span className="px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm font-medium">
                     {stats.content.pendingModeration}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-500">Flagged Content</span>
+                  <span className="text-slate-500">Flagged Content</span>
                   <span className="px-2 py-1 bg-orange-100 text-orange-700 rounded-full text-sm font-medium">
                     {stats.content.flaggedContent}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-500">User Reports</span>
+                  <span className="text-slate-500">User Reports</span>
                   <span className="px-2 py-1 bg-red-100 text-red-700 rounded-full text-sm font-medium">
                     {stats.content.reports}
                   </span>
@@ -653,15 +653,15 @@ export function AdminDashboard() {
 
       {/* Users Tab */}
       {activeTab === 'users' && (
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
-          <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+          <div className="p-4 border-b border-slate-200 dark:border-slate-700">
             <div className="flex items-center justify-between">
-              <h3 className="font-semibold text-gray-900 dark:text-white">User Management</h3>
+              <h3 className="font-semibold text-slate-900 dark:text-white">User Management</h3>
               <div className="flex gap-2">
                 <input
                   type="search"
                   placeholder="Search users..."
-                  className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-sm"
+                  className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-sm"
                 />
                 <Button variant="outline">Export</Button>
               </div>
@@ -679,15 +679,15 @@ export function AdminDashboard() {
       {activeTab === 'moderation' && (
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Moderation Queue</h3>
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Moderation Queue</h3>
             <div className="flex gap-2">
-              <select className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-sm">
+              <select className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-sm">
                 <option value="all">All Types</option>
                 <option value="profile">Profiles</option>
                 <option value="job">Jobs</option>
                 <option value="message">Messages</option>
               </select>
-              <select className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-sm">
+              <select className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-sm">
                 <option value="all">All Priorities</option>
                 <option value="urgent">Urgent</option>
                 <option value="high">High</option>

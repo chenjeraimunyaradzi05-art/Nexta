@@ -10,7 +10,7 @@ interface SkeletonProps {
 function Skeleton({ className = '', animate = true }: SkeletonProps) {
   return (
     <div 
-      className={`bg-gray-200 dark:bg-gray-700 rounded ${animate ? 'animate-pulse' : ''} ${className}`}
+      className={`bg-slate-200 dark:bg-slate-700 rounded ${animate ? 'animate-pulse' : ''} ${className}`}
     />
   );
 }
@@ -21,7 +21,7 @@ export function PageLoading({ message = 'Loading...' }: { message?: string }) {
     <div className="min-h-[60vh] flex flex-col items-center justify-center">
       <div className="relative">
         {/* Outer ring */}
-        <div className="w-16 h-16 border-4 border-gray-200 dark:border-gray-700 rounded-full" />
+        <div className="w-16 h-16 border-4 border-slate-200 dark:border-slate-700 rounded-full" />
         {/* Spinning ring */}
         <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-t-[#FFD700] rounded-full animate-spin" />
         {/* Inner dot */}
@@ -29,7 +29,7 @@ export function PageLoading({ message = 'Loading...' }: { message?: string }) {
           <div className="w-3 h-3 bg-[#FFD700] rounded-full animate-pulse" />
         </div>
       </div>
-      <p className="mt-4 text-gray-500 dark:text-gray-400">{message}</p>
+      <p className="mt-4 text-slate-500 dark:text-slate-400">{message}</p>
     </div>
   );
 }
@@ -41,7 +41,7 @@ export function DashboardLoading() {
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+          <div key={i} className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
             <Skeleton className="h-4 w-24 mb-2" />
             <Skeleton className="h-8 w-16 mb-2" />
             <Skeleton className="h-3 w-20" />
@@ -52,7 +52,7 @@ export function DashboardLoading() {
       {/* Main Content */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main Panel */}
-        <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+        <div className="lg:col-span-2 bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
           <Skeleton className="h-6 w-48 mb-6" />
           <div className="space-y-4">
             {[1, 2, 3, 4].map((i) => (
@@ -68,7 +68,7 @@ export function DashboardLoading() {
         </div>
 
         {/* Side Panel */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
           <Skeleton className="h-6 w-32 mb-6" />
           <div className="space-y-4">
             {[1, 2, 3].map((i) => (
@@ -89,7 +89,7 @@ export function JobGridLoading({ count = 6 }: { count?: number }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+        <div key={i} className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
           <div className="flex items-start gap-3 mb-4">
             <Skeleton className="w-12 h-12 rounded-lg" />
             <div className="flex-1">
@@ -102,7 +102,7 @@ export function JobGridLoading({ count = 6 }: { count?: number }) {
             <Skeleton className="h-4 w-2/3" />
             <Skeleton className="h-4 w-3/4" />
           </div>
-          <div className="flex justify-between items-center pt-4 border-t border-gray-100 dark:border-gray-700">
+          <div className="flex justify-between items-center pt-4 border-t border-slate-100 dark:border-slate-700">
             <Skeleton className="h-6 w-24 rounded-full" />
             <Skeleton className="w-5 h-5 rounded" />
           </div>
@@ -117,7 +117,7 @@ export function JobListLoading({ count = 4 }: { count?: number }) {
   return (
     <div className="space-y-4">
       {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+        <div key={i} className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
           <div className="flex flex-col sm:flex-row gap-4">
             <Skeleton className="w-16 h-16 rounded-lg flex-shrink-0" />
             <div className="flex-1">
@@ -143,7 +143,7 @@ export function ProfileLoading() {
   return (
     <div className="max-w-4xl mx-auto">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 mb-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 mb-6">
         <div className="flex flex-col sm:flex-row items-center gap-6">
           <Skeleton className="w-24 h-24 rounded-full" />
           <div className="flex-1 text-center sm:text-left">
@@ -163,7 +163,7 @@ export function ProfileLoading() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
           {/* About */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
             <Skeleton className="h-6 w-24 mb-4" />
             <Skeleton className="h-4 w-full mb-2" />
             <Skeleton className="h-4 w-full mb-2" />
@@ -171,7 +171,7 @@ export function ProfileLoading() {
           </div>
 
           {/* Experience */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
             <Skeleton className="h-6 w-32 mb-4" />
             {[1, 2].map((i) => (
               <div key={i} className="flex gap-4 mb-4">
@@ -188,7 +188,7 @@ export function ProfileLoading() {
 
         <div className="space-y-6">
           {/* Skills */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
             <Skeleton className="h-6 w-20 mb-4" />
             <div className="flex flex-wrap gap-2">
               {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -205,9 +205,9 @@ export function ProfileLoading() {
 // Table Loading
 export function TableLoading({ rows = 5, columns = 4 }: { rows?: number; columns?: number }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
       {/* Header */}
-      <div className="bg-gray-50 dark:bg-gray-700/50 px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-slate-50 dark:bg-slate-700/50 px-6 py-4 border-b border-slate-200 dark:border-slate-700">
         <div className="flex gap-4">
           {Array.from({ length: columns }).map((_, i) => (
             <Skeleton key={i} className={`h-4 ${i === 0 ? 'w-48' : 'w-24'}`} />
@@ -219,7 +219,7 @@ export function TableLoading({ rows = 5, columns = 4 }: { rows?: number; columns
       {Array.from({ length: rows }).map((_, rowIndex) => (
         <div 
           key={rowIndex} 
-          className="px-6 py-4 border-b border-gray-100 dark:border-gray-700 last:border-b-0"
+          className="px-6 py-4 border-b border-slate-100 dark:border-slate-700 last:border-b-0"
         >
           <div className="flex gap-4 items-center">
             {Array.from({ length: columns }).map((_, colIndex) => (
@@ -240,7 +240,7 @@ export function ChatLoading() {
   return (
     <div className="flex h-[600px]">
       {/* Conversation List */}
-      <div className="w-80 border-r border-gray-200 dark:border-gray-700 p-4">
+      <div className="w-80 border-r border-slate-200 dark:border-slate-700 p-4">
         <Skeleton className="h-10 w-full rounded-lg mb-4" />
         <div className="space-y-3">
           {[1, 2, 3, 4, 5].map((i) => (
@@ -258,7 +258,7 @@ export function ChatLoading() {
       {/* Message Area */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="p-4 border-b border-slate-200 dark:border-slate-700">
           <div className="flex items-center gap-3">
             <Skeleton className="w-10 h-10 rounded-full" />
             <div>
@@ -280,7 +280,7 @@ export function ChatLoading() {
         </div>
 
         {/* Input */}
-        <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+        <div className="p-4 border-t border-slate-200 dark:border-slate-700">
           <Skeleton className="h-12 w-full rounded-xl" />
         </div>
       </div>

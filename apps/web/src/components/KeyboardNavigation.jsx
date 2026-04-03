@@ -236,7 +236,7 @@ export function AccessibleModal({ isOpen, onClose, title, children }) {
           </h2>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-full"
+            className="p-2 hover:bg-slate-100 rounded-full"
             aria-label="Close modal"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -278,7 +278,7 @@ export function AccessibleTabs({ tabs, activeTab, onTabChange, children }) {
             className={`px-4 py-2 border-b-2 transition-colors ${
               activeTab === tab.id
                 ? 'border-blue-500 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700'
+                : 'border-transparent text-slate-500 hover:text-slate-700'
             }`}
           >
             {tab.label}
@@ -363,7 +363,7 @@ export function AccessibleDropdown({ trigger, items, onSelect }) {
         aria-haspopup="menu"
         aria-expanded={isOpen}
         onClick={() => setIsOpen(!isOpen)}
-        className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
+        className="px-4 py-2 bg-slate-100 rounded hover:bg-slate-200"
       >
         {trigger}
       </button>
@@ -383,7 +383,7 @@ export function AccessibleDropdown({ trigger, items, onSelect }) {
                 setIsOpen(false);
                 triggerRef.current?.focus();
               }}
-              className="w-full text-left px-4 py-2 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none"
+              className="w-full text-left px-4 py-2 hover:bg-slate-100 focus:bg-slate-100 focus:outline-none"
             >
               {item.label}
             </button>

@@ -218,18 +218,18 @@ function CalendarGrid({
   const isCurrentMonth = (date: Date) => date.getMonth() === currentMonth.getMonth();
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
       {/* Month Navigation */}
       <div className="flex items-center justify-between mb-4">
-        <button onClick={prevMonth} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+        <button onClick={prevMonth} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h3 className="font-semibold text-gray-900 dark:text-white">
+        <h3 className="font-semibold text-slate-900 dark:text-white">
           {currentMonth.toLocaleDateString('en-AU', { month: 'long', year: 'numeric' })}
         </h3>
-        <button onClick={nextMonth} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+        <button onClick={nextMonth} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
@@ -239,7 +239,7 @@ function CalendarGrid({
       {/* Day Headers */}
       <div className="grid grid-cols-7 gap-1 mb-2">
         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-          <div key={day} className="text-center text-xs font-medium text-gray-500 py-2">
+          <div key={day} className="text-center text-xs font-medium text-slate-500 py-2">
             {day}
           </div>
         ))}
@@ -263,8 +263,8 @@ function CalendarGrid({
                   : isToday(date)
                     ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
                     : isCurrentMonth(date)
-                      ? 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
-                      : 'text-gray-400 dark:text-gray-600'
+                      ? 'text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700'
+                      : 'text-slate-400 dark:text-slate-600'
                 }
                 ${isPast ? 'opacity-50 cursor-not-allowed' : ''}
               `}
@@ -285,7 +285,7 @@ function CalendarGrid({
       </div>
 
       {/* Legend */}
-      <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 flex items-center gap-4 text-xs text-gray-500">
+      <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700 flex items-center gap-4 text-xs text-slate-500">
         <div className="flex items-center gap-1">
           <div className="w-2 h-2 rounded-full bg-green-500" />
           <span>Available</span>
@@ -312,8 +312,8 @@ function TimeSlots({
   const availableSlots = slots.filter(s => s.isAvailable && !s.isBooked);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-      <h3 className="font-semibold text-gray-900 dark:text-white mb-4">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+      <h3 className="font-semibold text-slate-900 dark:text-white mb-4">
         Available Times - {formatFullDate(date.toISOString())}
       </h3>
 
@@ -331,7 +331,7 @@ function TimeSlots({
           ))}
         </div>
       ) : (
-        <p className="text-center text-gray-500 py-8">
+        <p className="text-center text-slate-500 py-8">
           No available times on this date
         </p>
       )}
@@ -358,18 +358,18 @@ function SessionCard({
   return (
     <div className={`p-4 rounded-xl border ${
       session.status === 'cancelled' 
-        ? 'bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 opacity-60' 
+        ? 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 opacity-60' 
         : isNow
           ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800'
-          : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700'
+          : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700'
     }`}>
       <div className="flex items-start gap-4">
         {/* Mentor Avatar */}
-        <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden flex-shrink-0">
+        <div className="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-600 overflow-hidden flex-shrink-0">
           {session.mentorAvatar ? (
             <OptimizedImage src={toCloudinaryAutoUrl(session.mentorAvatar)} alt={session.mentorName} width={48} height={48} className="w-full h-full object-cover" />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-gray-400 text-lg font-medium">
+            <div className="w-full h-full flex items-center justify-center text-slate-400 text-lg font-medium">
               {session.mentorName.charAt(0)}
             </div>
           )}
@@ -379,8 +379,8 @@ function SessionCard({
         <div className="flex-1">
           <div className="flex items-start justify-between">
             <div>
-              <h4 className="font-medium text-gray-900 dark:text-white">{session.topic}</h4>
-              <p className="text-sm text-gray-500 dark:text-gray-400">with {session.mentorName}</p>
+              <h4 className="font-medium text-slate-900 dark:text-white">{session.topic}</h4>
+              <p className="text-sm text-slate-500 dark:text-slate-400">with {session.mentorName}</p>
             </div>
             <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${
               session.status === 'confirmed' 
@@ -388,14 +388,14 @@ function SessionCard({
                 : session.status === 'pending'
                   ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400'
                   : session.status === 'cancelled'
-                    ? 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-400'
+                    ? 'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-400'
                     : 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
             }`}>
               {session.status}
             </span>
           </div>
 
-          <div className="mt-2 flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+          <div className="mt-2 flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
             <span className="flex items-center gap-1">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -474,10 +474,10 @@ function BookingModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-md w-full p-6">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Book Session</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Book Session</h2>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -485,23 +485,23 @@ function BookingModal({
         </div>
 
         {/* Session Details */}
-        <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-750 rounded-lg">
+        <div className="mb-6 p-4 bg-slate-50 dark:bg-slate-750 rounded-lg">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden">
+            <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-600 overflow-hidden">
               {mentor.avatar ? (
                 <OptimizedImage src={toCloudinaryAutoUrl(mentor.avatar)} alt={mentor.name} width={40} height={40} className="w-full h-full object-cover" />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
+                <div className="w-full h-full flex items-center justify-center text-slate-400">
                   {mentor.name.charAt(0)}
                 </div>
               )}
             </div>
             <div>
-              <p className="font-medium text-gray-900 dark:text-white">{mentor.name}</p>
-              <p className="text-sm text-gray-500">{mentor.title}</p>
+              <p className="font-medium text-slate-900 dark:text-white">{mentor.name}</p>
+              <p className="text-sm text-slate-500">{mentor.title}</p>
             </div>
           </div>
-          <div className="mt-3 text-sm text-gray-600 dark:text-gray-400">
+          <div className="mt-3 text-sm text-slate-600 dark:text-slate-400">
             <p>{formatFullDate(slot.startTime)}</p>
             <p>{formatTime(slot.startTime)} - {formatTime(slot.endTime)}</p>
           </div>
@@ -510,14 +510,14 @@ function BookingModal({
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Session Type */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Session Type
             </label>
             <select
               value={sessionType}
               onChange={(e) => setSessionType(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             >
               {mentor.sessionTypes.map((type) => (
                 <option key={type.type} value={type.type}>
@@ -529,7 +529,7 @@ function BookingModal({
 
           {/* Topic */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Topic / What would you like to discuss? *
             </label>
             <input
@@ -537,15 +537,15 @@ function BookingModal({
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
               placeholder="e.g., Career transition advice"
-              className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               required
             />
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Additional Details (optional)
             </label>
             <textarea
@@ -553,8 +553,8 @@ function BookingModal({
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Provide any background or specific questions..."
               rows={3}
-              className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+              className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                bg-white dark:bg-slate-700 text-slate-900 dark:text-white resize-none"
             />
           </div>
 
@@ -586,24 +586,24 @@ function RescheduleModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-md w-full p-6">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Reschedule Session</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Reschedule Session</h2>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
 
-        <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300">
-          <div className="p-3 bg-gray-50 dark:bg-gray-750 rounded-lg">
-            <div className="font-medium text-gray-900 dark:text-white">Current</div>
+        <div className="space-y-3 text-sm text-slate-600 dark:text-slate-300">
+          <div className="p-3 bg-slate-50 dark:bg-slate-750 rounded-lg">
+            <div className="font-medium text-slate-900 dark:text-white">Current</div>
             <div>{formatFullDate(session.startTime)}</div>
             <div>{formatTime(session.startTime)} - {formatTime(session.endTime)}</div>
           </div>
           <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-            <div className="font-medium text-gray-900 dark:text-white">New</div>
+            <div className="font-medium text-slate-900 dark:text-white">New</div>
             <div>{formatFullDate(slot.startTime)}</div>
             <div>{formatTime(slot.startTime)} - {formatTime(slot.endTime)}</div>
           </div>
@@ -771,8 +771,8 @@ export function MentorCalendar({ mentorId }: { mentorId?: string }) {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Mentorship Calendar</h1>
-        <p className="mt-2 text-gray-500 dark:text-gray-400">
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Mentorship Calendar</h1>
+        <p className="mt-2 text-slate-500 dark:text-slate-400">
           Schedule and manage your mentorship sessions
         </p>
       </div>
@@ -781,8 +781,8 @@ export function MentorCalendar({ mentorId }: { mentorId?: string }) {
         {/* Left - Calendar & Booking */}
         <div className="lg:col-span-2 space-y-6">
           {/* Mentor Selector */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Select Mentor
             </label>
             <select
@@ -791,8 +791,8 @@ export function MentorCalendar({ mentorId }: { mentorId?: string }) {
                 const mentor = mentors.find(m => m.id === e.target.value);
                 setSelectedMentor(mentor || null);
               }}
-              className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             >
               <option value="">Choose a mentor...</option>
               {mentors.map((mentor) => (
@@ -840,7 +840,7 @@ export function MentorCalendar({ mentorId }: { mentorId?: string }) {
               className={`flex-1 py-2 text-sm font-medium rounded-lg transition-colors ${
                 activeTab === 'upcoming'
                   ? 'bg-blue-500 text-white'
-                  : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
+                  : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
               }`}
             >
               Upcoming
@@ -850,7 +850,7 @@ export function MentorCalendar({ mentorId }: { mentorId?: string }) {
               className={`flex-1 py-2 text-sm font-medium rounded-lg transition-colors ${
                 activeTab === 'past'
                   ? 'bg-blue-500 text-white'
-                  : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
+                  : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
               }`}
             >
               Past
@@ -870,7 +870,7 @@ export function MentorCalendar({ mentorId }: { mentorId?: string }) {
                 />
               ))
             ) : (
-              <div className="text-center py-8 text-gray-500">
+              <div className="text-center py-8 text-slate-500">
                 <p>No {activeTab} sessions</p>
                 {activeTab === 'upcoming' && (
                   <p className="text-sm mt-1">Select a mentor and book a session</p>

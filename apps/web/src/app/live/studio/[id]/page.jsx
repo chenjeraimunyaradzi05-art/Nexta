@@ -156,7 +156,7 @@ export default function StreamStudioPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
         <div className="animate-spin w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full"></div>
       </div>
     );
@@ -164,10 +164,10 @@ export default function StreamStudioPage() {
 
   if (!stream) {
     return (
-      <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center text-white">
+      <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center text-white">
         <div className="text-6xl mb-4">📺</div>
         <h2 className="text-2xl font-bold mb-2">Stream Not Found</h2>
-        <p className="text-gray-400 mb-6">This stream doesn't exist or you don't have access.</p>
+        <p className="text-slate-400 mb-6">This stream doesn't exist or you don't have access.</p>
         <Link
           href="/live"
           className="px-6 py-3 rounded-lg text-white font-medium"
@@ -180,14 +180,14 @@ export default function StreamStudioPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-slate-900 text-white">
       <div className="flex flex-col lg:flex-row h-screen">
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col">
           {/* Top Bar */}
-          <div className="flex items-center justify-between px-4 py-3 bg-gray-800 border-b border-gray-700">
+          <div className="flex items-center justify-between px-4 py-3 bg-slate-800 border-b border-slate-700">
             <div className="flex items-center gap-4">
-              <Link href="/live" className="text-gray-400 hover:text-white">
+              <Link href="/live" className="text-slate-400 hover:text-white">
                 ← Exit Studio
               </Link>
               {isLive ? (
@@ -196,19 +196,19 @@ export default function StreamStudioPage() {
                     <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
                     LIVE
                   </span>
-                  <span className="text-gray-400 font-mono">{formatDuration(duration)}</span>
-                  <span className="px-3 py-1 bg-gray-700 text-white text-sm rounded-md">
+                  <span className="text-slate-400 font-mono">{formatDuration(duration)}</span>
+                  <span className="px-3 py-1 bg-slate-700 text-white text-sm rounded-md">
                     👁 {viewerCount} viewers
                   </span>
                 </div>
               ) : (
-                <span className="px-3 py-1 bg-gray-700 text-gray-300 text-sm rounded-md">
+                <span className="px-3 py-1 bg-slate-700 text-slate-300 text-sm rounded-md">
                   Ready to go live
                 </span>
               )}
             </div>
             <div className="flex items-center gap-3">
-              <button className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm">
+              <button className="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm">
                 ⚙️ Settings
               </button>
               {isLive ? (
@@ -238,8 +238,8 @@ export default function StreamStudioPage() {
                 <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-purple-900/50 to-pink-900/50">
                   <div className="text-center">
                     <span className="text-8xl mb-4 block">👤</span>
-                    <p className="text-gray-400">Camera preview</p>
-                    <p className="text-xs text-gray-500 mt-2">Video would connect via LiveKit</p>
+                    <p className="text-slate-400">Camera preview</p>
+                    <p className="text-xs text-slate-500 mt-2">Video would connect via LiveKit</p>
                   </div>
                 </div>
                 
@@ -247,7 +247,7 @@ export default function StreamStudioPage() {
                 <div className="absolute top-4 left-4">
                   <div className="bg-black/60 backdrop-blur-sm rounded-lg p-3">
                     <h3 className="font-semibold text-white">{stream.title}</h3>
-                    <p className="text-sm text-gray-400">{stream.category}</p>
+                    <p className="text-sm text-slate-400">{stream.category}</p>
                   </div>
                 </div>
 
@@ -264,17 +264,17 @@ export default function StreamStudioPage() {
             ) : (
               <div className="text-center">
                 <span className="text-6xl mb-4 block">📷</span>
-                <p className="text-gray-400">Camera is off</p>
+                <p className="text-slate-400">Camera is off</p>
               </div>
             )}
           </div>
 
           {/* Control Bar */}
-          <div className="flex items-center justify-center gap-4 py-4 bg-gray-800 border-t border-gray-700">
+          <div className="flex items-center justify-center gap-4 py-4 bg-slate-800 border-t border-slate-700">
             <button
               onClick={() => setIsMuted(!isMuted)}
               className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl transition-colors ${
-                isMuted ? 'bg-red-500 text-white' : 'bg-gray-700 text-white hover:bg-gray-600'
+                isMuted ? 'bg-red-500 text-white' : 'bg-slate-700 text-white hover:bg-slate-600'
               }`}
             >
               {isMuted ? '🔇' : '🎤'}
@@ -282,7 +282,7 @@ export default function StreamStudioPage() {
             <button
               onClick={() => setIsCameraOn(!isCameraOn)}
               className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl transition-colors ${
-                !isCameraOn ? 'bg-red-500 text-white' : 'bg-gray-700 text-white hover:bg-gray-600'
+                !isCameraOn ? 'bg-red-500 text-white' : 'bg-slate-700 text-white hover:bg-slate-600'
               }`}
             >
               {isCameraOn ? '📷' : '🚫'}
@@ -290,25 +290,25 @@ export default function StreamStudioPage() {
             <button
               onClick={() => setIsScreenSharing(!isScreenSharing)}
               className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl transition-colors ${
-                isScreenSharing ? 'bg-green-500 text-white' : 'bg-gray-700 text-white hover:bg-gray-600'
+                isScreenSharing ? 'bg-green-500 text-white' : 'bg-slate-700 text-white hover:bg-slate-600'
               }`}
             >
               🖥️
             </button>
-            <div className="w-px h-10 bg-gray-600"></div>
-            <button className="w-14 h-14 rounded-full bg-gray-700 text-white hover:bg-gray-600 flex items-center justify-center text-2xl">
+            <div className="w-px h-10 bg-slate-600"></div>
+            <button className="w-14 h-14 rounded-full bg-slate-700 text-white hover:bg-slate-600 flex items-center justify-center text-2xl">
               👥
             </button>
-            <button className="w-14 h-14 rounded-full bg-gray-700 text-white hover:bg-gray-600 flex items-center justify-center text-2xl">
+            <button className="w-14 h-14 rounded-full bg-slate-700 text-white hover:bg-slate-600 flex items-center justify-center text-2xl">
               ⚡
             </button>
           </div>
         </div>
 
         {/* Side Panel - Chat/Q&A */}
-        <div className="w-full lg:w-[380px] bg-gray-800 flex flex-col border-l border-gray-700">
+        <div className="w-full lg:w-[380px] bg-slate-800 flex flex-col border-l border-slate-700">
           {/* Panel Tabs */}
-          <div className="flex border-b border-gray-700">
+          <div className="flex border-b border-slate-700">
             {[
               { id: 'chat', label: '💬 Chat', count: messages.length },
               { id: 'qa', label: '❓ Q&A', count: questions.filter(q => !q.answered).length },
@@ -320,7 +320,7 @@ export default function StreamStudioPage() {
                 className={`flex-1 py-3 text-sm font-medium transition-colors relative ${
                   activePanel === tab.id
                     ? 'text-white border-b-2'
-                    : 'text-gray-400 hover:text-white'
+                    : 'text-slate-400 hover:text-white'
                 }`}
                 style={activePanel === tab.id ? { borderColor: accentPink } : {}}
               >
@@ -338,20 +338,20 @@ export default function StreamStudioPage() {
           {activePanel === 'chat' && (
             <div className="flex-1 overflow-y-auto p-4 space-y-3">
               {messages.length === 0 ? (
-                <div className="text-center py-8 text-gray-500">
+                <div className="text-center py-8 text-slate-500">
                   <p>No messages yet</p>
                   <p className="text-sm">Chat will appear here when you go live</p>
                 </div>
               ) : (
                 messages.map((msg) => (
-                  <div key={msg.id} className="flex gap-3 p-2 rounded-lg hover:bg-gray-700/50">
+                  <div key={msg.id} className="flex gap-3 p-2 rounded-lg hover:bg-slate-700/50">
                     <span className="text-2xl">👤</span>
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-gray-300">{msg.userName}</span>
-                        <span className="text-xs text-gray-500">{msg.timestamp}</span>
+                        <span className="text-sm font-medium text-slate-300">{msg.userName}</span>
+                        <span className="text-xs text-slate-500">{msg.timestamp}</span>
                       </div>
-                      <p className="text-gray-200 text-sm">{msg.message}</p>
+                      <p className="text-slate-200 text-sm">{msg.message}</p>
                     </div>
                   </div>
                 ))
@@ -363,7 +363,7 @@ export default function StreamStudioPage() {
           {activePanel === 'qa' && (
             <div className="flex-1 overflow-y-auto p-4 space-y-3">
               {questions.length === 0 ? (
-                <div className="text-center py-8 text-gray-500">
+                <div className="text-center py-8 text-slate-500">
                   <p>No questions yet</p>
                   <p className="text-sm">Questions will appear here when viewers ask</p>
                 </div>
@@ -371,12 +371,12 @@ export default function StreamStudioPage() {
                 questions.map((q) => (
                   <div
                     key={q.id}
-                    className={`p-3 rounded-lg ${q.answered ? 'bg-green-900/30 opacity-60' : 'bg-gray-700'}`}
+                    className={`p-3 rounded-lg ${q.answered ? 'bg-green-900/30 opacity-60' : 'bg-slate-700'}`}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1">
-                        <p className="text-gray-200 text-sm">{q.question}</p>
-                        <p className="text-xs text-gray-500 mt-1">
+                        <p className="text-slate-200 text-sm">{q.question}</p>
+                        <p className="text-xs text-slate-500 mt-1">
                           From {q.userName} • {q.votes} votes
                         </p>
                       </div>
@@ -399,44 +399,44 @@ export default function StreamStudioPage() {
           {activePanel === 'analytics' && (
             <div className="flex-1 overflow-y-auto p-4">
               <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-gray-700 rounded-lg p-4 text-center">
+                <div className="bg-slate-700 rounded-lg p-4 text-center">
                   <p className="text-3xl font-bold text-white">{viewerCount}</p>
-                  <p className="text-sm text-gray-400">Current Viewers</p>
+                  <p className="text-sm text-slate-400">Current Viewers</p>
                 </div>
-                <div className="bg-gray-700 rounded-lg p-4 text-center">
+                <div className="bg-slate-700 rounded-lg p-4 text-center">
                   <p className="text-3xl font-bold text-white">{Math.max(viewerCount, 45)}</p>
-                  <p className="text-sm text-gray-400">Peak Viewers</p>
+                  <p className="text-sm text-slate-400">Peak Viewers</p>
                 </div>
-                <div className="bg-gray-700 rounded-lg p-4 text-center">
+                <div className="bg-slate-700 rounded-lg p-4 text-center">
                   <p className="text-3xl font-bold text-white">{messages.length}</p>
-                  <p className="text-sm text-gray-400">Chat Messages</p>
+                  <p className="text-sm text-slate-400">Chat Messages</p>
                 </div>
-                <div className="bg-gray-700 rounded-lg p-4 text-center">
+                <div className="bg-slate-700 rounded-lg p-4 text-center">
                   <p className="text-3xl font-bold text-white">{questions.length}</p>
-                  <p className="text-sm text-gray-400">Questions</p>
+                  <p className="text-sm text-slate-400">Questions</p>
                 </div>
               </div>
               
               <div className="space-y-3">
-                <h4 className="text-sm font-medium text-gray-400">Stream Health</h4>
-                <div className="bg-gray-700 rounded-lg p-3">
+                <h4 className="text-sm font-medium text-slate-400">Stream Health</h4>
+                <div className="bg-slate-700 rounded-lg p-3">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm text-gray-300">Connection Quality</span>
+                    <span className="text-sm text-slate-300">Connection Quality</span>
                     <span className="text-green-400 font-medium">Excellent</span>
                   </div>
-                  <div className="w-full bg-gray-600 rounded-full h-2">
+                  <div className="w-full bg-slate-600 rounded-full h-2">
                     <div className="bg-green-500 h-2 rounded-full" style={{ width: '95%' }}></div>
                   </div>
                 </div>
-                <div className="bg-gray-700 rounded-lg p-3">
+                <div className="bg-slate-700 rounded-lg p-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-300">Bitrate</span>
+                    <span className="text-sm text-slate-300">Bitrate</span>
                     <span className="text-white font-mono">4,500 kbps</span>
                   </div>
                 </div>
-                <div className="bg-gray-700 rounded-lg p-3">
+                <div className="bg-slate-700 rounded-lg p-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-300">Resolution</span>
+                    <span className="text-sm text-slate-300">Resolution</span>
                     <span className="text-white font-mono">1080p @ 30fps</span>
                   </div>
                 </div>

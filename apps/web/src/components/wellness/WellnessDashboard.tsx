@@ -182,9 +182,9 @@ function MoodTracker({
     : 0;
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Mood Tracker</h2>
+        <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Mood Tracker</h2>
         {todayMood && !showForm && (
           <button 
             onClick={() => setShowForm(true)}
@@ -199,7 +199,7 @@ function MoodTracker({
         <div className="space-y-4">
           {/* Mood Selection */}
           <div>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">How are you feeling today?</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">How are you feeling today?</p>
             <div className="flex justify-between">
               {moodEmojis.map((emoji, index) => (
                 <button
@@ -208,7 +208,7 @@ function MoodTracker({
                   className={`w-14 h-14 text-3xl rounded-xl transition-all ${
                     selectedMood === index + 1
                       ? 'bg-blue-100 dark:bg-blue-900/30 ring-2 ring-blue-500 scale-110'
-                      : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600'
+                      : 'bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600'
                   }`}
                 >
                   {emoji}
@@ -216,7 +216,7 @@ function MoodTracker({
               ))}
             </div>
             {selectedMood && (
-              <p className="text-center text-sm font-medium text-gray-600 dark:text-gray-400 mt-2">
+              <p className="text-center text-sm font-medium text-slate-600 dark:text-slate-400 mt-2">
                 {moodLabels[selectedMood - 1]}
               </p>
             )}
@@ -224,7 +224,7 @@ function MoodTracker({
 
           {/* Tags */}
           <div>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">What's influencing your mood?</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">What's influencing your mood?</p>
             <div className="flex flex-wrap gap-2">
               {moodTags.map((tag) => (
                 <button
@@ -233,7 +233,7 @@ function MoodTracker({
                   className={`px-3 py-1 text-sm rounded-full transition-colors ${
                     selectedTags.includes(tag)
                       ? 'bg-blue-500 text-white'
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                      : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-200'
                   }`}
                 >
                   {tag}
@@ -249,8 +249,8 @@ function MoodTracker({
               onChange={(e) => setNote(e.target.value)}
               placeholder="Add a note (optional)..."
               rows={2}
-              className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+              className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white resize-none"
             />
           </div>
 
@@ -266,13 +266,13 @@ function MoodTracker({
       ) : todayMood ? (
         <div className="text-center py-4">
           <div className="text-5xl mb-2">{moodEmojis[todayMood.mood - 1]}</div>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-slate-600 dark:text-slate-400">
             You're feeling <span className="font-medium">{moodLabels[todayMood.mood - 1]}</span> today
           </p>
           {todayMood.tags && todayMood.tags.length > 0 && (
             <div className="mt-2 flex flex-wrap justify-center gap-1">
               {todayMood.tags.map((tag) => (
-                <span key={tag} className="px-2 py-0.5 text-xs bg-gray-100 dark:bg-gray-700 rounded-full">
+                <span key={tag} className="px-2 py-0.5 text-xs bg-slate-100 dark:bg-slate-700 rounded-full">
                   {tag}
                 </span>
               ))}
@@ -282,9 +282,9 @@ function MoodTracker({
       ) : null}
 
       {/* Weekly Summary */}
-      <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+      <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
         <div className="flex items-center justify-between text-sm">
-          <span className="text-gray-500">Weekly Average</span>
+          <span className="text-slate-500">Weekly Average</span>
           <span className="font-medium" style={{ color: moodColors[Math.round(weeklyAverage) - 1] || '#6B7280' }}>
             {weeklyAverage > 0 ? `${weeklyAverage.toFixed(1)} / 5` : 'No data'}
           </span>
@@ -308,7 +308,7 @@ function MoodTracker({
                     backgroundColor: entry ? moodColors[entry.mood - 1] : '#E5E7EB',
                   }}
                 />
-                <span className="text-[10px] text-gray-400 mt-1">
+                <span className="text-[10px] text-slate-400 mt-1">
                   {date.toLocaleDateString('en-AU', { weekday: 'narrow' })}
                 </span>
               </div>
@@ -331,9 +331,9 @@ function WellnessGoals({
   onCreate: () => void;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Wellness Goals</h2>
+        <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Wellness Goals</h2>
         <button onClick={onCreate} className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
           + Add Goal
         </button>
@@ -348,12 +348,12 @@ function WellnessGoals({
               new Date(goal.lastCompleted).toDateString() === new Date().toDateString();
 
             return (
-              <div key={goal.id} className="p-4 bg-gray-50 dark:bg-gray-750 rounded-lg">
+              <div key={goal.id} className="p-4 bg-slate-50 dark:bg-slate-750 rounded-lg">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
-                    <h3 className="font-medium text-gray-900 dark:text-white">{goal.title}</h3>
+                    <h3 className="font-medium text-slate-900 dark:text-white">{goal.title}</h3>
                     {goal.description && (
-                      <p className="text-sm text-gray-500 mt-1">{goal.description}</p>
+                      <p className="text-sm text-slate-500 mt-1">{goal.description}</p>
                     )}
                   </div>
                   {goal.streak > 0 && (
@@ -366,11 +366,11 @@ function WellnessGoals({
 
                 {/* Progress */}
                 <div className="mt-3">
-                  <div className="flex justify-between text-xs text-gray-500 mb-1">
+                  <div className="flex justify-between text-xs text-slate-500 mb-1">
                     <span>{goal.completedDays} / {goal.targetDays} days</span>
                     <span>{Math.round(progress)}%</span>
                   </div>
-                  <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
+                  <div className="h-2 bg-slate-200 dark:bg-slate-600 rounded-full overflow-hidden">
                     <div 
                       className="h-full bg-green-500 rounded-full transition-all"
                       style={{ width: `${Math.min(progress, 100)}%` }}
@@ -396,7 +396,7 @@ function WellnessGoals({
         </div>
       ) : (
         <div className="text-center py-8">
-          <p className="text-gray-500">No active goals</p>
+          <p className="text-slate-500">No active goals</p>
           <button 
             onClick={onCreate}
             className="mt-2 text-blue-600 dark:text-blue-400 hover:underline"
@@ -425,8 +425,8 @@ function MindfulnessSection({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
         Mindfulness Exercises
       </h2>
 
@@ -439,8 +439,8 @@ function MindfulnessSection({
               rounded-xl text-left hover:shadow-md transition-shadow"
           >
             <div className="text-3xl mb-2">{typeIcons[exercise.type] || '✨'}</div>
-            <h3 className="font-medium text-gray-900 dark:text-white">{exercise.title}</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{exercise.description}</p>
+            <h3 className="font-medium text-slate-900 dark:text-white">{exercise.title}</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">{exercise.description}</p>
             <div className="mt-2 text-xs text-purple-600 dark:text-purple-400">
               {exercise.duration} min · {exercise.type.replace('-', ' ')}
             </div>
@@ -471,10 +471,10 @@ function GoalModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-md w-full p-6">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Create Goal</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Create Goal</h2>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -483,38 +483,38 @@ function GoalModal({
 
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Goal Title
             </label>
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700"
+              className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700"
               placeholder="e.g., Daily walk"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Description (optional)
             </label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={3}
-              className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 resize-none"
+              className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 resize-none"
               placeholder="Add a short note to stay motivated"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Target Days
             </label>
             <select
               value={targetDays}
               onChange={(e) => setTargetDays(parseInt(e.target.value, 10))}
-              className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700"
+              className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700"
             >
               {[7, 14, 21, 30].map((days) => (
                 <option key={days} value={days}>
@@ -553,8 +553,8 @@ function SupportServices({ services }: { services: SupportService[] }) {
   const otherServices = services.filter(s => !s.isEmergency);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
         Support Services
       </h2>
 
@@ -570,8 +570,8 @@ function SupportServices({ services }: { services: SupportService[] }) {
           <div className="space-y-3">
             {emergencyServices.map((service) => (
               <div key={service.id} className="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
-                <h4 className="font-medium text-gray-900 dark:text-white">{service.name}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{service.description}</p>
+                <h4 className="font-medium text-slate-900 dark:text-white">{service.name}</h4>
+                <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{service.description}</p>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {service.phone && (
                     <a 
@@ -589,7 +589,7 @@ function SupportServices({ services }: { services: SupportService[] }) {
                       href={service.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-full"
+                      className="inline-flex items-center gap-1 px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm rounded-full"
                     >
                       Website
                     </a>
@@ -604,11 +604,11 @@ function SupportServices({ services }: { services: SupportService[] }) {
       {/* Other Services */}
       <div className="space-y-3">
         {otherServices.map((service) => (
-          <div key={service.id} className="p-4 bg-gray-50 dark:bg-gray-750 rounded-lg">
+          <div key={service.id} className="p-4 bg-slate-50 dark:bg-slate-750 rounded-lg">
             <div className="flex items-start justify-between">
               <div>
-                <h4 className="font-medium text-gray-900 dark:text-white">{service.name}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{service.description}</p>
+                <h4 className="font-medium text-slate-900 dark:text-white">{service.name}</h4>
+                <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{service.description}</p>
               </div>
             </div>
             <div className="mt-2 flex flex-wrap gap-2 text-sm">
@@ -618,12 +618,12 @@ function SupportServices({ services }: { services: SupportService[] }) {
                 </a>
               )}
               {service.hours && (
-                <span className="text-gray-500">· {service.hours}</span>
+                <span className="text-slate-500">· {service.hours}</span>
               )}
             </div>
             <div className="mt-2 flex flex-wrap gap-1">
               {service.categories.map((cat) => (
-                <span key={cat} className="px-2 py-0.5 text-xs bg-gray-200 dark:bg-gray-600 rounded">
+                <span key={cat} className="px-2 py-0.5 text-xs bg-slate-200 dark:bg-slate-600 rounded">
                   {cat}
                 </span>
               ))}
@@ -731,8 +731,8 @@ export function WellnessDashboard() {
     <div className="max-w-6xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Wellness Hub</h1>
-        <p className="mt-2 text-gray-500 dark:text-gray-400">
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Wellness Hub</h1>
+        <p className="mt-2 text-slate-500 dark:text-slate-400">
           Take care of your mental health and wellbeing
         </p>
       </div>
@@ -761,8 +761,8 @@ export function WellnessDashboard() {
           />
 
           {/* Resources */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
               Wellness Resources
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -770,7 +770,7 @@ export function WellnessDashboard() {
                 <a
                   key={resource.id}
                   href={resource.url}
-                  className="block p-4 bg-gray-50 dark:bg-gray-750 rounded-lg hover:shadow-md transition-shadow"
+                  className="block p-4 bg-slate-50 dark:bg-slate-750 rounded-lg hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-start gap-3">
                     <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
@@ -780,10 +780,10 @@ export function WellnessDashboard() {
                       {resource.type === 'exercise' && '🏃'}
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-medium text-gray-900 dark:text-white line-clamp-1">
+                      <h3 className="font-medium text-slate-900 dark:text-white line-clamp-1">
                         {resource.title}
                       </h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2 mt-1">
+                      <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mt-1">
                         {resource.description}
                       </p>
                       <div className="mt-2 text-xs text-blue-600 dark:text-blue-400">
@@ -814,14 +814,14 @@ export function WellnessDashboard() {
       {/* Exercise Modal */}
       {selectedExercise && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-6">
+          <div className="bg-white dark:bg-slate-800 rounded-xl max-w-md w-full p-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+              <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
                 {selectedExercise.title}
               </h2>
               <button 
                 onClick={() => setSelectedExercise(null)}
-                className="text-gray-400 hover:text-gray-600"
+                className="text-slate-400 hover:text-slate-600"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -829,7 +829,7 @@ export function WellnessDashboard() {
               </button>
             </div>
 
-            <p className="text-gray-600 dark:text-gray-400 mb-4">{selectedExercise.description}</p>
+            <p className="text-slate-600 dark:text-slate-400 mb-4">{selectedExercise.description}</p>
 
             <div className="text-sm text-purple-600 dark:text-purple-400 mb-4">
               Duration: {selectedExercise.duration} minutes
@@ -841,7 +841,7 @@ export function WellnessDashboard() {
                   <div className="w-6 h-6 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-sm font-medium text-purple-600">
                     {index + 1}
                   </div>
-                  <p className="flex-1 text-gray-700 dark:text-gray-300">{step}</p>
+                  <p className="flex-1 text-slate-700 dark:text-slate-300">{step}</p>
                 </div>
               ))}
             </div>

@@ -119,7 +119,7 @@ export function StatCard({
   };
 
   const variantClasses = {
-    default: 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700',
+    default: 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700',
     cosmic: 'bg-gradient-to-br from-[#1A0F2E] to-[#2D1B69] border-[#FFD700]/20',
     gold: 'bg-gradient-to-br from-[#FFD700]/10 to-[#FFD700]/5 border-[#FFD700]/30',
     emerald: 'bg-gradient-to-br from-[#50C878]/10 to-[#50C878]/5 border-[#50C878]/30',
@@ -127,7 +127,7 @@ export function StatCard({
   };
 
   const valueClasses = {
-    default: 'text-gray-900 dark:text-white',
+    default: 'text-slate-900 dark:text-white',
     cosmic: 'text-white',
     gold: 'text-[#FFD700]',
     emerald: 'text-[#50C878]',
@@ -147,7 +147,7 @@ export function StatCard({
     >
       {/* Header with icon */}
       <div className="flex items-center justify-between mb-2">
-        <span className={`${sizes.label} text-gray-500 dark:text-gray-400 font-medium`}>
+        <span className={`${sizes.label} text-slate-500 dark:text-slate-400 font-medium`}>
           {label}
         </span>
         {icon && (
@@ -174,16 +174,16 @@ export function StatCard({
           ) : change < 0 ? (
             <TrendingDown className="w-4 h-4 text-red-500" />
           ) : (
-            <Minus className="w-4 h-4 text-gray-400" />
+            <Minus className="w-4 h-4 text-slate-400" />
           )}
           <span
             className={`text-sm font-medium ${
-              change > 0 ? 'text-green-500' : change < 0 ? 'text-red-500' : 'text-gray-400'
+              change > 0 ? 'text-green-500' : change < 0 ? 'text-red-500' : 'text-slate-400'
             }`}
           >
             {change > 0 ? '+' : ''}{change} ({changePercent}%)
           </span>
-          <span className="text-xs text-gray-400">vs previous</span>
+          <span className="text-xs text-slate-400">vs previous</span>
         </div>
       )}
     </div>
@@ -255,29 +255,29 @@ export function MetricRow({
     <div
       className={`
         flex items-center justify-between py-3 px-4 rounded-lg
-        ${isCosmic ? 'bg-white/5' : 'bg-gray-50 dark:bg-gray-800/50'}
+        ${isCosmic ? 'bg-white/5' : 'bg-slate-50 dark:bg-slate-800/50'}
       `}
     >
       <div className="flex items-center gap-3">
         {icon && (
-          <span className={isCosmic ? 'text-[#FFD700]' : 'text-gray-400'}>
+          <span className={isCosmic ? 'text-[#FFD700]' : 'text-slate-400'}>
             {icon}
           </span>
         )}
-        <span className={`text-sm ${isCosmic ? 'text-gray-400' : 'text-gray-600 dark:text-gray-400'}`}>
+        <span className={`text-sm ${isCosmic ? 'text-slate-400' : 'text-slate-600 dark:text-slate-400'}`}>
           {label}
         </span>
       </div>
       
       <div className="flex items-center gap-2">
-        <span className={`font-semibold ${isCosmic ? 'text-white' : 'text-gray-900 dark:text-white'}`}>
+        <span className={`font-semibold ${isCosmic ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
           {value}
         </span>
         {change !== undefined && (
           <span
             className={`
               flex items-center text-xs font-medium
-              ${change > 0 ? 'text-green-500' : change < 0 ? 'text-red-500' : 'text-gray-400'}
+              ${change > 0 ? 'text-green-500' : change < 0 ? 'text-red-500' : 'text-slate-400'}
             `}
           >
             {change > 0 ? <ArrowUp className="w-3 h-3" /> : change < 0 ? <ArrowDown className="w-3 h-3" /> : null}
@@ -324,13 +324,13 @@ export function ProgressStat({
   return (
     <div className={className}>
       <div className="flex items-center justify-between mb-2">
-        <span className="text-sm text-gray-600 dark:text-gray-400">{label}</span>
-        <span className="text-sm font-semibold text-gray-900 dark:text-white">
+        <span className="text-sm text-slate-600 dark:text-slate-400">{label}</span>
+        <span className="text-sm font-semibold text-slate-900 dark:text-white">
           {prefix}{value}{suffix}
-          {showPercentage && <span className="text-gray-400 ml-1">({percentage.toFixed(0)}%)</span>}
+          {showPercentage && <span className="text-slate-400 ml-1">({percentage.toFixed(0)}%)</span>}
         </span>
       </div>
-      <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+      <div className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
         <div
           className={`h-full rounded-full transition-all duration-1000 ${barColors[variant]}`}
           style={{ width: `${Math.min(percentage, 100)}%` }}

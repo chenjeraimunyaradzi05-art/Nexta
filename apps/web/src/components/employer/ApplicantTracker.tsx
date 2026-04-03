@@ -144,7 +144,7 @@ const applicantsApi = {
 };
 
 const PIPELINE_STAGES: PipelineStage[] = [
-  { id: 'applied', name: 'Applied', color: 'bg-gray-500', count: 0 },
+  { id: 'applied', name: 'Applied', color: 'bg-slate-500', count: 0 },
   { id: 'screening', name: 'Screening', color: 'bg-blue-500', count: 0 },
   { id: 'phone-interview', name: 'Phone Screen', color: 'bg-indigo-500', count: 0 },
   { id: 'interview', name: 'Interview', color: 'bg-purple-500', count: 0 },
@@ -184,10 +184,10 @@ function ApplicantCard({
 
   return (
     <div
-      className={`bg-white dark:bg-gray-800 rounded-lg border p-3 cursor-pointer transition-all ${
+      className={`bg-white dark:bg-slate-800 rounded-lg border p-3 cursor-pointer transition-all ${
         isSelected
           ? 'border-blue-500 ring-2 ring-blue-200'
-          : 'border-gray-200 dark:border-gray-700 hover:shadow-md'
+          : 'border-slate-200 dark:border-slate-700 hover:shadow-md'
       } ${isDragging ? 'opacity-50' : ''}`}
       onClick={onClick}
       draggable
@@ -202,7 +202,7 @@ function ApplicantCard({
           onChange={(e) => { e.stopPropagation(); onSelect(); }}
           className="mt-1 rounded"
         />
-        <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden flex-shrink-0">
+        <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden flex-shrink-0">
           {applicant.candidate.avatar ? (
             <OptimizedImage src={toCloudinaryAutoUrl(applicant.candidate.avatar)} alt={applicant.candidate.name} width={40} height={40} className="w-full h-full object-cover" />
           ) : (
@@ -211,13 +211,13 @@ function ApplicantCard({
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <h4 className="font-medium text-gray-900 dark:text-white truncate">
+            <h4 className="font-medium text-slate-900 dark:text-white truncate">
               {applicant.candidate.name}
             </h4>
             {applicant.candidate.isIndigenous && <span>🌏</span>}
             {applicant.isBookmarked && <span className="text-yellow-500">⭐</span>}
           </div>
-          <p className="text-xs text-gray-500 truncate">{applicant.candidate.headline}</p>
+          <p className="text-xs text-slate-500 truncate">{applicant.candidate.headline}</p>
           
           {/* Rating */}
           <div className="flex items-center gap-1 mt-1">
@@ -229,7 +229,7 @@ function ApplicantCard({
           </div>
 
           {/* Meta */}
-          <div className="flex items-center gap-2 mt-2 text-xs text-gray-400">
+          <div className="flex items-center gap-2 mt-2 text-xs text-slate-400">
             <span title={applicant.source}>{SOURCE_ICONS[applicant.source]}</span>
             <span>{daysSinceApplied}d ago</span>
             {applicant.notes.length > 0 && (
@@ -240,10 +240,10 @@ function ApplicantCard({
       </div>
 
       {/* Score bar */}
-      <div className="mt-3 pt-2 border-t border-gray-100 dark:border-gray-700">
+      <div className="mt-3 pt-2 border-t border-slate-100 dark:border-slate-700">
         <div className="flex items-center gap-2">
-          <span className="text-xs text-gray-500">Match</span>
-          <div className="flex-1 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+          <span className="text-xs text-slate-500">Match</span>
+          <div className="flex-1 h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
             <div
               className={`h-full rounded-full ${
                 applicant.scores.overall >= 80 ? 'bg-green-500' :
@@ -252,7 +252,7 @@ function ApplicantCard({
               style={{ width: `${applicant.scores.overall}%` }}
             />
           </div>
-          <span className="text-xs font-medium text-gray-700 dark:text-gray-300">
+          <span className="text-xs font-medium text-slate-700 dark:text-slate-300">
             {applicant.scores.overall}%
           </span>
         </div>
@@ -281,7 +281,7 @@ function PipelineColumn({
 
   return (
     <div
-      className={`flex-shrink-0 w-72 bg-gray-50 dark:bg-gray-900 rounded-xl p-3 ${
+      className={`flex-shrink-0 w-72 bg-slate-50 dark:bg-slate-900 rounded-xl p-3 ${
         isDragOver ? 'ring-2 ring-blue-500' : ''
       }`}
       onDragOver={(e) => { e.preventDefault(); setIsDragOver(true); }}
@@ -297,9 +297,9 @@ function PipelineColumn({
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <div className={`w-3 h-3 rounded-full ${stage.color}`} />
-          <h3 className="font-medium text-gray-900 dark:text-white">{stage.name}</h3>
+          <h3 className="font-medium text-slate-900 dark:text-white">{stage.name}</h3>
         </div>
-        <span className="px-2 py-0.5 bg-gray-200 dark:bg-gray-700 rounded-full text-sm">
+        <span className="px-2 py-0.5 bg-slate-200 dark:bg-slate-700 rounded-full text-sm">
           {applicants.length}
         </span>
       </div>
@@ -317,7 +317,7 @@ function PipelineColumn({
           />
         ))}
         {applicants.length === 0 && (
-          <div className="text-center py-8 text-gray-400 text-sm">
+          <div className="text-center py-8 text-slate-400 text-sm">
             Drop applicants here
           </div>
         )}
@@ -351,11 +351,11 @@ function ApplicantDetailPanel({
   const currentStageIndex = PIPELINE_STAGES.findIndex(s => s.id === applicant.stage);
 
   return (
-    <div className="fixed inset-y-0 right-0 w-96 bg-white dark:bg-gray-800 shadow-xl z-40 overflow-y-auto">
+    <div className="fixed inset-y-0 right-0 w-96 bg-white dark:bg-slate-800 shadow-xl z-40 overflow-y-auto">
       {/* Header */}
-      <div className="sticky top-0 bg-white dark:bg-gray-800 p-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="sticky top-0 bg-white dark:bg-slate-800 p-4 border-b border-slate-200 dark:border-slate-700">
         <div className="flex items-center justify-between mb-4">
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">✕</button>
+          <button onClick={onClose} className="text-slate-500 hover:text-slate-700">✕</button>
           <div className="flex gap-2">
             <Button variant="outline" size="sm" onClick={() => window.open(applicant.resume?.url)}>
               📄 Resume
@@ -367,7 +367,7 @@ function ApplicantDetailPanel({
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="w-14 h-14 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+          <div className="w-14 h-14 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
             {applicant.candidate.avatar ? (
               <OptimizedImage src={toCloudinaryAutoUrl(applicant.candidate.avatar)} alt={applicant.candidate.name} width={56} height={56} className="w-full h-full object-cover" />
             ) : (
@@ -376,11 +376,11 @@ function ApplicantDetailPanel({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="font-bold text-gray-900 dark:text-white">{applicant.candidate.name}</h2>
+              <h2 className="font-bold text-slate-900 dark:text-white">{applicant.candidate.name}</h2>
               {applicant.candidate.isIndigenous && <span>🌏</span>}
             </div>
-            <p className="text-sm text-gray-500">{applicant.candidate.headline}</p>
-            <p className="text-sm text-gray-500">{applicant.candidate.location}</p>
+            <p className="text-sm text-slate-500">{applicant.candidate.headline}</p>
+            <p className="text-sm text-slate-500">{applicant.candidate.location}</p>
           </div>
         </div>
       </div>
@@ -389,13 +389,13 @@ function ApplicantDetailPanel({
       <div className="p-4 space-y-6">
         {/* Stage Selector */}
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
+          <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 block">
             Stage
           </label>
           <select
             value={applicant.stage}
             onChange={(e) => onMove(e.target.value as Applicant['stage'])}
-            className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+            className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
           >
             {PIPELINE_STAGES.map((stage) => (
               <option key={stage.id} value={stage.id}>{stage.name}</option>
@@ -406,7 +406,7 @@ function ApplicantDetailPanel({
 
         {/* Rating */}
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
+          <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 block">
             Rating
           </label>
           <div className="flex gap-1">
@@ -424,14 +424,14 @@ function ApplicantDetailPanel({
 
         {/* Scores */}
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
+          <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 block">
             Match Scores
           </label>
           <div className="space-y-2">
             {Object.entries(applicant.scores).map(([key, value]) => (
               <div key={key} className="flex items-center gap-3">
-                <span className="text-sm text-gray-500 capitalize w-24">{key}</span>
-                <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <span className="text-sm text-slate-500 capitalize w-24">{key}</span>
+                <div className="flex-1 h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
                   <div
                     className={`h-full rounded-full ${
                       value >= 80 ? 'bg-green-500' : value >= 60 ? 'bg-yellow-500' : 'bg-red-500'
@@ -448,12 +448,12 @@ function ApplicantDetailPanel({
         {/* Tags */}
         {applicant.tags.length > 0 && (
           <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
+            <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 block">
               Tags
             </label>
             <div className="flex flex-wrap gap-2">
               {applicant.tags.map((tag) => (
-                <span key={tag} className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-sm">
+                <span key={tag} className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-sm">
                   {tag}
                 </span>
               ))}
@@ -462,8 +462,8 @@ function ApplicantDetailPanel({
         )}
 
         {/* Contact */}
-        <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
+        <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+          <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 block">
             Contact
           </label>
           <div className="space-y-2 text-sm">
@@ -486,14 +486,14 @@ function ApplicantDetailPanel({
 
         {/* Notes */}
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
+          <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 block">
             Notes
           </label>
           <div className="space-y-3 mb-3">
             {applicant.notes.map((note) => (
-              <div key={note.id} className="p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
-                <p className="text-sm text-gray-700 dark:text-gray-300">{note.content}</p>
-                <p className="text-xs text-gray-500 mt-1">
+              <div key={note.id} className="p-3 bg-slate-50 dark:bg-slate-900 rounded-lg">
+                <p className="text-sm text-slate-700 dark:text-slate-300">{note.content}</p>
+                <p className="text-xs text-slate-500 mt-1">
                   {note.author} • {new Date(note.createdAt).toLocaleDateString('en-AU')}
                 </p>
               </div>
@@ -505,7 +505,7 @@ function ApplicantDetailPanel({
               value={noteContent}
               onChange={(e) => setNoteContent(e.target.value)}
               placeholder="Add a note..."
-              className="flex-1 px-3 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600 text-sm"
+              className="flex-1 px-3 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600 text-sm"
             />
             <Button
               size="sm"
@@ -519,7 +519,7 @@ function ApplicantDetailPanel({
 
         {/* Activity Timeline */}
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
+          <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 block">
             Activity
           </label>
           <div className="space-y-3">
@@ -527,8 +527,8 @@ function ApplicantDetailPanel({
               <div key={idx} className="flex gap-3 text-sm">
                 <div className="w-2 h-2 mt-1.5 rounded-full bg-blue-500 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-700 dark:text-gray-300">{activity.description}</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-slate-700 dark:text-slate-300">{activity.description}</p>
+                  <p className="text-xs text-slate-500">
                     {new Date(activity.date).toLocaleDateString('en-AU')}
                     {activity.user && ` • ${activity.user}`}
                   </p>
@@ -539,7 +539,7 @@ function ApplicantDetailPanel({
         </div>
 
         {/* Actions */}
-        <div className="flex gap-2 pt-4 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex gap-2 pt-4 border-t border-slate-200 dark:border-slate-700">
           <Button variant="outline" className="flex-1" onClick={() => {}}>
             📧 Email
           </Button>
@@ -559,14 +559,14 @@ function ApplicantDetailPanel({
       {/* Reject Modal */}
       {showRejectModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-6">
-            <h3 className="font-bold text-gray-900 dark:text-white mb-4">Reject Applicant</h3>
+          <div className="bg-white dark:bg-slate-800 rounded-xl max-w-md w-full p-6">
+            <h3 className="font-bold text-slate-900 dark:text-white mb-4">Reject Applicant</h3>
             <textarea
               value={rejectReason}
               onChange={(e) => setRejectReason(e.target.value)}
               placeholder="Reason for rejection..."
               rows={3}
-              className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600 mb-4"
+              className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600 mb-4"
             />
             <div className="flex gap-3 justify-end">
               <Button variant="outline" onClick={() => setShowRejectModal(false)}>Cancel</Button>
@@ -698,11 +698,11 @@ export function ApplicantTracker() {
   return (
     <div className="h-screen flex flex-col">
       {/* Header */}
-      <div className="flex-shrink-0 p-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+      <div className="flex-shrink-0 p-4 border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Applicant Tracker</h1>
-            <p className="text-gray-500">{applicants.length} applicants</p>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Applicant Tracker</h1>
+            <p className="text-slate-500">{applicants.length} applicants</p>
           </div>
         </div>
 
@@ -711,7 +711,7 @@ export function ApplicantTracker() {
           <select
             value={filters.jobId}
             onChange={(e) => setFilters({ ...filters, jobId: e.target.value })}
-            className="px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+            className="px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
           >
             <option value="">All Jobs</option>
             {jobs.map((job) => (
@@ -722,7 +722,7 @@ export function ApplicantTracker() {
           <select
             value={filters.source}
             onChange={(e) => setFilters({ ...filters, source: e.target.value })}
-            className="px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+            className="px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
           >
             <option value="">All Sources</option>
             {Object.entries(SOURCE_ICONS).map(([source, icon]) => (
@@ -735,15 +735,15 @@ export function ApplicantTracker() {
             value={filters.query}
             onChange={(e) => setFilters({ ...filters, query: e.target.value })}
             placeholder="Search applicants..."
-            className="px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+            className="px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
           />
 
           {selectedIds.size > 0 && (
             <div className="flex items-center gap-2 ml-auto">
-              <span className="text-sm text-gray-500">{selectedIds.size} selected</span>
+              <span className="text-sm text-slate-500">{selectedIds.size} selected</span>
               <select
                 onChange={(e) => { handleBulkMove(e.target.value as Applicant['stage']); e.target.value = ''; }}
-                className="px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                className="px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                 defaultValue=""
               >
                 <option value="" disabled>Move to...</option>

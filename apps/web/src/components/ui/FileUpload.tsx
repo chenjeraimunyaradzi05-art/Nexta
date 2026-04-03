@@ -223,7 +223,7 @@ export function FileUpload({
     <div className={className}>
       {/* Label */}
       {label && (
-        <label className={`block text-sm font-medium mb-2 ${isCosmic ? 'text-gray-300' : 'text-gray-700 dark:text-gray-300'}`}>
+        <label className={`block text-sm font-medium mb-2 ${isCosmic ? 'text-slate-300' : 'text-slate-700 dark:text-slate-300'}`}>
           {label}
         </label>
       )}
@@ -243,7 +243,7 @@ export function FileUpload({
               : 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
             : isCosmic 
               ? 'border-[#FFD700]/30 hover:border-[#FFD700]/60 bg-[#1A0F2E]/50' 
-              : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 bg-gray-50 dark:bg-gray-800/50'
+              : 'border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500 bg-slate-50 dark:bg-slate-800/50'
           }
           ${displayError ? 'border-red-500' : ''}
         `}
@@ -261,7 +261,7 @@ export function FileUpload({
         {isUploading ? (
           <div className="flex flex-col items-center gap-3">
             <Spinner size="lg" variant={isCosmic ? 'gold' : 'primary'} />
-            <p className={isCosmic ? 'text-gray-400' : 'text-gray-600 dark:text-gray-400'}>
+            <p className={isCosmic ? 'text-slate-400' : 'text-slate-600 dark:text-slate-400'}>
               Uploading...
             </p>
           </div>
@@ -269,16 +269,16 @@ export function FileUpload({
           <>
             <div className={`
               w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center
-              ${isCosmic ? 'bg-[#FFD700]/20' : 'bg-gray-100 dark:bg-gray-700'}
+              ${isCosmic ? 'bg-[#FFD700]/20' : 'bg-slate-100 dark:bg-slate-700'}
             `}>
-              <Upload className={`w-8 h-8 ${isCosmic ? 'text-[#FFD700]' : 'text-gray-400 dark:text-gray-500'}`} />
+              <Upload className={`w-8 h-8 ${isCosmic ? 'text-[#FFD700]' : 'text-slate-400 dark:text-slate-500'}`} />
             </div>
             
-            <p className={`font-medium mb-1 ${isCosmic ? 'text-white' : 'text-gray-900 dark:text-white'}`}>
+            <p className={`font-medium mb-1 ${isCosmic ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
               {isDragging ? 'Drop files here' : 'Click to upload or drag and drop'}
             </p>
             
-            <p className={`text-sm ${isCosmic ? 'text-gray-400' : 'text-gray-500 dark:text-gray-400'}`}>
+            <p className={`text-sm ${isCosmic ? 'text-slate-400' : 'text-slate-500 dark:text-slate-400'}`}>
               {accept ? accept.replace(/,/g, ', ') : 'Any file type'}
               {' · '}
               Max {formatFileSize(maxSize)}
@@ -290,7 +290,7 @@ export function FileUpload({
 
       {/* Hint */}
       {hint && !displayError && (
-        <p className={`text-sm mt-2 ${isCosmic ? 'text-gray-400' : 'text-gray-500 dark:text-gray-400'}`}>
+        <p className={`text-sm mt-2 ${isCosmic ? 'text-slate-400' : 'text-slate-500 dark:text-slate-400'}`}>
           {hint}
         </p>
       )}
@@ -307,7 +307,7 @@ export function FileUpload({
       {files.length > 0 && (
         <div className="mt-4 space-y-2">
           <div className="flex items-center justify-between mb-2">
-            <span className={`text-sm font-medium ${isCosmic ? 'text-gray-300' : 'text-gray-700 dark:text-gray-300'}`}>
+            <span className={`text-sm font-medium ${isCosmic ? 'text-slate-300' : 'text-slate-700 dark:text-slate-300'}`}>
               {files.length} file{files.length !== 1 ? 's' : ''} selected
             </span>
             <button
@@ -323,7 +323,7 @@ export function FileUpload({
               key={index}
               className={`
                 flex items-center gap-3 p-3 rounded-lg
-                ${isCosmic ? 'bg-white/5' : 'bg-gray-100 dark:bg-gray-800'}
+                ${isCosmic ? 'bg-white/5' : 'bg-slate-100 dark:bg-slate-800'}
               `}
             >
               {/* Preview or icon */}
@@ -340,7 +340,7 @@ export function FileUpload({
               ) : (
                 <div className={`
                   w-12 h-12 rounded flex items-center justify-center
-                  ${isCosmic ? 'bg-white/10 text-[#FFD700]' : 'bg-gray-200 dark:bg-gray-700 text-gray-500'}
+                  ${isCosmic ? 'bg-white/10 text-[#FFD700]' : 'bg-slate-200 dark:bg-slate-700 text-slate-500'}
                 `}>
                   {getFileIcon(uploadedFile.file.type)}
                 </div>
@@ -348,10 +348,10 @@ export function FileUpload({
 
               {/* File info */}
               <div className="flex-1 min-w-0">
-                <p className={`text-sm font-medium truncate ${isCosmic ? 'text-white' : 'text-gray-900 dark:text-white'}`}>
+                <p className={`text-sm font-medium truncate ${isCosmic ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
                   {uploadedFile.file.name}
                 </p>
-                <p className={`text-xs ${isCosmic ? 'text-gray-400' : 'text-gray-500 dark:text-gray-400'}`}>
+                <p className={`text-xs ${isCosmic ? 'text-slate-400' : 'text-slate-500 dark:text-slate-400'}`}>
                   {formatFileSize(uploadedFile.file.size)}
                 </p>
               </div>
@@ -375,8 +375,8 @@ export function FileUpload({
                 className={`
                   p-1 rounded-full transition-colors
                   ${isCosmic 
-                    ? 'hover:bg-white/10 text-gray-400 hover:text-white' 
-                    : 'hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}
+                    ? 'hover:bg-white/10 text-slate-400 hover:text-white' 
+                    : 'hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}
                 `}
                 aria-label={`Remove ${uploadedFile.file.name}`}
               >
@@ -458,13 +458,13 @@ export function AvatarUpload({
           ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:opacity-80'}
           ${isCosmic 
             ? 'border-[#FFD700]/30 hover:border-[#FFD700]' 
-            : 'border-gray-300 dark:border-gray-600 hover:border-gray-400'}
+            : 'border-slate-300 dark:border-slate-600 hover:border-slate-400'}
         `}
       >
         {isUploading ? (
           <div className={`
             w-full h-full flex items-center justify-center
-            ${isCosmic ? 'bg-[#1A0F2E]' : 'bg-gray-100 dark:bg-gray-800'}
+            ${isCosmic ? 'bg-[#1A0F2E]' : 'bg-slate-100 dark:bg-slate-800'}
           `}>
             <Spinner size="md" variant={isCosmic ? 'gold' : 'primary'} />
           </div>
@@ -480,7 +480,7 @@ export function AvatarUpload({
         ) : (
           <div className={`
             w-full h-full flex items-center justify-center
-            ${isCosmic ? 'bg-[#1A0F2E] text-[#FFD700]' : 'bg-gray-100 dark:bg-gray-800 text-gray-400'}
+            ${isCosmic ? 'bg-[#1A0F2E] text-[#FFD700]' : 'bg-slate-100 dark:bg-slate-800 text-slate-400'}
           `}>
             <Upload className="w-6 h-6" />
           </div>
@@ -492,7 +492,7 @@ export function AvatarUpload({
         <div className={`
           absolute bottom-0 right-0 p-1.5 rounded-full
           ${isCosmic 
-            ? 'bg-[#FFD700] text-gray-900' 
+            ? 'bg-[#FFD700] text-slate-900' 
             : 'bg-blue-600 text-white'}
         `}>
           <Upload className="w-3 h-3" />

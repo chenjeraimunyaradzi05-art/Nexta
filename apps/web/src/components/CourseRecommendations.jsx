@@ -53,8 +53,8 @@ export default function CourseRecommendations({ jobId, userId, limit = 6 }) {
     
     if (courses.length === 0) {
         return (
-            <div className="text-center py-8 text-gray-500">
-                <svg className="w-12 h-12 mx-auto text-gray-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="text-center py-8 text-slate-500">
+                <svg className="w-12 h-12 mx-auto text-slate-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
                 <p>No course recommendations available</p>
@@ -64,7 +64,7 @@ export default function CourseRecommendations({ jobId, userId, limit = 6 }) {
     
     return (
         <div className="space-y-4">
-            <h3 className="font-semibold text-gray-900">Recommended Courses</h3>
+            <h3 className="font-semibold text-slate-900">Recommended Courses</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {courses.map((course) => (
                     <CourseCard key={course.id} course={course} />
@@ -112,26 +112,26 @@ function CourseCard({ course }) {
     return (
         <div className="bg-white border rounded-lg p-4 hover:shadow-md transition-shadow">
             <div className="flex items-start justify-between mb-2">
-                <span className="text-xs font-medium text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
+                <span className="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
                     {course.provider}
                 </span>
                 {course.relevanceScore !== undefined && (
                     <span className={`text-xs font-bold px-2 py-0.5 rounded ${
                         course.relevanceScore >= 80 ? 'bg-green-100 text-green-700' :
                         course.relevanceScore >= 50 ? 'bg-yellow-100 text-yellow-700' :
-                        'bg-gray-100 text-gray-600'
+                        'bg-slate-100 text-slate-600'
                     }`}>
                         {course.relevanceScore}% match
                     </span>
                 )}
             </div>
             
-            <h4 className="font-medium text-gray-900 mb-1 line-clamp-2">
+            <h4 className="font-medium text-slate-900 mb-1 line-clamp-2">
                 {course.name}
             </h4>
             
             {course.qualification && (
-                <p className="text-xs text-gray-500 mb-2">{course.qualification}</p>
+                <p className="text-xs text-slate-500 mb-2">{course.qualification}</p>
             )}
             
             {/* Matched Skills */}
@@ -146,7 +146,7 @@ function CourseCard({ course }) {
                         </span>
                     ))}
                     {course.matchedSkills.length > 3 && (
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-slate-500">
                             +{course.matchedSkills.length - 3} more
                         </span>
                     )}
@@ -154,7 +154,7 @@ function CourseCard({ course }) {
             )}
             
             {/* Course Details */}
-            <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
+            <div className="flex items-center gap-4 text-xs text-slate-500 mb-3">
                 {course.durationWeeks && (
                     <span className="flex items-center gap-1">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -172,7 +172,7 @@ function CourseCard({ course }) {
             <div className="flex items-center justify-between pt-3 border-t">
                 <div>
                     {course.price ? (
-                        <span className="font-bold text-gray-900">${course.price.toLocaleString()}</span>
+                        <span className="font-bold text-slate-900">${course.price.toLocaleString()}</span>
                     ) : (
                         <span className="font-bold text-green-600">Free</span>
                     )}
@@ -224,7 +224,7 @@ export function CourseRecommendationsList({ jobId, limit = 3 }) {
     
     return (
         <div className="space-y-3">
-            <h4 className="text-sm font-medium text-gray-700">Suggested Courses</h4>
+            <h4 className="text-sm font-medium text-slate-700">Suggested Courses</h4>
             <ul className="space-y-2">
                 {courses.map((course) => (
                     <li key={course.id}>

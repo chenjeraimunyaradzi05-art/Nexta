@@ -224,11 +224,11 @@ function SkillCard({
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <h3 className="font-medium text-gray-900 dark:text-white">{skill.name}</h3>
+            <h3 className="font-medium text-slate-900 dark:text-white">{skill.name}</h3>
             {skill.isVerified && (
               <span className="px-2 py-0.5 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 text-xs font-medium rounded-full flex items-center gap-1">
                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
@@ -239,8 +239,8 @@ function SkillCard({
             )}
           </div>
           <div className="flex items-center gap-2 mt-1">
-            <span className="text-sm text-gray-500">{skill.category}</span>
-            <span className="text-gray-300">•</span>
+            <span className="text-sm text-slate-500">{skill.category}</span>
+            <span className="text-slate-300">•</span>
             <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${levelConfig?.color}`}>
               {levelConfig?.label}
             </span>
@@ -251,7 +251,7 @@ function SkillCard({
         <div className="relative">
           <button
             onClick={() => setShowMenu(!showMenu)}
-            className="p-1 text-gray-400 hover:text-gray-600 rounded"
+            className="p-1 text-slate-400 hover:text-slate-600 rounded"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
@@ -260,17 +260,17 @@ function SkillCard({
           {showMenu && (
             <>
               <div className="fixed inset-0 z-10" onClick={() => setShowMenu(false)} />
-              <div className="absolute right-0 top-full mt-1 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-20 py-1">
+              <div className="absolute right-0 top-full mt-1 w-48 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 z-20 py-1">
                 <button
                   onClick={() => { setShowMenu(false); onEdit(); }}
-                  className="w-full px-4 py-2 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
+                  className="w-full px-4 py-2 text-left text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700"
                 >
                   Edit Skill Level
                 </button>
                 {!skill.isVerified && (
                   <button
                     onClick={() => setShowMenu(false)}
-                    className="w-full px-4 py-2 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
+                    className="w-full px-4 py-2 text-left text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700"
                   >
                     Request Verification
                   </button>
@@ -299,13 +299,13 @@ function SkillCard({
                   alt={`${e.endorser.name} avatar`}
                   width={24}
                   height={24}
-                  className="w-6 h-6 rounded-full border-2 border-white dark:border-gray-800"
+                  className="w-6 h-6 rounded-full border-2 border-white dark:border-slate-800"
                   style={{ marginLeft: i > 0 ? '-8px' : 0 }}
                 />
               ) : (
                 <div
                   key={e.id}
-                  className="w-6 h-6 bg-gray-200 dark:bg-gray-700 rounded-full border-2 border-white dark:border-gray-800 flex items-center justify-center text-[10px] text-gray-500"
+                  className="w-6 h-6 bg-slate-200 dark:bg-slate-700 rounded-full border-2 border-white dark:border-slate-800 flex items-center justify-center text-[10px] text-slate-500"
                   style={{ marginLeft: i > 0 ? '-8px' : 0 }}
                 >
                   {e.endorser.name.charAt(0)}
@@ -314,7 +314,7 @@ function SkillCard({
             ))}
             <button
               onClick={onViewEndorsements}
-              className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600"
+              className="text-sm text-slate-600 dark:text-slate-400 hover:text-blue-600"
             >
               {skill.endorsementCount} endorsement{skill.endorsementCount !== 1 ? 's' : ''}
             </button>
@@ -342,7 +342,7 @@ function PendingEndorsementCard({
   onDecline: () => void;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
       <div className="flex items-start gap-4">
         {request.person.avatar ? (
           <OptimizedImage
@@ -353,18 +353,18 @@ function PendingEndorsementCard({
             className="w-12 h-12 rounded-full object-cover"
           />
         ) : (
-          <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-500">
+          <div className="w-12 h-12 bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center text-slate-500">
             {request.person.name.split(' ').map(n => n[0]).join('')}
           </div>
         )}
         <div className="flex-1">
-          <h3 className="font-medium text-gray-900 dark:text-white">{request.person.name}</h3>
-          <p className="text-sm text-gray-500">{request.person.title}</p>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+          <h3 className="font-medium text-slate-900 dark:text-white">{request.person.name}</h3>
+          <p className="text-sm text-slate-500">{request.person.title}</p>
+          <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">
             Requested endorsement for <span className="font-medium text-blue-600">{request.skill.name}</span>
           </p>
           {request.message && (
-            <p className="text-sm text-gray-500 mt-2 italic">"{request.message}"</p>
+            <p className="text-sm text-slate-500 mt-2 italic">"{request.message}"</p>
           )}
         </div>
       </div>
@@ -385,7 +385,7 @@ function ConnectionEndorseCard({
   onEndorseSkill: (skillId: string) => void;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
       <div className="flex items-center gap-3 mb-4">
         {connection.avatar ? (
           <OptimizedImage
@@ -396,13 +396,13 @@ function ConnectionEndorseCard({
             className="w-12 h-12 rounded-full object-cover"
           />
         ) : (
-          <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-500">
+          <div className="w-12 h-12 bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center text-slate-500">
             {connection.name.split(' ').map(n => n[0]).join('')}
           </div>
         )}
         <div>
-          <h3 className="font-medium text-gray-900 dark:text-white">{connection.name}</h3>
-          <p className="text-sm text-gray-500">{connection.title}</p>
+          <h3 className="font-medium text-slate-900 dark:text-white">{connection.name}</h3>
+          <p className="text-sm text-slate-500">{connection.title}</p>
         </div>
       </div>
 
@@ -410,9 +410,9 @@ function ConnectionEndorseCard({
         {connection.skills.slice(0, 5).map((skill) => (
           <div
             key={skill.id}
-            className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-900 rounded-lg"
+            className="flex items-center justify-between p-2 bg-slate-50 dark:bg-slate-900 rounded-lg"
           >
-            <span className="text-sm text-gray-700 dark:text-gray-300">{skill.name}</span>
+            <span className="text-sm text-slate-700 dark:text-slate-300">{skill.name}</span>
             {skill.endorsed ? (
               <span className="text-xs text-green-600 flex items-center gap-1">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -456,10 +456,10 @@ function AddSkillModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Add Skill</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-md w-full">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Add Skill</h2>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -468,7 +468,7 @@ function AddSkillModal({
 
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Skill Name
             </label>
             <input
@@ -476,19 +476,19 @@ function AddSkillModal({
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g., Project Management"
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Category
             </label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             >
               {skillCategories.map((cat) => (
                 <option key={cat.value} value={cat.value}>{cat.label}</option>
@@ -497,7 +497,7 @@ function AddSkillModal({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Proficiency Level
             </label>
             <div className="grid grid-cols-2 gap-2">
@@ -509,10 +509,10 @@ function AddSkillModal({
                   className={`p-3 rounded-lg border-2 text-center transition-colors ${
                     level === l.value
                       ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                      : 'border-gray-200 dark:border-gray-600 hover:border-gray-300'
+                      : 'border-slate-200 dark:border-slate-600 hover:border-slate-300'
                   }`}
                 >
-                  <span className={`text-sm font-medium ${level === l.value ? 'text-blue-700 dark:text-blue-300' : 'text-gray-700 dark:text-gray-300'}`}>
+                  <span className={`text-sm font-medium ${level === l.value ? 'text-blue-700 dark:text-blue-300' : 'text-slate-700 dark:text-slate-300'}`}>
                     {l.label}
                   </span>
                 </button>
@@ -569,10 +569,10 @@ function RequestEndorsementModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-lg w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Request Endorsements</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-lg w-full max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Request Endorsements</h2>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -582,22 +582,22 @@ function RequestEndorsementModal({
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-6">
           {/* Select Skills */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Select skills to endorse ({selectedSkills.length} selected)
             </label>
             <div className="space-y-2 max-h-40 overflow-y-auto">
               {skills.map((skill) => (
                 <label
                   key={skill.id}
-                  className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
+                  className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 cursor-pointer"
                 >
                   <input
                     type="checkbox"
                     checked={selectedSkills.includes(skill.id)}
                     onChange={() => toggleSkill(skill.id)}
-                    className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                    className="w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500"
                   />
-                  <span className="text-gray-700 dark:text-gray-300">{skill.name}</span>
+                  <span className="text-slate-700 dark:text-slate-300">{skill.name}</span>
                 </label>
               ))}
             </div>
@@ -605,20 +605,20 @@ function RequestEndorsementModal({
 
           {/* Select Connections */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Who to ask ({selectedConnections.length} selected)
             </label>
             <div className="space-y-2 max-h-48 overflow-y-auto">
               {connections.map((connection) => (
                 <label
                   key={connection.id}
-                  className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
+                  className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 cursor-pointer"
                 >
                   <input
                     type="checkbox"
                     checked={selectedConnections.includes(connection.id)}
                     onChange={() => toggleConnection(connection.id)}
-                    className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                    className="w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500"
                   />
                   {connection.avatar ? (
                     <OptimizedImage
@@ -629,13 +629,13 @@ function RequestEndorsementModal({
                       className="w-8 h-8 rounded-full object-cover"
                     />
                   ) : (
-                    <div className="w-8 h-8 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-500 text-xs">
+                    <div className="w-8 h-8 bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center text-slate-500 text-xs">
                       {connection.name.split(' ').map(n => n[0]).join('')}
                     </div>
                   )}
                   <div>
-                    <span className="text-gray-700 dark:text-gray-300">{connection.name}</span>
-                    <span className="text-xs text-gray-500 ml-2">{connection.title}</span>
+                    <span className="text-slate-700 dark:text-slate-300">{connection.name}</span>
+                    <span className="text-xs text-slate-500 ml-2">{connection.title}</span>
                   </div>
                 </label>
               ))}
@@ -644,7 +644,7 @@ function RequestEndorsementModal({
 
           {/* Message */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Personal message (optional)
             </label>
             <textarea
@@ -652,12 +652,12 @@ function RequestEndorsementModal({
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Add a personal note to your request..."
               rows={3}
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white resize-none"
             />
           </div>
         </form>
 
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex gap-3">
+        <div className="p-6 border-t border-slate-200 dark:border-slate-700 flex gap-3">
           <Button type="button" variant="outline" onClick={onClose} className="flex-1">
             Cancel
           </Button>
@@ -771,23 +771,23 @@ export function SkillEndorsements() {
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Skill Endorsements</h1>
-        <p className="text-gray-500 mt-1">Build credibility with skill endorsements from your network</p>
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Skill Endorsements</h1>
+        <p className="text-slate-500 mt-1">Build credibility with skill endorsements from your network</p>
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mb-8">
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 text-center">
           <div className="text-2xl font-bold text-blue-600">{skills.length}</div>
-          <div className="text-sm text-gray-500">Skills</div>
+          <div className="text-sm text-slate-500">Skills</div>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 text-center">
           <div className="text-2xl font-bold text-green-600">{totalEndorsements}</div>
-          <div className="text-sm text-gray-500">Total Endorsements</div>
+          <div className="text-sm text-slate-500">Total Endorsements</div>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 text-center">
           <div className="text-2xl font-bold text-purple-600">{verifiedSkills}</div>
-          <div className="text-sm text-gray-500">Verified Skills</div>
+          <div className="text-sm text-slate-500">Verified Skills</div>
         </div>
       </div>
 
@@ -804,7 +804,7 @@ export function SkillEndorsements() {
             className={`px-4 py-2 font-medium rounded-lg transition-colors ${
               activeTab === tab.value
                 ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
-                : 'text-gray-500 hover:text-gray-700'
+                : 'text-slate-500 hover:text-slate-700'
             }`}
           >
             {tab.label}
@@ -848,10 +848,10 @@ export function SkillEndorsements() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+            <div className="text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
               <div className="text-6xl mb-4">🎯</div>
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white">No skills added yet</h3>
-              <p className="text-gray-500 mt-2 mb-4">Add your skills to start collecting endorsements</p>
+              <h3 className="text-lg font-medium text-slate-900 dark:text-white">No skills added yet</h3>
+              <p className="text-slate-500 mt-2 mb-4">Add your skills to start collecting endorsements</p>
               <Button onClick={() => setShowAddSkill(true)}>Add Your First Skill</Button>
             </div>
           )}
@@ -872,10 +872,10 @@ export function SkillEndorsements() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+            <div className="text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
               <div className="text-6xl mb-4">✅</div>
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white">All caught up!</h3>
-              <p className="text-gray-500 mt-2">No pending endorsement requests</p>
+              <h3 className="text-lg font-medium text-slate-900 dark:text-white">All caught up!</h3>
+              <p className="text-slate-500 mt-2">No pending endorsement requests</p>
             </div>
           )}
         </div>
@@ -894,10 +894,10 @@ export function SkillEndorsements() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+            <div className="text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
               <div className="text-6xl mb-4">🤝</div>
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white">No connections yet</h3>
-              <p className="text-gray-500 mt-2">Connect with others to endorse their skills</p>
+              <h3 className="text-lg font-medium text-slate-900 dark:text-white">No connections yet</h3>
+              <p className="text-slate-500 mt-2">Connect with others to endorse their skills</p>
             </div>
           )}
         </div>

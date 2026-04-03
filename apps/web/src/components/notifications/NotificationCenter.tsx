@@ -138,7 +138,7 @@ const typeConfig: Record<NotificationType, { icon: React.ReactNode; color: strin
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
-    color: 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400',
+    color: 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400',
     label: 'System',
   },
   achievement: {
@@ -265,10 +265,10 @@ function NotificationItem({
     <div
       className={`flex items-start gap-4 p-4 rounded-lg transition-colors cursor-pointer
         ${notification.isRead 
-          ? 'bg-white dark:bg-gray-800' 
+          ? 'bg-white dark:bg-slate-800' 
           : 'bg-blue-50 dark:bg-blue-900/10 border-l-4 border-blue-500'
         }
-        hover:bg-gray-50 dark:hover:bg-gray-750
+        hover:bg-slate-50 dark:hover:bg-slate-750
       `}
       onClick={handleClick}
     >
@@ -289,13 +289,13 @@ function NotificationItem({
       
       {/* Content */}
       <div className="flex-1 min-w-0">
-        <p className={`font-medium ${notification.isRead ? 'text-gray-700 dark:text-gray-300' : 'text-gray-900 dark:text-white'}`}>
+        <p className={`font-medium ${notification.isRead ? 'text-slate-700 dark:text-slate-300' : 'text-slate-900 dark:text-white'}`}>
           {notification.title}
         </p>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
           {notification.body}
         </p>
-        <p className="mt-2 text-xs text-gray-400 dark:text-gray-500">
+        <p className="mt-2 text-xs text-slate-400 dark:text-slate-500">
           {formatRelativeTime(notification.createdAt)}
         </p>
       </div>
@@ -305,7 +305,7 @@ function NotificationItem({
         {!notification.isRead && (
           <button
             onClick={onMarkAsRead}
-            className="p-1.5 text-gray-400 hover:text-blue-500 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="p-1.5 text-slate-400 hover:text-blue-500 rounded hover:bg-slate-100 dark:hover:bg-slate-700"
             aria-label="Mark as read"
             title="Mark as read"
           >
@@ -316,7 +316,7 @@ function NotificationItem({
         )}
         <button
           onClick={onDelete}
-          className="p-1.5 text-gray-400 hover:text-red-500 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+          className="p-1.5 text-slate-400 hover:text-red-500 rounded hover:bg-slate-100 dark:hover:bg-slate-700"
           aria-label="Delete notification"
           title="Delete"
         >
@@ -351,7 +351,7 @@ export function NotificationBell({ onClick }: { onClick?: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="relative p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+      className="relative p-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700"
       aria-label={`Notifications${unreadCount > 0 ? ` (${unreadCount} unread)` : ''}`}
     >
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -448,11 +448,11 @@ export function NotificationCenter({ isOpen, onClose }: { isOpen?: boolean; onCl
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
             Notifications
           </h2>
           {unreadCount > 0 && (
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-sm text-slate-500 dark:text-slate-400">
               {unreadCount} unread notification{unreadCount !== 1 ? 's' : ''}
             </p>
           )}
@@ -471,7 +471,7 @@ export function NotificationCenter({ isOpen, onClose }: { isOpen?: boolean; onCl
           className={`px-4 py-2 text-sm rounded-full whitespace-nowrap transition-colors ${
             selectedType === 'all'
               ? 'bg-blue-500 text-white'
-              : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+              : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
           }`}
         >
           All
@@ -483,7 +483,7 @@ export function NotificationCenter({ isOpen, onClose }: { isOpen?: boolean; onCl
             className={`px-4 py-2 text-sm rounded-full whitespace-nowrap transition-colors ${
               selectedType === type
                 ? 'bg-blue-500 text-white'
-                : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
             }`}
           >
             {config.label}
@@ -500,7 +500,7 @@ export function NotificationCenter({ isOpen, onClose }: { isOpen?: boolean; onCl
         <div className="space-y-6">
           {groupedNotifications.map((group) => (
             <div key={group.date}>
-              <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3">
+              <h3 className="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-3">
                 {group.label}
               </h3>
               <div className="space-y-2">
@@ -532,13 +532,13 @@ export function NotificationCenter({ isOpen, onClose }: { isOpen?: boolean; onCl
         </div>
       ) : (
         <div className="text-center py-16">
-          <svg className="w-16 h-16 mx-auto text-gray-300 dark:text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-16 h-16 mx-auto text-slate-300 dark:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
           </svg>
-          <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
+          <h3 className="mt-4 text-lg font-medium text-slate-900 dark:text-white">
             No notifications
           </h3>
-          <p className="mt-2 text-gray-500 dark:text-gray-400">
+          <p className="mt-2 text-slate-500 dark:text-slate-400">
             {selectedType === 'all' 
               ? "You're all caught up! Check back later for updates."
               : `No ${typeConfig[selectedType as NotificationType]?.label.toLowerCase() || selectedType} notifications.`
@@ -596,9 +596,9 @@ export function NotificationDropdown() {
       <NotificationBell onClick={() => setIsOpen(!isOpen)} />
       
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-96 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-50">
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-            <h3 className="font-semibold text-gray-900 dark:text-white">Notifications</h3>
+        <div className="absolute right-0 mt-2 w-96 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 z-50">
+          <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700">
+            <h3 className="font-semibold text-slate-900 dark:text-white">Notifications</h3>
             <a 
               href="/notifications" 
               className="text-sm text-blue-500 hover:text-blue-600"
@@ -619,7 +619,7 @@ export function NotificationDropdown() {
                   return (
                     <div
                       key={notification.id}
-                      className={`flex items-start gap-3 p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-750 ${
+                      className={`flex items-start gap-3 p-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-750 ${
                         !notification.isRead ? 'bg-blue-50 dark:bg-blue-900/10' : ''
                       }`}
                       onClick={() => {
@@ -631,13 +631,13 @@ export function NotificationDropdown() {
                         {config.icon}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                        <p className="text-sm font-medium text-slate-900 dark:text-white truncate">
                           {notification.title}
                         </p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                        <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
                           {notification.body}
                         </p>
-                        <p className="text-xs text-gray-400 mt-1">
+                        <p className="text-xs text-slate-400 mt-1">
                           {formatRelativeTime(notification.createdAt)}
                         </p>
                       </div>
@@ -646,7 +646,7 @@ export function NotificationDropdown() {
                 })}
               </div>
             ) : (
-              <div className="py-8 text-center text-gray-500 dark:text-gray-400">
+              <div className="py-8 text-center text-slate-500 dark:text-slate-400">
                 No notifications yet
               </div>
             )}

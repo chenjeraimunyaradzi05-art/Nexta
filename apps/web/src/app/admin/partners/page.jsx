@@ -9,7 +9,7 @@ const API_URL = API_BASE;
 
 const PARTNER_TIERS = [
   { value: 'standard', label: 'Standard', color: 'bg-slate-600' },
-  { value: 'silver', label: 'Silver', color: 'bg-gray-400' },
+  { value: 'silver', label: 'Silver', color: 'bg-slate-400' },
   { value: 'gold', label: 'Gold', color: 'bg-yellow-500' },
   { value: 'platinum', label: 'Platinum', color: 'bg-blue-300' },
 ];

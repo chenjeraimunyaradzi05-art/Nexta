@@ -177,14 +177,14 @@ const offersApi = {
 };
 
 const STATUS_CONFIG: Record<Offer['status'], { label: string; color: string; icon: string }> = {
-  draft: { label: 'Draft', color: 'bg-gray-100 text-gray-700', icon: '📝' },
+  draft: { label: 'Draft', color: 'bg-slate-100 text-slate-700', icon: '📝' },
   'pending-approval': { label: 'Pending Approval', color: 'bg-yellow-100 text-yellow-700', icon: '⏳' },
   approved: { label: 'Approved', color: 'bg-blue-100 text-blue-700', icon: '✅' },
   sent: { label: 'Sent', color: 'bg-purple-100 text-purple-700', icon: '📤' },
   viewed: { label: 'Viewed', color: 'bg-indigo-100 text-indigo-700', icon: '👁️' },
   accepted: { label: 'Accepted', color: 'bg-green-100 text-green-700', icon: '🎉' },
   declined: { label: 'Declined', color: 'bg-red-100 text-red-700', icon: '❌' },
-  expired: { label: 'Expired', color: 'bg-gray-100 text-gray-500', icon: '⏰' },
+  expired: { label: 'Expired', color: 'bg-slate-100 text-slate-500', icon: '⏰' },
   withdrawn: { label: 'Withdrawn', color: 'bg-orange-100 text-orange-700', icon: '↩️' },
 };
 
@@ -202,11 +202,11 @@ function OfferCard({
   return (
     <div
       onClick={onClick}
-      className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 hover:shadow-lg transition-all cursor-pointer"
+      className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5 hover:shadow-lg transition-all cursor-pointer"
     >
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+          <div className="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
             {offer.candidate.avatar ? (
               <OptimizedImage src={toCloudinaryAutoUrl(offer.candidate.avatar)} alt={offer.candidate.name} width={48} height={48} className="w-full h-full object-cover" />
             ) : (
@@ -214,8 +214,8 @@ function OfferCard({
             )}
           </div>
           <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white">{offer.candidate.name}</h3>
-            <p className="text-sm text-gray-500">{offer.job.title}</p>
+            <h3 className="font-semibold text-slate-900 dark:text-white">{offer.candidate.name}</h3>
+            <p className="text-sm text-slate-500">{offer.job.title}</p>
           </div>
         </div>
         <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusConfig.color}`}>
@@ -224,18 +224,18 @@ function OfferCard({
       </div>
 
       {/* Compensation Summary */}
-      <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg mb-4">
+      <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg mb-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-gray-500">Base Salary</p>
-            <p className="text-xl font-bold text-gray-900 dark:text-white">
+            <p className="text-sm text-slate-500">Base Salary</p>
+            <p className="text-xl font-bold text-slate-900 dark:text-white">
               {offer.compensation.currency} {offer.compensation.baseSalary.toLocaleString()}
-              <span className="text-sm font-normal text-gray-500">/{offer.compensation.frequency}</span>
+              <span className="text-sm font-normal text-slate-500">/{offer.compensation.frequency}</span>
             </p>
           </div>
           {offer.compensation.bonus && offer.compensation.bonus.length > 0 && (
             <div className="text-right">
-              <p className="text-sm text-gray-500">Sign-on Bonus</p>
+              <p className="text-sm text-slate-500">Sign-on Bonus</p>
               <p className="text-lg font-semibold text-green-600">
                 +{offer.compensation.currency} {offer.compensation.bonus[0].amount.toLocaleString()}
               </p>
@@ -246,13 +246,13 @@ function OfferCard({
 
       {/* Details */}
       <div className="flex flex-wrap gap-3 mb-4 text-sm">
-        <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded">
+        <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">
           📅 Start: {new Date(offer.startDate).toLocaleDateString('en-AU', { month: 'short', day: 'numeric' })}
         </span>
-        <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded">
+        <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">
           📍 {offer.location}
         </span>
-        <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded capitalize">
+        <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded capitalize">
           🏢 {offer.workType}
         </span>
       </div>
@@ -298,12 +298,12 @@ function OfferDetailModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+              <div className="w-14 h-14 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
                 {offer.candidate.avatar ? (
                   <OptimizedImage src={toCloudinaryAutoUrl(offer.candidate.avatar)} alt={offer.candidate.name} width={56} height={56} className="w-full h-full object-cover" />
                 ) : (
@@ -311,11 +311,11 @@ function OfferDetailModal({
                 )}
               </div>
               <div>
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white">{offer.candidate.name}</h2>
-                <p className="text-gray-500">{offer.job.title} • {offer.job.department}</p>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">{offer.candidate.name}</h2>
+                <p className="text-slate-500">{offer.job.title} • {offer.job.department}</p>
               </div>
             </div>
-            <button onClick={onClose} className="text-gray-500 hover:text-gray-700">✕</button>
+            <button onClick={onClose} className="text-slate-500 hover:text-slate-700">✕</button>
           </div>
         </div>
 
@@ -326,33 +326,33 @@ function OfferDetailModal({
             <span className={`px-4 py-2 rounded-full font-medium ${statusConfig.color}`}>
               {statusConfig.icon} {statusConfig.label}
             </span>
-            <div className="text-sm text-gray-500">
+            <div className="text-sm text-slate-500">
               Created {new Date(offer.createdAt).toLocaleDateString('en-AU')}
             </div>
           </div>
 
           {/* Compensation Details */}
           <div className="mb-6">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Compensation Package</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Compensation Package</h3>
             <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <p className="text-sm text-gray-500 mb-1">Base Salary</p>
-                  <p className="text-3xl font-bold text-gray-900 dark:text-white">
+                  <p className="text-sm text-slate-500 mb-1">Base Salary</p>
+                  <p className="text-3xl font-bold text-slate-900 dark:text-white">
                     {offer.compensation.currency} {offer.compensation.baseSalary.toLocaleString()}
                   </p>
-                  <p className="text-sm text-gray-500">per {offer.compensation.frequency}</p>
+                  <p className="text-sm text-slate-500">per {offer.compensation.frequency}</p>
                 </div>
                 
                 {offer.compensation.bonus && offer.compensation.bonus.length > 0 && (
                   <div>
-                    <p className="text-sm text-gray-500 mb-1">Bonuses</p>
+                    <p className="text-sm text-slate-500 mb-1">Bonuses</p>
                     {offer.compensation.bonus.map((bonus, idx) => (
                       <div key={idx} className="flex items-center gap-2">
                         <span className="text-green-600 font-semibold">
                           +{offer.compensation.currency} {bonus.amount.toLocaleString()}
                         </span>
-                        <span className="text-sm text-gray-500 capitalize">{bonus.type}</span>
+                        <span className="text-sm text-slate-500 capitalize">{bonus.type}</span>
                       </div>
                     ))}
                   </div>
@@ -360,21 +360,21 @@ function OfferDetailModal({
               </div>
 
               {offer.compensation.equity && (
-                <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                  <p className="text-sm text-gray-500 mb-1">Equity</p>
-                  <p className="font-semibold text-gray-900 dark:text-white">
+                <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                  <p className="text-sm text-slate-500 mb-1">Equity</p>
+                  <p className="font-semibold text-slate-900 dark:text-white">
                     {offer.compensation.equity.amount.toLocaleString()} {offer.compensation.equity.type}
                   </p>
-                  <p className="text-sm text-gray-500">{offer.compensation.equity.vestingSchedule}</p>
+                  <p className="text-sm text-slate-500">{offer.compensation.equity.vestingSchedule}</p>
                 </div>
               )}
 
               {offer.compensation.benefits.length > 0 && (
-                <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                  <p className="text-sm text-gray-500 mb-2">Benefits</p>
+                <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                  <p className="text-sm text-slate-500 mb-2">Benefits</p>
                   <div className="flex flex-wrap gap-2">
                     {offer.compensation.benefits.map((benefit, idx) => (
-                      <span key={idx} className="px-3 py-1 bg-white dark:bg-gray-800 rounded-full text-sm">
+                      <span key={idx} className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full text-sm">
                         ✓ {benefit}
                       </span>
                     ))}
@@ -386,42 +386,42 @@ function OfferDetailModal({
 
           {/* Employment Details */}
           <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-              <p className="text-sm text-gray-500 mb-1">Start Date</p>
-              <p className="font-semibold text-gray-900 dark:text-white">
+            <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+              <p className="text-sm text-slate-500 mb-1">Start Date</p>
+              <p className="font-semibold text-slate-900 dark:text-white">
                 {new Date(offer.startDate).toLocaleDateString('en-AU', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
               </p>
             </div>
-            <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-              <p className="text-sm text-gray-500 mb-1">Offer Expires</p>
-              <p className="font-semibold text-gray-900 dark:text-white">
+            <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+              <p className="text-sm text-slate-500 mb-1">Offer Expires</p>
+              <p className="font-semibold text-slate-900 dark:text-white">
                 {new Date(offer.expiryDate).toLocaleDateString('en-AU', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
               </p>
             </div>
-            <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-              <p className="text-sm text-gray-500 mb-1">Location</p>
-              <p className="font-semibold text-gray-900 dark:text-white">{offer.location}</p>
+            <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+              <p className="text-sm text-slate-500 mb-1">Location</p>
+              <p className="font-semibold text-slate-900 dark:text-white">{offer.location}</p>
             </div>
-            <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-              <p className="text-sm text-gray-500 mb-1">Work Type</p>
-              <p className="font-semibold text-gray-900 dark:text-white capitalize">{offer.workType}</p>
+            <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+              <p className="text-sm text-slate-500 mb-1">Work Type</p>
+              <p className="font-semibold text-slate-900 dark:text-white capitalize">{offer.workType}</p>
             </div>
           </div>
 
           {/* Timeline */}
           <div className="mb-6">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Timeline</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Timeline</h3>
             <div className="space-y-3">
               {offer.timeline.map((event, idx) => (
                 <div key={idx} className="flex items-start gap-3">
                   <div className="w-2 h-2 mt-2 rounded-full bg-blue-500" />
                   <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-900 dark:text-white">{event.action}</p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-sm font-medium text-slate-900 dark:text-white">{event.action}</p>
+                    <p className="text-xs text-slate-500">
                       {new Date(event.date).toLocaleString('en-AU')}
                       {event.user && ` • ${event.user}`}
                     </p>
-                    {event.note && <p className="text-sm text-gray-500 mt-1">{event.note}</p>}
+                    {event.note && <p className="text-sm text-slate-500 mt-1">{event.note}</p>}
                   </div>
                 </div>
               ))}
@@ -429,7 +429,7 @@ function OfferDetailModal({
           </div>
 
           {/* Actions */}
-          <div className="flex gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex gap-3 pt-4 border-t border-slate-200 dark:border-slate-700">
             {offer.status === 'draft' && (
               <>
                 <Button variant="outline">Edit Offer</Button>
@@ -456,9 +456,9 @@ function OfferDetailModal({
         {/* Withdraw Modal */}
         {showWithdrawModal && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-6">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Withdraw Offer</h3>
-              <p className="text-gray-500 mb-4">
+            <div className="bg-white dark:bg-slate-800 rounded-xl max-w-md w-full p-6">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Withdraw Offer</h3>
+              <p className="text-slate-500 mb-4">
                 Are you sure you want to withdraw this offer? The candidate will be notified.
               </p>
               <textarea
@@ -466,7 +466,7 @@ function OfferDetailModal({
                 onChange={(e) => setWithdrawReason(e.target.value)}
                 placeholder="Reason for withdrawal (optional)"
                 rows={3}
-                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600 mb-4"
+                className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600 mb-4"
               />
               <div className="flex gap-3 justify-end">
                 <Button variant="outline" onClick={() => setShowWithdrawModal(false)}>Cancel</Button>
@@ -552,14 +552,14 @@ function CreateOfferModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">Create Offer</h2>
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">Create Offer</h2>
           <div className="flex gap-2 mt-4">
             {[1, 2, 3].map((s) => (
               <div
                 key={s}
-                className={`flex-1 h-2 rounded-full ${s <= step ? 'bg-blue-500' : 'bg-gray-200'}`}
+                className={`flex-1 h-2 rounded-full ${s <= step ? 'bg-blue-500' : 'bg-slate-200'}`}
               />
             ))}
           </div>
@@ -568,16 +568,16 @@ function CreateOfferModal({
         <div className="p-6">
           {step === 1 && (
             <div className="space-y-4">
-              <h3 className="font-medium text-gray-900 dark:text-white">Step 1: Select Candidate & Position</h3>
+              <h3 className="font-medium text-slate-900 dark:text-white">Step 1: Select Candidate & Position</h3>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Candidate *
                 </label>
                 <select
                   value={candidateId}
                   onChange={(e) => setCandidateId(e.target.value)}
-                  className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                  className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                 >
                   <option value="">Select candidate</option>
                   {candidates.map((c) => (
@@ -587,13 +587,13 @@ function CreateOfferModal({
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Position *
                 </label>
                 <select
                   value={jobId}
                   onChange={(e) => setJobId(e.target.value)}
-                  className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                  className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                 >
                   <option value="">Select position</option>
                   {jobs.map((j) => (
@@ -604,13 +604,13 @@ function CreateOfferModal({
 
               {templates.length > 0 && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Use Template (Optional)
                   </label>
                   <select
                     value={selectedTemplate}
                     onChange={(e) => handleTemplateSelect(e.target.value)}
-                    className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                    className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                   >
                     <option value="">Start from scratch</option>
                     {templates.map((t) => (
@@ -624,18 +624,18 @@ function CreateOfferModal({
 
           {step === 2 && (
             <div className="space-y-4">
-              <h3 className="font-medium text-gray-900 dark:text-white">Step 2: Compensation</h3>
+              <h3 className="font-medium text-slate-900 dark:text-white">Step 2: Compensation</h3>
               
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Base Salary *
                   </label>
                   <div className="flex">
                     <select
                       value={currency}
                       onChange={(e) => setCurrency(e.target.value)}
-                      className="px-3 py-2 border rounded-l-lg dark:bg-gray-900 dark:border-gray-600"
+                      className="px-3 py-2 border rounded-l-lg dark:bg-slate-900 dark:border-slate-600"
                     >
                       <option value="AUD">AUD</option>
                       <option value="USD">USD</option>
@@ -646,12 +646,12 @@ function CreateOfferModal({
                       value={baseSalary}
                       onChange={(e) => setBaseSalary(e.target.value)}
                       placeholder="100000"
-                      className="flex-1 px-4 py-2 border-t border-r border-b rounded-r-lg dark:bg-gray-900 dark:border-gray-600"
+                      className="flex-1 px-4 py-2 border-t border-r border-b rounded-r-lg dark:bg-slate-900 dark:border-slate-600"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Sign-on Bonus
                   </label>
                   <input
@@ -659,13 +659,13 @@ function CreateOfferModal({
                     value={signOnBonus}
                     onChange={(e) => setSignOnBonus(e.target.value)}
                     placeholder="10000"
-                    className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                    className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Benefits
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -682,7 +682,7 @@ function CreateOfferModal({
                       className={`px-3 py-1 rounded-full text-sm ${
                         benefits.includes(benefit)
                           ? 'bg-blue-100 text-blue-700'
-                          : 'bg-gray-100 text-gray-600'
+                          : 'bg-slate-100 text-slate-600'
                       }`}
                     >
                       {benefits.includes(benefit) ? '✓' : '+'} {benefit}
@@ -695,35 +695,35 @@ function CreateOfferModal({
 
           {step === 3 && (
             <div className="space-y-4">
-              <h3 className="font-medium text-gray-900 dark:text-white">Step 3: Details</h3>
+              <h3 className="font-medium text-slate-900 dark:text-white">Step 3: Details</h3>
               
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Start Date *
                   </label>
                   <input
                     type="date"
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
-                    className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                    className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Offer Expires *
                   </label>
                   <input
                     type="date"
                     value={expiryDate}
                     onChange={(e) => setExpiryDate(e.target.value)}
-                    className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                    className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Work Location *
                 </label>
                 <input
@@ -731,12 +731,12 @@ function CreateOfferModal({
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   placeholder="Sydney, NSW"
-                  className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                  className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Work Type *
                 </label>
                 <div className="flex gap-3">
@@ -747,7 +747,7 @@ function CreateOfferModal({
                       className={`flex-1 px-4 py-3 rounded-lg capitalize ${
                         workType === type
                           ? 'bg-blue-100 text-blue-700 border-2 border-blue-500'
-                          : 'bg-gray-100 text-gray-600 border-2 border-transparent'
+                          : 'bg-slate-100 text-slate-600 border-2 border-transparent'
                       }`}
                     >
                       {type}
@@ -759,7 +759,7 @@ function CreateOfferModal({
           )}
         </div>
 
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex justify-between">
+        <div className="p-6 border-t border-slate-200 dark:border-slate-700 flex justify-between">
           <Button variant="outline" onClick={step === 1 ? onClose : () => setStep(step - 1)}>
             {step === 1 ? 'Cancel' : 'Back'}
           </Button>
@@ -871,8 +871,8 @@ export function OfferManagement() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Offer Management</h1>
-          <p className="text-gray-500 mt-1">Create, send, and track job offers</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Offer Management</h1>
+          <p className="text-slate-500 mt-1">Create, send, and track job offers</p>
         </div>
         <Button onClick={() => setShowCreateModal(true)}>
           📝 Create Offer
@@ -900,7 +900,7 @@ export function OfferManagement() {
         <select
           value={filters.status}
           onChange={(e) => setFilters({ ...filters, status: e.target.value })}
-          className="px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+          className="px-4 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
         >
           <option value="">All Statuses</option>
           {Object.entries(STATUS_CONFIG).map(([key, config]) => (
@@ -915,12 +915,12 @@ export function OfferManagement() {
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" />
         </div>
       ) : offers.length === 0 ? (
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-12 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-12 text-center">
           <div className="text-6xl mb-4">📝</div>
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+          <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
             No offers yet
           </h3>
-          <p className="text-gray-500 mb-4">Create your first offer to a candidate</p>
+          <p className="text-slate-500 mb-4">Create your first offer to a candidate</p>
           <Button onClick={() => setShowCreateModal(true)}>Create Offer</Button>
         </div>
       ) : (

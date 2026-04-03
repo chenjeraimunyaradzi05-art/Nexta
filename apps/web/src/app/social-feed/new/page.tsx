@@ -126,11 +126,11 @@ export default function NewPostPage() {
           <div className="flex items-center gap-4">
             <Link
               href="/social-feed"
-              className="p-2 rounded-lg bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white transition-colors"
+              className="p-2 rounded-lg bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
             </Link>
-            <h1 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+            <h1 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-amber-500 dark:text-amber-400" />
               Create Post
             </h1>
@@ -145,14 +145,14 @@ export default function NewPostPage() {
         </div>
 
         {/* Post Form */}
-        <div className="rounded-xl bg-white dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 shadow-sm dark:shadow-none overflow-hidden">
+        <div className="rounded-xl bg-white dark:bg-white/5 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none overflow-hidden">
           {/* Author Info */}
-          <div className="p-4 flex items-center gap-3 border-b border-gray-200 dark:border-white/10">
+          <div className="p-4 flex items-center gap-3 border-b border-slate-200 dark:border-white/10">
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
               {user?.profile?.firstName?.[0] || user?.email?.[0] || 'U'}
             </div>
             <div className="flex-1">
-              <div className="font-semibold text-gray-900 dark:text-white">
+              <div className="font-semibold text-slate-900 dark:text-white">
                 {user?.profile?.firstName ? `${user.profile.firstName} ${user.profile.lastName || ''}`.trim() : 'Community Member'}
               </div>
               {/* Visibility Selector */}
@@ -160,13 +160,13 @@ export default function NewPostPage() {
                 <select
                   value={visibility}
                   onChange={(e) => setVisibility(e.target.value as 'public' | 'connections' | 'private')}
-                  className="appearance-none bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-sm rounded-lg px-3 py-1 pr-8 border border-gray-200 dark:border-white/10 focus:outline-none focus:border-amber-500/50"
+                  className="appearance-none bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 text-sm rounded-lg px-3 py-1 pr-8 border border-slate-200 dark:border-white/10 focus:outline-none focus:border-amber-500/50"
                 >
                   {visibilityOptions.map(opt => (
                     <option key={opt.id} value={opt.id}>{opt.label}</option>
                   ))}
                 </select>
-                <Globe className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                <Globe className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
               </div>
             </div>
           </div>
@@ -177,13 +177,13 @@ export default function NewPostPage() {
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Share your story, celebrate a win, or ask the community for advice..."
-              className="w-full bg-transparent text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 resize-none focus:outline-none text-lg leading-relaxed"
+              className="w-full bg-transparent text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 resize-none focus:outline-none text-lg leading-relaxed"
               rows={6}
               autoFocus
               maxLength={2000}
             />
             <div className="flex justify-end mt-1">
-              <span className={`text-xs ${content.length > 1800 ? (content.length > 1950 ? 'text-red-500' : 'text-amber-500') : 'text-gray-400 dark:text-gray-500'}`}>
+              <span className={`text-xs ${content.length > 1800 ? (content.length > 1950 ? 'text-red-500' : 'text-amber-500') : 'text-slate-400 dark:text-slate-500'}`}>
                 {content.length}/2000
               </span>
             </div>
@@ -212,7 +212,7 @@ export default function NewPostPage() {
           {/* Quick Emoji Picker */}
           {showEmojiPicker && (
             <div className="px-4 pb-4">
-              <div className="flex flex-wrap gap-2 p-3 rounded-lg bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10">
+              <div className="flex flex-wrap gap-2 p-3 rounded-lg bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
                 {commonEmojis.map(emoji => (
                   <button
                     key={emoji}
@@ -230,7 +230,7 @@ export default function NewPostPage() {
           )}
 
           {/* Actions Bar */}
-          <div className="p-4 border-t border-gray-200 dark:border-white/10 flex items-center gap-2">
+          <div className="p-4 border-t border-slate-200 dark:border-white/10 flex items-center gap-2">
             <input
               ref={fileInputRef}
               type="file"
@@ -240,41 +240,41 @@ export default function NewPostPage() {
             />
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="p-2 rounded-lg text-emerald-600 dark:text-emerald-400 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
+              className="p-2 rounded-lg text-emerald-600 dark:text-emerald-400 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
               title="Add photo"
             >
               <ImageIcon className="w-5 h-5" />
             </button>
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="p-2 rounded-lg text-sky-600 dark:text-sky-400 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
+              className="p-2 rounded-lg text-sky-600 dark:text-sky-400 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
               title="Add video"
             >
               <Video className="w-5 h-5" />
             </button>
             <button
               onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-              className="p-2 rounded-lg text-amber-600 dark:text-amber-400 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
+              className="p-2 rounded-lg text-amber-600 dark:text-amber-400 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
               title="Add emoji"
             >
               <Smile className="w-5 h-5" />
             </button>
             <button
-              className="p-2 rounded-lg text-pink-600 dark:text-pink-400 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
+              className="p-2 rounded-lg text-pink-600 dark:text-pink-400 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
               title="Add location"
             >
               <MapPin className="w-5 h-5" />
             </button>
             <button
               onClick={() => setContent(prev => prev + '#')}
-              className="p-2 rounded-lg text-purple-600 dark:text-purple-400 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
+              className="p-2 rounded-lg text-purple-600 dark:text-purple-400 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
               title="Add hashtag"
             >
               <Hash className="w-5 h-5" />
             </button>
             <button
               onClick={() => setContent(prev => prev + '@')}
-              className="p-2 rounded-lg text-blue-600 dark:text-blue-400 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
+              className="p-2 rounded-lg text-blue-600 dark:text-blue-400 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
               title="Mention someone"
             >
               <AtSign className="w-5 h-5" />
@@ -283,12 +283,12 @@ export default function NewPostPage() {
         </div>
 
         {/* Tips Card */}
-        <div className="mt-6 rounded-xl p-4 bg-white dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 shadow-sm dark:shadow-none">
+        <div className="mt-6 rounded-xl p-4 bg-white dark:bg-white/5 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">
           <h3 className="text-sm font-semibold text-amber-600 dark:text-amber-400 mb-3 flex items-center gap-2">
             <Sparkles className="w-4 h-4" />
             Tips for a Great Post
           </h3>
-          <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+          <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
             <li className="flex items-start gap-2">
               <span className="text-emerald-500 dark:text-emerald-400">✦</span>
               Share your career journey, wins, and lessons learned

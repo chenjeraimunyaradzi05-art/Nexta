@@ -280,7 +280,7 @@ function MortgageCalculator() {
         </div>
         <div>
           <h3 className="text-lg font-semibold text-white">Mortgage Calculator</h3>
-          <p className="text-sm text-gray-400">Estimate your repayments</p>
+          <p className="text-sm text-slate-400">Estimate your repayments</p>
         </div>
       </div>
 
@@ -288,7 +288,7 @@ function MortgageCalculator() {
         {/* Property Price */}
         <div>
           <div className="flex justify-between mb-2">
-            <label className="text-sm text-gray-300">Property Price</label>
+            <label className="text-sm text-slate-300">Property Price</label>
             <span className="text-sm font-medium text-white">{formatCurrency(propertyPrice)}</span>
           </div>
           <input
@@ -308,7 +308,7 @@ function MortgageCalculator() {
         {/* Deposit */}
         <div>
           <div className="flex justify-between mb-2">
-            <label className="text-sm text-gray-300">Deposit</label>
+            <label className="text-sm text-slate-300">Deposit</label>
             <span className="text-sm font-medium text-white">
               {formatCurrency(deposit)} ({((deposit / propertyPrice) * 100).toFixed(0)}%)
             </span>
@@ -330,7 +330,7 @@ function MortgageCalculator() {
         {/* Interest Rate */}
         <div>
           <div className="flex justify-between mb-2">
-            <label className="text-sm text-gray-300">Interest Rate</label>
+            <label className="text-sm text-slate-300">Interest Rate</label>
             <span className="text-sm font-medium text-white">{interestRate.toFixed(2)}% p.a.</span>
           </div>
           <input
@@ -350,7 +350,7 @@ function MortgageCalculator() {
         {/* Loan Term */}
         <div>
           <div className="flex justify-between mb-2">
-            <label className="text-sm text-gray-300">Loan Term</label>
+            <label className="text-sm text-slate-300">Loan Term</label>
             <span className="text-sm font-medium text-white">{loanTerm} years</span>
           </div>
           <div className="flex gap-2">
@@ -359,7 +359,7 @@ function MortgageCalculator() {
                 key={term}
                 onClick={() => setLoanTerm(term)}
                 className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
-                  loanTerm === term ? 'text-white' : 'text-gray-400 hover:text-white'
+                  loanTerm === term ? 'text-white' : 'text-slate-400 hover:text-white'
                 }`}
                 style={{
                   background:
@@ -380,12 +380,12 @@ function MortgageCalculator() {
           style={{ background: `linear-gradient(135deg, ${colors.pink}15, ${colors.purple}15)` }}
         >
           <div className="text-center mb-4">
-            <p className="text-sm text-gray-400 mb-1">Monthly Repayment</p>
+            <p className="text-sm text-slate-400 mb-1">Monthly Repayment</p>
             <p className="text-3xl font-bold text-white">{formatCurrency(monthlyPayment)}</p>
           </div>
           <button
             onClick={() => setShowBreakdown(!showBreakdown)}
-            className="w-full flex items-center justify-center gap-2 text-sm text-gray-300 hover:text-white transition-colors"
+            className="w-full flex items-center justify-center gap-2 text-sm text-slate-300 hover:text-white transition-colors"
           >
             {showBreakdown ? 'Hide' : 'Show'} breakdown
             <ChevronDown
@@ -395,19 +395,19 @@ function MortgageCalculator() {
           {showBreakdown && (
             <div className="mt-4 pt-4 border-t border-white/10 space-y-2">
               <div className="flex justify-between text-sm">
-                <span className="text-gray-400">Loan Amount</span>
+                <span className="text-slate-400">Loan Amount</span>
                 <span className="text-white">{formatCurrency(loanAmount)}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-gray-400">Total Interest</span>
+                <span className="text-slate-400">Total Interest</span>
                 <span className="text-amber-400">{formatCurrency(totalInterest)}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-gray-400">Total Repayment</span>
+                <span className="text-slate-400">Total Repayment</span>
                 <span className="text-white">{formatCurrency(totalRepayment)}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-gray-400">LVR</span>
+                <span className="text-slate-400">LVR</span>
                 <span className={`${Number(lvr) > 80 ? 'text-amber-400' : 'text-emerald-400'}`}>
                   {lvr}%
                 </span>
@@ -502,7 +502,7 @@ function AgentCard({ agent }: { agent: Agent }) {
               </span>
             )}
           </div>
-          <p className="text-sm text-gray-400 mb-2">{agent.company}</p>
+          <p className="text-sm text-slate-400 mb-2">{agent.company}</p>
           <div className="flex items-center gap-3 text-sm">
             {agent.rating && (
               <span className="flex items-center gap-1 text-amber-400">
@@ -510,14 +510,14 @@ function AgentCard({ agent }: { agent: Agent }) {
                 {agent.rating} ({agent.reviewCount})
               </span>
             )}
-            <span className="text-gray-500">License: {agent.licenseNumber}</span>
+            <span className="text-slate-500">License: {agent.licenseNumber}</span>
           </div>
           {agent.specializations && (
             <div className="flex flex-wrap gap-1 mt-2">
               {agent.specializations.slice(0, 3).map((spec, i) => (
                 <span
                   key={i}
-                  className="px-2 py-0.5 rounded-full text-xs bg-white/10 text-gray-300"
+                  className="px-2 py-0.5 rounded-full text-xs bg-white/10 text-slate-300"
                 >
                   {spec}
                 </span>
@@ -526,10 +526,10 @@ function AgentCard({ agent }: { agent: Agent }) {
           )}
           {!agent.verified && (
             <div className="mt-3">
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs bg-gray-700/40 text-gray-300">
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs bg-slate-700/40 text-slate-300">
                 <X className="w-4 h-4 inline" /> Not Verified
               </span>
-              <div className="mt-2 text-xs text-gray-400">
+              <div className="mt-2 text-xs text-slate-400">
                 <Link href="/rentals/apply-agent" className="text-emerald-400 underline">
                   Apply for verification
                 </Link>{' '}
@@ -629,7 +629,7 @@ function PropertyCard({
               ? 'bg-emerald-500 text-white'
               : listing.status === 'DRAFT'
                 ? 'bg-amber-500 text-white'
-                : 'bg-gray-500 text-white'
+                : 'bg-slate-500 text-white'
           }`}
         >
           {listing.status === 'ACTIVE' ? 'Available' : listing.status}
@@ -652,9 +652,9 @@ function PropertyCard({
 
         {/* Price */}
         {listing.weeklyRent && (
-          <div className="absolute bottom-3 left-3 px-3 py-1.5 rounded-lg bg-white/95 text-gray-900 font-bold text-lg shadow-lg">
+          <div className="absolute bottom-3 left-3 px-3 py-1.5 rounded-lg bg-white/95 text-slate-900 font-bold text-lg shadow-lg">
             ${listing.weeklyRent}
-            <span className="text-sm font-normal text-gray-500">/wk</span>
+            <span className="text-sm font-normal text-slate-500">/wk</span>
           </div>
         )}
       </div>
@@ -665,28 +665,28 @@ function PropertyCard({
           {listing.title}
         </h3>
 
-        <p className="text-sm text-gray-400 mb-3 flex items-center gap-1">
+        <p className="text-sm text-slate-400 mb-3 flex items-center gap-1">
           <MapPin className="w-4 h-4" />
           {[listing.suburb, listing.state].filter(Boolean).join(', ') || 'Location TBA'}
         </p>
 
         {/* Features */}
-        <div className="flex items-center gap-4 text-sm text-gray-300 mb-4">
+        <div className="flex items-center gap-4 text-sm text-slate-300 mb-4">
           {listing.bedrooms !== undefined && (
             <span className="flex items-center gap-1">
-              <Bed className="w-4 h-4 text-gray-500" />
+              <Bed className="w-4 h-4 text-slate-500" />
               {listing.bedrooms}
             </span>
           )}
           {listing.bathrooms !== undefined && (
             <span className="flex items-center gap-1">
-              <Bath className="w-4 h-4 text-gray-500" />
+              <Bath className="w-4 h-4 text-slate-500" />
               {listing.bathrooms}
             </span>
           )}
           {listing.parking !== undefined && (
             <span className="flex items-center gap-1">
-              <Car className="w-4 h-4 text-gray-500" />
+              <Car className="w-4 h-4 text-slate-500" />
               {listing.parking}
             </span>
           )}
@@ -698,7 +698,7 @@ function PropertyCard({
         </div>
 
         {listing.description && (
-          <p className="text-sm text-gray-400 line-clamp-2 mb-4">{listing.description}</p>
+          <p className="text-sm text-slate-400 line-clamp-2 mb-4">{listing.description}</p>
         )}
 
         {/* Tags */}
@@ -739,7 +739,7 @@ function PropertyCard({
           {isAuthenticated && listing.status === 'ACTIVE' && (
             <button
               onClick={() => setShowInquiry(!showInquiry)}
-              className="py-2.5 px-4 rounded-xl text-sm font-medium text-gray-300 transition-all"
+              className="py-2.5 px-4 rounded-xl text-sm font-medium text-slate-300 transition-all"
               style={{ background: 'rgba(255, 255, 255, 0.1)' }}
             >
               <MessageCircle className="w-4 h-4" />
@@ -755,7 +755,7 @@ function PropertyCard({
               onChange={(e) => setInquiryMessage(e.target.value)}
               placeholder="Hi, I'm interested in this property..."
               rows={3}
-              className="w-full px-3 py-2 rounded-lg text-white placeholder-gray-500 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-pink-500/50"
+              className="w-full px-3 py-2 rounded-lg text-white placeholder-slate-500 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-pink-500/50"
               style={{
                 background: 'rgba(255, 255, 255, 0.1)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -993,7 +993,7 @@ export default function RentalsPage() {
                 Safe Haven
               </span>
             </h1>
-            <p className="text-lg sm:text-xl text-gray-300 mb-8">
+            <p className="text-lg sm:text-xl text-slate-300 mb-8">
               Culturally safe housing listings with verified agents, mortgage calculators, and
               comprehensive support for your journey home.
             </p>
@@ -1002,15 +1002,15 @@ export default function RentalsPage() {
             <div className="flex justify-center gap-8 mb-8">
               <div className="text-center">
                 <p className="text-3xl font-bold text-white">{total}</p>
-                <p className="text-sm text-gray-400">Properties</p>
+                <p className="text-sm text-slate-400">Properties</p>
               </div>
               <div className="text-center border-x border-white/20 px-8">
                 <p className="text-3xl font-bold text-white">{mockAgents.length}</p>
-                <p className="text-sm text-gray-400">Verified Agents</p>
+                <p className="text-sm text-slate-400">Verified Agents</p>
               </div>
               <div className="text-center">
                 <p className="text-3xl font-bold text-emerald-400">100%</p>
-                <p className="text-sm text-gray-400">Verified</p>
+                <p className="text-sm text-slate-400">Verified</p>
               </div>
             </div>
 
@@ -1070,7 +1070,7 @@ export default function RentalsPage() {
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
                     className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                      activeTab === tab.id ? 'text-white' : 'text-gray-400 hover:text-white'
+                      activeTab === tab.id ? 'text-white' : 'text-slate-400 hover:text-white'
                     }`}
                     style={
                       activeTab === tab.id
@@ -1141,13 +1141,13 @@ export default function RentalsPage() {
                 <div className="space-y-5">
                   {/* Location */}
                   <div>
-                    <label className="block text-sm text-gray-400 mb-2">Location</label>
+                    <label className="block text-sm text-slate-400 mb-2">Location</label>
                     <input
                       type="text"
                       value={filters.suburb}
                       onChange={(e) => setFilters((prev) => ({ ...prev, suburb: e.target.value }))}
                       placeholder="Enter suburb"
-                      className="w-full px-4 py-2.5 rounded-xl text-white placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                      className="w-full px-4 py-2.5 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/50"
                       style={{
                         background: 'rgba(255, 255, 255, 0.1)',
                         border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -1157,7 +1157,7 @@ export default function RentalsPage() {
 
                   {/* State */}
                   <div>
-                    <label className="block text-sm text-gray-400 mb-2">State</label>
+                    <label className="block text-sm text-slate-400 mb-2">State</label>
                     <select
                       value={filters.state}
                       onChange={(e) => setFilters((prev) => ({ ...prev, state: e.target.value }))}
@@ -1181,7 +1181,7 @@ export default function RentalsPage() {
 
                   {/* Budget */}
                   <div>
-                    <label className="block text-sm text-gray-400 mb-2">Budget ($/week)</label>
+                    <label className="block text-sm text-slate-400 mb-2">Budget ($/week)</label>
                     <div className="flex gap-2">
                       <input
                         type="number"
@@ -1190,7 +1190,7 @@ export default function RentalsPage() {
                           setFilters((prev) => ({ ...prev, minRent: e.target.value }))
                         }
                         placeholder="Min"
-                        className="w-1/2 px-3 py-2.5 rounded-xl text-white placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                        className="w-1/2 px-3 py-2.5 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/50"
                         style={{
                           background: 'rgba(255, 255, 255, 0.1)',
                           border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -1203,7 +1203,7 @@ export default function RentalsPage() {
                           setFilters((prev) => ({ ...prev, maxRent: e.target.value }))
                         }
                         placeholder="Max"
-                        className="w-1/2 px-3 py-2.5 rounded-xl text-white placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                        className="w-1/2 px-3 py-2.5 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/50"
                         style={{
                           background: 'rgba(255, 255, 255, 0.1)',
                           border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -1214,7 +1214,7 @@ export default function RentalsPage() {
 
                   {/* Bedrooms */}
                   <div>
-                    <label className="block text-sm text-gray-400 mb-2">Bedrooms</label>
+                    <label className="block text-sm text-slate-400 mb-2">Bedrooms</label>
                     <div className="flex gap-2">
                       {['Any', '1+', '2+', '3+', '4+'].map((option, i) => (
                         <button
@@ -1225,7 +1225,7 @@ export default function RentalsPage() {
                           className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
                             (i === 0 && !filters.bedrooms) || filters.bedrooms === String(i)
                               ? 'text-white'
-                              : 'text-gray-400 hover:text-white'
+                              : 'text-slate-400 hover:text-white'
                           }`}
                           style={
                             (i === 0 && !filters.bedrooms) || filters.bedrooms === String(i)
@@ -1243,7 +1243,7 @@ export default function RentalsPage() {
 
                   {/* Features */}
                   <div>
-                    <label className="block text-sm text-gray-400 mb-2">Features</label>
+                    <label className="block text-sm text-slate-400 mb-2">Features</label>
                     <div className="space-y-2">
                       <label className="flex items-center gap-3 cursor-pointer">
                         <input
@@ -1252,9 +1252,9 @@ export default function RentalsPage() {
                           onChange={(e) =>
                             setFilters((prev) => ({ ...prev, petFriendly: e.target.checked }))
                           }
-                          className="w-4 h-4 rounded border-gray-600 text-teal-500 focus:ring-teal-500/50"
+                          className="w-4 h-4 rounded border-slate-600 text-teal-500 focus:ring-teal-500/50"
                         />
-                        <span className="text-sm text-gray-300">🐾 Pet Friendly</span>
+                        <span className="text-sm text-slate-300">🐾 Pet Friendly</span>
                       </label>
                       <label className="flex items-center gap-3 cursor-pointer">
                         <input
@@ -1263,9 +1263,9 @@ export default function RentalsPage() {
                           onChange={(e) =>
                             setFilters((prev) => ({ ...prev, furnished: e.target.checked }))
                           }
-                          className="w-4 h-4 rounded border-gray-600 text-teal-500 focus:ring-teal-500/50"
+                          className="w-4 h-4 rounded border-slate-600 text-teal-500 focus:ring-teal-500/50"
                         />
-                        <span className="text-sm text-gray-300">🪑 Furnished</span>
+                        <span className="text-sm text-slate-300">🪑 Furnished</span>
                       </label>
                       <label className="flex items-center gap-3 cursor-pointer">
                         <input
@@ -1274,7 +1274,7 @@ export default function RentalsPage() {
                           onChange={(e) =>
                             setFilters((prev) => ({ ...prev, hasFloorPlan: e.target.checked }))
                           }
-                          className="w-4 h-4 rounded border-gray-600 text-sky-500 focus:ring-sky-500/50"
+                          className="w-4 h-4 rounded border-slate-600 text-sky-500 focus:ring-sky-500/50"
                         />
                         <span className="text-sm text-sky-400">📐 Floor Plan</span>
                       </label>
@@ -1285,7 +1285,7 @@ export default function RentalsPage() {
                           onChange={(e) =>
                             setFilters((prev) => ({ ...prev, agentVerified: e.target.checked }))
                           }
-                          className="w-4 h-4 rounded border-gray-600 text-emerald-500 focus:ring-emerald-500/50"
+                          className="w-4 h-4 rounded border-slate-600 text-emerald-500 focus:ring-emerald-500/50"
                         />
                         <span className="text-sm text-emerald-400">
                           <ShieldCheck className="w-4 h-4 inline mr-1" /> Verified Agent
@@ -1296,7 +1296,7 @@ export default function RentalsPage() {
 
                   {/* Parking */}
                   <div>
-                    <label className="block text-sm text-gray-400 mb-2">Parking</label>
+                    <label className="block text-sm text-slate-400 mb-2">Parking</label>
                     <select
                       value={filters.parking}
                       onChange={(e) => setFilters((prev) => ({ ...prev, parking: e.target.value }))}
@@ -1330,7 +1330,7 @@ export default function RentalsPage() {
                     className={`p-2 rounded-lg transition-all ${
                       viewMode === 'grid'
                         ? 'bg-white/10 text-white'
-                        : 'text-gray-400 hover:text-white'
+                        : 'text-slate-400 hover:text-white'
                     }`}
                   >
                     <Grid3X3 className="w-5 h-5" />
@@ -1340,7 +1340,7 @@ export default function RentalsPage() {
                     className={`p-2 rounded-lg transition-all ${
                       viewMode === 'list'
                         ? 'bg-white/10 text-white'
-                        : 'text-gray-400 hover:text-white'
+                        : 'text-slate-400 hover:text-white'
                     }`}
                   >
                     <List className="w-5 h-5" />
@@ -1374,9 +1374,9 @@ export default function RentalsPage() {
                     border: '1px solid rgba(255, 255, 255, 0.1)',
                   }}
                 >
-                  <Home className="w-16 h-16 mx-auto text-gray-500 mb-4" />
+                  <Home className="w-16 h-16 mx-auto text-slate-500 mb-4" />
                   <h3 className="text-xl font-semibold text-white mb-2">No Properties Found</h3>
-                  <p className="text-gray-400 mb-6">
+                  <p className="text-slate-400 mb-6">
                     Try adjusting your filters or check back later
                   </p>
                   <button
@@ -1411,7 +1411,7 @@ export default function RentalsPage() {
                 <h2 className="text-2xl font-bold text-white mb-2">
                   Verified Real Estate Professionals
                 </h2>
-                <p className="text-gray-400">
+                <p className="text-slate-400">
                   All agents and brokers are verified and committed to culturally safe practices.
                 </p>
               </div>
@@ -1435,7 +1435,7 @@ export default function RentalsPage() {
                 <h3 className="text-xl font-semibold text-white mb-2">
                   Are you a Real Estate Professional?
                 </h3>
-                <p className="text-gray-400 mb-4">
+                <p className="text-slate-400 mb-4">
                   Join our verified network to connect with First Nations home seekers
                 </p>
                 <Link
@@ -1470,7 +1470,7 @@ export default function RentalsPage() {
                     'No discrimination guarantee',
                     'Priority support access',
                   ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
+                    <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
                       <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                       {item}
                     </li>
@@ -1487,7 +1487,7 @@ export default function RentalsPage() {
                 }}
               >
                 <h3 className="font-semibold text-white mb-4">Need Help Finding an Agent?</h3>
-                <p className="text-sm text-gray-400 mb-4">
+                <p className="text-sm text-slate-400 mb-4">
                   Our housing support team can match you with the right professional.
                 </p>
                 <Link
@@ -1551,9 +1551,9 @@ export default function RentalsPage() {
                     >
                       <h4 className="font-medium text-white mb-1 flex items-center gap-2">
                         {program.title}
-                        <ExternalLink className="w-3 h-3 text-gray-500" />
+                        <ExternalLink className="w-3 h-3 text-slate-500" />
                       </h4>
-                      <p className="text-sm text-gray-400">{program.description}</p>
+                      <p className="text-sm text-slate-400">{program.description}</p>
                     </a>
                   ))}
                 </div>
@@ -1587,7 +1587,7 @@ export default function RentalsPage() {
             <div className="lg:col-span-2">
               <div className="mb-6">
                 <h2 className="text-2xl font-bold text-white mb-2">Housing Support & Resources</h2>
-                <p className="text-gray-400">
+                <p className="text-slate-400">
                   Get help with housing issues, know your rights, and access emergency support.
                 </p>
               </div>
@@ -1608,7 +1608,7 @@ export default function RentalsPage() {
                       <span className="text-3xl">{issue.icon}</span>
                       <div>
                         <h3 className="font-semibold text-white mb-1">{issue.title}</h3>
-                        <p className="text-sm text-gray-400">{issue.description}</p>
+                        <p className="text-sm text-slate-400">{issue.description}</p>
                         <span
                           className="inline-block mt-2 px-2 py-0.5 rounded-full text-xs"
                           style={{
@@ -1647,7 +1647,7 @@ export default function RentalsPage() {
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-lg font-bold text-white">Report Housing Issue</h3>
                       <button
-                        className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-all"
+                        className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-all"
                         onClick={() => setShowReportModal(null)}
                       >
                         <X className="w-5 h-5" />
@@ -1656,23 +1656,23 @@ export default function RentalsPage() {
                     <div className="mb-4">
                       <span className="text-3xl mr-2">{showReportModal.icon}</span>
                       <span className="font-semibold text-white">{showReportModal.title}</span>
-                      <p className="text-sm text-gray-400 mt-2">{showReportModal.description}</p>
+                      <p className="text-sm text-slate-400 mt-2">{showReportModal.description}</p>
                     </div>
                     <form className="space-y-4">
                       <input
                         type="text"
                         placeholder="Your Name (optional)"
-                        className="w-full px-4 py-2 rounded-xl text-white bg-white/10 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500/50"
+                        className="w-full px-4 py-2 rounded-xl text-white bg-white/10 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-pink-500/50"
                       />
                       <input
                         type="email"
                         placeholder="Your Email (optional)"
-                        className="w-full px-4 py-2 rounded-xl text-white bg-white/10 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500/50"
+                        className="w-full px-4 py-2 rounded-xl text-white bg-white/10 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-pink-500/50"
                       />
                       <textarea
                         placeholder="Describe the issue..."
                         rows={4}
-                        className="w-full px-4 py-2 rounded-xl text-white bg-white/10 placeholder-gray-500 resize-none focus:outline-none focus:ring-2 focus:ring-pink-500/50"
+                        className="w-full px-4 py-2 rounded-xl text-white bg-white/10 placeholder-slate-500 resize-none focus:outline-none focus:ring-2 focus:ring-pink-500/50"
                       />
                       <button
                         type="submit"
@@ -1687,7 +1687,7 @@ export default function RentalsPage() {
               )}
 
               <div className="mt-8 text-center">
-                <p className="text-gray-400 mb-2">Need urgent help or want to talk to someone?</p>
+                <p className="text-slate-400 mb-2">Need urgent help or want to talk to someone?</p>
                 <Link
                   href="/contact?topic=housing"
                   className="inline-block px-6 py-3 rounded-xl font-semibold text-white transition-all hover:scale-[1.02]"
@@ -1712,7 +1712,7 @@ export default function RentalsPage() {
                   <AlertTriangle className="w-5 h-5" />
                   Emergency Housing
                 </h3>
-                <p className="text-sm text-gray-300 mb-4">
+                <p className="text-sm text-slate-300 mb-4">
                   If you&apos;re experiencing homelessness or domestic violence, help is available
                   24/7.
                 </p>
@@ -1749,7 +1749,7 @@ export default function RentalsPage() {
                         href={resource.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-between text-sm text-gray-300 hover:text-white transition-colors"
+                        className="flex items-center justify-between text-sm text-slate-300 hover:text-white transition-colors"
                       >
                         {resource.title}
                         <ExternalLink className="w-3 h-3" />
@@ -1777,7 +1777,7 @@ export default function RentalsPage() {
               <h2 className="text-xl font-bold text-white">List Your Property</h2>
               <button
                 onClick={() => setShowCreateModal(false)}
-                className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-all"
+                className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-all"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1786,11 +1786,11 @@ export default function RentalsPage() {
             <form className="space-y-6">
               {/* Basic Info */}
               <div>
-                <label className="block text-sm text-gray-300 mb-2">Property Title *</label>
+                <label className="block text-sm text-slate-300 mb-2">Property Title *</label>
                 <input
                   type="text"
                   placeholder="e.g., Modern 2BR Apartment in Surry Hills"
-                  className="w-full px-4 py-3 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                  className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
                   style={{
                     background: 'rgba(255, 255, 255, 0.1)',
                     border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -1799,11 +1799,11 @@ export default function RentalsPage() {
               </div>
 
               <div>
-                <label className="block text-sm text-gray-300 mb-2">Description</label>
+                <label className="block text-sm text-slate-300 mb-2">Description</label>
                 <textarea
                   rows={4}
                   placeholder="Describe your property, amenities, and special features..."
-                  className="w-full px-4 py-3 rounded-xl text-white placeholder-gray-500 resize-none focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                  className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 resize-none focus:outline-none focus:ring-2 focus:ring-teal-500/50"
                   style={{
                     background: 'rgba(255, 255, 255, 0.1)',
                     border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -1816,7 +1816,7 @@ export default function RentalsPage() {
 
               {/* Floor Plan */}
               <div>
-                <label className="block text-sm text-gray-300 mb-2">Floor Plan (Optional)</label>
+                <label className="block text-sm text-slate-300 mb-2">Floor Plan (Optional)</label>
                 <input
                   type="file"
                   accept=".pdf,.jpg,.jpeg,.png"
@@ -1827,11 +1827,11 @@ export default function RentalsPage() {
               {/* Location & Price */}
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-sm text-gray-300 mb-2">Suburb</label>
+                  <label className="block text-sm text-slate-300 mb-2">Suburb</label>
                   <input
                     type="text"
                     placeholder="e.g., Surry Hills"
-                    className="w-full px-4 py-3 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                    className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
                     style={{
                       background: 'rgba(255, 255, 255, 0.1)',
                       border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -1839,11 +1839,11 @@ export default function RentalsPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-300 mb-2">Weekly Rent ($)</label>
+                  <label className="block text-sm text-slate-300 mb-2">Weekly Rent ($)</label>
                   <input
                     type="number"
                     placeholder="e.g., 550"
-                    className="w-full px-4 py-3 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                    className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
                     style={{
                       background: 'rgba(255, 255, 255, 0.1)',
                       border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -1855,11 +1855,11 @@ export default function RentalsPage() {
               {/* Features */}
               <div className="grid gap-4 sm:grid-cols-3">
                 <div>
-                  <label className="block text-sm text-gray-300 mb-2">Bedrooms</label>
+                  <label className="block text-sm text-slate-300 mb-2">Bedrooms</label>
                   <input
                     type="number"
                     placeholder="2"
-                    className="w-full px-4 py-3 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                    className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
                     style={{
                       background: 'rgba(255, 255, 255, 0.1)',
                       border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -1867,11 +1867,11 @@ export default function RentalsPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-300 mb-2">Bathrooms</label>
+                  <label className="block text-sm text-slate-300 mb-2">Bathrooms</label>
                   <input
                     type="number"
                     placeholder="1"
-                    className="w-full px-4 py-3 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                    className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
                     style={{
                       background: 'rgba(255, 255, 255, 0.1)',
                       border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -1879,11 +1879,11 @@ export default function RentalsPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-300 mb-2">Parking</label>
+                  <label className="block text-sm text-slate-300 mb-2">Parking</label>
                   <input
                     type="number"
                     placeholder="1"
-                    className="w-full px-4 py-3 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                    className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
                     style={{
                       background: 'rgba(255, 255, 255, 0.1)',
                       border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -1897,7 +1897,7 @@ export default function RentalsPage() {
                 <button
                   type="button"
                   onClick={() => setShowCreateModal(false)}
-                  className="flex-1 py-3 rounded-xl font-medium text-gray-300 transition-all"
+                  className="flex-1 py-3 rounded-xl font-medium text-slate-300 transition-all"
                   style={{ background: 'rgba(255, 255, 255, 0.1)' }}
                 >
                   Cancel

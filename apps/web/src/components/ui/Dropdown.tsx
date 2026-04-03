@@ -154,8 +154,8 @@ export function Dropdown({
             ref={menuRef}
             className={`
               fixed z-50 min-w-[180px]
-              bg-white dark:bg-gray-800
-              border border-gray-200 dark:border-gray-700
+              bg-white dark:bg-slate-800
+              border border-slate-200 dark:border-slate-700
               rounded-lg shadow-lg
               py-1
               animate-in fade-in-0 zoom-in-95 duration-200
@@ -192,7 +192,7 @@ export function DropdownItem({
     ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
     ${danger 
       ? 'text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20' 
-      : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700'
+      : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700'
     }
     ${className}
   `;
@@ -227,13 +227,13 @@ export function DropdownItem({
 
 export function DropdownDivider({ className = '' }: DropdownDividerProps) {
   return (
-    <div className={`my-1 border-t border-gray-200 dark:border-gray-700 ${className}`} role="separator" />
+    <div className={`my-1 border-t border-slate-200 dark:border-slate-700 ${className}`} role="separator" />
   );
 }
 
 export function DropdownLabel({ children, className = '' }: DropdownLabelProps) {
   return (
-    <div className={`px-4 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider ${className}`}>
+    <div className={`px-4 py-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider ${className}`}>
       {children}
     </div>
   );
@@ -257,8 +257,8 @@ interface ActionMenuProps {
 
 export function ActionMenu({ items, variant = 'default', className = '' }: ActionMenuProps) {
   const triggerClasses = {
-    default: 'p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400',
-    cosmic: 'p-2 rounded-lg hover:bg-white/10 text-gray-400 hover:text-white',
+    default: 'p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400',
+    cosmic: 'p-2 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white',
   };
 
   return (
@@ -325,10 +325,10 @@ export function SelectDropdown({
   const triggerClasses = {
     default: `
       w-full flex items-center justify-between gap-2 px-4 py-2
-      bg-white dark:bg-gray-800
-      border border-gray-300 dark:border-gray-600
+      bg-white dark:bg-slate-800
+      border border-slate-300 dark:border-slate-600
       rounded-lg text-sm
-      hover:border-gray-400 dark:hover:border-gray-500
+      hover:border-slate-400 dark:hover:border-slate-500
       focus:outline-none focus:ring-2 focus:ring-blue-500
       disabled:opacity-50 disabled:cursor-not-allowed
     `,
@@ -351,7 +351,7 @@ export function SelectDropdown({
           className={`${triggerClasses[variant]} ${className}`}
           disabled={disabled}
         >
-          <span className={selectedOption ? '' : 'text-gray-400'}>
+          <span className={selectedOption ? '' : 'text-slate-400'}>
             {selectedOption ? (
               <span className="flex items-center gap-2">
                 {selectedOption.icon}
@@ -359,7 +359,7 @@ export function SelectDropdown({
               </span>
             ) : placeholder}
           </span>
-          <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </button>

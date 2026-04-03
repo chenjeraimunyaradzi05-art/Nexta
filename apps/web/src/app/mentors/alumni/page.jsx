@@ -106,7 +106,7 @@ export default function AlumniMentorsPage() {
     : displayedMentors;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Hero Section */}
         <div className="bg-gradient-to-r from-amber-600 to-orange-500 rounded-2xl p-8 text-white mb-8">
@@ -159,7 +159,7 @@ export default function AlumniMentorsPage() {
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                 view === 'featured'
                   ? 'bg-amber-100 text-amber-700'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
               <Users className="w-4 h-4 inline-block mr-2" />
@@ -171,7 +171,7 @@ export default function AlumniMentorsPage() {
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   view === 'matched'
                     ? 'bg-amber-100 text-amber-700'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
               >
                 <Target className="w-4 h-4 inline-block mr-2" />
@@ -182,7 +182,7 @@ export default function AlumniMentorsPage() {
 
           <div className="flex items-center gap-3 w-full md:w-auto">
             <div className="relative flex-1 md:w-64">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <input
                 type="text"
                 placeholder="Search mentors..."
@@ -194,19 +194,19 @@ export default function AlumniMentorsPage() {
             <button
               onClick={() => setShowFilters(!showFilters)}
               className={`p-2 border rounded-lg transition-colors ${
-                showFilters ? 'bg-amber-50 border-amber-200' : 'hover:bg-gray-50'
+                showFilters ? 'bg-amber-50 border-amber-200' : 'hover:bg-slate-50'
               }`}
             >
-              <Filter className="w-5 h-5 text-gray-600" />
+              <Filter className="w-5 h-5 text-slate-600" />
             </button>
           </div>
         </div>
 
         {/* Filters Panel */}
         {showFilters && (
-          <div className="bg-gray-50 rounded-xl p-4 mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-slate-50 rounded-xl p-4 mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Industry</label>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Industry</label>
               <select
                 value={filters.industry}
                 onChange={(e) => setFilters({ ...filters, industry: e.target.value })}
@@ -222,7 +222,7 @@ export default function AlumniMentorsPage() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Challenges Overcome</label>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Challenges Overcome</label>
               <select
                 value={filters.challenges}
                 onChange={(e) => setFilters({ ...filters, challenges: e.target.value })}
@@ -242,7 +242,7 @@ export default function AlumniMentorsPage() {
                   setFilters({ industry: '', challenges: '' });
                   setSearchQuery('');
                 }}
-                className="px-4 py-2 text-gray-600 hover:text-gray-800 underline text-sm"
+                className="px-4 py-2 text-slate-600 hover:text-slate-800 underline text-sm"
               >
                 Clear filters
               </button>
@@ -257,9 +257,9 @@ export default function AlumniMentorsPage() {
           </div>
         ) : filteredMentors.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-xl border">
-            <Users className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-            <h3 className="text-lg font-medium text-gray-700 mb-2">No mentors found</h3>
-            <p className="text-gray-500">
+            <Users className="w-16 h-16 mx-auto mb-4 text-slate-300" />
+            <h3 className="text-lg font-medium text-slate-700 mb-2">No mentors found</h3>
+            <p className="text-slate-500">
               {view === 'matched'
                 ? 'Complete your profile to get personalized mentor matches'
                 : 'Try adjusting your search or filters'}
@@ -277,7 +277,7 @@ export default function AlumniMentorsPage() {
         {!token && (
           <div className="mt-12 bg-gradient-to-r from-gray-800 to-gray-900 rounded-2xl p-8 text-white text-center">
             <h2 className="text-2xl font-bold mb-3">Ready to find your mentor?</h2>
-            <p className="text-gray-300 mb-6 max-w-xl mx-auto">
+            <p className="text-slate-300 mb-6 max-w-xl mx-auto">
               Sign in to request mentorship, track matches, and join alumni circles.
             </p>
             <Link
@@ -342,8 +342,8 @@ function MentorCard({ mentor }) {
             )}
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-gray-900 truncate">{mentor.name}</h3>
-            <p className="text-sm text-gray-600 truncate">{mentor.expertise}</p>
+            <h3 className="font-semibold text-slate-900 truncate">{mentor.name}</h3>
+            <p className="text-sm text-slate-600 truncate">{mentor.expertise}</p>
             <div className="flex items-center gap-2 mt-2">
               {mentor.badges?.map((badge, i) => (
                 <span
@@ -365,33 +365,33 @@ function MentorCard({ mentor }) {
             <BookOpen className="w-4 h-4" />
             <span className="text-sm font-medium">Success Story</span>
           </div>
-          <h4 className="font-medium text-gray-800 mb-1">{mentor.successStory.title}</h4>
-          <p className="text-sm text-gray-600 line-clamp-2">{mentor.successStory.snippet}</p>
+          <h4 className="font-medium text-slate-800 mb-1">{mentor.successStory.title}</h4>
+          <p className="text-sm text-slate-600 line-clamp-2">{mentor.successStory.snippet}</p>
         </div>
       )}
 
       {/* Stats */}
       <div className="p-4 grid grid-cols-3 gap-4 border-b text-center">
         <div>
-          <p className="text-lg font-semibold text-gray-800 flex items-center justify-center gap-1">
+          <p className="text-lg font-semibold text-slate-800 flex items-center justify-center gap-1">
             <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
             {mentor.rating || '4.5'}
           </p>
-          <p className="text-xs text-gray-500">Rating</p>
+          <p className="text-xs text-slate-500">Rating</p>
         </div>
         <div>
-          <p className="text-lg font-semibold text-gray-800">{mentor.ratingCount || 0}</p>
-          <p className="text-xs text-gray-500">Sessions</p>
+          <p className="text-lg font-semibold text-slate-800">{mentor.ratingCount || 0}</p>
+          <p className="text-xs text-slate-500">Sessions</p>
         </div>
         <div>
-          <p className="text-lg font-semibold text-gray-800">
+          <p className="text-lg font-semibold text-slate-800">
             {mentor.stats?.available !== false ? (
               <span className="text-green-600">Open</span>
             ) : (
               <span className="text-red-600">Full</span>
             )}
           </p>
-          <p className="text-xs text-gray-500">Availability</p>
+          <p className="text-xs text-slate-500">Availability</p>
         </div>
       </div>
 
@@ -415,7 +415,7 @@ function MentorCard({ mentor }) {
       <div className="p-4 flex gap-2">
         <Link
           href={`/mentors/${mentor.id}`}
-          className="flex-1 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-center text-sm font-medium"
+          className="flex-1 px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors text-center text-sm font-medium"
         >
           View Profile
         </Link>

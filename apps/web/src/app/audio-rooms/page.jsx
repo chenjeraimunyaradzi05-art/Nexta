@@ -130,15 +130,15 @@ export default function AudioRoomsPage() {
       <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-gray-900 py-8 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="animate-pulse space-y-6">
-            <div className="h-10 bg-gray-700/50 rounded w-1/4"></div>
+            <div className="h-10 bg-slate-700/50 rounded w-1/4"></div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="bg-gray-800/50 rounded-xl p-6">
-                  <div className="h-4 bg-gray-700/50 rounded w-3/4 mb-4"></div>
-                  <div className="h-4 bg-gray-700/50 rounded w-1/2 mb-4"></div>
+                <div key={i} className="bg-slate-800/50 rounded-xl p-6">
+                  <div className="h-4 bg-slate-700/50 rounded w-3/4 mb-4"></div>
+                  <div className="h-4 bg-slate-700/50 rounded w-1/2 mb-4"></div>
                   <div className="flex gap-2">
-                    <div className="h-6 bg-gray-700/50 rounded-full w-16"></div>
-                    <div className="h-6 bg-gray-700/50 rounded-full w-16"></div>
+                    <div className="h-6 bg-slate-700/50 rounded-full w-16"></div>
+                    <div className="h-6 bg-slate-700/50 rounded-full w-16"></div>
                   </div>
                 </div>
               ))}
@@ -156,7 +156,7 @@ export default function AudioRoomsPage() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div>
             <h1 className="text-3xl font-bold">Audio Rooms</h1>
-            <p className="text-gray-400 mt-1">Join live conversations with our community</p>
+            <p className="text-slate-400 mt-1">Join live conversations with our community</p>
           </div>
           {isAuthenticated && (
             <Link
@@ -178,7 +178,7 @@ export default function AudioRoomsPage() {
               className={`px-4 py-2 rounded-full font-medium whitespace-nowrap transition-all ${
                 (topic === 'All' ? filter === 'all' : filter.toLowerCase() === topic.toLowerCase())
                   ? 'text-white shadow-lg'
-                  : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                  : 'bg-white/10 text-slate-300 hover:bg-white/20'
               }`}
               style={(topic === 'All' ? filter === 'all' : filter.toLowerCase() === topic.toLowerCase()) 
                 ? { background: `linear-gradient(135deg, ${accentPink}, ${accentPurple})` } 
@@ -207,7 +207,7 @@ export default function AudioRoomsPage() {
                         {room.hostName}
                         {room.hostVerified && <span className="text-blue-400">✓</span>}
                       </p>
-                      <p className="text-sm text-gray-400">Host</p>
+                      <p className="text-sm text-slate-400">Host</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-1 px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm font-medium">
@@ -219,7 +219,7 @@ export default function AudioRoomsPage() {
                 <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-purple-300 transition-colors">
                   {room.title}
                 </h3>
-                <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+                <p className="text-slate-400 text-sm mb-4 line-clamp-2">
                   {room.description}
                 </p>
 
@@ -231,7 +231,7 @@ export default function AudioRoomsPage() {
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between text-sm text-gray-400 pt-4 border-t border-white/10">
+                <div className="flex items-center justify-between text-sm text-slate-400 pt-4 border-t border-white/10">
                   <div className="flex items-center gap-4">
                     <span className="flex items-center gap-1">
                       🎤 {room.speakerCount} speaking
@@ -254,7 +254,7 @@ export default function AudioRoomsPage() {
           <div className="text-center py-16">
             <div className="text-6xl mb-4">🎙️</div>
             <h3 className="text-xl font-semibold text-white mb-2">No active rooms</h3>
-            <p className="text-gray-400 mb-6">
+            <p className="text-slate-400 mb-6">
               {filter !== 'all' 
                 ? `No rooms found for "${filter}". Try a different topic.` 
                 : 'Be the first to start a conversation!'}
@@ -286,9 +286,9 @@ export default function AudioRoomsPage() {
             Upcoming Rooms
           </h2>
           <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
-            <div className="text-center py-8 text-gray-500">
-              <p className="text-gray-400">No scheduled rooms at the moment</p>
-              <p className="text-sm text-gray-500 mt-1">Check back later for upcoming conversations</p>
+            <div className="text-center py-8 text-slate-500">
+              <p className="text-slate-400">No scheduled rooms at the moment</p>
+              <p className="text-sm text-slate-500 mt-1">Check back later for upcoming conversations</p>
             </div>
           </div>
         </div>
@@ -302,7 +302,7 @@ export default function AudioRoomsPage() {
                 🎧
               </div>
               <h3 className="font-medium text-white mb-2">Listen In</h3>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-slate-400">
                 Join any room as a listener to hear conversations on topics that interest you.
               </p>
             </div>
@@ -311,7 +311,7 @@ export default function AudioRoomsPage() {
                 ✋
               </div>
               <h3 className="font-medium text-white mb-2">Raise Your Hand</h3>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-slate-400">
                 Want to speak? Raise your hand and the host can invite you to join the conversation.
               </p>
             </div>
@@ -320,7 +320,7 @@ export default function AudioRoomsPage() {
                 🎙️
               </div>
               <h3 className="font-medium text-white mb-2">Host Your Own</h3>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-slate-400">
                 Start your own room on any topic and build community around your expertise.
               </p>
             </div>

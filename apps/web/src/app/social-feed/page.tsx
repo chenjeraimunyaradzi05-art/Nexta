@@ -346,35 +346,35 @@ export default function SocialFeedPage() {
           <aside className="hidden lg:block lg:col-span-3">
             <div className="sticky top-20 space-y-4">
               {/* Quick Actions */}
-              <div className="rounded-xl p-4 bg-white dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 shadow-sm dark:shadow-none">
+              <div className="rounded-xl p-4 bg-white dark:bg-white/5 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">
                 <h3 className="text-sm font-semibold mb-3 text-emerald-600 dark:text-emerald-400">
                   Quick Actions
                 </h3>
                 <div className="space-y-1">
                   <Link
                     href="/social-feed/new"
-                    className="flex items-center gap-2 p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
+                    className="flex items-center gap-2 p-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
                   >
                     <Sparkles className="w-4 h-4 text-amber-500 dark:text-amber-400" />
                     Create Post
                   </Link>
                   <Link
                     href="/jobs"
-                    className="flex items-center gap-2 p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
+                    className="flex items-center gap-2 p-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
                   >
                     <Briefcase className="w-4 h-4 text-blue-500 dark:text-blue-400" />
                     Browse Jobs
                   </Link>
                   <Link
                     href="/events"
-                    className="flex items-center gap-2 p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
+                    className="flex items-center gap-2 p-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
                   >
                     <Calendar className="w-4 h-4 text-pink-500 dark:text-pink-400" />
                     Upcoming Events
                   </Link>
                   <Link
                     href="/mentorship"
-                    className="flex items-center gap-2 p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
+                    className="flex items-center gap-2 p-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
                   >
                     <Users className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
                     Find a Mentor
@@ -383,7 +383,7 @@ export default function SocialFeedPage() {
               </div>
 
               {/* Trending Topics */}
-              <div className="rounded-xl p-4 bg-white dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 shadow-sm dark:shadow-none">
+              <div className="rounded-xl p-4 bg-white dark:bg-white/5 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">
                 <h3 className="text-sm font-semibold mb-3 text-amber-600 dark:text-amber-400">
                   Trending Topics
                 </h3>
@@ -392,10 +392,10 @@ export default function SocialFeedPage() {
                     <Link
                       key={i}
                       href={`/search?q=${topic.tag}`}
-                      className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
+                      className="flex items-center justify-between p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
                     >
                       <span className="text-sky-600 dark:text-sky-400 text-sm">{topic.tag}</span>
-                      <span className="text-xs text-gray-500">{topic.posts}</span>
+                      <span className="text-xs text-slate-500">{topic.posts}</span>
                     </Link>
                   ))}
                 </div>
@@ -410,9 +410,9 @@ export default function SocialFeedPage() {
               <div className="flex gap-3 pb-2">
                 {/* Add Story */}
                 <Link href="/social-feed/new" className="flex flex-col items-center gap-1 shrink-0">
-                  <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-brand-500/30 to-purple-600/30 flex items-center justify-center border-2 border-dashed border-gray-400 dark:border-white/30">
+                  <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-brand-500/30 to-purple-600/30 flex items-center justify-center border-2 border-dashed border-slate-400 dark:border-white/30">
                     <svg
-                      className="w-6 h-6 text-gray-600 dark:text-white"
+                      className="w-6 h-6 text-slate-600 dark:text-white"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -425,7 +425,7 @@ export default function SocialFeedPage() {
                       />
                     </svg>
                   </div>
-                  <span className="text-[10px] text-gray-500 dark:text-gray-400">Your Story</span>
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400">Your Story</span>
                 </Link>
                 {/* Sample Stories */}
                 {[
@@ -479,7 +479,7 @@ export default function SocialFeedPage() {
                         className="w-full h-full rounded-full object-cover border-2 border-white dark:border-[#1A0F2E]"
                       />
                     </div>
-                    <span className="text-[10px] text-gray-500 dark:text-gray-400 truncate w-16 text-center">
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 truncate w-16 text-center">
                       {story.name}
                     </span>
                   </button>
@@ -508,7 +508,7 @@ export default function SocialFeedPage() {
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                       activeTab === tab.id
                         ? 'bg-gradient-to-r from-emerald-600 to-emerald-500 text-white'
-                        : 'bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                        : 'bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                     }`}
                   >
                     {tab.label}
@@ -519,19 +519,19 @@ export default function SocialFeedPage() {
 
             {/* Create Post Card */}
             {isAuthenticated ? (
-              <div className="rounded-xl p-4 mb-6 bg-white dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 shadow-sm dark:shadow-none">
+              <div className="rounded-xl p-4 mb-6 bg-white dark:bg-white/5 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">
                 <div className="flex gap-3">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center text-white font-bold">
                     {user?.profile?.firstName?.[0] || user?.email?.[0] || 'U'}
                   </div>
                   <Link
                     href="/social-feed/new"
-                    className="flex-1 p-3 rounded-lg bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors text-left"
+                    className="flex-1 p-3 rounded-lg bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-white/10 transition-colors text-left"
                   >
                     Share your story with the community...
                   </Link>
                 </div>
-                <div className="flex gap-4 mt-3 pt-3 border-t border-gray-200 dark:border-white/10">
+                <div className="flex gap-4 mt-3 pt-3 border-t border-slate-200 dark:border-white/10">
                   <button className="text-sm flex items-center gap-1 text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300">
                     <ImageIcon className="w-4 h-4" /> Photo
                   </button>
@@ -547,8 +547,8 @@ export default function SocialFeedPage() {
                 </div>
               </div>
             ) : (
-              <div className="rounded-xl p-4 mb-6 bg-white dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 shadow-sm dark:shadow-none text-center">
-                <p className="text-gray-600 dark:text-gray-400 mb-2">
+              <div className="rounded-xl p-4 mb-6 bg-white dark:bg-white/5 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none text-center">
+                <p className="text-slate-600 dark:text-slate-400 mb-2">
                   Join the community to share your story
                 </p>
                 <a
@@ -563,7 +563,7 @@ export default function SocialFeedPage() {
             {/* Posts */}
             {loading ? (
               <div className="flex items-center justify-center py-20">
-                <div className="w-12 h-12 rounded-full border-4 border-gray-200 dark:border-white/20 border-t-amber-500 dark:border-t-amber-400 animate-spin" />
+                <div className="w-12 h-12 rounded-full border-4 border-slate-200 dark:border-white/20 border-t-amber-500 dark:border-t-amber-400 animate-spin" />
               </div>
             ) : (
               <div className="space-y-6">
@@ -573,7 +573,7 @@ export default function SocialFeedPage() {
                     className={`rounded-xl overflow-hidden ${
                       post.isSponsored
                         ? 'bg-gradient-to-br from-amber-900/20 to-transparent border border-amber-500/30'
-                        : 'bg-white dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 shadow-sm dark:shadow-none'
+                        : 'bg-white dark:bg-white/5 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none'
                     }`}
                   >
                     {/* Sponsored Label */}
@@ -614,7 +614,7 @@ export default function SocialFeedPage() {
 
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <h3 className="font-semibold text-gray-900 dark:text-white">
+                          <h3 className="font-semibold text-slate-900 dark:text-white">
                             {post.authorName}
                           </h3>
                           {post.isOrganization && (
@@ -623,20 +623,20 @@ export default function SocialFeedPage() {
                             </span>
                           )}
                         </div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                        <p className="text-sm text-slate-500 dark:text-slate-400">
                           {post.authorTitle}
                         </p>
-                        <p className="text-xs text-gray-400 dark:text-gray-500">{post.createdAt}</p>
+                        <p className="text-xs text-slate-400 dark:text-slate-500">{post.createdAt}</p>
                       </div>
 
-                      <button className="p-2 rounded-lg text-gray-400 dark:text-gray-500 hover:bg-gray-100 dark:hover:bg-white/5">
+                      <button className="p-2 rounded-lg text-slate-400 dark:text-slate-500 hover:bg-slate-100 dark:hover:bg-white/5">
                         <MoreHorizontal className="w-5 h-5" />
                       </button>
                     </div>
 
                     {/* Content */}
                     <div className="px-4 pb-4">
-                      <p className="text-gray-800 dark:text-gray-200 whitespace-pre-line leading-relaxed">
+                      <p className="text-slate-800 dark:text-slate-200 whitespace-pre-line leading-relaxed">
                         {post.content}
                       </p>
                     </div>
@@ -655,7 +655,7 @@ export default function SocialFeedPage() {
                     )}
 
                     {/* Reactions Summary */}
-                    <div className="px-4 py-3 flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-white/10">
+                    <div className="px-4 py-3 flex items-center justify-between text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-white/10">
                       <div className="flex items-center gap-1">
                         <span>👍</span>
                         <span>❤️</span>
@@ -673,26 +673,26 @@ export default function SocialFeedPage() {
                     </div>
 
                     {/* Actions */}
-                    <div className="px-4 py-3 flex justify-around border-t border-gray-200 dark:border-white/10">
+                    <div className="px-4 py-3 flex justify-around border-t border-slate-200 dark:border-white/10">
                       <button
                         onClick={() => handleReaction(post.id, 'like')}
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
                       >
                         <Heart className="w-5 h-5" />
                         <span className="hidden sm:inline text-sm">Like</span>
                       </button>
                       <Link
                         href={`/social-feed/${post.id}`}
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
                       >
                         <MessageCircle className="w-5 h-5" />
                         <span className="hidden sm:inline text-sm">Comment</span>
                       </Link>
-                      <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 hover:text-amber-600 dark:hover:text-amber-400 transition-colors">
+                      <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-amber-600 dark:hover:text-amber-400 transition-colors">
                         <Share2 className="w-5 h-5" />
                         <span className="hidden sm:inline text-sm">Share</span>
                       </button>
-                      <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 hover:text-amber-600 dark:hover:text-amber-400 transition-colors">
+                      <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-amber-600 dark:hover:text-amber-400 transition-colors">
                         <Bookmark className="w-5 h-5" />
                         <span className="hidden sm:inline text-sm">Save</span>
                       </button>
@@ -733,11 +733,11 @@ export default function SocialFeedPage() {
                     <Link
                       key={i}
                       href="/jobs"
-                      className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
+                      className="flex items-center justify-between p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
                     >
                       <div className="flex items-center gap-2">
                         <span className="text-xl">{partner.logo}</span>
-                        <span className="text-gray-900 dark:text-white text-sm">
+                        <span className="text-slate-900 dark:text-white text-sm">
                           {partner.name}
                         </span>
                       </div>
@@ -756,38 +756,38 @@ export default function SocialFeedPage() {
               </div>
 
               {/* Community Stats */}
-              <div className="rounded-xl p-4 bg-white dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 shadow-sm dark:shadow-none">
+              <div className="rounded-xl p-4 bg-white dark:bg-white/5 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">
                 <h3 className="text-sm font-semibold mb-3 text-sky-600 dark:text-sky-400 flex items-center gap-2">
                   <TrendingUp className="w-4 h-4" />
                   Community Impact
                 </h3>
                 <div className="grid grid-cols-2 gap-3 text-center">
-                  <div className="bg-gray-50 dark:bg-white/5 rounded-lg p-2">
+                  <div className="bg-slate-50 dark:bg-white/5 rounded-lg p-2">
                     <div className="text-lg font-bold text-amber-600 dark:text-amber-400">
                       12.5K
                     </div>
-                    <div className="text-[10px] text-gray-500">Jobs Filled</div>
+                    <div className="text-[10px] text-slate-500">Jobs Filled</div>
                   </div>
-                  <div className="bg-gray-50 dark:bg-white/5 rounded-lg p-2">
+                  <div className="bg-slate-50 dark:bg-white/5 rounded-lg p-2">
                     <div className="text-lg font-bold text-emerald-600 dark:text-emerald-400">
                       8.2K
                     </div>
-                    <div className="text-[10px] text-gray-500">Mentorships</div>
+                    <div className="text-[10px] text-slate-500">Mentorships</div>
                   </div>
-                  <div className="bg-gray-50 dark:bg-white/5 rounded-lg p-2">
+                  <div className="bg-slate-50 dark:bg-white/5 rounded-lg p-2">
                     <div className="text-lg font-bold text-pink-600 dark:text-pink-400">$45M</div>
-                    <div className="text-[10px] text-gray-500">Wages Earned</div>
+                    <div className="text-[10px] text-slate-500">Wages Earned</div>
                   </div>
-                  <div className="bg-gray-50 dark:bg-white/5 rounded-lg p-2">
+                  <div className="bg-slate-50 dark:bg-white/5 rounded-lg p-2">
                     <div className="text-lg font-bold text-sky-600 dark:text-sky-400">250+</div>
-                    <div className="text-[10px] text-gray-500">Partners</div>
+                    <div className="text-[10px] text-slate-500">Partners</div>
                   </div>
                 </div>
               </div>
 
               {/* Acknowledgment */}
               <div className="text-center py-3">
-                <p className="text-[10px] text-gray-500">
+                <p className="text-[10px] text-slate-500">
                   <span className="text-amber-500 dark:text-amber-400">✦</span> We acknowledge
                   Traditional Custodians{' '}
                   <span className="text-emerald-500 dark:text-emerald-400">✦</span>
@@ -799,11 +799,11 @@ export default function SocialFeedPage() {
       </div>
 
       {/* Mobile Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 lg:hidden bg-gradient-to-t from-white to-white/95 dark:from-[#1A0F2E] dark:to-[#1A0F2E]/95 backdrop-blur-lg border-t border-gray-200 dark:border-white/10 z-50">
+      <nav className="fixed bottom-0 left-0 right-0 lg:hidden bg-gradient-to-t from-white to-white/95 dark:from-[#1A0F2E] dark:to-[#1A0F2E]/95 backdrop-blur-lg border-t border-slate-200 dark:border-white/10 z-50">
         <div className="flex justify-around items-center py-2 px-4">
           <Link
             href="/"
-            className="flex flex-col items-center gap-1 p-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+            className="flex flex-col items-center gap-1 p-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -841,14 +841,14 @@ export default function SocialFeedPage() {
           </Link>
           <Link
             href="/jobs"
-            className="flex flex-col items-center gap-1 p-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+            className="flex flex-col items-center gap-1 p-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             <Briefcase className="w-6 h-6" />
             <span className="text-[10px]">Jobs</span>
           </Link>
           <Link
             href="/profile"
-            className="flex flex-col items-center gap-1 p-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+            className="flex flex-col items-center gap-1 p-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             <Users className="w-6 h-6" />
             <span className="text-[10px]">Profile</span>

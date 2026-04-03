@@ -57,24 +57,24 @@ export default function NewImportPage() {
 
   if (result) {
     return (
-      <div className="min-h-screen bg-gray-50 py-8">
+      <div className="min-h-screen bg-slate-50 py-8">
         <div className="max-w-2xl mx-auto px-4">
           <div className="bg-white rounded-lg shadow p-6 text-center">
             <div className="text-5xl mb-4">📤</div>
             <h1 className="text-2xl font-bold text-green-600 mb-2">
               Import Started
             </h1>
-            <p className="text-gray-600 mb-4">
+            <p className="text-slate-600 mb-4">
               Your import is being processed.
             </p>
-            <div className="bg-gray-100 p-4 rounded-lg mb-6 text-left">
+            <div className="bg-slate-100 p-4 rounded-lg mb-6 text-left">
               <dl className="space-y-2">
                 <div className="flex justify-between">
-                  <dt className="text-gray-500">Import ID:</dt>
+                  <dt className="text-slate-500">Import ID:</dt>
                   <dd className="font-mono">{result.importId}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-gray-500">Total Rows:</dt>
+                  <dt className="text-slate-500">Total Rows:</dt>
                   <dd>{result.totalRows}</dd>
                 </div>
               </dl>
@@ -92,10 +92,10 @@ export default function NewImportPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-slate-50 py-8">
       <div className="max-w-2xl mx-auto px-4">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">Bulk Import</h1>
+          <h1 className="text-2xl font-bold text-slate-900">Bulk Import</h1>
           <Link
             href="/dashboard/company/integrations"
             className="text-blue-600 hover:text-blue-800"
@@ -113,7 +113,7 @@ export default function NewImportPage() {
         <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-6 space-y-6">
           {/* Import Type */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">
+            <label className="block text-sm font-medium text-slate-700 mb-3">
               What are you importing?
             </label>
             <div className="grid grid-cols-3 gap-4">
@@ -129,12 +129,12 @@ export default function NewImportPage() {
                   className={`p-4 border-2 rounded-lg text-center transition-colors ${
                     importType === type.id
                       ? 'border-blue-500 bg-blue-50'
-                      : 'border-gray-200 hover:border-gray-300'
+                      : 'border-slate-200 hover:border-slate-300'
                   }`}
                 >
                   <div className="text-2xl mb-1">{type.icon}</div>
                   <div className="font-semibold">{type.label}</div>
-                  <div className="text-xs text-gray-500">{type.desc}</div>
+                  <div className="text-xs text-slate-500">{type.desc}</div>
                 </button>
               ))}
             </div>
@@ -157,10 +157,10 @@ export default function NewImportPage() {
 
           {/* File Upload */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-slate-700 mb-1">
               Upload CSV File
             </label>
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors">
+            <div className="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:border-slate-400 transition-colors">
               <input
                 type="file"
                 accept=".csv,text/csv"
@@ -173,17 +173,17 @@ export default function NewImportPage() {
                   <div>
                     <div className="text-2xl mb-2">📄</div>
                     <div className="font-medium">{fileName}</div>
-                    <div className="text-sm text-gray-500 mt-1">
+                    <div className="text-sm text-slate-500 mt-1">
                       Click to choose a different file
                     </div>
                   </div>
                 ) : (
                   <div>
                     <div className="text-3xl mb-2">📤</div>
-                    <div className="font-medium text-gray-700">
+                    <div className="font-medium text-slate-700">
                       Click to upload CSV
                     </div>
-                    <div className="text-sm text-gray-500 mt-1">
+                    <div className="text-sm text-slate-500 mt-1">
                       Maximum 1,000 rows per import
                     </div>
                   </div>
@@ -195,10 +195,10 @@ export default function NewImportPage() {
           {/* Preview */}
           {csvData && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-slate-700 mb-1">
                 Preview (first 5 lines)
               </label>
-              <pre className="bg-gray-100 p-3 rounded-lg text-xs overflow-x-auto max-h-40">
+              <pre className="bg-slate-100 p-3 rounded-lg text-xs overflow-x-auto max-h-40">
                 {csvData.split('\n').slice(0, 5).join('\n')}
               </pre>
             </div>
@@ -214,7 +214,7 @@ export default function NewImportPage() {
             </button>
             <Link
               href="/dashboard/company/integrations"
-              className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
+              className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200"
             >
               Cancel
             </Link>

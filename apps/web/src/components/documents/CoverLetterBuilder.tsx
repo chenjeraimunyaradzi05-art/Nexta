@@ -206,12 +206,12 @@ function LetterCard({
   const preview = letter.content.substring(0, 150) + (letter.content.length > 150 ? '...' : '');
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
       <div className="p-6">
         <div className="flex items-start justify-between gap-4 mb-3">
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="font-semibold text-gray-900 dark:text-white">{letter.title}</h3>
+              <h3 className="font-semibold text-slate-900 dark:text-white">{letter.title}</h3>
               {letter.isDefault && (
                 <span className="px-2 py-0.5 bg-yellow-100 text-yellow-700 text-xs rounded-full">
                   Default
@@ -219,7 +219,7 @@ function LetterCard({
               )}
             </div>
             {letter.jobTitle && letter.companyName && (
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-slate-500">
                 {letter.jobTitle} at {letter.companyName}
               </p>
             )}
@@ -229,7 +229,7 @@ function LetterCard({
               e.stopPropagation();
               // More options menu
             }}
-            className="p-1 text-gray-400 hover:text-gray-600"
+            className="p-1 text-slate-400 hover:text-slate-600"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
@@ -238,12 +238,12 @@ function LetterCard({
         </div>
 
         {/* Preview */}
-        <div className="text-sm text-gray-600 dark:text-gray-400 line-clamp-3 mb-4">
+        <div className="text-sm text-slate-600 dark:text-slate-400 line-clamp-3 mb-4">
           {preview}
         </div>
 
         {/* Meta */}
-        <div className="flex items-center gap-4 text-xs text-gray-500 mb-4">
+        <div className="flex items-center gap-4 text-xs text-slate-500 mb-4">
           <span>Updated {new Date(letter.updatedAt).toLocaleDateString('en-AU')}</span>
           <span className="capitalize">{letter.template} template</span>
         </div>
@@ -253,7 +253,7 @@ function LetterCard({
           <Button onClick={onEdit} className="flex-1">Edit</Button>
           <button
             onClick={onDuplicate}
-            className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+            className="p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg"
             title="Duplicate"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -263,7 +263,7 @@ function LetterCard({
           {!letter.isDefault && (
             <button
               onClick={onSetDefault}
-              className="p-2 text-gray-500 hover:text-yellow-600 hover:bg-yellow-50 dark:hover:bg-yellow-900/20 rounded-lg"
+              className="p-2 text-slate-500 hover:text-yellow-600 hover:bg-yellow-50 dark:hover:bg-yellow-900/20 rounded-lg"
               title="Set as default"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -273,7 +273,7 @@ function LetterCard({
           )}
           <button
             onClick={onDelete}
-            className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+            className="p-2 text-slate-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
             title="Delete"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -299,7 +299,7 @@ function TemplateCard({
   const categoryColors = {
     professional: 'bg-blue-100 text-blue-700',
     creative: 'bg-purple-100 text-purple-700',
-    minimal: 'bg-gray-100 text-gray-700',
+    minimal: 'bg-slate-100 text-slate-700',
     modern: 'bg-green-100 text-green-700',
   };
 
@@ -309,17 +309,17 @@ function TemplateCard({
       className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
         isSelected
           ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-          : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
+          : 'border-slate-200 dark:border-slate-700 hover:border-slate-300'
       }`}
     >
       <div className="flex items-start justify-between mb-2">
-        <h3 className="font-medium text-gray-900 dark:text-white">{template.name}</h3>
+        <h3 className="font-medium text-slate-900 dark:text-white">{template.name}</h3>
         <span className={`px-2 py-0.5 text-xs rounded-full capitalize ${categoryColors[template.category]}`}>
           {template.category}
         </span>
       </div>
-      <p className="text-sm text-gray-500 mb-3">{template.description}</p>
-      <div className="text-xs text-gray-400 font-mono bg-gray-50 dark:bg-gray-900 rounded p-2 line-clamp-2">
+      <p className="text-sm text-slate-500 mb-3">{template.description}</p>
+      <div className="text-xs text-slate-400 font-mono bg-slate-50 dark:bg-slate-900 rounded p-2 line-clamp-2">
         {template.preview}
       </div>
     </button>
@@ -400,21 +400,21 @@ function CoverLetterEditor({
       {/* Main Editor */}
       <div className="lg:col-span-2 space-y-6">
         {/* Header */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
           <div className="grid md:grid-cols-3 gap-4">
             <div className="md:col-span-3">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Letter Title
               </label>
               <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Job Title
               </label>
               <input
@@ -422,11 +422,11 @@ function CoverLetterEditor({
                 value={jobTitle}
                 onChange={(e) => setJobTitle(e.target.value)}
                 placeholder="e.g., Software Engineer"
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Company Name
               </label>
               <input
@@ -434,19 +434,19 @@ function CoverLetterEditor({
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
                 placeholder="e.g., Atlassian"
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Template
               </label>
               <button
                 onClick={() => setShowTemplates(!showTemplates)}
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-left flex items-center justify-between"
+                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white text-left flex items-center justify-between"
               >
                 <span className="capitalize">{selectedTemplate}</span>
-                <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
@@ -456,8 +456,8 @@ function CoverLetterEditor({
 
         {/* Templates Selection */}
         {showTemplates && (
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Choose a Template</h3>
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Choose a Template</h3>
             <div className="grid md:grid-cols-2 gap-4">
               {(templates.length > 0 ? templates : defaultTemplates).map((template) => (
                 <TemplateCard
@@ -475,9 +475,9 @@ function CoverLetterEditor({
         )}
 
         {/* Content Editor */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-gray-900 dark:text-white">Letter Content</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white">Letter Content</h3>
             <Button variant="outline" onClick={fetchSuggestions} className="text-sm">
               ✨ Get AI Suggestions
             </Button>
@@ -487,10 +487,10 @@ function CoverLetterEditor({
             value={content}
             onChange={(e) => setContent(e.target.value)}
             rows={20}
-            className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white font-mono text-sm"
+            className="w-full px-4 py-3 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white font-mono text-sm"
             placeholder="Start writing your cover letter..."
           />
-          <div className="flex items-center justify-between mt-4 text-sm text-gray-500">
+          <div className="flex items-center justify-between mt-4 text-sm text-slate-500">
             <span>{content.split(/\s+/).filter(w => w).length} words</span>
             <span>{content.length} characters</span>
           </div>
@@ -521,12 +521,12 @@ function CoverLetterEditor({
       <div className="space-y-6">
         {/* AI Suggestions */}
         {showSuggestions && suggestions.length > 0 && (
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-semibold text-gray-900 dark:text-white">✨ Suggestions</h3>
+              <h3 className="font-semibold text-slate-900 dark:text-white">✨ Suggestions</h3>
               <button
                 onClick={() => setShowSuggestions(false)}
-                className="text-gray-400 hover:text-gray-600"
+                className="text-slate-400 hover:text-slate-600"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -537,13 +537,13 @@ function CoverLetterEditor({
               {suggestions.map((suggestion, i) => (
                 <div
                   key={i}
-                  className="p-3 bg-gray-50 dark:bg-gray-900 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="p-3 bg-slate-50 dark:bg-slate-900 rounded-lg cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
                   onClick={() => insertSuggestion(suggestion.text)}
                 >
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-xs font-medium text-blue-600 capitalize">{suggestion.type}</span>
                   </div>
-                  <p className="text-sm text-gray-700 dark:text-gray-300">{suggestion.text}</p>
+                  <p className="text-sm text-slate-700 dark:text-slate-300">{suggestion.text}</p>
                 </div>
               ))}
             </div>
@@ -552,8 +552,8 @@ function CoverLetterEditor({
 
         {/* Writing Tips */}
         <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-6">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-4">💡 Writing Tips</h3>
-          <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-4">💡 Writing Tips</h3>
+          <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
             <li className="flex items-start gap-2">
               <span className="text-green-500">✓</span>
               Keep it to one page (300-400 words)
@@ -578,9 +578,9 @@ function CoverLetterEditor({
         </div>
 
         {/* Placeholders Guide */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-3">📝 Placeholders</h3>
-          <p className="text-sm text-gray-500 mb-3">Replace these placeholders with your information:</p>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-3">📝 Placeholders</h3>
+          <p className="text-sm text-slate-500 mb-3">Replace these placeholders with your information:</p>
           <div className="space-y-2 text-sm">
             {[
               '[Your Name]',
@@ -593,7 +593,7 @@ function CoverLetterEditor({
             ].map((placeholder) => (
               <div
                 key={placeholder}
-                className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-gray-700 dark:text-gray-300 font-mono text-xs"
+                className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-slate-700 dark:text-slate-300 font-mono text-xs"
               >
                 {placeholder}
               </div>
@@ -710,7 +710,7 @@ export function CoverLetterBuilder() {
             setIsEditing(false);
             setEditingLetter(null);
           }}
-          className="flex items-center gap-2 text-gray-500 hover:text-gray-700 mb-6"
+          className="flex items-center gap-2 text-slate-500 hover:text-slate-700 mb-6"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -737,8 +737,8 @@ export function CoverLetterBuilder() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Cover Letters</h1>
-          <p className="text-gray-500 mt-1">Create personalized cover letters for your applications</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Cover Letters</h1>
+          <p className="text-slate-500 mt-1">Create personalized cover letters for your applications</p>
         </div>
         <Button onClick={() => setIsEditing(true)}>
           <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -766,29 +766,29 @@ export function CoverLetterBuilder() {
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+        <div className="text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
           <div className="text-6xl mb-4">✉️</div>
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">No cover letters yet</h3>
-          <p className="text-gray-500 mt-2 mb-6">Create your first cover letter to get started</p>
+          <h3 className="text-lg font-medium text-slate-900 dark:text-white">No cover letters yet</h3>
+          <p className="text-slate-500 mt-2 mb-6">Create your first cover letter to get started</p>
           <Button onClick={() => setIsEditing(true)}>Create Cover Letter</Button>
         </div>
       )}
 
       {/* Templates Preview */}
       <div className="mt-12">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Available Templates</h2>
+        <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">Available Templates</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {(templates.length > 0 ? templates : defaultTemplates).map((template) => (
             <div
               key={template.id}
-              className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 hover:border-blue-300 transition-colors cursor-pointer"
+              className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 hover:border-blue-300 transition-colors cursor-pointer"
               onClick={() => {
                 setEditingLetter(null);
                 setIsEditing(true);
               }}
             >
-              <h3 className="font-medium text-gray-900 dark:text-white">{template.name}</h3>
-              <p className="text-sm text-gray-500 mt-1">{template.description}</p>
+              <h3 className="font-medium text-slate-900 dark:text-white">{template.name}</h3>
+              <p className="text-sm text-slate-500 mt-1">{template.description}</p>
             </div>
           ))}
         </div>

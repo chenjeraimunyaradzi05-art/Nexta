@@ -189,7 +189,7 @@ export default function StreamViewerPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
         <div className="animate-spin w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full"></div>
       </div>
     );
@@ -197,10 +197,10 @@ export default function StreamViewerPage() {
 
   if (!stream) {
     return (
-      <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center text-white">
+      <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center text-white">
         <div className="text-6xl mb-4">📺</div>
         <h2 className="text-2xl font-bold mb-2">Stream Not Found</h2>
-        <p className="text-gray-400 mb-6">This stream may have ended or doesn't exist.</p>
+        <p className="text-slate-400 mb-6">This stream may have ended or doesn't exist.</p>
         <Link
           href="/live"
           className="px-6 py-3 rounded-lg text-white font-medium"
@@ -213,7 +213,7 @@ export default function StreamViewerPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-slate-900 text-white">
       <div className="flex flex-col lg:flex-row h-screen">
         {/* Video Section */}
         <div className={`flex-1 flex flex-col ${showChat ? 'lg:max-w-[calc(100%-380px)]' : ''}`}>
@@ -275,21 +275,21 @@ export default function StreamViewerPage() {
           </div>
 
           {/* Stream Info */}
-          <div className="p-4 bg-gray-800">
+          <div className="p-4 bg-slate-800">
             <div className="flex items-start gap-4">
               <span className="text-4xl">{stream.hostAvatar}</span>
               <div className="flex-1">
                 <h1 className="text-xl font-bold text-white mb-1">{stream.title}</h1>
-                <div className="flex items-center gap-2 text-sm text-gray-400">
+                <div className="flex items-center gap-2 text-sm text-slate-400">
                   <span className="font-medium text-white">{stream.hostName}</span>
                   {stream.hostVerified && <span className="text-blue-400">✓</span>}
                   <span>•</span>
                   <span>{stream.category}</span>
                 </div>
-                <p className="text-gray-400 text-sm mt-2 line-clamp-2">{stream.description}</p>
+                <p className="text-slate-400 text-sm mt-2 line-clamp-2">{stream.description}</p>
                 <div className="flex flex-wrap gap-2 mt-3">
                   {stream.tags?.map((tag, idx) => (
-                    <span key={idx} className="px-2 py-1 bg-gray-700 text-gray-300 text-xs rounded-full">
+                    <span key={idx} className="px-2 py-1 bg-slate-700 text-slate-300 text-xs rounded-full">
                       #{tag}
                     </span>
                   ))}
@@ -302,7 +302,7 @@ export default function StreamViewerPage() {
                 >
                   Follow
                 </button>
-                <button className="px-4 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 font-medium">
+                <button className="px-4 py-2 rounded-lg bg-slate-700 hover:bg-slate-600 font-medium">
                   Share
                 </button>
               </div>
@@ -312,9 +312,9 @@ export default function StreamViewerPage() {
 
         {/* Chat/Q&A Panel */}
         {showChat && (
-          <div className="w-full lg:w-[380px] bg-gray-800 flex flex-col border-l border-gray-700">
+          <div className="w-full lg:w-[380px] bg-slate-800 flex flex-col border-l border-slate-700">
             {/* Panel Tabs */}
-            <div className="flex border-b border-gray-700">
+            <div className="flex border-b border-slate-700">
               {[
                 { id: 'chat', label: '💬 Chat' },
                 { id: 'qa', label: '❓ Q&A' },
@@ -326,7 +326,7 @@ export default function StreamViewerPage() {
                   className={`flex-1 py-3 text-sm font-medium transition-colors ${
                     activePanel === tab.id
                       ? 'text-white border-b-2'
-                      : 'text-gray-400 hover:text-white'
+                      : 'text-slate-400 hover:text-white'
                   }`}
                   style={activePanel === tab.id ? { borderColor: accentPink } : {}}
                 >
@@ -344,15 +344,15 @@ export default function StreamViewerPage() {
                       <span className="text-2xl">{msg.avatar}</span>
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className={`text-sm font-medium ${msg.isHost ? 'text-purple-400' : 'text-gray-300'}`}>
+                          <span className={`text-sm font-medium ${msg.isHost ? 'text-purple-400' : 'text-slate-300'}`}>
                             {msg.userName}
                           </span>
                           {msg.isHost && (
                             <span className="px-1.5 py-0.5 bg-purple-500 text-white text-xs rounded">HOST</span>
                           )}
-                          <span className="text-xs text-gray-500">{msg.timestamp}</span>
+                          <span className="text-xs text-slate-500">{msg.timestamp}</span>
                         </div>
-                        <p className="text-gray-200 text-sm">{msg.message}</p>
+                        <p className="text-slate-200 text-sm">{msg.message}</p>
                       </div>
                     </div>
                   ))}
@@ -360,7 +360,7 @@ export default function StreamViewerPage() {
                 </div>
 
                 {/* Chat Input */}
-                <div className="p-4 border-t border-gray-700">
+                <div className="p-4 border-t border-slate-700">
                   {isAuthenticated ? (
                     <div className="flex gap-2">
                       <input
@@ -369,7 +369,7 @@ export default function StreamViewerPage() {
                         onChange={(e) => setNewMessage(e.target.value)}
                         onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
                         placeholder="Send a message..."
-                        className="flex-1 px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
+                        className="flex-1 px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-purple-500"
                       />
                       <button
                         onClick={sendMessage}
@@ -400,16 +400,16 @@ export default function StreamViewerPage() {
                   {questions.map((q) => (
                     <div
                       key={q.id}
-                      className={`p-3 rounded-lg ${q.answered ? 'bg-green-900/30 border border-green-700' : 'bg-gray-700'}`}
+                      className={`p-3 rounded-lg ${q.answered ? 'bg-green-900/30 border border-green-700' : 'bg-slate-700'}`}
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1">
-                          <p className="text-gray-200 text-sm">{q.question}</p>
-                          <p className="text-xs text-gray-500 mt-1">Asked by {q.userName}</p>
+                          <p className="text-slate-200 text-sm">{q.question}</p>
+                          <p className="text-xs text-slate-500 mt-1">Asked by {q.userName}</p>
                         </div>
                         <button
                           onClick={() => voteQuestion(q.id)}
-                          className="flex flex-col items-center px-2 py-1 rounded bg-gray-600 hover:bg-gray-500"
+                          className="flex flex-col items-center px-2 py-1 rounded bg-slate-600 hover:bg-slate-500"
                         >
                           <span>⬆️</span>
                           <span className="text-xs text-white">{q.votes}</span>
@@ -425,13 +425,13 @@ export default function StreamViewerPage() {
                 </div>
 
                 {/* Question Input */}
-                <div className="p-4 border-t border-gray-700">
+                <div className="p-4 border-t border-slate-700">
                   {isAuthenticated ? (
                     <div className="space-y-2">
                       <input
                         type="text"
                         placeholder="Ask a question..."
-                        className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
+                        className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-purple-500"
                         onKeyPress={(e) => {
                           if (e.key === 'Enter') {
                             submitQuestion(e.target.value);
@@ -439,7 +439,7 @@ export default function StreamViewerPage() {
                           }
                         }}
                       />
-                      <p className="text-xs text-gray-500">Press Enter to submit • Questions with most votes shown first</p>
+                      <p className="text-xs text-slate-500">Press Enter to submit • Questions with most votes shown first</p>
                     </div>
                   ) : (
                     <Link
@@ -460,17 +460,17 @@ export default function StreamViewerPage() {
                 <div className="text-center py-8">
                   <div className="text-5xl mb-4">👥</div>
                   <p className="text-2xl font-bold text-white">{viewerCount.toLocaleString()}</p>
-                  <p className="text-gray-400">people watching</p>
+                  <p className="text-slate-400">people watching</p>
                 </div>
-                <div className="border-t border-gray-700 pt-4">
-                  <h4 className="text-sm font-medium text-gray-400 mb-3">Top Participants</h4>
+                <div className="border-t border-slate-700 pt-4">
+                  <h4 className="text-sm font-medium text-slate-400 mb-3">Top Participants</h4>
                   <div className="space-y-3">
                     {TOP_PARTICIPANTS.map((name, idx) => (
-                      <div key={idx} className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-700">
+                      <div key={idx} className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-700">
                         <span className="text-2xl">👤</span>
                         <div className="flex-1">
                           <p className="text-sm font-medium text-white">{name}</p>
-                          <p className="text-xs text-gray-500">{participantMessageCounts[idx]} messages</p>
+                          <p className="text-xs text-slate-500">{participantMessageCounts[idx]} messages</p>
                         </div>
                       </div>
                     ))}

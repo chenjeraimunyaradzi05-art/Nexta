@@ -115,11 +115,11 @@ export function DataTable<T extends Record<string, any>>({
 
   const containerClass = isCosmic
     ? 'bg-[#1A0F2E] border-[#FFD700]/20'
-    : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700';
+    : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700';
 
   const headerClass = isCosmic
-    ? 'bg-[#2D1B69]/50 text-gray-300'
-    : 'bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-300';
+    ? 'bg-[#2D1B69]/50 text-slate-300'
+    : 'bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300';
 
   const rowClass = (index: number) => {
     let base = 'transition-colors ';
@@ -127,15 +127,15 @@ export function DataTable<T extends Record<string, any>>({
       base += 'hover:bg-white/5 ';
       if (isStriped && index % 2 === 1) base += 'bg-white/2 ';
     } else {
-      base += 'hover:bg-gray-50 dark:hover:bg-gray-700/50 ';
-      if (isStriped && index % 2 === 1) base += 'bg-gray-50 dark:bg-gray-800/50 ';
+      base += 'hover:bg-slate-50 dark:hover:bg-slate-700/50 ';
+      if (isStriped && index % 2 === 1) base += 'bg-slate-50 dark:bg-slate-800/50 ';
     }
     return base;
   };
 
   const cellClass = isCosmic
-    ? 'text-gray-300 border-white/5'
-    : 'text-gray-900 dark:text-gray-100 border-gray-200 dark:border-gray-700';
+    ? 'text-slate-300 border-white/5'
+    : 'text-slate-900 dark:text-slate-100 border-slate-200 dark:border-slate-700';
 
   const sizeClasses = {
     sm: { cell: 'px-3 py-2 text-sm', header: 'px-3 py-2 text-xs' },
@@ -270,7 +270,7 @@ export function DataTable<T extends Record<string, any>>({
                     type="checkbox"
                     checked={selected.size === paginatedData.length && paginatedData.length > 0}
                     onChange={handleSelectAll}
-                    className="rounded border-gray-300 dark:border-gray-600"
+                    className="rounded border-slate-300 dark:border-slate-600"
                   />
                 </th>
               )}
@@ -333,7 +333,7 @@ export function DataTable<T extends Record<string, any>>({
                         type="checkbox"
                         checked={isSelected}
                         onChange={() => handleSelectRow(rowId)}
-                        className="rounded border-gray-300 dark:border-gray-600"
+                        className="rounded border-slate-300 dark:border-slate-600"
                       />
                     </td>
                   )}
@@ -376,11 +376,11 @@ export function DataTable<T extends Record<string, any>>({
       {pagination && totalPages > 1 && (
         <div className={`
           flex flex-col sm:flex-row items-center justify-between gap-4 px-4 py-3 border-t
-          ${isCosmic ? 'border-white/10 bg-[#2D1B69]/30' : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50'}
+          ${isCosmic ? 'border-white/10 bg-[#2D1B69]/30' : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50'}
         `}>
           {/* Page size selector */}
           <div className="flex items-center gap-2 text-sm">
-            <span className={isCosmic ? 'text-gray-400' : 'text-gray-600 dark:text-gray-400'}>
+            <span className={isCosmic ? 'text-slate-400' : 'text-slate-600 dark:text-slate-400'}>
               Rows per page:
             </span>
             <select
@@ -390,7 +390,7 @@ export function DataTable<T extends Record<string, any>>({
                 rounded border px-2 py-1 text-sm
                 ${isCosmic 
                   ? 'bg-[#1A0F2E] border-white/20 text-white' 
-                  : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white'}
+                  : 'bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 text-slate-900 dark:text-white'}
               `}
             >
               {pageSizeOptions.map(size => (
@@ -400,7 +400,7 @@ export function DataTable<T extends Record<string, any>>({
           </div>
 
           {/* Page info */}
-          <div className={`text-sm ${isCosmic ? 'text-gray-400' : 'text-gray-600 dark:text-gray-400'}`}>
+          <div className={`text-sm ${isCosmic ? 'text-slate-400' : 'text-slate-600 dark:text-slate-400'}`}>
             Showing {((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, total)} of {total} results
           </div>
 
@@ -411,7 +411,7 @@ export function DataTable<T extends Record<string, any>>({
               disabled={currentPage === 1}
               className={`
                 p-2 rounded disabled:opacity-30 disabled:cursor-not-allowed
-                ${isCosmic ? 'hover:bg-white/10 text-white' : 'hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400'}
+                ${isCosmic ? 'hover:bg-white/10 text-white' : 'hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400'}
               `}
               aria-label="First page"
             >
@@ -422,7 +422,7 @@ export function DataTable<T extends Record<string, any>>({
               disabled={currentPage === 1}
               className={`
                 p-2 rounded disabled:opacity-30 disabled:cursor-not-allowed
-                ${isCosmic ? 'hover:bg-white/10 text-white' : 'hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400'}
+                ${isCosmic ? 'hover:bg-white/10 text-white' : 'hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400'}
               `}
               aria-label="Previous page"
             >
@@ -431,7 +431,7 @@ export function DataTable<T extends Record<string, any>>({
             
             <span className={`
               px-3 py-1 text-sm font-medium
-              ${isCosmic ? 'text-white' : 'text-gray-900 dark:text-white'}
+              ${isCosmic ? 'text-white' : 'text-slate-900 dark:text-white'}
             `}>
               {currentPage} / {totalPages}
             </span>
@@ -441,7 +441,7 @@ export function DataTable<T extends Record<string, any>>({
               disabled={currentPage === totalPages}
               className={`
                 p-2 rounded disabled:opacity-30 disabled:cursor-not-allowed
-                ${isCosmic ? 'hover:bg-white/10 text-white' : 'hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400'}
+                ${isCosmic ? 'hover:bg-white/10 text-white' : 'hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400'}
               `}
               aria-label="Next page"
             >
@@ -452,7 +452,7 @@ export function DataTable<T extends Record<string, any>>({
               disabled={currentPage === totalPages}
               className={`
                 p-2 rounded disabled:opacity-30 disabled:cursor-not-allowed
-                ${isCosmic ? 'hover:bg-white/10 text-white' : 'hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400'}
+                ${isCosmic ? 'hover:bg-white/10 text-white' : 'hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400'}
               `}
               aria-label="Last page"
             >

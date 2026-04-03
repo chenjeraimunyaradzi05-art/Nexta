@@ -113,7 +113,7 @@ function formatValue(value: number, format: string): string {
 // Metric Card Component
 function MetricCardComponent({ metric }: { metric: MetricCard }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex items-center justify-between mb-4">
         <span className={`text-3xl p-2 rounded-lg bg-${metric.color}-100 dark:bg-${metric.color}-900/30`}>
           {metric.icon}
@@ -121,7 +121,7 @@ function MetricCardComponent({ metric }: { metric: MetricCard }) {
         {metric.change !== undefined && (
           <div className={`flex items-center gap-1 text-sm font-medium ${
             metric.changeType === 'increase' ? 'text-green-600' :
-            metric.changeType === 'decrease' ? 'text-red-600' : 'text-gray-500'
+            metric.changeType === 'decrease' ? 'text-red-600' : 'text-slate-500'
           }`}>
             {metric.changeType === 'increase' ? (
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -136,10 +136,10 @@ function MetricCardComponent({ metric }: { metric: MetricCard }) {
           </div>
         )}
       </div>
-      <p className="text-2xl font-bold text-gray-900 dark:text-white">
+      <p className="text-2xl font-bold text-slate-900 dark:text-white">
         {formatValue(metric.value, metric.format)}
       </p>
-      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{metric.label}</p>
+      <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">{metric.label}</p>
     </div>
   );
 }
@@ -155,7 +155,7 @@ function SimpleLineChart({
   color?: string;
 }) {
   if (data.length === 0) {
-    return <div className="h-48 flex items-center justify-center text-gray-400">No data</div>;
+    return <div className="h-48 flex items-center justify-center text-slate-400">No data</div>;
   }
 
   const values = data.map(d => d.value);
@@ -186,7 +186,7 @@ function SimpleLineChart({
         <path d={areaD} fill="url(#chartGradient)" />
         <path d={pathD} fill="none" stroke={color} strokeWidth="2" vectorEffect="non-scaling-stroke" />
       </svg>
-      <div className="absolute bottom-0 left-0 right-0 flex justify-between text-xs text-gray-400 px-2">
+      <div className="absolute bottom-0 left-0 right-0 flex justify-between text-xs text-slate-400 px-2">
         {data.length > 0 && (
           <>
             <span>{new Date(data[0].date).toLocaleDateString('en-AU', { month: 'short', day: 'numeric' })}</span>
@@ -205,13 +205,13 @@ function HorizontalBarChart({ items, max }: { items: TopItem[]; max: number }) {
       {items.map((item, index) => (
         <div key={item.id}>
           <div className="flex items-center justify-between text-sm mb-1">
-            <span className="text-gray-700 dark:text-gray-300 flex items-center gap-2">
-              <span className="text-gray-400">{index + 1}.</span>
+            <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2">
+              <span className="text-slate-400">{index + 1}.</span>
               {item.name}
             </span>
-            <span className="font-medium text-gray-900 dark:text-white">{item.value.toLocaleString()}</span>
+            <span className="font-medium text-slate-900 dark:text-white">{item.value.toLocaleString()}</span>
           </div>
-          <div className="h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+          <div className="h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
             <div
               className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all"
               style={{ width: `${(item.value / max) * 100}%` }}
@@ -261,16 +261,16 @@ function DonutChart({
           })}
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">{total.toLocaleString()}</span>
-          <span className="text-xs text-gray-500">{label}</span>
+          <span className="text-2xl font-bold text-slate-900 dark:text-white">{total.toLocaleString()}</span>
+          <span className="text-xs text-slate-500">{label}</span>
         </div>
       </div>
       <div className="space-y-2">
         {data.map((segment, i) => (
           <div key={i} className="flex items-center gap-2 text-sm">
             <span className="w-3 h-3 rounded" style={{ backgroundColor: segment.color }} />
-            <span className="text-gray-600 dark:text-gray-400">{segment.label}</span>
-            <span className="font-medium text-gray-900 dark:text-white">{segment.value}</span>
+            <span className="text-slate-600 dark:text-slate-400">{segment.label}</span>
+            <span className="font-medium text-slate-900 dark:text-white">{segment.value}</span>
           </div>
         ))}
       </div>
@@ -287,13 +287,13 @@ function StatsCard({
   stats: { label: string; value: string | number }[];
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="font-semibold text-gray-900 dark:text-white mb-4">{title}</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="font-semibold text-slate-900 dark:text-white mb-4">{title}</h3>
       <div className="grid grid-cols-2 gap-4">
         {stats.map((stat, i) => (
           <div key={i}>
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">{stat.label}</p>
+            <p className="text-2xl font-bold text-slate-900 dark:text-white">{stat.value}</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400">{stat.label}</p>
           </div>
         ))}
       </div>
@@ -303,10 +303,10 @@ function StatsCard({
 
 function SummaryCard({ title, value, subtitle }: { title: string; value: string | number; subtitle?: string }) {
   return (
-    <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur rounded-xl border border-gray-200 dark:border-gray-700 px-4 py-3">
-      <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">{title}</p>
-      <p className="text-lg font-semibold text-gray-900 dark:text-white mt-1">{value}</p>
-      {subtitle && <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">{subtitle}</p>}
+    <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur rounded-xl border border-slate-200 dark:border-slate-700 px-4 py-3">
+      <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">{title}</p>
+      <p className="text-lg font-semibold text-slate-900 dark:text-white mt-1">{value}</p>
+      {subtitle && <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">{subtitle}</p>}
     </div>
   );
 }
@@ -351,7 +351,7 @@ export function AnalyticsDashboard() {
     return (
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex items-center justify-center h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-300 border-t-blue-600" />
+          <div className="animate-spin rounded-full h-12 w-12 border-4 border-slate-300 border-t-blue-600" />
         </div>
       </div>
     );
@@ -360,28 +360,28 @@ export function AnalyticsDashboard() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Header */}
-      <div className="relative overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-700 bg-gradient-to-br from-white via-white to-blue-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 p-6 mb-8">
+      <div className="relative overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-white via-white to-blue-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 p-6 mb-8">
         <div className="absolute -top-12 -right-12 h-40 w-40 rounded-full bg-blue-200/40 blur-3xl dark:bg-blue-500/10" />
         <div className="absolute -bottom-16 -left-16 h-40 w-40 rounded-full bg-emerald-200/40 blur-3xl dark:bg-emerald-500/10" />
         <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <p className="text-sm text-gray-500 dark:text-gray-400">Admin Analytics</p>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Analytics Dashboard</h1>
-            <p className="mt-1 text-gray-500 dark:text-gray-400">
+            <p className="text-sm text-slate-500 dark:text-slate-400">Admin Analytics</p>
+            <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Analytics Dashboard</h1>
+            <p className="mt-1 text-slate-500 dark:text-slate-400">
               Platform insights and performance metrics
             </p>
           </div>
           <div className="flex items-center gap-3">
             {/* Period Selector */}
-            <div className="flex bg-gray-100 dark:bg-gray-700 rounded-full p-1">
+            <div className="flex bg-slate-100 dark:bg-slate-700 rounded-full p-1">
               {(['7d', '30d', '90d', '1y'] as const).map((p) => (
                 <button
                   key={p}
                   onClick={() => setPeriod(p)}
                   className={`px-3 py-1.5 text-sm font-medium rounded-full transition-colors ${
                     period === p
-                      ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900'
+                      ? 'bg-white dark:bg-slate-600 text-slate-900 dark:text-white shadow'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
                   }`}
                 >
                   {p === '7d' ? '7 Days' : p === '30d' ? '30 Days' : p === '90d' ? '90 Days' : '1 Year'}
@@ -429,14 +429,14 @@ export function AnalyticsDashboard() {
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {/* User Growth */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-4">User Growth</h3>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-4">User Growth</h3>
           <SimpleLineChart data={data.userGrowth.data} color="#3B82F6" />
         </div>
 
         {/* Engagement */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Daily Active Users</h3>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Daily Active Users</h3>
           <SimpleLineChart data={data.engagement.data} color="#10B981" />
         </div>
       </div>
@@ -444,8 +444,8 @@ export function AnalyticsDashboard() {
       {/* Stats Row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         {/* Job Matching */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Job Matching</h3>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Job Matching</h3>
           <DonutChart
             data={[
               { label: 'Successful', value: data.jobMatches.successful, color: '#10B981' },
@@ -454,9 +454,9 @@ export function AnalyticsDashboard() {
             total={data.jobMatches.total}
             label="Total Matches"
           />
-          <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-500">Success Rate</span>
+              <span className="text-slate-500">Success Rate</span>
               <span className="font-semibold text-green-600">{data.jobMatches.rate}%</span>
             </div>
           </div>
@@ -488,8 +488,8 @@ export function AnalyticsDashboard() {
       {/* Top Items Row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         {/* Top Courses */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Top Courses</h3>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Top Courses</h3>
           <HorizontalBarChart 
             items={data.topCourses} 
             max={Math.max(...data.topCourses.map(c => c.value))}
@@ -497,8 +497,8 @@ export function AnalyticsDashboard() {
         </div>
 
         {/* Top Jobs */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Top Job Listings</h3>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Top Job Listings</h3>
           <HorizontalBarChart 
             items={data.topJobs} 
             max={Math.max(...data.topJobs.map(j => j.value))}
@@ -506,8 +506,8 @@ export function AnalyticsDashboard() {
         </div>
 
         {/* Top Mentors */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Top Mentors</h3>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Top Mentors</h3>
           <HorizontalBarChart 
             items={data.topMentors} 
             max={Math.max(...data.topMentors.map(m => m.value))}
@@ -518,16 +518,16 @@ export function AnalyticsDashboard() {
       {/* Demographics */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* By Region */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Users by Region</h3>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Users by Region</h3>
           <div className="space-y-3">
             {data.demographics.byRegion.map((region) => (
               <div key={region.region}>
                 <div className="flex items-center justify-between text-sm mb-1">
-                  <span className="text-gray-700 dark:text-gray-300">{region.region}</span>
-                  <span className="font-medium text-gray-900 dark:text-white">{region.count.toLocaleString()}</span>
+                  <span className="text-slate-700 dark:text-slate-300">{region.region}</span>
+                  <span className="font-medium text-slate-900 dark:text-white">{region.count.toLocaleString()}</span>
                 </div>
-                <div className="h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div className="h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-amber-500 rounded-full"
                     style={{ width: `${(region.count / Math.max(...data.demographics.byRegion.map(r => r.count))) * 100}%` }}
@@ -539,16 +539,16 @@ export function AnalyticsDashboard() {
         </div>
 
         {/* By Age Group */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Users by Age Group</h3>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Users by Age Group</h3>
           <div className="space-y-3">
             {data.demographics.byAgeGroup.map((group) => (
               <div key={group.group}>
                 <div className="flex items-center justify-between text-sm mb-1">
-                  <span className="text-gray-700 dark:text-gray-300">{group.group}</span>
-                  <span className="font-medium text-gray-900 dark:text-white">{group.count.toLocaleString()}</span>
+                  <span className="text-slate-700 dark:text-slate-300">{group.group}</span>
+                  <span className="font-medium text-slate-900 dark:text-white">{group.count.toLocaleString()}</span>
                 </div>
-                <div className="h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div className="h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-purple-500 rounded-full"
                     style={{ width: `${(group.count / Math.max(...data.demographics.byAgeGroup.map(g => g.count))) * 100}%` }}
@@ -562,9 +562,9 @@ export function AnalyticsDashboard() {
 
       {/* Real-time Activity (Optional Enhancement) */}
       <div className="mt-8">
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-gray-900 dark:text-white">Recent Activity</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white">Recent Activity</h3>
             <span className="flex items-center gap-2 text-sm text-green-600">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
               Live
@@ -578,10 +578,10 @@ export function AnalyticsDashboard() {
               { icon: '🤝', text: 'Mentor session booked', time: '8m ago', color: 'amber' },
               { icon: '🎉', text: 'Achievement unlocked: First Connection', time: '12m ago', color: 'pink' },
             ].map((activity, i) => (
-              <div key={i} className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50">
+              <div key={i} className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700/50">
                 <span className="text-xl">{activity.icon}</span>
-                <span className="flex-1 text-sm text-gray-700 dark:text-gray-300">{activity.text}</span>
-                <span className="text-xs text-gray-400">{activity.time}</span>
+                <span className="flex-1 text-sm text-slate-700 dark:text-slate-300">{activity.text}</span>
+                <span className="text-xs text-slate-400">{activity.time}</span>
               </div>
             ))}
           </div>

@@ -114,8 +114,8 @@ export default function ForumThread({ threadId }) {
                         </span>
                     </div>
                     <div className="flex-1 min-w-0">
-                        <h1 className="text-xl font-bold text-gray-900 mb-2">{thread.title}</h1>
-                        <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+                        <h1 className="text-xl font-bold text-slate-900 mb-2">{thread.title}</h1>
+                        <div className="flex items-center gap-4 text-sm text-slate-500 mb-4">
                             <span>{thread.authorName || 'Anonymous'}</span>
                             <span>•</span>
                             <span>{new Date(thread.createdAt).toLocaleDateString()}</span>
@@ -142,7 +142,7 @@ export default function ForumThread({ threadId }) {
                                         const reason = prompt('Why are you reporting this?');
                                         if (reason) handleReport('thread', thread.id, reason);
                                     }}
-                                    className="text-sm text-gray-500 hover:text-red-600"
+                                    className="text-sm text-slate-500 hover:text-red-600"
                                 >
                                     Report
                                 </button>
@@ -154,12 +154,12 @@ export default function ForumThread({ threadId }) {
             
             {/* Replies */}
             <div className="space-y-4">
-                <h2 className="text-lg font-semibold text-gray-900">
+                <h2 className="text-lg font-semibold text-slate-900">
                     {replies.length} {replies.length === 1 ? 'Reply' : 'Replies'}
                 </h2>
                 
                 {replies.length === 0 ? (
-                    <div className="text-center py-8 text-gray-500">
+                    <div className="text-center py-8 text-slate-500">
                         No replies yet. Be the first to respond!
                     </div>
                 ) : (
@@ -188,13 +188,13 @@ export default function ForumThread({ threadId }) {
             {/* Reply Form */}
             {isAuthenticated ? (
                 <form onSubmit={handleSubmitReply} className="bg-white rounded-xl shadow-sm border p-6">
-                    <h3 className="font-semibold text-gray-900 mb-4">Post a Reply</h3>
+                    <h3 className="font-semibold text-slate-900 mb-4">Post a Reply</h3>
                     <textarea
                         value={replyContent}
                         onChange={(e) => setReplyContent(e.target.value)}
                         placeholder="Share your thoughts..."
                         rows={4}
-                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                        className="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                         required
                     />
                     <div className="mt-4 flex justify-end">
@@ -208,8 +208,8 @@ export default function ForumThread({ threadId }) {
                     </div>
                 </form>
             ) : (
-                <div className="bg-gray-50 rounded-xl border p-6 text-center">
-                    <p className="text-gray-600">Sign-in is disabled.</p>
+                <div className="bg-slate-50 rounded-xl border p-6 text-center">
+                    <p className="text-slate-600">Sign-in is disabled.</p>
                 </div>
             )}
         </div>
@@ -225,14 +225,14 @@ function ReplyCard({ reply, isFirst, onReport }) {
     return (
         <div className={`bg-white rounded-lg border p-4 ${isFirst ? 'border-primary/30' : ''}`}>
             <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-gray-600 font-medium">
+                <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-slate-600 font-medium">
                         {reply.authorName?.charAt(0) || 'A'}
                     </span>
                 </div>
                 <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-2">
-                        <span className="font-medium text-gray-900">
+                        <span className="font-medium text-slate-900">
                             {reply.authorName || 'Anonymous'}
                         </span>
                         {reply.authorBadge && (
@@ -240,11 +240,11 @@ function ReplyCard({ reply, isFirst, onReport }) {
                                 {reply.authorBadge}
                             </span>
                         )}
-                        <span className="text-sm text-gray-500">
+                        <span className="text-sm text-slate-500">
                             {new Date(reply.createdAt).toLocaleDateString()}
                         </span>
                     </div>
-                    <div className="text-gray-700">
+                    <div className="text-slate-700">
                         {reply.content.split('\n').map((para, idx) => (
                             <p key={idx} className="mb-2 last:mb-0">{para}</p>
                         ))}
@@ -254,7 +254,7 @@ function ReplyCard({ reply, isFirst, onReport }) {
                     <div className="mt-3 flex items-center gap-4 text-sm">
                         <button
                             onClick={() => setShowReportForm(!showReportForm)}
-                            className="text-gray-500 hover:text-red-600"
+                            className="text-slate-500 hover:text-red-600"
                         >
                             Report
                         </button>
@@ -262,7 +262,7 @@ function ReplyCard({ reply, isFirst, onReport }) {
                     
                     {/* Report Form */}
                     {showReportForm && (
-                        <div className="mt-3 p-3 bg-gray-50 rounded-lg">
+                        <div className="mt-3 p-3 bg-slate-50 rounded-lg">
                             <select
                                 className="w-full border rounded px-3 py-2 text-sm mb-2"
                                 onChange={(e) => {
@@ -281,7 +281,7 @@ function ReplyCard({ reply, isFirst, onReport }) {
                             </select>
                             <button
                                 onClick={() => setShowReportForm(false)}
-                                className="text-sm text-gray-500 hover:text-gray-700"
+                                className="text-sm text-slate-500 hover:text-slate-700"
                             >
                                 Cancel
                             </button>
@@ -325,7 +325,7 @@ export function ForumThreadList({ categorySlug }) {
     if (loading) {
         return <div className="animate-pulse space-y-4">
             {[1, 2, 3].map(i => (
-                <div key={i} className="h-24 bg-gray-100 rounded-lg"></div>
+                <div key={i} className="h-24 bg-slate-100 rounded-lg"></div>
             ))}
         </div>;
     }
@@ -351,14 +351,14 @@ export function ForumThreadList({ categorySlug }) {
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2">
                                 {thread.isPinned && <span className="text-primary">📌</span>}
-                                <h3 className="font-semibold text-gray-900 line-clamp-1">
+                                <h3 className="font-semibold text-slate-900 line-clamp-1">
                                     {thread.title}
                                 </h3>
                             </div>
-                            <p className="text-gray-600 text-sm line-clamp-2 mt-1">
+                            <p className="text-slate-600 text-sm line-clamp-2 mt-1">
                                 {thread.content}
                             </p>
-                            <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
+                            <div className="flex items-center gap-4 mt-2 text-xs text-slate-500">
                                 <span>{thread.authorName}</span>
                                 <span>•</span>
                                 <span>{new Date(thread.createdAt).toLocaleDateString()}</span>
@@ -371,7 +371,7 @@ export function ForumThreadList({ categorySlug }) {
             ))}
             
             {threads.length === 0 && (
-                <div className="text-center py-8 text-gray-500">
+                <div className="text-center py-8 text-slate-500">
                     No threads yet. Start a new discussion!
                 </div>
             )}
@@ -420,26 +420,26 @@ export function CreateThreadForm({ categoryId, onSuccess }) {
             )}
             
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Title</label>
                 <input
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     required
                     maxLength={200}
-                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-slate-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="What's your question or topic?"
                 />
             </div>
             
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Content</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Content</label>
                 <textarea
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                     required
                     rows={6}
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                    className="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                     placeholder="Share more details..."
                 />
             </div>

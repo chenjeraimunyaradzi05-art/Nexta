@@ -87,7 +87,7 @@ export default function AppearanceSettingsPage() {
   }
 
   return (
-    <div className="min-h-screen p-6 bg-white dark:bg-slate-900 cosmic:bg-cosmic-dark text-gray-900 dark:text-slate-100 transition-colors">
+    <div className="min-h-screen p-6 bg-white dark:bg-slate-900 cosmic:bg-cosmic-dark text-slate-900 dark:text-slate-100 transition-colors">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
@@ -95,19 +95,19 @@ export default function AppearanceSettingsPage() {
             href="/settings"
             className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
           >
-            <ArrowLeft className="w-5 h-5 text-gray-500 dark:text-slate-400" />
+            <ArrowLeft className="w-5 h-5 text-slate-500 dark:text-slate-400" />
           </Link>
           <div>
             <h1 className="text-2xl font-bold flex items-center gap-2">
-              <Moon className="w-6 h-6 text-gray-500 dark:text-slate-400" />
+              <Moon className="w-6 h-6 text-slate-500 dark:text-slate-400" />
               Appearance
             </h1>
-            <p className="text-gray-500 dark:text-slate-400">Customize how Nexta looks</p>
+            <p className="text-slate-500 dark:text-slate-400">Customize how Nexta looks</p>
           </div>
         </div>
 
         {/* Theme Selection */}
-        <div className="bg-white dark:bg-slate-800 cosmic:bg-cosmic rounded-xl p-6 mb-6 border border-gray-100 dark:border-slate-700">
+        <div className="bg-white dark:bg-slate-800 cosmic:bg-cosmic rounded-xl p-6 mb-6 border border-slate-100 dark:border-slate-700">
           <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
             <Palette className="w-5 h-5 text-purple-500 dark:text-purple-400" />
             Theme
@@ -142,7 +142,7 @@ export default function AppearanceSettingsPage() {
         </div>
 
         {/* Font Size */}
-        <div className="bg-white dark:bg-slate-800 cosmic:bg-cosmic rounded-xl p-6 mb-6 border border-gray-100 dark:border-slate-700">
+        <div className="bg-white dark:bg-slate-800 cosmic:bg-cosmic rounded-xl p-6 mb-6 border border-slate-100 dark:border-slate-700">
           <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
             <Type className="w-5 h-5 text-blue-500 dark:text-blue-400" />
             Text Size
@@ -161,7 +161,7 @@ export default function AppearanceSettingsPage() {
                 className={`w-full flex items-center justify-between p-4 rounded-lg transition-colors ${
                   fontSize === option.value
                     ? 'bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700'
-                    : 'bg-gray-50 dark:bg-slate-700/30 hover:bg-gray-100 dark:hover:bg-slate-700/50 border border-transparent'
+                    : 'bg-slate-50 dark:bg-slate-700/30 hover:bg-slate-100 dark:hover:bg-slate-700/50 border border-transparent'
                 }`}
               >
                 <div className="flex items-center gap-4">
@@ -173,7 +173,7 @@ export default function AppearanceSettingsPage() {
                   }`}>
                     {option.preview}
                   </span>
-                  <span className="text-gray-900 dark:text-slate-100">{option.label}</span>
+                  <span className="text-slate-900 dark:text-slate-100">{option.label}</span>
                 </div>
                 {fontSize === option.value && (
                   <CheckCircle2 className="w-5 h-5 text-blue-500 dark:text-blue-400" />
@@ -184,24 +184,24 @@ export default function AppearanceSettingsPage() {
         </div>
 
         {/* Accessibility */}
-        <div className="bg-white dark:bg-slate-800 cosmic:bg-cosmic rounded-xl p-6 border border-gray-100 dark:border-slate-700">
+        <div className="bg-white dark:bg-slate-800 cosmic:bg-cosmic rounded-xl p-6 border border-slate-100 dark:border-slate-700">
           <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
             <Eye className="w-5 h-5 text-green-500 dark:text-green-400" />
             Accessibility
           </h2>
 
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-slate-700/30 rounded-lg">
+            <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-700/30 rounded-lg">
               <div>
                 <div className="font-medium">Reduce Motion</div>
-                <div className="text-sm text-gray-500 dark:text-slate-400">
+                <div className="text-sm text-slate-500 dark:text-slate-400">
                   Minimize animations throughout the app
                 </div>
               </div>
               <button
                 onClick={toggleReducedMotion}
                 className={`relative w-12 h-6 rounded-full transition-colors ${
-                  reducedMotion ? 'bg-green-600' : 'bg-gray-300 dark:bg-slate-600'
+                  reducedMotion ? 'bg-green-600' : 'bg-slate-300 dark:bg-slate-600'
                 }`}
               >
                 <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${
@@ -210,17 +210,17 @@ export default function AppearanceSettingsPage() {
               </button>
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-slate-700/30 rounded-lg">
+            <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-700/30 rounded-lg">
               <div>
                 <div className="font-medium">High Contrast</div>
-                <div className="text-sm text-gray-500 dark:text-slate-400">
+                <div className="text-sm text-slate-500 dark:text-slate-400">
                   Increase contrast for better visibility
                 </div>
               </div>
               <button
                 onClick={toggleHighContrast}
                 className={`relative w-12 h-6 rounded-full transition-colors ${
-                  highContrast ? 'bg-green-600' : 'bg-gray-300 dark:bg-slate-600'
+                  highContrast ? 'bg-green-600' : 'bg-slate-300 dark:bg-slate-600'
                 }`}
               >
                 <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${
@@ -230,7 +230,7 @@ export default function AppearanceSettingsPage() {
             </div>
           </div>
 
-          <p className="mt-4 text-sm text-gray-500 dark:text-slate-500">
+          <p className="mt-4 text-sm text-slate-500 dark:text-slate-500">
             Nexta is designed to meet WCAG AA accessibility standards.
             If you have specific accessibility needs, please{' '}
             <Link href="/help" className="text-blue-600 dark:text-blue-400 hover:underline">contact us</Link>.
@@ -250,11 +250,11 @@ function ThemeOption({ icon, label, selected, onClick, disabled, disabledText })
         selected
           ? 'bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700'
           : disabled
-          ? 'bg-gray-100 dark:bg-slate-700/20 border border-gray-200 dark:border-slate-700/50 opacity-50 cursor-not-allowed'
-          : 'bg-gray-50 dark:bg-slate-700/30 hover:bg-gray-100 dark:hover:bg-slate-700/50 border border-transparent'
+          ? 'bg-slate-100 dark:bg-slate-700/20 border border-slate-200 dark:border-slate-700/50 opacity-50 cursor-not-allowed'
+          : 'bg-slate-50 dark:bg-slate-700/30 hover:bg-slate-100 dark:hover:bg-slate-700/50 border border-transparent'
       }`}
     >
-      <div className={selected ? 'text-blue-500 dark:text-blue-400' : 'text-gray-500 dark:text-slate-400'}>
+      <div className={selected ? 'text-blue-500 dark:text-blue-400' : 'text-slate-500 dark:text-slate-400'}>
         {icon}
       </div>
       <span className="text-sm">{label}</span>
@@ -264,7 +264,7 @@ function ThemeOption({ icon, label, selected, onClick, disabled, disabledText })
         </div>
       )}
       {disabled && disabledText && (
-        <span className="text-xs text-gray-500 dark:text-slate-500">{disabledText}</span>
+        <span className="text-xs text-slate-500 dark:text-slate-500">{disabledText}</span>
       )}
     </button>
   );

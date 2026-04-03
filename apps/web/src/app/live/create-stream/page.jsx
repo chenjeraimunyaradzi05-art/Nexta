@@ -134,8 +134,8 @@ export default function CreateStreamPage() {
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 py-12 px-4">
         <div className="max-w-lg mx-auto text-center">
           <div className="text-6xl mb-4">📺</div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Sign In Required</h2>
-          <p className="text-gray-600 mb-6">You need to be signed in to start a live stream.</p>
+          <h2 className="text-2xl font-bold text-slate-900 mb-2">Sign In Required</h2>
+          <p className="text-slate-600 mb-6">You need to be signed in to start a live stream.</p>
           <Link
             href="/"
             className="inline-block px-6 py-3 rounded-lg text-white font-medium"
@@ -153,12 +153,12 @@ export default function CreateStreamPage() {
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
-          <Link href="/live" className="text-gray-600 hover:text-gray-900">
+          <Link href="/live" className="text-slate-600 hover:text-slate-900">
             ← Back
           </Link>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Start a Live Stream</h1>
-            <p className="text-gray-600">Share your knowledge with the community</p>
+            <h1 className="text-2xl font-bold text-slate-900">Start a Live Stream</h1>
+            <p className="text-slate-600">Share your knowledge with the community</p>
           </div>
         </div>
 
@@ -166,11 +166,11 @@ export default function CreateStreamPage() {
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Basic Info */}
           <div className="bg-white rounded-xl shadow-sm p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Stream Details</h2>
+            <h2 className="text-lg font-semibold text-slate-900 mb-4">Stream Details</h2>
             
             {/* Title */}
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-slate-700 mb-1">
                 Stream Title *
               </label>
               <input
@@ -179,15 +179,15 @@ export default function CreateStreamPage() {
                 value={formData.title}
                 onChange={handleInputChange}
                 placeholder="What's your stream about?"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 maxLength={100}
               />
-              <p className="text-xs text-gray-500 mt-1">{formData.title.length}/100 characters</p>
+              <p className="text-xs text-slate-500 mt-1">{formData.title.length}/100 characters</p>
             </div>
 
             {/* Description */}
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-slate-700 mb-1">
                 Description
               </label>
               <textarea
@@ -196,15 +196,15 @@ export default function CreateStreamPage() {
                 onChange={handleInputChange}
                 placeholder="Tell viewers what they'll learn or experience..."
                 rows={3}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
                 maxLength={500}
               />
-              <p className="text-xs text-gray-500 mt-1">{formData.description.length}/500 characters</p>
+              <p className="text-xs text-slate-500 mt-1">{formData.description.length}/500 characters</p>
             </div>
 
             {/* Category */}
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-slate-700 mb-2">
                 Category
               </label>
               <div className="grid grid-cols-2 gap-2">
@@ -216,11 +216,11 @@ export default function CreateStreamPage() {
                     className={`p-3 rounded-lg text-left transition-all ${
                       formData.category === cat.id
                         ? 'bg-purple-100 border-2 border-purple-500'
-                        : 'bg-gray-50 border-2 border-transparent hover:bg-gray-100'
+                        : 'bg-slate-50 border-2 border-transparent hover:bg-slate-100'
                     }`}
                   >
                     <span className="font-medium">{cat.label}</span>
-                    <p className="text-xs text-gray-500 mt-0.5">{cat.description}</p>
+                    <p className="text-xs text-slate-500 mt-0.5">{cat.description}</p>
                   </button>
                 ))}
               </div>
@@ -228,7 +228,7 @@ export default function CreateStreamPage() {
 
             {/* Tags */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-slate-700 mb-1">
                 Tags (up to 5)
               </label>
               <div className="flex gap-2 mb-2 flex-wrap">
@@ -249,14 +249,14 @@ export default function CreateStreamPage() {
                   onChange={(e) => setTagInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
                   placeholder="Add a tag"
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   maxLength={20}
                 />
                 <button
                   type="button"
                   onClick={addTag}
                   disabled={formData.tags.length >= 5}
-                  className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 disabled:opacity-50"
+                  className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 disabled:opacity-50"
                 >
                   Add
                 </button>
@@ -266,7 +266,7 @@ export default function CreateStreamPage() {
 
           {/* Schedule Option */}
           <div className="bg-white rounded-xl shadow-sm p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">When</h2>
+            <h2 className="text-lg font-semibold text-slate-900 mb-4">When</h2>
             
             <div className="flex items-center gap-4 mb-4">
               <button
@@ -275,7 +275,7 @@ export default function CreateStreamPage() {
                 className={`flex-1 p-4 rounded-lg text-center transition-all ${
                   !formData.isScheduled
                     ? 'bg-purple-100 border-2 border-purple-500'
-                    : 'bg-gray-50 border-2 border-transparent hover:bg-gray-100'
+                    : 'bg-slate-50 border-2 border-transparent hover:bg-slate-100'
                 }`}
               >
                 <span className="text-2xl block mb-1">🔴</span>
@@ -287,7 +287,7 @@ export default function CreateStreamPage() {
                 className={`flex-1 p-4 rounded-lg text-center transition-all ${
                   formData.isScheduled
                     ? 'bg-purple-100 border-2 border-purple-500'
-                    : 'bg-gray-50 border-2 border-transparent hover:bg-gray-100'
+                    : 'bg-slate-50 border-2 border-transparent hover:bg-slate-100'
                 }`}
               >
                 <span className="text-2xl block mb-1">📅</span>
@@ -297,7 +297,7 @@ export default function CreateStreamPage() {
 
             {formData.isScheduled && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-slate-700 mb-1">
                   Scheduled Date & Time
                 </label>
                 <input
@@ -306,7 +306,7 @@ export default function CreateStreamPage() {
                   value={formData.scheduledFor}
                   onChange={handleInputChange}
                   min={new Date().toISOString().slice(0, 16)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 />
               </div>
             )}
@@ -314,13 +314,13 @@ export default function CreateStreamPage() {
 
           {/* Stream Settings */}
           <div className="bg-white rounded-xl shadow-sm p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Stream Settings</h2>
+            <h2 className="text-lg font-semibold text-slate-900 mb-4">Stream Settings</h2>
             
             <div className="space-y-4">
               <label className="flex items-center justify-between">
                 <div>
-                  <span className="font-medium text-gray-900">Live Chat</span>
-                  <p className="text-sm text-gray-500">Allow viewers to send messages</p>
+                  <span className="font-medium text-slate-900">Live Chat</span>
+                  <p className="text-sm text-slate-500">Allow viewers to send messages</p>
                 </div>
                 <input
                   type="checkbox"
@@ -333,8 +333,8 @@ export default function CreateStreamPage() {
 
               <label className="flex items-center justify-between">
                 <div>
-                  <span className="font-medium text-gray-900">Q&A</span>
-                  <p className="text-sm text-gray-500">Allow viewers to submit questions</p>
+                  <span className="font-medium text-slate-900">Q&A</span>
+                  <p className="text-sm text-slate-500">Allow viewers to submit questions</p>
                 </div>
                 <input
                   type="checkbox"
@@ -347,8 +347,8 @@ export default function CreateStreamPage() {
 
               <label className="flex items-center justify-between">
                 <div>
-                  <span className="font-medium text-gray-900">Reactions</span>
-                  <p className="text-sm text-gray-500">Allow emoji reactions during stream</p>
+                  <span className="font-medium text-slate-900">Reactions</span>
+                  <p className="text-sm text-slate-500">Allow emoji reactions during stream</p>
                 </div>
                 <input
                   type="checkbox"
@@ -360,14 +360,14 @@ export default function CreateStreamPage() {
               </label>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-slate-700 mb-1">
                   Visibility
                 </label>
                 <select
                   name="visibility"
                   value={formData.visibility}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 >
                   <option value="public">🌍 Public - Anyone can watch</option>
                   <option value="connections">👥 Connections Only</option>
@@ -388,7 +388,7 @@ export default function CreateStreamPage() {
           <div className="flex gap-4">
             <Link
               href="/live"
-              className="flex-1 py-3 text-center border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50"
+              className="flex-1 py-3 text-center border-2 border-slate-300 text-slate-700 rounded-lg font-medium hover:bg-slate-50"
             >
               Cancel
             </Link>

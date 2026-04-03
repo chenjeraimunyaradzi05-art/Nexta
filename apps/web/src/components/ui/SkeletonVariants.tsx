@@ -13,7 +13,7 @@ import { Skeleton } from './Skeleton';
 // Profile Card Skeleton
 export function ProfileCardSkeleton() {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm">
+    <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm">
       <div className="flex items-center gap-4 mb-4">
         <Skeleton className="h-16 w-16 rounded-full" />
         <div className="flex-1 space-y-2">
@@ -37,7 +37,7 @@ export function ProfileCardSkeleton() {
 // Course Card Skeleton
 export function CourseCardSkeleton() {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700 shadow-sm">
+    <div className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-sm">
       <Skeleton className="h-40 w-full rounded-none" />
       <div className="p-4 space-y-3">
         <Skeleton className="h-5 w-3/4" />
@@ -64,7 +64,7 @@ export function CourseCardSkeleton() {
 // Table Row Skeleton
 export function TableRowSkeleton({ columns = 5 }: { columns?: number }) {
   return (
-    <tr className="border-b border-gray-100 dark:border-gray-700">
+    <tr className="border-b border-slate-100 dark:border-slate-700">
       {Array.from({ length: columns }).map((_, i) => (
         <td key={i} className="px-4 py-3">
           <Skeleton className={`h-4 ${i === 0 ? 'w-32' : 'w-20'}`} />
@@ -77,9 +77,9 @@ export function TableRowSkeleton({ columns = 5 }: { columns?: number }) {
 // Table Skeleton with multiple rows
 export function TableSkeleton({ rows = 5, columns = 5 }: { rows?: number; columns?: number }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 overflow-hidden">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 overflow-hidden">
       <table className="w-full">
-        <thead className="bg-gray-50 dark:bg-gray-900/50">
+        <thead className="bg-slate-50 dark:bg-slate-900/50">
           <tr>
             {Array.from({ length: columns }).map((_, i) => (
               <th key={i} className="px-4 py-3 text-left">
@@ -101,7 +101,7 @@ export function TableSkeleton({ rows = 5, columns = 5 }: { rows?: number; column
 // Stats Card Skeleton
 export function StatsCardSkeleton() {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm">
+    <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm">
       <div className="flex items-center justify-between mb-4">
         <Skeleton className="h-4 w-24" />
         <Skeleton className="h-8 w-8 rounded-lg" />
@@ -143,7 +143,7 @@ export function ChatSkeleton({ messages = 5 }: { messages?: number }) {
 // Notification Item Skeleton
 export function NotificationSkeleton() {
   return (
-    <div className="flex items-start gap-3 p-4 border-b border-gray-100 dark:border-gray-700">
+    <div className="flex items-start gap-3 p-4 border-b border-slate-100 dark:border-slate-700">
       <Skeleton className="h-10 w-10 rounded-full flex-shrink-0" />
       <div className="flex-1 space-y-2">
         <Skeleton className="h-4 w-3/4" />
@@ -158,7 +158,7 @@ export function NotificationSkeleton() {
 // Mentor Card Skeleton
 export function MentorCardSkeleton() {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm">
+    <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm">
       <div className="flex items-center gap-4 mb-4">
         <Skeleton className="h-20 w-20 rounded-full" />
         <div className="flex-1 space-y-2">
@@ -192,7 +192,7 @@ export function MentorCardSkeleton() {
 // Event Card Skeleton
 export function EventCardSkeleton() {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700 shadow-sm">
+    <div className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-sm">
       <Skeleton className="h-32 w-full rounded-none" />
       <div className="p-4 space-y-3">
         <div className="flex items-start gap-3">
@@ -235,7 +235,7 @@ export function FormSkeleton({ fields = 4 }: { fields?: number }) {
 // Dashboard Sidebar Skeleton
 export function SidebarSkeleton() {
   return (
-    <div className="w-64 bg-white dark:bg-gray-800 border-r border-gray-100 dark:border-gray-700 p-4 space-y-6">
+    <div className="w-64 bg-white dark:bg-slate-800 border-r border-slate-100 dark:border-slate-700 p-4 space-y-6">
       <div className="flex items-center gap-3">
         <Skeleton className="h-10 w-10 rounded-full" />
         <div className="space-y-1">

@@ -170,22 +170,22 @@ export default function MemberDashboard() {
         {/* Application Stats */}
         {analytics && (
           <div className="grid gap-4 md:grid-cols-4">
-            <div className="bg-white dark:bg-slate-900/40 border border-gray-200 dark:border-slate-800 p-4 rounded-lg text-center shadow-sm dark:shadow-none">
+            <div className="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 p-4 rounded-lg text-center shadow-sm dark:shadow-none">
               <Briefcase className="w-6 h-6 mx-auto mb-2 text-blue-400" />
               <div className="text-2xl font-bold text-blue-400">{analytics.totalApplications || 0}</div>
               <div className="text-sm text-slate-500 dark:text-slate-400">Applications</div>
             </div>
-            <div className="bg-white dark:bg-slate-900/40 border border-gray-200 dark:border-slate-800 p-4 rounded-lg text-center shadow-sm dark:shadow-none">
+            <div className="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 p-4 rounded-lg text-center shadow-sm dark:shadow-none">
               <Star className="w-6 h-6 mx-auto mb-2 text-purple-400" />
               <div className="text-2xl font-bold text-purple-400">{analytics.applicationsByStatus?.SHORTLISTED || 0}</div>
               <div className="text-sm text-slate-500 dark:text-slate-400">Shortlisted</div>
             </div>
-            <div className="bg-white dark:bg-slate-900/40 border border-gray-200 dark:border-slate-800 p-4 rounded-lg text-center shadow-sm dark:shadow-none">
+            <div className="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 p-4 rounded-lg text-center shadow-sm dark:shadow-none">
               <Calendar className="w-6 h-6 mx-auto mb-2 text-yellow-400" />
               <div className="text-2xl font-bold text-yellow-400">{analytics.applicationsByStatus?.INTERVIEW_SCHEDULED || 0}</div>
               <div className="text-sm text-slate-500 dark:text-slate-400">Interviews</div>
             </div>
-            <div className="bg-white dark:bg-slate-900/40 border border-gray-200 dark:border-slate-800 p-4 rounded-lg text-center shadow-sm dark:shadow-none">
+            <div className="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 p-4 rounded-lg text-center shadow-sm dark:shadow-none">
               <CheckCircle className="w-6 h-6 mx-auto mb-2 text-green-400" />
               <div className="text-2xl font-bold text-green-400">{analytics.applicationsByStatus?.HIRED || 0}</div>
               <div className="text-sm text-slate-500 dark:text-slate-400">Hired</div>
@@ -222,7 +222,7 @@ export default function MemberDashboard() {
           <div className="md:col-span-2 space-y-6">
             
             {/* Profile Completion */}
-            <div className="bg-white dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-xl p-6 shadow-sm dark:shadow-none">
+            <div className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm dark:shadow-none">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-semibold flex items-center gap-2">
                   <User className="w-5 h-5 text-blue-400" />
@@ -248,7 +248,7 @@ export default function MemberDashboard() {
             <CareerMilestones />
 
             {/* Recent Files */}
-            <div className="bg-white dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-xl p-6 shadow-sm dark:shadow-none">
+            <div className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm dark:shadow-none">
               <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
                 <FolderOpen className="w-5 h-5 text-yellow-400" />
                 Recent Files
@@ -284,7 +284,7 @@ export default function MemberDashboard() {
             </div>
 
             {/* Enrolled Courses */}
-            <div className="bg-white dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-xl p-6 shadow-sm dark:shadow-none">
+            <div className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm dark:shadow-none">
               <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
                 <BookOpen className="w-5 h-5 text-emerald-400" />
                 My Learning
@@ -343,7 +343,7 @@ export default function MemberDashboard() {
             </div>
 
             {/* Mentorship Sessions */}
-            <div className="bg-white dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-xl p-6 shadow-sm dark:shadow-none">
+            <div className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm dark:shadow-none">
               <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
                 <Users className="w-5 h-5 text-purple-400" />
                 Upcoming Sessions
@@ -374,7 +374,7 @@ export default function MemberDashboard() {
             </div>
 
             {/* Badges & Achievements */}
-            <div className="bg-white dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-xl p-6 shadow-sm dark:shadow-none">
+            <div className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm dark:shadow-none">
               <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
                 <Award className="w-5 h-5 text-amber-400" />
                 Badges

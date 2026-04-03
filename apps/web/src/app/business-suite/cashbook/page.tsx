@@ -382,7 +382,7 @@ export default function CashbookPage() {
       {/* New Cashbook Modal */}
       {showNewCashbook && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-gray-800 rounded-2xl p-6 w-full max-w-md border border-white/10">
+          <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-md border border-white/10">
             <h2 className="text-xl font-semibold text-white mb-4">Create New Cashbook</h2>
             <input
               type="text"
@@ -413,7 +413,7 @@ export default function CashbookPage() {
       {/* New Entry Modal */}
       {showNewEntry && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-gray-800 rounded-2xl p-6 w-full max-w-md border border-white/10">
+          <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-md border border-white/10">
             <h2 className="text-xl font-semibold text-white mb-4">Add Entry</h2>
             
             <div className="space-y-4">

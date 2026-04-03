@@ -218,7 +218,7 @@ function StarRating({
         >
           <svg
             className={`${sizeClass} ${
-              star <= (hoverRating || rating) ? 'text-yellow-400' : 'text-gray-300'
+              star <= (hoverRating || rating) ? 'text-yellow-400' : 'text-slate-300'
             } transition-colors`}
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -242,7 +242,7 @@ function BusinessCard({
   onToggleFavorite: () => void;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden group">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden group">
       {/* Cover Image */}
       <div className="relative h-40 bg-gradient-to-br from-amber-500 to-orange-600">
         {business.coverImage && (
@@ -256,10 +256,10 @@ function BusinessCard({
         )}
         <button
           onClick={(e) => { e.stopPropagation(); onToggleFavorite(); }}
-          className="absolute top-3 right-3 p-2 bg-white/80 dark:bg-gray-800/80 rounded-full hover:bg-white transition-colors"
+          className="absolute top-3 right-3 p-2 bg-white/80 dark:bg-slate-800/80 rounded-full hover:bg-white transition-colors"
         >
           <svg
-            className={`w-5 h-5 ${business.isFavorite ? 'text-red-500' : 'text-gray-400'}`}
+            className={`w-5 h-5 ${business.isFavorite ? 'text-red-500' : 'text-slate-400'}`}
             fill={business.isFavorite ? 'currentColor' : 'none'}
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -285,10 +285,10 @@ function BusinessCard({
             alt={`${business.name} logo`}
             width={64}
             height={64}
-            className="w-16 h-16 rounded-xl border-4 border-white dark:border-gray-800 object-cover bg-white"
+            className="w-16 h-16 rounded-xl border-4 border-white dark:border-slate-800 object-cover bg-white"
           />
         ) : (
-          <div className="w-16 h-16 rounded-xl border-4 border-white dark:border-gray-800 bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white text-xl font-bold">
+          <div className="w-16 h-16 rounded-xl border-4 border-white dark:border-slate-800 bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white text-xl font-bold">
             {business.name.charAt(0)}
           </div>
         )}
@@ -296,8 +296,8 @@ function BusinessCard({
 
       {/* Content */}
       <div className="p-6 pt-3">
-        <h3 className="font-semibold text-gray-900 dark:text-white text-lg">{business.name}</h3>
-        <p className="text-sm text-gray-500">{business.category}</p>
+        <h3 className="font-semibold text-slate-900 dark:text-white text-lg">{business.name}</h3>
+        <p className="text-sm text-slate-500">{business.category}</p>
 
         {business.nation && (
           <p className="text-sm text-amber-600 dark:text-amber-400 flex items-center gap-1 mt-1">
@@ -305,13 +305,13 @@ function BusinessCard({
           </p>
         )}
 
-        <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 line-clamp-2">
+        <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 line-clamp-2">
           {business.shortDescription}
         </p>
 
         {/* Location & Rating */}
         <div className="flex items-center justify-between mt-4">
-          <span className="text-sm text-gray-500 flex items-center gap-1">
+          <span className="text-sm text-slate-500 flex items-center gap-1">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -320,7 +320,7 @@ function BusinessCard({
           </span>
           <div className="flex items-center gap-1">
             <StarRating rating={business.rating} size="sm" />
-            <span className="text-sm text-gray-500">({business.reviewCount})</span>
+            <span className="text-sm text-slate-500">({business.reviewCount})</span>
           </div>
         </div>
 
@@ -389,7 +389,7 @@ function BusinessDetailModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Cover */}
         <div className="relative h-48 bg-gradient-to-br from-amber-500 to-orange-600 flex-shrink-0">
           {business.coverImage && (
@@ -405,14 +405,14 @@ function BusinessDetailModal({
             onClick={onClose}
             className="absolute top-4 right-4 p-2 bg-white/80 rounded-full hover:bg-white transition-colors"
           >
-            <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-5 h-5 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
 
         {/* Header */}
-        <div className="px-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="px-6 pb-4 border-b border-slate-200 dark:border-slate-700">
           <div className="flex items-end gap-4 -mt-10">
             {business.logo ? (
               <OptimizedImage
@@ -420,30 +420,30 @@ function BusinessDetailModal({
                 alt={`${business.name} logo`}
                 width={80}
                 height={80}
-                className="w-20 h-20 rounded-xl border-4 border-white dark:border-gray-800 object-cover bg-white"
+                className="w-20 h-20 rounded-xl border-4 border-white dark:border-slate-800 object-cover bg-white"
               />
             ) : (
-              <div className="w-20 h-20 rounded-xl border-4 border-white dark:border-gray-800 bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white text-2xl font-bold">
+              <div className="w-20 h-20 rounded-xl border-4 border-white dark:border-slate-800 bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white text-2xl font-bold">
                 {business.name.charAt(0)}
               </div>
             )}
             <div className="flex-1 pb-2">
               <div className="flex items-center gap-2">
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white">{business.name}</h2>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">{business.name}</h2>
                 {business.isVerified && (
                   <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                 )}
               </div>
-              <p className="text-gray-500">{business.category}</p>
+              <p className="text-slate-500">{business.category}</p>
             </div>
             <button
               onClick={onToggleFavorite}
               className={`p-2 rounded-lg transition-colors ${
                 business.isFavorite
                   ? 'bg-red-50 text-red-500'
-                  : 'bg-gray-100 dark:bg-gray-700 text-gray-400'
+                  : 'bg-slate-100 dark:bg-slate-700 text-slate-400'
               }`}
             >
               <svg
@@ -461,16 +461,16 @@ function BusinessDetailModal({
           <div className="flex items-center gap-4 mt-4 text-sm">
             <div className="flex items-center gap-1">
               <StarRating rating={business.rating} size="sm" />
-              <span className="text-gray-600 dark:text-gray-400">
+              <span className="text-slate-600 dark:text-slate-400">
                 {business.rating.toFixed(1)} ({business.reviewCount} reviews)
               </span>
             </div>
-            <span className="text-gray-400">•</span>
-            <span className="text-gray-600 dark:text-gray-400">
+            <span className="text-slate-400">•</span>
+            <span className="text-slate-600 dark:text-slate-400">
               {business.location.city}, {business.location.state}
             </span>
-            <span className="text-gray-400">•</span>
-            <span className="text-gray-600 dark:text-gray-400">Est. {business.yearEstablished}</span>
+            <span className="text-slate-400">•</span>
+            <span className="text-slate-600 dark:text-slate-400">Est. {business.yearEstablished}</span>
           </div>
 
           {/* Tabs */}
@@ -482,7 +482,7 @@ function BusinessDetailModal({
                 className={`pb-2 font-medium capitalize transition-colors border-b-2 ${
                   activeTab === tab
                     ? 'border-amber-500 text-amber-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                    : 'border-transparent text-slate-500 hover:text-slate-700'
                 }`}
               >
                 {tab}
@@ -497,8 +497,8 @@ function BusinessDetailModal({
             <div className="space-y-6">
               {/* Description */}
               <div>
-                <h3 className="font-medium text-gray-900 dark:text-white mb-2">About</h3>
-                <p className="text-gray-600 dark:text-gray-400">{business.description}</p>
+                <h3 className="font-medium text-slate-900 dark:text-white mb-2">About</h3>
+                <p className="text-slate-600 dark:text-slate-400">{business.description}</p>
               </div>
 
               {/* Nation */}
@@ -512,7 +512,7 @@ function BusinessDetailModal({
               {/* Founders */}
               {business.founders.length > 0 && (
                 <div>
-                  <h3 className="font-medium text-gray-900 dark:text-white mb-3">Founders</h3>
+                  <h3 className="font-medium text-slate-900 dark:text-white mb-3">Founders</h3>
                   <div className="flex flex-wrap gap-4">
                     {business.founders.map((founder, i) => (
                       <div key={i} className="flex items-center gap-3">
@@ -525,13 +525,13 @@ function BusinessDetailModal({
                             className="w-12 h-12 rounded-full object-cover"
                           />
                         ) : (
-                          <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-500">
+                          <div className="w-12 h-12 bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center text-slate-500">
                             {founder.name.split(' ').map(n => n[0]).join('')}
                           </div>
                         )}
                         <div>
-                          <p className="font-medium text-gray-900 dark:text-white">{founder.name}</p>
-                          <p className="text-sm text-gray-500">{founder.title}</p>
+                          <p className="font-medium text-slate-900 dark:text-white">{founder.name}</p>
+                          <p className="text-sm text-slate-500">{founder.title}</p>
                         </div>
                       </div>
                     ))}
@@ -542,16 +542,16 @@ function BusinessDetailModal({
               {/* Certifications */}
               {business.certifications.length > 0 && (
                 <div>
-                  <h3 className="font-medium text-gray-900 dark:text-white mb-3">Certifications</h3>
+                  <h3 className="font-medium text-slate-900 dark:text-white mb-3">Certifications</h3>
                   <div className="space-y-2">
                     {business.certifications.map((cert, i) => (
                       <div
                         key={i}
-                        className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 rounded-lg"
+                        className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900 rounded-lg"
                       >
                         <div>
-                          <p className="font-medium text-gray-900 dark:text-white">{cert.name}</p>
-                          <p className="text-sm text-gray-500">{cert.issuer}</p>
+                          <p className="font-medium text-slate-900 dark:text-white">{cert.name}</p>
+                          <p className="text-sm text-slate-500">{cert.issuer}</p>
                         </div>
                         {cert.verified && (
                           <span className="px-2 py-1 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 text-xs font-medium rounded-full">
@@ -566,12 +566,12 @@ function BusinessDetailModal({
 
               {/* Contact */}
               <div>
-                <h3 className="font-medium text-gray-900 dark:text-white mb-3">Contact</h3>
+                <h3 className="font-medium text-slate-900 dark:text-white mb-3">Contact</h3>
                 <div className="space-y-2">
                   {business.contactInfo.phone && (
                     <a
                       href={`tel:${business.contactInfo.phone}`}
-                      className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                      className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-blue-600"
                     >
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -582,7 +582,7 @@ function BusinessDetailModal({
                   {business.contactInfo.email && (
                     <a
                       href={`mailto:${business.contactInfo.email}`}
-                      className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                      className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-blue-600"
                     >
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -595,7 +595,7 @@ function BusinessDetailModal({
                       href={business.contactInfo.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                      className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-blue-600"
                     >
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
@@ -614,12 +614,12 @@ function BusinessDetailModal({
                 {business.services.map((service, i) => (
                   <div
                     key={i}
-                    className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg"
+                    className="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-900 rounded-lg"
                   >
                     <svg className="w-5 h-5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-gray-700 dark:text-gray-300">{service}</span>
+                    <span className="text-slate-700 dark:text-slate-300">{service}</span>
                   </div>
                 ))}
               </div>
@@ -627,7 +627,7 @@ function BusinessDetailModal({
               {/* Tags */}
               {business.tags.length > 0 && (
                 <div>
-                  <h3 className="font-medium text-gray-900 dark:text-white mb-3">Specialties</h3>
+                  <h3 className="font-medium text-slate-900 dark:text-white mb-3">Specialties</h3>
                   <div className="flex flex-wrap gap-2">
                     {business.tags.map((tag, i) => (
                       <span
@@ -653,7 +653,7 @@ function BusinessDetailModal({
                 reviews.map((review) => (
                   <div
                     key={review.id}
-                    className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg"
+                    className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg"
                   >
                     <div className="flex items-start justify-between gap-4 mb-2">
                       <div className="flex items-center gap-3">
@@ -666,25 +666,25 @@ function BusinessDetailModal({
                             className="w-10 h-10 rounded-full object-cover"
                           />
                         ) : (
-                          <div className="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-500 text-sm">
+                          <div className="w-10 h-10 bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center text-slate-500 text-sm">
                             {review.author.name.split(' ').map(n => n[0]).join('')}
                           </div>
                         )}
                         <div>
-                          <p className="font-medium text-gray-900 dark:text-white">{review.author.name}</p>
-                          <p className="text-xs text-gray-500">
+                          <p className="font-medium text-slate-900 dark:text-white">{review.author.name}</p>
+                          <p className="text-xs text-slate-500">
                             {new Date(review.createdAt).toLocaleDateString('en-AU')}
                           </p>
                         </div>
                       </div>
                       <StarRating rating={review.rating} size="sm" />
                     </div>
-                    <h4 className="font-medium text-gray-900 dark:text-white mb-1">{review.title}</h4>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">{review.content}</p>
+                    <h4 className="font-medium text-slate-900 dark:text-white mb-1">{review.title}</h4>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">{review.content}</p>
                     <button
                       onClick={() => handleMarkHelpful(review.id)}
                       className={`mt-3 flex items-center gap-1 text-sm ${
-                        review.isHelpful ? 'text-blue-600' : 'text-gray-500 hover:text-gray-700'
+                        review.isHelpful ? 'text-blue-600' : 'text-slate-500 hover:text-slate-700'
                       }`}
                     >
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -696,7 +696,7 @@ function BusinessDetailModal({
                 ))
               ) : (
                 <div className="text-center py-8">
-                  <p className="text-gray-500">No reviews yet</p>
+                  <p className="text-slate-500">No reviews yet</p>
                   <Button size="sm" className="mt-3">Write a Review</Button>
                 </div>
               )}
@@ -705,7 +705,7 @@ function BusinessDetailModal({
         </div>
 
         {/* Footer Actions */}
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex gap-3">
+        <div className="p-6 border-t border-slate-200 dark:border-slate-700 flex gap-3">
           <Button variant="outline" onClick={onClose} className="flex-1">
             Close
           </Button>
@@ -790,8 +790,8 @@ export function IndigenousBusinessDirectory() {
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Indigenous Business Directory</h1>
-        <p className="text-gray-500 mt-1">Support and connect with Indigenous-owned businesses across Australia</p>
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Indigenous Business Directory</h1>
+        <p className="text-slate-500 mt-1">Support and connect with Indigenous-owned businesses across Australia</p>
       </div>
 
       {/* Hero Banner */}
@@ -815,7 +815,7 @@ export function IndigenousBusinessDirectory() {
 
       {/* Categories */}
       <div className="mb-8">
-        <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Browse by Category</h3>
+        <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Browse by Category</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
           {categories.map((cat) => (
             <button
@@ -824,13 +824,13 @@ export function IndigenousBusinessDirectory() {
               className={`p-4 rounded-xl text-center transition-colors ${
                 categoryFilter === cat.value
                   ? 'bg-amber-100 border-2 border-amber-500 dark:bg-amber-900/30'
-                  : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-amber-300'
+                  : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-amber-300'
               }`}
             >
               <div className="text-2xl mb-1">{cat.icon}</div>
-              <div className="text-sm font-medium text-gray-900 dark:text-white">{cat.label}</div>
+              <div className="text-sm font-medium text-slate-900 dark:text-white">{cat.label}</div>
               {cat.count > 0 && (
-                <div className="text-xs text-gray-500">{cat.count} businesses</div>
+                <div className="text-xs text-slate-500">{cat.count} businesses</div>
               )}
             </button>
           ))}
@@ -845,13 +845,13 @@ export function IndigenousBusinessDirectory() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search businesses..."
-            className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
           />
         </div>
         <select
           value={locationFilter}
           onChange={(e) => setLocationFilter(e.target.value)}
-          className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
         >
           <option value="">All States</option>
           {australianStates.map((state) => (
@@ -861,7 +861,7 @@ export function IndigenousBusinessDirectory() {
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value as any)}
-          className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
         >
           <option value="rating">Highest Rated</option>
           <option value="reviews">Most Reviews</option>
@@ -872,9 +872,9 @@ export function IndigenousBusinessDirectory() {
             type="checkbox"
             checked={certifiedOnly}
             onChange={(e) => setCertifiedOnly(e.target.checked)}
-            className="w-4 h-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500"
+            className="w-4 h-4 text-amber-600 border-slate-300 rounded focus:ring-amber-500"
           />
-          <span className="text-sm text-gray-700 dark:text-gray-300">Certified only</span>
+          <span className="text-sm text-slate-700 dark:text-slate-300">Certified only</span>
         </label>
       </div>
 
@@ -891,10 +891,10 @@ export function IndigenousBusinessDirectory() {
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+        <div className="text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
           <div className="text-6xl mb-4">🔍</div>
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">No businesses found</h3>
-          <p className="text-gray-500 mt-2">Try adjusting your filters or search criteria</p>
+          <h3 className="text-lg font-medium text-slate-900 dark:text-white">No businesses found</h3>
+          <p className="text-slate-500 mt-2">Try adjusting your filters or search criteria</p>
         </div>
       )}
 

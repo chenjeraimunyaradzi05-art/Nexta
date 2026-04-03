@@ -71,7 +71,7 @@ const variantClasses: Record<AlertVariant, {
     container: 'bg-gradient-to-r from-[#1A0F2E]/50 to-[#2D1B69]/50 border-[#FFD700]/20',
     icon: 'text-[#FFD700]',
     title: 'text-white',
-    text: 'text-gray-300',
+    text: 'text-slate-300',
   },
 };
 

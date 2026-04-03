@@ -268,7 +268,7 @@ function CategoryCard({
   return (
     <div
       onClick={onClick}
-      className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 hover:shadow-md transition-all cursor-pointer"
+      className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5 hover:shadow-md transition-all cursor-pointer"
     >
       <div className="flex items-start gap-4">
         <div className="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-2xl">
@@ -276,25 +276,25 @@ function CategoryCard({
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <h3 className="font-semibold text-gray-900 dark:text-white">{category.name}</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white">{category.name}</h3>
             {category.isIndigenous && (
               <span className="px-2 py-0.5 bg-amber-100 text-amber-700 rounded text-xs">
                 🌏 Indigenous
               </span>
             )}
           </div>
-          <p className="text-sm text-gray-500 mt-1 line-clamp-2">{category.description}</p>
-          <div className="flex items-center gap-4 mt-3 text-sm text-gray-400">
+          <p className="text-sm text-slate-500 mt-1 line-clamp-2">{category.description}</p>
+          <div className="flex items-center gap-4 mt-3 text-sm text-slate-400">
             <span>💬 {category.threadCount} threads</span>
             <span>📝 {category.postCount} posts</span>
           </div>
         </div>
       </div>
       {category.lastPost && (
-        <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
-          <p className="text-sm text-gray-500">
-            Latest: <span className="text-gray-700 dark:text-gray-300">{category.lastPost.title}</span>
-            <span className="text-gray-400"> by {category.lastPost.author}</span>
+        <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700">
+          <p className="text-sm text-slate-500">
+            Latest: <span className="text-slate-700 dark:text-slate-300">{category.lastPost.title}</span>
+            <span className="text-slate-400"> by {category.lastPost.author}</span>
           </p>
         </div>
       )}
@@ -315,7 +315,7 @@ function ThreadRow({
   const createdAt = new Date(thread.createdAt);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 hover:shadow-md transition-all">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5 hover:shadow-md transition-all">
       <div className="flex items-start gap-4">
         {/* Upvote */}
         <div className="flex flex-col items-center">
@@ -324,12 +324,12 @@ function ThreadRow({
             className={`p-2 rounded-lg transition-colors ${
               thread.isUpvoted
                 ? 'bg-blue-100 text-blue-600'
-                : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400'
+                : 'hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400'
             }`}
           >
             ▲
           </button>
-          <span className={`text-sm font-medium ${thread.isUpvoted ? 'text-blue-600' : 'text-gray-500'}`}>
+          <span className={`text-sm font-medium ${thread.isUpvoted ? 'text-blue-600' : 'text-slate-500'}`}>
             {thread.upvotes}
           </span>
         </div>
@@ -341,18 +341,18 @@ function ThreadRow({
               <span className="px-2 py-0.5 bg-yellow-100 text-yellow-700 rounded text-xs">📌 Pinned</span>
             )}
             {thread.isLocked && (
-              <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-xs">🔒 Locked</span>
+              <span className="px-2 py-0.5 bg-slate-100 text-slate-600 rounded text-xs">🔒 Locked</span>
             )}
           </div>
           
           <h3
             onClick={onClick}
-            className="font-semibold text-gray-900 dark:text-white hover:text-blue-600 cursor-pointer"
+            className="font-semibold text-slate-900 dark:text-white hover:text-blue-600 cursor-pointer"
           >
             {thread.title}
           </h3>
           
-          <p className="text-sm text-gray-500 mt-1 line-clamp-2">{thread.content}</p>
+          <p className="text-sm text-slate-500 mt-1 line-clamp-2">{thread.content}</p>
           
           {/* Tags */}
           {thread.tags.length > 0 && (
@@ -360,7 +360,7 @@ function ThreadRow({
               {thread.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded text-xs"
+                  className="px-2 py-0.5 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded text-xs"
                 >
                   #{tag}
                 </span>
@@ -369,9 +369,9 @@ function ThreadRow({
           )}
 
           {/* Meta */}
-          <div className="flex items-center gap-4 mt-3 text-sm text-gray-400">
+          <div className="flex items-center gap-4 mt-3 text-sm text-slate-400">
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+              <div className="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
                 {thread.author.avatar ? (
                   <OptimizedImage
                     src={toCloudinaryAutoUrl(thread.author.avatar)}
@@ -414,7 +414,7 @@ function ReplyComponent({
   return (
     <div className={`p-4 ${reply.isAcceptedAnswer ? 'bg-green-50 dark:bg-green-900/20 border-l-4 border-green-500' : ''}`}>
       <div className="flex items-start gap-3">
-        <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden flex-shrink-0">
+        <div className="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden flex-shrink-0">
           {reply.author.avatar ? (
             <OptimizedImage
               src={toCloudinaryAutoUrl(reply.author.avatar)}
@@ -429,7 +429,7 @@ function ReplyComponent({
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
-            <span className="font-medium text-gray-900 dark:text-white">{reply.author.name}</span>
+            <span className="font-medium text-slate-900 dark:text-white">{reply.author.name}</span>
             {reply.author.isIndigenous && <span>🌏</span>}
             {reply.author.role && (
               <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs">{reply.author.role}</span>
@@ -437,23 +437,23 @@ function ReplyComponent({
             {reply.isAcceptedAnswer && (
               <span className="px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs">✓ Accepted Answer</span>
             )}
-            <span className="text-sm text-gray-400">
+            <span className="text-sm text-slate-400">
               {createdAt.toLocaleDateString('en-AU')}
             </span>
           </div>
-          <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{reply.content}</p>
+          <p className="text-slate-700 dark:text-slate-300 whitespace-pre-wrap">{reply.content}</p>
           <div className="flex items-center gap-4 mt-2">
             <button
               onClick={onUpvote}
               className={`flex items-center gap-1 text-sm ${
-                reply.isUpvoted ? 'text-blue-600' : 'text-gray-400 hover:text-blue-600'
+                reply.isUpvoted ? 'text-blue-600' : 'text-slate-400 hover:text-blue-600'
               }`}
             >
               ▲ {reply.upvotes}
             </button>
             <button
               onClick={onReply}
-              className="text-sm text-gray-400 hover:text-blue-600"
+              className="text-sm text-slate-400 hover:text-blue-600"
             >
               Reply
             </button>
@@ -463,7 +463,7 @@ function ReplyComponent({
       
       {/* Nested replies */}
       {reply.replies && reply.replies.length > 0 && (
-        <div className="ml-8 mt-4 space-y-4 border-l-2 border-gray-200 dark:border-gray-700 pl-4">
+        <div className="ml-8 mt-4 space-y-4 border-l-2 border-slate-200 dark:border-slate-700 pl-4">
           {reply.replies.map((nestedReply) => (
             <ReplyComponent
               key={nestedReply.id}
@@ -509,13 +509,13 @@ function ThreadDetailView({
       {/* Back button */}
       <button
         onClick={onBack}
-        className="flex items-center gap-2 text-gray-500 hover:text-gray-700 mb-6"
+        className="flex items-center gap-2 text-slate-500 hover:text-slate-700 mb-6"
       >
         ← Back to threads
       </button>
 
       {/* Thread */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 mb-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 mb-6">
         <div className="flex items-start gap-4">
           <div className="flex flex-col items-center">
             <button
@@ -523,21 +523,21 @@ function ThreadDetailView({
               className={`p-2 rounded-lg transition-colors ${
                 thread.isUpvoted
                   ? 'bg-blue-100 text-blue-600'
-                  : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400'
+                  : 'hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400'
               }`}
             >
               ▲
             </button>
-            <span className={`text-lg font-medium ${thread.isUpvoted ? 'text-blue-600' : 'text-gray-500'}`}>
+            <span className={`text-lg font-medium ${thread.isUpvoted ? 'text-blue-600' : 'text-slate-500'}`}>
               {thread.upvotes}
             </span>
           </div>
 
           <div className="flex-1">
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{thread.title}</h1>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">{thread.title}</h1>
             
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+              <div className="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
                 {thread.author.avatar ? (
                   <OptimizedImage
                     src={toCloudinaryAutoUrl(thread.author.avatar)}
@@ -550,14 +550,14 @@ function ThreadDetailView({
                   <span>{thread.author.name[0]}</span>
                 )}
               </div>
-              <span className="font-medium text-gray-900 dark:text-white">{thread.author.name}</span>
+              <span className="font-medium text-slate-900 dark:text-white">{thread.author.name}</span>
               {thread.author.isIndigenous && <span>🌏</span>}
-              <span className="text-gray-400">•</span>
-              <span className="text-gray-500">{new Date(thread.createdAt).toLocaleDateString('en-AU')}</span>
+              <span className="text-slate-400">•</span>
+              <span className="text-slate-500">{new Date(thread.createdAt).toLocaleDateString('en-AU')}</span>
             </div>
 
             <div className="prose dark:prose-invert max-w-none">
-              <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{thread.content}</p>
+              <p className="text-slate-700 dark:text-slate-300 whitespace-pre-wrap">{thread.content}</p>
             </div>
 
             {thread.tags.length > 0 && (
@@ -565,7 +565,7 @@ function ThreadDetailView({
                 {thread.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded text-sm"
+                    className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded text-sm"
                   >
                     #{tag}
                   </span>
@@ -578,8 +578,8 @@ function ThreadDetailView({
 
       {/* Reply Form */}
       {!thread.isLocked && (
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 mb-6">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-4">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 mb-6">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-4">
             {replyingTo ? 'Reply to comment' : 'Post a Reply'}
           </h3>
           <textarea
@@ -587,7 +587,7 @@ function ThreadDetailView({
             onChange={(e) => setReplyContent(e.target.value)}
             placeholder="Share your thoughts..."
             rows={4}
-            className="w-full px-4 py-3 border rounded-lg dark:bg-gray-900 dark:border-gray-600 mb-4"
+            className="w-full px-4 py-3 border rounded-lg dark:bg-slate-900 dark:border-slate-600 mb-4"
           />
           <div className="flex justify-end gap-2">
             {replyingTo && (
@@ -603,9 +603,9 @@ function ThreadDetailView({
       )}
 
       {/* Replies */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-        <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-          <h3 className="font-semibold text-gray-900 dark:text-white">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+        <div className="p-4 border-b border-slate-200 dark:border-slate-700">
+          <h3 className="font-semibold text-slate-900 dark:text-white">
             {replies.length} Replies
           </h3>
         </div>
@@ -652,13 +652,13 @@ function CreateThreadModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">Create New Thread</h2>
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">Create New Thread</h2>
         </div>
         <div className="p-6 space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Title
             </label>
             <input
@@ -666,11 +666,11 @@ function CreateThreadModal({
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="What's your question or topic?"
-              className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+              className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Content
             </label>
             <textarea
@@ -678,11 +678,11 @@ function CreateThreadModal({
               onChange={(e) => setContent(e.target.value)}
               placeholder="Provide more details..."
               rows={6}
-              className="w-full px-4 py-3 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+              className="w-full px-4 py-3 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Tags (comma-separated)
             </label>
             <input
@@ -690,11 +690,11 @@ function CreateThreadModal({
               value={tagsInput}
               onChange={(e) => setTagsInput(e.target.value)}
               placeholder="career, advice, technology"
-              className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+              className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
             />
           </div>
         </div>
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex justify-end gap-3">
+        <div className="p-6 border-t border-slate-200 dark:border-slate-700 flex justify-end gap-3">
           <Button variant="outline" onClick={onClose}>Cancel</Button>
           <Button onClick={handleSubmit} disabled={!title.trim() || !content.trim()}>
             Create Thread
@@ -836,7 +836,7 @@ export function CommunityForums() {
       <div className="max-w-5xl mx-auto px-4 py-8">
         <button
           onClick={() => setSelectedCategory(null)}
-          className="flex items-center gap-2 text-gray-500 hover:text-gray-700 mb-6"
+          className="flex items-center gap-2 text-slate-500 hover:text-slate-700 mb-6"
         >
           ← Back to categories
         </button>
@@ -845,8 +845,8 @@ export function CommunityForums() {
           <div className="flex items-center gap-3">
             <span className="text-3xl">{selectedCategory.icon}</span>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{selectedCategory.name}</h1>
-              <p className="text-gray-500">{selectedCategory.description}</p>
+              <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{selectedCategory.name}</h1>
+              <p className="text-slate-500">{selectedCategory.description}</p>
             </div>
           </div>
           <Button onClick={() => setShowCreateModal(true)}>
@@ -863,7 +863,7 @@ export function CommunityForums() {
               className={`px-4 py-2 rounded-lg capitalize ${
                 sortBy === sort
                   ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30'
-                  : 'text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800'
+                  : 'text-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800'
               }`}
             >
               {sort}
@@ -877,12 +877,12 @@ export function CommunityForums() {
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" />
           </div>
         ) : threads.length === 0 ? (
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-12 text-center">
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-12 text-center">
             <div className="text-6xl mb-4">💬</div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+            <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               No threads yet
             </h3>
-            <p className="text-gray-500 mb-4">Be the first to start a discussion!</p>
+            <p className="text-slate-500 mb-4">Be the first to start a discussion!</p>
             <Button onClick={() => setShowCreateModal(true)}>Create Thread</Button>
           </div>
         ) : (
@@ -912,8 +912,8 @@ export function CommunityForums() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Community Forums</h1>
-        <p className="text-gray-500 mt-1">Join discussions, ask questions, and share knowledge</p>
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Community Forums</h1>
+        <p className="text-slate-500 mt-1">Join discussions, ask questions, and share knowledge</p>
       </div>
 
       {isLoading && categories.length === 0 ? (

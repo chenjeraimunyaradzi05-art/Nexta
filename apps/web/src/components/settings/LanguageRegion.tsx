@@ -130,9 +130,9 @@ function SettingSection({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 mb-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">{title}</h3>
-      {description && <p className="text-sm text-gray-500 mb-4">{description}</p>}
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 mb-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">{title}</h3>
+      {description && <p className="text-sm text-slate-500 mb-4">{description}</p>}
       {children}
     </div>
   );
@@ -154,13 +154,13 @@ function LanguageOption({
       className={`flex items-center gap-3 p-4 rounded-lg border-2 transition-all ${
         selected
           ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-          : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
+          : 'border-slate-200 dark:border-slate-700 hover:border-slate-300'
       }`}
     >
       <span className="text-2xl">{language.flag}</span>
       <div className="text-left">
-        <p className="font-medium text-gray-900 dark:text-white">{language.name}</p>
-        <p className="text-sm text-gray-500">{language.nativeName}</p>
+        <p className="font-medium text-slate-900 dark:text-white">{language.name}</p>
+        <p className="text-sm text-slate-500">{language.nativeName}</p>
       </div>
       {selected && <span className="ml-auto text-blue-500">✓</span>}
     </button>
@@ -182,16 +182,16 @@ function SelectField({
   description?: string;
 }) {
   return (
-    <div className="py-4 border-b border-gray-100 dark:border-gray-700 last:border-0">
+    <div className="py-4 border-b border-slate-100 dark:border-slate-700 last:border-0">
       <div className="flex items-center justify-between">
         <div>
-          <label className="font-medium text-gray-900 dark:text-white">{label}</label>
-          {description && <p className="text-sm text-gray-500">{description}</p>}
+          <label className="font-medium text-slate-900 dark:text-white">{label}</label>
+          {description && <p className="text-sm text-slate-500">{description}</p>}
         </div>
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600 min-w-[200px]"
+          className="px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600 min-w-[200px]"
         >
           {options.map((opt) => (
             <option key={opt.value} value={opt.value}>
@@ -217,16 +217,16 @@ function ToggleField({
   onChange: (checked: boolean) => void;
 }) {
   return (
-    <div className="py-4 border-b border-gray-100 dark:border-gray-700 last:border-0">
+    <div className="py-4 border-b border-slate-100 dark:border-slate-700 last:border-0">
       <label className="flex items-center justify-between cursor-pointer">
         <div>
-          <span className="font-medium text-gray-900 dark:text-white">{label}</span>
-          {description && <p className="text-sm text-gray-500">{description}</p>}
+          <span className="font-medium text-slate-900 dark:text-white">{label}</span>
+          {description && <p className="text-sm text-slate-500">{description}</p>}
         </div>
         <div
           onClick={() => onChange(!checked)}
           className={`relative w-12 h-6 rounded-full transition-colors ${
-            checked ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'
+            checked ? 'bg-blue-500' : 'bg-slate-300 dark:bg-slate-600'
           }`}
         >
           <div
@@ -253,8 +253,8 @@ function RadioGroup({
   onChange: (value: string) => void;
 }) {
   return (
-    <div className="py-4 border-b border-gray-100 dark:border-gray-700 last:border-0">
-      <label className="font-medium text-gray-900 dark:text-white mb-3 block">{label}</label>
+    <div className="py-4 border-b border-slate-100 dark:border-slate-700 last:border-0">
+      <label className="font-medium text-slate-900 dark:text-white mb-3 block">{label}</label>
       <div className="flex gap-4">
         {options.map((opt) => (
           <label key={opt.value} className="flex items-center gap-2 cursor-pointer">
@@ -264,7 +264,7 @@ function RadioGroup({
               onChange={() => onChange(opt.value)}
               className="w-4 h-4 text-blue-500"
             />
-            <span className="text-gray-700 dark:text-gray-300">{opt.label}</span>
+            <span className="text-slate-700 dark:text-slate-300">{opt.label}</span>
           </label>
         ))}
       </div>
@@ -337,22 +337,22 @@ export function LanguageRegion() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Language & Region</h1>
-      <p className="text-gray-500 mb-8">Set your language, timezone, and regional preferences</p>
+      <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Language & Region</h1>
+      <p className="text-slate-500 mb-8">Set your language, timezone, and regional preferences</p>
 
       {/* Language Selection */}
       <SettingSection title="Language" description="Choose your preferred language">
         <div className="mb-4">
           <button
             onClick={() => setShowLanguages(!showLanguages)}
-            className="w-full flex items-center gap-3 p-4 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900"
+            className="w-full flex items-center gap-3 p-4 border rounded-lg hover:bg-slate-50 dark:hover:bg-slate-900"
           >
             <span className="text-2xl">{selectedLanguage?.flag}</span>
             <div className="text-left flex-1">
-              <p className="font-medium text-gray-900 dark:text-white">{selectedLanguage?.name}</p>
-              <p className="text-sm text-gray-500">{selectedLanguage?.nativeName}</p>
+              <p className="font-medium text-slate-900 dark:text-white">{selectedLanguage?.name}</p>
+              <p className="text-sm text-slate-500">{selectedLanguage?.nativeName}</p>
             </div>
-            <span className="text-gray-400">{showLanguages ? '▲' : '▼'}</span>
+            <span className="text-slate-400">{showLanguages ? '▲' : '▼'}</span>
           </button>
         </div>
 
@@ -402,7 +402,7 @@ export function LanguageRegion() {
         <select
           value={settings.indigenousLanguage || ''}
           onChange={(e) => updateSetting('indigenousLanguage', e.target.value || undefined)}
-          className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+          className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
         >
           <option value="">None selected</option>
           {INDIGENOUS_LANGUAGES.map((lang) => (
@@ -476,9 +476,9 @@ export function LanguageRegion() {
       {/* Preview */}
       <SettingSection title="Preview">
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-            <p className="text-sm text-gray-500 mb-1">Current Date</p>
-            <p className="font-medium text-gray-900 dark:text-white">
+          <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+            <p className="text-sm text-slate-500 mb-1">Current Date</p>
+            <p className="font-medium text-slate-900 dark:text-white">
               {new Date().toLocaleDateString(settings.language, {
                 weekday: 'long',
                 year: 'numeric',
@@ -487,9 +487,9 @@ export function LanguageRegion() {
               })}
             </p>
           </div>
-          <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-            <p className="text-sm text-gray-500 mb-1">Current Time</p>
-            <p className="font-medium text-gray-900 dark:text-white">
+          <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+            <p className="text-sm text-slate-500 mb-1">Current Time</p>
+            <p className="font-medium text-slate-900 dark:text-white">
               {new Date().toLocaleTimeString(settings.language, {
                 hour: '2-digit',
                 minute: '2-digit',
@@ -497,18 +497,18 @@ export function LanguageRegion() {
               })}
             </p>
           </div>
-          <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-            <p className="text-sm text-gray-500 mb-1">Currency</p>
-            <p className="font-medium text-gray-900 dark:text-white">
+          <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+            <p className="text-sm text-slate-500 mb-1">Currency</p>
+            <p className="font-medium text-slate-900 dark:text-white">
               {new Intl.NumberFormat(settings.language, {
                 style: 'currency',
                 currency: settings.currency,
               }).format(1234.56)}
             </p>
           </div>
-          <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-            <p className="text-sm text-gray-500 mb-1">Number</p>
-            <p className="font-medium text-gray-900 dark:text-white">
+          <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+            <p className="text-sm text-slate-500 mb-1">Number</p>
+            <p className="font-medium text-slate-900 dark:text-white">
               {new Intl.NumberFormat(settings.language).format(1234567.89)}
             </p>
           </div>

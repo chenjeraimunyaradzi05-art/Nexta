@@ -155,13 +155,13 @@ function VisibilitySection({
   ];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Profile Visibility</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Profile Visibility</h3>
       
       <div className="space-y-4">
         {/* Main Profile Visibility */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
             Who can see your profile?
           </label>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -172,19 +172,19 @@ function VisibilitySection({
                 className={`p-3 rounded-lg border-2 text-left transition-colors ${
                   settings.profileVisibility === opt.value
                     ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                    : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
+                    : 'border-slate-200 dark:border-slate-700 hover:border-slate-300'
                 }`}
               >
-                <p className="font-medium text-gray-900 dark:text-white">{opt.label}</p>
-                <p className="text-xs text-gray-500">{opt.description}</p>
+                <p className="font-medium text-slate-900 dark:text-white">{opt.label}</p>
+                <p className="text-xs text-slate-500">{opt.description}</p>
               </button>
             ))}
           </div>
         </div>
 
         {/* Individual Field Visibility */}
-        <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-          <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+        <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
+          <h4 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">
             Show on profile
           </h4>
           <div className="grid md:grid-cols-2 gap-3">
@@ -199,13 +199,13 @@ function VisibilitySection({
             ].map((item) => (
               <label
                 key={item.key}
-                className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 rounded-lg cursor-pointer"
+                className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900 rounded-lg cursor-pointer"
               >
-                <span className="text-sm text-gray-700 dark:text-gray-300">{item.label}</span>
+                <span className="text-sm text-slate-700 dark:text-slate-300">{item.label}</span>
                 <button
                   onClick={() => onUpdate({ [item.key]: !settings[item.key as keyof PrivacySettings] })}
                   className={`w-10 h-5 rounded-full relative transition-colors ${
-                    settings[item.key as keyof PrivacySettings] ? 'bg-blue-500' : 'bg-gray-300'
+                    settings[item.key as keyof PrivacySettings] ? 'bg-blue-500' : 'bg-slate-300'
                   }`}
                 >
                   <span
@@ -232,8 +232,8 @@ function DiscoverySection({
   onUpdate: (updates: Partial<PrivacySettings>) => void;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Search & Discovery</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Search & Discovery</h3>
       
       <div className="space-y-4">
         {[
@@ -243,15 +243,15 @@ function DiscoverySection({
           { key: 'shareActivityWithConnections', label: 'Share activity', description: 'Your connections can see your activity updates' },
           { key: 'shareApplicationStatus', label: 'Share application status', description: 'Show application milestones in activity' },
         ].map((item) => (
-          <div key={item.key} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <div key={item.key} className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
             <div>
-              <p className="font-medium text-gray-900 dark:text-white">{item.label}</p>
-              <p className="text-sm text-gray-500">{item.description}</p>
+              <p className="font-medium text-slate-900 dark:text-white">{item.label}</p>
+              <p className="text-sm text-slate-500">{item.description}</p>
             </div>
             <button
               onClick={() => onUpdate({ [item.key]: !settings[item.key as keyof PrivacySettings] })}
               className={`w-12 h-6 rounded-full relative transition-colors ${
-                settings[item.key as keyof PrivacySettings] ? 'bg-blue-500' : 'bg-gray-300'
+                settings[item.key as keyof PrivacySettings] ? 'bg-blue-500' : 'bg-slate-300'
               }`}
             >
               <span
@@ -283,19 +283,19 @@ function CommunicationSection({
   ];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Communication</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Communication</h3>
       
       <div className="space-y-4">
         {/* Message Permissions */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
             Who can send you messages?
           </label>
           <select
             value={settings.allowMessages}
             onChange={(e) => onUpdate({ allowMessages: e.target.value as PrivacySettings['allowMessages'] })}
-            className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
           >
             {messageOptions.map((opt) => (
               <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -304,15 +304,15 @@ function CommunicationSection({
         </div>
 
         {/* Online Status */}
-        <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
           <div>
-            <p className="font-medium text-gray-900 dark:text-white">Show online status</p>
-            <p className="text-sm text-gray-500">Others can see when you're online</p>
+            <p className="font-medium text-slate-900 dark:text-white">Show online status</p>
+            <p className="text-sm text-slate-500">Others can see when you're online</p>
           </div>
           <button
             onClick={() => onUpdate({ showOnlineStatus: !settings.showOnlineStatus })}
             className={`w-12 h-6 rounded-full relative transition-colors ${
-              settings.showOnlineStatus ? 'bg-blue-500' : 'bg-gray-300'
+              settings.showOnlineStatus ? 'bg-blue-500' : 'bg-slate-300'
             }`}
           >
             <span
@@ -324,15 +324,15 @@ function CommunicationSection({
         </div>
 
         {/* Last Active */}
-        <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
           <div>
-            <p className="font-medium text-gray-900 dark:text-white">Show last active</p>
-            <p className="text-sm text-gray-500">Others can see when you were last active</p>
+            <p className="font-medium text-slate-900 dark:text-white">Show last active</p>
+            <p className="text-sm text-slate-500">Others can see when you were last active</p>
           </div>
           <button
             onClick={() => onUpdate({ showLastActive: !settings.showLastActive })}
             className={`w-12 h-6 rounded-full relative transition-colors ${
-              settings.showLastActive ? 'bg-blue-500' : 'bg-gray-300'
+              settings.showLastActive ? 'bg-blue-500' : 'bg-slate-300'
             }`}
           >
             <span
@@ -363,9 +363,9 @@ function ConsentsSection({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Data & Cookies</h3>
-      <p className="text-sm text-gray-500 mb-4">Manage how we use your data</p>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Data & Cookies</h3>
+      <p className="text-sm text-slate-500 mb-4">Manage how we use your data</p>
       
       <div className="space-y-3">
         {consents.map((consent) => {
@@ -373,25 +373,25 @@ function ConsentsSection({
           return (
             <div
               key={consent.id}
-              className="flex items-start justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg"
+              className="flex items-start justify-between p-4 bg-slate-50 dark:bg-slate-900 rounded-lg"
             >
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
-                  <p className="font-medium text-gray-900 dark:text-white">{consent.name}</p>
+                  <p className="font-medium text-slate-900 dark:text-white">{consent.name}</p>
                   <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${category.color}`}>
                     {category.label}
                   </span>
                   {consent.required && (
-                    <span className="text-xs text-gray-500">(Required)</span>
+                    <span className="text-xs text-slate-500">(Required)</span>
                   )}
                 </div>
-                <p className="text-sm text-gray-500">{consent.description}</p>
+                <p className="text-sm text-slate-500">{consent.description}</p>
               </div>
               <button
                 onClick={() => !consent.required && onUpdate(consent.id, !consent.granted)}
                 disabled={consent.required}
                 className={`w-12 h-6 rounded-full relative transition-colors ${
-                  consent.granted ? 'bg-blue-500' : 'bg-gray-300'
+                  consent.granted ? 'bg-blue-500' : 'bg-slate-300'
                 } ${consent.required ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 <span
@@ -420,16 +420,16 @@ function DataExportSection({
     pending: { label: 'Pending', color: 'text-yellow-600' },
     processing: { label: 'Processing', color: 'text-blue-600' },
     ready: { label: 'Ready', color: 'text-green-600' },
-    expired: { label: 'Expired', color: 'text-gray-500' },
+    expired: { label: 'Expired', color: 'text-slate-500' },
     failed: { label: 'Failed', color: 'text-red-600' },
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Download Your Data</h3>
-          <p className="text-sm text-gray-500">Request a copy of your personal data</p>
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Download Your Data</h3>
+          <p className="text-sm text-slate-500">Request a copy of your personal data</p>
         </div>
         <Button onClick={onRequestExport}>Request Export</Button>
       </div>
@@ -441,10 +441,10 @@ function DataExportSection({
             return (
               <div
                 key={exp.id}
-                className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg"
+                className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-900 rounded-lg"
               >
                 <div>
-                  <p className="font-medium text-gray-900 dark:text-white">
+                  <p className="font-medium text-slate-900 dark:text-white">
                     Export requested {new Date(exp.requestedAt).toLocaleDateString('en-AU')}
                   </p>
                   <p className={`text-sm ${status.color}`}>{status.label}</p>
@@ -475,23 +475,23 @@ function ConnectedAppsSection({
   onDisconnect: (id: string) => void;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Connected Apps</h3>
-      <p className="text-sm text-gray-500 mb-4">Apps and services with access to your data</p>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Connected Apps</h3>
+      <p className="text-sm text-slate-500 mb-4">Apps and services with access to your data</p>
 
       {apps.length > 0 ? (
         <div className="space-y-3">
           {apps.map((app) => (
             <div
               key={app.id}
-              className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg"
+              className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-900 rounded-lg"
             >
               <div className="flex items-center gap-3">
                 <span className="text-3xl">{app.icon}</span>
                 <div>
-                  <p className="font-medium text-gray-900 dark:text-white">{app.name}</p>
-                  <p className="text-sm text-gray-500">{app.description}</p>
-                  <p className="text-xs text-gray-400 mt-1">
+                  <p className="font-medium text-slate-900 dark:text-white">{app.name}</p>
+                  <p className="text-sm text-slate-500">{app.description}</p>
+                  <p className="text-xs text-slate-400 mt-1">
                     Connected {new Date(app.connectedAt).toLocaleDateString('en-AU')}
                   </p>
                 </div>
@@ -506,7 +506,7 @@ function ConnectedAppsSection({
           ))}
         </div>
       ) : (
-        <p className="text-center text-gray-500 py-8">No connected apps</p>
+        <p className="text-center text-slate-500 py-8">No connected apps</p>
       )}
     </div>
   );
@@ -537,9 +537,9 @@ function DeleteAccountSection({
           Delete My Account
         </Button>
       ) : (
-        <div className="space-y-4 p-4 bg-white dark:bg-gray-800 rounded-lg">
+        <div className="space-y-4 p-4 bg-white dark:bg-slate-800 rounded-lg">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Why are you leaving? (Optional)
             </label>
             <textarea
@@ -547,12 +547,12 @@ function DeleteAccountSection({
               onChange={(e) => setReason(e.target.value)}
               rows={3}
               placeholder="Your feedback helps us improve..."
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Type "DELETE" to confirm
             </label>
             <input
@@ -560,7 +560,7 @@ function DeleteAccountSection({
               value={confirmText}
               onChange={(e) => setConfirmText(e.target.value)}
               placeholder="DELETE"
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
 
@@ -679,8 +679,8 @@ export function PrivacySettingsPage() {
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Privacy Settings</h1>
-        <p className="text-gray-500 mt-1">Control your privacy and data</p>
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Privacy Settings</h1>
+        <p className="text-slate-500 mt-1">Control your privacy and data</p>
       </div>
 
       {/* Saving Indicator */}

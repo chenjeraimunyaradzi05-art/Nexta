@@ -193,12 +193,12 @@ function EventCard({
 
   return (
     <div 
-      className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+      className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
       onClick={onView}
     >
       {/* Image */}
       {event.image && (
-        <div className="relative h-40 bg-gray-100 dark:bg-gray-900">
+        <div className="relative h-40 bg-slate-100 dark:bg-slate-900">
           <OptimizedImage
             src={toCloudinaryAutoUrl(event.image)}
             alt={`${event.title} event image`}
@@ -231,7 +231,7 @@ function EventCard({
           <span className={`px-2 py-1 text-xs font-medium rounded bg-${typeConfig.color}-100 dark:bg-${typeConfig.color}-900/30 text-${typeConfig.color}-700 dark:text-${typeConfig.color}-400`}>
             {typeConfig.icon} {typeConfig.label}
           </span>
-          <span className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded">
+          <span className="px-2 py-1 text-xs bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded">
             {format.icon} {format.label}
           </span>
           {event.isIndigenousFocused && (
@@ -242,13 +242,13 @@ function EventCard({
         </div>
 
         {/* Title & Description */}
-        <h3 className="font-semibold text-gray-900 dark:text-white text-lg mb-2">{event.title}</h3>
-        <p className="text-sm text-gray-500 line-clamp-2 mb-3">
+        <h3 className="font-semibold text-slate-900 dark:text-white text-lg mb-2">{event.title}</h3>
+        <p className="text-sm text-slate-500 line-clamp-2 mb-3">
           {event.shortDescription || event.description}
         </p>
 
         {/* Date & Location */}
-        <div className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+        <div className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
           <div className="flex items-center gap-2">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -269,7 +269,7 @@ function EventCard({
         </div>
 
         {/* Host */}
-        <div className="flex items-center gap-2 mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+        <div className="flex items-center gap-2 mt-4 pt-4 border-t border-slate-100 dark:border-slate-700">
           {event.host.avatar ? (
             <OptimizedImage
               src={toCloudinaryAutoUrl(event.host.avatar)}
@@ -279,14 +279,14 @@ function EventCard({
               className="w-8 h-8 rounded-full"
             />
           ) : (
-            <div className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 text-sm font-medium">
+            <div className="w-8 h-8 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-400 text-sm font-medium">
               {event.host.name.charAt(0)}
             </div>
           )}
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{event.host.name}</p>
+            <p className="text-sm font-medium text-slate-900 dark:text-white truncate">{event.host.name}</p>
             {event.host.organization && (
-              <p className="text-xs text-gray-500 truncate">{event.host.organization}</p>
+              <p className="text-xs text-slate-500 truncate">{event.host.organization}</p>
             )}
           </div>
         </div>
@@ -297,7 +297,7 @@ function EventCard({
             {event.isFree ? (
               <span className="text-green-600 dark:text-green-400 font-medium">Free</span>
             ) : (
-              <span className="text-gray-900 dark:text-white font-medium">${event.price}</span>
+              <span className="text-slate-900 dark:text-white font-medium">${event.price}</span>
             )}
             {spotsLeft !== null && spotsLeft <= 10 && spotsLeft > 0 && (
               <span className="text-orange-600 dark:text-orange-400 text-xs">
@@ -362,10 +362,10 @@ function EventDetailModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Image header */}
         {event.image && (
-          <div className="relative h-48 bg-gray-100 dark:bg-gray-900 flex-shrink-0">
+          <div className="relative h-48 bg-slate-100 dark:bg-slate-900 flex-shrink-0">
             <OptimizedImage
               src={toCloudinaryAutoUrl(event.image)}
               alt={`${event.title} event image`}
@@ -397,7 +397,7 @@ function EventDetailModal({
             <span className={`px-3 py-1 text-sm font-medium rounded-full bg-${typeConfig.color}-100 dark:bg-${typeConfig.color}-900/30 text-${typeConfig.color}-700 dark:text-${typeConfig.color}-400`}>
               {typeConfig.icon} {typeConfig.label}
             </span>
-            <span className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full">
+            <span className="px-3 py-1 text-sm bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-full">
               {format.icon} {format.label}
             </span>
             {event.isIndigenousFocused && (
@@ -407,18 +407,18 @@ function EventDetailModal({
             )}
           </div>
 
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{event.title}</h1>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{event.title}</h1>
 
           {/* Date & Location */}
           <div className="space-y-3 mb-6">
-            <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400">
+            <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
               <span>{formatEventDate(event.startDate, event.endDate)}</span>
             </div>
             {event.format !== 'virtual' && event.location && (
-              <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400">
+              <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 </svg>
@@ -458,10 +458,10 @@ function EventDetailModal({
           {/* Speakers */}
           {event.speakers && event.speakers.length > 0 && (
             <div className="mb-6">
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Speakers</h3>
+              <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Speakers</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {event.speakers.map((speaker) => (
-                  <div key={speaker.id} className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
+                  <div key={speaker.id} className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-900 rounded-lg">
                     {speaker.avatar ? (
                       <OptimizedImage
                         src={toCloudinaryAutoUrl(speaker.avatar)}
@@ -471,15 +471,15 @@ function EventDetailModal({
                         className="w-12 h-12 rounded-full"
                       />
                     ) : (
-                      <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 font-medium">
+                      <div className="w-12 h-12 bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-400 font-medium">
                         {speaker.name.charAt(0)}
                       </div>
                     )}
                     <div>
-                      <p className="font-medium text-gray-900 dark:text-white">{speaker.name}</p>
-                      <p className="text-sm text-gray-500">{speaker.title}</p>
+                      <p className="font-medium text-slate-900 dark:text-white">{speaker.name}</p>
+                      <p className="text-sm text-slate-500">{speaker.title}</p>
                       {speaker.bio && (
-                        <p className="text-xs text-gray-400 mt-1 line-clamp-2">{speaker.bio}</p>
+                        <p className="text-xs text-slate-400 mt-1 line-clamp-2">{speaker.bio}</p>
                       )}
                     </div>
                   </div>
@@ -489,8 +489,8 @@ function EventDetailModal({
           )}
 
           {/* Host */}
-          <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-            <p className="text-xs text-gray-500 mb-2">Hosted by</p>
+          <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
+            <p className="text-xs text-slate-500 mb-2">Hosted by</p>
             <div className="flex items-center gap-3">
               {event.host.avatar ? (
                 <OptimizedImage
@@ -501,14 +501,14 @@ function EventDetailModal({
                   className="w-10 h-10 rounded-full"
                 />
               ) : (
-                <div className="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 font-medium">
+                <div className="w-10 h-10 bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-400 font-medium">
                   {event.host.name.charAt(0)}
                 </div>
               )}
               <div>
-                <p className="font-medium text-gray-900 dark:text-white">{event.host.name}</p>
+                <p className="font-medium text-slate-900 dark:text-white">{event.host.name}</p>
                 {event.host.organization && (
-                  <p className="text-sm text-gray-500">{event.host.organization}</p>
+                  <p className="text-sm text-slate-500">{event.host.organization}</p>
                 )}
               </div>
             </div>
@@ -518,7 +518,7 @@ function EventDetailModal({
           {event.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-6">
               {event.tags.map((tag) => (
-                <span key={tag} className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full text-sm">
+                <span key={tag} className="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-full text-sm">
                   #{tag}
                 </span>
               ))}
@@ -527,16 +527,16 @@ function EventDetailModal({
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between flex-shrink-0">
+        <div className="p-4 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between flex-shrink-0">
           <div className="flex items-center gap-4">
             <div>
               {event.isFree ? (
                 <span className="text-green-600 dark:text-green-400 font-semibold text-lg">Free</span>
               ) : (
-                <span className="text-gray-900 dark:text-white font-semibold text-lg">${event.price}</span>
+                <span className="text-slate-900 dark:text-white font-semibold text-lg">${event.price}</span>
               )}
             </div>
-            <div className="text-sm text-gray-500">
+            <div className="text-sm text-slate-500">
               {event.registeredCount} registered
               {event.capacity && ` of ${event.capacity}`}
             </div>
@@ -633,8 +633,8 @@ export function EventsManager() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Events</h1>
-          <p className="text-gray-500 mt-1">Discover and join upcoming events</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Events</h1>
+          <p className="text-slate-500 mt-1">Discover and join upcoming events</p>
         </div>
       </div>
 
@@ -645,7 +645,7 @@ export function EventsManager() {
           className={`px-4 py-2 font-medium rounded-lg transition-colors ${
             view === 'upcoming'
               ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-              : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
           }`}
         >
           Upcoming Events
@@ -655,7 +655,7 @@ export function EventsManager() {
           className={`px-4 py-2 font-medium rounded-lg transition-colors ${
             view === 'my-events'
               ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-              : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
           }`}
         >
           My Events ({myEvents.length})
@@ -668,7 +668,7 @@ export function EventsManager() {
           <select
             value={filters.type || ''}
             onChange={(e) => setFilters(prev => ({ ...prev, type: e.target.value || undefined }))}
-            className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
+            className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white text-sm"
           >
             <option value="">All Types</option>
             {Object.entries(eventTypeConfig).map(([key, config]) => (
@@ -679,7 +679,7 @@ export function EventsManager() {
           <select
             value={filters.format || ''}
             onChange={(e) => setFilters(prev => ({ ...prev, format: e.target.value || undefined }))}
-            className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
+            className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white text-sm"
           >
             <option value="">All Formats</option>
             {Object.entries(formatConfig).map(([key, config]) => (
@@ -690,7 +690,7 @@ export function EventsManager() {
           <select
             value={filters.dateRange || ''}
             onChange={(e) => setFilters(prev => ({ ...prev, dateRange: e.target.value as EventFilter['dateRange'] || undefined }))}
-            className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
+            className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white text-sm"
           >
             <option value="">All Dates</option>
             <option value="today">Today</option>
@@ -703,9 +703,9 @@ export function EventsManager() {
               type="checkbox"
               checked={filters.isFree || false}
               onChange={(e) => setFilters(prev => ({ ...prev, isFree: e.target.checked || undefined }))}
-              className="rounded border-gray-300"
+              className="rounded border-slate-300"
             />
-            <span className="text-sm text-gray-600 dark:text-gray-400">Free Only</span>
+            <span className="text-sm text-slate-600 dark:text-slate-400">Free Only</span>
           </label>
 
           <label className="flex items-center gap-2 px-3 py-2 cursor-pointer">
@@ -713,9 +713,9 @@ export function EventsManager() {
               type="checkbox"
               checked={filters.isIndigenousFocused || false}
               onChange={(e) => setFilters(prev => ({ ...prev, isIndigenousFocused: e.target.checked || undefined }))}
-              className="rounded border-gray-300"
+              className="rounded border-slate-300"
             />
-            <span className="text-sm text-gray-600 dark:text-gray-400">Indigenous Focused</span>
+            <span className="text-sm text-slate-600 dark:text-slate-400">Indigenous Focused</span>
           </label>
         </div>
       )}
@@ -736,10 +736,10 @@ export function EventsManager() {
       ) : (
         <div className="text-center py-16">
           <div className="text-6xl mb-4">📅</div>
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+          <h3 className="text-lg font-medium text-slate-900 dark:text-white">
             {view === 'my-events' ? 'No registered events' : 'No events found'}
           </h3>
-          <p className="text-gray-500 mt-2">
+          <p className="text-slate-500 mt-2">
             {view === 'my-events' 
               ? 'Browse upcoming events and register to attend'
               : 'Check back later for new events'

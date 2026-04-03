@@ -168,14 +168,14 @@ function VideoResumeCard({
   const visibility = visibilityConfig[resume.visibility];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-lg transition-shadow">
       {/* Thumbnail */}
-      <div className="relative aspect-video bg-gray-900 cursor-pointer group" onClick={onView}>
+      <div className="relative aspect-video bg-slate-900 cursor-pointer group" onClick={onView}>
         {resume.thumbnailUrl ? (
           <OptimizedImage src={toCloudinaryAutoUrl(resume.thumbnailUrl)} alt={resume.title || 'Video resume thumbnail'} width={400} height={225} className="w-full h-full object-cover" />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <svg className="w-16 h-16 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-16 h-16 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
             </svg>
           </div>
@@ -184,7 +184,7 @@ function VideoResumeCard({
         {/* Play overlay */}
         <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity">
           <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
-            <svg className="w-8 h-8 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
+            <svg className="w-8 h-8 text-slate-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
               <path d="M8 5v14l11-7z" />
             </svg>
           </div>
@@ -200,7 +200,7 @@ function VideoResumeCard({
           <div className={`absolute top-2 left-2 px-2 py-1 text-xs rounded ${
             resume.status === 'processing' ? 'bg-yellow-500 text-white' :
             resume.status === 'failed' ? 'bg-red-500 text-white' :
-            'bg-gray-500 text-white'
+            'bg-slate-500 text-white'
           }`}>
             {resume.status === 'processing' ? 'Processing...' :
              resume.status === 'failed' ? 'Failed' : 'Draft'}
@@ -210,13 +210,13 @@ function VideoResumeCard({
 
       {/* Details */}
       <div className="p-4">
-        <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-1">{resume.title}</h3>
+        <h3 className="font-semibold text-slate-900 dark:text-white line-clamp-1">{resume.title}</h3>
         {resume.description && (
-          <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2 mt-1">{resume.description}</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mt-1">{resume.description}</p>
         )}
 
         {/* Meta */}
-        <div className="flex items-center gap-4 mt-3 text-sm text-gray-500">
+        <div className="flex items-center gap-4 mt-3 text-sm text-slate-500">
           <span className={`flex items-center gap-1 px-2 py-0.5 rounded bg-${visibility.color}-100 dark:bg-${visibility.color}-900/30 text-${visibility.color}-700 dark:text-${visibility.color}-400`}>
             {visibility.icon} {visibility.label}
           </span>
@@ -349,8 +349,8 @@ function VideoRecorder({
     return (
       <div className="text-center py-12">
         <div className="text-6xl mb-4">📹</div>
-        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">Camera Access Required</h3>
-        <p className="text-gray-500 mb-4">{error}</p>
+        <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">Camera Access Required</h3>
+        <p className="text-slate-500 mb-4">{error}</p>
         <Button variant="outline" onClick={onCancel}>Go Back</Button>
       </div>
     );
@@ -359,7 +359,7 @@ function VideoRecorder({
   return (
     <div className="max-w-3xl mx-auto">
       {/* Video Preview */}
-      <div className="relative aspect-video bg-gray-900 rounded-xl overflow-hidden mb-4">
+      <div className="relative aspect-video bg-slate-900 rounded-xl overflow-hidden mb-4">
         <video
           ref={videoRef}
           autoPlay
@@ -421,13 +421,13 @@ function VideoRecorder({
       {/* Tips */}
       {!isRecording && !recordedBlob && (
         <div className="mt-8">
-          <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Recording Tips</h4>
+          <h4 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">Recording Tips</h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {recordingTips.slice(0, 3).map((tip) => (
-              <div key={tip.id} className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <div key={tip.id} className="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
                 <span className="text-2xl">{tip.icon}</span>
-                <p className="mt-1 text-sm font-medium text-gray-900 dark:text-white">{tip.title}</p>
-                <p className="text-xs text-gray-500">{tip.description}</p>
+                <p className="mt-1 text-sm font-medium text-slate-900 dark:text-white">{tip.title}</p>
+                <p className="text-xs text-slate-500">{tip.description}</p>
               </div>
             ))}
           </div>
@@ -460,46 +460,46 @@ function EditVideoModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-lg w-full p-6">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Edit Video Resume</h2>
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-lg w-full p-6">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Edit Video Resume</h2>
 
         <div className="space-y-4">
           {/* Title */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Title
             </label>
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Description
             </label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={3}
-              className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg
-                bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg
+                bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
 
           {/* Visibility */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Visibility
             </label>
             <div className="space-y-2">
               {(['private', 'employers', 'public'] as const).map((v) => (
-                <label key={v} className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
+                <label key={v} className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700">
                   <input
                     type="radio"
                     name="visibility"
@@ -509,10 +509,10 @@ function EditVideoModal({
                     className="text-blue-500"
                   />
                   <div>
-                    <p className="font-medium text-gray-900 dark:text-white">
+                    <p className="font-medium text-slate-900 dark:text-white">
                       {v === 'private' ? '🔒 Private' : v === 'employers' ? '💼 Employers Only' : '🌐 Public'}
                     </p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-slate-500">
                       {v === 'private' ? 'Only you can see this video' :
                        v === 'employers' ? 'Visible to employers when you apply' :
                        'Anyone can view this video'}
@@ -629,11 +629,11 @@ export function VideoResumeManager() {
   if (isRecording) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Record Video Resume</h1>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Record Video Resume</h1>
         {isUploading ? (
           <div className="text-center py-16">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4" />
-            <p className="text-gray-500">Uploading your video...</p>
+            <p className="text-slate-500">Uploading your video...</p>
           </div>
         ) : (
           <VideoRecorder
@@ -650,8 +650,8 @@ export function VideoResumeManager() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Video Resume</h1>
-          <p className="mt-1 text-gray-500 dark:text-gray-400">
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Video Resume</h1>
+          <p className="mt-1 text-slate-500 dark:text-slate-400">
             Stand out to employers with a personal video introduction
           </p>
         </div>
@@ -688,8 +688,8 @@ export function VideoResumeManager() {
             {recordingTips.map((tip) => (
               <div key={tip.id} className="text-center">
                 <span className="text-3xl">{tip.icon}</span>
-                <h4 className="font-medium text-gray-900 dark:text-white mt-2">{tip.title}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{tip.description}</p>
+                <h4 className="font-medium text-slate-900 dark:text-white mt-2">{tip.title}</h4>
+                <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{tip.description}</p>
               </div>
             ))}
           </div>
@@ -698,7 +698,7 @@ export function VideoResumeManager() {
             <h4 className="font-medium text-amber-800 dark:text-amber-400 mb-2">Suggested Topics</h4>
             <div className="flex flex-wrap gap-2">
               {suggestedTopics.map((topic, i) => (
-                <span key={i} className="px-3 py-1 text-sm bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full">
+                <span key={i} className="px-3 py-1 text-sm bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full">
                   {topic}
                 </span>
               ))}
@@ -729,12 +729,12 @@ export function VideoResumeManager() {
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
+        <div className="text-center py-16 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
           <div className="text-6xl mb-4">🎬</div>
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+          <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
             Create Your Video Resume
           </h3>
-          <p className="text-gray-500 dark:text-gray-400 mb-6 max-w-md mx-auto">
+          <p className="text-slate-500 dark:text-slate-400 mb-6 max-w-md mx-auto">
             A video resume helps employers get to know the real you. Share your story, 
             highlight your skills, and make a lasting impression.
           </p>

@@ -104,12 +104,12 @@ export default function AnalyticsDashboard({ companyId }) {
         <div className="space-y-6">
             {/* Header */}
             <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-gray-900">Analytics Dashboard</h2>
+                <h2 className="text-2xl font-bold text-slate-900">Analytics Dashboard</h2>
                 <div className="flex items-center gap-4">
                     <select
                         value={dateRange}
                         onChange={(e) => setDateRange(e.target.value)}
-                        className="border border-gray-300 rounded-lg px-3 py-2 bg-white"
+                        className="border border-slate-300 rounded-lg px-3 py-2 bg-white"
                     >
                         <option value="7d">Last 7 days</option>
                         <option value="30d">Last 30 days</option>
@@ -118,13 +118,13 @@ export default function AnalyticsDashboard({ companyId }) {
                     <div className="flex gap-2">
                         <button
                             onClick={() => handleExport('csv')}
-                            className="px-3 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50"
+                            className="px-3 py-2 border border-slate-300 rounded-lg text-sm hover:bg-slate-50"
                         >
                             Export CSV
                         </button>
                         <button
                             onClick={() => handleExport('pdf')}
-                            className="px-3 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50"
+                            className="px-3 py-2 border border-slate-300 rounded-lg text-sm hover:bg-slate-50"
                         >
                             Export PDF
                         </button>
@@ -187,7 +187,7 @@ export default function AnalyticsDashboard({ companyId }) {
             
             {/* Conversion Funnel */}
             <div className="bg-white rounded-xl shadow-sm border p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Hiring Funnel</h3>
+                <h3 className="text-lg font-semibold text-slate-900 mb-4">Hiring Funnel</h3>
                 <div className="flex items-center justify-between gap-4">
                     <FunnelStage
                         label="Views"
@@ -251,32 +251,32 @@ export default function AnalyticsDashboard({ companyId }) {
             
             {/* Job Performance Table */}
             <div className="bg-white rounded-xl shadow-sm border p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Job Performance</h3>
+                <h3 className="text-lg font-semibold text-slate-900 mb-4">Job Performance</h3>
                 <div className="overflow-x-auto">
                     <table className="w-full">
                         <thead>
                             <tr className="border-b">
-                                <th className="text-left py-3 px-4 text-gray-600 font-medium">Job Title</th>
-                                <th className="text-right py-3 px-4 text-gray-600 font-medium">Views</th>
-                                <th className="text-right py-3 px-4 text-gray-600 font-medium">Applications</th>
-                                <th className="text-right py-3 px-4 text-gray-600 font-medium">Apply Rate</th>
-                                <th className="text-right py-3 px-4 text-gray-600 font-medium">Avg. Time to Apply</th>
-                                <th className="text-right py-3 px-4 text-gray-600 font-medium">Status</th>
+                                <th className="text-left py-3 px-4 text-slate-600 font-medium">Job Title</th>
+                                <th className="text-right py-3 px-4 text-slate-600 font-medium">Views</th>
+                                <th className="text-right py-3 px-4 text-slate-600 font-medium">Applications</th>
+                                <th className="text-right py-3 px-4 text-slate-600 font-medium">Apply Rate</th>
+                                <th className="text-right py-3 px-4 text-slate-600 font-medium">Avg. Time to Apply</th>
+                                <th className="text-right py-3 px-4 text-slate-600 font-medium">Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             {jobAnalytics.length === 0 ? (
                                 <tr>
-                                    <td colSpan={6} className="py-8 text-center text-gray-500">
+                                    <td colSpan={6} className="py-8 text-center text-slate-500">
                                         No job data available
                                     </td>
                                 </tr>
                             ) : (
                                 jobAnalytics.map((job) => (
-                                    <tr key={job.id} className="border-b last:border-0 hover:bg-gray-50">
+                                    <tr key={job.id} className="border-b last:border-0 hover:bg-slate-50">
                                         <td className="py-3 px-4">
-                                            <p className="font-medium text-gray-900">{job.title}</p>
-                                            <p className="text-sm text-gray-500">{job.location}</p>
+                                            <p className="font-medium text-slate-900">{job.title}</p>
+                                            <p className="text-sm text-slate-500">{job.location}</p>
                                         </td>
                                         <td className="text-right py-3 px-4">
                                             {job.views?.toLocaleString() || 0}
@@ -288,12 +288,12 @@ export default function AnalyticsDashboard({ companyId }) {
                                             <span className={`${
                                                 (job.applyRate || 0) > 5 
                                                     ? 'text-green-600' 
-                                                    : 'text-gray-600'
+                                                    : 'text-slate-600'
                                             }`}>
                                                 {(job.applyRate || 0).toFixed(1)}%
                                             </span>
                                         </td>
-                                        <td className="text-right py-3 px-4 text-gray-600">
+                                        <td className="text-right py-3 px-4 text-slate-600">
                                             {job.avgTimeToApply || '—'}
                                         </td>
                                         <td className="text-right py-3 px-4">
@@ -301,7 +301,7 @@ export default function AnalyticsDashboard({ companyId }) {
                                                 job.status === 'active'
                                                     ? 'bg-green-100 text-green-700'
                                                     : job.status === 'closed'
-                                                    ? 'bg-gray-100 text-gray-700'
+                                                    ? 'bg-slate-100 text-slate-700'
                                                     : 'bg-yellow-100 text-yellow-700'
                                             }`}>
                                                 {job.status}
@@ -318,7 +318,7 @@ export default function AnalyticsDashboard({ companyId }) {
             {/* Source Breakdown */}
             <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-white rounded-xl shadow-sm border p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                    <h3 className="text-lg font-semibold text-slate-900 mb-4">
                         Application Sources
                     </h3>
                     <div className="space-y-4">
@@ -326,10 +326,10 @@ export default function AnalyticsDashboard({ companyId }) {
                             <div key={source.name} className="flex items-center gap-4">
                                 <div className="flex-1">
                                     <div className="flex justify-between mb-1">
-                                        <span className="text-gray-700">{source.name}</span>
-                                        <span className="text-gray-600">{source.count}</span>
+                                        <span className="text-slate-700">{source.name}</span>
+                                        <span className="text-slate-600">{source.count}</span>
                                     </div>
-                                    <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                    <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
                                         <div
                                             className="h-full bg-primary rounded-full"
                                             style={{ width: `${source.percentage}%` }}
@@ -339,13 +339,13 @@ export default function AnalyticsDashboard({ companyId }) {
                             </div>
                         ))}
                         {(!analytics?.sources || analytics.sources.length === 0) && (
-                            <p className="text-gray-500 text-center py-4">No source data available</p>
+                            <p className="text-slate-500 text-center py-4">No source data available</p>
                         )}
                     </div>
                 </div>
                 
                 <div className="bg-white rounded-xl shadow-sm border p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                    <h3 className="text-lg font-semibold text-slate-900 mb-4">
                         Top Locations
                     </h3>
                     <div className="space-y-4">
@@ -353,10 +353,10 @@ export default function AnalyticsDashboard({ companyId }) {
                             <div key={location.name} className="flex items-center gap-4">
                                 <div className="flex-1">
                                     <div className="flex justify-between mb-1">
-                                        <span className="text-gray-700">{location.name}</span>
-                                        <span className="text-gray-600">{location.count} candidates</span>
+                                        <span className="text-slate-700">{location.name}</span>
+                                        <span className="text-slate-600">{location.count} candidates</span>
                                     </div>
-                                    <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                    <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
                                         <div
                                             className="h-full bg-secondary rounded-full"
                                             style={{ width: `${location.percentage}%` }}
@@ -366,7 +366,7 @@ export default function AnalyticsDashboard({ companyId }) {
                             </div>
                         ))}
                         {(!analytics?.topLocations || analytics.topLocations.length === 0) && (
-                            <p className="text-gray-500 text-center py-4">No location data available</p>
+                            <p className="text-slate-500 text-center py-4">No location data available</p>
                         )}
                     </div>
                 </div>
@@ -387,21 +387,21 @@ function MetricCard({ label, value, change, icon, highlight }) {
             highlight ? 'bg-primary/10 border border-primary/20' : 'bg-white shadow-sm border'
         }`}>
             <div className="flex items-start justify-between">
-                <div className="text-gray-400">{icon}</div>
+                <div className="text-slate-400">{icon}</div>
                 {change !== undefined && (
                     <span className={`text-xs font-medium px-2 py-1 rounded-full ${
                         isPositive ? 'bg-green-100 text-green-700' :
                         isNegative ? 'bg-red-100 text-red-700' :
-                        'bg-gray-100 text-gray-600'
+                        'bg-slate-100 text-slate-600'
                     }`}>
                         {isPositive && '+'}{change}%
                     </span>
                 )}
             </div>
-            <p className="text-2xl font-bold text-gray-900 mt-3">
+            <p className="text-2xl font-bold text-slate-900 mt-3">
                 {value.toLocaleString()}
             </p>
-            <p className="text-gray-600 text-sm mt-1">{label}</p>
+            <p className="text-slate-600 text-sm mt-1">{label}</p>
         </div>
     );
 }
@@ -412,14 +412,14 @@ function MetricCard({ label, value, change, icon, highlight }) {
 function FunnelStage({ label, value, percentage, highlight }) {
     return (
         <div className={`text-center flex-1 p-4 rounded-lg ${
-            highlight ? 'bg-primary/10' : 'bg-gray-50'
+            highlight ? 'bg-primary/10' : 'bg-slate-50'
         }`}>
-            <p className={`text-2xl font-bold ${highlight ? 'text-primary' : 'text-gray-900'}`}>
+            <p className={`text-2xl font-bold ${highlight ? 'text-primary' : 'text-slate-900'}`}>
                 {value.toLocaleString()}
             </p>
-            <p className="text-gray-600 text-sm">{label}</p>
+            <p className="text-slate-600 text-sm">{label}</p>
             {percentage !== 100 && (
-                <p className="text-xs text-gray-500 mt-1">{percentage.toFixed(1)}%</p>
+                <p className="text-xs text-slate-500 mt-1">{percentage.toFixed(1)}%</p>
             )}
         </div>
     );
@@ -430,7 +430,7 @@ function FunnelStage({ label, value, percentage, highlight }) {
  */
 function FunnelArrow() {
     return (
-        <svg className="w-6 h-6 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6 text-slate-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
     );

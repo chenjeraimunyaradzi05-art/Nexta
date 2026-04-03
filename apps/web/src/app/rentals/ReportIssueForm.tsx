@@ -36,7 +36,7 @@ export default function ReportIssueForm({ issue, onClose }: { issue: any; onClos
       <input
         type="text"
         placeholder="Your Name (optional)"
-        className="w-full px-4 py-2 rounded-xl text-white bg-white/10 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500/50"
+        className="w-full px-4 py-2 rounded-xl text-white bg-white/10 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-pink-500/50"
         value={name}
         onChange={e => setName(e.target.value)}
         aria-label="Your Name"
@@ -44,7 +44,7 @@ export default function ReportIssueForm({ issue, onClose }: { issue: any; onClos
       <input
         type="email"
         placeholder="Your Email (optional)"
-        className="w-full px-4 py-2 rounded-xl text-white bg-white/10 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500/50"
+        className="w-full px-4 py-2 rounded-xl text-white bg-white/10 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-pink-500/50"
         value={email}
         onChange={e => setEmail(e.target.value)}
         aria-label="Your Email"
@@ -52,7 +52,7 @@ export default function ReportIssueForm({ issue, onClose }: { issue: any; onClos
       <textarea
         placeholder="Describe the issue... (required)"
         rows={4}
-        className="w-full px-4 py-2 rounded-xl text-white bg-white/10 placeholder-gray-500 resize-none focus:outline-none focus:ring-2 focus:ring-pink-500/50"
+        className="w-full px-4 py-2 rounded-xl text-white bg-white/10 placeholder-slate-500 resize-none focus:outline-none focus:ring-2 focus:ring-pink-500/50"
         value={desc}
         onChange={e => setDesc(e.target.value)}
         aria-label="Describe the issue"

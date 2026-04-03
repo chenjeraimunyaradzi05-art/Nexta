@@ -281,7 +281,7 @@ export function ThemeToggle({ className = '' }: { className?: string }) {
         className={`p-2 rounded-lg transition-colors ${
           resolvedTheme === 'light' 
             ? 'bg-yellow-100 text-yellow-600' 
-            : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
+            : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'
         }`}
         aria-label="Light mode"
         aria-pressed={resolvedTheme === 'light'}
@@ -292,8 +292,8 @@ export function ThemeToggle({ className = '' }: { className?: string }) {
         onClick={() => setTheme('dark')}
         className={`p-2 rounded-lg transition-colors ${
           resolvedTheme === 'dark' 
-            ? 'bg-gray-700 text-blue-400' 
-            : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
+            ? 'bg-slate-700 text-blue-400' 
+            : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'
         }`}
         aria-label="Dark mode"
         aria-pressed={resolvedTheme === 'dark'}
@@ -305,7 +305,7 @@ export function ThemeToggle({ className = '' }: { className?: string }) {
         className={`p-2 rounded-lg transition-colors ${
           isCosmic 
             ? 'bg-purple-900 text-yellow-400' 
-            : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
+            : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'
         }`}
         aria-label="Cosmic mode"
         aria-pressed={isCosmic}
@@ -324,8 +324,8 @@ export function ThemeSelector({ className = '' }: { className?: string }) {
     <select
       value={theme}
       onChange={(e) => setTheme(e.target.value as ThemeMode)}
-      className={`px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 
-        bg-white dark:bg-gray-800 text-gray-900 dark:text-white
+      className={`px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 
+        bg-white dark:bg-slate-800 text-slate-900 dark:text-white
         focus:ring-2 focus:ring-blue-500 focus:border-transparent ${className}`}
       aria-label="Select theme"
     >

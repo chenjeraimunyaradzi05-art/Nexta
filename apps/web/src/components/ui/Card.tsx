@@ -52,9 +52,9 @@ interface CardFooterProps {
 
 // Nexta theme - consistent card styling
 const variantClasses: Record<CardVariant, string> = {
-  default: 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700',
-  elevated: 'bg-white dark:bg-gray-800 shadow-lg dark:shadow-gray-900/50',
-  outlined: 'bg-transparent border-2 border-gray-300 dark:border-gray-600',
+  default: 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700',
+  elevated: 'bg-white dark:bg-slate-800 shadow-lg dark:shadow-gray-900/50',
+  outlined: 'bg-transparent border-2 border-slate-300 dark:border-slate-600',
   glass: 'bg-white/10 backdrop-blur-md border border-white/20',
   cosmic:
     'bg-gradient-to-br from-[#1A0F2E]/90 to-[#2D1B69]/80 border border-[#FFD700]/20 backdrop-blur-sm',
@@ -161,16 +161,16 @@ export function CardHeader({
     >
       <div className="flex items-start gap-3 min-w-0">
         {icon && (
-          <div className="flex-shrink-0 p-2 rounded-lg bg-gray-100 dark:bg-gray-700/50">{icon}</div>
+          <div className="flex-shrink-0 p-2 rounded-lg bg-slate-100 dark:bg-slate-700/50">{icon}</div>
         )}
         <div className="min-w-0">
           {title && (
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white truncate">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white truncate">
               {title}
             </h3>
           )}
           {subtitle && (
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{subtitle}</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">{subtitle}</p>
           )}
           {children}
         </div>
@@ -189,7 +189,7 @@ export function CardFooter({ children, className = '', divided = true }: CardFoo
     <div
       className={`
         px-4 py-3 sm:px-6 sm:py-4
-        ${divided ? 'border-t border-gray-200 dark:border-gray-700' : ''}
+        ${divided ? 'border-t border-slate-200 dark:border-slate-700' : ''}
         ${className}
       `}
     >
@@ -229,12 +229,12 @@ export function FeatureCard({
         {icon}
       </div>
       <h3
-        className={`text-lg font-semibold mb-2 ${variant === 'cosmic' ? 'text-white' : 'text-gray-900 dark:text-white'}`}
+        className={`text-lg font-semibold mb-2 ${variant === 'cosmic' ? 'text-white' : 'text-slate-900 dark:text-white'}`}
       >
         {title}
       </h3>
       <p
-        className={`text-sm ${variant === 'cosmic' ? 'text-gray-300' : 'text-gray-600 dark:text-gray-400'}`}
+        className={`text-sm ${variant === 'cosmic' ? 'text-slate-300' : 'text-slate-600 dark:text-slate-400'}`}
       >
         {description}
       </p>
@@ -263,12 +263,12 @@ export function StatsCard({ label, value, change, icon, variant = 'default' }: S
       <div className="flex items-center justify-between">
         <div>
           <p
-            className={`text-sm ${variant === 'cosmic' ? 'text-gray-400' : 'text-gray-500 dark:text-gray-400'}`}
+            className={`text-sm ${variant === 'cosmic' ? 'text-slate-400' : 'text-slate-500 dark:text-slate-400'}`}
           >
             {label}
           </p>
           <p
-            className={`text-2xl font-bold mt-1 ${variant === 'cosmic' ? 'text-white' : 'text-gray-900 dark:text-white'}`}
+            className={`text-2xl font-bold mt-1 ${variant === 'cosmic' ? 'text-white' : 'text-slate-900 dark:text-white'}`}
           >
             {value}
           </p>
@@ -284,7 +284,7 @@ export function StatsCard({ label, value, change, icon, variant = 'default' }: S
           <div
             className={`
             p-3 rounded-lg
-            ${variant === 'cosmic' ? 'bg-white/5' : 'bg-gray-100 dark:bg-gray-700'}
+            ${variant === 'cosmic' ? 'bg-white/5' : 'bg-slate-100 dark:bg-slate-700'}
           `}
           >
             {icon}

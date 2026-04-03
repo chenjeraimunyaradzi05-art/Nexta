@@ -397,10 +397,10 @@ export default function AccountingReportPage() {
 
         {/* Report Content */}
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div className="p-6 border-b border-gray-200">
+          <div className="p-6 border-b border-slate-200">
             <div className="text-center">
-              <h2 className="text-xl font-bold text-gray-900">{reportTitles[reportType]}</h2>
-              <p className="text-gray-600 text-sm mt-1">
+              <h2 className="text-xl font-bold text-slate-900">{reportTitles[reportType]}</h2>
+              <p className="text-slate-600 text-sm mt-1">
                 For the period {formatDate(dateRange.startDate)} to {formatDate(dateRange.endDate)}
               </p>
             </div>
@@ -458,15 +458,15 @@ function ProfitLossReport({
     <div className="space-y-8">
       {/* Revenue Section */}
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
           <TrendingUp className="w-5 h-5 text-green-600" />
           Revenue
         </h3>
         <div className="space-y-2">
           {data.revenue.map((item, idx) => (
-            <div key={idx} className="flex justify-between py-2 border-b border-gray-100">
-              <span className="text-gray-700">{item.account}</span>
-              <span className="text-gray-900 font-medium">{formatCurrency(item.amount)}</span>
+            <div key={idx} className="flex justify-between py-2 border-b border-slate-100">
+              <span className="text-slate-700">{item.account}</span>
+              <span className="text-slate-900 font-medium">{formatCurrency(item.amount)}</span>
             </div>
           ))}
           <div className="flex justify-between py-3 bg-green-50 px-4 rounded-lg mt-2">
@@ -478,15 +478,15 @@ function ProfitLossReport({
 
       {/* Expenses Section */}
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
           <TrendingDown className="w-5 h-5 text-red-600" />
           Expenses
         </h3>
         <div className="space-y-2">
           {data.expenses.map((item, idx) => (
-            <div key={idx} className="flex justify-between py-2 border-b border-gray-100">
-              <span className="text-gray-700">{item.account}</span>
-              <span className="text-gray-900 font-medium">{formatCurrency(item.amount)}</span>
+            <div key={idx} className="flex justify-between py-2 border-b border-slate-100">
+              <span className="text-slate-700">{item.account}</span>
+              <span className="text-slate-900 font-medium">{formatCurrency(item.amount)}</span>
             </div>
           ))}
           <div className="flex justify-between py-3 bg-red-50 px-4 rounded-lg mt-2">
@@ -497,7 +497,7 @@ function ProfitLossReport({
       </div>
 
       {/* Net Profit */}
-      <div className="pt-6 border-t-2 border-gray-200">
+      <div className="pt-6 border-t-2 border-slate-200">
         <div
           className={`flex justify-between py-4 px-6 rounded-xl ${
             data.netProfit >= 0 ? 'bg-green-100' : 'bg-red-100'
@@ -531,20 +531,20 @@ function BalanceSheetReport({
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {/* Assets */}
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
           <DollarSign className="w-5 h-5 text-blue-600" />
           Assets
         </h3>
 
         <div className="mb-6">
-          <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">
+          <h4 className="text-sm font-medium text-slate-500 uppercase tracking-wide mb-3">
             Current Assets
           </h4>
           <div className="space-y-2">
             {data.assets.current.map((item, idx) => (
-              <div key={idx} className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-gray-700">{item.account}</span>
-                <span className="text-gray-900">{formatCurrency(item.amount)}</span>
+              <div key={idx} className="flex justify-between py-2 border-b border-slate-100">
+                <span className="text-slate-700">{item.account}</span>
+                <span className="text-slate-900">{formatCurrency(item.amount)}</span>
               </div>
             ))}
             <div className="flex justify-between py-2 text-blue-600 font-medium">
@@ -555,14 +555,14 @@ function BalanceSheetReport({
         </div>
 
         <div className="mb-6">
-          <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">
+          <h4 className="text-sm font-medium text-slate-500 uppercase tracking-wide mb-3">
             Non-Current Assets
           </h4>
           <div className="space-y-2">
             {data.assets.nonCurrent.map((item, idx) => (
-              <div key={idx} className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-gray-700">{item.account}</span>
-                <span className={`text-gray-900 ${item.amount < 0 ? 'text-red-600' : ''}`}>
+              <div key={idx} className="flex justify-between py-2 border-b border-slate-100">
+                <span className="text-slate-700">{item.account}</span>
+                <span className={`text-slate-900 ${item.amount < 0 ? 'text-red-600' : ''}`}>
                   {formatCurrency(item.amount)}
                 </span>
               </div>
@@ -582,20 +582,20 @@ function BalanceSheetReport({
 
       {/* Liabilities & Equity */}
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
           <Activity className="w-5 h-5 text-orange-600" />
           Liabilities & Equity
         </h3>
 
         <div className="mb-6">
-          <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">
+          <h4 className="text-sm font-medium text-slate-500 uppercase tracking-wide mb-3">
             Current Liabilities
           </h4>
           <div className="space-y-2">
             {data.liabilities.current.map((item, idx) => (
-              <div key={idx} className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-gray-700">{item.account}</span>
-                <span className="text-gray-900">{formatCurrency(item.amount)}</span>
+              <div key={idx} className="flex justify-between py-2 border-b border-slate-100">
+                <span className="text-slate-700">{item.account}</span>
+                <span className="text-slate-900">{formatCurrency(item.amount)}</span>
               </div>
             ))}
             <div className="flex justify-between py-2 text-orange-600 font-medium">
@@ -606,14 +606,14 @@ function BalanceSheetReport({
         </div>
 
         <div className="mb-6">
-          <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">
+          <h4 className="text-sm font-medium text-slate-500 uppercase tracking-wide mb-3">
             Non-Current Liabilities
           </h4>
           <div className="space-y-2">
             {data.liabilities.nonCurrent.map((item, idx) => (
-              <div key={idx} className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-gray-700">{item.account}</span>
-                <span className="text-gray-900">{formatCurrency(item.amount)}</span>
+              <div key={idx} className="flex justify-between py-2 border-b border-slate-100">
+                <span className="text-slate-700">{item.account}</span>
+                <span className="text-slate-900">{formatCurrency(item.amount)}</span>
               </div>
             ))}
             <div className="flex justify-between py-2 text-orange-600 font-medium">
@@ -629,14 +629,14 @@ function BalanceSheetReport({
         </div>
 
         <div className="mb-6">
-          <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">
+          <h4 className="text-sm font-medium text-slate-500 uppercase tracking-wide mb-3">
             Owner&apos;s Equity
           </h4>
           <div className="space-y-2">
             {data.equity.map((item, idx) => (
-              <div key={idx} className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-gray-700">{item.account}</span>
-                <span className="text-gray-900">{formatCurrency(item.amount)}</span>
+              <div key={idx} className="flex justify-between py-2 border-b border-slate-100">
+                <span className="text-slate-700">{item.account}</span>
+                <span className="text-slate-900">{formatCurrency(item.amount)}</span>
               </div>
             ))}
           </div>
@@ -647,9 +647,9 @@ function BalanceSheetReport({
           <span className="font-bold text-purple-700">{formatCurrency(data.totalEquity)}</span>
         </div>
 
-        <div className="flex justify-between py-3 bg-gray-100 px-4 rounded-lg">
-          <span className="font-bold text-gray-700">TOTAL LIABILITIES & EQUITY</span>
-          <span className="font-bold text-gray-700">
+        <div className="flex justify-between py-3 bg-slate-100 px-4 rounded-lg">
+          <span className="font-bold text-slate-700">TOTAL LIABILITIES & EQUITY</span>
+          <span className="font-bold text-slate-700">
             {formatCurrency(data.totalLiabilities + data.totalEquity)}
           </span>
         </div>
@@ -669,13 +669,13 @@ function CashFlowReport({
     <div className="space-y-8">
       {/* Operating Activities */}
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <h3 className="text-lg font-semibold text-slate-900 mb-4">
           Cash Flows from Operating Activities
         </h3>
         <div className="space-y-2">
           {data.operating.map((item, idx) => (
-            <div key={idx} className="flex justify-between py-2 border-b border-gray-100">
-              <span className="text-gray-700">{item.description}</span>
+            <div key={idx} className="flex justify-between py-2 border-b border-slate-100">
+              <span className="text-slate-700">{item.description}</span>
               <span className={`font-medium ${item.amount >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                 {formatCurrency(item.amount)}
               </span>
@@ -692,13 +692,13 @@ function CashFlowReport({
 
       {/* Investing Activities */}
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <h3 className="text-lg font-semibold text-slate-900 mb-4">
           Cash Flows from Investing Activities
         </h3>
         <div className="space-y-2">
           {data.investing.map((item, idx) => (
-            <div key={idx} className="flex justify-between py-2 border-b border-gray-100">
-              <span className="text-gray-700">{item.description}</span>
+            <div key={idx} className="flex justify-between py-2 border-b border-slate-100">
+              <span className="text-slate-700">{item.description}</span>
               <span className={`font-medium ${item.amount >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                 {formatCurrency(item.amount)}
               </span>
@@ -715,13 +715,13 @@ function CashFlowReport({
 
       {/* Financing Activities */}
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <h3 className="text-lg font-semibold text-slate-900 mb-4">
           Cash Flows from Financing Activities
         </h3>
         <div className="space-y-2">
           {data.financing.map((item, idx) => (
-            <div key={idx} className="flex justify-between py-2 border-b border-gray-100">
-              <span className="text-gray-700">{item.description}</span>
+            <div key={idx} className="flex justify-between py-2 border-b border-slate-100">
+              <span className="text-slate-700">{item.description}</span>
               <span className={`font-medium ${item.amount >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                 {formatCurrency(item.amount)}
               </span>
@@ -737,16 +737,16 @@ function CashFlowReport({
       </div>
 
       {/* Summary */}
-      <div className="pt-6 border-t-2 border-gray-200 space-y-3">
+      <div className="pt-6 border-t-2 border-slate-200 space-y-3">
         <div className="flex justify-between py-2">
-          <span className="text-gray-700">Net Change in Cash</span>
+          <span className="text-slate-700">Net Change in Cash</span>
           <span className={`font-semibold ${data.netChange >= 0 ? 'text-green-600' : 'text-red-600'}`}>
             {formatCurrency(data.netChange)}
           </span>
         </div>
         <div className="flex justify-between py-2">
-          <span className="text-gray-700">Opening Cash Balance</span>
-          <span className="text-gray-900 font-medium">{formatCurrency(data.openingBalance)}</span>
+          <span className="text-slate-700">Opening Cash Balance</span>
+          <span className="text-slate-900 font-medium">{formatCurrency(data.openingBalance)}</span>
         </div>
         <div className="flex justify-between py-4 px-6 bg-green-100 rounded-xl">
           <span className="text-lg font-bold text-green-700">Closing Cash Balance</span>
@@ -770,36 +770,36 @@ function TrialBalanceReport({
     <div>
       <table className="w-full">
         <thead>
-          <tr className="border-b-2 border-gray-200">
-            <th className="py-3 text-left text-gray-500 text-sm font-medium">Code</th>
-            <th className="py-3 text-left text-gray-500 text-sm font-medium">Account Name</th>
-            <th className="py-3 text-right text-gray-500 text-sm font-medium">Debit</th>
-            <th className="py-3 text-right text-gray-500 text-sm font-medium">Credit</th>
+          <tr className="border-b-2 border-slate-200">
+            <th className="py-3 text-left text-slate-500 text-sm font-medium">Code</th>
+            <th className="py-3 text-left text-slate-500 text-sm font-medium">Account Name</th>
+            <th className="py-3 text-right text-slate-500 text-sm font-medium">Debit</th>
+            <th className="py-3 text-right text-slate-500 text-sm font-medium">Credit</th>
           </tr>
         </thead>
         <tbody>
           {data.accounts.map((account, idx) => (
-            <tr key={idx} className="border-b border-gray-100">
-              <td className="py-3 text-gray-500 font-mono text-sm">{account.code}</td>
-              <td className="py-3 text-gray-900">{account.name}</td>
-              <td className="py-3 text-right text-gray-900">
+            <tr key={idx} className="border-b border-slate-100">
+              <td className="py-3 text-slate-500 font-mono text-sm">{account.code}</td>
+              <td className="py-3 text-slate-900">{account.name}</td>
+              <td className="py-3 text-right text-slate-900">
                 {account.debit > 0 ? formatCurrency(account.debit) : '-'}
               </td>
-              <td className="py-3 text-right text-gray-900">
+              <td className="py-3 text-right text-slate-900">
                 {account.credit > 0 ? formatCurrency(account.credit) : '-'}
               </td>
             </tr>
           ))}
         </tbody>
         <tfoot>
-          <tr className="border-t-2 border-gray-200">
-            <td colSpan={2} className="py-4 font-bold text-gray-900">
+          <tr className="border-t-2 border-slate-200">
+            <td colSpan={2} className="py-4 font-bold text-slate-900">
               TOTALS
             </td>
-            <td className="py-4 text-right font-bold text-gray-900">
+            <td className="py-4 text-right font-bold text-slate-900">
               {formatCurrency(data.totalDebits)}
             </td>
-            <td className="py-4 text-right font-bold text-gray-900">
+            <td className="py-4 text-right font-bold text-slate-900">
               {formatCurrency(data.totalCredits)}
             </td>
           </tr>

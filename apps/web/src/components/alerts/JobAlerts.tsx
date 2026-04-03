@@ -192,22 +192,22 @@ function AlertCard({
   };
 
   return (
-    <div className={`bg-white dark:bg-gray-800 rounded-xl border ${
+    <div className={`bg-white dark:bg-slate-800 rounded-xl border ${
       alert.isActive 
-        ? 'border-gray-200 dark:border-gray-700' 
-        : 'border-gray-100 dark:border-gray-800 opacity-60'
+        ? 'border-slate-200 dark:border-slate-700' 
+        : 'border-slate-100 dark:border-slate-800 opacity-60'
     } p-6`}>
       <div className="flex items-start justify-between gap-4 mb-4">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="font-semibold text-gray-900 dark:text-white">{alert.name}</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white">{alert.name}</h3>
             {!alert.isActive && (
-              <span className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-500 text-xs rounded">
+              <span className="px-2 py-0.5 bg-slate-100 dark:bg-slate-700 text-slate-500 text-xs rounded">
                 Paused
               </span>
             )}
           </div>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-sm text-slate-500 mt-1">
             {frequencyLabels[alert.frequency]}
           </p>
         </div>
@@ -215,7 +215,7 @@ function AlertCard({
           <button
             onClick={onToggle}
             className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-              alert.isActive ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'
+              alert.isActive ? 'bg-blue-500' : 'bg-slate-300 dark:bg-slate-600'
             }`}
           >
             <span
@@ -231,26 +231,26 @@ function AlertCard({
       <div className="space-y-2 mb-4">
         {alert.keywords.length > 0 && (
           <div className="flex items-start gap-2 text-sm">
-            <span className="text-gray-400">🔍</span>
-            <span className="text-gray-600 dark:text-gray-400">{alert.keywords.join(', ')}</span>
+            <span className="text-slate-400">🔍</span>
+            <span className="text-slate-600 dark:text-slate-400">{alert.keywords.join(', ')}</span>
           </div>
         )}
         {alert.locations.length > 0 && (
           <div className="flex items-start gap-2 text-sm">
-            <span className="text-gray-400">📍</span>
-            <span className="text-gray-600 dark:text-gray-400">{alert.locations.join(', ')}</span>
+            <span className="text-slate-400">📍</span>
+            <span className="text-slate-600 dark:text-slate-400">{alert.locations.join(', ')}</span>
           </div>
         )}
         {alert.industries.length > 0 && (
           <div className="flex items-start gap-2 text-sm">
-            <span className="text-gray-400">🏢</span>
-            <span className="text-gray-600 dark:text-gray-400">{alert.industries.join(', ')}</span>
+            <span className="text-slate-400">🏢</span>
+            <span className="text-slate-600 dark:text-slate-400">{alert.industries.join(', ')}</span>
           </div>
         )}
         {alert.salaryRange.min || alert.salaryRange.max ? (
           <div className="flex items-start gap-2 text-sm">
-            <span className="text-gray-400">💰</span>
-            <span className="text-gray-600 dark:text-gray-400">
+            <span className="text-slate-400">💰</span>
+            <span className="text-slate-600 dark:text-slate-400">
               {alert.salaryRange.min && alert.salaryRange.max
                 ? `$${alert.salaryRange.min.toLocaleString()} - $${alert.salaryRange.max.toLocaleString()}`
                 : alert.salaryRange.min
@@ -371,13 +371,13 @@ function AlertModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700 sticky top-0 bg-white dark:bg-gray-800">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700 sticky top-0 bg-white dark:bg-slate-800">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">
               {alert ? 'Edit Alert' : 'Create Job Alert'}
             </h2>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+            <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -388,7 +388,7 @@ function AlertModal({
         <div className="p-6 space-y-6">
           {/* Alert Name */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Alert Name *
             </label>
             <input
@@ -396,13 +396,13 @@ function AlertModal({
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g., Software Engineer Jobs in Sydney"
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
 
           {/* Keywords */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Keywords
             </label>
             <div className="flex gap-2 mb-2">
@@ -412,7 +412,7 @@ function AlertModal({
                 onChange={(e) => setKeywordInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addKeyword())}
                 placeholder="Add keyword..."
-                className="flex-1 px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="flex-1 px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               />
               <Button onClick={addKeyword}>Add</Button>
             </div>
@@ -437,7 +437,7 @@ function AlertModal({
 
           {/* Locations */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Locations
             </label>
             <div className="flex flex-wrap gap-2">
@@ -448,7 +448,7 @@ function AlertModal({
                   className={`px-3 py-1 rounded-full text-sm transition-colors ${
                     locations.includes(city)
                       ? 'bg-blue-500 text-white'
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                      : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-200'
                   }`}
                 >
                   {city}
@@ -459,7 +459,7 @@ function AlertModal({
 
           {/* Industries */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Industries
             </label>
             <div className="flex flex-wrap gap-2">
@@ -470,7 +470,7 @@ function AlertModal({
                   className={`px-3 py-1 rounded-full text-sm transition-colors ${
                     selectedIndustries.includes(industry)
                       ? 'bg-blue-500 text-white'
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                      : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-200'
                   }`}
                 >
                   {industry}
@@ -481,7 +481,7 @@ function AlertModal({
 
           {/* Job Types */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Job Types
             </label>
             <div className="flex flex-wrap gap-2">
@@ -492,7 +492,7 @@ function AlertModal({
                   className={`px-3 py-1 rounded-full text-sm transition-colors ${
                     selectedJobTypes.includes(type.value)
                       ? 'bg-blue-500 text-white'
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                      : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-200'
                   }`}
                 >
                   {type.label}
@@ -504,13 +504,13 @@ function AlertModal({
           {/* Experience Level & Remote */}
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 Experience Level
               </label>
               <select
                 value={experienceLevel}
                 onChange={(e) => setExperienceLevel(e.target.value as JobAlert['experienceLevel'])}
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               >
                 {experienceLevels.map((level) => (
                   <option key={level.value} value={level.value}>{level.label}</option>
@@ -518,13 +518,13 @@ function AlertModal({
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 Work Arrangement
               </label>
               <select
                 value={remotePreference}
                 onChange={(e) => setRemotePreference(e.target.value as JobAlert['remotePreference'])}
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               >
                 {remoteOptions.map((option) => (
                   <option key={option.value} value={option.value}>{option.label}</option>
@@ -535,7 +535,7 @@ function AlertModal({
 
           {/* Salary Range */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Salary Range (Annual)
             </label>
             <div className="flex items-center gap-4">
@@ -545,17 +545,17 @@ function AlertModal({
                   value={salaryMin}
                   onChange={(e) => setSalaryMin(e.target.value)}
                   placeholder="Min"
-                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                 />
               </div>
-              <span className="text-gray-400">to</span>
+              <span className="text-slate-400">to</span>
               <div className="flex-1">
                 <input
                   type="number"
                   value={salaryMax}
                   onChange={(e) => setSalaryMax(e.target.value)}
                   placeholder="Max"
-                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                 />
               </div>
             </div>
@@ -563,7 +563,7 @@ function AlertModal({
 
           {/* Frequency */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Notification Frequency
             </label>
             <div className="grid grid-cols-3 gap-3">
@@ -574,18 +574,18 @@ function AlertModal({
                   className={`p-4 rounded-lg border-2 transition-colors text-left ${
                     frequency === freq.value
                       ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                      : 'border-gray-200 dark:border-gray-600 hover:border-gray-300'
+                      : 'border-slate-200 dark:border-slate-600 hover:border-slate-300'
                   }`}
                 >
-                  <div className="font-medium text-gray-900 dark:text-white">{freq.label}</div>
-                  <div className="text-xs text-gray-500 mt-1">{freq.description}</div>
+                  <div className="font-medium text-slate-900 dark:text-white">{freq.label}</div>
+                  <div className="text-xs text-slate-500 mt-1">{freq.description}</div>
                 </button>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex gap-3 sticky bottom-0 bg-white dark:bg-gray-800">
+        <div className="p-6 border-t border-slate-200 dark:border-slate-700 flex gap-3 sticky bottom-0 bg-white dark:bg-slate-800">
           <Button variant="outline" onClick={onClose} className="flex-1">Cancel</Button>
           <Button onClick={handleSave} className="flex-1" disabled={!name.trim()}>
             {alert ? 'Save Changes' : 'Create Alert'}
@@ -610,14 +610,14 @@ function MatchesModal({
 }) {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700 sticky top-0 bg-white dark:bg-gray-800">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700 sticky top-0 bg-white dark:bg-slate-800">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">Matching Jobs</h2>
-              <p className="text-gray-500 text-sm mt-1">{alert.name}</p>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Matching Jobs</h2>
+              <p className="text-slate-500 text-sm mt-1">{alert.name}</p>
             </div>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+            <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -634,27 +634,27 @@ function MatchesModal({
                   onClick={() => onViewJob(match.job.id)}
                   className={`w-full text-left p-4 rounded-xl border transition-colors hover:border-blue-300 ${
                     match.isViewed
-                      ? 'bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700'
-                      : 'bg-white dark:bg-gray-800 border-blue-200 dark:border-blue-800'
+                      ? 'bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700'
+                      : 'bg-white dark:bg-slate-800 border-blue-200 dark:border-blue-800'
                   }`}
                 >
                   <div className="flex items-start gap-4">
                     {match.job.logo ? (
                       <OptimizedImage src={toCloudinaryAutoUrl(match.job.logo)} alt={match.job.company} width={48} height={48} className="w-12 h-12 rounded-lg object-cover" />
                     ) : (
-                      <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center text-xl">
+                      <div className="w-12 h-12 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center text-xl">
                         🏢
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <h3 className="font-medium text-gray-900 dark:text-white">{match.job.title}</h3>
+                        <h3 className="font-medium text-slate-900 dark:text-white">{match.job.title}</h3>
                         {!match.isViewed && (
                           <span className="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded-full">New</span>
                         )}
                       </div>
-                      <p className="text-sm text-gray-500">{match.job.company}</p>
-                      <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
+                      <p className="text-sm text-slate-500">{match.job.company}</p>
+                      <div className="flex items-center gap-4 mt-2 text-sm text-slate-500">
                         <span>📍 {match.job.location}</span>
                         {match.job.salary && <span>💰 {match.job.salary}</span>}
                         {match.job.isRemote && (
@@ -662,7 +662,7 @@ function MatchesModal({
                         )}
                       </div>
                     </div>
-                    <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </div>
@@ -672,8 +672,8 @@ function MatchesModal({
           ) : (
             <div className="text-center py-12">
               <div className="text-6xl mb-4">🔍</div>
-              <h3 className="font-medium text-gray-900 dark:text-white">No matches yet</h3>
-              <p className="text-gray-500 mt-2">We'll notify you when matching jobs are posted</p>
+              <h3 className="font-medium text-slate-900 dark:text-white">No matches yet</h3>
+              <p className="text-slate-500 mt-2">We'll notify you when matching jobs are posted</p>
             </div>
           )}
         </div>
@@ -774,8 +774,8 @@ export function JobAlerts() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Job Alerts</h1>
-          <p className="text-gray-500 mt-1">Get notified when new jobs match your criteria</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Job Alerts</h1>
+          <p className="text-slate-500 mt-1">Get notified when new jobs match your criteria</p>
         </div>
         <Button onClick={() => setShowModal(true)}>
           <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -787,17 +787,17 @@ export function JobAlerts() {
 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mb-8">
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
-          <div className="text-2xl font-bold text-gray-900 dark:text-white">{alerts.length}</div>
-          <div className="text-sm text-gray-500">Total Alerts</div>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
+          <div className="text-2xl font-bold text-slate-900 dark:text-white">{alerts.length}</div>
+          <div className="text-sm text-slate-500">Total Alerts</div>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
           <div className="text-2xl font-bold text-green-600">{alerts.filter(a => a.isActive).length}</div>
-          <div className="text-sm text-gray-500">Active</div>
+          <div className="text-sm text-slate-500">Active</div>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
           <div className="text-2xl font-bold text-blue-600">{alerts.reduce((acc, a) => acc + a.matchCount, 0)}</div>
-          <div className="text-sm text-gray-500">Total Matches</div>
+          <div className="text-sm text-slate-500">Total Matches</div>
         </div>
       </div>
 
@@ -816,10 +816,10 @@ export function JobAlerts() {
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+        <div className="text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
           <div className="text-6xl mb-4">🔔</div>
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">No job alerts yet</h3>
-          <p className="text-gray-500 mt-2 mb-6">Create your first alert to get notified about matching jobs</p>
+          <h3 className="text-lg font-medium text-slate-900 dark:text-white">No job alerts yet</h3>
+          <p className="text-slate-500 mt-2 mb-6">Create your first alert to get notified about matching jobs</p>
           <Button onClick={() => setShowModal(true)}>Create Job Alert</Button>
         </div>
       )}

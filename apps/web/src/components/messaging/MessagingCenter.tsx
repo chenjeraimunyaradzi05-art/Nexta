@@ -156,7 +156,7 @@ function ConversationItem({
   return (
     <button
       onClick={onClick}
-      className={`w-full p-3 flex items-start gap-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${
+      className={`w-full p-3 flex items-start gap-3 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors ${
         isActive ? 'bg-blue-50 dark:bg-blue-900/20' : ''
       }`}
     >
@@ -182,7 +182,7 @@ function ConversationItem({
           </div>
         )}
         {isOnline && (
-          <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-gray-800 rounded-full" />
+          <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-slate-800 rounded-full" />
         )}
       </div>
 
@@ -190,12 +190,12 @@ function ConversationItem({
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between">
           <h4 className={`font-medium truncate ${
-            conversation.unreadCount > 0 ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'
+            conversation.unreadCount > 0 ? 'text-slate-900 dark:text-white' : 'text-slate-700 dark:text-slate-300'
           }`}>
             {displayName}
           </h4>
           {conversation.lastMessage && (
-            <span className="text-xs text-gray-400 flex-shrink-0 ml-2">
+            <span className="text-xs text-slate-400 flex-shrink-0 ml-2">
               {formatMessageTime(conversation.lastMessage.createdAt)}
             </span>
           )}
@@ -203,8 +203,8 @@ function ConversationItem({
         {conversation.lastMessage && (
           <p className={`text-sm truncate ${
             conversation.unreadCount > 0 
-              ? 'text-gray-900 dark:text-white font-medium' 
-              : 'text-gray-500'
+              ? 'text-slate-900 dark:text-white font-medium' 
+              : 'text-slate-500'
           }`}>
             {conversation.lastMessage.content}
           </p>
@@ -234,7 +234,7 @@ function MessageBubble({
   if (message.type === 'system') {
     return (
       <div className="text-center py-2">
-        <span className="text-xs text-gray-500 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
+        <span className="text-xs text-slate-500 bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full">
           {message.content}
         </span>
       </div>
@@ -254,7 +254,7 @@ function MessageBubble({
             className="w-8 h-8 rounded-full flex-shrink-0"
           />
         ) : (
-          <div className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-sm font-medium text-gray-600">
+          <div className="w-8 h-8 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center text-sm font-medium text-slate-600">
             {message.sender.name.charAt(0)}
           </div>
         )
@@ -268,7 +268,7 @@ function MessageBubble({
           className={`px-4 py-2 rounded-2xl ${
             isOwn
               ? 'bg-blue-500 text-white rounded-br-md'
-              : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded-bl-md'
+              : 'bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white rounded-bl-md'
           }`}
         >
           {/* Image */}
@@ -297,7 +297,7 @@ function MessageBubble({
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`flex items-center gap-2 p-2 rounded-lg ${
-                    isOwn ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-600'
+                    isOwn ? 'bg-blue-600' : 'bg-slate-200 dark:bg-slate-600'
                   }`}
                 >
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -314,7 +314,7 @@ function MessageBubble({
         </div>
 
         {/* Time */}
-        <span className={`text-xs text-gray-400 mt-1 ${isOwn ? 'text-right' : ''}`}>
+        <span className={`text-xs text-slate-400 mt-1 ${isOwn ? 'text-right' : ''}`}>
           {new Date(message.createdAt).toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' })}
           {isOwn && message.isRead && ' ✓✓'}
         </span>
@@ -368,10 +368,10 @@ function NewConversationModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full">
-        <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">New Conversation</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-md w-full">
+        <div className="p-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">New Conversation</h2>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -405,8 +405,8 @@ function NewConversationModal({
               value={groupName}
               onChange={(e) => setGroupName(e.target.value)}
               placeholder="Group name (optional)"
-              className="w-full px-4 py-2 mb-4 border border-gray-200 dark:border-gray-600 rounded-lg
-                bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 mb-4 border border-slate-200 dark:border-slate-600 rounded-lg
+                bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           )}
 
@@ -418,12 +418,12 @@ function NewConversationModal({
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
               placeholder="Search users..."
-              className="w-full px-4 py-2 pr-10 border border-gray-200 dark:border-gray-600 rounded-lg
-                bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 pr-10 border border-slate-200 dark:border-slate-600 rounded-lg
+                bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
             <button
               onClick={handleSearch}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -446,7 +446,7 @@ function NewConversationModal({
                     className={`w-full p-3 flex items-center gap-3 rounded-lg transition-colors ${
                       selectedUsers.find(u => u.id === user.id)
                         ? 'bg-blue-50 dark:bg-blue-900/20'
-                        : 'hover:bg-gray-50 dark:hover:bg-gray-700'
+                        : 'hover:bg-slate-50 dark:hover:bg-slate-700'
                     }`}
                   >
                     {user.avatar ? (
@@ -458,12 +458,12 @@ function NewConversationModal({
                         className="w-10 h-10 rounded-full"
                       />
                     ) : (
-                      <div className="w-10 h-10 bg-gray-100 dark:bg-gray-600 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 font-medium">
+                      <div className="w-10 h-10 bg-slate-100 dark:bg-slate-600 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 font-medium">
                         {user.name.charAt(0)}
                       </div>
                     )}
                     <div className="flex-1 text-left">
-                      <p className="font-medium text-gray-900 dark:text-white">{user.name}</p>
+                      <p className="font-medium text-slate-900 dark:text-white">{user.name}</p>
                     </div>
                     {selectedUsers.find(u => u.id === user.id) && (
                       <svg className="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
@@ -474,14 +474,14 @@ function NewConversationModal({
                 ))}
               </div>
             ) : searchQuery ? (
-              <p className="text-center text-gray-500 py-4">No users found</p>
+              <p className="text-center text-slate-500 py-4">No users found</p>
             ) : (
-              <p className="text-center text-gray-400 py-4">Search for users to start a conversation</p>
+              <p className="text-center text-slate-400 py-4">Search for users to start a conversation</p>
             )}
           </div>
         </div>
 
-        <div className="p-4 border-t border-gray-200 dark:border-gray-700 flex gap-2">
+        <div className="p-4 border-t border-slate-200 dark:border-slate-700 flex gap-2">
           <Button variant="outline" className="flex-1" onClick={onClose}>Cancel</Button>
           <Button className="flex-1" onClick={handleCreate} disabled={selectedUsers.length === 0}>
             Start Conversation
@@ -594,12 +594,12 @@ export function MessagingCenter() {
   }
 
   return (
-    <div className="h-[calc(100vh-120px)] flex bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="h-[calc(100vh-120px)] flex bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
       {/* Sidebar */}
-      <div className="w-80 border-r border-gray-200 dark:border-gray-700 flex flex-col">
+      <div className="w-80 border-r border-slate-200 dark:border-slate-700 flex flex-col">
         {/* Header */}
-        <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Messages</h2>
+        <div className="p-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Messages</h2>
           <button
             onClick={() => setShowNewModal(true)}
             className="p-2 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg"
@@ -623,7 +623,7 @@ export function MessagingCenter() {
               />
             ))
           ) : (
-            <div className="p-4 text-center text-gray-500">
+            <div className="p-4 text-center text-slate-500">
               <p>No conversations yet</p>
               <button
                 onClick={() => setShowNewModal(true)}
@@ -641,7 +641,7 @@ export function MessagingCenter() {
         {activeConversation ? (
           <>
             {/* Chat Header */}
-            <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center gap-3">
+            <div className="p-4 border-b border-slate-200 dark:border-slate-700 flex items-center gap-3">
               {activeConversation.type === 'group' ? (
                 <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center text-purple-600">
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -664,11 +664,11 @@ export function MessagingCenter() {
                 )
               )}
               <div>
-                <h3 className="font-medium text-gray-900 dark:text-white">
+                <h3 className="font-medium text-slate-900 dark:text-white">
                   {activeConversation.name || activeConversation.participants.filter(p => p.id !== user?.id).map(p => p.name).join(', ')}
                 </h3>
                 {activeConversation.type === 'direct' && (
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-slate-500">
                     {activeConversation.participants.filter(p => p.id !== user?.id)[0]?.isOnline 
                       ? 'Online' 
                       : 'Offline'}
@@ -697,7 +697,7 @@ export function MessagingCenter() {
                   );
                 })
               ) : (
-                <div className="text-center text-gray-500 py-8">
+                <div className="text-center text-slate-500 py-8">
                   <p>No messages yet</p>
                   <p className="text-sm">Send a message to start the conversation</p>
                 </div>
@@ -706,7 +706,7 @@ export function MessagingCenter() {
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+            <div className="p-4 border-t border-slate-200 dark:border-slate-700">
               <div className="flex items-end gap-2">
                 <input
                   ref={fileInputRef}
@@ -716,7 +716,7 @@ export function MessagingCenter() {
                 />
                 <button
                   onClick={() => fileInputRef.current?.click()}
-                  className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                  className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg"
                 >
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
@@ -734,8 +734,8 @@ export function MessagingCenter() {
                     }}
                     placeholder="Type a message..."
                     rows={1}
-                    className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-xl
-                      bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+                    className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-xl
+                      bg-white dark:bg-slate-700 text-slate-900 dark:text-white resize-none"
                   />
                 </div>
                 <Button onClick={handleSend} disabled={!newMessage.trim() || isSending}>
@@ -751,11 +751,11 @@ export function MessagingCenter() {
             </div>
           </>
         ) : (
-          <div className="flex-1 flex flex-col items-center justify-center text-gray-500">
+          <div className="flex-1 flex flex-col items-center justify-center text-slate-500">
             <svg className="w-16 h-16 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
             </svg>
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white">Select a conversation</h3>
+            <h3 className="text-lg font-medium text-slate-900 dark:text-white">Select a conversation</h3>
             <p className="text-sm">Or start a new one</p>
           </div>
         )}

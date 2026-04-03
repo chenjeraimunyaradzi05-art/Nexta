@@ -486,7 +486,7 @@ export default function CashbookDetailPage() {
       {/* New Entry Modal */}
       {showNewEntry && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-md bg-gray-900 rounded-2xl border border-white/10 p-6">
+          <div className="w-full max-w-md bg-slate-900 rounded-2xl border border-white/10 p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-white">Add Entry</h2>
               <button
@@ -606,7 +606,7 @@ export default function CashbookDetailPage() {
       {/* Edit Entry Modal */}
       {editingEntry && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-md bg-gray-900 rounded-2xl border border-white/10 p-6">
+          <div className="w-full max-w-md bg-slate-900 rounded-2xl border border-white/10 p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-white">Edit Entry</h2>
               <button
@@ -714,7 +714,7 @@ export default function CashbookDetailPage() {
       {/* Settings Modal */}
       {showSettings && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-md bg-gray-900 rounded-2xl border border-white/10 p-6">
+          <div className="w-full max-w-md bg-slate-900 rounded-2xl border border-white/10 p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-white">Cashbook Settings</h2>
               <button

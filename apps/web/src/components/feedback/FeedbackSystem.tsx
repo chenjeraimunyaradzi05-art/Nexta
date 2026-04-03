@@ -136,7 +136,7 @@ const feedbackTypes: { value: FeedbackType; label: string; icon: string; descrip
     label: 'Other',
     icon: '📝',
     description: 'General feedback',
-    color: 'bg-gray-100 text-gray-700 border-gray-200',
+    color: 'bg-slate-100 text-slate-700 border-slate-200',
   },
 ];
 
@@ -156,7 +156,7 @@ const categoryOptions = [
 ];
 
 const statusConfig = {
-  new: { label: 'New', color: 'bg-gray-100 text-gray-700', icon: '🆕' },
+  new: { label: 'New', color: 'bg-slate-100 text-slate-700', icon: '🆕' },
   reviewing: { label: 'Reviewing', color: 'bg-yellow-100 text-yellow-700', icon: '👀' },
   planned: { label: 'Planned', color: 'bg-blue-100 text-blue-700', icon: '📋' },
   'in-progress': { label: 'In Progress', color: 'bg-purple-100 text-purple-700', icon: '⚙️' },
@@ -185,7 +185,7 @@ function FeedbackCard({
 
   return (
     <div
-      className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 hover:border-blue-300 transition-colors cursor-pointer"
+      className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5 hover:border-blue-300 transition-colors cursor-pointer"
       onClick={onClick}
     >
       <div className="flex items-start gap-4">
@@ -198,7 +198,7 @@ function FeedbackCard({
           className={`flex flex-col items-center px-3 py-2 rounded-lg transition-colors ${
             feedback.hasVoted
               ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600'
-              : 'bg-gray-100 dark:bg-gray-700 text-gray-500 hover:bg-blue-50 dark:hover:bg-blue-900/20'
+              : 'bg-slate-100 dark:bg-slate-700 text-slate-500 hover:bg-blue-50 dark:hover:bg-blue-900/20'
           }`}
         >
           <svg className="w-5 h-5" fill={feedback.hasVoted ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor">
@@ -214,18 +214,18 @@ function FeedbackCard({
               <span className={`px-2 py-0.5 text-xs font-medium rounded-full border ${typeInfo?.color}`}>
                 {typeInfo?.icon} {typeInfo?.label}
               </span>
-              <span className="text-xs text-gray-500">{feedback.category}</span>
+              <span className="text-xs text-slate-500">{feedback.category}</span>
             </div>
             <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${status.color}`}>
               {status.icon} {status.label}
             </span>
           </div>
 
-          <h3 className="font-medium text-gray-900 dark:text-white mb-1">{feedback.title}</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">{feedback.description}</p>
+          <h3 className="font-medium text-slate-900 dark:text-white mb-1">{feedback.title}</h3>
+          <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">{feedback.description}</p>
 
           <div className="flex items-center justify-between mt-3">
-            <span className="text-xs text-gray-500">
+            <span className="text-xs text-slate-500">
               {new Date(feedback.createdAt).toLocaleDateString('en-AU')}
             </span>
             {feedback.response && (
@@ -244,7 +244,7 @@ function FeedbackCard({
           <div className="flex gap-1" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={onEdit}
-              className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+              className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -252,7 +252,7 @@ function FeedbackCard({
             </button>
             <button
               onClick={onDelete}
-              className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+              className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -280,8 +280,8 @@ function FeedbackDetailModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700">
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-3">
               <span className="text-3xl">{typeInfo?.icon}</span>
@@ -294,10 +294,10 @@ function FeedbackDetailModal({
                     {status.icon} {status.label}
                   </span>
                 </div>
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white">{feedback.title}</h2>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">{feedback.title}</h2>
               </div>
             </div>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+            <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -313,7 +313,7 @@ function FeedbackDetailModal({
               className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
                 feedback.hasVoted
                   ? 'bg-blue-100 text-blue-600 dark:bg-blue-900/30'
-                  : 'bg-gray-100 text-gray-600 dark:bg-gray-700 hover:bg-blue-50'
+                  : 'bg-slate-100 text-slate-600 dark:bg-slate-700 hover:bg-blue-50'
               }`}
             >
               <svg className="w-5 h-5" fill={feedback.hasVoted ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor">
@@ -321,10 +321,10 @@ function FeedbackDetailModal({
               </svg>
               {feedback.votes} votes
             </button>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-slate-500">
               Category: <strong>{feedback.category}</strong>
             </span>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-slate-500">
               {new Date(feedback.createdAt).toLocaleDateString('en-AU', {
                 year: 'numeric',
                 month: 'long',
@@ -335,14 +335,14 @@ function FeedbackDetailModal({
 
           {/* Description */}
           <div>
-            <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Description</h3>
-            <p className="text-gray-600 dark:text-gray-400 whitespace-pre-wrap">{feedback.description}</p>
+            <h3 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Description</h3>
+            <p className="text-slate-600 dark:text-slate-400 whitespace-pre-wrap">{feedback.description}</p>
           </div>
 
           {/* Attachments */}
           {feedback.attachments && feedback.attachments.length > 0 && (
             <div>
-              <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Attachments</h3>
+              <h3 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Attachments</h3>
               <div className="flex gap-2">
                 {feedback.attachments.map((att, idx) => (
                   <a
@@ -350,7 +350,7 @@ function FeedbackDetailModal({
                     href={att}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm text-blue-600 hover:underline"
+                    className="px-3 py-2 bg-slate-100 dark:bg-slate-700 rounded-lg text-sm text-blue-600 hover:underline"
                   >
                     Attachment {idx + 1}
                   </a>
@@ -403,13 +403,13 @@ function SubmitFeedbackModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700 sticky top-0 bg-white dark:bg-gray-800">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700 sticky top-0 bg-white dark:bg-slate-800">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">
               {feedback ? 'Edit Feedback' : 'Submit Feedback'}
             </h2>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+            <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -420,7 +420,7 @@ function SubmitFeedbackModal({
         <div className="p-6 space-y-6">
           {/* Type Selection */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">
               What type of feedback? *
             </label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -431,12 +431,12 @@ function SubmitFeedbackModal({
                   className={`p-3 rounded-lg border-2 transition-colors text-left ${
                     type === ft.value
                       ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                      : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
+                      : 'border-slate-200 dark:border-slate-700 hover:border-slate-300'
                   }`}
                 >
                   <span className="text-2xl">{ft.icon}</span>
-                  <p className="font-medium text-gray-900 dark:text-white mt-1">{ft.label}</p>
-                  <p className="text-xs text-gray-500 mt-0.5">{ft.description}</p>
+                  <p className="font-medium text-slate-900 dark:text-white mt-1">{ft.label}</p>
+                  <p className="text-xs text-slate-500 mt-0.5">{ft.description}</p>
                 </button>
               ))}
             </div>
@@ -444,13 +444,13 @@ function SubmitFeedbackModal({
 
           {/* Category */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Category *
             </label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             >
               <option value="">Select category...</option>
               {categoryOptions.map((cat) => (
@@ -461,7 +461,7 @@ function SubmitFeedbackModal({
 
           {/* Title */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Title *
             </label>
             <input
@@ -469,13 +469,13 @@ function SubmitFeedbackModal({
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Brief summary of your feedback"
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Description *
             </label>
             <textarea
@@ -486,14 +486,14 @@ function SubmitFeedbackModal({
                 ? 'Please describe what happened, what you expected, and steps to reproduce...'
                 : 'Please provide details about your feedback...'
               }
-              className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-3 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
 
           {/* Priority (for bugs) */}
           {type === 'bug' && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 Priority
               </label>
               <div className="flex gap-2">
@@ -504,7 +504,7 @@ function SubmitFeedbackModal({
                     className={`px-4 py-2 rounded-lg capitalize border transition-colors ${
                       priority === p
                         ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                        : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
+                        : 'border-slate-200 dark:border-slate-700 hover:border-slate-300'
                     }`}
                   >
                     {p}
@@ -515,15 +515,15 @@ function SubmitFeedbackModal({
           )}
 
           {/* Public Toggle */}
-          <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
             <div>
-              <p className="font-medium text-gray-900 dark:text-white">Make public</p>
-              <p className="text-sm text-gray-500">Other users can see and vote on this feedback</p>
+              <p className="font-medium text-slate-900 dark:text-white">Make public</p>
+              <p className="text-sm text-slate-500">Other users can see and vote on this feedback</p>
             </div>
             <button
               onClick={() => setIsPublic(!isPublic)}
               className={`w-12 h-6 rounded-full relative transition-colors ${
-                isPublic ? 'bg-blue-500' : 'bg-gray-300'
+                isPublic ? 'bg-blue-500' : 'bg-slate-300'
               }`}
             >
               <span
@@ -535,7 +535,7 @@ function SubmitFeedbackModal({
           </div>
         </div>
 
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex gap-3 sticky bottom-0 bg-white dark:bg-gray-800">
+        <div className="p-6 border-t border-slate-200 dark:border-slate-700 flex gap-3 sticky bottom-0 bg-white dark:bg-slate-800">
           <Button variant="outline" onClick={onClose} className="flex-1">Cancel</Button>
           <Button onClick={handleSubmit} className="flex-1" disabled={!title || !description || !category}>
             {feedback ? 'Save Changes' : 'Submit Feedback'}
@@ -653,8 +653,8 @@ export function FeedbackSystem() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Feedback</h1>
-          <p className="text-gray-500 mt-1">Help us improve Nexta</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Feedback</h1>
+          <p className="text-slate-500 mt-1">Help us improve Nexta</p>
         </div>
         <Button onClick={() => setShowModal(true)}>
           <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -667,27 +667,27 @@ export function FeedbackSystem() {
       {/* Stats */}
       {stats && (
         <div className="grid grid-cols-4 gap-4 mb-8">
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
-            <div className="text-2xl font-bold text-gray-900 dark:text-white">{stats.total}</div>
-            <div className="text-sm text-gray-500">Total Feedback</div>
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
+            <div className="text-2xl font-bold text-slate-900 dark:text-white">{stats.total}</div>
+            <div className="text-sm text-slate-500">Total Feedback</div>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
             <div className="text-2xl font-bold text-blue-600">{stats.new}</div>
-            <div className="text-sm text-gray-500">New</div>
+            <div className="text-sm text-slate-500">New</div>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
             <div className="text-2xl font-bold text-purple-600">{stats.inProgress}</div>
-            <div className="text-sm text-gray-500">In Progress</div>
+            <div className="text-sm text-slate-500">In Progress</div>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
             <div className="text-2xl font-bold text-green-600">{stats.completed}</div>
-            <div className="text-sm text-gray-500">Completed</div>
+            <div className="text-sm text-slate-500">Completed</div>
           </div>
         </div>
       )}
 
       {/* Tabs */}
-      <div className="flex gap-4 mb-6 border-b border-gray-200 dark:border-gray-700">
+      <div className="flex gap-4 mb-6 border-b border-slate-200 dark:border-slate-700">
         {([
           { key: 'all', label: 'All Feedback' },
           { key: 'my', label: 'My Feedback' },
@@ -699,7 +699,7 @@ export function FeedbackSystem() {
             className={`px-4 py-3 font-medium border-b-2 transition-colors ${
               activeTab === tab.key
                 ? 'border-blue-500 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700'
+                : 'border-transparent text-slate-500 hover:text-slate-700'
             }`}
           >
             {tab.label}
@@ -716,7 +716,7 @@ export function FeedbackSystem() {
               className={`px-3 py-1.5 text-sm rounded-lg ${
                 typeFilter === 'all'
                   ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30'
-                  : 'bg-gray-100 text-gray-600 dark:bg-gray-700'
+                  : 'bg-slate-100 text-slate-600 dark:bg-slate-700'
               }`}
             >
               All
@@ -728,7 +728,7 @@ export function FeedbackSystem() {
                 className={`px-3 py-1.5 text-sm rounded-lg flex items-center gap-1 ${
                   typeFilter === type.value
                     ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30'
-                    : 'bg-gray-100 text-gray-600 dark:bg-gray-700'
+                    : 'bg-slate-100 text-slate-600 dark:bg-slate-700'
                 }`}
               >
                 {type.icon} {type.label}
@@ -739,7 +739,7 @@ export function FeedbackSystem() {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as 'votes' | 'recent')}
-            className="px-3 py-1.5 text-sm border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700"
+            className="px-3 py-1.5 text-sm border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700"
           >
             <option value="votes">Most Voted</option>
             <option value="recent">Most Recent</option>
@@ -754,7 +754,7 @@ export function FeedbackSystem() {
             <>
               {/* In Progress */}
               <div className="mb-8">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                   ⚙️ In Progress
                 </h3>
                 <div className="space-y-3">
@@ -773,7 +773,7 @@ export function FeedbackSystem() {
 
               {/* Planned */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                   📋 Planned
                 </h3>
                 <div className="space-y-3">
@@ -791,10 +791,10 @@ export function FeedbackSystem() {
               </div>
             </>
           ) : (
-            <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+            <div className="text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
               <div className="text-6xl mb-4">📋</div>
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white">No items on roadmap yet</h3>
-              <p className="text-gray-500 mt-2">Planned features will appear here</p>
+              <h3 className="text-lg font-medium text-slate-900 dark:text-white">No items on roadmap yet</h3>
+              <p className="text-slate-500 mt-2">Planned features will appear here</p>
             </div>
           )}
         </div>
@@ -813,10 +813,10 @@ export function FeedbackSystem() {
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+        <div className="text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
           <div className="text-6xl mb-4">💡</div>
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">No feedback yet</h3>
-          <p className="text-gray-500 mt-2 mb-6">Be the first to share your thoughts!</p>
+          <h3 className="text-lg font-medium text-slate-900 dark:text-white">No feedback yet</h3>
+          <p className="text-slate-500 mt-2 mb-6">Be the first to share your thoughts!</p>
           <Button onClick={() => setShowModal(true)}>Submit Feedback</Button>
         </div>
       )}

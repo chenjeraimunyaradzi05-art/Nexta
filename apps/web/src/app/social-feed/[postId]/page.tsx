@@ -378,15 +378,15 @@ export default function PostDetailPage() {
         <div className="flex items-center gap-4 mb-6">
           <button 
             onClick={() => router.back()}
-            className="p-2 rounded-lg bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white transition-colors"
+            className="p-2 rounded-lg bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
-          <h1 className="text-xl font-bold text-gray-900 dark:text-white">Post</h1>
+          <h1 className="text-xl font-bold text-slate-900 dark:text-white">Post</h1>
         </div>
 
         {/* Post */}
-        <article className="rounded-xl overflow-hidden bg-white dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 shadow-sm dark:shadow-none mb-6">
+        <article className="rounded-xl overflow-hidden bg-white dark:bg-white/5 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none mb-6">
           {/* Post Header */}
           <div className="p-4 flex items-start gap-3">
             <div className="relative">
@@ -404,7 +404,7 @@ export default function PostDetailPage() {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full bg-gray-100 dark:bg-white/10 flex items-center justify-center text-gray-700 dark:text-white font-semibold">
+                  <div className="w-full h-full bg-slate-100 dark:bg-white/10 flex items-center justify-center text-slate-700 dark:text-white font-semibold">
                     {(post.authorName || 'C')[0]}
                   </div>
                 )}
@@ -419,20 +419,20 @@ export default function PostDetailPage() {
             
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
-                <h3 className="font-semibold text-gray-900 dark:text-white">{post.authorName}</h3>
+                <h3 className="font-semibold text-slate-900 dark:text-white">{post.authorName}</h3>
               </div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">{post.authorTitle}</p>
-              <p className="text-xs text-gray-400 dark:text-gray-500">{post.createdAt}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{post.authorTitle}</p>
+              <p className="text-xs text-slate-400 dark:text-slate-500">{post.createdAt}</p>
             </div>
             
-            <button className="p-2 rounded-lg text-gray-400 dark:text-gray-500 hover:bg-gray-100 dark:hover:bg-white/5">
+            <button className="p-2 rounded-lg text-slate-400 dark:text-slate-500 hover:bg-slate-100 dark:hover:bg-white/5">
               <MoreHorizontal className="w-5 h-5" />
             </button>
           </div>
 
           {/* Content */}
           <div className="px-4 pb-4">
-            <p className="text-gray-800 dark:text-gray-200 whitespace-pre-line leading-relaxed text-lg">{post.content}</p>
+            <p className="text-slate-800 dark:text-slate-200 whitespace-pre-line leading-relaxed text-lg">{post.content}</p>
           </div>
 
           {/* Media */}
@@ -449,7 +449,7 @@ export default function PostDetailPage() {
           )}
 
           {/* Reactions Summary */}
-          <div className="px-4 py-3 flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-white/10">
+          <div className="px-4 py-3 flex items-center justify-between text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-white/10">
             <div className="flex items-center gap-1">
               <span>👍</span>
               <span>❤️</span>
@@ -465,10 +465,10 @@ export default function PostDetailPage() {
           </div>
 
           {/* Actions */}
-          <div className="px-4 py-3 flex justify-around border-t border-gray-200 dark:border-white/10">
+          <div className="px-4 py-3 flex justify-around border-t border-slate-200 dark:border-white/10">
             <button
               onClick={() => handleReaction('like')}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
             >
               <Heart className="w-5 h-5" />
               <span className="text-sm">Like</span>
@@ -477,11 +477,11 @@ export default function PostDetailPage() {
               <MessageCircle className="w-5 h-5" />
               <span className="text-sm">Comment</span>
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 hover:text-amber-600 dark:hover:text-amber-400 transition-colors">
+            <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-amber-600 dark:hover:text-amber-400 transition-colors">
               <Share2 className="w-5 h-5" />
               <span className="text-sm">Share</span>
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 hover:text-amber-600 dark:hover:text-amber-400 transition-colors">
+            <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-amber-600 dark:hover:text-amber-400 transition-colors">
               <Bookmark className="w-5 h-5" />
               <span className="text-sm">Save</span>
             </button>
@@ -490,7 +490,7 @@ export default function PostDetailPage() {
 
         {/* Comment Input */}
         {isAuthenticated ? (
-          <div className="rounded-xl bg-white dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 shadow-sm dark:shadow-none p-4 mb-6">
+          <div className="rounded-xl bg-white dark:bg-white/5 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none p-4 mb-6">
             <div className="flex gap-3">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center text-white font-bold shrink-0">
                 {user?.profile?.firstName?.[0] || user?.email?.[0] || 'U'}
@@ -502,7 +502,7 @@ export default function PostDetailPage() {
                   onChange={(e) => setNewComment(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSubmitComment()}
                   placeholder="Write a comment..."
-                  className="flex-1 bg-gray-100 dark:bg-white/5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 rounded-lg px-4 py-2 border border-gray-200 dark:border-white/10 focus:outline-none focus:border-amber-500/50"
+                  className="flex-1 bg-slate-100 dark:bg-white/5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 rounded-lg px-4 py-2 border border-slate-200 dark:border-white/10 focus:outline-none focus:border-amber-500/50"
                 />
                 <button
                   onClick={handleSubmitComment}
@@ -515,8 +515,8 @@ export default function PostDetailPage() {
             </div>
           </div>
         ) : (
-          <div className="rounded-xl bg-white dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 shadow-sm dark:shadow-none p-4 mb-6 text-center">
-            <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">Sign in to join the conversation</p>
+          <div className="rounded-xl bg-white dark:bg-white/5 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none p-4 mb-6 text-center">
+            <p className="text-slate-600 dark:text-slate-400 text-sm mb-2">Sign in to join the conversation</p>
             <a href={`/signin?returnTo=/social-feed/${params.postId}`} className="inline-block px-4 py-1.5 rounded-lg text-sm font-medium bg-gradient-to-r from-emerald-600 to-emerald-500 text-white hover:from-emerald-500 hover:to-emerald-400 transition-all">
               Sign In
             </a>
@@ -525,18 +525,18 @@ export default function PostDetailPage() {
 
         {/* Comments */}
         <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
             <MessageCircle className="w-5 h-5 text-amber-500 dark:text-amber-400" />
             Comments ({post.comments.length})
           </h2>
           
           {post.comments.length === 0 && (
-            <p className="text-gray-500 dark:text-gray-400 text-sm text-center py-6">No comments yet. Be the first to share your thoughts!</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm text-center py-6">No comments yet. Be the first to share your thoughts!</p>
           )}
           {post.comments.map((comment) => (
             <div 
               key={comment.id}
-              className="rounded-xl bg-white dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 shadow-sm dark:shadow-none p-4"
+              className="rounded-xl bg-white dark:bg-white/5 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none p-4"
             >
               <div className="flex gap-3">
                 <div className="w-10 h-10 rounded-full overflow-hidden shrink-0">
@@ -550,22 +550,22 @@ export default function PostDetailPage() {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <div className="w-full h-full bg-gray-100 dark:bg-white/10 flex items-center justify-center text-gray-700 dark:text-white font-semibold">
+                    <div className="w-full h-full bg-slate-100 dark:bg-white/10 flex items-center justify-center text-slate-700 dark:text-white font-semibold">
                       {(comment.authorName || 'C')[0]}
                     </div>
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="font-semibold text-gray-900 dark:text-white text-sm">{comment.authorName}</span>
-                    <span className="text-xs text-gray-500">{comment.createdAt}</span>
+                    <span className="font-semibold text-slate-900 dark:text-white text-sm">{comment.authorName}</span>
+                    <span className="text-xs text-slate-500">{comment.createdAt}</span>
                   </div>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm">{comment.content}</p>
+                  <p className="text-slate-700 dark:text-slate-300 text-sm">{comment.content}</p>
                   <div className="flex items-center gap-4 mt-2">
-                    <button className="text-xs text-gray-500 hover:text-amber-600 dark:hover:text-amber-400 flex items-center gap-1">
+                    <button className="text-xs text-slate-500 hover:text-amber-600 dark:hover:text-amber-400 flex items-center gap-1">
                       <Heart className="w-3 h-3" /> {comment.likes}
                     </button>
-                    <button className="text-xs text-gray-500 hover:text-amber-600 dark:hover:text-amber-400">Reply</button>
+                    <button className="text-xs text-slate-500 hover:text-amber-600 dark:hover:text-amber-400">Reply</button>
                   </div>
                 </div>
               </div>

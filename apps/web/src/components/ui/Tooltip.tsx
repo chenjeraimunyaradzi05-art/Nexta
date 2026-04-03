@@ -28,9 +28,9 @@ interface PopoverProps {
 }
 
 const variantClasses: Record<TooltipVariant, string> = {
-  default: 'bg-gray-900 text-white dark:bg-gray-700',
+  default: 'bg-slate-900 text-white dark:bg-slate-700',
   dark: 'bg-black text-white',
-  light: 'bg-white text-gray-900 border border-gray-200 shadow-lg',
+  light: 'bg-white text-slate-900 border border-slate-200 shadow-lg',
   cosmic: 'bg-gradient-to-r from-[#1A0F2E] to-[#2D1B69] text-white border border-[#FFD700]/30',
 };
 

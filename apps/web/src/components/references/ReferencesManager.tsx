@@ -168,7 +168,7 @@ function StatusBadge({ status }: { status: Reference['status'] }) {
     active: { label: 'Active', color: 'bg-green-100 text-green-700' },
     pending: { label: 'Pending', color: 'bg-yellow-100 text-yellow-700' },
     declined: { label: 'Declined', color: 'bg-red-100 text-red-700' },
-    inactive: { label: 'Inactive', color: 'bg-gray-100 text-gray-700' },
+    inactive: { label: 'Inactive', color: 'bg-slate-100 text-slate-700' },
   };
 
   return (
@@ -198,10 +198,10 @@ function ReferenceCard({
 
   return (
     <div
-      className={`bg-white dark:bg-gray-800 rounded-xl border ${
+      className={`bg-white dark:bg-slate-800 rounded-xl border ${
         isSelected 
           ? 'border-blue-500 ring-2 ring-blue-200' 
-          : 'border-gray-200 dark:border-gray-700'
+          : 'border-slate-200 dark:border-slate-700'
       } p-6`}
       onClick={onSelect}
     >
@@ -218,8 +218,8 @@ function ReferenceCard({
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
             <div>
-              <h3 className="font-semibold text-gray-900 dark:text-white">{reference.name}</h3>
-              <p className="text-sm text-gray-500">
+              <h3 className="font-semibold text-slate-900 dark:text-white">{reference.name}</h3>
+              <p className="text-sm text-slate-500">
                 {reference.title} at {reference.company}
               </p>
             </div>
@@ -227,22 +227,22 @@ function ReferenceCard({
           </div>
 
           {/* Relationship & Years */}
-          <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
+          <div className="flex items-center gap-4 mt-2 text-sm text-slate-500">
             <span>{relationshipInfo?.icon} {relationshipInfo?.label}</span>
             <span>• {reference.yearsKnown} years</span>
           </div>
 
           {/* Contact Info */}
           <div className="flex items-center gap-4 mt-3 text-sm">
-            <span className="text-gray-600 dark:text-gray-400">{reference.email}</span>
+            <span className="text-slate-600 dark:text-slate-400">{reference.email}</span>
             {reference.phone && (
-              <span className="text-gray-600 dark:text-gray-400">{reference.phone}</span>
+              <span className="text-slate-600 dark:text-slate-400">{reference.phone}</span>
             )}
           </div>
 
           {/* Notes */}
           {reference.notes && (
-            <p className="text-sm text-gray-500 mt-2 line-clamp-2">{reference.notes}</p>
+            <p className="text-sm text-slate-500 mt-2 line-clamp-2">{reference.notes}</p>
           )}
 
           {/* Actions */}
@@ -252,7 +252,7 @@ function ReferenceCard({
             </Button>
             <button
               onClick={(e) => { e.stopPropagation(); onEdit(); }}
-              className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+              className="p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -260,7 +260,7 @@ function ReferenceCard({
             </button>
             <button
               onClick={(e) => { e.stopPropagation(); onDelete(); }}
-              className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+              className="p-2 text-slate-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -316,13 +316,13 @@ function ReferenceModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">
               {reference ? 'Edit Reference' : 'Add Reference'}
             </h2>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+            <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -333,70 +333,70 @@ function ReferenceModal({
         <div className="p-6 space-y-4">
           {/* Name */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Full Name *
             </label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
 
           {/* Title & Company */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Job Title
               </label>
               <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Company
               </label>
               <input
                 type="text"
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               />
             </div>
           </div>
 
           {/* Contact Info */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Email *
             </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Phone
               </label>
               <input
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 LinkedIn
               </label>
               <input
@@ -404,7 +404,7 @@ function ReferenceModal({
                 value={linkedin}
                 onChange={(e) => setLinkedin(e.target.value)}
                 placeholder="linkedin.com/in/..."
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               />
             </div>
           </div>
@@ -412,13 +412,13 @@ function ReferenceModal({
           {/* Relationship & Years */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Relationship
               </label>
               <select
                 value={relationship}
                 onChange={(e) => setRelationship(e.target.value as Reference['relationship'])}
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               >
                 {relationships.map((rel) => (
                   <option key={rel.value} value={rel.value}>
@@ -428,7 +428,7 @@ function ReferenceModal({
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Years Known
               </label>
               <input
@@ -436,14 +436,14 @@ function ReferenceModal({
                 min="1"
                 value={yearsKnown}
                 onChange={(e) => setYearsKnown(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               />
             </div>
           </div>
 
           {/* Contact Preferences */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Contact Preferences
             </label>
             <div className="flex items-center gap-4">
@@ -452,9 +452,9 @@ function ReferenceModal({
                   type="checkbox"
                   checked={canContactDirectly}
                   onChange={(e) => setCanContactDirectly(e.target.checked)}
-                  className="rounded border-gray-300"
+                  className="rounded border-slate-300"
                 />
-                <span className="text-sm text-gray-700 dark:text-gray-300">
+                <span className="text-sm text-slate-700 dark:text-slate-300">
                   Employers can contact directly
                 </span>
               </label>
@@ -463,7 +463,7 @@ function ReferenceModal({
               <select
                 value={preferredContactMethod}
                 onChange={(e) => setPreferredContactMethod(e.target.value as Reference['preferredContactMethod'])}
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               >
                 <option value="email">Prefers Email</option>
                 <option value="phone">Prefers Phone</option>
@@ -474,7 +474,7 @@ function ReferenceModal({
 
           {/* Notes */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Notes
             </label>
             <textarea
@@ -482,12 +482,12 @@ function ReferenceModal({
               onChange={(e) => setNotes(e.target.value)}
               rows={3}
               placeholder="Context about your relationship, projects worked on together, etc."
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
         </div>
 
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex gap-3">
+        <div className="p-6 border-t border-slate-200 dark:border-slate-700 flex gap-3">
           <Button variant="outline" onClick={onClose} className="flex-1">Cancel</Button>
           <Button onClick={handleSave} className="flex-1" disabled={!name || !email}>
             {reference ? 'Save Changes' : 'Add Reference'}
@@ -514,13 +514,13 @@ function RequestReferenceModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-lg w-full">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-lg w-full">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">
               Request Reference
             </h2>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+            <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -529,28 +529,28 @@ function RequestReferenceModal({
         </div>
 
         <div className="p-6">
-          <div className="flex items-center gap-4 mb-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <div className="flex items-center gap-4 mb-4 p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
             <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold">
               {reference.name.charAt(0)}
             </div>
             <div>
-              <h3 className="font-medium text-gray-900 dark:text-white">{reference.name}</h3>
-              <p className="text-sm text-gray-500">{reference.email}</p>
+              <h3 className="font-medium text-slate-900 dark:text-white">{reference.name}</h3>
+              <p className="text-sm text-slate-500">{reference.email}</p>
             </div>
           </div>
 
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
             Message
           </label>
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             rows={10}
-            className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="w-full px-4 py-3 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
           />
         </div>
 
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex gap-3">
+        <div className="p-6 border-t border-slate-200 dark:border-slate-700 flex gap-3">
           <Button variant="outline" onClick={onClose} className="flex-1">Cancel</Button>
           <Button onClick={() => onSend(message)} className="flex-1">
             Send Request
@@ -588,13 +588,13 @@ function ShareListModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-lg w-full">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-lg w-full">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">
               Share Reference List
             </h2>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+            <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -604,16 +604,16 @@ function ShareListModal({
 
         <div className="p-6 space-y-4">
           <div>
-            <h3 className="font-medium text-gray-900 dark:text-white mb-2">{list.name}</h3>
+            <h3 className="font-medium text-slate-900 dark:text-white mb-2">{list.name}</h3>
             <div className="space-y-2">
               {selectedRefs.map((ref) => (
                 <div key={ref.id} className="flex items-center gap-3 text-sm">
-                  <div className="w-8 h-8 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center">
                     {ref.name.charAt(0)}
                   </div>
                   <div>
-                    <span className="text-gray-900 dark:text-white">{ref.name}</span>
-                    <span className="text-gray-500"> • {ref.title}</span>
+                    <span className="text-slate-900 dark:text-white">{ref.name}</span>
+                    <span className="text-slate-500"> • {ref.title}</span>
                   </div>
                 </div>
               ))}
@@ -622,7 +622,7 @@ function ShareListModal({
 
           {list.shareLink ? (
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 Share Link
               </label>
               <div className="flex gap-2">
@@ -630,27 +630,27 @@ function ShareListModal({
                   type="text"
                   value={list.shareLink}
                   readOnly
-                  className="flex-1 px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white text-sm"
+                  className="flex-1 px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white text-sm"
                 />
                 <Button onClick={copyLink}>
                   {copied ? 'Copied!' : 'Copy'}
                 </Button>
               </div>
               {list.shareExpiry && (
-                <p className="text-sm text-gray-500 mt-2">
+                <p className="text-sm text-slate-500 mt-2">
                   Expires: {new Date(list.shareExpiry).toLocaleDateString('en-AU')}
                 </p>
               )}
             </div>
           ) : (
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 Link Expiry
               </label>
               <select
                 value={expiryDays}
                 onChange={(e) => setExpiryDays(Number(e.target.value))}
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               >
                 <option value={7}>7 days</option>
                 <option value={14}>14 days</option>
@@ -661,7 +661,7 @@ function ShareListModal({
           )}
         </div>
 
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex gap-3">
+        <div className="p-6 border-t border-slate-200 dark:border-slate-700 flex gap-3">
           <Button variant="outline" onClick={onClose} className="flex-1">Cancel</Button>
           {!list.shareLink && (
             <Button onClick={() => onShare(expiryDays)} className="flex-1">
@@ -778,8 +778,8 @@ export function ReferencesManager() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">References</h1>
-          <p className="text-gray-500 mt-1">Manage your professional references</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">References</h1>
+          <p className="text-slate-500 mt-1">Manage your professional references</p>
         </div>
         <Button onClick={() => setShowAddModal(true)}>
           <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -791,26 +791,26 @@ export function ReferencesManager() {
 
       {/* Stats */}
       <div className="grid grid-cols-4 gap-4 mb-8">
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
-          <div className="text-2xl font-bold text-gray-900 dark:text-white">{references.length}</div>
-          <div className="text-sm text-gray-500">Total</div>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
+          <div className="text-2xl font-bold text-slate-900 dark:text-white">{references.length}</div>
+          <div className="text-sm text-slate-500">Total</div>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
           <div className="text-2xl font-bold text-green-600">{references.filter(r => r.status === 'active').length}</div>
-          <div className="text-sm text-gray-500">Active</div>
+          <div className="text-sm text-slate-500">Active</div>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
           <div className="text-2xl font-bold text-yellow-600">{references.filter(r => r.status === 'pending').length}</div>
-          <div className="text-sm text-gray-500">Pending</div>
+          <div className="text-sm text-slate-500">Pending</div>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
           <div className="text-2xl font-bold text-blue-600">{lists.length}</div>
-          <div className="text-sm text-gray-500">Lists</div>
+          <div className="text-sm text-slate-500">Lists</div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-4 mb-6 border-b border-gray-200 dark:border-gray-700">
+      <div className="flex gap-4 mb-6 border-b border-slate-200 dark:border-slate-700">
         {(['references', 'lists', 'requests'] as const).map((tab) => (
           <button
             key={tab}
@@ -818,7 +818,7 @@ export function ReferencesManager() {
             className={`px-4 py-3 font-medium capitalize border-b-2 transition-colors ${
               activeTab === tab
                 ? 'border-blue-500 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700'
+                : 'border-transparent text-slate-500 hover:text-slate-700'
             }`}
           >
             {tab}
@@ -841,10 +841,10 @@ export function ReferencesManager() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+          <div className="text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
             <div className="text-6xl mb-4">👥</div>
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white">No references yet</h3>
-            <p className="text-gray-500 mt-2 mb-6">Add professional references to share with employers</p>
+            <h3 className="text-lg font-medium text-slate-900 dark:text-white">No references yet</h3>
+            <p className="text-slate-500 mt-2 mb-6">Add professional references to share with employers</p>
             <Button onClick={() => setShowAddModal(true)}>Add Reference</Button>
           </div>
         )
@@ -856,17 +856,17 @@ export function ReferencesManager() {
             lists.map((list) => (
               <div
                 key={list.id}
-                className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6"
+                className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6"
               >
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="flex items-center gap-2">
-                      <h3 className="font-semibold text-gray-900 dark:text-white">{list.name}</h3>
+                      <h3 className="font-semibold text-slate-900 dark:text-white">{list.name}</h3>
                       {list.isDefault && (
                         <span className="px-2 py-0.5 bg-yellow-100 text-yellow-700 text-xs rounded-full">Default</span>
                       )}
                     </div>
-                    <p className="text-sm text-gray-500">{list.references.length} references</p>
+                    <p className="text-sm text-slate-500">{list.references.length} references</p>
                   </div>
                   <Button variant="outline" onClick={() => setSharingList(list)}>
                     Share
@@ -875,10 +875,10 @@ export function ReferencesManager() {
               </div>
             ))
           ) : (
-            <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+            <div className="text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
               <div className="text-6xl mb-4">📋</div>
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white">No lists yet</h3>
-              <p className="text-gray-500 mt-2">Create lists to organize and share your references</p>
+              <h3 className="text-lg font-medium text-slate-900 dark:text-white">No lists yet</h3>
+              <p className="text-slate-500 mt-2">Create lists to organize and share your references</p>
             </div>
           )}
         </div>
@@ -890,17 +890,17 @@ export function ReferencesManager() {
             requests.map((request) => (
               <div
                 key={request.id}
-                className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6"
+                className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6"
               >
                 <div className="flex items-start justify-between">
                   <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">
+                    <h3 className="font-semibold text-slate-900 dark:text-white">
                       {request.requestedBy.company}
                     </h3>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-slate-500">
                       {request.requestedBy.role} • {request.requestedBy.recruiter}
                     </p>
-                    <p className="text-sm text-gray-500 mt-2">
+                    <p className="text-sm text-slate-500 mt-2">
                       Reference: {request.reference.name}
                     </p>
                   </div>
@@ -909,10 +909,10 @@ export function ReferencesManager() {
               </div>
             ))
           ) : (
-            <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+            <div className="text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
               <div className="text-6xl mb-4">📩</div>
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white">No requests yet</h3>
-              <p className="text-gray-500 mt-2">Reference requests from employers will appear here</p>
+              <h3 className="text-lg font-medium text-slate-900 dark:text-white">No requests yet</h3>
+              <p className="text-slate-500 mt-2">Reference requests from employers will appear here</p>
             </div>
           )}
         </div>

@@ -177,15 +177,15 @@ export default function LeaderboardPage() {
         'rap-stretch': 'bg-blue-100 text-blue-800',
         'rap-elevate': 'bg-green-100 text-green-800',
       };
-      return colors[badge] || 'bg-gray-100 text-gray-800';
+      return colors[badge] || 'bg-slate-100 text-slate-800';
     }
     if (badge === 'verified') return 'bg-green-100 text-green-800';
     if (badge === 'indigenous-champions') return 'bg-orange-100 text-orange-800';
-    return 'bg-gray-100 text-gray-800';
+    return 'bg-slate-100 text-slate-800';
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50">
       {/* Header */}
       <div className="bg-gradient-to-r from-amber-600 to-orange-600 text-white py-12">
         <div className="max-w-6xl mx-auto px-4">
@@ -204,7 +204,7 @@ export default function LeaderboardPage() {
       <div className="bg-white border-b">
         <div className="max-w-6xl mx-auto px-4 py-4 flex flex-wrap gap-4 items-center">
           <div>
-            <label htmlFor="industry" className="text-sm text-gray-600 mr-2">Industry:</label>
+            <label htmlFor="industry" className="text-sm text-slate-600 mr-2">Industry:</label>
             <select
               id="industry"
               value={selectedIndustry}
@@ -218,7 +218,7 @@ export default function LeaderboardPage() {
             </select>
           </div>
           <div>
-            <label htmlFor="timeframe" className="text-sm text-gray-600 mr-2">Period:</label>
+            <label htmlFor="timeframe" className="text-sm text-slate-600 mr-2">Period:</label>
             <select
               id="timeframe"
               value={timeframe}
@@ -239,12 +239,12 @@ export default function LeaderboardPage() {
         {loading ? (
           <div className="text-center py-12">
             <div className="animate-spin w-8 h-8 border-4 border-amber-600 border-t-transparent rounded-full mx-auto"></div>
-            <p className="text-gray-500 mt-4">Loading leaderboard...</p>
+            <p className="text-slate-500 mt-4">Loading leaderboard...</p>
           </div>
         ) : employers.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-xl">
             <span className="text-4xl mb-4 block">📊</span>
-            <p className="text-gray-600">No employers found for the selected filters.</p>
+            <p className="text-slate-600">No employers found for the selected filters.</p>
           </div>
         ) : (
           <div className="space-y-4">
@@ -260,9 +260,9 @@ export default function LeaderboardPage() {
                     <div className="flex flex-col items-center min-w-[60px]">
                       <span className={`text-3xl font-bold ${
                         employer.rank === 1 ? 'text-amber-500' :
-                        employer.rank === 2 ? 'text-gray-400' :
+                        employer.rank === 2 ? 'text-slate-400' :
                         employer.rank === 3 ? 'text-amber-700' :
-                        'text-gray-600'
+                        'text-slate-600'
                       }`}>
                         #{employer.rank}
                       </span>
@@ -276,11 +276,11 @@ export default function LeaderboardPage() {
                     </div>
 
                     {/* Logo placeholder */}
-                    <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-16 h-16 bg-slate-100 rounded-lg flex items-center justify-center flex-shrink-0">
                       {employer.logoUrl ? (
                         <img src={toCloudinaryAutoUrl(employer.logoUrl)} alt="" className="w-full h-full object-contain rounded-lg" />
                       ) : (
-                        <span className="text-2xl text-gray-400">🏢</span>
+                        <span className="text-2xl text-slate-400">🏢</span>
                       )}
                     </div>
 
@@ -288,10 +288,10 @@ export default function LeaderboardPage() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-4">
                         <div>
-                          <h3 className="text-xl font-semibold text-gray-900">
+                          <h3 className="text-xl font-semibold text-slate-900">
                             {employer.companyName}
                           </h3>
-                          <p className="text-gray-500 text-sm">{employer.industry}</p>
+                          <p className="text-slate-500 text-sm">{employer.industry}</p>
                           
                           {/* Badges */}
                           <div className="flex flex-wrap gap-2 mt-2">
@@ -311,35 +311,35 @@ export default function LeaderboardPage() {
                           <div className="text-2xl font-bold text-amber-600">
                             {employer.reputationScore.toLocaleString()}
                           </div>
-                          <div className="text-xs text-gray-500">reputation points</div>
+                          <div className="text-xs text-slate-500">reputation points</div>
                         </div>
                       </div>
 
                       {/* Metrics */}
                       <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                        <div className="bg-gray-50 rounded-lg p-3">
-                          <div className="text-xl font-semibold text-gray-900">
+                        <div className="bg-slate-50 rounded-lg p-3">
+                          <div className="text-xl font-semibold text-slate-900">
                             {employer.metrics?.totalHires || 0}
                           </div>
-                          <div className="text-xs text-gray-500">Indigenous Hires</div>
+                          <div className="text-xs text-slate-500">Indigenous Hires</div>
                         </div>
-                        <div className="bg-gray-50 rounded-lg p-3">
-                          <div className="text-xl font-semibold text-gray-900">
+                        <div className="bg-slate-50 rounded-lg p-3">
+                          <div className="text-xl font-semibold text-slate-900">
                             {((employer.metrics?.retentionRate || 0) * 100).toFixed(0)}%
                           </div>
-                          <div className="text-xs text-gray-500">Retention Rate</div>
+                          <div className="text-xs text-slate-500">Retention Rate</div>
                         </div>
-                        <div className="bg-gray-50 rounded-lg p-3">
-                          <div className="text-xl font-semibold text-gray-900">
+                        <div className="bg-slate-50 rounded-lg p-3">
+                          <div className="text-xl font-semibold text-slate-900">
                             {employer.metrics?.mentorsProvided || 0}
                           </div>
-                          <div className="text-xs text-gray-500">Mentors Active</div>
+                          <div className="text-xs text-slate-500">Mentors Active</div>
                         </div>
-                        <div className="bg-gray-50 rounded-lg p-3">
-                          <div className="text-xl font-semibold text-gray-900">
+                        <div className="bg-slate-50 rounded-lg p-3">
+                          <div className="text-xl font-semibold text-slate-900">
                             {employer.metrics?.activeJobs || 0}
                           </div>
-                          <div className="text-xs text-gray-500">Open Positions</div>
+                          <div className="text-xs text-slate-500">Open Positions</div>
                         </div>
                       </div>
                     </div>

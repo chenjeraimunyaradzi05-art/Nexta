@@ -236,13 +236,13 @@ export default function InvoiceDetailPage() {
       case 'VIEWED':
         return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
       case 'DRAFT':
-        return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+        return 'bg-slate-500/20 text-slate-400 border-slate-500/30';
       case 'OVERDUE':
         return 'bg-red-500/20 text-red-400 border-red-500/30';
       case 'CANCELLED':
         return 'bg-red-500/20 text-red-300 border-red-500/30';
       default:
-        return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+        return 'bg-slate-500/20 text-slate-400 border-slate-500/30';
     }
   };
 
@@ -384,15 +384,15 @@ export default function InvoiceDetailPage() {
             {/* Invoice Preview */}
             <div className="bg-white rounded-xl p-8 shadow-lg">
               {/* Header */}
-              <div className="flex justify-between items-start mb-8 pb-6 border-b border-gray-200">
+              <div className="flex justify-between items-start mb-8 pb-6 border-b border-slate-200">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">INVOICE</h2>
-                  <p className="text-gray-600 mt-1">{invoice.invoiceNumber}</p>
+                  <h2 className="text-2xl font-bold text-slate-900">INVOICE</h2>
+                  <p className="text-slate-600 mt-1">{invoice.invoiceNumber}</p>
                 </div>
                 <div className="text-right">
-                  <p className="font-semibold text-gray-900">{invoice.senderBusinessName || 'Your Business Name'}</p>
+                  <p className="font-semibold text-slate-900">{invoice.senderBusinessName || 'Your Business Name'}</p>
                   {invoice.senderAbn && (
-                    <p className="text-gray-600 text-sm">ABN: {invoice.senderAbn}</p>
+                    <p className="text-slate-600 text-sm">ABN: {invoice.senderAbn}</p>
                   )}
                 </div>
               </div>
@@ -400,26 +400,26 @@ export default function InvoiceDetailPage() {
               {/* Dates & Client */}
               <div className="grid grid-cols-2 gap-8 mb-8">
                 <div>
-                  <p className="text-gray-500 text-sm mb-1">Bill To:</p>
-                  <p className="font-semibold text-gray-900">{invoice.clientName}</p>
+                  <p className="text-slate-500 text-sm mb-1">Bill To:</p>
+                  <p className="font-semibold text-slate-900">{invoice.clientName}</p>
                   {invoice.clientAbn && (
-                    <p className="text-gray-600 text-sm">ABN: {invoice.clientAbn}</p>
+                    <p className="text-slate-600 text-sm">ABN: {invoice.clientAbn}</p>
                   )}
                   {invoice.clientAddress && (
-                    <p className="text-gray-600 text-sm mt-1">{invoice.clientAddress}</p>
+                    <p className="text-slate-600 text-sm mt-1">{invoice.clientAddress}</p>
                   )}
                   {invoice.clientEmail && (
-                    <p className="text-gray-600 text-sm">{invoice.clientEmail}</p>
+                    <p className="text-slate-600 text-sm">{invoice.clientEmail}</p>
                   )}
                 </div>
                 <div className="text-right">
                   <div className="mb-2">
-                    <p className="text-gray-500 text-sm">Issue Date:</p>
-                    <p className="font-medium text-gray-900">{formatDate(invoice.issueDate)}</p>
+                    <p className="text-slate-500 text-sm">Issue Date:</p>
+                    <p className="font-medium text-slate-900">{formatDate(invoice.issueDate)}</p>
                   </div>
                   <div>
-                    <p className="text-gray-500 text-sm">Due Date:</p>
-                    <p className="font-medium text-gray-900">{formatDate(invoice.dueDate)}</p>
+                    <p className="text-slate-500 text-sm">Due Date:</p>
+                    <p className="font-medium text-slate-900">{formatDate(invoice.dueDate)}</p>
                   </div>
                 </div>
               </div>
@@ -427,24 +427,24 @@ export default function InvoiceDetailPage() {
               {/* Line Items */}
               <table className="w-full mb-8">
                 <thead>
-                  <tr className="border-b border-gray-200">
-                    <th className="py-3 text-left text-gray-500 text-sm font-medium">
+                  <tr className="border-b border-slate-200">
+                    <th className="py-3 text-left text-slate-500 text-sm font-medium">
                       Description
                     </th>
-                    <th className="py-3 text-right text-gray-500 text-sm font-medium">Qty</th>
-                    <th className="py-3 text-right text-gray-500 text-sm font-medium">Price</th>
-                    <th className="py-3 text-right text-gray-500 text-sm font-medium">Amount</th>
+                    <th className="py-3 text-right text-slate-500 text-sm font-medium">Qty</th>
+                    <th className="py-3 text-right text-slate-500 text-sm font-medium">Price</th>
+                    <th className="py-3 text-right text-slate-500 text-sm font-medium">Amount</th>
                   </tr>
                 </thead>
                 <tbody>
                   {invoice.lineItems?.map((item, idx) => (
-                    <tr key={item.id || idx} className="border-b border-gray-100">
-                      <td className="py-4 text-gray-900">{item.description}</td>
-                      <td className="py-4 text-right text-gray-600">{item.quantity}</td>
-                      <td className="py-4 text-right text-gray-600">
+                    <tr key={item.id || idx} className="border-b border-slate-100">
+                      <td className="py-4 text-slate-900">{item.description}</td>
+                      <td className="py-4 text-right text-slate-600">{item.quantity}</td>
+                      <td className="py-4 text-right text-slate-600">
                         {formatCurrency(item.unitPrice)}
                       </td>
-                      <td className="py-4 text-right text-gray-900 font-medium">
+                      <td className="py-4 text-right text-slate-900 font-medium">
                         {formatCurrency(item.amount)}
                       </td>
                     </tr>
@@ -456,16 +456,16 @@ export default function InvoiceDetailPage() {
               <div className="flex justify-end">
                 <div className="w-64">
                   <div className="flex justify-between py-2">
-                    <span className="text-gray-600">Subtotal</span>
-                    <span className="text-gray-900">{formatCurrency(invoice.subtotal)}</span>
+                    <span className="text-slate-600">Subtotal</span>
+                    <span className="text-slate-900">{formatCurrency(invoice.subtotal)}</span>
                   </div>
                   <div className="flex justify-between py-2">
-                    <span className="text-gray-600">GST (10%)</span>
-                    <span className="text-gray-900">{formatCurrency(invoice.taxAmount)}</span>
+                    <span className="text-slate-600">GST (10%)</span>
+                    <span className="text-slate-900">{formatCurrency(invoice.taxAmount)}</span>
                   </div>
-                  <div className="flex justify-between py-3 border-t border-gray-200 mt-2">
-                    <span className="font-semibold text-gray-900">Total</span>
-                    <span className="font-bold text-gray-900 text-lg">
+                  <div className="flex justify-between py-3 border-t border-slate-200 mt-2">
+                    <span className="font-semibold text-slate-900">Total</span>
+                    <span className="font-bold text-slate-900 text-lg">
                       {formatCurrency(invoice.totalAmount)}
                     </span>
                   </div>
@@ -475,9 +475,9 @@ export default function InvoiceDetailPage() {
                         <span>Amount Paid</span>
                         <span>-{formatCurrency(totalPaid)}</span>
                       </div>
-                      <div className="flex justify-between py-2 border-t border-gray-200">
-                        <span className="font-semibold text-gray-900">Balance Due</span>
-                        <span className="font-bold text-gray-900">{formatCurrency(balanceDue)}</span>
+                      <div className="flex justify-between py-2 border-t border-slate-200">
+                        <span className="font-semibold text-slate-900">Balance Due</span>
+                        <span className="font-bold text-slate-900">{formatCurrency(balanceDue)}</span>
                       </div>
                     </>
                   )}
@@ -486,17 +486,17 @@ export default function InvoiceDetailPage() {
 
               {/* Notes */}
               {invoice.notes && (
-                <div className="mt-8 pt-6 border-t border-gray-200">
-                  <p className="text-gray-500 text-sm mb-2">Notes:</p>
-                  <p className="text-gray-700 text-sm">{invoice.notes}</p>
+                <div className="mt-8 pt-6 border-t border-slate-200">
+                  <p className="text-slate-500 text-sm mb-2">Notes:</p>
+                  <p className="text-slate-700 text-sm">{invoice.notes}</p>
                 </div>
               )}
 
               {/* Terms */}
               {invoice.termsAndConditions && (
                 <div className="mt-4">
-                  <p className="text-gray-500 text-sm mb-2">Terms & Conditions:</p>
-                  <p className="text-gray-600 text-xs">{invoice.termsAndConditions}</p>
+                  <p className="text-slate-500 text-sm mb-2">Terms & Conditions:</p>
+                  <p className="text-slate-600 text-xs">{invoice.termsAndConditions}</p>
                 </div>
               )}
             </div>
@@ -663,7 +663,7 @@ export default function InvoiceDetailPage() {
       {/* Payment Modal */}
       {showPaymentModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-md bg-gray-900 rounded-2xl border border-white/10 p-6">
+          <div className="w-full max-w-md bg-slate-900 rounded-2xl border border-white/10 p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-white">Record Payment</h2>
               <button

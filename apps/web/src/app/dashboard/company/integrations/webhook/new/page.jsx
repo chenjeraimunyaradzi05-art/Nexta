@@ -85,7 +85,7 @@ export default function NewWebhookPage() {
   // Show secret after creation
   if (secret) {
     return (
-      <div className="min-h-screen bg-gray-50 py-8">
+      <div className="min-h-screen bg-slate-50 py-8">
         <div className="max-w-2xl mx-auto px-4">
           <div className="bg-white rounded-lg shadow p-6">
             <h1 className="text-2xl font-bold text-green-600 mb-4">
@@ -113,9 +113,9 @@ export default function NewWebhookPage() {
               </button>
             </div>
 
-            <div className="bg-gray-100 p-4 rounded-lg mb-6">
+            <div className="bg-slate-100 p-4 rounded-lg mb-6">
               <h4 className="font-medium mb-2">Verifying Webhook Signatures</h4>
-              <pre className="text-xs bg-gray-800 text-green-400 p-3 rounded overflow-x-auto">
+              <pre className="text-xs bg-slate-800 text-green-400 p-3 rounded overflow-x-auto">
 {`const crypto = require('crypto');
 
 function verifySignature(payload, signature, secret) {
@@ -147,10 +147,10 @@ const isValid = verifySignature(
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-slate-50 py-8">
       <div className="max-w-2xl mx-auto px-4">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">Create Webhook</h1>
+          <h1 className="text-2xl font-bold text-slate-900">Create Webhook</h1>
           <Link
             href="/dashboard/company/integrations"
             className="text-blue-600 hover:text-blue-800"
@@ -167,7 +167,7 @@ const isValid = verifySignature(
 
         <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-6 space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-slate-700 mb-1">
               Webhook Name
             </label>
             <input
@@ -182,7 +182,7 @@ const isValid = verifySignature(
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-slate-700 mb-1">
               Endpoint URL
             </label>
             <input
@@ -195,14 +195,14 @@ const isValid = verifySignature(
               pattern="https://.*"
               title="URL must start with https://"
             />
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-slate-500 mt-1">
               Must be a secure HTTPS endpoint
             </p>
           </div>
 
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-slate-700">
                 Events to Subscribe
               </label>
               <div className="space-x-2">
@@ -216,7 +216,7 @@ const isValid = verifySignature(
                 <button
                   type="button"
                   onClick={clearAllEvents}
-                  className="text-xs text-gray-600 hover:text-gray-800"
+                  className="text-xs text-slate-600 hover:text-slate-800"
                 >
                   Clear All
                 </button>
@@ -227,7 +227,7 @@ const isValid = verifySignature(
               {Object.entries(events).map(([event, description]) => (
                 <label
                   key={event}
-                  className="flex items-start gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded"
+                  className="flex items-start gap-3 cursor-pointer hover:bg-slate-50 p-2 rounded"
                 >
                   <input
                     type="checkbox"
@@ -237,7 +237,7 @@ const isValid = verifySignature(
                   />
                   <div>
                     <code className="text-sm font-mono text-blue-600">{event}</code>
-                    <p className="text-xs text-gray-500">{description}</p>
+                    <p className="text-xs text-slate-500">{description}</p>
                   </div>
                 </label>
               ))}
@@ -259,7 +259,7 @@ const isValid = verifySignature(
             </button>
             <Link
               href="/dashboard/company/integrations"
-              className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
+              className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200"
             >
               Cancel
             </Link>

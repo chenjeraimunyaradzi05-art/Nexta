@@ -55,11 +55,11 @@ export default function InvoicingPage() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'DRAFT': return 'bg-gray-500/20 text-gray-400';
+      case 'DRAFT': return 'bg-slate-500/20 text-slate-400';
       case 'SENT': return 'bg-blue-500/20 text-blue-400';
       case 'PAID': return 'bg-green-500/20 text-green-400';
       case 'OVERDUE': return 'bg-red-500/20 text-red-400';
-      case 'CANCELLED': return 'bg-gray-500/20 text-gray-400';
+      case 'CANCELLED': return 'bg-slate-500/20 text-slate-400';
       default: return 'bg-white/10 text-white/60';
     }
   };
@@ -303,7 +303,7 @@ export default function InvoicingPage() {
       {/* New Invoice Modal */}
       {showNewInvoice && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-y-auto">
-          <div className="bg-gray-800 rounded-2xl p-6 w-full max-w-2xl border border-white/10 my-8">
+          <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-2xl border border-white/10 my-8">
             <h2 className="text-xl font-semibold text-white mb-6">Create New Invoice</h2>
             
             <div className="space-y-6">

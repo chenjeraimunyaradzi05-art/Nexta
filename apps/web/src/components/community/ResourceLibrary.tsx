@@ -163,7 +163,7 @@ function ResourceCard({
   const typeInfo = RESOURCE_TYPES.find(t => t.type === resource.type);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-all group">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-lg transition-all group">
       {/* Thumbnail */}
       <div className="relative h-40 bg-gradient-to-br from-blue-500 to-purple-500">
         {resource.thumbnail && (
@@ -178,7 +178,7 @@ function ResourceCard({
         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
           <button
             onClick={onClick}
-            className="px-4 py-2 bg-white rounded-lg font-medium text-gray-900 hover:bg-gray-100"
+            className="px-4 py-2 bg-white rounded-lg font-medium text-slate-900 hover:bg-slate-100"
           >
             View Resource
           </button>
@@ -203,7 +203,7 @@ function ResourceCard({
           className={`absolute bottom-3 right-3 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
             resource.isBookmarked
               ? 'bg-blue-500 text-white'
-              : 'bg-white/90 text-gray-600 hover:bg-white'
+              : 'bg-white/90 text-slate-600 hover:bg-white'
           }`}
         >
           {resource.isBookmarked ? '🔖' : '📑'}
@@ -214,16 +214,16 @@ function ResourceCard({
       <div className="p-5">
         <h3
           onClick={onClick}
-          className="font-semibold text-gray-900 dark:text-white mb-2 cursor-pointer hover:text-blue-600 line-clamp-2"
+          className="font-semibold text-slate-900 dark:text-white mb-2 cursor-pointer hover:text-blue-600 line-clamp-2"
         >
           {resource.title}
         </h3>
-        <p className="text-sm text-gray-500 mb-3 line-clamp-2">{resource.description}</p>
+        <p className="text-sm text-slate-500 mb-3 line-clamp-2">{resource.description}</p>
 
         {/* Meta */}
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+            <div className="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
               {resource.author.avatar ? (
                 <OptimizedImage
                   src={toCloudinaryAutoUrl(resource.author.avatar)}
@@ -236,18 +236,18 @@ function ResourceCard({
                 <span className="text-xs">{resource.author.name[0]}</span>
               )}
             </div>
-            <span className="text-sm text-gray-500">{resource.author.name}</span>
+            <span className="text-sm text-slate-500">{resource.author.name}</span>
           </div>
           {resource.duration && (
-            <span className="text-sm text-gray-400">{resource.duration}</span>
+            <span className="text-sm text-slate-400">{resource.duration}</span>
           )}
           {resource.readTime && (
-            <span className="text-sm text-gray-400">{resource.readTime} min read</span>
+            <span className="text-sm text-slate-400">{resource.readTime} min read</span>
           )}
         </div>
 
         {/* Rating & Stats */}
-        <div className="flex items-center justify-between text-sm text-gray-400">
+        <div className="flex items-center justify-between text-sm text-slate-400">
           <div className="flex items-center gap-1">
             <span className="text-yellow-500">⭐</span>
             <span>{resource.rating.toFixed(1)}</span>
@@ -265,13 +265,13 @@ function ResourceCard({
             {resource.tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded text-xs"
+                className="px-2 py-0.5 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded text-xs"
               >
                 {tag}
               </span>
             ))}
             {resource.tags.length > 3 && (
-              <span className="text-xs text-gray-400">+{resource.tags.length - 3}</span>
+              <span className="text-xs text-slate-400">+{resource.tags.length - 3}</span>
             )}
           </div>
         )}
@@ -303,7 +303,7 @@ function ResourceDetailModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="relative h-56 bg-gradient-to-br from-blue-500 to-purple-500">
           {resource.thumbnail && (
@@ -343,14 +343,14 @@ function ResourceDetailModal({
 
         {/* Content */}
         <div className="p-6">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">
             {resource.title}
           </h2>
 
           {/* Author & Date */}
           <div className="flex items-center gap-4 mb-4">
             <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+              <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
                 {resource.author.avatar ? (
                   <OptimizedImage
                     src={toCloudinaryAutoUrl(resource.author.avatar)}
@@ -364,8 +364,8 @@ function ResourceDetailModal({
                 )}
               </div>
               <div>
-                <p className="font-medium text-gray-900 dark:text-white">{resource.author.name}</p>
-                <p className="text-sm text-gray-500">
+                <p className="font-medium text-slate-900 dark:text-white">{resource.author.name}</p>
+                <p className="text-sm text-slate-500">
                   {publishedDate.toLocaleDateString('en-AU', { month: 'long', day: 'numeric', year: 'numeric' })}
                 </p>
               </div>
@@ -374,32 +374,32 @@ function ResourceDetailModal({
 
           {/* Description */}
           <div className="prose dark:prose-invert max-w-none mb-6">
-            <p className="text-gray-600 dark:text-gray-400">{resource.description}</p>
+            <p className="text-slate-600 dark:text-slate-400">{resource.description}</p>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-4 gap-4 mb-6 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <div className="grid grid-cols-4 gap-4 mb-6 p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
             <div className="text-center">
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">{resource.views}</p>
-              <p className="text-sm text-gray-500">Views</p>
+              <p className="text-2xl font-bold text-slate-900 dark:text-white">{resource.views}</p>
+              <p className="text-sm text-slate-500">Views</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">{resource.downloads}</p>
-              <p className="text-sm text-gray-500">Downloads</p>
+              <p className="text-2xl font-bold text-slate-900 dark:text-white">{resource.downloads}</p>
+              <p className="text-sm text-slate-500">Downloads</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">{resource.rating.toFixed(1)}</p>
-              <p className="text-sm text-gray-500">Rating</p>
+              <p className="text-2xl font-bold text-slate-900 dark:text-white">{resource.rating.toFixed(1)}</p>
+              <p className="text-sm text-slate-500">Rating</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">{resource.ratingCount}</p>
-              <p className="text-sm text-gray-500">Reviews</p>
+              <p className="text-2xl font-bold text-slate-900 dark:text-white">{resource.ratingCount}</p>
+              <p className="text-sm text-slate-500">Reviews</p>
             </div>
           </div>
 
           {/* Rate */}
           <div className="mb-6">
-            <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Rate this resource</p>
+            <p className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Rate this resource</p>
             <StarRating rating={0} onRate={onRate} />
           </div>
 
@@ -409,7 +409,7 @@ function ResourceDetailModal({
               {resource.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full text-sm"
+                  className="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-full text-sm"
                 >
                   #{tag}
                 </span>
@@ -418,7 +418,7 @@ function ResourceDetailModal({
           )}
 
           {/* Actions */}
-          <div className="flex gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex gap-3 pt-4 border-t border-slate-200 dark:border-slate-700">
             <Button className="flex-1" onClick={() => window.open(resource.url, '_blank')}>
               📖 View Resource
             </Button>
@@ -453,7 +453,7 @@ function FiltersSidebar({
   onClear: () => void;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5">
       <div className="flex items-center justify-between mb-4">
         {/* ... */}
       </div>
@@ -573,27 +573,27 @@ export function ResourceLibrary() {
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Resource Library</h1>
-        <p className="text-gray-500 mt-1">Explore educational resources, templates, and learning materials</p>
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Resource Library</h1>
+        <p className="text-slate-500 mt-1">Explore educational resources, templates, and learning materials</p>
       </div>
 
       {/* Search Bar */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 mb-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 mb-6">
         <div className="flex gap-4">
           <div className="flex-1 relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">🔍</span>
             <input
               type="text"
               value={filters.query}
               onChange={(e) => setFilters({ ...filters, query: e.target.value })}
               placeholder="Search resources..."
-              className="w-full pl-10 pr-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+              className="w-full pl-10 pr-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
             />
           </div>
           <select
             value={filters.sort}
             onChange={(e) => setFilters({ ...filters, sort: e.target.value })}
-            className="px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+            className="px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
           >
             <option value="latest">Latest</option>
             <option value="popular">Most Popular</option>
@@ -618,7 +618,7 @@ export function ResourceLibrary() {
         <div className="flex-1">
           {/* Results count */}
           <div className="flex items-center justify-between mb-4">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-slate-500">
               Showing {resources.length} of {total} resources
             </p>
           </div>
@@ -629,12 +629,12 @@ export function ResourceLibrary() {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" />
             </div>
           ) : resources.length === 0 ? (
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-12 text-center">
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-12 text-center">
               <div className="text-6xl mb-4">📚</div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
                 No resources found
               </h3>
-              <p className="text-gray-500 mb-4">Try adjusting your filters or search terms</p>
+              <p className="text-slate-500 mb-4">Try adjusting your filters or search terms</p>
               <Button onClick={clearFilters}>Clear Filters</Button>
             </div>
           ) : (
@@ -661,7 +661,7 @@ export function ResourceLibrary() {
                   >
                     Previous
                   </Button>
-                  <span className="px-4 py-2 text-sm text-gray-500">
+                  <span className="px-4 py-2 text-sm text-slate-500">
                     Page {page} of {Math.ceil(total / 12)}
                   </span>
                   <Button

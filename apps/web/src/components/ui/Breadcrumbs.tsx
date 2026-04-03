@@ -27,15 +27,15 @@ export function Breadcrumbs({
   const variantClasses = {
     default: {
       container: 'text-sm',
-      link: 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200',
-      current: 'text-gray-900 dark:text-white font-medium',
-      separator: 'text-gray-400 dark:text-gray-500',
+      link: 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200',
+      current: 'text-slate-900 dark:text-white font-medium',
+      separator: 'text-slate-400 dark:text-slate-500',
     },
     cosmic: {
       container: 'text-sm',
-      link: 'text-gray-400 hover:text-[#FFD700] transition-colors',
+      link: 'text-slate-400 hover:text-[#FFD700] transition-colors',
       current: 'text-[#FFD700] font-medium',
-      separator: 'text-gray-600',
+      separator: 'text-slate-600',
     },
   };
 
@@ -109,13 +109,13 @@ export function PageHeader({
 }: PageHeaderProps) {
   const variantClasses = {
     default: {
-      title: 'text-2xl font-bold text-gray-900 dark:text-white',
-      subtitle: 'text-gray-600 dark:text-gray-400',
+      title: 'text-2xl font-bold text-slate-900 dark:text-white',
+      subtitle: 'text-slate-600 dark:text-slate-400',
     },
     cosmic: {
       title:
         'text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#50C878] to-[#FFD700]',
-      subtitle: 'text-gray-400',
+      subtitle: 'text-slate-400',
     },
   };
 
@@ -181,8 +181,8 @@ export function BackButton({
   className = '',
 }: BackButtonProps) {
   const variantClasses = {
-    default: 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white',
-    cosmic: 'text-gray-400 hover:text-[#FFD700]',
+    default: 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white',
+    cosmic: 'text-slate-400 hover:text-[#FFD700]',
   };
 
   const content = (

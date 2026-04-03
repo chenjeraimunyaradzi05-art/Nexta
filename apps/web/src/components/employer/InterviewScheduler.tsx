@@ -192,7 +192,7 @@ const INTERVIEW_TYPES: { type: Interview['type']; label: string; icon: string; c
 const STATUS_STYLES: Record<Interview['status'], string> = {
   scheduled: 'bg-blue-100 text-blue-700',
   completed: 'bg-green-100 text-green-700',
-  cancelled: 'bg-gray-100 text-gray-600',
+  cancelled: 'bg-slate-100 text-slate-600',
   rescheduled: 'bg-yellow-100 text-yellow-700',
   'no-show': 'bg-red-100 text-red-700',
 };
@@ -259,30 +259,30 @@ function CalendarView({
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700">
         <button
           onClick={onPrevMonth}
-          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+          className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg"
         >
           ◀
         </button>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+        <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
           {currentMonth.toLocaleDateString('en-AU', { month: 'long', year: 'numeric' })}
         </h3>
         <button
           onClick={onNextMonth}
-          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+          className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg"
         >
           ▶
         </button>
       </div>
 
       {/* Day headers */}
-      <div className="grid grid-cols-7 border-b border-gray-200 dark:border-gray-700">
+      <div className="grid grid-cols-7 border-b border-slate-200 dark:border-slate-700">
         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-          <div key={day} className="p-2 text-center text-sm font-medium text-gray-500">
+          <div key={day} className="p-2 text-center text-sm font-medium text-slate-500">
             {day}
           </div>
         ))}
@@ -294,16 +294,16 @@ function CalendarView({
           <div
             key={idx}
             onClick={() => day.isCurrentMonth && onSelectDate(day.date)}
-            className={`min-h-[100px] p-2 border-b border-r border-gray-100 dark:border-gray-700 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-750 ${
-              !day.isCurrentMonth ? 'bg-gray-50 dark:bg-gray-900/50' : ''
+            className={`min-h-[100px] p-2 border-b border-r border-slate-100 dark:border-slate-700 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-750 ${
+              !day.isCurrentMonth ? 'bg-slate-50 dark:bg-slate-900/50' : ''
             }`}
           >
             <div className={`w-7 h-7 flex items-center justify-center rounded-full text-sm mb-1 ${
               day.isToday
                 ? 'bg-blue-500 text-white'
                 : day.isCurrentMonth
-                ? 'text-gray-900 dark:text-white'
-                : 'text-gray-400'
+                ? 'text-slate-900 dark:text-white'
+                : 'text-slate-400'
             }`}>
               {new Date(day.date).getDate()}
             </div>
@@ -314,14 +314,14 @@ function CalendarView({
                   <div
                     key={interview.id}
                     onClick={(e) => { e.stopPropagation(); onSelectInterview(interview); }}
-                    className={`text-xs p-1 rounded truncate ${typeInfo?.color || 'bg-gray-100'}`}
+                    className={`text-xs p-1 rounded truncate ${typeInfo?.color || 'bg-slate-100'}`}
                   >
                     {interview.startTime} {interview.candidate.name.split(' ')[0]}
                   </div>
                 );
               })}
               {day.interviews.length > 2 && (
-                <div className="text-xs text-gray-500">+{day.interviews.length - 2} more</div>
+                <div className="text-xs text-slate-500">+{day.interviews.length - 2} more</div>
               )}
             </div>
           </div>
@@ -345,11 +345,11 @@ function InterviewCard({
   return (
     <div
       onClick={onClick}
-      className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md transition-all cursor-pointer"
+      className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 hover:shadow-md transition-all cursor-pointer"
     >
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+          <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
             {interview.candidate.avatar ? (
               <OptimizedImage
                 src={toCloudinaryAutoUrl(interview.candidate.avatar)}
@@ -363,8 +363,8 @@ function InterviewCard({
             )}
           </div>
           <div>
-            <p className="font-medium text-gray-900 dark:text-white">{interview.candidate.name}</p>
-            <p className="text-sm text-gray-500">{interview.job.title}</p>
+            <p className="font-medium text-slate-900 dark:text-white">{interview.candidate.name}</p>
+            <p className="text-sm text-slate-500">{interview.job.title}</p>
           </div>
         </div>
         <span className={`px-2 py-1 rounded text-xs font-medium ${STATUS_STYLES[interview.status]}`}>
@@ -378,19 +378,19 @@ function InterviewCard({
         </span>
       </div>
 
-      <div className="flex items-center gap-4 text-sm text-gray-500">
+      <div className="flex items-center gap-4 text-sm text-slate-500">
         <span>📅 {interviewDate.toLocaleDateString('en-AU', { month: 'short', day: 'numeric' })}</span>
         <span>🕐 {interview.startTime} - {interview.endTime}</span>
       </div>
 
       {interview.interviewers.length > 0 && (
-        <div className="flex items-center gap-1 mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
-          <span className="text-xs text-gray-500 mr-2">Panel:</span>
+        <div className="flex items-center gap-1 mt-3 pt-3 border-t border-slate-100 dark:border-slate-700">
+          <span className="text-xs text-slate-500 mr-2">Panel:</span>
           <div className="flex -space-x-2">
             {interview.interviewers.slice(0, 3).map((interviewer) => (
               <div
                 key={interviewer.id}
-                className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 border-2 border-white dark:border-gray-800 flex items-center justify-center overflow-hidden"
+                className="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 border-2 border-white dark:border-slate-800 flex items-center justify-center overflow-hidden"
                 title={interviewer.name}
               >
                 {interviewer.avatar ? (
@@ -407,7 +407,7 @@ function InterviewCard({
               </div>
             ))}
             {interview.interviewers.length > 3 && (
-              <div className="w-6 h-6 rounded-full bg-gray-100 border-2 border-white dark:border-gray-800 flex items-center justify-center text-xs text-gray-500">
+              <div className="w-6 h-6 rounded-full bg-slate-100 border-2 border-white dark:border-slate-800 flex items-center justify-center text-xs text-slate-500">
                 +{interview.interviewers.length - 3}
               </div>
             )}
@@ -464,20 +464,20 @@ function ScheduleInterviewModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">Schedule Interview</h2>
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">Schedule Interview</h2>
         </div>
         <div className="p-6 space-y-4">
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 Candidate *
               </label>
               <select
                 value={candidateId}
                 onChange={(e) => setCandidateId(e.target.value)}
-                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
               >
                 <option value="">Select candidate</option>
                 {candidates.map((c) => (
@@ -486,13 +486,13 @@ function ScheduleInterviewModal({
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 Job Position *
               </label>
               <select
                 value={jobId}
                 onChange={(e) => setJobId(e.target.value)}
-                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
               >
                 <option value="">Select job</option>
                 {jobs.map((j) => (
@@ -503,7 +503,7 @@ function ScheduleInterviewModal({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Interview Type *
             </label>
             <div className="flex flex-wrap gap-2">
@@ -514,7 +514,7 @@ function ScheduleInterviewModal({
                   className={`px-3 py-2 rounded-lg text-sm ${
                     type === t.type
                       ? t.color
-                      : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
+                      : 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400'
                   }`}
                 >
                   {t.icon} {t.label}
@@ -525,42 +525,42 @@ function ScheduleInterviewModal({
 
           <div className="grid md:grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 Date *
               </label>
               <input
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 Start Time *
               </label>
               <input
                 type="time"
                 value={startTime}
                 onChange={(e) => setStartTime(e.target.value)}
-                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 End Time *
               </label>
               <input
                 type="time"
                 value={endTime}
                 onChange={(e) => setEndTime(e.target.value)}
-                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Interviewers
             </label>
             <div className="flex flex-wrap gap-2">
@@ -577,10 +577,10 @@ function ScheduleInterviewModal({
                   className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm ${
                     interviewerIds.includes(member.id)
                       ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30'
-                      : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
+                      : 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400'
                   }`}
                 >
-                  <div className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+                  <div className="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center overflow-hidden">
                     {member.avatar ? (
                       <OptimizedImage
                         src={toCloudinaryAutoUrl(member.avatar)}
@@ -601,7 +601,7 @@ function ScheduleInterviewModal({
 
           {type === 'in-person' && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 Location
               </label>
               <input
@@ -609,14 +609,14 @@ function ScheduleInterviewModal({
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder="Office address or room"
-                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
               />
             </div>
           )}
 
           {(type === 'video' || type === 'phone-screen') && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 Meeting Link
               </label>
               <input
@@ -624,13 +624,13 @@ function ScheduleInterviewModal({
                 value={meetingLink}
                 onChange={(e) => setMeetingLink(e.target.value)}
                 placeholder="https://zoom.us/..."
-                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+                className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
               />
             </div>
           )}
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Notes for Interviewers
             </label>
             <textarea
@@ -638,11 +638,11 @@ function ScheduleInterviewModal({
               onChange={(e) => setNotes(e.target.value)}
               placeholder="Topics to cover, specific questions..."
               rows={3}
-              className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+              className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
             />
           </div>
         </div>
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex justify-end gap-3">
+        <div className="p-6 border-t border-slate-200 dark:border-slate-700 flex justify-end gap-3">
           <Button variant="outline" onClick={onClose}>Cancel</Button>
           <Button
             onClick={handleSubmit}
@@ -677,21 +677,21 @@ function FeedbackModal({
   const RECOMMENDATIONS = [
     { value: 'strong-yes', label: 'Strong Yes', icon: '🌟', color: 'bg-green-100 text-green-700' },
     { value: 'yes', label: 'Yes', icon: '👍', color: 'bg-green-50 text-green-600' },
-    { value: 'neutral', label: 'Neutral', icon: '🤔', color: 'bg-gray-100 text-gray-600' },
+    { value: 'neutral', label: 'Neutral', icon: '🤔', color: 'bg-slate-100 text-slate-600' },
     { value: 'no', label: 'No', icon: '👎', color: 'bg-red-50 text-red-600' },
     { value: 'strong-no', label: 'Strong No', icon: '❌', color: 'bg-red-100 text-red-700' },
   ];
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-lg w-full">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">Submit Feedback</h2>
-          <p className="text-sm text-gray-500 mt-1">{interview.candidate.name} - {interview.job.title}</p>
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-lg w-full">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">Submit Feedback</h2>
+          <p className="text-sm text-slate-500 mt-1">{interview.candidate.name} - {interview.job.title}</p>
         </div>
         <div className="p-6 space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Overall Rating
             </label>
             <div className="flex items-center gap-2">
@@ -708,7 +708,7 @@ function FeedbackModal({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Recommendation
             </label>
             <div className="flex flex-wrap gap-2">
@@ -717,7 +717,7 @@ function FeedbackModal({
                   key={rec.value}
                   onClick={() => setRecommendation(rec.value)}
                   className={`px-4 py-2 rounded-lg text-sm ${
-                    recommendation === rec.value ? rec.color : 'bg-gray-100 text-gray-600'
+                    recommendation === rec.value ? rec.color : 'bg-slate-100 text-slate-600'
                   }`}
                 >
                   {rec.icon} {rec.label}
@@ -727,7 +727,7 @@ function FeedbackModal({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Comments
             </label>
             <textarea
@@ -735,11 +735,11 @@ function FeedbackModal({
               onChange={(e) => setComments(e.target.value)}
               placeholder="Your feedback on the candidate..."
               rows={4}
-              className="w-full px-4 py-2 border rounded-lg dark:bg-gray-900 dark:border-gray-600"
+              className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 dark:border-slate-600"
             />
           </div>
         </div>
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex justify-end gap-3">
+        <div className="p-6 border-t border-slate-200 dark:border-slate-700 flex justify-end gap-3">
           <Button variant="outline" onClick={onClose}>Cancel</Button>
           <Button onClick={() => onSubmit({ rating, recommendation, comments })}>
             Submit Feedback
@@ -836,8 +836,8 @@ export function InterviewScheduler() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Interview Scheduler</h1>
-          <p className="text-gray-500 mt-1">Manage and schedule candidate interviews</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Interview Scheduler</h1>
+          <p className="text-slate-500 mt-1">Manage and schedule candidate interviews</p>
         </div>
         <Button onClick={() => setShowScheduleModal(true)}>
           📅 Schedule Interview
@@ -846,11 +846,11 @@ export function InterviewScheduler() {
 
       {/* View Toggle & Filters */}
       <div className="flex flex-wrap gap-4 mb-6">
-        <div className="flex bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+        <div className="flex bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
           <button
             onClick={() => setView('calendar')}
             className={`px-4 py-2 rounded-lg text-sm ${
-              view === 'calendar' ? 'bg-white dark:bg-gray-700 shadow' : ''
+              view === 'calendar' ? 'bg-white dark:bg-slate-700 shadow' : ''
             }`}
           >
             📅 Calendar
@@ -858,7 +858,7 @@ export function InterviewScheduler() {
           <button
             onClick={() => setView('list')}
             className={`px-4 py-2 rounded-lg text-sm ${
-              view === 'list' ? 'bg-white dark:bg-gray-700 shadow' : ''
+              view === 'list' ? 'bg-white dark:bg-slate-700 shadow' : ''
             }`}
           >
             📋 List
@@ -868,7 +868,7 @@ export function InterviewScheduler() {
         <select
           value={filters.status}
           onChange={(e) => setFilters({ ...filters, status: e.target.value })}
-          className="px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+          className="px-4 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
         >
           <option value="">All Statuses</option>
           <option value="scheduled">Scheduled</option>
@@ -879,7 +879,7 @@ export function InterviewScheduler() {
         <select
           value={filters.type}
           onChange={(e) => setFilters({ ...filters, type: e.target.value })}
-          className="px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+          className="px-4 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
         >
           <option value="">All Types</option>
           {INTERVIEW_TYPES.map((t) => (
@@ -907,12 +907,12 @@ export function InterviewScheduler() {
           ) : (
             <div className="space-y-4">
               {interviews.length === 0 ? (
-                <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-12 text-center">
+                <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-12 text-center">
                   <div className="text-6xl mb-4">📅</div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
                     No interviews scheduled
                   </h3>
-                  <p className="text-gray-500 mb-4">Schedule your first interview</p>
+                  <p className="text-slate-500 mb-4">Schedule your first interview</p>
                   <Button onClick={() => setShowScheduleModal(true)}>Schedule Interview</Button>
                 </div>
               ) : (
@@ -931,22 +931,22 @@ export function InterviewScheduler() {
         {/* Sidebar */}
         <div className="space-y-6">
           {/* Upcoming */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Upcoming</h3>
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Upcoming</h3>
             {upcomingInterviews.length === 0 ? (
-              <p className="text-sm text-gray-500">No upcoming interviews</p>
+              <p className="text-sm text-slate-500">No upcoming interviews</p>
             ) : (
               <div className="space-y-3">
                 {upcomingInterviews.map((interview) => (
                   <div
                     key={interview.id}
                     onClick={() => setSelectedInterview(interview)}
-                    className="p-3 bg-gray-50 dark:bg-gray-900 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                    className="p-3 bg-slate-50 dark:bg-slate-900 rounded-lg cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800"
                   >
-                    <p className="font-medium text-sm text-gray-900 dark:text-white">
+                    <p className="font-medium text-sm text-slate-900 dark:text-white">
                       {interview.candidate.name}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-slate-500">
                       {new Date(interview.date).toLocaleDateString('en-AU', { month: 'short', day: 'numeric' })} • {interview.startTime}
                     </p>
                   </div>
@@ -956,19 +956,19 @@ export function InterviewScheduler() {
           </div>
 
           {/* Quick Stats */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">This Month</h3>
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">This Month</h3>
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Scheduled</span>
+                <span className="text-slate-500">Scheduled</span>
                 <span className="font-medium">{interviews.filter(i => i.status === 'scheduled').length}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Completed</span>
+                <span className="text-slate-500">Completed</span>
                 <span className="font-medium">{interviews.filter(i => i.status === 'completed').length}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Cancelled</span>
+                <span className="text-slate-500">Cancelled</span>
                 <span className="font-medium">{interviews.filter(i => i.status === 'cancelled').length}</span>
               </div>
             </div>

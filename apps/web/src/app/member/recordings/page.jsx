@@ -112,9 +112,9 @@ export default function RecordingsPage() {
       READY: { bg: 'bg-green-100', text: 'text-green-700', label: 'Ready' },
       PROCESSING: { bg: 'bg-yellow-100', text: 'text-yellow-700', label: 'Processing' },
       RECORDING: { bg: 'bg-red-100', text: 'text-red-700', label: 'Recording' },
-      PENDING: { bg: 'bg-gray-100', text: 'text-gray-700', label: 'Pending' },
+      PENDING: { bg: 'bg-slate-100', text: 'text-slate-700', label: 'Pending' },
       FAILED: { bg: 'bg-red-100', text: 'text-red-700', label: 'Failed' },
-      EXPIRED: { bg: 'bg-gray-100', text: 'text-gray-500', label: 'Expired' },
+      EXPIRED: { bg: 'bg-slate-100', text: 'text-slate-500', label: 'Expired' },
     };
     
     const config = statusConfig[status] || statusConfig.PENDING;
@@ -126,18 +126,18 @@ export default function RecordingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Session Recordings</h1>
-            <p className="text-gray-600 mt-1">
+            <h1 className="text-2xl font-bold text-slate-900">Session Recordings</h1>
+            <p className="text-slate-600 mt-1">
               View recordings and transcripts from your mentoring sessions
             </p>
           </div>
           
-          <div className="flex items-center gap-4 text-sm text-gray-500">
+          <div className="flex items-center gap-4 text-sm text-slate-500">
             <span className="flex items-center gap-1">
               <Video className="w-4 h-4" />
               {recordings.length} recordings
@@ -158,8 +158,8 @@ export default function RecordingsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Recordings List */}
           <div className="lg:col-span-1 bg-white rounded-xl shadow-sm border overflow-hidden">
-            <div className="p-4 border-b bg-gray-50">
-              <h2 className="font-semibold text-gray-800">Your Recordings</h2>
+            <div className="p-4 border-b bg-slate-50">
+              <h2 className="font-semibold text-slate-800">Your Recordings</h2>
             </div>
             
             {loading ? (
@@ -167,8 +167,8 @@ export default function RecordingsPage() {
                 <Loader2 className="w-6 h-6 animate-spin text-amber-600" />
               </div>
             ) : recordings.length === 0 ? (
-              <div className="p-8 text-center text-gray-500">
-                <Video className="w-12 h-12 mx-auto mb-3 text-gray-300" />
+              <div className="p-8 text-center text-slate-500">
+                <Video className="w-12 h-12 mx-auto mb-3 text-slate-300" />
                 <p>No recordings yet</p>
                 <p className="text-sm mt-1">
                   Recordings from mentoring sessions will appear here
@@ -180,7 +180,7 @@ export default function RecordingsPage() {
                   <button
                     key={recording.id}
                     onClick={() => handlePlay(recording)}
-                    className={`w-full p-4 text-left hover:bg-gray-50 transition-colors ${
+                    className={`w-full p-4 text-left hover:bg-slate-50 transition-colors ${
                       selectedRecording?.id === recording.id ? 'bg-amber-50' : ''
                     }`}
                   >
@@ -189,10 +189,10 @@ export default function RecordingsPage() {
                         <Video className="w-4 h-4 text-amber-700" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="font-medium text-gray-900 truncate">
+                        <p className="font-medium text-slate-900 truncate">
                           {recording.sessionTitle || 'Mentoring Session'}
                         </p>
-                        <div className="flex items-center gap-3 mt-1 text-xs text-gray-500">
+                        <div className="flex items-center gap-3 mt-1 text-xs text-slate-500">
                           <span className="flex items-center gap-1">
                             <Clock className="w-3 h-3" />
                             {formatDuration(recording.duration)}
@@ -211,7 +211,7 @@ export default function RecordingsPage() {
                           )}
                         </div>
                       </div>
-                      <ChevronRight className="w-4 h-4 text-gray-400" />
+                      <ChevronRight className="w-4 h-4 text-slate-400" />
                     </div>
                   </button>
                 ))}
@@ -230,7 +230,7 @@ export default function RecordingsPage() {
                     className={`flex-1 px-4 py-3 text-sm font-medium flex items-center justify-center gap-2 ${
                       activeTab === 'video'
                         ? 'text-amber-700 border-b-2 border-amber-500 bg-amber-50'
-                        : 'text-gray-600 hover:bg-gray-50'
+                        : 'text-slate-600 hover:bg-slate-50'
                     }`}
                   >
                     <Play className="w-4 h-4" />
@@ -241,7 +241,7 @@ export default function RecordingsPage() {
                     className={`flex-1 px-4 py-3 text-sm font-medium flex items-center justify-center gap-2 ${
                       activeTab === 'transcript'
                         ? 'text-amber-700 border-b-2 border-amber-500 bg-amber-50'
-                        : 'text-gray-600 hover:bg-gray-50'
+                        : 'text-slate-600 hover:bg-slate-50'
                     }`}
                   >
                     <FileText className="w-4 h-4" />
@@ -265,11 +265,11 @@ export default function RecordingsPage() {
                           </video>
                         </div>
                       ) : selectedRecording.status === 'PROCESSING' ? (
-                        <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
+                        <div className="aspect-video bg-slate-100 rounded-lg flex items-center justify-center">
                           <div className="text-center">
                             <Loader2 className="w-10 h-10 mx-auto animate-spin text-amber-600 mb-3" />
-                            <p className="text-gray-600 font-medium">Processing recording...</p>
-                            <p className="text-sm text-gray-500 mt-1">
+                            <p className="text-slate-600 font-medium">Processing recording...</p>
+                            <p className="text-sm text-slate-500 mt-1">
                               This may take a few minutes
                             </p>
                           </div>
@@ -285,8 +285,8 @@ export default function RecordingsPage() {
                           </div>
                         </div>
                       ) : (
-                        <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
-                          <div className="text-center text-gray-500">
+                        <div className="aspect-video bg-slate-100 rounded-lg flex items-center justify-center">
+                          <div className="text-center text-slate-500">
                             <Video className="w-10 h-10 mx-auto mb-3" />
                             <p>Recording not available</p>
                           </div>
@@ -294,31 +294,31 @@ export default function RecordingsPage() {
                       )}
 
                       {/* Recording details */}
-                      <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-                        <h3 className="font-semibold text-gray-800 mb-2">
+                      <div className="mt-4 p-4 bg-slate-50 rounded-lg">
+                        <h3 className="font-semibold text-slate-800 mb-2">
                           {selectedRecording.sessionTitle || 'Mentoring Session'}
                         </h3>
                         <dl className="grid grid-cols-2 gap-4 text-sm">
                           <div>
-                            <dt className="text-gray-500">Date</dt>
-                            <dd className="font-medium text-gray-800">
+                            <dt className="text-slate-500">Date</dt>
+                            <dd className="font-medium text-slate-800">
                               {formatDate(selectedRecording.createdAt)}
                             </dd>
                           </div>
                           <div>
-                            <dt className="text-gray-500">Duration</dt>
-                            <dd className="font-medium text-gray-800">
+                            <dt className="text-slate-500">Duration</dt>
+                            <dd className="font-medium text-slate-800">
                               {formatDuration(selectedRecording.duration)}
                             </dd>
                           </div>
                           <div>
-                            <dt className="text-gray-500">Participants</dt>
-                            <dd className="font-medium text-gray-800">
+                            <dt className="text-slate-500">Participants</dt>
+                            <dd className="font-medium text-slate-800">
                               {selectedRecording.participants?.join(', ') || 'You'}
                             </dd>
                           </div>
                           <div>
-                            <dt className="text-gray-500">Status</dt>
+                            <dt className="text-slate-500">Status</dt>
                             <dd>{getStatusBadge(selectedRecording.status)}</dd>
                           </div>
                         </dl>
@@ -343,9 +343,9 @@ export default function RecordingsPage() {
                     <div>
                       {transcript ? (
                         <div className="prose prose-sm max-w-none">
-                          <div className="p-4 bg-gray-50 rounded-lg max-h-[500px] overflow-y-auto">
+                          <div className="p-4 bg-slate-50 rounded-lg max-h-[500px] overflow-y-auto">
                             {transcript.split('\n').map((line, i) => (
-                              <p key={i} className={line.startsWith('[') ? 'text-gray-500 text-xs' : ''}>
+                              <p key={i} className={line.startsWith('[') ? 'text-slate-500 text-xs' : ''}>
                                 {line}
                               </p>
                             ))}
@@ -354,7 +354,7 @@ export default function RecordingsPage() {
                           <div className="mt-4 flex gap-3">
                             <button
                               onClick={() => navigator.clipboard.writeText(transcript)}
-                              className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm font-medium"
+                              className="flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors text-sm font-medium"
                             >
                               Copy transcript
                             </button>
@@ -365,8 +365,8 @@ export default function RecordingsPage() {
                           <Loader2 className="w-6 h-6 animate-spin text-amber-600" />
                         </div>
                       ) : (
-                        <div className="p-8 text-center text-gray-500">
-                          <FileText className="w-12 h-12 mx-auto mb-3 text-gray-300" />
+                        <div className="p-8 text-center text-slate-500">
+                          <FileText className="w-12 h-12 mx-auto mb-3 text-slate-300" />
                           <p>No transcript available</p>
                           <p className="text-sm mt-1">
                             Transcripts are generated automatically for processed recordings
@@ -378,9 +378,9 @@ export default function RecordingsPage() {
                 </div>
               </>
             ) : (
-              <div className="p-12 text-center text-gray-500">
-                <Video className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-                <h3 className="font-medium text-gray-700 mb-2">Select a recording</h3>
+              <div className="p-12 text-center text-slate-500">
+                <Video className="w-16 h-16 mx-auto mb-4 text-slate-300" />
+                <h3 className="font-medium text-slate-700 mb-2">Select a recording</h3>
                 <p className="text-sm">
                   Choose a recording from the list to watch or view its transcript
                 </p>

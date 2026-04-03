@@ -42,7 +42,7 @@ const variantClasses = {
 
 const statusColors = {
   online: 'bg-green-500',
-  offline: 'bg-gray-400',
+  offline: 'bg-slate-400',
   away: 'bg-yellow-500',
   busy: 'bg-red-500',
 };
@@ -124,7 +124,7 @@ export function Avatar({
           width={sizePx[size]}
           height={sizePx[size]}
           cloudinary={isCloudinaryPublicId(src || '')}
-          className={`${sizeClasses[size]} ${variantClasses[variant]} object-cover bg-gray-100 dark:bg-gray-800`}
+          className={`${sizeClasses[size]} ${variantClasses[variant]} object-cover bg-slate-100 dark:bg-slate-800`}
           onError={() => setImageError(true)}
           unoptimized={src.startsWith('data:') || src.startsWith('blob:')}
         />
@@ -206,9 +206,9 @@ export function AvatarGroup({
           className={`
             ${sizeClasses[size]}
             rounded-full
-            bg-gray-200 dark:bg-gray-700
+            bg-slate-200 dark:bg-slate-700
             flex items-center justify-center
-            text-gray-600 dark:text-gray-300
+            text-slate-600 dark:text-slate-300
             font-medium
             ring-2 ring-white dark:ring-gray-900
           `}

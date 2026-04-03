@@ -187,13 +187,13 @@ export default function LivePage() {
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 py-8 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="animate-pulse space-y-6">
-            <div className="h-10 bg-gray-200 rounded w-1/4"></div>
+            <div className="h-10 bg-slate-200 rounded w-1/4"></div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div key={i} className="bg-white rounded-xl shadow-sm p-4">
-                  <div className="h-40 bg-gray-200 rounded-lg mb-4"></div>
-                  <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                  <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                  <div className="h-40 bg-slate-200 rounded-lg mb-4"></div>
+                  <div className="h-4 bg-slate-200 rounded w-3/4 mb-2"></div>
+                  <div className="h-4 bg-slate-200 rounded w-1/2"></div>
                 </div>
               ))}
             </div>
@@ -209,8 +209,8 @@ export default function LivePage() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Live</h1>
-            <p className="text-gray-600 mt-1">Join live streams and audio rooms from our community</p>
+            <h1 className="text-3xl font-bold text-slate-900">Live</h1>
+            <p className="text-slate-600 mt-1">Join live streams and audio rooms from our community</p>
           </div>
           {isAuthenticated && (
             <div className="flex gap-3">
@@ -241,7 +241,7 @@ export default function LivePage() {
               className={`px-4 py-2 rounded-full font-medium whitespace-nowrap transition-all ${
                 activeTab === tab.id
                   ? 'text-white shadow-lg'
-                  : 'bg-white text-gray-700 hover:bg-gray-100'
+                  : 'bg-white text-slate-700 hover:bg-slate-100'
               }`}
               style={activeTab === tab.id ? { background: `linear-gradient(135deg, ${accentPink}, ${accentPurple})` } : {}}
             >
@@ -253,7 +253,7 @@ export default function LivePage() {
         {/* Live Streams Section */}
         {content.streams?.length > 0 && (
           <section className="mb-10">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-semibold text-slate-900 mb-4 flex items-center gap-2">
               <span className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
               Live Streams
             </h2>
@@ -286,15 +286,15 @@ export default function LivePage() {
                     </div>
                   </div>
                   <div className="p-4">
-                    <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">{stream.title}</h3>
+                    <h3 className="font-semibold text-slate-900 mb-2 line-clamp-2">{stream.title}</h3>
                     <div className="flex items-center gap-2">
                       <span className="text-2xl">{stream.hostAvatar}</span>
                       <div>
-                        <p className="text-sm font-medium text-gray-800 flex items-center gap-1">
+                        <p className="text-sm font-medium text-slate-800 flex items-center gap-1">
                           {stream.hostName}
                           {stream.hostVerified && <span className="text-blue-500">✓</span>}
                         </p>
-                        <p className="text-xs text-gray-500">Started {stream.startedAt}</p>
+                        <p className="text-xs text-slate-500">Started {stream.startedAt}</p>
                       </div>
                     </div>
                   </div>
@@ -307,7 +307,7 @@ export default function LivePage() {
         {/* Audio Rooms Section */}
         {content.audioRooms?.length > 0 && (
           <section className="mb-10">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-semibold text-slate-900 mb-4 flex items-center gap-2">
               <span className="text-2xl">🎙️</span>
               Audio Rooms
             </h2>
@@ -326,8 +326,8 @@ export default function LivePage() {
                       Live
                     </div>
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-1">{room.title}</h3>
-                  <p className="text-sm text-gray-600 mb-3">Hosted by {room.hostName}</p>
+                  <h3 className="font-semibold text-slate-900 mb-1">{room.title}</h3>
+                  <p className="text-sm text-slate-600 mb-3">Hosted by {room.hostName}</p>
                   <div className="flex flex-wrap gap-2 mb-3">
                     {room.topics.map((topic, idx) => (
                       <span key={idx} className="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">
@@ -335,7 +335,7 @@ export default function LivePage() {
                       </span>
                     ))}
                   </div>
-                  <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center justify-between text-sm text-slate-500">
                     <span>🎤 {room.speakerCount} speakers</span>
                     <span>👥 {room.participantCount} listening</span>
                   </div>
@@ -348,7 +348,7 @@ export default function LivePage() {
         {/* Scheduled Section */}
         {activeTab === 'scheduled' && content.scheduled?.length > 0 && (
           <section className="mb-10">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-semibold text-slate-900 mb-4 flex items-center gap-2">
               <span className="text-2xl">📅</span>
               Upcoming Events
             </h2>
@@ -366,9 +366,9 @@ export default function LivePage() {
                       {event.type === 'stream' ? '📺' : '🎙️'}
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900">{event.title}</h3>
-                      <p className="text-sm text-gray-600">{event.hostName}</p>
-                      <div className="flex items-center gap-3 mt-2 text-sm text-gray-500">
+                      <h3 className="font-semibold text-slate-900">{event.title}</h3>
+                      <p className="text-sm text-slate-600">{event.hostName}</p>
+                      <div className="flex items-center gap-3 mt-2 text-sm text-slate-500">
                         <span>🕐 {event.scheduledFor}</span>
                         <span>👥 {event.attendees} interested</span>
                       </div>
@@ -390,8 +390,8 @@ export default function LivePage() {
         {streams.length === 0 && audioRooms.length === 0 && (
           <div className="text-center py-16">
             <div className="text-6xl mb-4">📺</div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No live content right now</h3>
-            <p className="text-gray-600 mb-6">Be the first to go live and connect with the community!</p>
+            <h3 className="text-xl font-semibold text-slate-900 mb-2">No live content right now</h3>
+            <p className="text-slate-600 mb-6">Be the first to go live and connect with the community!</p>
             {isAuthenticated ? (
               <div className="flex justify-center gap-3">
                 <Link

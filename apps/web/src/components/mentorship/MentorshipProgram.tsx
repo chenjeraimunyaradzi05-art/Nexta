@@ -239,7 +239,7 @@ function StarRating({ rating, size = 'sm' }: { rating: number; size?: 'sm' | 'md
       {[1, 2, 3, 4, 5].map((star) => (
         <svg
           key={star}
-          className={`${sizeClasses} ${star <= rating ? 'text-yellow-400' : 'text-gray-300'}`}
+          className={`${sizeClasses} ${star <= rating ? 'text-yellow-400' : 'text-slate-300'}`}
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -263,11 +263,11 @@ function MentorCard({
   const availabilityConfig = {
     accepting: { label: 'Accepting', color: 'bg-green-100 text-green-700' },
     waitlist: { label: 'Waitlist', color: 'bg-yellow-100 text-yellow-700' },
-    closed: { label: 'Not Accepting', color: 'bg-gray-100 text-gray-700' },
+    closed: { label: 'Not Accepting', color: 'bg-slate-100 text-slate-700' },
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
       <div className="p-6">
         {/* Header */}
         <div className="flex items-start gap-4 mb-4">
@@ -286,13 +286,13 @@ function MentorCard({
           )}
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
-              <h3 className="font-semibold text-gray-900 dark:text-white">{mentor.name}</h3>
+              <h3 className="font-semibold text-slate-900 dark:text-white">{mentor.name}</h3>
               {mentor.isIndigenous && (
                 <span className="text-lg" title="Indigenous Mentor">🪶</span>
               )}
             </div>
-            <p className="text-sm text-gray-500">{mentor.title}</p>
-            <p className="text-sm text-gray-500">{mentor.company}</p>
+            <p className="text-sm text-slate-500">{mentor.title}</p>
+            <p className="text-sm text-slate-500">{mentor.company}</p>
           </div>
           <span className={`px-2 py-1 text-xs font-medium rounded-full ${availabilityConfig[mentor.availability].color}`}>
             {availabilityConfig[mentor.availability].label}
@@ -302,13 +302,13 @@ function MentorCard({
         {/* Rating */}
         <div className="flex items-center gap-2 mb-3">
           <StarRating rating={Math.round(mentor.rating)} />
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-slate-500">
             {mentor.rating.toFixed(1)} ({mentor.reviewCount} reviews)
           </span>
         </div>
 
         {/* Bio */}
-        <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2 mb-4">{mentor.bio}</p>
+        <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-2 mb-4">{mentor.bio}</p>
 
         {/* Expertise */}
         <div className="flex flex-wrap gap-1 mb-4">
@@ -321,12 +321,12 @@ function MentorCard({
             </span>
           ))}
           {mentor.expertise.length > 3 && (
-            <span className="text-xs text-gray-500">+{mentor.expertise.length - 3}</span>
+            <span className="text-xs text-slate-500">+{mentor.expertise.length - 3}</span>
           )}
         </div>
 
         {/* Stats */}
-        <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+        <div className="flex items-center gap-4 text-sm text-slate-500 mb-4">
           <span>{mentor.yearsExperience}+ years</span>
           <span>{mentor.menteeCount}/{mentor.maxMentees} mentees</span>
           {mentor.freeForIndigenous && (
@@ -366,7 +366,7 @@ function ProgramCard({
   const fillPercentage = (spotsLeft / program.totalSpots) * 100;
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
       {program.isIndigenousFocused && (
         <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-center py-2 text-sm font-medium">
           🪶 Indigenous-Focused Program
@@ -376,7 +376,7 @@ function ProgramCard({
         <div className="flex items-start justify-between mb-4">
           <div>
             <span className="text-2xl">{typeConfig[program.type].icon}</span>
-            <span className="ml-2 text-sm text-gray-500">{typeConfig[program.type].label}</span>
+            <span className="ml-2 text-sm text-slate-500">{typeConfig[program.type].label}</span>
           </div>
           {program.applicationDeadline && (
             <span className="text-sm text-orange-600">
@@ -385,18 +385,18 @@ function ProgramCard({
           )}
         </div>
 
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{program.name}</h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{program.description}</p>
+        <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">{program.name}</h3>
+        <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">{program.description}</p>
 
         {/* Details */}
         <div className="grid grid-cols-2 gap-3 text-sm mb-4">
           <div className="flex items-center gap-2">
-            <span className="text-gray-400">📅</span>
-            <span className="text-gray-600 dark:text-gray-400">{program.duration}</span>
+            <span className="text-slate-400">📅</span>
+            <span className="text-slate-600 dark:text-slate-400">{program.duration}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-gray-400">🔄</span>
-            <span className="text-gray-600 dark:text-gray-400">{program.frequency}</span>
+            <span className="text-slate-400">🔄</span>
+            <span className="text-slate-600 dark:text-slate-400">{program.frequency}</span>
           </div>
         </div>
 
@@ -415,12 +415,12 @@ function ProgramCard({
         {/* Spots */}
         <div className="mb-4">
           <div className="flex items-center justify-between text-sm mb-1">
-            <span className="text-gray-500">Spots Available</span>
-            <span className="font-medium text-gray-900 dark:text-white">
+            <span className="text-slate-500">Spots Available</span>
+            <span className="font-medium text-slate-900 dark:text-white">
               {program.spotsAvailable} / {program.totalSpots}
             </span>
           </div>
-          <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+          <div className="h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
             <div
               className="h-full bg-blue-500 rounded-full"
               style={{ width: `${fillPercentage}%` }}
@@ -440,19 +440,19 @@ function ProgramCard({
                     alt={`${mentor.name} avatar`}
                     width={32}
                     height={32}
-                    className="w-8 h-8 rounded-full border-2 border-white dark:border-gray-800"
+                    className="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800"
                   />
                 ) : (
                   <div
                     key={mentor.id}
-                    className="w-8 h-8 bg-gray-300 rounded-full border-2 border-white dark:border-gray-800 flex items-center justify-center text-xs font-medium"
+                    className="w-8 h-8 bg-slate-300 rounded-full border-2 border-white dark:border-slate-800 flex items-center justify-center text-xs font-medium"
                   >
                     {mentor.name.charAt(0)}
                   </div>
                 )
               ))}
             </div>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-slate-500">
               {program.mentors.length} mentor{program.mentors.length > 1 ? 's' : ''}
             </span>
           </div>
@@ -478,14 +478,14 @@ function RelationshipCard({
     pending: { label: 'Pending', color: 'bg-yellow-100 text-yellow-700' },
     active: { label: 'Active', color: 'bg-green-100 text-green-700' },
     completed: { label: 'Completed', color: 'bg-blue-100 text-blue-700' },
-    cancelled: { label: 'Cancelled', color: 'bg-gray-100 text-gray-700' },
+    cancelled: { label: 'Cancelled', color: 'bg-slate-100 text-slate-700' },
   };
 
   const completedGoals = relationship.goals.filter(g => g.status === 'completed').length;
   const totalGoals = relationship.goals.length;
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex items-start gap-4 mb-4">
         {relationship.mentor.avatar ? (
           <OptimizedImage
@@ -502,12 +502,12 @@ function RelationshipCard({
         )}
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <h3 className="font-semibold text-gray-900 dark:text-white">{relationship.mentor.name}</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white">{relationship.mentor.name}</h3>
             <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${statusConfig[relationship.status].color}`}>
               {statusConfig[relationship.status].label}
             </span>
           </div>
-          <p className="text-sm text-gray-500">{relationship.program.name}</p>
+          <p className="text-sm text-slate-500">{relationship.program.name}</p>
         </div>
       </div>
 
@@ -535,16 +535,16 @@ function RelationshipCard({
       {/* Progress */}
       <div className="space-y-3 mb-4">
         <div className="flex items-center justify-between text-sm">
-          <span className="text-gray-500">Goals Completed</span>
-          <span className="font-medium text-gray-900 dark:text-white">{completedGoals}/{totalGoals}</span>
+          <span className="text-slate-500">Goals Completed</span>
+          <span className="font-medium text-slate-900 dark:text-white">{completedGoals}/{totalGoals}</span>
         </div>
-        <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+        <div className="h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
           <div
             className="h-full bg-green-500 rounded-full"
             style={{ width: totalGoals > 0 ? `${(completedGoals / totalGoals) * 100}%` : '0%' }}
           />
         </div>
-        <div className="flex items-center justify-between text-sm text-gray-500">
+        <div className="flex items-center justify-between text-sm text-slate-500">
           <span>{relationship.meetingsCompleted} meetings completed</span>
           <span>Since {new Date(relationship.startedAt).toLocaleDateString('en-AU')}</span>
         </div>
@@ -590,13 +590,13 @@ function ApplicationModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-white dark:bg-slate-800 rounded-xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">
               {mentor ? `Apply to work with ${mentor.name}` : `Apply to ${program?.name}`}
             </h2>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+            <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -607,7 +607,7 @@ function ApplicationModal({
         <div className="p-6 space-y-6">
           {/* Mentor/Program Info */}
           {mentor && (
-            <div className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+            <div className="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
               {mentor.avatar ? (
                 <OptimizedImage
                   src={toCloudinaryAutoUrl(mentor.avatar)}
@@ -622,15 +622,15 @@ function ApplicationModal({
                 </div>
               )}
               <div>
-                <h3 className="font-medium text-gray-900 dark:text-white">{mentor.name}</h3>
-                <p className="text-sm text-gray-500">{mentor.title} at {mentor.company}</p>
+                <h3 className="font-medium text-slate-900 dark:text-white">{mentor.name}</h3>
+                <p className="text-sm text-slate-500">{mentor.title} at {mentor.company}</p>
               </div>
             </div>
           )}
 
           {/* Motivation */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Why are you interested in this mentorship? *
             </label>
             <textarea
@@ -638,13 +638,13 @@ function ApplicationModal({
               onChange={(e) => setMotivation(e.target.value)}
               rows={4}
               placeholder="Share your motivation and what you hope to gain..."
-              className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-3 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
 
           {/* Goals */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               What are your top goals? *
             </label>
             <div className="space-y-3">
@@ -655,7 +655,7 @@ function ApplicationModal({
                   value={goal}
                   onChange={(e) => updateGoal(index, e.target.value)}
                   placeholder={`Goal ${index + 1}`}
-                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                 />
               ))}
             </div>
@@ -672,7 +672,7 @@ function ApplicationModal({
           </div>
         </div>
 
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex gap-3">
+        <div className="p-6 border-t border-slate-200 dark:border-slate-700 flex gap-3">
           <Button variant="outline" onClick={onClose} className="flex-1">Cancel</Button>
           <Button
             onClick={handleSubmit}
@@ -757,34 +757,34 @@ export function MentorshipProgram() {
     <div className="max-w-6xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Mentorship</h1>
-        <p className="text-gray-500 mt-1">Connect with mentors and accelerate your career</p>
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Mentorship</h1>
+        <p className="text-slate-500 mt-1">Connect with mentors and accelerate your career</p>
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-4 gap-4 mb-8">
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
-          <div className="text-2xl font-bold text-gray-900 dark:text-white">{mentors.length}</div>
-          <div className="text-sm text-gray-500">Mentors</div>
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
+          <div className="text-2xl font-bold text-slate-900 dark:text-white">{mentors.length}</div>
+          <div className="text-sm text-slate-500">Mentors</div>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
           <div className="text-2xl font-bold text-purple-600">{programs.length}</div>
-          <div className="text-sm text-gray-500">Programs</div>
+          <div className="text-sm text-slate-500">Programs</div>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
           <div className="text-2xl font-bold text-green-600">{myMentorships.filter(m => m.status === 'active').length}</div>
-          <div className="text-sm text-gray-500">Active</div>
+          <div className="text-sm text-slate-500">Active</div>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-center">
           <div className="text-2xl font-bold text-blue-600">
             {mentors.filter(m => m.isIndigenous).length}
           </div>
-          <div className="text-sm text-gray-500">Indigenous Mentors</div>
+          <div className="text-sm text-slate-500">Indigenous Mentors</div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-4 mb-6 border-b border-gray-200 dark:border-gray-700">
+      <div className="flex gap-4 mb-6 border-b border-slate-200 dark:border-slate-700">
         {([
           { key: 'find', label: 'Find Mentors' },
           { key: 'programs', label: 'Programs' },
@@ -796,7 +796,7 @@ export function MentorshipProgram() {
             className={`px-4 py-3 font-medium border-b-2 transition-colors ${
               activeTab === tab.key
                 ? 'border-blue-500 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700'
+                : 'border-transparent text-slate-500 hover:text-slate-700'
             }`}
           >
             {tab.label}
@@ -812,7 +812,7 @@ export function MentorshipProgram() {
             <select
               value={expertiseFilter}
               onChange={(e) => setExpertiseFilter(e.target.value)}
-              className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             >
               <option value="">All Expertise</option>
               {expertiseAreas.map((exp) => (
@@ -822,7 +822,7 @@ export function MentorshipProgram() {
             <select
               value={industryFilter}
               onChange={(e) => setIndustryFilter(e.target.value)}
-              className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             >
               <option value="">All Industries</option>
               {industries.map((ind) => (
@@ -832,7 +832,7 @@ export function MentorshipProgram() {
             <select
               value={availabilityFilter}
               onChange={(e) => setAvailabilityFilter(e.target.value)}
-              className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             >
               <option value="">Any Availability</option>
               <option value="accepting">Accepting</option>
@@ -853,10 +853,10 @@ export function MentorshipProgram() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+            <div className="text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
               <div className="text-6xl mb-4">🎓</div>
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white">No mentors found</h3>
-              <p className="text-gray-500 mt-2">Try adjusting your filters</p>
+              <h3 className="text-lg font-medium text-slate-900 dark:text-white">No mentors found</h3>
+              <p className="text-slate-500 mt-2">Try adjusting your filters</p>
             </div>
           )}
         </div>
@@ -873,10 +873,10 @@ export function MentorshipProgram() {
               />
             ))
           ) : (
-            <div className="col-span-3 text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+            <div className="col-span-3 text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
               <div className="text-6xl mb-4">📋</div>
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white">No programs available</h3>
-              <p className="text-gray-500 mt-2">Check back soon for new programs</p>
+              <h3 className="text-lg font-medium text-slate-900 dark:text-white">No programs available</h3>
+              <p className="text-slate-500 mt-2">Check back soon for new programs</p>
             </div>
           )}
         </div>
@@ -895,10 +895,10 @@ export function MentorshipProgram() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-xl">
+            <div className="text-center py-16 bg-slate-50 dark:bg-slate-900 rounded-xl">
               <div className="text-6xl mb-4">🤝</div>
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white">No mentorships yet</h3>
-              <p className="text-gray-500 mt-2 mb-6">Find a mentor or join a program to get started</p>
+              <h3 className="text-lg font-medium text-slate-900 dark:text-white">No mentorships yet</h3>
+              <p className="text-slate-500 mt-2 mb-6">Find a mentor or join a program to get started</p>
               <Button onClick={() => setActiveTab('find')}>Browse Mentors</Button>
             </div>
           )}

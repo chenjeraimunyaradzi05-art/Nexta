@@ -7,7 +7,7 @@ import api from '@/lib/apiClient';
 const TIER_CONFIG: Record<string, { label: string; color: string; icon: string | null }> = {
   FREE: {
     label: 'Free',
-    color: 'bg-gray-600 text-gray-200',
+    color: 'bg-slate-600 text-slate-200',
     icon: null,
   },
   STARTER: {
@@ -70,7 +70,7 @@ export default function SubscriptionBadge({
   }, []);
 
   if (loading) {
-    return <div className={`h-6 w-16 bg-gray-200 animate-pulse rounded ${className}`} />;
+    return <div className={`h-6 w-16 bg-slate-200 animate-pulse rounded ${className}`} />;
   }
 
   if (!subscription) {

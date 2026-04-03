@@ -58,14 +58,14 @@ export default function SsoSetupPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-gray-50 py-8">
+      <div className="min-h-screen bg-slate-50 py-8">
         <div className="max-w-2xl mx-auto px-4">
           <div className="bg-white rounded-lg shadow p-6 text-center">
             <div className="text-5xl mb-4">✓</div>
             <h1 className="text-2xl font-bold text-green-600 mb-2">
               SSO Configuration Saved
             </h1>
-            <p className="text-gray-600 mb-6">
+            <p className="text-slate-600 mb-6">
               Your SSO configuration has been saved. Test the connection before activating it for your users.
             </p>
             <div className="flex gap-3 justify-center">
@@ -83,10 +83,10 @@ export default function SsoSetupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-slate-50 py-8">
       <div className="max-w-2xl mx-auto px-4">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">Configure Single Sign-On</h1>
+          <h1 className="text-2xl font-bold text-slate-900">Configure Single Sign-On</h1>
           <Link
             href="/dashboard/company/integrations"
             className="text-blue-600 hover:text-blue-800"
@@ -104,7 +104,7 @@ export default function SsoSetupPage() {
         <div className="bg-white rounded-lg shadow p-6">
           {/* Provider Selection */}
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-3">
+            <label className="block text-sm font-medium text-slate-700 mb-3">
               SSO Provider Type
             </label>
             <div className="grid grid-cols-2 gap-4">
@@ -114,11 +114,11 @@ export default function SsoSetupPage() {
                 className={`p-4 border-2 rounded-lg text-left transition-colors ${
                   provider === 'SAML'
                     ? 'border-blue-500 bg-blue-50'
-                    : 'border-gray-200 hover:border-gray-300'
+                    : 'border-slate-200 hover:border-slate-300'
                 }`}
               >
                 <div className="font-semibold">SAML 2.0</div>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-slate-500">
                   For Okta, Azure AD, OneLogin, etc.
                 </div>
               </button>
@@ -128,11 +128,11 @@ export default function SsoSetupPage() {
                 className={`p-4 border-2 rounded-lg text-left transition-colors ${
                   provider === 'OIDC'
                     ? 'border-blue-500 bg-blue-50'
-                    : 'border-gray-200 hover:border-gray-300'
+                    : 'border-slate-200 hover:border-slate-300'
                 }`}
               >
                 <div className="font-semibold">OpenID Connect</div>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-slate-500">
                   For Google, Auth0, Keycloak, etc.
                 </div>
               </button>
@@ -142,7 +142,7 @@ export default function SsoSetupPage() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Common Field */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-slate-700 mb-1">
                 Issuer / Entity ID
               </label>
               <input
@@ -162,7 +162,7 @@ export default function SsoSetupPage() {
             {provider === 'SAML' && (
               <>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-slate-700 mb-1">
                     SSO URL
                   </label>
                   <input
@@ -175,7 +175,7 @@ export default function SsoSetupPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-slate-700 mb-1">
                     X.509 Certificate
                   </label>
                   <textarea
@@ -194,7 +194,7 @@ export default function SsoSetupPage() {
             {provider === 'OIDC' && (
               <>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-slate-700 mb-1">
                     Client ID
                   </label>
                   <input
@@ -207,7 +207,7 @@ export default function SsoSetupPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-slate-700 mb-1">
                     Client Secret
                   </label>
                   <input
@@ -223,12 +223,12 @@ export default function SsoSetupPage() {
             )}
 
             {/* Callback URL Info */}
-            <div className="bg-gray-100 p-4 rounded-lg">
+            <div className="bg-slate-100 p-4 rounded-lg">
               <h4 className="font-medium mb-2">Callback URL</h4>
-              <p className="text-sm text-gray-600 mb-2">
+              <p className="text-sm text-slate-600 mb-2">
                 Configure this URL in your identity provider:
               </p>
-              <code className="block bg-gray-800 text-green-400 p-2 rounded text-sm break-all">
+              <code className="block bg-slate-800 text-green-400 p-2 rounded text-sm break-all">
                 {provider === 'SAML'
                   ? 'https://api.nexta.com.au/api/sso/callback/saml'
                   : 'https://api.nexta.com.au/api/sso/callback/oidc'
@@ -246,7 +246,7 @@ export default function SsoSetupPage() {
               </button>
               <Link
                 href="/dashboard/company/integrations"
-                className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
+                className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200"
               >
                 Cancel
               </Link>

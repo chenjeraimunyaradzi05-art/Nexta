@@ -145,13 +145,13 @@ function ProgressBar({ currentStep, totalSteps }: { currentStep: number; totalSt
                   ? 'bg-green-500 text-white'
                   : step.id === currentStep
                   ? 'bg-blue-500 text-white'
-                  : 'bg-gray-200 dark:bg-gray-700 text-gray-500'
+                  : 'bg-slate-200 dark:bg-slate-700 text-slate-500'
               }`}
             >
               {step.id < currentStep ? '✓' : step.icon}
             </div>
             {idx < STEPS.length - 1 && (
-              <div className="hidden md:block absolute mt-5 ml-10 w-full h-0.5 bg-gray-200 dark:bg-gray-700">
+              <div className="hidden md:block absolute mt-5 ml-10 w-full h-0.5 bg-slate-200 dark:bg-slate-700">
                 <div
                   className="h-full bg-green-500 transition-all"
                   style={{ width: step.id < currentStep ? '100%' : '0%' }}
@@ -162,7 +162,7 @@ function ProgressBar({ currentStep, totalSteps }: { currentStep: number; totalSt
         ))}
       </div>
       <div className="text-center mt-4">
-        <span className="text-sm text-gray-500">Step {currentStep} of {totalSteps}</span>
+        <span className="text-sm text-slate-500">Step {currentStep} of {totalSteps}</span>
       </div>
     </div>
   );
@@ -173,10 +173,10 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
   return (
     <div className="text-center max-w-2xl mx-auto">
       <div className="text-6xl mb-6">👋</div>
-      <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+      <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
         Welcome to Nexta
       </h2>
-      <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
+      <p className="text-lg text-slate-600 dark:text-slate-400 mb-8">
         We're excited to have you join our community! Let's set up your profile so you can
         discover opportunities that match your skills and aspirations.
       </p>
@@ -184,22 +184,22 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
       <div className="grid md:grid-cols-3 gap-6 mb-8">
         <div className="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
           <div className="text-3xl mb-3">🎯</div>
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Find Opportunities</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Find Opportunities</h3>
+          <p className="text-sm text-slate-600 dark:text-slate-400">
             Discover jobs, mentorship, and training programs tailored for you
           </p>
         </div>
         <div className="p-6 bg-green-50 dark:bg-green-900/20 rounded-xl">
           <div className="text-3xl mb-3">🤝</div>
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Connect</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Connect</h3>
+          <p className="text-sm text-slate-600 dark:text-slate-400">
             Build your network with Indigenous professionals and employers
           </p>
         </div>
         <div className="p-6 bg-purple-50 dark:bg-purple-900/20 rounded-xl">
           <div className="text-3xl mb-3">📚</div>
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Learn & Grow</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Learn & Grow</h3>
+          <p className="text-sm text-slate-600 dark:text-slate-400">
             Access culturally relevant resources and learning pathways
           </p>
         </div>
@@ -224,17 +224,17 @@ function ProfileStep({
 }) {
   return (
     <div className="max-w-xl mx-auto">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center">
+      <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 text-center">
         Tell us about yourself
       </h2>
-      <p className="text-gray-500 text-center mb-8">
+      <p className="text-slate-500 text-center mb-8">
         This information helps employers and connections find you
       </p>
 
       {/* Avatar */}
       <div className="flex justify-center mb-8">
         <div className="relative">
-          <div className="w-24 h-24 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+          <div className="w-24 h-24 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
             {data.avatar ? (
               <OptimizedImage src={toCloudinaryAutoUrl(data.avatar)} alt="Avatar preview" width={96} height={96} className="w-full h-full object-cover" />
             ) : (
@@ -260,66 +260,66 @@ function ProfileStep({
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               First Name *
             </label>
             <input
               type="text"
               value={data.firstName}
               onChange={(e) => onChange({ firstName: e.target.value })}
-              className="w-full px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+              className="w-full px-4 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
               placeholder="Your first name"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Last Name *
             </label>
             <input
               type="text"
               value={data.lastName}
               onChange={(e) => onChange({ lastName: e.target.value })}
-              className="w-full px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+              className="w-full px-4 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
               placeholder="Your last name"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
             Preferred Name
           </label>
           <input
             type="text"
             value={data.preferredName}
             onChange={(e) => onChange({ preferredName: e.target.value })}
-            className="w-full px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+            className="w-full px-4 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
             placeholder="What should we call you?"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
             Location *
           </label>
           <input
             type="text"
             value={data.location}
             onChange={(e) => onChange({ location: e.target.value })}
-            className="w-full px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+            className="w-full px-4 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
             placeholder="City, State"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
             Phone Number
           </label>
           <input
             type="tel"
             value={data.phone}
             onChange={(e) => onChange({ phone: e.target.value })}
-            className="w-full px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+            className="w-full px-4 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
             placeholder="+61 4XX XXX XXX"
           />
         </div>
@@ -338,10 +338,10 @@ function IdentityStep({
 }) {
   return (
     <div className="max-w-xl mx-auto">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center">
+      <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 text-center">
         Cultural Connections
       </h2>
-      <p className="text-gray-500 text-center mb-8">
+      <p className="text-slate-500 text-center mb-8">
         This is optional but helps us connect you with culturally relevant opportunities
       </p>
 
@@ -353,7 +353,7 @@ function IdentityStep({
 
       <div className="space-y-6">
         <div>
-          <label className="flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
+          <label className="flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800">
             <input
               type="checkbox"
               checked={data.isIndigenous}
@@ -361,10 +361,10 @@ function IdentityStep({
               className="w-5 h-5 rounded"
             />
             <div>
-              <span className="font-medium text-gray-900 dark:text-white">
+              <span className="font-medium text-slate-900 dark:text-white">
                 I identify as Aboriginal and/or Torres Strait Islander
               </span>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-slate-500">
                 This helps connect you with Indigenous-specific opportunities
               </p>
             </div>
@@ -374,13 +374,13 @@ function IdentityStep({
         {data.isIndigenous && (
           <>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Country/Nation Group
               </label>
               <select
                 value={data.countryGroup}
                 onChange={(e) => onChange({ countryGroup: e.target.value })}
-                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+                className="w-full px-4 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
               >
                 <option value="">Select your country group</option>
                 {COUNTRY_GROUPS.map((group) => (
@@ -390,27 +390,27 @@ function IdentityStep({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Community/Mob
               </label>
               <input
                 type="text"
                 value={data.community}
                 onChange={(e) => onChange({ community: e.target.value })}
-                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+                className="w-full px-4 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
                 placeholder="Your community or mob (optional)"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Traditional Language
               </label>
               <input
                 type="text"
                 value={data.language}
                 onChange={(e) => onChange({ language: e.target.value })}
-                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+                className="w-full px-4 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
                 placeholder="Traditional language (optional)"
               />
             </div>
@@ -438,16 +438,16 @@ function CareerStep({
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center">
+      <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 text-center">
         Your Career Goals
       </h2>
-      <p className="text-gray-500 text-center mb-8">
+      <p className="text-slate-500 text-center mb-8">
         Help us find opportunities that match your aspirations
       </p>
 
       <div className="space-y-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
             Current Status
           </label>
           <div className="grid grid-cols-2 gap-3">
@@ -463,7 +463,7 @@ function CareerStep({
                 className={`p-3 border rounded-lg text-left ${
                   data.currentStatus === option.value
                     ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                    : 'hover:border-gray-300'
+                    : 'hover:border-slate-300'
                 }`}
               >
                 {option.label}
@@ -473,13 +473,13 @@ function CareerStep({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
             Experience Level
           </label>
           <select
             value={data.experience}
             onChange={(e) => onChange({ experience: e.target.value })}
-            className="w-full px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+            className="w-full px-4 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
           >
             <option value="">Select experience level</option>
             <option value="entry">Entry Level (0-2 years)</option>
@@ -490,7 +490,7 @@ function CareerStep({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
             Industries of Interest (select up to 5)
           </label>
           <div className="flex flex-wrap gap-2">
@@ -502,7 +502,7 @@ function CareerStep({
                 className={`px-3 py-1.5 rounded-full text-sm ${
                   data.industries.includes(industry)
                     ? 'bg-blue-500 text-white'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200'
+                    : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200'
                 } disabled:opacity-50`}
               >
                 {industry}
@@ -569,10 +569,10 @@ function SkillsStep({
 
   return (
     <div className="max-w-xl mx-auto">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center">
+      <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 text-center">
         Your Skills
       </h2>
-      <p className="text-gray-500 text-center mb-8">
+      <p className="text-slate-500 text-center mb-8">
         Add skills to help employers find you
       </p>
 
@@ -584,7 +584,7 @@ function SkillsStep({
             className={`flex-1 py-2 rounded-lg capitalize ${
               activeCategory === cat
                 ? 'bg-blue-500 text-white'
-                : 'bg-gray-100 dark:bg-gray-700'
+                : 'bg-slate-100 dark:bg-slate-700'
             }`}
           >
             {cat} Skills
@@ -599,14 +599,14 @@ function SkillsStep({
             value={newSkill}
             onChange={(e) => setNewSkill(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && addSkill()}
-            className="flex-1 px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-600"
+            className="flex-1 px-4 py-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600"
             placeholder={`Add a ${activeCategory} skill...`}
           />
           <Button onClick={addSkill}>Add</Button>
         </div>
 
         {/* Current skills */}
-        <div className="min-h-[80px] p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <div className="min-h-[80px] p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
           {data[activeCategory].length > 0 ? (
             <div className="flex flex-wrap gap-2">
               {data[activeCategory].map((skill) => (
@@ -620,13 +620,13 @@ function SkillsStep({
               ))}
             </div>
           ) : (
-            <p className="text-sm text-gray-400 text-center">No skills added yet</p>
+            <p className="text-sm text-slate-400 text-center">No skills added yet</p>
           )}
         </div>
 
         {/* Suggestions */}
         <div>
-          <p className="text-sm text-gray-500 mb-2">Suggested skills:</p>
+          <p className="text-sm text-slate-500 mb-2">Suggested skills:</p>
           <div className="flex flex-wrap gap-2">
             {suggestedSkills[activeCategory]
               .filter(s => !data[activeCategory].includes(s))
@@ -634,7 +634,7 @@ function SkillsStep({
                 <button
                   key={skill}
                   onClick={() => onChange({ [activeCategory]: [...data[activeCategory], skill] })}
-                  className="px-3 py-1 border border-dashed rounded-full text-sm text-gray-600 hover:border-blue-500 hover:text-blue-500"
+                  className="px-3 py-1 border border-dashed rounded-full text-sm text-slate-600 hover:border-blue-500 hover:text-blue-500"
                 >
                   + {skill}
                 </button>
@@ -689,10 +689,10 @@ function PreferencesStep({
 
   return (
     <div className="max-w-xl mx-auto">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center">
+      <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 text-center">
         Stay Connected
       </h2>
-      <p className="text-gray-500 text-center mb-8">
+      <p className="text-slate-500 text-center mb-8">
         Choose how you'd like to hear from us
       </p>
 
@@ -700,13 +700,13 @@ function PreferencesStep({
         {preferences.map((pref) => (
           <label
             key={pref.key}
-            className="flex items-center justify-between p-4 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
+            className="flex items-center justify-between p-4 border rounded-lg cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800"
           >
             <div className="flex items-center gap-3">
               <span className="text-2xl">{pref.icon}</span>
               <div>
-                <span className="font-medium text-gray-900 dark:text-white">{pref.title}</span>
-                <p className="text-sm text-gray-500">{pref.description}</p>
+                <span className="font-medium text-slate-900 dark:text-white">{pref.title}</span>
+                <p className="text-sm text-slate-500">{pref.description}</p>
               </div>
             </div>
             <input
@@ -727,28 +727,28 @@ function CompleteStep({ data, onComplete }: { data: OnboardingData; onComplete: 
   return (
     <div className="text-center max-w-xl mx-auto">
       <div className="text-6xl mb-6">🎉</div>
-      <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+      <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
         You're All Set!
       </h2>
-      <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
+      <p className="text-lg text-slate-600 dark:text-slate-400 mb-8">
         Welcome to Nexta, {data.profile.preferredName || data.profile.firstName}!
         Your profile is ready to go.
       </p>
 
-      <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 mb-8">
-        <h3 className="font-semibold text-gray-900 dark:text-white mb-4">What's Next?</h3>
+      <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-6 mb-8">
+        <h3 className="font-semibold text-slate-900 dark:text-white mb-4">What's Next?</h3>
         <div className="space-y-3 text-left">
           <div className="flex items-center gap-3">
             <span className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">1</span>
-            <span className="text-gray-600 dark:text-gray-400">Explore job opportunities that match your profile</span>
+            <span className="text-slate-600 dark:text-slate-400">Explore job opportunities that match your profile</span>
           </div>
           <div className="flex items-center gap-3">
             <span className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">2</span>
-            <span className="text-gray-600 dark:text-gray-400">Connect with mentors in your industry</span>
+            <span className="text-slate-600 dark:text-slate-400">Connect with mentors in your industry</span>
           </div>
           <div className="flex items-center gap-3">
             <span className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">3</span>
-            <span className="text-gray-600 dark:text-gray-400">Complete your profile to stand out to employers</span>
+            <span className="text-slate-600 dark:text-slate-400">Complete your profile to stand out to employers</span>
           </div>
         </div>
       </div>
@@ -876,7 +876,7 @@ export function OnboardingFlow() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 py-8 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Progress */}
         <div className="mb-12">
@@ -884,7 +884,7 @@ export function OnboardingFlow() {
         </div>
 
         {/* Step Content */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-8">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 mb-8">
           {currentStep === 1 && <WelcomeStep onNext={handleNext} />}
           {currentStep === 2 && (
             <ProfileStep

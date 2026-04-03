@@ -222,17 +222,17 @@ function ProfileSection({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Profile Information</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Profile Information</h3>
 
       <div className="flex items-start gap-6">
         {/* Avatar */}
         <div className="relative">
-          <div className="w-24 h-24 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
+          <div className="w-24 h-24 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
             {account.avatarUrl ? (
               <OptimizedImage src={toCloudinaryAutoUrl(account.avatarUrl)} alt="Avatar" width={96} height={96} className="w-full h-full object-cover" />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-3xl text-gray-400">
+              <div className="w-full h-full flex items-center justify-center text-3xl text-slate-400">
                 {account.firstName.charAt(0)}{account.lastName.charAt(0)}
               </div>
             )}
@@ -252,37 +252,37 @@ function ProfileSection({
             <>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                     First Name
                   </label>
                   <input
                     type="text"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Last Name
                   </label>
                   <input
                     type="text"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Username
                 </label>
                 <input
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                 />
               </div>
               <div className="flex gap-2">
@@ -293,18 +293,18 @@ function ProfileSection({
           ) : (
             <>
               <div>
-                <p className="text-sm text-gray-500">Name</p>
-                <p className="font-medium text-gray-900 dark:text-white">{account.firstName} {account.lastName}</p>
+                <p className="text-sm text-slate-500">Name</p>
+                <p className="font-medium text-slate-900 dark:text-white">{account.firstName} {account.lastName}</p>
               </div>
               {account.username && (
                 <div>
-                  <p className="text-sm text-gray-500">Username</p>
-                  <p className="font-medium text-gray-900 dark:text-white">@{account.username}</p>
+                  <p className="text-sm text-slate-500">Username</p>
+                  <p className="font-medium text-slate-900 dark:text-white">@{account.username}</p>
                 </div>
               )}
               <div>
-                <p className="text-sm text-gray-500">Account Type</p>
-                <p className="font-medium text-gray-900 dark:text-white capitalize">{account.accountType}</p>
+                <p className="text-sm text-slate-500">Account Type</p>
+                <p className="font-medium text-slate-900 dark:text-white capitalize">{account.accountType}</p>
               </div>
               <Button variant="outline" onClick={() => setIsEditing(true)}>Edit Profile</Button>
             </>
@@ -329,15 +329,15 @@ function ContactSection({
   const [isEditingPhone, setIsEditingPhone] = useState(false);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Contact Information</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Contact Information</h3>
 
       <div className="space-y-4">
         {/* Email */}
-        <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
           <div>
-            <p className="text-sm text-gray-500">Email Address</p>
-            <p className="font-medium text-gray-900 dark:text-white">{account.email}</p>
+            <p className="text-sm text-slate-500">Email Address</p>
+            <p className="font-medium text-slate-900 dark:text-white">{account.email}</p>
           </div>
           {account.emailVerified ? (
             <span className="text-sm text-green-600 flex items-center gap-1">
@@ -352,9 +352,9 @@ function ContactSection({
         </div>
 
         {/* Phone */}
-        <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
           <div>
-            <p className="text-sm text-gray-500">Phone Number</p>
+            <p className="text-sm text-slate-500">Phone Number</p>
             {isEditingPhone ? (
               <div className="flex gap-2 mt-1">
                 <input
@@ -362,7 +362,7 @@ function ContactSection({
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="+61 400 000 000"
-                  className="px-3 py-1 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
+                  className="px-3 py-1 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white text-sm"
                 />
                 <Button size="sm" onClick={() => {
                   onVerifyPhone(phone);
@@ -370,7 +370,7 @@ function ContactSection({
                 }}>Save</Button>
               </div>
             ) : (
-              <p className="font-medium text-gray-900 dark:text-white">
+              <p className="font-medium text-slate-900 dark:text-white">
                 {account.phone || 'Not set'}
               </p>
             )}
@@ -437,42 +437,42 @@ function PasswordSection({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Password</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Password</h3>
 
       {isChanging ? (
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Current Password
             </label>
             <input
               type="password"
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               New Password
             </label>
             <input
               type="password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Confirm New Password
             </label>
             <input
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             />
           </div>
           {error && <p className="text-sm text-red-600">{error}</p>}
@@ -486,8 +486,8 @@ function PasswordSection({
       ) : (
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-gray-500">Last changed</p>
-            <p className="font-medium text-gray-900 dark:text-white">
+            <p className="text-sm text-slate-500">Last changed</p>
+            <p className="font-medium text-slate-900 dark:text-white">
               {new Date(security.passwordLastChanged).toLocaleDateString('en-AU')}
             </p>
           </div>
@@ -535,35 +535,35 @@ function TwoFactorSection({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Two-Factor Authentication</h3>
-          <p className="text-sm text-gray-500">Add an extra layer of security</p>
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Two-Factor Authentication</h3>
+          <p className="text-sm text-slate-500">Add an extra layer of security</p>
         </div>
         {security.twoFactorEnabled ? (
           <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">Enabled</span>
         ) : (
-          <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">Disabled</span>
+          <span className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Disabled</span>
         )}
       </div>
 
       {security.twoFactorEnabled ? (
         <div>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+          <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
             Two-factor authentication is enabled using {security.twoFactorMethod === 'app' ? 'an authenticator app' : security.twoFactorMethod}.
           </p>
           {isDisabling ? (
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Enter your password to disable 2FA
                 </label>
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                 />
               </div>
               <div className="flex gap-2">
@@ -580,7 +580,7 @@ function TwoFactorSection({
           {isEnabling ? (
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Select method
                 </label>
                 <div className="flex gap-2">
@@ -591,7 +591,7 @@ function TwoFactorSection({
                       className={`px-4 py-2 rounded-lg capitalize ${
                         selectedMethod === method
                           ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30'
-                          : 'bg-gray-100 text-gray-600 dark:bg-gray-700'
+                          : 'bg-slate-100 text-slate-600 dark:bg-slate-700'
                       }`}
                     >
                       {method === 'app' ? 'Authenticator App' : method.toUpperCase()}
@@ -606,7 +606,7 @@ function TwoFactorSection({
             </div>
           ) : qrCode ? (
             <div className="space-y-4">
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-slate-600 dark:text-slate-400">
                 Scan this QR code with your authenticator app:
               </p>
               <div className="p-4 bg-white rounded-lg inline-block">
@@ -633,11 +633,11 @@ function SessionsSection({
   onRevokeAll: () => void;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Active Sessions</h3>
-          <p className="text-sm text-gray-500">{sessions.length} active session(s)</p>
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Active Sessions</h3>
+          <p className="text-sm text-slate-500">{sessions.length} active session(s)</p>
         </div>
         <Button variant="outline" onClick={onRevokeAll}>Sign Out All</Button>
       </div>
@@ -646,7 +646,7 @@ function SessionsSection({
         {sessions.map((session) => (
           <div
             key={session.id}
-            className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg"
+            className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-900 rounded-lg"
           >
             <div className="flex items-center gap-3">
               <span className="text-2xl">
@@ -654,15 +654,15 @@ function SessionsSection({
               </span>
               <div>
                 <div className="flex items-center gap-2">
-                  <p className="font-medium text-gray-900 dark:text-white">{session.device}</p>
+                  <p className="font-medium text-slate-900 dark:text-white">{session.device}</p>
                   {session.isCurrent && (
                     <span className="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full">Current</span>
                   )}
                 </div>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-slate-500">
                   {session.browser} • {session.location}
                 </p>
-                <p className="text-xs text-gray-400">
+                <p className="text-xs text-slate-400">
                   Last active: {new Date(session.lastActive).toLocaleString('en-AU')}
                 </p>
               </div>
@@ -694,12 +694,12 @@ function LinkedAccountsSection({
     google: { name: 'Google', icon: '🔵', color: 'bg-red-100' },
     linkedin: { name: 'LinkedIn', icon: '🔷', color: 'bg-blue-100' },
     microsoft: { name: 'Microsoft', icon: '🟦', color: 'bg-blue-100' },
-    apple: { name: 'Apple', icon: '🍎', color: 'bg-gray-100' },
+    apple: { name: 'Apple', icon: '🍎', color: 'bg-slate-100' },
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Linked Accounts</h3>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Linked Accounts</h3>
 
       {accounts.length > 0 ? (
         <div className="space-y-3">
@@ -708,13 +708,13 @@ function LinkedAccountsSection({
             return (
               <div
                 key={account.id}
-                className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg"
+                className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-900 rounded-lg"
               >
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">{provider.icon}</span>
                   <div>
-                    <p className="font-medium text-gray-900 dark:text-white">{provider.name}</p>
-                    <p className="text-sm text-gray-500">{account.email}</p>
+                    <p className="font-medium text-slate-900 dark:text-white">{provider.name}</p>
+                    <p className="text-sm text-slate-500">{account.email}</p>
                   </div>
                 </div>
                 <button
@@ -728,7 +728,7 @@ function LinkedAccountsSection({
           })}
         </div>
       ) : (
-        <p className="text-gray-500 text-center py-4">No linked accounts</p>
+        <p className="text-slate-500 text-center py-4">No linked accounts</p>
       )}
     </div>
   );
@@ -779,8 +779,8 @@ export function AccountManagement() {
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Account Settings</h1>
-        <p className="text-gray-500 mt-1">Manage your account and security</p>
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Account Settings</h1>
+        <p className="text-slate-500 mt-1">Manage your account and security</p>
       </div>
 
       {/* Sections */}

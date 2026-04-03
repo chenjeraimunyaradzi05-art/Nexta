@@ -45,22 +45,22 @@ const variantClasses: Record<InputVariant, {
   error: string;
 }> = {
   default: {
-    base: 'bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg',
+    base: 'bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg',
     focus: 'focus:ring-2 focus:ring-blue-500 focus:border-blue-500',
     error: 'border-red-500 focus:ring-red-500 focus:border-red-500',
   },
   filled: {
-    base: 'bg-gray-100 dark:bg-gray-700 border-2 border-transparent rounded-lg',
-    focus: 'focus:bg-white dark:focus:bg-gray-800 focus:border-blue-500',
+    base: 'bg-slate-100 dark:bg-slate-700 border-2 border-transparent rounded-lg',
+    focus: 'focus:bg-white dark:focus:bg-slate-800 focus:border-blue-500',
     error: 'bg-red-50 dark:bg-red-900/20 border-red-500',
   },
   flushed: {
-    base: 'bg-transparent border-b-2 border-gray-300 dark:border-gray-600 rounded-none',
+    base: 'bg-transparent border-b-2 border-slate-300 dark:border-slate-600 rounded-none',
     focus: 'focus:border-blue-500',
     error: 'border-red-500',
   },
   cosmic: {
-    base: 'bg-white/5 border border-[#FFD700]/20 rounded-lg text-white placeholder:text-gray-500',
+    base: 'bg-white/5 border border-[#FFD700]/20 rounded-lg text-white placeholder:text-slate-500',
     focus: 'focus:ring-2 focus:ring-[#FFD700]/50 focus:border-[#FFD700]/50',
     error: 'border-red-500 focus:ring-red-500',
   },
@@ -110,7 +110,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
       {label && (
         <label
           htmlFor={inputId}
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+          className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
         >
           {label}
           {props.required && <span className="text-red-500 ml-1">*</span>}
@@ -119,14 +119,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
       
       <div className="relative flex">
         {leftAddon && (
-          <div className="flex items-center px-4 bg-gray-100 dark:bg-gray-700 border border-r-0 border-gray-300 dark:border-gray-600 rounded-l-lg text-gray-500 dark:text-gray-400">
+          <div className="flex items-center px-4 bg-slate-100 dark:bg-slate-700 border border-r-0 border-slate-300 dark:border-slate-600 rounded-l-lg text-slate-500 dark:text-slate-400">
             {leftAddon}
           </div>
         )}
         
         <div className="relative flex-1">
           {leftIcon && (
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
               {leftIcon}
             </div>
           )}
@@ -141,14 +141,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
           />
           
           {rightIcon && (
-            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-400">
+            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-400">
               {rightIcon}
             </div>
           )}
         </div>
         
         {rightAddon && (
-          <div className="flex items-center px-4 bg-gray-100 dark:bg-gray-700 border border-l-0 border-gray-300 dark:border-gray-600 rounded-r-lg text-gray-500 dark:text-gray-400">
+          <div className="flex items-center px-4 bg-slate-100 dark:bg-slate-700 border border-l-0 border-slate-300 dark:border-slate-600 rounded-r-lg text-slate-500 dark:text-slate-400">
             {rightAddon}
           </div>
         )}
@@ -161,7 +161,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
       )}
       
       {helperText && !error && (
-        <p id={`${inputId}-helper`} className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+        <p id={`${inputId}-helper`} className="mt-1 text-sm text-slate-500 dark:text-slate-400">
           {helperText}
         </p>
       )}
@@ -210,7 +210,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({
       {label && (
         <label
           htmlFor={textareaId}
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+          className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
         >
           {label}
           {props.required && <span className="text-red-500 ml-1">*</span>}
@@ -233,7 +233,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({
       )}
       
       {helperText && !error && (
-        <p id={`${textareaId}-helper`} className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+        <p id={`${textareaId}-helper`} className="mt-1 text-sm text-slate-500 dark:text-slate-400">
           {helperText}
         </p>
       )}
@@ -292,7 +292,7 @@ export function SearchInput({
             <button
               type="button"
               onClick={handleClear}
-              className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded pointer-events-auto"
+              className="p-1 hover:bg-slate-100 dark:hover:bg-slate-700 rounded pointer-events-auto"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -318,7 +318,7 @@ export function FormLabel({ children, htmlFor, required, className = '' }: FormL
   return (
     <label
       htmlFor={htmlFor}
-      className={`block text-sm font-medium text-gray-700 dark:text-gray-300 ${className}`}
+      className={`block text-sm font-medium text-slate-700 dark:text-slate-300 ${className}`}
     >
       {children}
       {required && <span className="text-red-500 ml-1">*</span>}
@@ -341,7 +341,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Omit<InputProps, 'type
         <button
           type="button"
           onClick={() => setShowPassword(!showPassword)}
-          className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded pointer-events-auto"
+          className="p-1 hover:bg-slate-100 dark:hover:bg-slate-700 rounded pointer-events-auto"
           aria-label={showPassword ? 'Hide password' : 'Show password'}
         >
           {showPassword ? (

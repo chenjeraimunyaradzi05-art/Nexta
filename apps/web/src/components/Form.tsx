@@ -36,7 +36,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1"
+            className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1"
           >
             {label}
             {props.required && (
@@ -49,7 +49,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <div className="relative">
           {leftAddon && (
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <span className="text-gray-500 sm:text-sm">{leftAddon}</span>
+              <span className="text-slate-500 sm:text-sm">{leftAddon}</span>
             </div>
           )}
           <input
@@ -58,8 +58,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             className={`
               block w-full rounded-lg border
               px-3 py-2
-              text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500
-              bg-white dark:bg-gray-800/50
+              text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500
+              bg-white dark:bg-slate-800/50
               focus:outline-none focus:ring-2 focus:ring-offset-0 dark:focus:ring-offset-gray-900
               transition-colors duration-200
               ${leftAddon ? 'pl-10' : ''}
@@ -67,9 +67,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               ${
                 error
                   ? 'border-red-300 dark:border-red-500/50 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400'
+                  : 'border-slate-300 dark:border-slate-600 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400'
               }
-              disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:cursor-not-allowed
+              disabled:bg-slate-100 dark:disabled:bg-slate-700 disabled:cursor-not-allowed
               ${className}
             `}
             aria-invalid={!!error}
@@ -90,7 +90,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           </p>
         )}
         {helperText && !error && (
-          <p id={helperId} className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+          <p id={helperId} className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             {helperText}
           </p>
         )}
@@ -133,7 +133,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {label && (
           <label
             htmlFor={textareaId}
-            className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1"
+            className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1"
           >
             {label}
             {props.required && (
@@ -149,17 +149,17 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           className={`
             block w-full rounded-lg border
             px-3 py-2
-            text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500
-            bg-white dark:bg-gray-800/50
+            text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500
+            bg-white dark:bg-slate-800/50
             focus:outline-none focus:ring-2 focus:ring-offset-0 dark:focus:ring-offset-gray-900
             transition-colors duration-200
             resize-y min-h-[100px]
             ${
               error
                 ? 'border-red-300 dark:border-red-500/50 focus:border-red-500 focus:ring-red-500'
-                : 'border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400'
+                : 'border-slate-300 dark:border-slate-600 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400'
             }
-            disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:cursor-not-allowed
+            disabled:bg-slate-100 dark:disabled:bg-slate-700 disabled:cursor-not-allowed
             ${className}
           `}
           aria-invalid={!!error}
@@ -174,7 +174,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           </p>
         )}
         {helperText && !error && (
-          <p id={helperId} className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+          <p id={helperId} className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             {helperText}
           </p>
         )}
@@ -220,7 +220,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         {label && (
           <label
             htmlFor={selectId}
-            className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1"
+            className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1"
           >
             {label}
             {props.required && (
@@ -236,16 +236,16 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           className={`
             block w-full rounded-lg border
             px-3 py-2
-            text-gray-900 dark:text-white
-            bg-white dark:bg-gray-800/50
+            text-slate-900 dark:text-white
+            bg-white dark:bg-slate-800/50
             focus:outline-none focus:ring-2 focus:ring-offset-0 dark:focus:ring-offset-gray-900
             transition-colors duration-200
             ${
               error
                 ? 'border-red-300 dark:border-red-500/50 focus:border-red-500 focus:ring-red-500'
-                : 'border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400'
+                : 'border-slate-300 dark:border-slate-600 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400'
             }
-            disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:cursor-not-allowed
+            disabled:bg-slate-100 dark:disabled:bg-slate-700 disabled:cursor-not-allowed
             ${className}
           `}
           aria-invalid={!!error}
@@ -275,7 +275,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           </p>
         )}
         {helperText && !error && (
-          <p id={helperId} className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+          <p id={helperId} className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             {helperText}
           </p>
         )}
@@ -311,8 +311,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               h-4 w-4 rounded
               text-blue-600 dark:text-blue-400
               focus:ring-blue-500 dark:focus:ring-blue-400
-              border-gray-300 dark:border-gray-600
-              bg-white dark:bg-gray-800/50
+              border-slate-300 dark:border-slate-600
+              bg-white dark:bg-slate-800/50
               disabled:opacity-50 disabled:cursor-not-allowed
               ${className}
             `}
@@ -326,11 +326,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           />
         </div>
         <div className="ml-3 text-sm">
-          <label htmlFor={checkboxId} className="font-medium text-gray-700 dark:text-gray-200">
+          <label htmlFor={checkboxId} className="font-medium text-slate-700 dark:text-slate-200">
             {label}
           </label>
           {description && (
-            <p id={descriptionId} className="text-gray-500 dark:text-gray-400">
+            <p id={descriptionId} className="text-slate-500 dark:text-slate-400">
               {description}
             </p>
           )}
