@@ -166,7 +166,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-white dark:bg-gray-900 cosmic:bg-cosmic-dark text-gray-900 dark:text-slate-50 cosmic:text-slate-50 transition-colors duration-200">
+      <body className="min-h-screen flex flex-col bg-gradient-to-br from-white via-teal-50/30 to-purple-50/20 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950/60 cosmic:bg-cosmic-dark text-gray-900 dark:text-slate-50 cosmic:text-slate-50 transition-colors duration-200">
         {/* Celestial background layers - only visible in cosmic mode */}
         <div
           className="fixed inset-0 pointer-events-none opacity-0 cosmic:opacity-80 transition-opacity duration-300"

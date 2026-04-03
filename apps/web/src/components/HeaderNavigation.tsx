@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Space_Grotesk } from 'next/font/google';
@@ -114,8 +115,15 @@ export default function HeaderNavigation() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-3">
               <span className="sr-only">Nexta</span>
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-600 via-slate-900 to-sky-500 text-lg font-bold text-white shadow-md">
-                N
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 dark:bg-slate-800 shadow-md">
+                <Image
+                  src="/favicon.svg"
+                  alt="Nexta"
+                  className="h-8 w-8"
+                  width={32}
+                  height={32}
+                  priority
+                />
               </span>
               <span className="flex flex-col">
                 <span className="text-lg font-bold tracking-tight text-slate-900 dark:text-white">

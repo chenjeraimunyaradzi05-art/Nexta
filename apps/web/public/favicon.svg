@@ -1,17 +1,34 @@
-<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nexta icon">
+<svg width="32" height="32" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nexta icon">
   <defs>
-    <linearGradient id="nextaBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0F766E"/>
-      <stop offset="100%" stop-color="#0F172A"/>
+    <!-- Left ribbon: lighter teal -->
+    <linearGradient id="ribbonLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2DD4BF"/>
+      <stop offset="100%" stop-color="#0D9488"/>
     </linearGradient>
-    <linearGradient id="nextaAccent" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38BDF8"/>
-      <stop offset="100%" stop-color="#F97316"/>
+    <!-- Right ribbon: darker teal -->
+    <linearGradient id="ribbonRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F766E"/>
+      <stop offset="100%" stop-color="#134E4A"/>
+    </linearGradient>
+    <!-- Overlap shadow -->
+    <linearGradient id="ribbonOverlap" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#115E59"/>
     </linearGradient>
   </defs>
 
-  <rect x="1" y="1" width="30" height="30" rx="10" fill="url(#nextaBg)" />
-  <path d="M9 23V9h2.6l8.8 10.6V9H23v14h-2.6L11.6 12.4V23H9Z" fill="white" />
-  <path d="M24 6.5L27.5 10L24 13.5L20.5 10L24 6.5Z" fill="url(#nextaAccent)" />
-  <circle cx="24" cy="24" r="2" fill="#F8FAFC" opacity="0.72" />
+  <!-- Left ribbon of the N — goes top-left down to bottom-left, crosses to top-right -->
+  <path d="M128 416 L128 148 C128 120 140 96 168 96 L200 96 L344 320 L344 96 C344 96 344 148 344 148 L344 320 L200 96 L168 96 C152 96 128 108 128 148 Z" fill="none"/>
+
+  <!-- Back ribbon (right side, darker) — vertical stroke going down on the right -->
+  <path d="M310 80 C330 80 348 96 348 118 L348 432 L282 432 L282 234 L160 432 L94 432 L262 172 L282 172 L282 118 C282 108 290 80 310 80 Z"
+        fill="url(#ribbonRight)"/>
+
+  <!-- Front ribbon (left side, lighter teal) — the diagonal and left vertical -->
+  <path d="M202 80 C182 80 164 96 164 118 L164 432 L230 432 L230 278 L352 80 L286 80 L230 172 L230 118 C230 108 220 80 202 80 Z"
+        fill="url(#ribbonLeft)"/>
+
+  <!-- Overlap piece in center for 3D crossover effect -->
+  <path d="M230 234 L282 234 L282 172 L230 278 Z"
+        fill="url(#ribbonOverlap)" opacity="0.85"/>
 </svg>

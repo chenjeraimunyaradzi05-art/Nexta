@@ -80,37 +80,37 @@ export default function PartnershipModule() {
 
   return (
     <section
-      className="py-12 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-200/70 dark:border-slate-800"
+      className="py-14 bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900 border-t border-slate-200/50 dark:border-slate-700/40"
       suppressHydrationWarning
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <h2 className="text-xl font-bold flex items-center gap-2 text-slate-900 dark:text-slate-100">
-              <Handshake className="w-5 h-5" />
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-700 dark:text-teal-300 mb-2">
+              Partnerships
+            </p>
+            <h2 className="font-heading text-2xl font-bold flex items-center gap-3 text-slate-900 dark:text-white">
+              <div className="inline-flex rounded-xl bg-teal-50 dark:bg-teal-900/30 p-2 text-teal-700 dark:text-teal-400">
+                <Handshake className="w-5 h-5" />
+              </div>
               Partnerships & Advertising
             </h2>
-            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
+            <p className="mt-3 text-sm text-slate-600 dark:text-slate-300 max-w-lg">
               Built for community-led pathways. Showcase partner programs and local opportunities.
             </p>
           </div>
           <div className="flex gap-3">
             <Link
               href="/partners/apply"
-              className="px-4 py-2 rounded-lg text-sm font-medium text-white transition-all hover:opacity-90 hover:scale-[1.02]"
-              style={{
-                background: 'linear-gradient(135deg, #ec4899 0%, #a855f7 55%, #6366f1 100%)',
-              }}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white shadow-lg shadow-teal-600/20 transition-all hover:-translate-y-0.5 hover:shadow-xl bg-gradient-to-r from-teal-600 to-teal-500 dark:from-teal-500 dark:to-teal-400"
               suppressHydrationWarning
             >
+              <Handshake className="w-4 h-4" />
               Partner with us
             </Link>
             <Link
               href="/jobs"
-              className="px-4 py-2 rounded-lg text-sm font-medium text-white transition-all hover:opacity-90 hover:scale-[1.02]"
-              style={{
-                background: 'linear-gradient(135deg, #ec4899 0%, #a855f7 55%, #6366f1 100%)',
-              }}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 transition-all hover:-translate-y-0.5 hover:shadow-md"
               suppressHydrationWarning
             >
               View opportunities
@@ -118,11 +118,15 @@ export default function PartnershipModule() {
           </div>
         </div>
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-3">
-          <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 shadow-sm">
-            <div className="text-xs font-semibold flex items-center gap-2 mb-4 text-emerald-600 dark:text-emerald-400">
-              <Users className="w-4 h-4" />
-              Community Partners
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          <div className="rounded-[1.75rem] border border-slate-200/70 dark:border-slate-700/50 bg-white dark:bg-slate-800 p-6 shadow-sm transition-all hover:shadow-md">
+            <div className="flex items-center gap-2 mb-5">
+              <div className="inline-flex rounded-xl bg-emerald-50 dark:bg-emerald-900/40 p-2 text-emerald-600 dark:text-emerald-300">
+                <Users className="w-4 h-4" />
+              </div>
+              <span className="text-sm font-semibold text-slate-900 dark:text-white">
+                Community Partners
+              </span>
             </div>
             {loading ? (
               <div className="space-y-3">
@@ -137,7 +141,7 @@ export default function PartnershipModule() {
                 ))}
               </div>
             ) : communityPartners.length === 0 ? (
-              <div className="text-sm text-slate-500 dark:text-slate-400">
+              <div className="text-sm text-slate-500 dark:text-slate-300">
                 No partners listed yet.
               </div>
             ) : (
@@ -168,10 +172,14 @@ export default function PartnershipModule() {
             )}
           </div>
 
-          <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 shadow-sm">
-            <div className="text-xs font-semibold flex items-center gap-2 mb-4 text-purple-600 dark:text-purple-300">
-              <Sparkles className="w-4 h-4" />
-              Sponsored Pathways
+          <div className="rounded-[1.75rem] border border-slate-200/70 dark:border-slate-700/50 bg-white dark:bg-slate-800 p-6 shadow-sm transition-all hover:shadow-md">
+            <div className="flex items-center gap-2 mb-5">
+              <div className="inline-flex rounded-xl bg-purple-50 dark:bg-purple-900/40 p-2 text-purple-600 dark:text-purple-300">
+                <Sparkles className="w-4 h-4" />
+              </div>
+              <span className="text-sm font-semibold text-slate-900 dark:text-white">
+                Sponsored Pathways
+              </span>
             </div>
             {loading ? (
               <div className="space-y-4">
@@ -190,7 +198,7 @@ export default function PartnershipModule() {
                 ))}
               </div>
             ) : featuredPartners.length === 0 ? (
-              <div className="text-sm text-slate-500 dark:text-slate-400">
+              <div className="text-sm text-slate-500 dark:text-slate-300">
                 No sponsored pathways available yet.
               </div>
             ) : (
@@ -230,35 +238,44 @@ export default function PartnershipModule() {
             )}
           </div>
 
-          <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 shadow-sm">
-            <div className="text-xs font-semibold flex items-center gap-2 mb-4 text-sky-600 dark:text-sky-300">
-              <Megaphone className="w-4 h-4" />
-              Partner Advertising
+          <div className="rounded-[1.75rem] border border-slate-200/70 dark:border-slate-700/50 bg-white dark:bg-slate-800 p-6 shadow-sm transition-all hover:shadow-md">
+            <div className="flex items-center gap-2 mb-5">
+              <div className="inline-flex rounded-xl bg-sky-50 dark:bg-sky-900/40 p-2 text-sky-600 dark:text-sky-300">
+                <Megaphone className="w-4 h-4" />
+              </div>
+              <span className="text-sm font-semibold text-slate-900 dark:text-white">
+                Partner Advertising
+              </span>
             </div>
-            <div className="rounded-xl border border-dashed border-slate-300 dark:border-slate-600 p-4 bg-slate-50 dark:bg-slate-800/40 text-center">
-              <p className="text-sm font-medium text-slate-900 dark:text-slate-100">
+            <div className="rounded-2xl border border-dashed border-slate-300/70 dark:border-slate-600/60 p-5 bg-gradient-to-br from-sky-50/50 to-purple-50/30 dark:from-sky-900/30 dark:to-purple-900/20 text-center">
+              <div className="inline-flex rounded-full bg-sky-100 dark:bg-sky-900/50 p-3 text-sky-600 dark:text-sky-300 mb-3">
+                <Megaphone className="w-5 h-5" />
+              </div>
+              <p className="text-sm font-semibold text-slate-900 dark:text-white">
                 Reach community-first audiences
               </p>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+              <p className="text-xs text-slate-600 dark:text-slate-300 mt-2 max-w-xs mx-auto">
                 Promote verified programs, jobs, scholarships, and events with full cultural review.
               </p>
               <Link
                 href="/advertise"
-                className="inline-flex mt-4 px-3 py-1.5 text-xs font-semibold rounded-md text-white transition-all hover:opacity-90 hover:scale-[1.02]"
-                style={{
-                  background: 'linear-gradient(135deg, #ec4899 0%, #a855f7 55%, #6366f1 100%)',
-                }}
+                className="inline-flex items-center gap-1.5 mt-5 px-5 py-2 text-xs font-semibold rounded-full text-white shadow-md shadow-teal-600/15 transition-all hover:-translate-y-0.5 hover:shadow-lg bg-gradient-to-r from-teal-600 to-teal-500 dark:from-teal-500 dark:to-teal-400"
                 suppressHydrationWarning
               >
-                Advertise with us →
+                Advertise with us
+                <span className="text-xs">→</span>
               </Link>
             </div>
           </div>
         </div>
 
-        <p className="mt-6 text-xs text-center text-slate-500 dark:text-slate-400">
-          ✦ All partners are verified and aligned with community values. ✦
-        </p>
+        <div className="mt-8 flex items-center justify-center gap-3">
+          <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-transparent to-slate-300 dark:to-slate-600" />
+          <p className="text-xs text-center text-slate-500 dark:text-slate-300 font-medium">
+            All partners are verified and aligned with community values.
+          </p>
+          <div className="h-px flex-1 max-w-[80px] bg-gradient-to-l from-transparent to-slate-300 dark:to-slate-600" />
+        </div>
       </div>
     </section>
   );

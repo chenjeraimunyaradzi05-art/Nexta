@@ -1,5 +1,5 @@
 {
-  "name": "@gimbi/eslint-config",
+  "name": "@nexta/eslint-config",
   "version": "0.0.0",
   "main": "index.js",
   "dependencies": {

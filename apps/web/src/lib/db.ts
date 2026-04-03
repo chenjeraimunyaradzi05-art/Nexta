@@ -20,10 +20,10 @@ export function getDb() {
 }
 
 /**
- * Convenience: pre-initialised sql tagged-template function.
- * Import this in API routes for one-liner queries:
+ * Convenience: lazily-initialised sql tagged-template function.
+ * Use getDb() in API route handlers instead — it is called at
+ * request time so DATABASE_URL is always available.
  *
- *   import { sql } from '@/lib/db';
- *   const rows = await sql`SELECT * FROM "Partner" WHERE "isActive" = true`;
+ * Do NOT export a top-level neon() call here; it would execute
+ * at build/import time when DATABASE_URL is not yet set.
  */
-export const sql = neon(process.env.NETLIFY_DATABASE_URL || process.env.DATABASE_URL || '');
