@@ -1,7 +1,7 @@
 'use client';
 
 import api from '@/lib/apiClient';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import Image from '@/components/ui/OptimizedImage';
 import { isCloudinaryPublicId } from '@/lib/cloudinary';
@@ -56,6 +56,7 @@ export default function SocialFeedPage() {
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
+  const [error, setError] = useState<string | null>(null);
 
   interface Post {
     id: string;
@@ -73,112 +74,123 @@ export default function SocialFeedPage() {
     isSponsored?: boolean;
   }
 
-  // Fallback mock data
-  const fallbackPosts: Post[] = [
-    {
-      id: '1',
-      authorName: 'Aunty Marcia Langton',
-      authorAvatar:
-        'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=100&h=100&fit=crop',
-      authorTitle: 'Cultural Elder & Community Leader',
-      trustLevel: 'verified',
-      content:
-        'Today we gathered at Uluru for the annual Tjukurpa ceremony. Watching our young ones learn the ancient stories fills my heart with hope. Remember: your culture is your strength on any career path. 🌏✨',
-      mediaUrl: 'https://images.unsplash.com/photo-1529108190281-9a4f620bc2d8?w=800&h=500&fit=crop',
-      reactions: { like: 342, love: 189, support: 78, celebrate: 156 },
-      commentCount: 67,
-      shareCount: 45,
-      createdAt: '2 hours ago',
-    },
-    {
-      id: '2',
-      authorName: 'First Nations Mining Academy',
-      authorAvatar:
-        'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=100&h=100&fit=crop',
-      authorTitle: 'Training Organization',
-      trustLevel: 'verified',
-      isOrganization: true,
-      isSponsored: true,
-      content:
-        '🎓 FREE TRAINING OPPORTUNITY 🎓\n\n12 fully-funded positions available for our Certificate IV in Mining Operations.\n\n✅ No experience required\n✅ $800/week training allowance\n✅ Guaranteed job placement\n\nApplications close Jan 31st.',
-      mediaUrl: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=500&fit=crop',
-      reactions: { like: 523, love: 89, celebrate: 234, support: 145 },
-      commentCount: 156,
-      shareCount: 312,
-      createdAt: '4 hours ago',
-    },
-    {
-      id: '3',
-      authorName: 'Jarrah Williams',
-      authorAvatar:
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
-      authorTitle: 'Software Developer @ Atlassian',
-      trustLevel: 'trusted',
-      content:
-        "From a remote community in the Kimberley to coding at one of Australia's biggest tech companies. It took 4 years, countless rejections, and amazing mentors.\n\nTo anyone thinking it's too late or too hard—keep going. 💎\n\n#FirstNationsInTech #CareerJourney",
-      mediaUrl: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=500&fit=crop',
-      reactions: { like: 891, love: 423, support: 267, celebrate: 345 },
-      commentCount: 234,
-      shareCount: 189,
-      createdAt: '6 hours ago',
-    },
-    {
-      id: '4',
-      authorName: 'BHP Indigenous Employment',
-      authorAvatar:
-        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=100&h=100&fit=crop',
-      authorTitle: 'Mining & Resources',
-      trustLevel: 'verified',
-      isOrganization: true,
-      isSponsored: true,
-      content:
-        "🔧 Now Hiring: 45+ positions across WA & QLD\n\nWe're committed to 10% First Nations employment by 2025.\n\n• Heavy Diesel Mechanics\n• Process Operators\n• Graduate Engineers\n• Community Liaison Officers\n\nAll roles include cultural leave.",
-      reactions: { like: 445, celebrate: 178, support: 89 },
-      commentCount: 89,
-      shareCount: 234,
-      createdAt: '8 hours ago',
-    },
-    {
-      id: '5',
-      authorName: 'Dr. Chelsea Bond',
-      authorAvatar:
-        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop',
-      authorTitle: 'Associate Professor @ UQ',
-      trustLevel: 'verified',
-      content:
-        "Just finished supervising my 20th PhD student—and 15 of them are First Nations scholars.\n\nEducation is powerful, but it's even more powerful when we do it together, on our terms, with our knowledge systems valued. 📚✨",
-      reactions: { like: 1234, love: 567, celebrate: 389, support: 234 },
-      commentCount: 178,
-      shareCount: 267,
-      createdAt: '10 hours ago',
-    },
-    {
-      id: '6',
-      authorName: 'Deadly Science',
-      authorAvatar:
-        'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=100&h=100&fit=crop',
-      authorTitle: 'STEM Education Organization',
-      trustLevel: 'verified',
-      isOrganization: true,
-      content:
-        "🔬 STEM Mentorship Program Open!\n\nWe're matching 50 First Nations students with scientists and tech professionals.\n\nMentees get:\n• Monthly 1:1 sessions\n• Conference attendance\n• Networking events\n• Career guidance\n\nMentors needed too! 🙋‍♀️",
-      mediaUrl: 'https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?w=800&h=500&fit=crop',
-      reactions: { like: 678, love: 234, celebrate: 145 },
-      commentCount: 89,
-      shareCount: 156,
-      createdAt: '12 hours ago',
-    },
-  ];
+  // Fallback mock data - moved to useMemo to prevent re-renders
+  const fallbackPosts: Post[] = useMemo(
+    () => [
+      {
+        id: '1',
+        authorName: 'Aunty Marcia Langton',
+        authorAvatar:
+          'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=100&h=100&fit=crop',
+        authorTitle: 'Cultural Elder & Community Leader',
+        trustLevel: 'verified',
+        content:
+          'Today we gathered at Uluru for the annual Tjukurpa ceremony. Watching our young ones learn the ancient stories fills my heart with hope. Remember: your culture is your strength on any career path. 🌏✨',
+        mediaUrl:
+          'https://images.unsplash.com/photo-1529108190281-9a4f620bc2d8?w=800&h=500&fit=crop',
+        reactions: { like: 342, love: 189, support: 78, celebrate: 156 },
+        commentCount: 67,
+        shareCount: 45,
+        createdAt: '2 hours ago',
+      },
+      {
+        id: '2',
+        authorName: 'First Nations Mining Academy',
+        authorAvatar:
+          'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=100&h=100&fit=crop',
+        authorTitle: 'Training Organization',
+        trustLevel: 'verified',
+        isOrganization: true,
+        isSponsored: true,
+        content:
+          '🎓 FREE TRAINING OPPORTUNITY 🎓\n\n12 fully-funded positions available for our Certificate IV in Mining Operations.\n\n✅ No experience required\n✅ $800/week training allowance\n✅ Guaranteed job placement\n\nApplications close Jan 31st.',
+        mediaUrl:
+          'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=500&fit=crop',
+        reactions: { like: 523, love: 89, celebrate: 234, support: 145 },
+        commentCount: 156,
+        shareCount: 312,
+        createdAt: '4 hours ago',
+      },
+      {
+        id: '3',
+        authorName: 'Jarrah Williams',
+        authorAvatar:
+          'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
+        authorTitle: 'Software Developer @ Atlassian',
+        trustLevel: 'trusted',
+        content:
+          "From a remote community in the Kimberley to coding at one of Australia's biggest tech companies. It took 4 years, countless rejections, and amazing mentors.\n\nTo anyone thinking it's too late or too hard—keep going. 💎\n\n#FirstNationsInTech #CareerJourney",
+        mediaUrl:
+          'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=500&fit=crop',
+        reactions: { like: 891, love: 423, support: 267, celebrate: 345 },
+        commentCount: 234,
+        shareCount: 189,
+        createdAt: '6 hours ago',
+      },
+      {
+        id: '4',
+        authorName: 'BHP Indigenous Employment',
+        authorAvatar:
+          'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=100&h=100&fit=crop',
+        authorTitle: 'Mining & Resources',
+        trustLevel: 'verified',
+        isOrganization: true,
+        isSponsored: true,
+        content:
+          "🔧 Now Hiring: 45+ positions across WA & QLD\n\nWe're committed to 10% First Nations employment by 2025.\n\n• Heavy Diesel Mechanics\n• Process Operators\n• Graduate Engineers\n• Community Liaison Officers\n\nAll roles include cultural leave.",
+        reactions: { like: 445, celebrate: 178, support: 89 },
+        commentCount: 89,
+        shareCount: 234,
+        createdAt: '8 hours ago',
+      },
+      {
+        id: '5',
+        authorName: 'Dr. Chelsea Bond',
+        authorAvatar:
+          'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop',
+        authorTitle: 'Associate Professor @ UQ',
+        trustLevel: 'verified',
+        content:
+          "Just finished supervising my 20th PhD student—and 15 of them are First Nations scholars.\n\nEducation is powerful, but it's even more powerful when we do it together, on our terms, with our knowledge systems valued. 📚✨",
+        reactions: { like: 1234, love: 567, celebrate: 389, support: 234 },
+        commentCount: 178,
+        shareCount: 267,
+        createdAt: '10 hours ago',
+      },
+      {
+        id: '6',
+        authorName: 'Deadly Science',
+        authorAvatar:
+          'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=100&h=100&fit=crop',
+        authorTitle: 'STEM Education Organization',
+        trustLevel: 'verified',
+        isOrganization: true,
+        content:
+          "🔬 STEM Mentorship Program Open!\n\nWe're matching 50 First Nations students with scientists and tech professionals.\n\nMentees get:\n• Monthly 1:1 sessions\n• Conference attendance\n• Networking events\n• Career guidance\n\nMentors needed too! 🙋‍♀️",
+        mediaUrl:
+          'https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?w=800&h=500&fit=crop',
+        reactions: { like: 678, love: 234, celebrate: 145 },
+        commentCount: 89,
+        shareCount: 156,
+        createdAt: '12 hours ago',
+      },
+    ],
+    [],
+  );
 
   const fetchPosts = useCallback(
     async (pageNum = 1, append = false) => {
       if (!append) setLoading(true);
+      setError(null);
       try {
         const tabParam = activeTab !== 'for-you' ? `&tab=${activeTab}` : '';
         const endpoint = `/social-feed?page=${pageNum}&limit=10${tabParam}`;
         const res = await api(endpoint);
 
-        if (!res.ok) throw new Error('Failed to fetch');
+        if (!res.ok) {
+          console.warn('API call failed, using fallback data');
+          throw new Error(`API Error: ${res.status}`);
+        }
 
         const container = res.data as { posts?: ApiFeedPost[]; hasMore?: boolean } | ApiFeedPost[];
         const postsArray: ApiFeedPost[] = Array.isArray(
@@ -229,14 +241,18 @@ export default function SocialFeedPage() {
           ? apiPosts.length >= 10
           : Boolean((container as { hasMore?: boolean }).hasMore ?? apiPosts.length >= 10);
         setHasMore(hasMoreFlag);
-      } catch {
-        if (!append) setPosts(fallbackPosts);
+      } catch (err) {
+        console.error('Failed to fetch posts:', err);
+        if (!append) {
+          setPosts(fallbackPosts);
+          setError('Using offline content - some features may be limited');
+        }
       } finally {
         setLoading(false);
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     },
-    [activeTab],
+    [activeTab, fallbackPosts],
   );
 
   function formatTimeAgo(dateStr: string | undefined) {
@@ -560,6 +576,14 @@ export default function SocialFeedPage() {
               </div>
             )}
 
+            {/* Error Display */}
+            {error && (
+              <div className="mb-6 rounded-xl border border-amber-500/30 bg-amber-500/10 p-4 text-sm text-amber-200 flex items-center gap-2">
+                <Sparkles className="w-4 h-4" />
+                {error}
+              </div>
+            )}
+
             {/* Posts */}
             {loading ? (
               <div className="flex items-center justify-center py-20">
@@ -626,7 +650,9 @@ export default function SocialFeedPage() {
                         <p className="text-sm text-slate-500 dark:text-slate-400">
                           {post.authorTitle}
                         </p>
-                        <p className="text-xs text-slate-400 dark:text-slate-500">{post.createdAt}</p>
+                        <p className="text-xs text-slate-400 dark:text-slate-500">
+                          {post.createdAt}
+                        </p>
                       </div>
 
                       <button className="p-2 rounded-lg text-slate-400 dark:text-slate-500 hover:bg-slate-100 dark:hover:bg-white/5">

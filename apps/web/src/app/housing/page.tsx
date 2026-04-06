@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import api from '@/lib/apiClient';
 import { getErrorMessage } from '@/lib/formatters';
 import { useAuth } from '@/hooks/useAuth';
@@ -144,7 +144,6 @@ export default function HousingPage() {
         bedrooms: Number(createForm.bedrooms || 0),
         bathrooms: Number(createForm.bathrooms || 0),
         availableFrom: createForm.availableFrom || new Date().toISOString(),
-        womenOnly: true,
         firstNationsPreferred: true,
       };
 
@@ -185,10 +184,16 @@ export default function HousingPage() {
         minBudget: profileForm.minBudget ? Number(profileForm.minBudget) : undefined,
         maxBudget: profileForm.maxBudget ? Number(profileForm.maxBudget) : undefined,
         preferredSuburbs: profileForm.preferredSuburbs
-          ? profileForm.preferredSuburbs.split(',').map((s) => s.trim()).filter(Boolean)
+          ? profileForm.preferredSuburbs
+              .split(',')
+              .map((s) => s.trim())
+              .filter(Boolean)
           : [],
         preferredStates: profileForm.preferredStates
-          ? profileForm.preferredStates.split(',').map((s) => s.trim()).filter(Boolean)
+          ? profileForm.preferredStates
+              .split(',')
+              .map((s) => s.trim())
+              .filter(Boolean)
           : [],
         occupants: Number(profileForm.occupants || 1),
         hasChildren: profileForm.hasChildren,
@@ -201,18 +206,20 @@ export default function HousingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-white px-6 py-8">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 px-6 py-8">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center gap-3 mb-6">
-          <Home className="w-6 h-6 text-emerald-400" />
+          <Home className="w-6 h-6 text-emerald-500" />
           <div>
-            <h1 className="text-2xl font-bold">Women’s Housing Portal</h1>
-            <p className="text-sm text-slate-400">Safe housing listings, partnerships and seeker profiles.</p>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Housing Portal</h1>
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              Find safe, affordable housing with community support.
+            </p>
           </div>
         </div>
 
         {error && (
-          <div className="mb-6 rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200">
+          <div className="mb-6 rounded-xl border border-red-200 bg-red-50 dark:border-red-800/30 dark:bg-red-900/20 p-4 text-sm text-red-700 dark:text-red-300">
             {error}
           </div>
         )}
@@ -220,42 +227,42 @@ export default function HousingPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-6">
-              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                <Search className="w-5 h-5 text-emerald-400" /> Search Listings
+              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-slate-900 dark:text-white">
+                <Search className="w-5 h-5 text-emerald-500" /> Search Listings
               </h3>
               <div className="grid grid-cols-2 gap-3">
                 <input
-                  className="px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm"
+                  className="px-3 py-2 rounded-lg bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-sm text-slate-900 dark:text-white placeholder-slate-500"
                   placeholder="Suburb"
                   value={filters.suburb}
                   onChange={(e) => setFilters({ ...filters, suburb: e.target.value })}
                 />
                 <input
-                  className="px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm"
+                  className="px-3 py-2 rounded-lg bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-sm text-slate-900 dark:text-white placeholder-slate-500"
                   placeholder="State"
                   value={filters.state}
                   onChange={(e) => setFilters({ ...filters, state: e.target.value })}
                 />
                 <input
-                  className="px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm"
+                  className="px-3 py-2 rounded-lg bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-sm text-slate-900 dark:text-white placeholder-slate-500"
                   placeholder="Min rent"
                   value={filters.minRent}
                   onChange={(e) => setFilters({ ...filters, minRent: e.target.value })}
                 />
                 <input
-                  className="px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm"
+                  className="px-3 py-2 rounded-lg bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-sm text-slate-900 dark:text-white placeholder-slate-500"
                   placeholder="Max rent"
                   value={filters.maxRent}
                   onChange={(e) => setFilters({ ...filters, maxRent: e.target.value })}
                 />
                 <input
-                  className="px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm"
+                  className="px-3 py-2 rounded-lg bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-sm text-slate-900 dark:text-white placeholder-slate-500"
                   placeholder="Bedrooms"
                   value={filters.bedrooms}
                   onChange={(e) => setFilters({ ...filters, bedrooms: e.target.value })}
                 />
                 <select
-                  className="px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm"
+                  className="px-3 py-2 rounded-lg bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-sm text-slate-900 dark:text-white"
                   value={filters.housingType}
                   onChange={(e) => setFilters({ ...filters, housingType: e.target.value })}
                 >
@@ -268,25 +275,46 @@ export default function HousingPage() {
               </div>
             </div>
 
-            <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-6">
-              <h3 className="text-lg font-semibold mb-4">Listings ({total})</h3>
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm p-6">
+              <h3 className="text-lg font-semibold mb-4 text-slate-900 dark:text-white">
+                Listings ({total})
+              </h3>
               {loading ? (
-                <p className="text-sm text-slate-400">Loading listings...</p>
+                <div className="flex items-center justify-center py-8">
+                  <div className="w-8 h-8 rounded-full border-4 border-emerald-200 border-t-emerald-500 animate-spin"></div>
+                </div>
               ) : (
                 <div className="space-y-3">
                   {listings.map((listing) => (
-                    <div key={listing.id} className="rounded-lg bg-slate-800/60 p-4">
+                    <div
+                      key={listing.id}
+                      className="rounded-lg bg-slate-50 dark:bg-slate-700/50 p-4 border border-slate-200 dark:border-slate-600"
+                    >
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm font-medium text-slate-100">{listing.title}</p>
-                          <p className="text-xs text-slate-400">{listing.suburb}, {listing.state}</p>
+                          <p className="text-sm font-medium text-slate-900 dark:text-white">
+                            {listing.title}
+                          </p>
+                          <p className="text-xs text-slate-600 dark:text-slate-400">
+                            {listing.suburb}, {listing.state}
+                          </p>
                         </div>
-                        <span className="text-sm text-emerald-300">${Number(listing.rentPerWeek || 0).toFixed(0)} / wk</span>
+                        <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                          ${Number(listing.rentPerWeek || 0).toFixed(0)} / wk
+                        </span>
                       </div>
-                      <div className="mt-2 flex flex-wrap gap-3 text-xs text-slate-400">
-                        <span className="flex items-center gap-1"><MapPin className="w-3 h-3" /> {listing.housingType}</span>
-                        <span className="flex items-center gap-1"><Users className="w-3 h-3" /> {listing.bedrooms} bd</span>
-                        <span className="flex items-center gap-1"><Shield className="w-3 h-3" /> Women-only</span>
+                      <div className="mt-2 flex flex-wrap gap-3 text-xs text-slate-600 dark:text-slate-400">
+                        <span className="flex items-center gap-1">
+                          <MapPin className="w-3 h-3" /> {listing.housingType}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Users className="w-3 h-3" /> {listing.bedrooms} bd
+                        </span>
+                        {listing.firstNationsPreferred && (
+                          <span className="flex items-center gap-1">
+                            <Shield className="w-3 h-3" /> First Nations Preferred
+                          </span>
+                        )}
                       </div>
                       <div className="mt-3 flex gap-2">
                         <button
@@ -298,7 +326,14 @@ export default function HousingPage() {
                       </div>
                     </div>
                   ))}
-                  {listings.length === 0 && <p className="text-sm text-slate-500">No listings found.</p>}
+                  {listings.length === 0 && (
+                    <div className="text-center py-8">
+                      <Home className="w-12 h-12 text-slate-300 dark:text-slate-600 mx-auto mb-2" />
+                      <p className="text-sm text-slate-500 dark:text-slate-400">
+                        No listings found. Try adjusting your filters.
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -363,7 +398,9 @@ export default function HousingPage() {
                     type="date"
                     className="col-span-2 px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm"
                     value={createForm.availableFrom}
-                    onChange={(e) => setCreateForm({ ...createForm, availableFrom: e.target.value })}
+                    onChange={(e) =>
+                      setCreateForm({ ...createForm, availableFrom: e.target.value })
+                    }
                   />
                 </div>
                 <button
@@ -398,13 +435,17 @@ export default function HousingPage() {
                     className="px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm"
                     placeholder="Preferred suburbs"
                     value={profileForm.preferredSuburbs}
-                    onChange={(e) => setProfileForm({ ...profileForm, preferredSuburbs: e.target.value })}
+                    onChange={(e) =>
+                      setProfileForm({ ...profileForm, preferredSuburbs: e.target.value })
+                    }
                   />
                   <input
                     className="px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm"
                     placeholder="Preferred states"
                     value={profileForm.preferredStates}
-                    onChange={(e) => setProfileForm({ ...profileForm, preferredStates: e.target.value })}
+                    onChange={(e) =>
+                      setProfileForm({ ...profileForm, preferredStates: e.target.value })
+                    }
                   />
                   <input
                     className="px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm"
@@ -427,7 +468,9 @@ export default function HousingPage() {
                     <input
                       type="checkbox"
                       checked={profileForm.hasChildren}
-                      onChange={(e) => setProfileForm({ ...profileForm, hasChildren: e.target.checked })}
+                      onChange={(e) =>
+                        setProfileForm({ ...profileForm, hasChildren: e.target.checked })
+                      }
                     />
                     Has children
                   </label>
@@ -435,7 +478,9 @@ export default function HousingPage() {
                     <input
                       type="checkbox"
                       checked={profileForm.hasPets}
-                      onChange={(e) => setProfileForm({ ...profileForm, hasPets: e.target.checked })}
+                      onChange={(e) =>
+                        setProfileForm({ ...profileForm, hasPets: e.target.checked })
+                      }
                     />
                     Has pets
                   </label>
@@ -458,7 +503,9 @@ export default function HousingPage() {
               <div className="space-y-2">
                 {saved.map((save) => (
                   <div key={save.id} className="rounded-lg bg-slate-800/60 p-3">
-                    <p className="text-sm text-slate-100">{save.listing?.title || 'Saved listing'}</p>
+                    <p className="text-sm text-slate-100">
+                      {save.listing?.title || 'Saved listing'}
+                    </p>
                     <p className="text-xs text-slate-400">{save.listing?.suburb}</p>
                   </div>
                 ))}
@@ -474,16 +521,26 @@ export default function HousingPage() {
                 {inquiries.map((inquiry) => (
                   <div key={inquiry.id} className="rounded-lg bg-slate-800/60 p-3">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm text-slate-100">{inquiry.listing?.title || 'Housing inquiry'}</p>
-                      <span className="text-xs uppercase tracking-wide text-slate-400">{inquiry.status}</span>
+                      <p className="text-sm text-slate-100">
+                        {inquiry.listing?.title || 'Housing inquiry'}
+                      </p>
+                      <span className="text-xs uppercase tracking-wide text-slate-400">
+                        {inquiry.status}
+                      </span>
                     </div>
-                    <p className="text-xs text-slate-400">{inquiry.listing?.suburb}, {inquiry.listing?.state}</p>
+                    <p className="text-xs text-slate-400">
+                      {inquiry.listing?.suburb}, {inquiry.listing?.state}
+                    </p>
                     {inquiry.responseMessage && (
-                      <p className="mt-2 text-xs text-emerald-200">Response: {inquiry.responseMessage}</p>
+                      <p className="mt-2 text-xs text-emerald-200">
+                        Response: {inquiry.responseMessage}
+                      </p>
                     )}
                   </div>
                 ))}
-                {inquiries.length === 0 && <p className="text-sm text-slate-500">No inquiries yet.</p>}
+                {inquiries.length === 0 && (
+                  <p className="text-sm text-slate-500">No inquiries yet.</p>
+                )}
               </div>
             </div>
           </div>
