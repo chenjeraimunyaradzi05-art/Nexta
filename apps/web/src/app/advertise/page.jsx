@@ -1,8 +1,8 @@
 'use client';
 
-import { API_BASE } from '@/lib/apiBase';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import api from '@/lib/apiClient';
 
 export default function AdvertisePage() {
   const [selectedPlan, setSelectedPlan] = useState(null);
@@ -19,6 +19,10 @@ export default function AdvertisePage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [inquiryId, setInquiryId] = useState(null);
+  const [partners, setPartners] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const advertisingPlans = [
     {
@@ -34,7 +38,8 @@ export default function AdvertisePage() {
         'Basic analytics dashboard',
         'Email support'
       ],
-      highlight: false
+      highlight: false,
+      popular: true
     },
     {
       id: 'growth',
@@ -48,28 +53,28 @@ export default function AdvertisePage() {
         '25,000 impressions/month',
         'Advanced analytics & reporting',
         'Social feed sponsored posts',
-        'Priority support',
-        'A/B testing for ads'
+        'Priority email support'
       ],
-      highlight: true
+      highlight: true,
+      popular: false
     },
     {
       id: 'enterprise',
       name: 'Enterprise',
-      price: null,
-      period: 'Custom',
-      description: 'For large organizations with custom needs',
+      price: 1999,
+      period: '/month',
+      description: 'For established organizations',
       features: [
-        'Unlimited featured listings',
-        'Branded company hub',
-        'Unlimited impressions',
+        'Featured job listings (10)',
+        'Premium company profile + branding',
+        '100,000 impressions/month',
+        'Advanced analytics & reporting',
+        'Social feed sponsored posts (5/month)',
         'Dedicated account manager',
-        'Custom integrations',
-        'Recruitment event sponsorship',
-        'Exclusive community partnerships',
-        'White-label options'
+        'Custom advertising solutions'
       ],
-      highlight: false
+      highlight: false,
+      popular: false
     }
   ];
 
@@ -122,32 +127,59 @@ export default function AdvertisePage() {
     }));
   };
 
+  useEffect(() => {
+    const loadPartners = async () => {
+      try {
+        const res = await api('/community/partners/featured');
+        if (res.ok) {
+          setPartners(res.data?.partners || []);
+        }
+      } catch (err) {
+        console.error('Failed to load partners:', err);
+      }
+    };
+    loadPartners();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
     setError(null);
+    setSuccess(null);
 
-    const apiBase = API_BASE;
-    
     try {
-      const res = await fetch(`${apiBase}/advertising`, {
+      const payload = {
+        ...formData,
+        selectedPlan: selectedPlan?.id || null,
+        goals: formData.goals.join(', ')
+      };
+
+      const res = await api('/advertising', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          selectedPlan,
-        }),
+        body: payload
       });
 
-      const data = await res.json();
-
       if (!res.ok) {
-        throw new Error(data.error?.fieldErrors ? 'Please check your form inputs' : data.error || 'Failed to submit');
+        const errorData = await res.json();
+        throw new Error(errorData?.error || 'Failed to submit inquiry');
       }
 
-      setSubmitted(true);
+      setSuccess('Your advertising inquiry has been received! Our partnerships team will contact you within 24-48 hours.');
+      setInquiryId(res.data?.id);
+      setSelectedPlan(null);
+      setFormData({
+        companyName: '',
+        contactName: '',
+        email: '',
+        phone: '',
+        website: '',
+        budget: '',
+        goals: [],
+        message: ''
+      });
     } catch (err) {
-      setError(err.message || 'Something went wrong. Please try again.');
+      setError(err.message || 'Failed to submit. Please try again.');
+      console.error('Advertising submission error:', err);
     } finally {
       setSubmitting(false);
     }
@@ -162,7 +194,7 @@ export default function AdvertisePage() {
           </div>
           <h1 className="text-3xl font-bold text-white mb-4">Thank You!</h1>
           <p className="text-white/70 mb-8">
-            We've received your advertising inquiry. Our partnerships team will be in touch within 24-48 hours to discuss how we can help grow your reach.
+            We&apos;ve received your advertising inquiry. Our partnerships team will be in touch within 24-48 hours to discuss how we can help grow your reach.
           </p>
           <Link
             href="/"
@@ -276,7 +308,7 @@ export default function AdvertisePage() {
           <div className="royal-card p-8">
             <h2 className="text-2xl font-bold text-white text-center mb-2">Get Started</h2>
             <p className="text-white/60 text-center mb-8">
-              Tell us about your advertising goals and we'll create a custom solution
+              Tell us about your advertising goals and we&apos;ll create a custom solution
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-6">

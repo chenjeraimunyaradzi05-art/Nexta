@@ -6,6 +6,7 @@
  */
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import api from '@/lib/apiClient';
 import useAuth from '@/hooks/useAuth';
 import {
@@ -16,12 +17,10 @@ import {
   Check,
   AlertTriangle,
   Loader2,
-  RefreshCw,
-  Eye,
-  EyeOff,
   QrCode,
   Download,
-  CheckCircle2
+  CheckCircle2,
+  AlertCircle
 } from 'lucide-react';
 
 export default function TwoFactorAuth() {
@@ -90,7 +89,7 @@ export default function TwoFactorAuth() {
     setActionLoading(true);
 
     try {
-      const { ok, data, error: apiError } = await api('/security/2fa/verify', {
+      const { ok, error: apiError } = await api('/security/2fa/verify', {
         method: 'POST',
         body: { token: verificationCode },
       });
@@ -116,7 +115,7 @@ export default function TwoFactorAuth() {
     setActionLoading(true);
 
     try {
-      const { ok, data, error: apiError } = await api('/security/2fa/disable', {
+      const { ok, error: apiError } = await api('/security/2fa/disable', {
         method: 'POST',
         body: { token: disableCode },
       });
@@ -298,26 +297,6 @@ export default function TwoFactorAuth() {
             from your phone in addition to your password.
           </p>
 
-          <button
-            onClick={handleEnable}
-            disabled={actionLoading}
-            className="w-full py-3 bg-purple-600 hover:bg-purple-500 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
-          >
-            {actionLoading ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
-            ) : (
-              <>
-                <Shield className="w-4 h-4" />
-                Enable Two-Factor Authentication
-              </>
-            )}
-          </button>
-        </div>
-      )}
-
-      {/* Setup Flow */}
-      {setupData && !status?.enabled && (
-        <div className="space-y-4">
           {/* Step 1: Scan QR Code */}
           {!showBackupCodes && (
             <>
@@ -327,13 +306,37 @@ export default function TwoFactorAuth() {
                   Scan this code with your authenticator app (Google Authenticator, Authy, etc.)
                 </p>
 
-                {/* QR Code placeholder */}
+                {/* QR Code Display */}
                 <div className="bg-white p-4 rounded-lg inline-block mb-4">
-                  <div className="w-48 h-48 bg-slate-200 flex items-center justify-center">
-                    <QrCode className="w-24 h-24 text-slate-800" />
+                  <div className="w-48 h-48 relative">
+                    {setupData.qrCode ? (
+                      <Image
+                        src={`data:image/png;base64,${setupData.qrCode}`}
+                        alt="2FA QR Code"
+                        className="w-full h-full"
+                        width={192}
+                        height={192}
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          document.getElementById('qr-fallback').style.display = 'flex';
+                        }}
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-slate-200 flex items-center justify-center">
+                        <AlertCircle className="w-8 h-8 text-slate-400" />
+                      </div>
+                    )}
+                    <div 
+                      id="qr-fallback"
+                      className="w-full h-48 bg-slate-200 flex flex-col items-center justify-center"
+                      style={{ display: 'none' }}
+                    >
+                      <QrCode className="w-8 h-8 text-slate-400 mb-2" />
+                      <span className="text-xs text-slate-500 text-center px-2">Unable to load QR code</span>
+                    </div>
                   </div>
                   <p className="text-xs text-slate-600 mt-2">
-                    Use authenticator app to scan
+                    Scan with authenticator app
                   </p>
                 </div>
 
@@ -383,7 +386,7 @@ export default function TwoFactorAuth() {
                 <button
                   type="submit"
                   disabled={verificationCode.length !== 6 || actionLoading}
-                  className="w-full py-3 bg-purple-600 hover:bg-purple-500 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-3 bg-emerald-600 hover:bg-emerald-500 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {actionLoading ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
@@ -394,6 +397,9 @@ export default function TwoFactorAuth() {
                     </>
                   )}
                 </button>
+                <div className="mt-3 text-xs text-slate-500 text-center">
+                  Enter the 6-digit code from your authenticator app
+                </div>
               </form>
             </>
           )}
