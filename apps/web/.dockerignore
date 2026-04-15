@@ -1,0 +1,16 @@
+node_modules
+.next
+playwright-report
+test-results
+tests
+e2e
+
+.env.local
+.env.*.local
+
+apps
+1
+dev-output.txt
+dev-test.txt
+lint-output.txt
+test-output.txt

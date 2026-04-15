@@ -5,10 +5,26 @@
 [build]
 builder = "dockerfile"
 dockerfilePath = "Dockerfile.railway"
-watchPatterns = ["apps/api/src/**", "apps/api/prisma/**", "apps/api/package.json"]
+watchPatterns = [
+  "apps/api/src/**",
+  "apps/api/prisma/**",
+  "apps/api/package.json",
+  "apps/api/package-lock.json",
+  "apps/api/build.mjs",
+  "apps/api/tsconfig.json",
+  "apps/api/tsconfig.build.json",
+  "apps/api/openapi.yaml",
+  "apps/api/start.sh",
+  "apps/api/railway-predeploy.sh",
+  ".dockerignore",
+  "apps/api/.dockerignore",
+  "Dockerfile.railway",
+  "railway.toml",
+]
 
 [deploy]
-startCommand = "sh start.sh"
+preDeployCommand = "sh ./railway-predeploy.sh"
+startCommand = "sh ./start.sh"
 healthcheckPath = "/health/live"
 healthcheckTimeout = 120
 restartPolicyType = "on_failure"

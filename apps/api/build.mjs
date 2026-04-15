@@ -1,47 +1,45 @@
-import * as esbuild from 'esbuild';
-import { glob } from 'glob';
 import path from 'path';
 import fs from 'fs';
+import { cpSync } from 'fs';
 
-// Find all TypeScript files in src directory
-const entryPoints = await glob('src/**/*.ts', {
-  ignore: ['**/*.test.ts', '**/*.spec.ts', '**/tests/**']
-});
+const assetsToCopy = [
+  {
+    from: 'prisma',
+    to: path.join('dist', 'prisma'),
+    filter: (source) =>
+      !source.includes(`${path.sep}dev_test.db`) &&
+      !source.endsWith('.db') &&
+      !source.endsWith('.db-journal'),
+  },
+  {
+    from: 'openapi.yaml',
+    to: path.join('dist', 'openapi.yaml'),
+  },
+];
 
-console.log(`Building ${entryPoints.length} files...`);
+console.log('Copying runtime assets...');
 
 try {
-  const result = await esbuild.build({
-    entryPoints,
-    bundle: false,
-    outdir: 'dist',
-    platform: 'node',
-    target: 'node20',
-    format: 'cjs',
-    sourcemap: true,
-    logLevel: 'warning',
-    // Suppress known warnings about mixed CJS/ESM (these files work at runtime)
-    logOverride: {
-      'commonjs-variable-in-esm': 'silent',
-      'empty-import-meta': 'silent',
-    },
-  });
+  for (const asset of assetsToCopy) {
+    if (!fs.existsSync(asset.from)) continue;
 
-  if (result.warnings.length > 0) {
-    console.log(`⚠️  ${result.warnings.length} warnings (suppressed non-critical)`);
-  }
-  
-  // Copy prisma schema if exists
-  const prismaSchemaPath = 'prisma/schema.prisma';
-  if (fs.existsSync(prismaSchemaPath)) {
-    const distPrismaDir = 'dist/prisma';
-    if (!fs.existsSync(distPrismaDir)) {
-      fs.mkdirSync(distPrismaDir, { recursive: true });
+    const stat = fs.statSync(asset.from);
+    if (stat.isDirectory()) {
+      cpSync(asset.from, asset.to, {
+        recursive: true,
+        filter: asset.filter,
+      });
+      continue;
     }
-    fs.copyFileSync(prismaSchemaPath, path.join(distPrismaDir, 'schema.prisma'));
+
+    const destinationDir = path.dirname(asset.to);
+    if (!fs.existsSync(destinationDir)) {
+      fs.mkdirSync(destinationDir, { recursive: true });
+    }
+    fs.copyFileSync(asset.from, asset.to);
   }
-  
-  console.log('Build completed successfully!');
+
+  console.log('Build assets copied successfully!');
 } catch (error) {
   console.error('Build failed:', error);
   process.exit(1);

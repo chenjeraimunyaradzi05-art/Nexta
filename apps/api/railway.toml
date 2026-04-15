@@ -4,9 +4,25 @@
 [build]
 builder = "dockerfile"
 dockerfilePath = "Dockerfile.railway"
+watchPatterns = [
+  "src/**",
+  "prisma/**",
+  "package.json",
+  "package-lock.json",
+  "build.mjs",
+  "tsconfig.json",
+  "tsconfig.build.json",
+  "openapi.yaml",
+  "start.sh",
+  "railway-predeploy.sh",
+  ".dockerignore",
+  "Dockerfile.railway",
+  "railway.toml",
+]
 
 [deploy]
-startCommand = "sh start.sh"
+preDeployCommand = "sh ./railway-predeploy.sh"
+startCommand = "sh ./start.sh"
 healthcheckPath = "/health/live"
 healthcheckTimeout = 120
 restartPolicyType = "on_failure"

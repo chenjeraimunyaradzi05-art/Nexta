@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const express = require('express');
 const path = require('path');
@@ -9,7 +9,19 @@ const swaggerUi = require('swagger-ui-express');
 const router = express.Router();
 
 function getSpecPath() {
-  return path.join(__dirname, '..', '..', 'openapi.yaml');
+  const candidates = [
+    path.join(process.cwd(), 'openapi.yaml'),
+    path.join(__dirname, '..', '..', 'openapi.yaml'),
+    path.join(__dirname, '..', 'openapi.yaml'),
+  ];
+
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate)) {
+      return candidate;
+    }
+  }
+
+  return candidates[0];
 }
 
 function loadOpenApiSpec() {
@@ -74,5 +86,3 @@ router.get('/', (req, res, next) => {
 });
 
 export default router;
-
-

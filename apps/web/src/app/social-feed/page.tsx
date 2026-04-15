@@ -43,6 +43,24 @@ interface ApiFeedPost {
   isSponsored?: boolean;
 }
 
+interface Post {
+  id: string;
+  authorName: string;
+  authorAvatar: string;
+  authorTitle: string;
+  trustLevel: string;
+  content: string;
+  mediaUrl?: string;
+  reactions: Record<string, number>;
+  commentCount: number;
+  shareCount: number;
+  createdAt: string;
+  isOrganization?: boolean;
+  isSponsored?: boolean;
+}
+
+const createReactions = (values: Post['reactions']): Post['reactions'] => values;
+
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   weight: ['400', '500', '700'],
@@ -58,24 +76,8 @@ export default function SocialFeedPage() {
   const [page, setPage] = useState(1);
   const [error, setError] = useState<string | null>(null);
 
-  interface Post {
-    id: string;
-    authorName: string;
-    authorAvatar: string;
-    authorTitle: string;
-    trustLevel: string;
-    content: string;
-    mediaUrl?: string;
-    reactions: { [key: string]: number };
-    commentCount: number;
-    shareCount: number;
-    createdAt: string;
-    isOrganization?: boolean;
-    isSponsored?: boolean;
-  }
-
   // Fallback mock data - moved to useMemo to prevent re-renders
-  const fallbackPosts: Post[] = useMemo(
+  const fallbackPosts = useMemo<Post[]>(
     () => [
       {
         id: '1',
@@ -88,7 +90,7 @@ export default function SocialFeedPage() {
           'Today we gathered at Uluru for the annual Tjukurpa ceremony. Watching our young ones learn the ancient stories fills my heart with hope. Remember: your culture is your strength on any career path. 🌏✨',
         mediaUrl:
           'https://images.unsplash.com/photo-1529108190281-9a4f620bc2d8?w=800&h=500&fit=crop',
-        reactions: { like: 342, love: 189, support: 78, celebrate: 156 },
+        reactions: createReactions({ like: 342, love: 189, support: 78, celebrate: 156 }),
         commentCount: 67,
         shareCount: 45,
         createdAt: '2 hours ago',
@@ -106,7 +108,7 @@ export default function SocialFeedPage() {
           '🎓 FREE TRAINING OPPORTUNITY 🎓\n\n12 fully-funded positions available for our Certificate IV in Mining Operations.\n\n✅ No experience required\n✅ $800/week training allowance\n✅ Guaranteed job placement\n\nApplications close Jan 31st.',
         mediaUrl:
           'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=500&fit=crop',
-        reactions: { like: 523, love: 89, celebrate: 234, support: 145 },
+        reactions: createReactions({ like: 523, love: 89, celebrate: 234, support: 145 }),
         commentCount: 156,
         shareCount: 312,
         createdAt: '4 hours ago',
@@ -122,7 +124,7 @@ export default function SocialFeedPage() {
           "From a remote community in the Kimberley to coding at one of Australia's biggest tech companies. It took 4 years, countless rejections, and amazing mentors.\n\nTo anyone thinking it's too late or too hard—keep going. 💎\n\n#FirstNationsInTech #CareerJourney",
         mediaUrl:
           'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=500&fit=crop',
-        reactions: { like: 891, love: 423, support: 267, celebrate: 345 },
+        reactions: createReactions({ like: 891, love: 423, support: 267, celebrate: 345 }),
         commentCount: 234,
         shareCount: 189,
         createdAt: '6 hours ago',
@@ -138,7 +140,7 @@ export default function SocialFeedPage() {
         isSponsored: true,
         content:
           "🔧 Now Hiring: 45+ positions across WA & QLD\n\nWe're committed to 10% First Nations employment by 2025.\n\n• Heavy Diesel Mechanics\n• Process Operators\n• Graduate Engineers\n• Community Liaison Officers\n\nAll roles include cultural leave.",
-        reactions: { like: 445, celebrate: 178, support: 89 },
+        reactions: createReactions({ like: 445, celebrate: 178, support: 89 }),
         commentCount: 89,
         shareCount: 234,
         createdAt: '8 hours ago',
@@ -152,7 +154,7 @@ export default function SocialFeedPage() {
         trustLevel: 'verified',
         content:
           "Just finished supervising my 20th PhD student—and 15 of them are First Nations scholars.\n\nEducation is powerful, but it's even more powerful when we do it together, on our terms, with our knowledge systems valued. 📚✨",
-        reactions: { like: 1234, love: 567, celebrate: 389, support: 234 },
+        reactions: createReactions({ like: 1234, love: 567, celebrate: 389, support: 234 }),
         commentCount: 178,
         shareCount: 267,
         createdAt: '10 hours ago',
@@ -169,7 +171,7 @@ export default function SocialFeedPage() {
           "🔬 STEM Mentorship Program Open!\n\nWe're matching 50 First Nations students with scientists and tech professionals.\n\nMentees get:\n• Monthly 1:1 sessions\n• Conference attendance\n• Networking events\n• Career guidance\n\nMentors needed too! 🙋‍♀️",
         mediaUrl:
           'https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?w=800&h=500&fit=crop',
-        reactions: { like: 678, love: 234, celebrate: 145 },
+        reactions: createReactions({ like: 678, love: 234, celebrate: 145 }),
         commentCount: 89,
         shareCount: 156,
         createdAt: '12 hours ago',
