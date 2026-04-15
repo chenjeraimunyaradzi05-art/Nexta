@@ -1,0 +1,22 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile.railway"
+watchPatterns = [
+  "src/**",
+  "public/**",
+  "package.json",
+  "package-lock.json",
+  "next.config.js",
+  "tsconfig.json",
+  "next-env.d.ts",
+  "scripts/**",
+  ".dockerignore",
+  "Dockerfile.railway",
+  "railway.toml",
+]
+
+[deploy]
+healthcheckPath = "/"
+healthcheckTimeout = 120
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
