@@ -7,7 +7,7 @@ module.exports = {
   apps: [
     {
       name: 'nexta-api',
-      script: './src/index.js',
+      script: './dist/src/index.js',
       cwd: './',
 
       // Cluster mode for horizontal scaling
@@ -61,7 +61,7 @@ module.exports = {
     // Background job worker (separate process)
     {
       name: 'nexta-worker',
-      script: './src/worker.js',
+      script: './dist/src/worker.js',
       cwd: './',
       instances: process.env.PM2_WORKER_INSTANCES || 2,
       exec_mode: 'cluster',

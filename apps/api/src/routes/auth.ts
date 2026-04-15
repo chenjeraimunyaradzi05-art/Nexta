@@ -69,29 +69,34 @@ function clearFailedAttempts(email: string): void {
 }
 
 // Cleanup stale lockout entries every 10 minutes
-setInterval(() => {
-  const now = Date.now();
-  for (const [email, record] of failedAttempts) {
-    if (now - record.firstAttempt > LOCKOUT_WINDOW_MS) {
-      failedAttempts.delete(email);
+setInterval(
+  () => {
+    const now = Date.now();
+    for (const [email, record] of failedAttempts) {
+      if (now - record.firstAttempt > LOCKOUT_WINDOW_MS) {
+        failedAttempts.delete(email);
+      }
     }
-  }
-}, 10 * 60 * 1000);
+  },
+  10 * 60 * 1000
+);
 
 // Validation schemas
-const registerSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(8, 'Password must be at least 8 characters'),
-  firstName: z.string().min(1, 'First name is required').optional(),
-  lastName: z.string().min(1, 'Last name is required').optional(),
-  name: z.string().min(1, 'Name is required').optional(),
-  userType: z.enum(['MEMBER', 'COMPANY', 'MENTOR', 'TAFE', 'SEEKER']).default('MEMBER'),
-  gender: z.string().optional(),
-  inviteCode: z.string().optional(),
-}).refine((data) => data.name || (data.firstName && data.lastName), {
-  message: 'Name is required',
-  path: ['name'],
-});
+const registerSchema = z
+  .object({
+    email: z.string().email('Invalid email address'),
+    password: z.string().min(8, 'Password must be at least 8 characters'),
+    firstName: z.string().min(1, 'First name is required').optional(),
+    lastName: z.string().min(1, 'Last name is required').optional(),
+    name: z.string().min(1, 'Name is required').optional(),
+    userType: z.enum(['MEMBER', 'COMPANY', 'MENTOR', 'TAFE', 'SEEKER']).default('MEMBER'),
+    gender: z.string().optional(),
+    inviteCode: z.string().optional(),
+  })
+  .refine((data) => data.name || (data.firstName && data.lastName), {
+    message: 'Name is required',
+    path: ['name'],
+  });
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -102,11 +107,21 @@ const loginSchema = z.object({
  * Generate JWT token for a user
  */
 function generateToken(user: { id: string; email: string; userType: string }): string {
-  return jwt.sign(
-    { id: user.id, email: user.email, userType: user.userType },
-    JWT_SECRET,
-    { expiresIn: JWT_EXPIRES_IN } as jwt.SignOptions
-  );
+  return jwt.sign({ id: user.id, email: user.email, userType: user.userType }, JWT_SECRET, {
+    expiresIn: JWT_EXPIRES_IN,
+  } as jwt.SignOptions);
+}
+
+async function ensureMemberProfile(userId: string) {
+  try {
+    await prisma.memberProfile.upsert({
+      where: { userId },
+      update: {},
+      create: { userId },
+    });
+  } catch (error) {
+    console.warn('Member profile bootstrap failed during registration', { userId, error });
+  }
 }
 
 /**
@@ -124,7 +139,8 @@ router.post('/register', async (req: Request, res: Response, next: NextFunction)
       });
     }
 
-    const { email, password, firstName, lastName, name, userType, gender, inviteCode } = validation.data;
+    const { email, password, firstName, lastName, name, userType, gender, inviteCode } =
+      validation.data;
     const normalizedUserType = userType === 'SEEKER' ? 'MEMBER' : userType;
     const resolvedName = name || `${firstName || ''} ${lastName || ''}`.trim();
     const nameParts = resolvedName.split(' ').filter(Boolean);
@@ -133,10 +149,11 @@ router.post('/register', async (req: Request, res: Response, next: NextFunction)
 
     // ENFORCE FEMALE ONLY POLICY
     if (gender && gender !== 'FEMALE') {
-       return void res.status(403).json({
-         error: 'Access Restricted',
-         message: 'Nexta is currently restricted to female registration only for cultural safety reasons.'
-       });
+      return void res.status(403).json({
+        error: 'Access Restricted',
+        message:
+          'Nexta is currently restricted to female registration only for cultural safety reasons.',
+      });
     }
 
     // Check Invite Code (Simple Check for now, integration with Invitation model later)
@@ -145,8 +162,8 @@ router.post('/register', async (req: Request, res: Response, next: NextFunction)
     // But per requirements, they might still need subscription.
     // We will just log it for now as the Invitation model is being deployed.
     if (inviteCode) {
-         // TODO: Check Validation against Invitation model
-         console.log(`User registered with invite code: ${inviteCode}`);
+      // TODO: Check Validation against Invitation model
+      console.log(`User registered with invite code: ${inviteCode}`);
     }
 
     // Check if user already exists
@@ -164,22 +181,13 @@ router.post('/register', async (req: Request, res: Response, next: NextFunction)
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    // Create user with member profile
+    // Create user
     const user = await prisma.user.create({
       data: {
         email: email.toLowerCase(),
         name: resolvedName,
         userType: normalizedUserType as any,
         password: hashedPassword,
-        memberProfile: normalizedUserType === 'MEMBER' ? {
-          create: {
-            phone: null,
-            mobNation: null,
-            skillLevel: null,
-            careerInterest: null,
-            bio: null,
-          },
-        } : undefined,
       },
       select: {
         id: true,
@@ -189,6 +197,10 @@ router.post('/register', async (req: Request, res: Response, next: NextFunction)
         createdAt: true,
       },
     });
+
+    if (normalizedUserType === 'MEMBER') {
+      await ensureMemberProfile(user.id);
+    }
 
     // Generate token
     const token = generateToken(user);
@@ -427,70 +439,76 @@ router.get('/me', async (req: Request, res: Response, next: NextFunction) => {
  * @desc Change password for authenticated user
  * @access Private
  */
-router.post('/change-password', authenticate, async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const validation = changePasswordSchema.safeParse(req.body);
-    if (!validation.success) {
-      return void res.status(400).json({
-        error: 'Validation failed',
-        details: validation.error.flatten().fieldErrors,
+router.post(
+  '/change-password',
+  authenticate,
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const validation = changePasswordSchema.safeParse(req.body);
+      if (!validation.success) {
+        return void res.status(400).json({
+          error: 'Validation failed',
+          details: validation.error.flatten().fieldErrors,
+        });
+      }
+
+      const { currentPassword, newPassword } = validation.data;
+      const userId = (req as any).user?.id as string | undefined;
+
+      if (!userId) {
+        return void res.status(401).json({ error: 'Unauthorized' });
+      }
+
+      const user = await prisma.user.findUnique({
+        where: { id: userId },
+        select: { id: true, email: true, userType: true, password: true },
       });
+
+      if (!user || !user.password) {
+        return void res.status(404).json({ error: 'User not found' });
+      }
+
+      const isCurrentPasswordValid = await bcrypt.compare(currentPassword, user.password);
+      if (!isCurrentPasswordValid) {
+        return void res.status(401).json({ error: 'Current password is incorrect' });
+      }
+
+      if (currentPassword === newPassword) {
+        return void res
+          .status(400)
+          .json({ error: 'New password must be different from current password' });
+      }
+
+      const hashedPassword = await bcrypt.hash(newPassword, 12);
+      await prisma.user.update({
+        where: { id: userId },
+        data: { password: hashedPassword },
+      });
+
+      const freshToken = generateToken({
+        id: user.id,
+        email: user.email,
+        userType: String(user.userType),
+      });
+
+      // Rotate cookie token to keep session continuity after password change.
+      res.cookie('token', freshToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        path: '/',
+      });
+
+      return void res.json({
+        message: 'Password changed successfully',
+        token: freshToken,
+      });
+    } catch (error) {
+      next(error);
     }
-
-    const { currentPassword, newPassword } = validation.data;
-    const userId = (req as any).user?.id as string | undefined;
-
-    if (!userId) {
-      return void res.status(401).json({ error: 'Unauthorized' });
-    }
-
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      select: { id: true, email: true, userType: true, password: true },
-    });
-
-    if (!user || !user.password) {
-      return void res.status(404).json({ error: 'User not found' });
-    }
-
-    const isCurrentPasswordValid = await bcrypt.compare(currentPassword, user.password);
-    if (!isCurrentPasswordValid) {
-      return void res.status(401).json({ error: 'Current password is incorrect' });
-    }
-
-    if (currentPassword === newPassword) {
-      return void res.status(400).json({ error: 'New password must be different from current password' });
-    }
-
-    const hashedPassword = await bcrypt.hash(newPassword, 12);
-    await prisma.user.update({
-      where: { id: userId },
-      data: { password: hashedPassword },
-    });
-
-    const freshToken = generateToken({
-      id: user.id,
-      email: user.email,
-      userType: String(user.userType),
-    });
-
-    // Rotate cookie token to keep session continuity after password change.
-    res.cookie('token', freshToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-      path: '/',
-    });
-
-    return void res.json({
-      message: 'Password changed successfully',
-      token: freshToken,
-    });
-  } catch (error) {
-    next(error);
   }
-});
+);
 
 /**
  * @route POST /auth/forgot-password
@@ -601,4 +619,3 @@ router.post('/logout', authenticate, (_req: Request, res: Response) => {
 });
 
 export default router;
-

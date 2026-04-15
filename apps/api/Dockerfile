@@ -1,92 +1,51 @@
-# =====================================
-# Nexta API - Production Dockerfile
-# =====================================
-# Multi-stage build for optimized production image
-
-# Stage 1: Build
 FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Install build dependencies
-RUN apk add --no-cache python3 make g++ openssl
+RUN apk add --no-cache openssl
 
-# Copy package files
-COPY package*.json ./
-COPY pnpm-lock.yaml ./
+COPY package.json package-lock.json ./
+RUN npm ci --legacy-peer-deps
 
-# Install pnpm
-RUN npm install -g pnpm
-
-# Install all dependencies (including dev for building)
-RUN pnpm install --frozen-lockfile
-
-# Copy source code
-COPY . .
-
-# Generate Prisma client
+COPY prisma ./prisma
+ENV PRISMA_CLI_BINARY_TARGETS=linux-musl-openssl-3.0.x
 RUN npx prisma generate
 
-# Stage 2: Production
-# Using distroless-inspired minimal image
-FROM node:20-alpine AS production
+COPY src ./src
+COPY build.mjs tsconfig.json tsconfig.build.json ./
+COPY openapi.yaml start.sh railway-predeploy.sh ./
+
+RUN npm run build
+RUN npm prune --omit=dev
+
+FROM node:20-alpine AS runtime
 
 WORKDIR /app
 
-# Install only essential production dependencies
-# Note: curl and postgresql-client removed to reduce attack surface
-# Use 'docker exec' or sidecar containers for debugging if needed
-RUN apk add --no-cache openssl
+RUN apk add --no-cache openssl dumb-init
 
-# Create non-root user
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nexta -u 1001
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nexta
 
-# Copy package files
-COPY package*.json ./
-COPY pnpm-lock.yaml ./
-
-# Install pnpm and production dependencies
-RUN npm install -g pnpm pm2 && \
-    pnpm install --frozen-lockfile --prod
-
-# Copy built application from builder stage
-COPY --from=builder /app/src ./src
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/package-lock.json ./
+COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/openapi.yaml ./openapi.yaml
+COPY --from=builder /app/start.sh ./start.sh
+COPY --from=builder /app/railway-predeploy.sh ./railway-predeploy.sh
 COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder /app/ecosystem.config.cjs ./
 
-# Create logs directory
-RUN mkdir -p logs && chown -R nexta:nodejs logs
-
-# Step 44: Create tmp directory for read-only root filesystem support
-RUN mkdir -p /app/tmp && chown -R nexta:nodejs /app/tmp
-
-# Set ownership
-RUN chown -R nexta:nodejs /app
-
-# Switch to non-root user
+RUN chmod +x ./start.sh ./railway-predeploy.sh && chown -R nexta:nodejs /app
 USER nexta
 
-# Environment variables
 ENV NODE_ENV=production
-ENV PORT=3001
 
-# Step 44: Set secure environment defaults
-ENV TMPDIR=/app/tmp
-ENV npm_config_cache=/app/tmp/.npm
-
-# Expose port
 EXPOSE 3001
 
-# Step 43: Enhanced health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-    CMD node -e "require('http').get('http://localhost:3001/health/ready', (r) => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"
+  CMD node -e "const p=process.env.PORT||3001;require('http').get('http://127.0.0.1:'+p+'/health/live', (r) => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"
 
-# Security labels
-LABEL maintainer="security@nexta.com.au"
-LABEL security.scan="required"
-LABEL security.non-root="true"
-
-# Start with PM2 for process management
-CMD ["pm2-runtime", "start", "ecosystem.config.cjs", "--env", "production"]
+ENTRYPOINT ["dumb-init", "--"]
+CMD ["sh", "./start.sh"]

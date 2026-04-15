@@ -4,6 +4,7 @@ node_modules/
 
 # Package manager caches
 .pnpm-store/
+apps/api/.npm-cache/
 
 # Next.js build output
 apps/web/.next/

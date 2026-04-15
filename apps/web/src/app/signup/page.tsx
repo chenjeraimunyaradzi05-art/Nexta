@@ -83,17 +83,32 @@ export default function SignUpPage() {
       return;
     }
 
+    const firstName = formData.firstName.trim();
+    const lastName = formData.lastName.trim();
+
+    if (!firstName || !lastName) {
+      setError('Please enter your first and last name');
+      return;
+    }
+
     setIsLoading(true);
 
     try {
+      const email = formData.email.trim().toLowerCase();
+      const inviteCode = formData.inviteCode.trim();
+
       const response = await fetch(`${API_BASE}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({
-          email: formData.email,
+          firstName,
+          lastName,
+          email,
           password: formData.password,
-          name: `${formData.firstName} ${formData.lastName}`.trim(),
+          name: `${firstName} ${lastName}`,
           userType: 'MEMBER',
+          inviteCode: inviteCode || undefined,
           acceptTerms: true,
         }),
       });
@@ -126,10 +141,8 @@ export default function SignUpPage() {
 
       setToken(data.data.token);
 
-      // Set auth-session cookie for middleware route protection
       setAuthSessionCookie();
 
-      // Update auth store
       setUser({
         id: data.data.user.id,
         email: data.data.user.email,
@@ -137,7 +150,6 @@ export default function SignUpPage() {
         profile: data.data.user.profile,
       });
 
-      // Redirect to welcome/onboarding
       setSuccess(true);
       router.push('/welcome');
       setTimeout(() => {
